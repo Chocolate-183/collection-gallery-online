@@ -35,6 +35,9 @@ export function switchCollection(collectionId, updateHash = true) {
   store.set({ currentCollectionId: collectionId });
   const col = collectionsConfig[collectionId];
 
+  const cardGrid = document.getElementById('card-grid');
+  if (cardGrid) cardGrid.setAttribute('data-collection', collectionId);
+
   // Update Header Title & Subtitle
   const meta = collectionsMetaCache[collectionId] || col.defaultMeta;
   const headerTitle = document.getElementById('collection-header-title');
