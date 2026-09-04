@@ -77,11 +77,12 @@ export function updateReadingToggleUI() {
 }
 
 export function renderCards() {
-  const { filteredRecords, currentPage, pageSize } = store.get();
+  const { filteredRecords, currentPage, pageSize, currentCollectionId } = store.get();
   const container = document.getElementById('card-grid');
   const counter = document.getElementById('cards-counter');
   if (!container) return;
   container.innerHTML = '';
+  container.setAttribute('data-collection', currentCollectionId || '');
 
   if (counter) counter.innerText = `(${filteredRecords.length})`;
 
@@ -108,9 +109,9 @@ export function renderCards() {
     const isLongText = meaning.length > 20;
 
     const cardHtml = `
-      <div class="awsui-card" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊檢視詳細內容">
+      <div class="awsui-card" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊檢視詳細內容">
         <div class="awsui-card-top-content">
-          <div class="awsui-card-header-title" title="${escapeHtml(rec.ja_term)}">${escapeHtml(rec.ja_term)}</div>
+          <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${escapeHtml(rec.ja_term)}</div>
 
           ${rec.reading ? `<span class="awsui-reading-subtext" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>` : '<span class="awsui-reading-subtext">&nbsp;</span>'}
 

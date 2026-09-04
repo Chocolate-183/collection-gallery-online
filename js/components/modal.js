@@ -16,7 +16,10 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const idElem = document.getElementById('modal-id');
   const modal = document.getElementById('detail-modal');
 
-  if (titleElem) titleElem.innerText = rec.ja_term;
+  if (titleElem) {
+    titleElem.innerText = rec.ja_term;
+    titleElem.setAttribute('data-collection', currentCollectionId || '');
+  }
   if (readingElem) {
     if (rec.reading) {
       readingElem.innerText = rec.reading;
