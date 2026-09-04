@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collection Gallery Online</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Cloudscape Typography & Global Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@cloudscape-design/global-styles/index.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Cloudscape Navigation Bar -->
+  <header class="awsui-top-navigation">
+    <div class="awsui-top-nav-left">
+      <!-- Toggle Side Panel Action Button -->
+      <button class="awsui-icon-button" id="btn-toggle-sidebar" title="切換導覽面板" aria-label="切換導覽面板" onclick="toggleSidebar()">
+        <svg class="awsui-icon" viewBox="0 0 16 16">
+          <path d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0 4.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0 4.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </button>
+
+      <div class="awsui-brand-title" onclick="switchView('welcome', event)" style="cursor: pointer;">
+        <div class="awsui-brand-icon-box">
+          <svg class="awsui-icon awsui-icon-lg" viewBox="0 0 16 16">
+            <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
+            <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
+          </svg>
+        </div>
+        <span>Collection Gallery Online</span>
+      </div>
+    </div>
+
+    <div class="awsui-nav-actions">
+      <!-- Dark Mode Toggle Action -->
+      <button class="awsui-icon-button" id="btn-toggle-theme" title="切換深色模式" aria-label="切換深色模式" onclick="toggleTheme()">
+        <!-- Sun icon (for dark mode active) -->
+        <svg class="awsui-icon icon-sun" viewBox="0 0 16 16" style="display:none;">
+          <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+        <!-- Moon icon (for light mode active) -->
+        <svg class="awsui-icon icon-moon" viewBox="0 0 16 16">
+          <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+      </button>
+
+      <!-- Icon-Only Refresh Action -->
+      <button class="awsui-icon-button" title="重新載入資料" aria-label="重新載入資料" onclick="loadCollectionData(window.currentCollectionId)">
+        <svg class="awsui-icon" viewBox="0 0 16 16">
+          <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.418A6 6 0 1 1 8 2v1z"/>
+          <path d="M8 1v3.5l3-2L8 1z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- App Layout Container -->
+  <div class="awsui-app-layout-wrapper" id="app-layout-wrapper">
+
+    <!-- Left Side Navigation Panel -->
+    <aside class="awsui-side-navigation" id="side-navigation">
+      <div class="awsui-side-nav-section">
+        <div class="awsui-side-nav-header">HOME</div>
+        <nav class="awsui-side-nav-menu">
+          <button class="awsui-nav-link active" id="nav-welcome" type="button" onclick="switchView('welcome', event)">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+            </svg>
+            <span class="awsui-nav-text">歡迎頁面</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="awsui-side-nav-section" style="margin-top: 16px;">
+        <div class="awsui-side-nav-header">COLLECTIONS</div>
+        <nav class="awsui-side-nav-menu">
+          <button class="awsui-nav-link" id="nav-col-japanese-terms" type="button" onclick="switchCollection('japanese-terms')">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
+              <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
+            </svg>
+            <span class="awsui-nav-text" id="nav-text-japanese-terms">日本特色詞彙</span>
+            <span class="awsui-nav-badge" id="side-nav-count-japanese-terms">--</span>
+          </button>
+          <button class="awsui-nav-link" id="nav-col-china-terms" type="button" onclick="switchCollection('china-terms')">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
+              <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
+            </svg>
+            <span class="awsui-nav-text" id="nav-text-china-terms">大陸特色詞彙</span>
+            <span class="awsui-nav-badge" id="side-nav-count-china-terms">--</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="awsui-side-nav-section" style="margin-top: 16px;">
+        <div class="awsui-side-nav-header">SYSTEM</div>
+        <nav class="awsui-side-nav-menu">
+          <button class="awsui-nav-link" id="nav-about" type="button" onclick="switchView('about', event)">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+            </svg>
+            <span class="awsui-nav-text">說明頁</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="awsui-side-nav-footer">
+        <div class="awsui-version-tag">Version 2.1.0 (Beta)</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="awsui-app-layout">
+
+      <!-- VIEW 0: Welcome Page -->
+      <div id="view-welcome" class="awsui-view-content active">
+
+        <!-- Welcome Hero Banner -->
+        <section class="awsui-welcome-hero">
+          <h1 class="awsui-hero-title">Welcome to Collection Gallery Online !</h1>
+          <p class="awsui-hero-description">
+            Collection Gallery Online 致力於打造 Collection 展示空間。歡迎參觀與交流。
+          </p>
+          <div class="awsui-hero-actions">
+            <button class="awsui-btn awsui-btn-primary" type="button" onclick="switchCollection('japanese-terms')">
+              <span>瀏覽 日本特色詞彙</span>
+              <svg class="awsui-icon" viewBox="0 0 16 16">
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+            </button>
+            <button class="awsui-btn awsui-btn-normal" type="button" onclick="switchCollection('china-terms')">
+              <span>瀏覽 大陸特色詞彙</span>
+              <svg class="awsui-icon" viewBox="0 0 16 16">
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+            </button>
+            <button class="awsui-btn awsui-btn-tertiary" type="button" onclick="switchView('about', event)">
+              <span>查看系統說明</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Featured Collections Grid -->
+        <section class="awsui-welcome-section">
+          <div class="awsui-welcome-section-header">
+            <h2 class="awsui-welcome-section-title">精選 Collection</h2>
+            <p class="awsui-welcome-section-subtitle">點擊即可進入 Collection 頁面</p>
+          </div>
+
+          <div class="awsui-welcome-grid">
+            <!-- Collection Card 1 -->
+            <div class="awsui-welcome-card" onclick="switchCollection('japanese-terms')">
+              <div class="awsui-welcome-card-header">
+                <div>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-japanese-terms">日本特色詞彙</h3>
+                  <div class="awsui-welcome-card-tags" id="welcome-card-tags-japanese-terms">
+                    <span class="awsui-welcome-card-tag">日本文化</span>
+                    <span class="awsui-welcome-card-tag">流行新詞</span>
+                    <span class="awsui-welcome-card-tag">次文化用語</span>
+                  </div>
+                </div>
+              </div>
+              <p class="awsui-welcome-card-desc" id="welcome-card-desc-japanese-terms">
+                本表收錄了豐富的日本文化特色詞彙、生活慣用語、流行新詞與次文化用語。為了方便使用者查詢，特別支援了 50 音快捷按鈕索引，並提供完整的平假名標音對照，讓您能輕鬆掌握每個詞彙的發音與含義。
+              </p>
+              <div class="awsui-welcome-card-footer">
+                <span class="awsui-welcome-card-action">進入 Collection &rarr;</span>
+              </div>
+            </div>
+
+            <!-- Collection Card 2 -->
+            <div class="awsui-welcome-card" onclick="switchCollection('china-terms')">
+              <div class="awsui-welcome-card-header">
+                <div>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms">大陸特色詞彙</h3>
+                  <div class="awsui-welcome-card-tags" id="welcome-card-tags-china-terms">
+                    <span class="awsui-welcome-card-tag">大陸用語</span>
+                    <span class="awsui-welcome-card-tag">網路流行語</span>
+                    <span class="awsui-welcome-card-tag">兩岸差異</span>
+                  </div>
+                </div>
+              </div>
+              <p class="awsui-welcome-card-desc" id="welcome-card-desc-china-terms">
+                匯集大陸網路流行用語、生活習慣詞彙，精準對照台灣慣用詞與語境背景，輕鬆掌握兩岸語言文化差異。
+              </p>
+              <div class="awsui-welcome-card-footer">
+                <span class="awsui-welcome-card-action">進入 Collection &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- VIEW 1: Dictionary / Collection Cards List View -->
+      <div id="view-dictionary" class="awsui-view-content" style="display: none;">
+
+        <!-- Header Section with Inline KPI Card -->
+        <section class="awsui-header">
+          <div>
+            <h1 class="awsui-header-title" id="collection-header-title">日本特色詞彙</h1>
+            <p class="awsui-header-subtitle" id="collection-header-subtitle" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin-top: 4px;"></p>
+          </div>
+          <div class="awsui-kpi-box">
+            <div class="awsui-kpi-label">總筆數</div>
+            <div class="awsui-kpi-val" id="kpi-total-count">--</div>
+          </div>
+        </section>
+
+        <!-- Cloudscape Cards Collection Container Component -->
+        <section class="awsui-cards-container">
+          
+          <!-- Cards Header -->
+          <div class="awsui-cards-collection-header">
+            <div class="awsui-cards-header-title">
+              <span>資料列表</span>
+              <span class="awsui-cards-counter" id="cards-counter">(0)</span>
+            </div>
+          </div>
+
+          <!-- Controls Bar -->
+          <div class="awsui-cards-controls">
+            <div class="awsui-text-filter">
+              <span class="awsui-input-icon">
+                <svg class="awsui-icon" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </span>
+              <input type="text" id="search-input" class="awsui-input" placeholder="搜尋標題、標音或說明內容..." oninput="onSearchInput()">
+            </div>
+
+            <!-- Toggle Reading Display Button -->
+            <button id="btn-toggle-reading" class="awsui-toggle-control active" title="切換是否顯示標音/副標題" aria-label="切換是否顯示標音/副標題" onclick="toggleReadingDisplay()">
+              <svg class="awsui-icon" viewBox="0 0 16 16">
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+              </svg>
+            </button>
+
+            <div>
+              <select id="sort-select" class="awsui-select" onchange="onFilterChange()">
+                <option value="reading-asc" selected>排序（正序）</option>
+                <option value="reading-desc">排序（倒序）</option>
+              </select>
+            </div>
+
+            <div>
+              <select id="pagesize-select" class="awsui-select" onchange="onPageSizeChange()">
+                <option value="12">每頁 12 筆</option>
+                <option value="24" selected>每頁 24 筆</option>
+                <option value="48">每頁 48 筆</option>
+                <option value="96">每頁 96 筆</option>
+                <option value="9999">顯示全部筆數</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Tabs & Filter Bar Group -->
+          <div class="awsui-filter-tabs-container">
+            <!-- Kana / Quick Filter Tabs -->
+            <div class="awsui-filter-tabs-row" id="kana-tabs-row">
+              <span class="awsui-filter-label" id="quick-tabs-label">快速索引：</span>
+              <div class="awsui-tabs" id="kana-tabs">
+                <button class="awsui-tab" onclick="selectKanaTab('ALL', this)">全部</button>
+                <button class="awsui-tab active" onclick="selectKanaTab('RANDOM10', this)">隨機10個</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('あ', this)">あ行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('か', this)">か行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('さ', this)">さ行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('た', this)">た行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('な', this)">な行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('は', this)">は行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('ま', this)">ま行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('や', this)">や行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('ら', this)">ら行</button>
+                <button class="awsui-tab kana-only" onclick="selectKanaTab('わ', this)">わ行</button>
+              </div>
+            </div>
+
+            <!-- Length Filter Tabs -->
+            <div class="awsui-filter-tabs-row">
+              <span class="awsui-filter-label">以字數搜尋：</span>
+              <div class="awsui-tabs" id="length-tabs">
+                <button class="awsui-tab active" onclick="selectLengthTab('ALL', this)">不限</button>
+                <button class="awsui-tab" onclick="selectLengthTab('1', this)">1字</button>
+                <button class="awsui-tab" onclick="selectLengthTab('2', this)">2字</button>
+                <button class="awsui-tab" onclick="selectLengthTab('3', this)">3字</button>
+                <button class="awsui-tab" onclick="selectLengthTab('4', this)">4字</button>
+                <button class="awsui-tab" onclick="selectLengthTab('5+', this)">5字以上</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Uniform Height & Width Cards Grid -->
+          <div class="awsui-cards-grid" id="card-grid">
+            <!-- Rendered Uniform Cards -->
+          </div>
+
+          <!-- Cards Component Pagination Footer -->
+          <div class="awsui-cards-pagination-bar">
+            <div class="awsui-pagination-info" id="pagination-info">
+              正在載入...
+            </div>
+            <div class="awsui-pagination-controls" id="pagination-controls">
+              <!-- Page controls -->
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Collection Notice Footer (Supplementary / Non-intrusive) -->
+        <div id="collection-notice-container" class="awsui-collection-notice-footer"></div>
+
+      </div>
+
+      <!-- VIEW 2: About / Instructions Page (說明頁) -->
+      <div id="view-about" class="awsui-view-content" style="display: none;">
+
+        <section class="awsui-header">
+          <h1 class="awsui-header-title">作者資訊</h1>
+        </section>
+
+        <div class="awsui-about-grid">
+
+          <!-- Author Info Card -->
+          <section class="awsui-cards-container awsui-about-card">
+            <div class="awsui-cards-collection-header">
+              <div class="awsui-cards-header-title">
+                <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+                <span>作者資訊</span>
+              </div>
+            </div>
+
+            <div class="awsui-author-details">
+              <div class="awsui-author-profile">
+                <div class="awsui-author-avatar">
+                  <svg class="awsui-icon" style="width:28px; height:28px; fill:#0f6ce0;" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  </svg>
+                </div>
+                <div class="awsui-author-meta">
+                  <h2 class="awsui-author-name">巧克力</h2>
+                  <p class="awsui-author-subtitle">專案創作者 / Author</p>
+                </div>
+              </div>
+
+              <div class="awsui-info-list">
+                <div class="awsui-info-item">
+                  <span class="awsui-info-label">專案作者</span>
+                  <span class="awsui-info-value">巧克力</span>
+                </div>
+                <div class="awsui-info-item">
+                  <span class="awsui-info-label">專案名稱</span>
+                  <span class="awsui-info-value">Collection Gallery Online</span>
+                </div>
+                <div class="awsui-info-item">
+                  <span class="awsui-info-label">介面規範</span>
+                  <span class="awsui-info-value">雙色模式 (Light / Dark)</span>
+                </div>
+                <div class="awsui-info-item">
+                  <span class="awsui-info-label">最新版本</span>
+                  <span class="awsui-info-value"><span class="awsui-badge-beta">v2.1.0 Beta</span></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Detailed Meaning Modal for Long Text Inspection -->
+  <div class="awsui-modal-backdrop" id="detail-modal" onclick="closeDetailModalOnBackdrop(event)">
+    <div class="awsui-modal">
+      <div class="awsui-modal-header">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <strong id="modal-term-title" style="font-size: 22px; font-weight: 700; color: #0f6ce0; line-height: 1.25;">--</strong>
+          <div id="modal-reading-row" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); font-weight: 500;"></div>
+        </div>
+        <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeDetailModal()">
+          <svg class="awsui-icon" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="awsui-modal-body">
+        <div style="font-size: 11px; font-weight: 600; color: #687078; text-transform: uppercase; margin-bottom: 6px;">說明內容</div>
+        <div id="modal-meaning-text"></div>
+        
+        <!-- Bottom Right Creation Time & ID -->
+        <div class="awsui-modal-created-time">
+          created at: <span id="modal-created-at">--</span>
+          <span class="awsui-modal-meta-divider">|</span>
+           <span id="modal-id">--</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="awsui-toast" id="toast">
+    <span id="toast-msg">已更新</span>
+  </div>
+
+  <!-- Main Application ES Module Entry Point -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

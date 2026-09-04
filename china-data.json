@@ -1,0 +1,2386 @@
+[
+  {
+    "id": "#002",
+    "ja_term": "985",
+    "tw_translation": "(無對應詞彙)\n指中國大陸的「985工程」大學，台灣無此制度",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 1
+  },
+  {
+    "id": "#003",
+    "ja_term": "996",
+    "tw_translation": "(無對應詞彙)\n指早上9點上班，晚上9點下班，每週工作6天的工作制度",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 2
+  },
+  {
+    "id": "#004",
+    "ja_term": "一本 二本",
+    "tw_translation": "(無對應詞彙)\n指中國大陸高考錄取批次，台灣無此制度",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 3
+  },
+  {
+    "id": "#005",
+    "ja_term": "一带一路",
+    "tw_translation": "(無對應詞彙)\n指中國大陸提出的發展戰略",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 4
+  },
+  {
+    "id": "#006",
+    "ja_term": "一键三连",
+    "tw_translation": "(無對應詞彙)\n指Bilibili (B站) 上的點讚、投幣、收藏功能",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 5
+  },
+  {
+    "id": "#007",
+    "ja_term": "二维码",
+    "tw_translation": "QR Code",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 6
+  },
+  {
+    "id": "#008",
+    "ja_term": "人力资源",
+    "tw_translation": "人資",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 7
+  },
+  {
+    "id": "#009",
+    "ja_term": "人工智能",
+    "tw_translation": "人工智慧",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 8
+  },
+  {
+    "id": "#010",
+    "ja_term": "十五五",
+    "tw_translation": "(無對應詞彙)\n指中國大陸「第十五個五年規劃」",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 9
+  },
+  {
+    "id": "#011",
+    "ja_term": "十里山路不换肩",
+    "tw_translation": "(無對應詞彙)\n源自中國大陸領導人習近平的早年經歷，形容人刻苦耐勞或用作調侃",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 10
+  },
+  {
+    "id": "#012",
+    "ja_term": "三中全会",
+    "tw_translation": "(無對應詞彙)\n指中國共產黨第三次中央委員會全體會議",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 11
+  },
+  {
+    "id": "#013",
+    "ja_term": "三和大神",
+    "tw_translation": "(無對應詞彙)\n指中國大陸深圳市做日結工作、生活困頓的打工者",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 12
+  },
+  {
+    "id": "#014",
+    "ja_term": "上山下乡",
+    "tw_translation": "(無對應詞彙)\n指中國大陸文化大革命期間，城市知識青年到農村的政治運動",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 13
+  },
+  {
+    "id": "#015",
+    "ja_term": "习近平新时代中国特色社会主义思想",
+    "tw_translation": "(無對應詞彙)\n中國共產黨的指導思想之一",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 14
+  },
+  {
+    "id": "#016",
+    "ja_term": "卫生间",
+    "tw_translation": "洗手間",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 15
+  },
+  {
+    "id": "#017",
+    "ja_term": "口袋怪兽",
+    "tw_translation": "寶可夢",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 16
+  },
+  {
+    "id": "#018",
+    "ja_term": "大厂",
+    "tw_translation": "科技巨頭 / 知名大企業",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 17
+  },
+  {
+    "id": "#019",
+    "ja_term": "大巴",
+    "tw_translation": "公車",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 18
+  },
+  {
+    "id": "#020",
+    "ja_term": "大牛",
+    "tw_translation": "大神 / 專家",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 19
+  },
+  {
+    "id": "#021",
+    "ja_term": "大V",
+    "tw_translation": "網紅 / 意見領袖 (KOL)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 20
+  },
+  {
+    "id": "#022",
+    "ja_term": "小区",
+    "tw_translation": "社區",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 21
+  },
+  {
+    "id": "#023",
+    "ja_term": "山治",
+    "tw_translation": "香吉士",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 22
+  },
+  {
+    "id": "#024",
+    "ja_term": "川建国",
+    "tw_translation": "(無對應詞彙)\n中國大陸網友對美國前總統川普的戲稱",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 23
+  },
+  {
+    "id": "#025",
+    "ja_term": "工资",
+    "tw_translation": "薪資",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 24
+  },
+  {
+    "id": "#026",
+    "ja_term": "中方",
+    "tw_translation": "中方 (台灣通常直接稱中國大陸或陸方)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 25
+  },
+  {
+    "id": "#027",
+    "ja_term": "中华民族伟大复兴",
+    "tw_translation": "(無對應詞彙)\n中國大陸的政治口號",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 26
+  },
+  {
+    "id": "#028",
+    "ja_term": "中国梦",
+    "tw_translation": "(無對應詞彙)\n中國大陸的政治口號",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 27
+  },
+  {
+    "id": "#029",
+    "ja_term": "中宣部",
+    "tw_translation": "(無對應詞彙)\n中國共產黨中央委員會宣傳部",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 28
+  },
+  {
+    "id": "#030",
+    "ja_term": "乌索普",
+    "tw_translation": "騙人布",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 29
+  },
+  {
+    "id": "#031",
+    "ja_term": "云计算",
+    "tw_translation": "雲端運算",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 30
+  },
+  {
+    "id": "#032",
+    "ja_term": "互联网",
+    "tw_translation": "網際網路",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 31
+  },
+  {
+    "id": "#033",
+    "ja_term": "五年高考三年模拟",
+    "tw_translation": "(無對應詞彙)\n中國大陸著名的高考複習教輔書",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 32
+  },
+  {
+    "id": "#034",
+    "ja_term": "五险一金",
+    "tw_translation": "(無對應詞彙)\n指中國大陸的社會保險及住房公積金制度",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 33
+  },
+  {
+    "id": "#035",
+    "ja_term": "公交车",
+    "tw_translation": "公車",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 34
+  },
+  {
+    "id": "#036",
+    "ja_term": "内存",
+    "tw_translation": "記憶體",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 35
+  },
+  {
+    "id": "#037",
+    "ja_term": "内涵",
+    "tw_translation": "內涵 / 隱喻",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 36
+  },
+  {
+    "id": "#038",
+    "ja_term": "分辨率",
+    "tw_translation": "解析度",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 37
+  },
+  {
+    "id": "#039",
+    "ja_term": "勿谓言之不预",
+    "tw_translation": "(無對應詞彙)\n中國大陸外交術語，意為「別說我沒事先警告過你」",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 38
+  },
+  {
+    "id": "#040",
+    "ja_term": "反贼",
+    "tw_translation": "(無對應詞彙)\n網路上指反對中國政府或體制的人",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 39
+  },
+  {
+    "id": "#041",
+    "ja_term": "幻灯片",
+    "tw_translation": "投影片",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 40
+  },
+  {
+    "id": "#042",
+    "ja_term": "手游",
+    "tw_translation": "手機遊戲",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 41
+  },
+  {
+    "id": "#043",
+    "ja_term": "文件",
+    "tw_translation": "檔案",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 42
+  },
+  {
+    "id": "#044",
+    "ja_term": "文件夹",
+    "tw_translation": "資料夾",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 43
+  },
+  {
+    "id": "#045",
+    "ja_term": "文档",
+    "tw_translation": "文件",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 44
+  },
+  {
+    "id": "#046",
+    "ja_term": "方便面",
+    "tw_translation": "泡麵",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 45
+  },
+  {
+    "id": "#047",
+    "ja_term": "火了",
+    "tw_translation": "紅了",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 46
+  },
+  {
+    "id": "#048",
+    "ja_term": "牛马",
+    "tw_translation": "社畜",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 47
+  },
+  {
+    "id": "#049",
+    "ja_term": "牛油果",
+    "tw_translation": "酪梨",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 48
+  },
+  {
+    "id": "#050",
+    "ja_term": "牛逼",
+    "tw_translation": "超強 / 厲害",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 49
+  },
+  {
+    "id": "#051",
+    "ja_term": "车间",
+    "tw_translation": "廠房 / 生產線",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 50
+  },
+  {
+    "id": "#052",
+    "ja_term": "主观能动性",
+    "tw_translation": "主動性",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 51
+  },
+  {
+    "id": "#053",
+    "ja_term": "主板",
+    "tw_translation": "主機板",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 52
+  },
+  {
+    "id": "#054",
+    "ja_term": "代码",
+    "tw_translation": "程式碼",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 53
+  },
+  {
+    "id": "#055",
+    "ja_term": "充电",
+    "tw_translation": "充電 (或進修)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 54
+  },
+  {
+    "id": "#056",
+    "ja_term": "充电宝",
+    "tw_translation": "行動電源",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 55
+  },
+  {
+    "id": "#057",
+    "ja_term": "充值",
+    "tw_translation": "課金",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 56
+  },
+  {
+    "id": "#058",
+    "ja_term": "出租车",
+    "tw_translation": "計程車",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 57
+  },
+  {
+    "id": "#059",
+    "ja_term": "包邮",
+    "tw_translation": "免運",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 58
+  },
+  {
+    "id": "#060",
+    "ja_term": "北上广深",
+    "tw_translation": "(無對應詞彙)\n指北京、上海、廣州、深圳四個中國大陸一線城市",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 59
+  },
+  {
+    "id": "#061",
+    "ja_term": "厉害了我的国",
+    "tw_translation": "(無對應詞彙)\n中國大陸的政治宣傳口號及紀錄片名稱",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 60
+  },
+  {
+    "id": "#062",
+    "ja_term": "发改委",
+    "tw_translation": "(無對應詞彙)\n中華人民共和國國家發展和改革委員會",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 61
+  },
+  {
+    "id": "#063",
+    "ja_term": "台球",
+    "tw_translation": "撞球",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 62
+  },
+  {
+    "id": "#064",
+    "ja_term": "外卖",
+    "tw_translation": "外送",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 63
+  },
+  {
+    "id": "#065",
+    "ja_term": "外卖员",
+    "tw_translation": "外送員",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 64
+  },
+  {
+    "id": "#066",
+    "ja_term": "失信名单",
+    "tw_translation": "(無對應詞彙)\n指未履行法院判決的被執行人名單",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 65
+  },
+  {
+    "id": "#067",
+    "ja_term": "打车",
+    "tw_translation": "叫車",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 66
+  },
+  {
+    "id": "#068",
+    "ja_term": "打印",
+    "tw_translation": "列印",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 67
+  },
+  {
+    "id": "#069",
+    "ja_term": "打鸡血",
+    "tw_translation": "亢奮 / 激勵",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 68
+  },
+  {
+    "id": "#070",
+    "ja_term": "打贪",
+    "tw_translation": "肅貪",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 69
+  },
+  {
+    "id": "#071",
+    "ja_term": "打钱",
+    "tw_translation": "匯錢",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 70
+  },
+  {
+    "id": "#072",
+    "ja_term": "打赏",
+    "tw_translation": "斗內 (Donate) / 打賞",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 71
+  },
+  {
+    "id": "#073",
+    "ja_term": "打黑",
+    "tw_translation": "掃黑",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 72
+  },
+  {
+    "id": "#074",
+    "ja_term": "本科",
+    "tw_translation": "大學部 / 學士",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 73
+  },
+  {
+    "id": "#075",
+    "ja_term": "电子游戏",
+    "tw_translation": "電玩",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 74
+  },
+  {
+    "id": "#076",
+    "ja_term": "闪电五连鞭",
+    "tw_translation": "(無對應詞彙)\n網路迷因，源自中國大陸太極拳師馬保國",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 75
+  },
+  {
+    "id": "#077",
+    "ja_term": "龙标",
+    "tw_translation": "(無對應詞彙)\n中國大陸電影公映許可證的俗稱",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 76
+  },
+  {
+    "id": "#078",
+    "ja_term": "龙傲天",
+    "tw_translation": "(無對應詞彙)\n指網路小說中能力誇張、所向無敵的主角",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 77
+  },
+  {
+    "id": "#079",
+    "ja_term": "交通卡",
+    "tw_translation": "悠遊卡",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 78
+  },
+  {
+    "id": "#080",
+    "ja_term": "全网封杀",
+    "tw_translation": "全網封殺 / 徹底封殺",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 79
+  },
+  {
+    "id": "#081",
+    "ja_term": "农民工",
+    "tw_translation": "移工 / 外出打工的農民",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 80
+  },
+  {
+    "id": "#082",
+    "ja_term": "动画片",
+    "tw_translation": "卡通",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 81
+  },
+  {
+    "id": "#083",
+    "ja_term": "合同",
+    "tw_translation": "合約",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 82
+  },
+  {
+    "id": "#084",
+    "ja_term": "同志",
+    "tw_translation": "同志 (在大陸多為政治或同事稱呼)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 83
+  },
+  {
+    "id": "#085",
+    "ja_term": "回车",
+    "tw_translation": "Enter鍵",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 84
+  },
+  {
+    "id": "#086",
+    "ja_term": "回形针",
+    "tw_translation": "迴紋針",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 85
+  },
+  {
+    "id": "#087",
+    "ja_term": "团建",
+    "tw_translation": "團隊建立 / 員工旅遊",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 86
+  },
+  {
+    "id": "#088",
+    "ja_term": "地铁",
+    "tw_translation": "捷運",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 87
+  },
+  {
+    "id": "#089",
+    "ja_term": "夹带私货",
+    "tw_translation": "置入性行銷 / 偷渡觀點",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 88
+  },
+  {
+    "id": "#090",
+    "ja_term": "扣1",
+    "tw_translation": "",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 89
+  },
+  {
+    "id": "#091",
+    "ja_term": "扫码支付",
+    "tw_translation": "掃碼支付",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 90
+  },
+  {
+    "id": "#092",
+    "ja_term": "早上好",
+    "tw_translation": "早安",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 91
+  },
+  {
+    "id": "#093",
+    "ja_term": "机场",
+    "tw_translation": "機場 (若是VPN則指翻牆節點提供商)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 92
+  },
+  {
+    "id": "#094",
+    "ja_term": "机器猫",
+    "tw_translation": "哆啦A夢 / 小叮噹",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 93
+  },
+  {
+    "id": "#095",
+    "ja_term": "死机",
+    "tw_translation": "當機",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 94
+  },
+  {
+    "id": "#096",
+    "ja_term": "百万大裁军",
+    "tw_translation": "(無對應詞彙)\n指1985年中國人民解放軍裁減員額一百萬的事件",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 95
+  },
+  {
+    "id": "#097",
+    "ja_term": "百度",
+    "tw_translation": "(無對應詞彙)\n中國大陸的搜尋引擎公司",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 96
+  },
+  {
+    "id": "#098",
+    "ja_term": "红头文件",
+    "tw_translation": "公文",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 97
+  },
+  {
+    "id": "#099",
+    "ja_term": "网文",
+    "tw_translation": "網路小說",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 98
+  },
+  {
+    "id": "#100",
+    "ja_term": "网信办",
+    "tw_translation": "(無對應詞彙)\n中華人民共和國國家互聯網信息辦公室",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 99
+  },
+  {
+    "id": "#101",
+    "ja_term": "网络",
+    "tw_translation": "網路",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 100
+  },
+  {
+    "id": "#102",
+    "ja_term": "网贷",
+    "tw_translation": "網路貸款 / P2P借貸",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 101
+  },
+  {
+    "id": "#103",
+    "ja_term": "网课",
+    "tw_translation": "線上課程",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 102
+  },
+  {
+    "id": "#104",
+    "ja_term": "网盘",
+    "tw_translation": "線上處存空間",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 103
+  },
+  {
+    "id": "#105",
+    "ja_term": "网游",
+    "tw_translation": "線上遊戲",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 104
+  },
+  {
+    "id": "#106",
+    "ja_term": "网瘾少年",
+    "tw_translation": "網路成癮青少年",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 105
+  },
+  {
+    "id": "#107",
+    "ja_term": "老铁",
+    "tw_translation": "兄弟 / 好友",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 106
+  },
+  {
+    "id": "#108",
+    "ja_term": "老赖名单",
+    "tw_translation": "(無對應詞彙)\n即失信被執行人名單",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 107
+  },
+  {
+    "id": "#109",
+    "ja_term": "考公",
+    "tw_translation": "考公職",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 108
+  },
+  {
+    "id": "#110",
+    "ja_term": "别看今天闹的欢\n小心今后拉清单",
+    "tw_translation": "(無對應詞彙)\n網路流行語，意指秋後算帳",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 109
+  },
+  {
+    "id": "#111",
+    "ja_term": "劳改犯",
+    "tw_translation": "勞改犯",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 110
+  },
+  {
+    "id": "#112",
+    "ja_term": "劳改营",
+    "tw_translation": "勞改營",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 111
+  },
+  {
+    "id": "#113",
+    "ja_term": "听党指挥\n能打胜仗\n作风优良",
+    "tw_translation": "(無對應詞彙)\n中國人民解放軍的強軍目標",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 112
+  },
+  {
+    "id": "#114",
+    "ja_term": "岛国",
+    "tw_translation": "日本",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 113
+  },
+  {
+    "id": "#115",
+    "ja_term": "库里",
+    "tw_translation": "柯瑞",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 114
+  },
+  {
+    "id": "#116",
+    "ja_term": "应用",
+    "tw_translation": "APP",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 115
+  },
+  {
+    "id": "#117",
+    "ja_term": "快递",
+    "tw_translation": "宅配",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 116
+  },
+  {
+    "id": "#118",
+    "ja_term": "批斗",
+    "tw_translation": "(無對應詞彙)\n文化大革命時期的政治運動，台灣無此制度",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 117
+  },
+  {
+    "id": "#119",
+    "ja_term": "批准",
+    "tw_translation": "核准",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 118
+  },
+  {
+    "id": "#120",
+    "ja_term": "抑郁",
+    "tw_translation": "憂鬱",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 119
+  },
+  {
+    "id": "#121",
+    "ja_term": "抖音",
+    "tw_translation": "TikTok / 抖音",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 120
+  },
+  {
+    "id": "#122",
+    "ja_term": "抗日神剧",
+    "tw_translation": "(無對應詞彙)\n指中國大陸劇情誇張、不符史實的抗日題材電視劇",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 121
+  },
+  {
+    "id": "#123",
+    "ja_term": "更新包",
+    "tw_translation": "更新檔",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 122
+  },
+  {
+    "id": "#124",
+    "ja_term": "杠精",
+    "tw_translation": "正義魔人 / 愛抬槓的人 (酸民)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 123
+  },
+  {
+    "id": "#125",
+    "ja_term": "评论",
+    "tw_translation": "留言",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 124
+  },
+  {
+    "id": "#126",
+    "ja_term": "豆瓣",
+    "tw_translation": "(無對應詞彙)\n中國大陸的社群網站，以書影音評分聞名",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 125
+  },
+  {
+    "id": "#127",
+    "ja_term": "过山车",
+    "tw_translation": "雲霄飛車",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 126
+  },
+  {
+    "id": "#128",
+    "ja_term": "阴阳",
+    "tw_translation": "陰陽怪氣 / 酸言酸語",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 127
+  },
+  {
+    "id": "#129",
+    "ja_term": "饭圈",
+    "tw_translation": "粉絲圈",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 128
+  },
+  {
+    "id": "#130",
+    "ja_term": "饮品店",
+    "tw_translation": "飲料店",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 129
+  },
+  {
+    "id": "#131",
+    "ja_term": "鸡娃",
+    "tw_translation": "(無對應詞彙)\n指父母給孩子安排各種補習班、拼命催促孩子學習的行為",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 130
+  },
+  {
+    "id": "#132",
+    "ja_term": "单间",
+    "tw_translation": "套房",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 131
+  },
+  {
+    "id": "#133",
+    "ja_term": "国乒",
+    "tw_translation": "中國桌球隊",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 132
+  },
+  {
+    "id": "#134",
+    "ja_term": "国企",
+    "tw_translation": "國營企業",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 133
+  },
+  {
+    "id": "#135",
+    "ja_term": "国足",
+    "tw_translation": "中國男子足球隊",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 134
+  },
+  {
+    "id": "#136",
+    "ja_term": "垃圾",
+    "tw_translation": "垃圾",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 135
+  },
+  {
+    "id": "#137",
+    "ja_term": "垃圾分类",
+    "tw_translation": "資源回收",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 136
+  },
+  {
+    "id": "#138",
+    "ja_term": "垃圾车",
+    "tw_translation": "垃圾車",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 137
+  },
+  {
+    "id": "#139",
+    "ja_term": "学习委员",
+    "tw_translation": "學藝股長",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 138
+  },
+  {
+    "id": "#140",
+    "ja_term": "审批",
+    "tw_translation": "簽核",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 139
+  },
+  {
+    "id": "#141",
+    "ja_term": "帖子",
+    "tw_translation": "貼文",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 140
+  },
+  {
+    "id": "#142",
+    "ja_term": "录用",
+    "tw_translation": "錄取",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 141
+  },
+  {
+    "id": "#143",
+    "ja_term": "拉黑",
+    "tw_translation": "封鎖",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 142
+  },
+  {
+    "id": "#144",
+    "ja_term": "服务端",
+    "tw_translation": "伺服器端",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 143
+  },
+  {
+    "id": "#145",
+    "ja_term": "服务器",
+    "tw_translation": "伺服器",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 144
+  },
+  {
+    "id": "#146",
+    "ja_term": "杯具",
+    "tw_translation": "悲劇",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 145
+  },
+  {
+    "id": "#147",
+    "ja_term": "武警",
+    "tw_translation": "武裝警察",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 146
+  },
+  {
+    "id": "#148",
+    "ja_term": "河蟹",
+    "tw_translation": "和諧",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 147
+  },
+  {
+    "id": "#149",
+    "ja_term": "油管",
+    "tw_translation": "Youtube",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 148
+  },
+  {
+    "id": "#150",
+    "ja_term": "直播",
+    "tw_translation": "實況",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 149
+  },
+  {
+    "id": "#151",
+    "ja_term": "直播带货",
+    "tw_translation": "直播帶貨 / 直播購物",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 150
+  },
+  {
+    "id": "#152",
+    "ja_term": "知乎",
+    "tw_translation": "(無對應詞彙)\n中國大陸的問答社群網站",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 151
+  },
+  {
+    "id": "#153",
+    "ja_term": "社牛",
+    "tw_translation": "社交達人 / 外向的人",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 152
+  },
+  {
+    "id": "#154",
+    "ja_term": "社交网站",
+    "tw_translation": "社群網站",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 153
+  },
+  {
+    "id": "#155",
+    "ja_term": "社会主义铁拳",
+    "tw_translation": "(無對應詞彙)\n網路用語，指遭到中國政府的鐵腕打擊或政策懲治",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 154
+  },
+  {
+    "id": "#156",
+    "ja_term": "社保/医保",
+    "tw_translation": "勞健保",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 155
+  },
+  {
+    "id": "#157",
+    "ja_term": "空调",
+    "tw_translation": "冷氣",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 156
+  },
+  {
+    "id": "#158",
+    "ja_term": "芯片",
+    "tw_translation": "晶片",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 157
+  },
+  {
+    "id": "#159",
+    "ja_term": "质量",
+    "tw_translation": "品質",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 158
+  },
+  {
+    "id": "#160",
+    "ja_term": "软件",
+    "tw_translation": "軟體",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 159
+  },
+  {
+    "id": "#161",
+    "ja_term": "运维",
+    "tw_translation": "維運",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 160
+  },
+  {
+    "id": "#162",
+    "ja_term": "进体制",
+    "tw_translation": "考上公務員 / 進入編制內",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 161
+  },
+  {
+    "id": "#163",
+    "ja_term": "邮箱",
+    "tw_translation": "信箱 (Email)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 162
+  },
+  {
+    "id": "#164",
+    "ja_term": "阿瓦隆系统",
+    "tw_translation": "(無對應詞彙)\nB站的彈幕審核系統",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 163
+  },
+  {
+    "id": "#165",
+    "ja_term": "阿迪",
+    "tw_translation": "愛迪達",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 164
+  },
+  {
+    "id": "#166",
+    "ja_term": "驾驶员",
+    "tw_translation": "駕駛",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 165
+  },
+  {
+    "id": "#167",
+    "ja_term": "驾驶证",
+    "tw_translation": "駕照",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 166
+  },
+  {
+    "id": "#168",
+    "ja_term": "举报",
+    "tw_translation": "投訴",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 167
+  },
+  {
+    "id": "#169",
+    "ja_term": "举国体制",
+    "tw_translation": "舉國體制",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 168
+  },
+  {
+    "id": "#170",
+    "ja_term": "亲自指挥 亲自部署",
+    "tw_translation": "(無對應詞彙)\n來自中國大陸領導人習近平的講話，常被網友用作調侃",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 169
+  },
+  {
+    "id": "#171",
+    "ja_term": "便利店",
+    "tw_translation": "超商",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 170
+  },
+  {
+    "id": "#172",
+    "ja_term": "信息",
+    "tw_translation": "訊息",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 171
+  },
+  {
+    "id": "#173",
+    "ja_term": "前方高能",
+    "tw_translation": "注意 / 精彩畫面即將出現",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 172
+  },
+  {
+    "id": "#174",
+    "ja_term": "响应",
+    "tw_translation": "響應",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 173
+  },
+  {
+    "id": "#175",
+    "ja_term": "城管",
+    "tw_translation": "(無對應詞彙)\n中國大陸城市管理執法官員",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 174
+  },
+  {
+    "id": "#176",
+    "ja_term": "封号",
+    "tw_translation": "停權",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 175
+  },
+  {
+    "id": "#177",
+    "ja_term": "封盖",
+    "tw_translation": "蓋火鍋 (籃球) / 封阻",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 176
+  },
+  {
+    "id": "#178",
+    "ja_term": "屏幕",
+    "tw_translation": "螢幕",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 177
+  },
+  {
+    "id": "#179",
+    "ja_term": "屏蔽",
+    "tw_translation": "封鎖",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 178
+  },
+  {
+    "id": "#180",
+    "ja_term": "带宽",
+    "tw_translation": "頻寬",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 179
+  },
+  {
+    "id": "#181",
+    "ja_term": "总书记",
+    "tw_translation": "總書記 (指中共中央總書記)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 180
+  },
+  {
+    "id": "#182",
+    "ja_term": "指导思想",
+    "tw_translation": "指導思想",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 181
+  },
+  {
+    "id": "#183",
+    "ja_term": "挣钱",
+    "tw_translation": "賺錢",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 182
+  },
+  {
+    "id": "#184",
+    "ja_term": "显存",
+    "tw_translation": "顯示記憶體 (VRAM)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 183
+  },
+  {
+    "id": "#185",
+    "ja_term": "查水表",
+    "tw_translation": "(無對應詞彙)\n網路用語，指被警方或政府人員上門調查",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 184
+  },
+  {
+    "id": "#186",
+    "ja_term": "洽饭",
+    "tw_translation": "工商",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 185
+  },
+  {
+    "id": "#187",
+    "ja_term": "研究生",
+    "tw_translation": "研究所學生",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 186
+  },
+  {
+    "id": "#188",
+    "ja_term": "视频",
+    "tw_translation": "影片",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 187
+  },
+  {
+    "id": "#189",
+    "ja_term": "科技与狠活",
+    "tw_translation": "(無對應詞彙)\n網路用語，指食品加工中過度使用食品添加劑",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 188
+  },
+  {
+    "id": "#190",
+    "ja_term": "绝绝子",
+    "tw_translation": "超極 / 棒呆了 (網路用語)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 189
+  },
+  {
+    "id": "#191",
+    "ja_term": "美刀",
+    "tw_translation": "美金",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 190
+  },
+  {
+    "id": "#192",
+    "ja_term": "耐克",
+    "tw_translation": "Nike",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 191
+  },
+  {
+    "id": "#193",
+    "ja_term": "贺敏",
+    "tw_translation": "妙麗",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 192
+  },
+  {
+    "id": "#194",
+    "ja_term": "项目",
+    "tw_translation": "專案",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 193
+  },
+  {
+    "id": "#195",
+    "ja_term": "党的全面领导",
+    "tw_translation": "(無對應詞彙)\n中國共產黨的政治原則",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 194
+  },
+  {
+    "id": "#196",
+    "ja_term": "差评",
+    "tw_translation": "負評",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 195
+  },
+  {
+    "id": "#197",
+    "ja_term": "润",
+    "tw_translation": "移民 / 跑路 (Run)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 196
+  },
+  {
+    "id": "#198",
+    "ja_term": "热搜",
+    "tw_translation": "熱門搜尋",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 197
+  },
+  {
+    "id": "#199",
+    "ja_term": "爱国自媒体",
+    "tw_translation": "愛國自媒體",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 198
+  },
+  {
+    "id": "#200",
+    "ja_term": "特朗普",
+    "tw_translation": "川普",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 199
+  },
+  {
+    "id": "#201",
+    "ja_term": "班主任",
+    "tw_translation": "班導",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 200
+  },
+  {
+    "id": "#202",
+    "ja_term": "租房",
+    "tw_translation": "租屋",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 201
+  },
+  {
+    "id": "#203",
+    "ja_term": "站台",
+    "tw_translation": "月台",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 202
+  },
+  {
+    "id": "#204",
+    "ja_term": "笔记本电脑",
+    "tw_translation": "筆記型電腦",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 203
+  },
+  {
+    "id": "#205",
+    "ja_term": "药丸",
+    "tw_translation": "要完",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 204
+  },
+  {
+    "id": "#206",
+    "ja_term": "调试",
+    "tw_translation": "除錯",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 205
+  },
+  {
+    "id": "#207",
+    "ja_term": "退网",
+    "tw_translation": "退出網路 / 停止更新",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 206
+  },
+  {
+    "id": "#208",
+    "ja_term": "酒店",
+    "tw_translation": "旅館",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 207
+  },
+  {
+    "id": "#209",
+    "ja_term": "高大上",
+    "tw_translation": "高端大氣上檔次",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 208
+  },
+  {
+    "id": "#210",
+    "ja_term": "高考",
+    "tw_translation": "大學學測/分科測驗",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 209
+  },
+  {
+    "id": "#211",
+    "ja_term": "高达",
+    "tw_translation": "鋼彈",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 210
+  },
+  {
+    "id": "#212",
+    "ja_term": "高玩",
+    "tw_translation": "高端玩家",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 211
+  },
+  {
+    "id": "#213",
+    "ja_term": "高清",
+    "tw_translation": "高畫質 (HD)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 212
+  },
+  {
+    "id": "#214",
+    "ja_term": "鬼畜视频",
+    "tw_translation": "惡搞影片",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 213
+  },
+  {
+    "id": "#215",
+    "ja_term": "基建",
+    "tw_translation": "基礎建設",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 214
+  },
+  {
+    "id": "#216",
+    "ja_term": "彩票",
+    "tw_translation": "樂透",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 215
+  },
+  {
+    "id": "#217",
+    "ja_term": "掉线",
+    "tw_translation": "斷線",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 216
+  },
+  {
+    "id": "#218",
+    "ja_term": "晚上好",
+    "tw_translation": "晚安",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 217
+  },
+  {
+    "id": "#219",
+    "ja_term": "理中客",
+    "tw_translation": "理性中立客觀 (常帶貶義)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 218
+  },
+  {
+    "id": "#220",
+    "ja_term": "盒饭",
+    "tw_translation": "便當",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 219
+  },
+  {
+    "id": "#221",
+    "ja_term": "盖帽",
+    "tw_translation": "蓋火鍋",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 220
+  },
+  {
+    "id": "#222",
+    "ja_term": "蛋炒饭",
+    "tw_translation": "蛋炒飯 (網路用語中常指毛岸英之死，台灣無此隱喻)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 221
+  },
+  {
+    "id": "#223",
+    "ja_term": "蛋疼",
+    "tw_translation": "閒得發慌 / 無聊透頂",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 222
+  },
+  {
+    "id": "#224",
+    "ja_term": "领导",
+    "tw_translation": "主管",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 223
+  },
+  {
+    "id": "#225",
+    "ja_term": "领笑员",
+    "tw_translation": "(無對應詞彙)\n脫口秀節目中帶動氣氛的嘉賓",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 224
+  },
+  {
+    "id": "#226",
+    "ja_term": "博主",
+    "tw_translation": "部落客 / 版主 / 網紅",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 225
+  },
+  {
+    "id": "#227",
+    "ja_term": "奥数",
+    "tw_translation": "奧林匹亞數學競賽",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 226
+  },
+  {
+    "id": "#228",
+    "ja_term": "奥赛",
+    "tw_translation": "奧運",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 227
+  },
+  {
+    "id": "#229",
+    "ja_term": "提拔",
+    "tw_translation": "升職",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 228
+  },
+  {
+    "id": "#230",
+    "ja_term": "斯大林",
+    "tw_translation": "史達林",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 229
+  },
+  {
+    "id": "#231",
+    "ja_term": "期房",
+    "tw_translation": "預售屋",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 230
+  },
+  {
+    "id": "#232",
+    "ja_term": "森林狼",
+    "tw_translation": "灰狼隊 (NBA)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 231
+  },
+  {
+    "id": "#233",
+    "ja_term": "湿巾",
+    "tw_translation": "濕紙巾",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 232
+  },
+  {
+    "id": "#234",
+    "ja_term": "登录",
+    "tw_translation": "登入",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 233
+  },
+  {
+    "id": "#235",
+    "ja_term": "短视频",
+    "tw_translation": "短影音",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 234
+  },
+  {
+    "id": "#236",
+    "ja_term": "硬件",
+    "tw_translation": "硬體",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 235
+  },
+  {
+    "id": "#237",
+    "ja_term": "程序",
+    "tw_translation": "程式",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 236
+  },
+  {
+    "id": "#238",
+    "ja_term": "集成电路",
+    "tw_translation": "積體電路",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 237
+  },
+  {
+    "id": "#239",
+    "ja_term": "集群",
+    "tw_translation": "叢集",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 238
+  },
+  {
+    "id": "#240",
+    "ja_term": "鲁棒性",
+    "tw_translation": "強健性 (Robustness)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 239
+  },
+  {
+    "id": "#241",
+    "ja_term": "塑料袋",
+    "tw_translation": "塑膠袋",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 240
+  },
+  {
+    "id": "#242",
+    "ja_term": "奧萊",
+    "tw_translation": "Outlet",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 241
+  },
+  {
+    "id": "#243",
+    "ja_term": "微信",
+    "tw_translation": "(無對應詞彙)\n騰訊開發的通訊軟體 (類似LINE)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 242
+  },
+  {
+    "id": "#244",
+    "ja_term": "搜索",
+    "tw_translation": "搜尋",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 243
+  },
+  {
+    "id": "#245",
+    "ja_term": "摄像头",
+    "tw_translation": "攝影機 / 監視器",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 244
+  },
+  {
+    "id": "#246",
+    "ja_term": "数据",
+    "tw_translation": "資料",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 245
+  },
+  {
+    "id": "#247",
+    "ja_term": "新闻联播",
+    "tw_translation": "(無對應詞彙)\n中國中央電視台的晚間新聞節目",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 246
+  },
+  {
+    "id": "#248",
+    "ja_term": "碰瓷",
+    "tw_translation": "假車禍 / 敲竹槓",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 247
+  },
+  {
+    "id": "#249",
+    "ja_term": "简历",
+    "tw_translation": "履歷",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 248
+  },
+  {
+    "id": "#250",
+    "ja_term": "解放军",
+    "tw_translation": "解放軍",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 249
+  },
+  {
+    "id": "#251",
+    "ja_term": "路飞",
+    "tw_translation": "魯夫",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 250
+  },
+  {
+    "id": "#252",
+    "ja_term": "鼠标",
+    "tw_translation": "滑鼠",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 251
+  },
+  {
+    "id": "#253",
+    "ja_term": "境外势力",
+    "tw_translation": "境外勢力",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 252
+  },
+  {
+    "id": "#254",
+    "ja_term": "演示文稿",
+    "tw_translation": "簡報",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 253
+  },
+  {
+    "id": "#255",
+    "ja_term": "蒸气平台",
+    "tw_translation": "Steam",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 254
+  },
+  {
+    "id": "#256",
+    "ja_term": "增强四个意识\n坚定四个自信\n做到两个维护",
+    "tw_translation": "(無對應詞彙)\n中國共產黨的政治口號",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 255
+  },
+  {
+    "id": "#257",
+    "ja_term": "摩托车",
+    "tw_translation": "機車",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 256
+  },
+  {
+    "id": "#258",
+    "ja_term": "撸铁",
+    "tw_translation": "重訓 / 健身",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 257
+  },
+  {
+    "id": "#259",
+    "ja_term": "模块",
+    "tw_translation": "模組",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 258
+  },
+  {
+    "id": "#260",
+    "ja_term": "操蛋",
+    "tw_translation": "糟糕 / 混蛋",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 259
+  },
+  {
+    "id": "#261",
+    "ja_term": "整改",
+    "tw_translation": "整頓改革 / 限期改善",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 260
+  },
+  {
+    "id": "#262",
+    "ja_term": "默认",
+    "tw_translation": "預設",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 261
+  },
+  {
+    "id": "#263",
+    "ja_term": "翻车",
+    "tw_translation": "出包 / 搞砸",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 262
+  },
+  {
+    "id": "#264",
+    "ja_term": "爆款",
+    "tw_translation": "熱銷商品 / 夯品",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 263
+  },
+  {
+    "id": "#265",
+    "ja_term": "爆雷",
+    "tw_translation": "踩雷 / 倒閉 (金融)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 264
+  },
+  {
+    "id": "#266",
+    "ja_term": "警情通报",
+    "tw_translation": "警方通報",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 265
+  },
+  {
+    "id": "#267",
+    "ja_term": "B站",
+    "tw_translation": "(無對應詞彙)\n指Bilibili (嗶哩嗶哩) 影音網站",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 266
+  },
+  {
+    "id": "#268",
+    "ja_term": "nb",
+    "tw_translation": "牛逼 / 厲害",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 267
+  },
+  {
+    "id": "#269",
+    "ja_term": "QQ",
+    "tw_translation": "(無對應詞彙)\n騰訊開發的通訊軟體",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 268
+  },
+  {
+    "id": "#270",
+    "ja_term": "U盘",
+    "tw_translation": "隨身碟",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 269
+  },
+  {
+    "id": "#271",
+    "ja_term": "UP主",
+    "tw_translation": "Youtuber",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 270
+  },
+  {
+    "id": "#272",
+    "ja_term": "yy",
+    "tw_translation": "(無對應詞彙)\n意淫 / 幻想，或指YY語音軟體",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 271
+  },
+  {
+    "id": "#273",
+    "ja_term": "yyds",
+    "tw_translation": "永遠的神",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 272
+  },
+  {
+    "id": "#274",
+    "ja_term": "编程",
+    "tw_translation": "寫程式",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 273
+  },
+  {
+    "id": "#275",
+    "ja_term": "专业",
+    "tw_translation": "科系 (大學)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 274
+  },
+  {
+    "id": "#276",
+    "ja_term": "落地",
+    "tw_translation": "落實 / 執行",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 275
+  },
+  {
+    "id": "#277",
+    "ja_term": "摇号",
+    "tw_translation": "抽籤",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 276
+  },
+  {
+    "id": "#278",
+    "ja_term": "春运",
+    "tw_translation": "春運 (春節返鄉潮)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 277
+  },
+  {
+    "id": "#279",
+    "ja_term": "精神小伙",
+    "tw_translation": "瞎妹瞎弟 / 屁孩 (網路用語)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 278
+  },
+  {
+    "id": "#280",
+    "ja_term": "春晚",
+    "tw_translation": "春晚 (春節聯歡晚會)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 279
+  },
+  {
+    "id": "#281",
+    "ja_term": "点赞",
+    "tw_translation": "按讚",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 280
+  },
+  {
+    "id": "#282",
+    "ja_term": "蹦迪",
+    "tw_translation": "去夜店 / 蹦迪",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 281
+  },
+  {
+    "id": "#283",
+    "ja_term": "优酷",
+    "tw_translation": "(無對應詞彙)\n中國大陸的影音平台",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 282
+  },
+  {
+    "id": "#284",
+    "ja_term": "金拱门",
+    "tw_translation": "麥當勞",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 283
+  },
+  {
+    "id": "#285",
+    "ja_term": "岗位",
+    "tw_translation": "職位",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 284
+  },
+  {
+    "id": "#286",
+    "ja_term": "下崗",
+    "tw_translation": "被解僱 / 裁員",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 285
+  },
+  {
+    "id": "#287",
+    "ja_term": "光盘",
+    "tw_translation": "光碟 (或指光盤行動：把飯菜吃光)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 286
+  },
+  {
+    "id": "#288",
+    "ja_term": "打呼噜",
+    "tw_translation": "打呼",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 287
+  },
+  {
+    "id": "#289",
+    "ja_term": "标清",
+    "tw_translation": "標準畫質 (SD)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 288
+  },
+  {
+    "id": "#290",
+    "ja_term": "准高清",
+    "tw_translation": "720p畫質 (HD)",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 289
+  },
+  {
+    "id": "#291",
+    "ja_term": "冰激凌",
+    "tw_translation": "冰淇淋",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 290
+  },
+  {
+    "id": "#292",
+    "ja_term": "科学上网",
+    "tw_translation": "翻牆",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 291
+  },
+  {
+    "id": "#293",
+    "ja_term": "搞对象",
+    "tw_translation": "交往 / 談戀愛",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 292
+  },
+  {
+    "id": "#294",
+    "ja_term": "音频",
+    "tw_translation": "音檔",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 293
+  },
+  {
+    "id": "#295",
+    "ja_term": "攢人品",
+    "tw_translation": "積陰德 / 累積運氣",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 294
+  },
+  {
+    "id": "#296",
+    "ja_term": "司龄",
+    "tw_translation": "年資",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 295
+  },
+  {
+    "id": "#297",
+    "ja_term": "攆走",
+    "tw_translation": "趕走",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 296
+  },
+  {
+    "id": "#298",
+    "ja_term": "猛健乐",
+    "tw_translation": "(無對應詞彙)\n網路用語或特定品牌名稱，台灣無直接對應",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 297
+  },
+  {
+    "id": "#299",
+    "ja_term": "专线机场",
+    "tw_translation": "(無對應詞彙)\n指提供翻牆VPN節點的服務商",
+    "reading": "",
+    "created_at": "2026-09-04",
+    "row_index": 298
+  }
+]

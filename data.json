@@ -1,0 +1,8522 @@
+[
+  {
+    "id": "#0002",
+    "ja_term": "1LDK",
+    "tw_translation": "一房一廳一廚（格局）",
+    "reading": "ワンエルディーケー",
+    "created_at": "2026-09-02",
+    "row_index": 1
+  },
+  {
+    "id": "#0003",
+    "ja_term": "3連単",
+    "tw_translation": "前三單式（賽馬等投注，預測前三名且順序完全正確）",
+    "reading": "さんれんたん",
+    "created_at": "2026-09-02",
+    "row_index": 2
+  },
+  {
+    "id": "#0004",
+    "ja_term": "3連複",
+    "tw_translation": "前三複式（賽馬等投注，預測前三名不限順序）",
+    "reading": "さんれんふく",
+    "created_at": "2026-09-02",
+    "row_index": 3
+  },
+  {
+    "id": "#0005",
+    "ja_term": "一人尺八",
+    "tw_translation": "自慰（自我口交）",
+    "reading": "ひとりしゃくはち",
+    "created_at": "2026-09-02",
+    "row_index": 4
+  },
+  {
+    "id": "#0006",
+    "ja_term": "一切",
+    "tw_translation": "一切、完全（後接否定表絕不）",
+    "reading": "いっさい",
+    "created_at": "2026-09-02",
+    "row_index": 5
+  },
+  {
+    "id": "#0007",
+    "ja_term": "一方",
+    "tw_translation": "一方面 / 另一方 / 不斷（～逐漸）",
+    "reading": "いっぽう",
+    "created_at": "2026-09-02",
+    "row_index": 6
+  },
+  {
+    "id": "#0008",
+    "ja_term": "一方通行",
+    "tw_translation": "單行道",
+    "reading": "いっぽうつうこう",
+    "created_at": "2026-09-02",
+    "row_index": 7
+  },
+  {
+    "id": "#0009",
+    "ja_term": "一生懸命",
+    "tw_translation": "拼命、努力",
+    "reading": "いっしょうけんめい",
+    "created_at": "2026-09-02",
+    "row_index": 8
+  },
+  {
+    "id": "#0010",
+    "ja_term": "一件落着",
+    "tw_translation": "事件圓滿落幕、告一段落",
+    "reading": "いっけんらくちゃく",
+    "created_at": "2026-09-02",
+    "row_index": 9
+  },
+  {
+    "id": "#0011",
+    "ja_term": "一存",
+    "tw_translation": "獨斷、個人決定 / 自己的裁量",
+    "reading": "いっそん",
+    "created_at": "2026-09-02",
+    "row_index": 10
+  },
+  {
+    "id": "#0012",
+    "ja_term": "一見",
+    "tw_translation": "乍看之下 / 第一次見面",
+    "reading": "いっけん",
+    "created_at": "2026-09-02",
+    "row_index": 11
+  },
+  {
+    "id": "#0013",
+    "ja_term": "一服",
+    "tw_translation": "休息片刻、抽根菸 / 一劑（藥）",
+    "reading": "いっぷく",
+    "created_at": "2026-09-02",
+    "row_index": 12
+  },
+  {
+    "id": "#0014",
+    "ja_term": "一括",
+    "tw_translation": "整括、整批、一次性處理",
+    "reading": "いっかつ",
+    "created_at": "2026-09-02",
+    "row_index": 13
+  },
+  {
+    "id": "#0015",
+    "ja_term": "一段落",
+    "tw_translation": "告一段落",
+    "reading": "ひとだんらく",
+    "created_at": "2026-09-02",
+    "row_index": 14
+  },
+  {
+    "id": "#0016",
+    "ja_term": "一家心中",
+    "tw_translation": "全家自殺",
+    "reading": "いっかしんじゅう",
+    "created_at": "2026-09-02",
+    "row_index": 15
+  },
+  {
+    "id": "#0017",
+    "ja_term": "一期一会",
+    "tw_translation": "一期一會（珍惜一生僅有一次的相遇）",
+    "reading": "いちごいちえ",
+    "created_at": "2026-09-02",
+    "row_index": 16
+  },
+  {
+    "id": "#0018",
+    "ja_term": "一番",
+    "tw_translation": "最、第一、最棒",
+    "reading": "いちばん",
+    "created_at": "2026-09-02",
+    "row_index": 17
+  },
+  {
+    "id": "#0019",
+    "ja_term": "一筋",
+    "tw_translation": "一心一意、專一",
+    "reading": "ひとすじ",
+    "created_at": "2026-09-02",
+    "row_index": 18
+  },
+  {
+    "id": "#0020",
+    "ja_term": "一緒",
+    "tw_translation": "一起",
+    "reading": "いっしょ",
+    "created_at": "2026-09-02",
+    "row_index": 19
+  },
+  {
+    "id": "#0021",
+    "ja_term": "乙女",
+    "tw_translation": "少女",
+    "reading": "おとめ",
+    "created_at": "2026-09-02",
+    "row_index": 20
+  },
+  {
+    "id": "#0022",
+    "ja_term": "丁丁発止",
+    "tw_translation": "激烈交鋒、舌戰/刀劍交鋒聲",
+    "reading": "ちょうちょうはっし",
+    "created_at": "2026-09-02",
+    "row_index": 21
+  },
+  {
+    "id": "#0023",
+    "ja_term": "丁字戦法",
+    "tw_translation": "丁字戰法（海戰T字戰術）",
+    "reading": "ていじせんぽう",
+    "created_at": "2026-09-02",
+    "row_index": 22
+  },
+  {
+    "id": "#0024",
+    "ja_term": "丁寧",
+    "tw_translation": "有禮貌、細心、客氣",
+    "reading": "ていねい",
+    "created_at": "2026-09-02",
+    "row_index": 23
+  },
+  {
+    "id": "#0025",
+    "ja_term": "九十九折",
+    "tw_translation": "九彎十八拐、蜿蜒曲折的山路",
+    "reading": "つづらがおり",
+    "created_at": "2026-09-02",
+    "row_index": 24
+  },
+  {
+    "id": "#0026",
+    "ja_term": "二枚目",
+    "tw_translation": "美男子、帥哥",
+    "reading": "にまいめ",
+    "created_at": "2026-09-02",
+    "row_index": 25
+  },
+  {
+    "id": "#0027",
+    "ja_term": "二度",
+    "tw_translation": "兩次 / 再度、第二次",
+    "reading": "にど",
+    "created_at": "2026-09-02",
+    "row_index": 26
+  },
+  {
+    "id": "#0028",
+    "ja_term": "二重埋没法",
+    "tw_translation": "雙眼皮縫合術（訂書針/埋線雙眼皮）",
+    "reading": "にじゅうまいぼつほう",
+    "created_at": "2026-09-02",
+    "row_index": 27
+  },
+  {
+    "id": "#0029",
+    "ja_term": "人身売買",
+    "tw_translation": "人口販賣",
+    "reading": "じんしんばいばい",
+    "created_at": "2026-09-02",
+    "row_index": 28
+  },
+  {
+    "id": "#0030",
+    "ja_term": "人間",
+    "tw_translation": "人類、人品、人情味",
+    "reading": "にんげん",
+    "created_at": "2026-09-02",
+    "row_index": 29
+  },
+  {
+    "id": "#0031",
+    "ja_term": "入力",
+    "tw_translation": "輸入、鍵入",
+    "reading": "にゅうりょく",
+    "created_at": "2026-09-02",
+    "row_index": 30
+  },
+  {
+    "id": "#0032",
+    "ja_term": "入社",
+    "tw_translation": "入職、進公司",
+    "reading": "にゅうしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 31
+  },
+  {
+    "id": "#0033",
+    "ja_term": "入浴剤",
+    "tw_translation": "入浴劑、泡澡粉",
+    "reading": "にゅうよくざい",
+    "created_at": "2026-09-02",
+    "row_index": 32
+  },
+  {
+    "id": "#0034",
+    "ja_term": "八方美人",
+    "tw_translation": "八面玲瓏（面面俱到的人，含貶義）",
+    "reading": "はっぽうびじん",
+    "created_at": "2026-09-02",
+    "row_index": 33
+  },
+  {
+    "id": "#0035",
+    "ja_term": "八百長",
+    "tw_translation": "作假、假球、打假賽",
+    "reading": "やおちょう",
+    "created_at": "2026-09-02",
+    "row_index": 34
+  },
+  {
+    "id": "#0036",
+    "ja_term": "八百屋",
+    "tw_translation": "蔬菜水果店",
+    "reading": "やおや",
+    "created_at": "2026-09-02",
+    "row_index": 35
+  },
+  {
+    "id": "#0037",
+    "ja_term": "十中八九",
+    "tw_translation": "十之八九、大概",
+    "reading": "じっちゅうはっく",
+    "created_at": "2026-09-02",
+    "row_index": 36
+  },
+  {
+    "id": "#0038",
+    "ja_term": "万事解決",
+    "tw_translation": "萬事解決、大功告成",
+    "reading": "ばんじかいけつ",
+    "created_at": "2026-09-02",
+    "row_index": 37
+  },
+  {
+    "id": "#0039",
+    "ja_term": "三日坊主",
+    "tw_translation": "三分鐘熱度",
+    "reading": "みっかぼうず",
+    "created_at": "2026-09-02",
+    "row_index": 38
+  },
+  {
+    "id": "#0040",
+    "ja_term": "三行半",
+    "tw_translation": "休書、絕交書",
+    "reading": "みくだりはん",
+    "created_at": "2026-09-02",
+    "row_index": 39
+  },
+  {
+    "id": "#0041",
+    "ja_term": "三味線",
+    "tw_translation": "三味線（日本傳統弦樂器）",
+    "reading": "しゃみせん",
+    "created_at": "2026-09-02",
+    "row_index": 40
+  },
+  {
+    "id": "#0042",
+    "ja_term": "三昧",
+    "tw_translation": "沉溺於…、盡情…",
+    "reading": "ざんまい",
+    "created_at": "2026-09-02",
+    "row_index": 41
+  },
+  {
+    "id": "#0043",
+    "ja_term": "三重殺",
+    "tw_translation": "三殺打、三重殺（棒球）",
+    "reading": "さんじゅうさつ",
+    "created_at": "2026-09-02",
+    "row_index": 42
+  },
+  {
+    "id": "#0044",
+    "ja_term": "上手",
+    "tw_translation": "擅長、高明",
+    "reading": "じょうず",
+    "created_at": "2026-09-02",
+    "row_index": 43
+  },
+  {
+    "id": "#0045",
+    "ja_term": "上場企業",
+    "tw_translation": "上市公司",
+    "reading": "じょうじょうきぎょう",
+    "created_at": "2026-09-02",
+    "row_index": 44
+  },
+  {
+    "id": "#0046",
+    "ja_term": "上等",
+    "tw_translation": "高級、非常棒 /（挑釁）正合我意",
+    "reading": "じょうとう",
+    "created_at": "2026-09-02",
+    "row_index": 45
+  },
+  {
+    "id": "#0047",
+    "ja_term": "下心",
+    "tw_translation": "企圖、居心、不懷好意",
+    "reading": "したごころ",
+    "created_at": "2026-09-02",
+    "row_index": 46
+  },
+  {
+    "id": "#0048",
+    "ja_term": "下手",
+    "tw_translation": "笨拙、不擅長",
+    "reading": "へた",
+    "created_at": "2026-09-02",
+    "row_index": 47
+  },
+  {
+    "id": "#0049",
+    "ja_term": "下着",
+    "tw_translation": "內衣褲",
+    "reading": "したぎ",
+    "created_at": "2026-09-02",
+    "row_index": 48
+  },
+  {
+    "id": "#0050",
+    "ja_term": "千客万来",
+    "tw_translation": "門庭若市、賓客盈門",
+    "reading": "せんきゃくばんらい",
+    "created_at": "2026-09-02",
+    "row_index": 49
+  },
+  {
+    "id": "#0051",
+    "ja_term": "千秋楽",
+    "tw_translation": "閉幕演出、最終日（相撲或戲劇）",
+    "reading": "せんしゅうらく",
+    "created_at": "2026-09-02",
+    "row_index": 50
+  },
+  {
+    "id": "#0052",
+    "ja_term": "口実",
+    "tw_translation": "藉口、托辭",
+    "reading": "こうじつ",
+    "created_at": "2026-09-02",
+    "row_index": 51
+  },
+  {
+    "id": "#0053",
+    "ja_term": "口座",
+    "tw_translation": "帳戶、帳號（銀行）",
+    "reading": "こうざ",
+    "created_at": "2026-09-02",
+    "row_index": 52
+  },
+  {
+    "id": "#0054",
+    "ja_term": "口喧嘩",
+    "tw_translation": "吵架、口角",
+    "reading": "くちげんか",
+    "created_at": "2026-09-02",
+    "row_index": 53
+  },
+  {
+    "id": "#0055",
+    "ja_term": "口調",
+    "tw_translation": "語氣、聲調",
+    "reading": "くちょう",
+    "created_at": "2026-09-02",
+    "row_index": 54
+  },
+  {
+    "id": "#0056",
+    "ja_term": "土日",
+    "tw_translation": "週六與週日、週末",
+    "reading": "どにち",
+    "created_at": "2026-09-02",
+    "row_index": 55
+  },
+  {
+    "id": "#0057",
+    "ja_term": "土曜日",
+    "tw_translation": "星期六、週六",
+    "reading": "どようび",
+    "created_at": "2026-09-02",
+    "row_index": 56
+  },
+  {
+    "id": "#0058",
+    "ja_term": "夕方",
+    "tw_translation": "傍晚",
+    "reading": "ゆうがた",
+    "created_at": "2026-09-02",
+    "row_index": 57
+  },
+  {
+    "id": "#0059",
+    "ja_term": "夕飯",
+    "tw_translation": "晚餐",
+    "reading": "ゆうはん",
+    "created_at": "2026-09-02",
+    "row_index": 58
+  },
+  {
+    "id": "#0060",
+    "ja_term": "大丈夫",
+    "tw_translation": "沒問題、沒關係、安全",
+    "reading": "だいじょうぶ",
+    "created_at": "2026-09-02",
+    "row_index": 59
+  },
+  {
+    "id": "#0061",
+    "ja_term": "大切",
+    "tw_translation": "重要、珍惜",
+    "reading": "たいせつ",
+    "created_at": "2026-09-02",
+    "row_index": 60
+  },
+  {
+    "id": "#0062",
+    "ja_term": "大手",
+    "tw_translation": "大企業、知名大廠",
+    "reading": "おおて",
+    "created_at": "2026-09-02",
+    "row_index": 61
+  },
+  {
+    "id": "#0063",
+    "ja_term": "大正浪漫",
+    "tw_translation": "大正浪漫（日式大正風情）",
+    "reading": "たいしょうろまん",
+    "created_at": "2026-09-02",
+    "row_index": 62
+  },
+  {
+    "id": "#0064",
+    "ja_term": "大名",
+    "tw_translation": "大名（日本封建領主）",
+    "reading": "だいみょう",
+    "created_at": "2026-09-02",
+    "row_index": 63
+  },
+  {
+    "id": "#0065",
+    "ja_term": "大判",
+    "tw_translation": "大判（日本江戶時代大金幣）",
+    "reading": "おおばん",
+    "created_at": "2026-09-02",
+    "row_index": 64
+  },
+  {
+    "id": "#0066",
+    "ja_term": "大事",
+    "tw_translation": "重要、大事 / 保重",
+    "reading": "だいじ",
+    "created_at": "2026-09-02",
+    "row_index": 65
+  },
+  {
+    "id": "#0067",
+    "ja_term": "大和撫子",
+    "tw_translation": "大和撫子（日本傳統理想女性）",
+    "reading": "やまとなでしこ",
+    "created_at": "2026-09-02",
+    "row_index": 66
+  },
+  {
+    "id": "#0068",
+    "ja_term": "大学院",
+    "tw_translation": "研究所",
+    "reading": "だいがくいん",
+    "created_at": "2026-09-02",
+    "row_index": 67
+  },
+  {
+    "id": "#0069",
+    "ja_term": "大変",
+    "tw_translation": "辛苦、嚴重、非常",
+    "reading": "たいへん",
+    "created_at": "2026-09-02",
+    "row_index": 68
+  },
+  {
+    "id": "#0070",
+    "ja_term": "大胆不敵",
+    "tw_translation": "大膽無畏、無所畏懼",
+    "reading": "だいたんふてき",
+    "created_at": "2026-09-02",
+    "row_index": 69
+  },
+  {
+    "id": "#0071",
+    "ja_term": "大家",
+    "tw_translation": "房東 / 大師、權威",
+    "reading": "おおや",
+    "created_at": "2026-09-02",
+    "row_index": 70
+  },
+  {
+    "id": "#0072",
+    "ja_term": "大破",
+    "tw_translation": "嚴重毀損、大破（車輛/艦艇等）",
+    "reading": "たいは",
+    "created_at": "2026-09-02",
+    "row_index": 71
+  },
+  {
+    "id": "#0073",
+    "ja_term": "大晦日",
+    "tw_translation": "除夕（12月31日）",
+    "reading": "おおみそか",
+    "created_at": "2026-09-02",
+    "row_index": 72
+  },
+  {
+    "id": "#0074",
+    "ja_term": "大袈裟",
+    "tw_translation": "誇張、誇大",
+    "reading": "おおげさ",
+    "created_at": "2026-09-02",
+    "row_index": 73
+  },
+  {
+    "id": "#0075",
+    "ja_term": "大勢",
+    "tw_translation": "許多人、人群",
+    "reading": "おおぜい",
+    "created_at": "2026-09-02",
+    "row_index": 74
+  },
+  {
+    "id": "#0076",
+    "ja_term": "大関",
+    "tw_translation": "大關（相撲次高位階）",
+    "reading": "おおぜき",
+    "created_at": "2026-09-02",
+    "row_index": 75
+  },
+  {
+    "id": "#0077",
+    "ja_term": "女優",
+    "tw_translation": "女演員",
+    "reading": "じょゆう",
+    "created_at": "2026-09-02",
+    "row_index": 76
+  },
+  {
+    "id": "#0078",
+    "ja_term": "子供",
+    "tw_translation": "小孩",
+    "reading": "こども",
+    "created_at": "2026-09-02",
+    "row_index": 77
+  },
+  {
+    "id": "#0079",
+    "ja_term": "子供向",
+    "tw_translation": "面向兒童的、兒童適宜",
+    "reading": "こどもむけ",
+    "created_at": "2026-09-02",
+    "row_index": 78
+  },
+  {
+    "id": "#0080",
+    "ja_term": "小生",
+    "tw_translation": "小生（男子謙稱自己）",
+    "reading": "しょうせい",
+    "created_at": "2026-09-02",
+    "row_index": 79
+  },
+  {
+    "id": "#0081",
+    "ja_term": "小判",
+    "tw_translation": "小判（日本江戶時代金幣）",
+    "reading": "こばん",
+    "created_at": "2026-09-02",
+    "row_index": 80
+  },
+  {
+    "id": "#0082",
+    "ja_term": "小学校",
+    "tw_translation": "國小、小學",
+    "reading": "しょうがっこう",
+    "created_at": "2026-09-02",
+    "row_index": 81
+  },
+  {
+    "id": "#0083",
+    "ja_term": "小柄",
+    "tw_translation": "嬌小、身材矮小",
+    "reading": "こがら",
+    "created_at": "2026-09-02",
+    "row_index": 82
+  },
+  {
+    "id": "#0084",
+    "ja_term": "小僧",
+    "tw_translation": "小鬼、小徒弟、小和尚",
+    "reading": "こぞう",
+    "created_at": "2026-09-02",
+    "row_index": 83
+  },
+  {
+    "id": "#0085",
+    "ja_term": "山車",
+    "tw_translation": "藝閣、花車（祭典用的神轎花車）",
+    "reading": "だし",
+    "created_at": "2026-09-02",
+    "row_index": 84
+  },
+  {
+    "id": "#0086",
+    "ja_term": "不手際",
+    "tw_translation": "失誤、不周到、處理不當",
+    "reading": "ふてぎわ",
+    "created_at": "2026-09-02",
+    "row_index": 85
+  },
+  {
+    "id": "#0087",
+    "ja_term": "不正乗車",
+    "tw_translation": "逃票、違規乘車",
+    "reading": "ふせいじょうしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 86
+  },
+  {
+    "id": "#0088",
+    "ja_term": "不束者",
+    "tw_translation": "笨拙的人、粗心的人（謙稱）",
+    "reading": "ふつつかもの",
+    "created_at": "2026-09-02",
+    "row_index": 87
+  },
+  {
+    "id": "#0089",
+    "ja_term": "不倫",
+    "tw_translation": "婚外情、出軌",
+    "reading": "ふりん",
+    "created_at": "2026-09-02",
+    "row_index": 88
+  },
+  {
+    "id": "#0090",
+    "ja_term": "不祥事",
+    "tw_translation": "醜聞、不光彩事件",
+    "reading": "ふしょうじ",
+    "created_at": "2026-09-02",
+    "row_index": 89
+  },
+  {
+    "id": "#0091",
+    "ja_term": "不審",
+    "tw_translation": "可疑、不尋常",
+    "reading": "ふしん",
+    "created_at": "2026-09-02",
+    "row_index": 90
+  },
+  {
+    "id": "#0092",
+    "ja_term": "不審者",
+    "tw_translation": "可疑人士、陌生可疑者",
+    "reading": "ふしんしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 91
+  },
+  {
+    "id": "#0093",
+    "ja_term": "中出",
+    "tw_translation": "內射",
+    "reading": "なかだし",
+    "created_at": "2026-09-02",
+    "row_index": 92
+  },
+  {
+    "id": "#0094",
+    "ja_term": "中卒",
+    "tw_translation": "國中畢業",
+    "reading": "ちゅうそつ",
+    "created_at": "2026-09-02",
+    "row_index": 93
+  },
+  {
+    "id": "#0095",
+    "ja_term": "中途半端",
+    "tw_translation": "半途而廢、做半套、不乾不脆",
+    "reading": "ちゅうとはんぱ",
+    "created_at": "2026-09-02",
+    "row_index": 94
+  },
+  {
+    "id": "#0096",
+    "ja_term": "丹念",
+    "tw_translation": "細心、精心、誠心誠意",
+    "reading": "たんねん",
+    "created_at": "2026-09-02",
+    "row_index": 95
+  },
+  {
+    "id": "#0097",
+    "ja_term": "予備校",
+    "tw_translation": "補習班（重考班、升學補習班）",
+    "reading": "よびこう",
+    "created_at": "2026-09-02",
+    "row_index": 96
+  },
+  {
+    "id": "#0098",
+    "ja_term": "予想外",
+    "tw_translation": "意料之外",
+    "reading": "よそうがい",
+    "created_at": "2026-09-02",
+    "row_index": 97
+  },
+  {
+    "id": "#0099",
+    "ja_term": "五十嵐",
+    "tw_translation": "五十嵐（日本姓氏）",
+    "reading": "いがらし",
+    "created_at": "2026-09-02",
+    "row_index": 98
+  },
+  {
+    "id": "#0100",
+    "ja_term": "五輪",
+    "tw_translation": "奧運、奧林匹克運動會",
+    "reading": "ごりん",
+    "created_at": "2026-09-02",
+    "row_index": 99
+  },
+  {
+    "id": "#0101",
+    "ja_term": "井戸端",
+    "tw_translation": "水井邊（衍生為街坊閒聊、八卦長談）",
+    "reading": "いどばた",
+    "created_at": "2026-09-02",
+    "row_index": 100
+  },
+  {
+    "id": "#0102",
+    "ja_term": "今期",
+    "tw_translation": "本期、本季",
+    "reading": "こんき",
+    "created_at": "2026-09-02",
+    "row_index": 101
+  },
+  {
+    "id": "#0103",
+    "ja_term": "元気",
+    "tw_translation": "有精神、健康、活力",
+    "reading": "げんき",
+    "created_at": "2026-09-02",
+    "row_index": 102
+  },
+  {
+    "id": "#0104",
+    "ja_term": "公式",
+    "tw_translation": "官方、正式 / 公式",
+    "reading": "こうしき",
+    "created_at": "2026-09-02",
+    "row_index": 103
+  },
+  {
+    "id": "#0105",
+    "ja_term": "公式戦",
+    "tw_translation": "正式比賽、例行賽",
+    "reading": "こうしきせん",
+    "created_at": "2026-09-02",
+    "row_index": 104
+  },
+  {
+    "id": "#0106",
+    "ja_term": "内申点",
+    "tw_translation": "平時成績、在校成績（升學評分）",
+    "reading": "ないしんてん",
+    "created_at": "2026-09-02",
+    "row_index": 105
+  },
+  {
+    "id": "#0107",
+    "ja_term": "内定",
+    "tw_translation": "預定錄取",
+    "reading": "ないてい",
+    "created_at": "2026-09-02",
+    "row_index": 106
+  },
+  {
+    "id": "#0108",
+    "ja_term": "内緒",
+    "tw_translation": "秘密、瞞著別人",
+    "reading": "ないしょ",
+    "created_at": "2026-09-02",
+    "row_index": 107
+  },
+  {
+    "id": "#0109",
+    "ja_term": "冗談",
+    "tw_translation": "開玩笑、玩笑",
+    "reading": "じょうだん",
+    "created_at": "2026-09-02",
+    "row_index": 108
+  },
+  {
+    "id": "#0110",
+    "ja_term": "分際",
+    "tw_translation": "身分、本分、身分地位",
+    "reading": "ぶんざい",
+    "created_at": "2026-09-02",
+    "row_index": 109
+  },
+  {
+    "id": "#0111",
+    "ja_term": "切磋琢磨",
+    "tw_translation": "切磋琢磨、互相激勵進步",
+    "reading": "せっさたくま",
+    "created_at": "2026-09-02",
+    "row_index": 110
+  },
+  {
+    "id": "#0112",
+    "ja_term": "厄介",
+    "tw_translation": "麻煩、棘手",
+    "reading": "やっかい",
+    "created_at": "2026-09-02",
+    "row_index": 111
+  },
+  {
+    "id": "#0113",
+    "ja_term": "友達",
+    "tw_translation": "朋友",
+    "reading": "ともだち",
+    "created_at": "2026-09-02",
+    "row_index": 112
+  },
+  {
+    "id": "#0114",
+    "ja_term": "双子",
+    "tw_translation": "雙胞胎",
+    "reading": "ふたご",
+    "created_at": "2026-09-02",
+    "row_index": 113
+  },
+  {
+    "id": "#0115",
+    "ja_term": "反日感情",
+    "tw_translation": "反日情結、反日情緒",
+    "reading": "はんにちかんじょう",
+    "created_at": "2026-09-02",
+    "row_index": 114
+  },
+  {
+    "id": "#0116",
+    "ja_term": "反抗期",
+    "tw_translation": "叛逆期",
+    "reading": "はんこうき",
+    "created_at": "2026-09-02",
+    "row_index": 115
+  },
+  {
+    "id": "#0117",
+    "ja_term": "反則",
+    "tw_translation": "違規、犯規",
+    "reading": "はんそく",
+    "created_at": "2026-09-02",
+    "row_index": 116
+  },
+  {
+    "id": "#0118",
+    "ja_term": "反転再生",
+    "tw_translation": "倒帶播放、反向播放",
+    "reading": "はんてんさいせい",
+    "created_at": "2026-09-02",
+    "row_index": 117
+  },
+  {
+    "id": "#0119",
+    "ja_term": "引受人",
+    "tw_translation": "保證人、承擔人",
+    "reading": "ひきうけにん",
+    "created_at": "2026-09-02",
+    "row_index": 118
+  },
+  {
+    "id": "#0120",
+    "ja_term": "心地",
+    "tw_translation": "感覺、心情、舒適度",
+    "reading": "ここち",
+    "created_at": "2026-09-02",
+    "row_index": 119
+  },
+  {
+    "id": "#0121",
+    "ja_term": "心配",
+    "tw_translation": "擔心、關心",
+    "reading": "しんぱい",
+    "created_at": "2026-09-02",
+    "row_index": 120
+  },
+  {
+    "id": "#0122",
+    "ja_term": "心理的瑕疵",
+    "tw_translation": "心理瑕疵（如凶宅等影響心理因素）",
+    "reading": "しんりてきかし",
+    "created_at": "2026-09-02",
+    "row_index": 121
+  },
+  {
+    "id": "#0123",
+    "ja_term": "手札",
+    "tw_translation": "手牌（卡牌遊戲）",
+    "reading": "てふだ",
+    "created_at": "2026-09-02",
+    "row_index": 122
+  },
+  {
+    "id": "#0124",
+    "ja_term": "手品",
+    "tw_translation": "魔術",
+    "reading": "てじな",
+    "created_at": "2026-09-02",
+    "row_index": 123
+  },
+  {
+    "id": "#0125",
+    "ja_term": "手紙",
+    "tw_translation": "信件、書信",
+    "reading": "てがみ",
+    "created_at": "2026-09-02",
+    "row_index": 124
+  },
+  {
+    "id": "#0126",
+    "ja_term": "手順",
+    "tw_translation": "步驟、程序",
+    "reading": "てじゅん",
+    "created_at": "2026-09-02",
+    "row_index": 125
+  },
+  {
+    "id": "#0127",
+    "ja_term": "手数料",
+    "tw_translation": "手續費",
+    "reading": "てすうりょう",
+    "created_at": "2026-09-02",
+    "row_index": 126
+  },
+  {
+    "id": "#0128",
+    "ja_term": "手錠",
+    "tw_translation": "手銬",
+    "reading": "てじょう",
+    "created_at": "2026-09-02",
+    "row_index": 127
+  },
+  {
+    "id": "#0129",
+    "ja_term": "支援施設",
+    "tw_translation": "支援機構、收容照護設施",
+    "reading": "しえんしせつ",
+    "created_at": "2026-09-02",
+    "row_index": 128
+  },
+  {
+    "id": "#0130",
+    "ja_term": "支離滅裂",
+    "tw_translation": "支離破碎、條理不順、混亂",
+    "reading": "しりめつれつ",
+    "created_at": "2026-09-02",
+    "row_index": 129
+  },
+  {
+    "id": "#0131",
+    "ja_term": "文句",
+    "tw_translation": "抱怨、異議 / 詞句",
+    "reading": "もんく",
+    "created_at": "2026-09-02",
+    "row_index": 130
+  },
+  {
+    "id": "#0132",
+    "ja_term": "方面",
+    "tw_translation": "方向、領域、方面",
+    "reading": "ほうめん",
+    "created_at": "2026-09-02",
+    "row_index": 131
+  },
+  {
+    "id": "#0133",
+    "ja_term": "日常茶飯事",
+    "tw_translation": "家常便飯、習以為常的事",
+    "reading": "にちじょうさはんじ",
+    "created_at": "2026-09-02",
+    "row_index": 132
+  },
+  {
+    "id": "#0134",
+    "ja_term": "日進月歩",
+    "tw_translation": "日新月異、突飛猛進",
+    "reading": "にっしんげっぽ",
+    "created_at": "2026-09-02",
+    "row_index": 133
+  },
+  {
+    "id": "#0135",
+    "ja_term": "日曜日",
+    "tw_translation": "星期日、週日",
+    "reading": "にちようび",
+    "created_at": "2026-09-02",
+    "row_index": 134
+  },
+  {
+    "id": "#0136",
+    "ja_term": "日露戦争",
+    "tw_translation": "日俄戰爭",
+    "reading": "にちろせんそう",
+    "created_at": "2026-09-02",
+    "row_index": 135
+  },
+  {
+    "id": "#0137",
+    "ja_term": "月給",
+    "tw_translation": "月薪",
+    "reading": "げっきゅう",
+    "created_at": "2026-09-02",
+    "row_index": 136
+  },
+  {
+    "id": "#0138",
+    "ja_term": "月曜日",
+    "tw_translation": "星期一、週一",
+    "reading": "げつようび",
+    "created_at": "2026-09-02",
+    "row_index": 137
+  },
+  {
+    "id": "#0139",
+    "ja_term": "木曜日",
+    "tw_translation": "星期四、週四",
+    "reading": "もくようび",
+    "created_at": "2026-09-02",
+    "row_index": 138
+  },
+  {
+    "id": "#0140",
+    "ja_term": "欠点",
+    "tw_translation": "缺點",
+    "reading": "けってん",
+    "created_at": "2026-09-02",
+    "row_index": 139
+  },
+  {
+    "id": "#0141",
+    "ja_term": "欠席",
+    "tw_translation": "缺席、曠課",
+    "reading": "けっせき",
+    "created_at": "2026-09-02",
+    "row_index": 140
+  },
+  {
+    "id": "#0142",
+    "ja_term": "水泳",
+    "tw_translation": "游泳",
+    "reading": "すいえい",
+    "created_at": "2026-09-02",
+    "row_index": 141
+  },
+  {
+    "id": "#0143",
+    "ja_term": "水素",
+    "tw_translation": "氫",
+    "reading": "すいそ",
+    "created_at": "2026-09-02",
+    "row_index": 142
+  },
+  {
+    "id": "#0144",
+    "ja_term": "水商売",
+    "tw_translation": "八大行業、酒店特種營業",
+    "reading": "みずしょうばい",
+    "created_at": "2026-09-02",
+    "row_index": 143
+  },
+  {
+    "id": "#0145",
+    "ja_term": "水道水",
+    "tw_translation": "自來水",
+    "reading": "すいどうすい",
+    "created_at": "2026-09-02",
+    "row_index": 144
+  },
+  {
+    "id": "#0146",
+    "ja_term": "水曜日",
+    "tw_translation": "星期三、週三",
+    "reading": "すいようび",
+    "created_at": "2026-09-02",
+    "row_index": 145
+  },
+  {
+    "id": "#0147",
+    "ja_term": "水爆",
+    "tw_translation": "氫彈",
+    "reading": "すいばく",
+    "created_at": "2026-09-02",
+    "row_index": 146
+  },
+  {
+    "id": "#0148",
+    "ja_term": "火曜日",
+    "tw_translation": "星期二、週二",
+    "reading": "かようび",
+    "created_at": "2026-09-02",
+    "row_index": 147
+  },
+  {
+    "id": "#0149",
+    "ja_term": "王様",
+    "tw_translation": "國王",
+    "reading": "おうさま",
+    "created_at": "2026-09-02",
+    "row_index": 148
+  },
+  {
+    "id": "#0150",
+    "ja_term": "世話",
+    "tw_translation": "照顧、給您添麻煩",
+    "reading": "せわ",
+    "created_at": "2026-09-02",
+    "row_index": 149
+  },
+  {
+    "id": "#0151",
+    "ja_term": "主催者",
+    "tw_translation": "主辦單位、主辦人",
+    "reading": "しゅさいしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 150
+  },
+  {
+    "id": "#0152",
+    "ja_term": "仕方",
+    "tw_translation": "方法、做法",
+    "reading": "しかた",
+    "created_at": "2026-09-02",
+    "row_index": 151
+  },
+  {
+    "id": "#0153",
+    "ja_term": "仕事",
+    "tw_translation": "工作",
+    "reading": "しごと",
+    "created_at": "2026-09-02",
+    "row_index": 152
+  },
+  {
+    "id": "#0154",
+    "ja_term": "仕掛人",
+    "tw_translation": "幕後推手、策劃者",
+    "reading": "しかけにん",
+    "created_at": "2026-09-02",
+    "row_index": 153
+  },
+  {
+    "id": "#0155",
+    "ja_term": "仕様書",
+    "tw_translation": "規格書、說明書",
+    "reading": "しようしょ",
+    "created_at": "2026-09-02",
+    "row_index": 154
+  },
+  {
+    "id": "#0156",
+    "ja_term": "令嬢",
+    "tw_translation": "千金小姐、貴族大小姐",
+    "reading": "れいじょう",
+    "created_at": "2026-09-02",
+    "row_index": 155
+  },
+  {
+    "id": "#0157",
+    "ja_term": "以降",
+    "tw_translation": "以後、之後",
+    "reading": "いこう",
+    "created_at": "2026-09-02",
+    "row_index": 156
+  },
+  {
+    "id": "#0158",
+    "ja_term": "兄貴",
+    "tw_translation": "大哥、老大",
+    "reading": "あにき",
+    "created_at": "2026-09-02",
+    "row_index": 157
+  },
+  {
+    "id": "#0159",
+    "ja_term": "写真",
+    "tw_translation": "照片",
+    "reading": "しゃしん",
+    "created_at": "2026-09-02",
+    "row_index": 158
+  },
+  {
+    "id": "#0160",
+    "ja_term": "出力",
+    "tw_translation": "輸出",
+    "reading": "しゅつりょく",
+    "created_at": "2026-09-02",
+    "row_index": 159
+  },
+  {
+    "id": "#0161",
+    "ja_term": "出向",
+    "tw_translation": "外派、借調（公司間派遣）",
+    "reading": "しゅっこう",
+    "created_at": "2026-09-02",
+    "row_index": 160
+  },
+  {
+    "id": "#0162",
+    "ja_term": "出来事",
+    "tw_translation": "事件、發生的事",
+    "reading": "できごと",
+    "created_at": "2026-09-02",
+    "row_index": 161
+  },
+  {
+    "id": "#0163",
+    "ja_term": "出品",
+    "tw_translation": "上架（拍賣/二手平台）、參展",
+    "reading": "しゅっぴん",
+    "created_at": "2026-09-02",
+    "row_index": 162
+  },
+  {
+    "id": "#0164",
+    "ja_term": "出席",
+    "tw_translation": "出席",
+    "reading": "しゅっせき",
+    "created_at": "2026-09-02",
+    "row_index": 163
+  },
+  {
+    "id": "#0165",
+    "ja_term": "出塁",
+    "tw_translation": "上壘（棒球）",
+    "reading": "しゅつるい",
+    "created_at": "2026-09-02",
+    "row_index": 164
+  },
+  {
+    "id": "#0166",
+    "ja_term": "加齢臭",
+    "tw_translation": "老人味、加齡臭",
+    "reading": "かれいしゅう",
+    "created_at": "2026-09-02",
+    "row_index": 165
+  },
+  {
+    "id": "#0167",
+    "ja_term": "半袖",
+    "tw_translation": "短袖",
+    "reading": "はんそで",
+    "created_at": "2026-09-02",
+    "row_index": 166
+  },
+  {
+    "id": "#0168",
+    "ja_term": "可哀想",
+    "tw_translation": "可憐",
+    "reading": "かわいそう",
+    "created_at": "2026-09-02",
+    "row_index": 167
+  },
+  {
+    "id": "#0169",
+    "ja_term": "台所",
+    "tw_translation": "廚房",
+    "reading": "だいどころ",
+    "created_at": "2026-09-02",
+    "row_index": 168
+  },
+  {
+    "id": "#0170",
+    "ja_term": "台湾有事",
+    "tw_translation": "台海危機",
+    "reading": "たいわんゆうじ",
+    "created_at": "2026-09-02",
+    "row_index": 169
+  },
+  {
+    "id": "#0171",
+    "ja_term": "四十八手",
+    "tw_translation": "四十八手（相撲招式 / 性愛體位）",
+    "reading": "しじゅうはって",
+    "created_at": "2026-09-02",
+    "row_index": 170
+  },
+  {
+    "id": "#0172",
+    "ja_term": "四月一日",
+    "tw_translation": "1) しがつついたち わたぬき \n四月一日 (日期)\n\n2) わたぬき\n棉貫（日本姓氏)",
+    "reading": "しがつついたち / わたぬき",
+    "created_at": "2026-09-02",
+    "row_index": 171
+  },
+  {
+    "id": "#0173",
+    "ja_term": "四字熟語",
+    "tw_translation": "四字成語、四字熟語",
+    "reading": "よじじゅくご",
+    "created_at": "2026-09-02",
+    "row_index": 172
+  },
+  {
+    "id": "#0174",
+    "ja_term": "失点",
+    "tw_translation": "失分",
+    "reading": "しってん",
+    "created_at": "2026-09-02",
+    "row_index": 173
+  },
+  {
+    "id": "#0175",
+    "ja_term": "失格",
+    "tw_translation": "失去資格、不合格",
+    "reading": "しっかく",
+    "created_at": "2026-09-02",
+    "row_index": 174
+  },
+  {
+    "id": "#0176",
+    "ja_term": "失策",
+    "tw_translation": "失誤（棒球）/ 決策失誤",
+    "reading": "しっさく",
+    "created_at": "2026-09-02",
+    "row_index": 175
+  },
+  {
+    "id": "#0177",
+    "ja_term": "奴",
+    "tw_translation": "傢伙、那傢伙",
+    "reading": "やつ",
+    "created_at": "2026-09-02",
+    "row_index": 176
+  },
+  {
+    "id": "#0178",
+    "ja_term": "尻",
+    "tw_translation": "屁股",
+    "reading": "しり",
+    "created_at": "2026-09-02",
+    "row_index": 177
+  },
+  {
+    "id": "#0179",
+    "ja_term": "左様",
+    "tw_translation": "正是、那樣（左様でございます）",
+    "reading": "さよう",
+    "created_at": "2026-09-02",
+    "row_index": 178
+  },
+  {
+    "id": "#0180",
+    "ja_term": "平気",
+    "tw_translation": "不在意、無動於衷 / 沒事、沒關係",
+    "reading": "へいき",
+    "created_at": "2026-09-02",
+    "row_index": 179
+  },
+  {
+    "id": "#0181",
+    "ja_term": "平社員",
+    "tw_translation": "基層員工、普通職員",
+    "reading": "ひらしゃいん",
+    "created_at": "2026-09-02",
+    "row_index": 180
+  },
+  {
+    "id": "#0182",
+    "ja_term": "幼馴染",
+    "tw_translation": "青梅竹馬",
+    "reading": "おさななじみ",
+    "created_at": "2026-09-02",
+    "row_index": 181
+  },
+  {
+    "id": "#0183",
+    "ja_term": "弁護士",
+    "tw_translation": "律師",
+    "reading": "べんごし",
+    "created_at": "2026-09-02",
+    "row_index": 182
+  },
+  {
+    "id": "#0184",
+    "ja_term": "払戻金",
+    "tw_translation": "派彩金（彩券/賭馬）",
+    "reading": "はらいもどしきん",
+    "created_at": "2026-09-02",
+    "row_index": 183
+  },
+  {
+    "id": "#0185",
+    "ja_term": "旦那",
+    "tw_translation": "老公、丈夫 / 老闆、客官",
+    "reading": "だんな",
+    "created_at": "2026-09-02",
+    "row_index": 184
+  },
+  {
+    "id": "#0186",
+    "ja_term": "本末転倒",
+    "tw_translation": "本末倒置",
+    "reading": "ほんまつてんとう",
+    "created_at": "2026-09-02",
+    "row_index": 185
+  },
+  {
+    "id": "#0187",
+    "ja_term": "本当",
+    "tw_translation": "真的、真實",
+    "reading": "ほんとう",
+    "created_at": "2026-09-02",
+    "row_index": 186
+  },
+  {
+    "id": "#0188",
+    "ja_term": "本気",
+    "tw_translation": "認真、動真格",
+    "reading": "ほんき",
+    "created_at": "2026-09-02",
+    "row_index": 187
+  },
+  {
+    "id": "#0189",
+    "ja_term": "本音",
+    "tw_translation": "心聲、真心話",
+    "reading": "ほんね",
+    "created_at": "2026-09-02",
+    "row_index": 188
+  },
+  {
+    "id": "#0190",
+    "ja_term": "本場所",
+    "tw_translation": "大相撲正式比賽（正式賽事）",
+    "reading": "ほんばしょ",
+    "created_at": "2026-09-02",
+    "row_index": 189
+  },
+  {
+    "id": "#0191",
+    "ja_term": "本番行為",
+    "tw_translation": "全套（性行為）",
+    "reading": "ほんばんこうい",
+    "created_at": "2026-09-02",
+    "row_index": 190
+  },
+  {
+    "id": "#0192",
+    "ja_term": "本番環境",
+    "tw_translation": "正式環境（資訊/系統用語）",
+    "reading": "ほんばんかんきょう",
+    "created_at": "2026-09-02",
+    "row_index": 191
+  },
+  {
+    "id": "#0193",
+    "ja_term": "正正堂堂",
+    "tw_translation": "光明正大、堂堂正正",
+    "reading": "せいせいどうどう",
+    "created_at": "2026-09-02",
+    "row_index": 192
+  },
+  {
+    "id": "#0194",
+    "ja_term": "正直",
+    "tw_translation": "老實、說實話",
+    "reading": "しょうじき",
+    "created_at": "2026-09-02",
+    "row_index": 193
+  },
+  {
+    "id": "#0195",
+    "ja_term": "正社員",
+    "tw_translation": "正職",
+    "reading": "せいしゃいん",
+    "created_at": "2026-09-02",
+    "row_index": 194
+  },
+  {
+    "id": "#0196",
+    "ja_term": "正真正銘",
+    "tw_translation": "地地道道、貨真價實",
+    "reading": "しょうしんしょうめい",
+    "created_at": "2026-09-02",
+    "row_index": 195
+  },
+  {
+    "id": "#0197",
+    "ja_term": "生一丁",
+    "tw_translation": "來一杯生啤酒",
+    "reading": "なまいっちょう",
+    "created_at": "2026-09-02",
+    "row_index": 196
+  },
+  {
+    "id": "#0198",
+    "ja_term": "生成AI",
+    "tw_translation": "生成式 AI",
+    "reading": "せいせいエーアイ",
+    "created_at": "2026-09-02",
+    "row_index": 197
+  },
+  {
+    "id": "#0199",
+    "ja_term": "生足",
+    "tw_translation": "光腿、沒穿絲襪的腿",
+    "reading": "なまあし",
+    "created_at": "2026-09-02",
+    "row_index": 198
+  },
+  {
+    "id": "#0200",
+    "ja_term": "生放送",
+    "tw_translation": "現場直播（電視/廣播）",
+    "reading": "なまほうそう",
+    "created_at": "2026-09-02",
+    "row_index": 199
+  },
+  {
+    "id": "#0201",
+    "ja_term": "生配信",
+    "tw_translation": "網路直播",
+    "reading": "なまはいしん",
+    "created_at": "2026-09-02",
+    "row_index": 200
+  },
+  {
+    "id": "#0202",
+    "ja_term": "生意気",
+    "tw_translation": "傲慢、狂妄",
+    "reading": "なまいき",
+    "created_at": "2026-09-02",
+    "row_index": 201
+  },
+  {
+    "id": "#0203",
+    "ja_term": "用意",
+    "tw_translation": "準備",
+    "reading": "ようい",
+    "created_at": "2026-09-02",
+    "row_index": 202
+  },
+  {
+    "id": "#0204",
+    "ja_term": "田舎",
+    "tw_translation": "鄉下、故鄉",
+    "reading": "いなか",
+    "created_at": "2026-09-02",
+    "row_index": 203
+  },
+  {
+    "id": "#0205",
+    "ja_term": "甲斐",
+    "tw_translation": "價值、意義、效果",
+    "reading": "かい",
+    "created_at": "2026-09-02",
+    "row_index": 204
+  },
+  {
+    "id": "#0206",
+    "ja_term": "申込",
+    "tw_translation": "申請、報名、預約",
+    "reading": "もうしこみ",
+    "created_at": "2026-09-02",
+    "row_index": 205
+  },
+  {
+    "id": "#0207",
+    "ja_term": "白状",
+    "tw_translation": "招供、坦白",
+    "reading": "はくじょう",
+    "created_at": "2026-09-02",
+    "row_index": 206
+  },
+  {
+    "id": "#0208",
+    "ja_term": "皮肉",
+    "tw_translation": "諷刺、挖苦",
+    "reading": "ひにく",
+    "created_at": "2026-09-02",
+    "row_index": 207
+  },
+  {
+    "id": "#0209",
+    "ja_term": "立直",
+    "tw_translation": "聽牌（麻將立直）",
+    "reading": "リーチ",
+    "created_at": "2026-09-02",
+    "row_index": 208
+  },
+  {
+    "id": "#0210",
+    "ja_term": "立派",
+    "tw_translation": "出色、宏偉、光明正大",
+    "reading": "りっぱ",
+    "created_at": "2026-09-02",
+    "row_index": 209
+  },
+  {
+    "id": "#0211",
+    "ja_term": "立候補",
+    "tw_translation": "參選、登記候選",
+    "reading": "りっこうほ",
+    "created_at": "2026-09-02",
+    "row_index": 210
+  },
+  {
+    "id": "#0212",
+    "ja_term": "交際相手",
+    "tw_translation": "交往對象",
+    "reading": "こうさいあいて",
+    "created_at": "2026-09-02",
+    "row_index": 211
+  },
+  {
+    "id": "#0213",
+    "ja_term": "仮面夫婦",
+    "tw_translation": "假面夫妻",
+    "reading": "かめんふうふ",
+    "created_at": "2026-09-02",
+    "row_index": 212
+  },
+  {
+    "id": "#0214",
+    "ja_term": "仮想化",
+    "tw_translation": "虛擬化",
+    "reading": "かそうか",
+    "created_at": "2026-09-02",
+    "row_index": 213
+  },
+  {
+    "id": "#0215",
+    "ja_term": "仲間",
+    "tw_translation": "同伴、夥伴",
+    "reading": "なかま",
+    "created_at": "2026-09-02",
+    "row_index": 214
+  },
+  {
+    "id": "#0216",
+    "ja_term": "任務遂行",
+    "tw_translation": "執行任務、完成任務",
+    "reading": "にんむすいこう",
+    "created_at": "2026-09-02",
+    "row_index": 215
+  },
+  {
+    "id": "#0217",
+    "ja_term": "伊達眼鏡",
+    "tw_translation": "造型眼鏡",
+    "reading": "だてめがね",
+    "created_at": "2026-09-02",
+    "row_index": 216
+  },
+  {
+    "id": "#0218",
+    "ja_term": "休校",
+    "tw_translation": "停課",
+    "reading": "きゅうこう",
+    "created_at": "2026-09-02",
+    "row_index": 217
+  },
+  {
+    "id": "#0219",
+    "ja_term": "休憩",
+    "tw_translation": "休息",
+    "reading": "きゅうけい",
+    "created_at": "2026-09-02",
+    "row_index": 218
+  },
+  {
+    "id": "#0220",
+    "ja_term": "休憩所",
+    "tw_translation": "休息室、休息區",
+    "reading": "きゅうけいじょ",
+    "created_at": "2026-09-02",
+    "row_index": 219
+  },
+  {
+    "id": "#0221",
+    "ja_term": "会社",
+    "tw_translation": "公司",
+    "reading": "かいしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 220
+  },
+  {
+    "id": "#0222",
+    "ja_term": "先生",
+    "tw_translation": "老師、醫生、尊稱",
+    "reading": "せんせい",
+    "created_at": "2026-09-02",
+    "row_index": 221
+  },
+  {
+    "id": "#0223",
+    "ja_term": "先制攻撃",
+    "tw_translation": "先發制人、先制攻擊",
+    "reading": "せんせいこうげき",
+    "created_at": "2026-09-02",
+    "row_index": 222
+  },
+  {
+    "id": "#0224",
+    "ja_term": "先輩",
+    "tw_translation": "學長姐、前輩",
+    "reading": "せんぱい",
+    "created_at": "2026-09-02",
+    "row_index": 223
+  },
+  {
+    "id": "#0225",
+    "ja_term": "光線銃",
+    "tw_translation": "光線槍",
+    "reading": "こうせんじゅう",
+    "created_at": "2026-09-02",
+    "row_index": 224
+  },
+  {
+    "id": "#0226",
+    "ja_term": "全体主義",
+    "tw_translation": "極權主義",
+    "reading": "ぜんたいしゅぎ",
+    "created_at": "2026-09-02",
+    "row_index": 225
+  },
+  {
+    "id": "#0227",
+    "ja_term": "全身全霊",
+    "tw_translation": "全心全意",
+    "reading": "ぜんしんぜんれい",
+    "created_at": "2026-09-02",
+    "row_index": 226
+  },
+  {
+    "id": "#0228",
+    "ja_term": "共存共栄",
+    "tw_translation": "共存共榮",
+    "reading": "きょうそんきょうえい",
+    "created_at": "2026-09-02",
+    "row_index": 227
+  },
+  {
+    "id": "#0229",
+    "ja_term": "再生",
+    "tw_translation": "播放 / 重生、回收",
+    "reading": "さいせい",
+    "created_at": "2026-09-02",
+    "row_index": 228
+  },
+  {
+    "id": "#0230",
+    "ja_term": "再生速度",
+    "tw_translation": "播放速度",
+    "reading": "さいせいそくど",
+    "created_at": "2026-09-02",
+    "row_index": 229
+  },
+  {
+    "id": "#0231",
+    "ja_term": "再起不能",
+    "tw_translation": "再起不能、徹底倒下",
+    "reading": "さいきふのう",
+    "created_at": "2026-09-02",
+    "row_index": 230
+  },
+  {
+    "id": "#0232",
+    "ja_term": "劣等感",
+    "tw_translation": "自卑感",
+    "reading": "れっとうかん",
+    "created_at": "2026-09-02",
+    "row_index": 231
+  },
+  {
+    "id": "#0233",
+    "ja_term": "危篤状態",
+    "tw_translation": "病危狀態",
+    "reading": "きとくじょうたい",
+    "created_at": "2026-09-02",
+    "row_index": 232
+  },
+  {
+    "id": "#0234",
+    "ja_term": "合言葉",
+    "tw_translation": "暗號、通關密語",
+    "reading": "あいことば",
+    "created_at": "2026-09-02",
+    "row_index": 233
+  },
+  {
+    "id": "#0235",
+    "ja_term": "同級生",
+    "tw_translation": "同班同學",
+    "reading": "どうきゅうせい",
+    "created_at": "2026-09-02",
+    "row_index": 234
+  },
+  {
+    "id": "#0236",
+    "ja_term": "同棲",
+    "tw_translation": "同居",
+    "reading": "どうせい",
+    "created_at": "2026-09-02",
+    "row_index": 235
+  },
+  {
+    "id": "#0237",
+    "ja_term": "名前",
+    "tw_translation": "名字",
+    "reading": "なまえ",
+    "created_at": "2026-09-02",
+    "row_index": 236
+  },
+  {
+    "id": "#0238",
+    "ja_term": "回線",
+    "tw_translation": "網路線路、電路",
+    "reading": "かいせん",
+    "created_at": "2026-09-02",
+    "row_index": 237
+  },
+  {
+    "id": "#0239",
+    "ja_term": "団子",
+    "tw_translation": "糰子、丸子",
+    "reading": "だんご",
+    "created_at": "2026-09-02",
+    "row_index": 238
+  },
+  {
+    "id": "#0240",
+    "ja_term": "在宅勤務",
+    "tw_translation": "居家辦公",
+    "reading": "ざいたくきんむ",
+    "created_at": "2026-09-02",
+    "row_index": 239
+  },
+  {
+    "id": "#0241",
+    "ja_term": "地上波",
+    "tw_translation": "無線電視（地面波）",
+    "reading": "ちじょうは",
+    "created_at": "2026-09-02",
+    "row_index": 240
+  },
+  {
+    "id": "#0242",
+    "ja_term": "地味",
+    "tw_translation": "樸素、低調、不起眼",
+    "reading": "じみ",
+    "created_at": "2026-09-02",
+    "row_index": 241
+  },
+  {
+    "id": "#0243",
+    "ja_term": "地雷系",
+    "tw_translation": "地雷系（外表可愛但性格極端）",
+    "reading": "じらいけい",
+    "created_at": "2026-09-02",
+    "row_index": 242
+  },
+  {
+    "id": "#0244",
+    "ja_term": "地雷案件",
+    "tw_translation": "地雷專案/地雷工作",
+    "reading": "じらいあんけん",
+    "created_at": "2026-09-02",
+    "row_index": 243
+  },
+  {
+    "id": "#0245",
+    "ja_term": "宇宙人",
+    "tw_translation": "外星人",
+    "reading": "うちゅうじん",
+    "created_at": "2026-09-02",
+    "row_index": 244
+  },
+  {
+    "id": "#0246",
+    "ja_term": "年末年始",
+    "tw_translation": "歲末年初（元旦假期）",
+    "reading": "ねんまつねんし",
+    "created_at": "2026-09-02",
+    "row_index": 245
+  },
+  {
+    "id": "#0247",
+    "ja_term": "当日券",
+    "tw_translation": "當日票、現場票",
+    "reading": "とうじつけん",
+    "created_at": "2026-09-02",
+    "row_index": 246
+  },
+  {
+    "id": "#0248",
+    "ja_term": "早見表",
+    "tw_translation": "對照表、一覽表",
+    "reading": "はやみひょう",
+    "created_at": "2026-09-02",
+    "row_index": 247
+  },
+  {
+    "id": "#0249",
+    "ja_term": "有効化",
+    "tw_translation": "啟用、激活",
+    "reading": "ゆうこうか",
+    "created_at": "2026-09-02",
+    "row_index": 248
+  },
+  {
+    "id": "#0250",
+    "ja_term": "有給",
+    "tw_translation": "有薪假、特休",
+    "reading": "ゆうきゅう",
+    "created_at": "2026-09-02",
+    "row_index": 249
+  },
+  {
+    "id": "#0251",
+    "ja_term": "次第",
+    "tw_translation": "隨即 / 全憑… / 情況",
+    "reading": "しだい",
+    "created_at": "2026-09-02",
+    "row_index": 250
+  },
+  {
+    "id": "#0252",
+    "ja_term": "気配",
+    "tw_translation": "氣息、跡象",
+    "reading": "けはい",
+    "created_at": "2026-09-02",
+    "row_index": 251
+  },
+  {
+    "id": "#0253",
+    "ja_term": "汎用",
+    "tw_translation": "通用、泛用",
+    "reading": "はんよう",
+    "created_at": "2026-09-02",
+    "row_index": 252
+  },
+  {
+    "id": "#0254",
+    "ja_term": "老若男女",
+    "tw_translation": "老少男女、男女老少",
+    "reading": "ろうにゃくなんにょ",
+    "created_at": "2026-09-02",
+    "row_index": 253
+  },
+  {
+    "id": "#0255",
+    "ja_term": "老害",
+    "tw_translation": "老害（阻礙年輕人的頑固老頭）",
+    "reading": "ろうがい",
+    "created_at": "2026-09-02",
+    "row_index": 254
+  },
+  {
+    "id": "#0256",
+    "ja_term": "自己紹介",
+    "tw_translation": "自我介紹",
+    "reading": "じこしょうかい",
+    "created_at": "2026-09-02",
+    "row_index": 255
+  },
+  {
+    "id": "#0257",
+    "ja_term": "自己満足",
+    "tw_translation": "自我感覺良好、自我滿足",
+    "reading": "じこまんぞく",
+    "created_at": "2026-09-02",
+    "row_index": 256
+  },
+  {
+    "id": "#0258",
+    "ja_term": "自己PR",
+    "tw_translation": "自我推薦、自我宣傳",
+    "reading": "じこピーアール",
+    "created_at": "2026-09-02",
+    "row_index": 257
+  },
+  {
+    "id": "#0259",
+    "ja_term": "自動再生",
+    "tw_translation": "自動播放",
+    "reading": "じどうさいせい",
+    "created_at": "2026-09-02",
+    "row_index": 258
+  },
+  {
+    "id": "#0260",
+    "ja_term": "自動車",
+    "tw_translation": "汽車",
+    "reading": "じどうしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 259
+  },
+  {
+    "id": "#0261",
+    "ja_term": "自粛",
+    "tw_translation": "自我克制、自主停業/約束",
+    "reading": "じしゅく",
+    "created_at": "2026-09-02",
+    "row_index": 260
+  },
+  {
+    "id": "#0262",
+    "ja_term": "自転車",
+    "tw_translation": "腳踏車、自行車",
+    "reading": "じてんしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 261
+  },
+  {
+    "id": "#0263",
+    "ja_term": "自意識過剰",
+    "tw_translation": "自我意識過強、過度敏感",
+    "reading": "じいしきかじょう",
+    "created_at": "2026-09-02",
+    "row_index": 262
+  },
+  {
+    "id": "#0264",
+    "ja_term": "自業自得",
+    "tw_translation": "自作自受",
+    "reading": "じごうじとく",
+    "created_at": "2026-09-02",
+    "row_index": 263
+  },
+  {
+    "id": "#0265",
+    "ja_term": "自慢話",
+    "tw_translation": "炫耀、誇耀的話",
+    "reading": "じまんばなし",
+    "created_at": "2026-09-02",
+    "row_index": 264
+  },
+  {
+    "id": "#0266",
+    "ja_term": "至急",
+    "tw_translation": "火速、緊急",
+    "reading": "しきゅう",
+    "created_at": "2026-09-02",
+    "row_index": 265
+  },
+  {
+    "id": "#0267",
+    "ja_term": "行方不明",
+    "tw_translation": "失蹤、下落不明",
+    "reading": "ゆくえふめい",
+    "created_at": "2026-09-02",
+    "row_index": 266
+  },
+  {
+    "id": "#0268",
+    "ja_term": "行先",
+    "tw_translation": "目的地、去處",
+    "reading": "いきさき",
+    "created_at": "2026-09-02",
+    "row_index": 267
+  },
+  {
+    "id": "#0269",
+    "ja_term": "辻褄",
+    "tw_translation": "前後邏輯、條理",
+    "reading": "つじつま",
+    "created_at": "2026-09-02",
+    "row_index": 268
+  },
+  {
+    "id": "#0270",
+    "ja_term": "亜鉛",
+    "tw_translation": "鋅",
+    "reading": "あえん",
+    "created_at": "2026-09-02",
+    "row_index": 269
+  },
+  {
+    "id": "#0271",
+    "ja_term": "住民票",
+    "tw_translation": "戶籍謄本、居民票",
+    "reading": "じゅうみんひょう",
+    "created_at": "2026-09-02",
+    "row_index": 270
+  },
+  {
+    "id": "#0272",
+    "ja_term": "体力測定",
+    "tw_translation": "體能測驗、體能檢測",
+    "reading": "たいりょくそくてい",
+    "created_at": "2026-09-02",
+    "row_index": 271
+  },
+  {
+    "id": "#0273",
+    "ja_term": "何",
+    "tw_translation": "什麼",
+    "reading": "なに",
+    "created_at": "2026-09-02",
+    "row_index": 272
+  },
+  {
+    "id": "#0274",
+    "ja_term": "何人",
+    "tw_translation": "幾個人",
+    "reading": "なんにん",
+    "created_at": "2026-09-02",
+    "row_index": 273
+  },
+  {
+    "id": "#0275",
+    "ja_term": "何卒",
+    "tw_translation": "務必、請（禮貌用語）",
+    "reading": "なにとぞ",
+    "created_at": "2026-09-02",
+    "row_index": 274
+  },
+  {
+    "id": "#0276",
+    "ja_term": "何個",
+    "tw_translation": "幾個",
+    "reading": "なんこ",
+    "created_at": "2026-09-02",
+    "row_index": 275
+  },
+  {
+    "id": "#0277",
+    "ja_term": "余命宣告",
+    "tw_translation": "宣判餘命（宣告癌症晚期剩餘壽命）",
+    "reading": "よめいせんこく",
+    "created_at": "2026-09-02",
+    "row_index": 276
+  },
+  {
+    "id": "#0278",
+    "ja_term": "余計",
+    "tw_translation": "多餘、多管閒事",
+    "reading": "よけい",
+    "created_at": "2026-09-02",
+    "row_index": 277
+  },
+  {
+    "id": "#0279",
+    "ja_term": "免許",
+    "tw_translation": "執照、駕照",
+    "reading": "めんきょ",
+    "created_at": "2026-09-02",
+    "row_index": 278
+  },
+  {
+    "id": "#0280",
+    "ja_term": "冷房",
+    "tw_translation": "冷氣",
+    "reading": "れいぼう",
+    "created_at": "2026-09-02",
+    "row_index": 279
+  },
+  {
+    "id": "#0281",
+    "ja_term": "冷房車",
+    "tw_translation": "冷氣車廂",
+    "reading": "れいぼうしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 280
+  },
+  {
+    "id": "#0282",
+    "ja_term": "冷酷無残",
+    "tw_translation": "冷酷殘忍、殘酷無情",
+    "reading": "れいこくむざん",
+    "created_at": "2026-09-02",
+    "row_index": 281
+  },
+  {
+    "id": "#0283",
+    "ja_term": "冷蔵庫",
+    "tw_translation": "冰箱",
+    "reading": "れいぞうこ",
+    "created_at": "2026-09-02",
+    "row_index": 282
+  },
+  {
+    "id": "#0284",
+    "ja_term": "初耳",
+    "tw_translation": "初次聽聞",
+    "reading": "はつみみ",
+    "created_at": "2026-09-02",
+    "row_index": 283
+  },
+  {
+    "id": "#0285",
+    "ja_term": "即座",
+    "tw_translation": "即刻、當場、立刻",
+    "reading": "そくざ",
+    "created_at": "2026-09-02",
+    "row_index": 284
+  },
+  {
+    "id": "#0286",
+    "ja_term": "却下",
+    "tw_translation": "駁回、退回",
+    "reading": "きゃっか",
+    "created_at": "2026-09-02",
+    "row_index": 285
+  },
+  {
+    "id": "#0287",
+    "ja_term": "囮",
+    "tw_translation": "誘餌、陷阱標的",
+    "reading": "おとり",
+    "created_at": "2026-09-02",
+    "row_index": 286
+  },
+  {
+    "id": "#0288",
+    "ja_term": "坊主",
+    "tw_translation": "光頭、小和尚",
+    "reading": "ぼうず",
+    "created_at": "2026-09-02",
+    "row_index": 287
+  },
+  {
+    "id": "#0289",
+    "ja_term": "売却",
+    "tw_translation": "出售、賣掉",
+    "reading": "ばいきゃく",
+    "created_at": "2026-09-02",
+    "row_index": 288
+  },
+  {
+    "id": "#0290",
+    "ja_term": "完全試合",
+    "tw_translation": "完全比賽（棒球）",
+    "reading": "かんぜんしあい",
+    "created_at": "2026-09-02",
+    "row_index": 289
+  },
+  {
+    "id": "#0291",
+    "ja_term": "完遂",
+    "tw_translation": "貫徹、完成",
+    "reading": "かんすい",
+    "created_at": "2026-09-02",
+    "row_index": 290
+  },
+  {
+    "id": "#0292",
+    "ja_term": "完璧",
+    "tw_translation": "完美",
+    "reading": "かんぺき",
+    "created_at": "2026-09-02",
+    "row_index": 291
+  },
+  {
+    "id": "#0293",
+    "ja_term": "対処",
+    "tw_translation": "處置、應對",
+    "reading": "たいしょ",
+    "created_at": "2026-09-02",
+    "row_index": 292
+  },
+  {
+    "id": "#0294",
+    "ja_term": "対処法",
+    "tw_translation": "應對方法",
+    "reading": "たいしょほう",
+    "created_at": "2026-09-02",
+    "row_index": 293
+  },
+  {
+    "id": "#0295",
+    "ja_term": "対面面接",
+    "tw_translation": "實體面試、面談",
+    "reading": "たいめんめんせつ",
+    "created_at": "2026-09-02",
+    "row_index": 294
+  },
+  {
+    "id": "#0296",
+    "ja_term": "尾行",
+    "tw_translation": "跟蹤",
+    "reading": "びこう",
+    "created_at": "2026-09-02",
+    "row_index": 295
+  },
+  {
+    "id": "#0297",
+    "ja_term": "床",
+    "tw_translation": "地板",
+    "reading": "ゆか",
+    "created_at": "2026-09-02",
+    "row_index": 296
+  },
+  {
+    "id": "#0298",
+    "ja_term": "形成外科",
+    "tw_translation": "整形外科、塑型外科",
+    "reading": "けいせいげか",
+    "created_at": "2026-09-02",
+    "row_index": 297
+  },
+  {
+    "id": "#0299",
+    "ja_term": "役目",
+    "tw_translation": "職責、任務",
+    "reading": "やくめ",
+    "created_at": "2026-09-02",
+    "row_index": 298
+  },
+  {
+    "id": "#0300",
+    "ja_term": "応急処置",
+    "tw_translation": "急救處置、緊急應變",
+    "reading": "おうきゅうしょち",
+    "created_at": "2026-09-02",
+    "row_index": 299
+  },
+  {
+    "id": "#0301",
+    "ja_term": "応援団",
+    "tw_translation": "應援團、加油團",
+    "reading": "おうえんだん",
+    "created_at": "2026-09-02",
+    "row_index": 300
+  },
+  {
+    "id": "#0302",
+    "ja_term": "我慢",
+    "tw_translation": "忍耐、忍受",
+    "reading": "がまん",
+    "created_at": "2026-09-02",
+    "row_index": 301
+  },
+  {
+    "id": "#0303",
+    "ja_term": "改札",
+    "tw_translation": "驗票口、剪票口",
+    "reading": "かいさつ",
+    "created_at": "2026-09-02",
+    "row_index": 302
+  },
+  {
+    "id": "#0304",
+    "ja_term": "改修",
+    "tw_translation": "整修、改建",
+    "reading": "かいしゅう",
+    "created_at": "2026-09-02",
+    "row_index": 303
+  },
+  {
+    "id": "#0305",
+    "ja_term": "没頭",
+    "tw_translation": "沉溺、埋頭、專心致志",
+    "reading": "ぼっとう",
+    "created_at": "2026-09-02",
+    "row_index": 304
+  },
+  {
+    "id": "#0306",
+    "ja_term": "沢山",
+    "tw_translation": "許多、大量",
+    "reading": "たくさん",
+    "created_at": "2026-09-02",
+    "row_index": 305
+  },
+  {
+    "id": "#0307",
+    "ja_term": "狆穴子",
+    "tw_translation": "斑馬花園鰻（花園鰻）",
+    "reading": "ちんあなご",
+    "created_at": "2026-09-02",
+    "row_index": 306
+  },
+  {
+    "id": "#0308",
+    "ja_term": "私",
+    "tw_translation": "我（通用謙稱/正式稱呼）",
+    "reading": "わたし",
+    "created_at": "2026-09-02",
+    "row_index": 307
+  },
+  {
+    "id": "#0309",
+    "ja_term": "私服",
+    "tw_translation": "便服、私服",
+    "reading": "しふく",
+    "created_at": "2026-09-02",
+    "row_index": 308
+  },
+  {
+    "id": "#0310",
+    "ja_term": "私物",
+    "tw_translation": "私人物品、個人物品",
+    "reading": "しぶつ",
+    "created_at": "2026-09-02",
+    "row_index": 309
+  },
+  {
+    "id": "#0311",
+    "ja_term": "私語",
+    "tw_translation": "私語、竊竊私語",
+    "reading": "しご",
+    "created_at": "2026-09-02",
+    "row_index": 310
+  },
+  {
+    "id": "#0312",
+    "ja_term": "見事",
+    "tw_translation": "精彩、出色",
+    "reading": "みごと",
+    "created_at": "2026-09-02",
+    "row_index": 311
+  },
+  {
+    "id": "#0313",
+    "ja_term": "見栄",
+    "tw_translation": "愛慕虛榮",
+    "reading": "みえ",
+    "created_at": "2026-09-02",
+    "row_index": 312
+  },
+  {
+    "id": "#0314",
+    "ja_term": "言葉",
+    "tw_translation": "語言、詞語",
+    "reading": "ことば",
+    "created_at": "2026-09-02",
+    "row_index": 313
+  },
+  {
+    "id": "#0315",
+    "ja_term": "豆知識",
+    "tw_translation": "冷知識",
+    "reading": "まめちしき",
+    "created_at": "2026-09-02",
+    "row_index": 314
+  },
+  {
+    "id": "#0316",
+    "ja_term": "赤外線",
+    "tw_translation": "紅外線",
+    "reading": "せきがいせん",
+    "created_at": "2026-09-02",
+    "row_index": 315
+  },
+  {
+    "id": "#0317",
+    "ja_term": "赤本",
+    "tw_translation": "赤本（日本大學歷屆試題題庫）",
+    "reading": "あかほん",
+    "created_at": "2026-09-02",
+    "row_index": 316
+  },
+  {
+    "id": "#0318",
+    "ja_term": "赤字経営",
+    "tw_translation": "虧損經營、赤字經營",
+    "reading": "あかじけいえい",
+    "created_at": "2026-09-02",
+    "row_index": 317
+  },
+  {
+    "id": "#0319",
+    "ja_term": "赤血球",
+    "tw_translation": "紅血球",
+    "reading": "せっけっきゅう",
+    "created_at": "2026-09-02",
+    "row_index": 318
+  },
+  {
+    "id": "#0320",
+    "ja_term": "赤点",
+    "tw_translation": "不及格（紅字）",
+    "reading": "あかてん",
+    "created_at": "2026-09-02",
+    "row_index": 319
+  },
+  {
+    "id": "#0321",
+    "ja_term": "赤点回避",
+    "tw_translation": "避免不及格、壓線過關",
+    "reading": "あかてんかいひ",
+    "created_at": "2026-09-02",
+    "row_index": 320
+  },
+  {
+    "id": "#0322",
+    "ja_term": "身元保証人",
+    "tw_translation": "身分保證人、人身擔保人",
+    "reading": "みもとほしょうにん",
+    "created_at": "2026-09-02",
+    "row_index": 321
+  },
+  {
+    "id": "#0323",
+    "ja_term": "身長",
+    "tw_translation": "身高",
+    "reading": "しんちょう",
+    "created_at": "2026-09-02",
+    "row_index": 322
+  },
+  {
+    "id": "#0324",
+    "ja_term": "邪魔",
+    "tw_translation": "打擾、妨礙",
+    "reading": "じゃま",
+    "created_at": "2026-09-02",
+    "row_index": 323
+  },
+  {
+    "id": "#0325",
+    "ja_term": "依存症",
+    "tw_translation": "成癮症、依賴症",
+    "reading": "いぞんしょう",
+    "created_at": "2026-09-02",
+    "row_index": 324
+  },
+  {
+    "id": "#0326",
+    "ja_term": "刮目",
+    "tw_translation": "刮目相看、拭目以待",
+    "reading": "かつもく",
+    "created_at": "2026-09-02",
+    "row_index": 325
+  },
+  {
+    "id": "#0327",
+    "ja_term": "制限",
+    "tw_translation": "限制",
+    "reading": "せいげん",
+    "created_at": "2026-09-02",
+    "row_index": 326
+  },
+  {
+    "id": "#0328",
+    "ja_term": "制御",
+    "tw_translation": "控制、控制系統",
+    "reading": "せいぎょ",
+    "created_at": "2026-09-02",
+    "row_index": 327
+  },
+  {
+    "id": "#0329",
+    "ja_term": "卑怯",
+    "tw_translation": "卑鄙、卑劣",
+    "reading": "ひきょう",
+    "created_at": "2026-09-02",
+    "row_index": 328
+  },
+  {
+    "id": "#0330",
+    "ja_term": "参勤交代",
+    "tw_translation": "參勤交代（江戶時代大名定期往返江戶的制度）",
+    "reading": "さんきんこうたい",
+    "created_at": "2026-09-02",
+    "row_index": 329
+  },
+  {
+    "id": "#0331",
+    "ja_term": "取引",
+    "tw_translation": "交易、商業往來",
+    "reading": "とりひき",
+    "created_at": "2026-09-02",
+    "row_index": 330
+  },
+  {
+    "id": "#0332",
+    "ja_term": "受付",
+    "tw_translation": "櫃檯、接待處",
+    "reading": "うけつけ",
+    "created_at": "2026-09-02",
+    "row_index": 331
+  },
+  {
+    "id": "#0333",
+    "ja_term": "受付嬢",
+    "tw_translation": "櫃檯小姐、接待員",
+    "reading": "うけつけじょう",
+    "created_at": "2026-09-02",
+    "row_index": 332
+  },
+  {
+    "id": "#0334",
+    "ja_term": "受信",
+    "tw_translation": "接收簡訊/信件/訊號",
+    "reading": "じゅしん",
+    "created_at": "2026-09-02",
+    "row_index": 333
+  },
+  {
+    "id": "#0335",
+    "ja_term": "受信量",
+    "tw_translation": "接收傳輸量",
+    "reading": "じゅしんりょう",
+    "created_at": "2026-09-02",
+    "row_index": 334
+  },
+  {
+    "id": "#0336",
+    "ja_term": "受動喫煙",
+    "tw_translation": "二手菸",
+    "reading": "じゅどうきつえん",
+    "created_at": "2026-09-02",
+    "row_index": 335
+  },
+  {
+    "id": "#0337",
+    "ja_term": "受験勉強",
+    "tw_translation": "準備考試、升學準備",
+    "reading": "じゅけんべんきょう",
+    "created_at": "2026-09-02",
+    "row_index": 336
+  },
+  {
+    "id": "#0338",
+    "ja_term": "味方",
+    "tw_translation": "自己人、戰友、支持者",
+    "reading": "みかた",
+    "created_at": "2026-09-02",
+    "row_index": 337
+  },
+  {
+    "id": "#0339",
+    "ja_term": "夜露死苦",
+    "tw_translation": "請多指教（暴走族漢字諧音語）",
+    "reading": "よろしく",
+    "created_at": "2026-09-02",
+    "row_index": 338
+  },
+  {
+    "id": "#0340",
+    "ja_term": "奇行",
+    "tw_translation": "怪異行為",
+    "reading": "きこう",
+    "created_at": "2026-09-02",
+    "row_index": 339
+  },
+  {
+    "id": "#0341",
+    "ja_term": "奈落",
+    "tw_translation": "地獄",
+    "reading": "ならく",
+    "created_at": "2026-09-02",
+    "row_index": 340
+  },
+  {
+    "id": "#0342",
+    "ja_term": "始発",
+    "tw_translation": "首班車",
+    "reading": "しはつ",
+    "created_at": "2026-09-02",
+    "row_index": 341
+  },
+  {
+    "id": "#0343",
+    "ja_term": "学歴社会",
+    "tw_translation": "學歷至上社會",
+    "reading": "がくれきしゃかい",
+    "created_at": "2026-09-02",
+    "row_index": 342
+  },
+  {
+    "id": "#0344",
+    "ja_term": "定休日",
+    "tw_translation": "公休日、固定休息日",
+    "reading": "ていきゅうび",
+    "created_at": "2026-09-02",
+    "row_index": 343
+  },
+  {
+    "id": "#0345",
+    "ja_term": "定年",
+    "tw_translation": "退休年齡",
+    "reading": "ていねん",
+    "created_at": "2026-09-02",
+    "row_index": 344
+  },
+  {
+    "id": "#0346",
+    "ja_term": "定時",
+    "tw_translation": "準時、下班時間",
+    "reading": "ていじ",
+    "created_at": "2026-09-02",
+    "row_index": 345
+  },
+  {
+    "id": "#0347",
+    "ja_term": "定番",
+    "tw_translation": "經典款、基本款、必備",
+    "reading": "ていばん",
+    "created_at": "2026-09-02",
+    "row_index": 346
+  },
+  {
+    "id": "#0348",
+    "ja_term": "実力行使",
+    "tw_translation": "訴諸武力、實力介入",
+    "reading": "じつりょくこうし",
+    "created_at": "2026-09-02",
+    "row_index": 347
+  },
+  {
+    "id": "#0349",
+    "ja_term": "実写",
+    "tw_translation": "真人化、實景拍攝",
+    "reading": "じっしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 348
+  },
+  {
+    "id": "#0350",
+    "ja_term": "実家",
+    "tw_translation": "老家、原生家庭",
+    "reading": "じっか",
+    "created_at": "2026-09-02",
+    "row_index": 349
+  },
+  {
+    "id": "#0351",
+    "ja_term": "実装",
+    "tw_translation": "實作、實裝（軟體功能/裝備）",
+    "reading": "じっそう",
+    "created_at": "2026-09-02",
+    "row_index": 350
+  },
+  {
+    "id": "#0352",
+    "ja_term": "実績",
+    "tw_translation": "實績、業績、成果",
+    "reading": "じっせき",
+    "created_at": "2026-09-02",
+    "row_index": 351
+  },
+  {
+    "id": "#0353",
+    "ja_term": "居場所",
+    "tw_translation": "容身之處、歸宿",
+    "reading": "いばしょ",
+    "created_at": "2026-09-02",
+    "row_index": 352
+  },
+  {
+    "id": "#0354",
+    "ja_term": "彼女",
+    "tw_translation": "女朋友 / 她",
+    "reading": "かのじょ",
+    "created_at": "2026-09-02",
+    "row_index": 353
+  },
+  {
+    "id": "#0355",
+    "ja_term": "彼方",
+    "tw_translation": "彼方、遠方",
+    "reading": "かなた",
+    "created_at": "2026-09-02",
+    "row_index": 354
+  },
+  {
+    "id": "#0356",
+    "ja_term": "彼氏",
+    "tw_translation": "男朋友",
+    "reading": "かれし",
+    "created_at": "2026-09-02",
+    "row_index": 355
+  },
+  {
+    "id": "#0357",
+    "ja_term": "怪我",
+    "tw_translation": "受傷",
+    "reading": "けが",
+    "created_at": "2026-09-02",
+    "row_index": 356
+  },
+  {
+    "id": "#0358",
+    "ja_term": "承知",
+    "tw_translation": "知曉、了解、同意",
+    "reading": "しょうち",
+    "created_at": "2026-09-02",
+    "row_index": 357
+  },
+  {
+    "id": "#0359",
+    "ja_term": "担当",
+    "tw_translation": "負責人、專員",
+    "reading": "たんとう",
+    "created_at": "2026-09-02",
+    "row_index": 358
+  },
+  {
+    "id": "#0360",
+    "ja_term": "拉致",
+    "tw_translation": "綁架、拉致",
+    "reading": "らち",
+    "created_at": "2026-09-02",
+    "row_index": 359
+  },
+  {
+    "id": "#0361",
+    "ja_term": "放送",
+    "tw_translation": "廣播、播送",
+    "reading": "ほうそう",
+    "created_at": "2026-09-02",
+    "row_index": 360
+  },
+  {
+    "id": "#0362",
+    "ja_term": "放漫経営",
+    "tw_translation": "放任管理、經營不善",
+    "reading": "ほうまんけいえい",
+    "created_at": "2026-09-02",
+    "row_index": 361
+  },
+  {
+    "id": "#0363",
+    "ja_term": "放題",
+    "tw_translation": "吃到飽、隨你使用（～放題）",
+    "reading": "ほうだい",
+    "created_at": "2026-09-02",
+    "row_index": 362
+  },
+  {
+    "id": "#0364",
+    "ja_term": "昇格",
+    "tw_translation": "升官、升級、晉升",
+    "reading": "しょうかく",
+    "created_at": "2026-09-02",
+    "row_index": 363
+  },
+  {
+    "id": "#0365",
+    "ja_term": "明後日",
+    "tw_translation": "後天",
+    "reading": "あさって",
+    "created_at": "2026-09-02",
+    "row_index": 364
+  },
+  {
+    "id": "#0366",
+    "ja_term": "枕営業",
+    "tw_translation": "陪睡",
+    "reading": "まくらえいぎょう",
+    "created_at": "2026-09-02",
+    "row_index": 365
+  },
+  {
+    "id": "#0367",
+    "ja_term": "枢軸国",
+    "tw_translation": "軸心國",
+    "reading": "すうじくこく",
+    "created_at": "2026-09-02",
+    "row_index": 366
+  },
+  {
+    "id": "#0368",
+    "ja_term": "歩行者天国",
+    "tw_translation": "行人徒步區",
+    "reading": "ほこうしゃてんごく",
+    "created_at": "2026-09-02",
+    "row_index": 367
+  },
+  {
+    "id": "#0369",
+    "ja_term": "油断",
+    "tw_translation": "大意、粗心、掉以輕心",
+    "reading": "ゆだん",
+    "created_at": "2026-09-02",
+    "row_index": 368
+  },
+  {
+    "id": "#0370",
+    "ja_term": "油断大敵",
+    "tw_translation": "粗心大意是大敵",
+    "reading": "ゆだんたいてき",
+    "created_at": "2026-09-02",
+    "row_index": 369
+  },
+  {
+    "id": "#0371",
+    "ja_term": "泥棒猫",
+    "tw_translation": "小三（搶人男友/老公的女人）",
+    "reading": "どろぼうねこ",
+    "created_at": "2026-09-02",
+    "row_index": 370
+  },
+  {
+    "id": "#0372",
+    "ja_term": "注文",
+    "tw_translation": "點餐、下單 / 要求",
+    "reading": "ちゅうもん",
+    "created_at": "2026-09-02",
+    "row_index": 371
+  },
+  {
+    "id": "#0373",
+    "ja_term": "炊飯器",
+    "tw_translation": "電鍋、電子鍋",
+    "reading": "すいはんき",
+    "created_at": "2026-09-02",
+    "row_index": 372
+  },
+  {
+    "id": "#0374",
+    "ja_term": "炎上",
+    "tw_translation": "網路爆發爭議（炎上）",
+    "reading": "えんじょう",
+    "created_at": "2026-09-02",
+    "row_index": 373
+  },
+  {
+    "id": "#0375",
+    "ja_term": "物件",
+    "tw_translation": "房屋建案、租屋物件",
+    "reading": "ぶっけん",
+    "created_at": "2026-09-02",
+    "row_index": 374
+  },
+  {
+    "id": "#0376",
+    "ja_term": "物語",
+    "tw_translation": "故事、故事集",
+    "reading": "ものがたり",
+    "created_at": "2026-09-02",
+    "row_index": 375
+  },
+  {
+    "id": "#0377",
+    "ja_term": "物騒",
+    "tw_translation": "危險、治安不好、動盪不安",
+    "reading": "ぶっそう",
+    "created_at": "2026-09-02",
+    "row_index": 376
+  },
+  {
+    "id": "#0378",
+    "ja_term": "直前",
+    "tw_translation": "臨前、正要開始前",
+    "reading": "ちょくぜん",
+    "created_at": "2026-09-02",
+    "row_index": 377
+  },
+  {
+    "id": "#0379",
+    "ja_term": "直通",
+    "tw_translation": "直達、直通列車",
+    "reading": "ちょくつう",
+    "created_at": "2026-09-02",
+    "row_index": 378
+  },
+  {
+    "id": "#0380",
+    "ja_term": "知恵",
+    "tw_translation": "智慧、點子、聰明才智",
+    "reading": "ちえ",
+    "created_at": "2026-09-02",
+    "row_index": 379
+  },
+  {
+    "id": "#0381",
+    "ja_term": "社交辞令",
+    "tw_translation": "社交客套話",
+    "reading": "しゃこうじれい",
+    "created_at": "2026-09-02",
+    "row_index": 380
+  },
+  {
+    "id": "#0382",
+    "ja_term": "空港",
+    "tw_translation": "機場",
+    "reading": "くうこう",
+    "created_at": "2026-09-02",
+    "row_index": 381
+  },
+  {
+    "id": "#0383",
+    "ja_term": "芝居",
+    "tw_translation": "戲劇、表演 / 裝模作樣",
+    "reading": "しばい",
+    "created_at": "2026-09-02",
+    "row_index": 382
+  },
+  {
+    "id": "#0384",
+    "ja_term": "花火",
+    "tw_translation": "煙火",
+    "reading": "はなび",
+    "created_at": "2026-09-02",
+    "row_index": 383
+  },
+  {
+    "id": "#0385",
+    "ja_term": "花嫁",
+    "tw_translation": "新娘",
+    "reading": "はなよめ",
+    "created_at": "2026-09-02",
+    "row_index": 384
+  },
+  {
+    "id": "#0386",
+    "ja_term": "花嫁修業",
+    "tw_translation": "新娘新婚前修業（新娘課）",
+    "reading": "はなよめしゅぎょう",
+    "created_at": "2026-09-02",
+    "row_index": 385
+  },
+  {
+    "id": "#0387",
+    "ja_term": "花魁",
+    "tw_translation": "花魁（高級遊女）",
+    "reading": "おいらん",
+    "created_at": "2026-09-02",
+    "row_index": 386
+  },
+  {
+    "id": "#0388",
+    "ja_term": "花魁道中",
+    "tw_translation": "花魁遊街",
+    "reading": "おいらんどうちゅう",
+    "created_at": "2026-09-02",
+    "row_index": 387
+  },
+  {
+    "id": "#0389",
+    "ja_term": "表",
+    "tw_translation": "表格 / 表面",
+    "reading": "おもて",
+    "created_at": "2026-09-02",
+    "row_index": 388
+  },
+  {
+    "id": "#0390",
+    "ja_term": "表裏一体",
+    "tw_translation": "表裏一體、一體兩面",
+    "reading": "ひょうりいったい",
+    "created_at": "2026-09-02",
+    "row_index": 389
+  },
+  {
+    "id": "#0391",
+    "ja_term": "近眼",
+    "tw_translation": "近視",
+    "reading": "きんがん",
+    "created_at": "2026-09-02",
+    "row_index": 390
+  },
+  {
+    "id": "#0392",
+    "ja_term": "返却",
+    "tw_translation": "歸還、退還",
+    "reading": "へんきゃく",
+    "created_at": "2026-09-02",
+    "row_index": 391
+  },
+  {
+    "id": "#0393",
+    "ja_term": "返事",
+    "tw_translation": "回覆、回答",
+    "reading": "へんじ",
+    "created_at": "2026-09-02",
+    "row_index": 392
+  },
+  {
+    "id": "#0394",
+    "ja_term": "返信",
+    "tw_translation": "回信、回覆訊息",
+    "reading": "へんしん",
+    "created_at": "2026-09-02",
+    "row_index": 393
+  },
+  {
+    "id": "#0395",
+    "ja_term": "返済",
+    "tw_translation": "還款、償還",
+    "reading": "へんさい",
+    "created_at": "2026-09-02",
+    "row_index": 394
+  },
+  {
+    "id": "#0396",
+    "ja_term": "返済方式",
+    "tw_translation": "還款方式、償還方式",
+    "reading": "へんさいほうしき",
+    "created_at": "2026-09-02",
+    "row_index": 395
+  },
+  {
+    "id": "#0397",
+    "ja_term": "金利",
+    "tw_translation": "利息、利率",
+    "reading": "きんり",
+    "created_at": "2026-09-02",
+    "row_index": 396
+  },
+  {
+    "id": "#0398",
+    "ja_term": "金物屋",
+    "tw_translation": "五金行、五金店",
+    "reading": "かなものや",
+    "created_at": "2026-09-02",
+    "row_index": 397
+  },
+  {
+    "id": "#0399",
+    "ja_term": "金槌",
+    "tw_translation": "旱鴨子",
+    "reading": "かなづち",
+    "created_at": "2026-09-02",
+    "row_index": 398
+  },
+  {
+    "id": "#0400",
+    "ja_term": "金輪際",
+    "tw_translation": "絕不、斷然（後接否定）",
+    "reading": "こんりんざい",
+    "created_at": "2026-09-02",
+    "row_index": 399
+  },
+  {
+    "id": "#0401",
+    "ja_term": "金曜日",
+    "tw_translation": "星期五、週五",
+    "reading": "きんようび",
+    "created_at": "2026-09-02",
+    "row_index": 400
+  },
+  {
+    "id": "#0402",
+    "ja_term": "長蛇",
+    "tw_translation": "長龍（大排長龍）",
+    "reading": "ちょうだ",
+    "created_at": "2026-09-02",
+    "row_index": 401
+  },
+  {
+    "id": "#0403",
+    "ja_term": "阿片",
+    "tw_translation": "鴉片",
+    "reading": "あへん",
+    "created_at": "2026-09-02",
+    "row_index": 402
+  },
+  {
+    "id": "#0404",
+    "ja_term": "青天井",
+    "tw_translation": "無上限（漲停/價格無限上升）",
+    "reading": "あおてんじょう",
+    "created_at": "2026-09-02",
+    "row_index": 403
+  },
+  {
+    "id": "#0405",
+    "ja_term": "青姦",
+    "tw_translation": "打野砲",
+    "reading": "あおかん",
+    "created_at": "2026-09-02",
+    "row_index": 404
+  },
+  {
+    "id": "#0406",
+    "ja_term": "非常識",
+    "tw_translation": "不合常理、沒常識",
+    "reading": "ひじょうしき",
+    "created_at": "2026-09-02",
+    "row_index": 405
+  },
+  {
+    "id": "#0407",
+    "ja_term": "非殺傷弾",
+    "tw_translation": "非致命子彈",
+    "reading": "ひさっしょうだん",
+    "created_at": "2026-09-02",
+    "row_index": 406
+  },
+  {
+    "id": "#0408",
+    "ja_term": "便座",
+    "tw_translation": "馬桶座圈",
+    "reading": "べんざ",
+    "created_at": "2026-09-02",
+    "row_index": 407
+  },
+  {
+    "id": "#0409",
+    "ja_term": "保育園",
+    "tw_translation": "托兒所、幼兒園",
+    "reading": "ほいくえん",
+    "created_at": "2026-09-02",
+    "row_index": 408
+  },
+  {
+    "id": "#0410",
+    "ja_term": "保護者",
+    "tw_translation": "家長、監護人",
+    "reading": "ほごしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 409
+  },
+  {
+    "id": "#0411",
+    "ja_term": "削除",
+    "tw_translation": "刪除",
+    "reading": "さくじょ",
+    "created_at": "2026-09-02",
+    "row_index": 410
+  },
+  {
+    "id": "#0412",
+    "ja_term": "前代未聞",
+    "tw_translation": "前所未聞、史無前例",
+    "reading": "ぜんだいみもん",
+    "created_at": "2026-09-02",
+    "row_index": 411
+  },
+  {
+    "id": "#0413",
+    "ja_term": "勉強",
+    "tw_translation": "學習、讀書",
+    "reading": "べんきょう",
+    "created_at": "2026-09-02",
+    "row_index": 412
+  },
+  {
+    "id": "#0414",
+    "ja_term": "単位",
+    "tw_translation": "學分 / 單位",
+    "reading": "たんい",
+    "created_at": "2026-09-02",
+    "row_index": 413
+  },
+  {
+    "id": "#0415",
+    "ja_term": "単勝",
+    "tw_translation": "獨贏（賽馬投注預測第一名）",
+    "reading": "たんしょう",
+    "created_at": "2026-09-02",
+    "row_index": 414
+  },
+  {
+    "id": "#0416",
+    "ja_term": "契約社員",
+    "tw_translation": "約聘員工",
+    "reading": "けいやくしゃいん",
+    "created_at": "2026-09-02",
+    "row_index": 415
+  },
+  {
+    "id": "#0417",
+    "ja_term": "客室乗務員",
+    "tw_translation": "空服員",
+    "reading": "きゃくしつじょうむいん",
+    "created_at": "2026-09-02",
+    "row_index": 416
+  },
+  {
+    "id": "#0418",
+    "ja_term": "宣戦布告",
+    "tw_translation": "宣戰",
+    "reading": "せんせんふこく",
+    "created_at": "2026-09-02",
+    "row_index": 417
+  },
+  {
+    "id": "#0419",
+    "ja_term": "専念",
+    "tw_translation": "專心、專注",
+    "reading": "せんねん",
+    "created_at": "2026-09-02",
+    "row_index": 418
+  },
+  {
+    "id": "#0420",
+    "ja_term": "専門学校",
+    "tw_translation": "專科學校、技術學院",
+    "reading": "せんもんがっこう",
+    "created_at": "2026-09-02",
+    "row_index": 419
+  },
+  {
+    "id": "#0421",
+    "ja_term": "屋敷",
+    "tw_translation": "大宅邸、豪宅",
+    "reading": "やしき",
+    "created_at": "2026-09-02",
+    "row_index": 420
+  },
+  {
+    "id": "#0422",
+    "ja_term": "帝王切開",
+    "tw_translation": "剖腹產",
+    "reading": "ていおうせっかい",
+    "created_at": "2026-09-02",
+    "row_index": 421
+  },
+  {
+    "id": "#0423",
+    "ja_term": "幽霊部員",
+    "tw_translation": "幽靈社員（掛名不出席活動的社員）",
+    "reading": "ゆうれいぶいん",
+    "created_at": "2026-09-02",
+    "row_index": 422
+  },
+  {
+    "id": "#0424",
+    "ja_term": "度外視",
+    "tw_translation": "不予考慮、置之度外",
+    "reading": "どがいし",
+    "created_at": "2026-09-02",
+    "row_index": 423
+  },
+  {
+    "id": "#0425",
+    "ja_term": "建物",
+    "tw_translation": "建築物、房屋",
+    "reading": "たてもの",
+    "created_at": "2026-09-02",
+    "row_index": 424
+  },
+  {
+    "id": "#0426",
+    "ja_term": "建前",
+    "tw_translation": "場面話",
+    "reading": "たてまえ",
+    "created_at": "2026-09-02",
+    "row_index": 425
+  },
+  {
+    "id": "#0427",
+    "ja_term": "待機列",
+    "tw_translation": "排隊隊伍、等待隊列",
+    "reading": "たいきれつ",
+    "created_at": "2026-09-02",
+    "row_index": 426
+  },
+  {
+    "id": "#0428",
+    "ja_term": "後輩",
+    "tw_translation": "學弟妹、後輩",
+    "reading": "こうはい",
+    "created_at": "2026-09-02",
+    "row_index": 427
+  },
+  {
+    "id": "#0429",
+    "ja_term": "急所",
+    "tw_translation": "要害、命門",
+    "reading": "きゅうしょ",
+    "created_at": "2026-09-02",
+    "row_index": 428
+  },
+  {
+    "id": "#0430",
+    "ja_term": "恒例",
+    "tw_translation": "慣例、例行",
+    "reading": "こうれい",
+    "created_at": "2026-09-02",
+    "row_index": 429
+  },
+  {
+    "id": "#0431",
+    "ja_term": "持参",
+    "tw_translation": "攜帶、帶去",
+    "reading": "じさん",
+    "created_at": "2026-09-02",
+    "row_index": 430
+  },
+  {
+    "id": "#0432",
+    "ja_term": "指名手配",
+    "tw_translation": "通緝",
+    "reading": "しめいてはい",
+    "created_at": "2026-09-02",
+    "row_index": 431
+  },
+  {
+    "id": "#0433",
+    "ja_term": "指定席",
+    "tw_translation": "對號座、指定席",
+    "reading": "していせき",
+    "created_at": "2026-09-02",
+    "row_index": 432
+  },
+  {
+    "id": "#0434",
+    "ja_term": "指輪",
+    "tw_translation": "戒指",
+    "reading": "ゆびわ",
+    "created_at": "2026-09-02",
+    "row_index": 433
+  },
+  {
+    "id": "#0435",
+    "ja_term": "政治不信",
+    "tw_translation": "對政治不信任",
+    "reading": "せいじふしん",
+    "created_at": "2026-09-02",
+    "row_index": 434
+  },
+  {
+    "id": "#0436",
+    "ja_term": "施設",
+    "tw_translation": "機構、設施",
+    "reading": "しせつ",
+    "created_at": "2026-09-02",
+    "row_index": 435
+  },
+  {
+    "id": "#0437",
+    "ja_term": "既卒",
+    "tw_translation": "非應屆畢業生",
+    "reading": "きそつ",
+    "created_at": "2026-09-02",
+    "row_index": 436
+  },
+  {
+    "id": "#0438",
+    "ja_term": "既読",
+    "tw_translation": "已讀",
+    "reading": "きどく",
+    "created_at": "2026-09-02",
+    "row_index": 437
+  },
+  {
+    "id": "#0439",
+    "ja_term": "既読無視",
+    "tw_translation": "已讀不回",
+    "reading": "きどくむし",
+    "created_at": "2026-09-02",
+    "row_index": 438
+  },
+  {
+    "id": "#0440",
+    "ja_term": "星取表",
+    "tw_translation": "對戰勝負表（相撲/賽事）",
+    "reading": "ほしとりひょう",
+    "created_at": "2026-09-02",
+    "row_index": 439
+  },
+  {
+    "id": "#0441",
+    "ja_term": "映画",
+    "tw_translation": "電影",
+    "reading": "えいが",
+    "created_at": "2026-09-02",
+    "row_index": 440
+  },
+  {
+    "id": "#0442",
+    "ja_term": "映画館",
+    "tw_translation": "電影院",
+    "reading": "えいがかん",
+    "created_at": "2026-09-02",
+    "row_index": 441
+  },
+  {
+    "id": "#0443",
+    "ja_term": "昼飯",
+    "tw_translation": "午餐",
+    "reading": "ひるめし",
+    "created_at": "2026-09-02",
+    "row_index": 442
+  },
+  {
+    "id": "#0444",
+    "ja_term": "栄枯盛衰",
+    "tw_translation": "興衰榮枯、盛極而衰",
+    "reading": "えいこせいすい",
+    "created_at": "2026-09-02",
+    "row_index": 443
+  },
+  {
+    "id": "#0445",
+    "ja_term": "段階",
+    "tw_translation": "階段",
+    "reading": "だんかい",
+    "created_at": "2026-09-02",
+    "row_index": 444
+  },
+  {
+    "id": "#0446",
+    "ja_term": "洒落",
+    "tw_translation": "時髦",
+    "reading": "しゃれ",
+    "created_at": "2026-09-02",
+    "row_index": 445
+  },
+  {
+    "id": "#0447",
+    "ja_term": "洗濯",
+    "tw_translation": "洗衣服",
+    "reading": "せんたく",
+    "created_at": "2026-09-02",
+    "row_index": 446
+  },
+  {
+    "id": "#0448",
+    "ja_term": "津波",
+    "tw_translation": "海嘯",
+    "reading": "つなみ",
+    "created_at": "2026-09-02",
+    "row_index": 447
+  },
+  {
+    "id": "#0449",
+    "ja_term": "派手",
+    "tw_translation": "華麗、張揚、炫目",
+    "reading": "はで",
+    "created_at": "2026-09-02",
+    "row_index": 448
+  },
+  {
+    "id": "#0450",
+    "ja_term": "派閥",
+    "tw_translation": "派系、派閥",
+    "reading": "はばつ",
+    "created_at": "2026-09-02",
+    "row_index": 449
+  },
+  {
+    "id": "#0451",
+    "ja_term": "流石",
+    "tw_translation": "不愧是、果然",
+    "reading": "さすが",
+    "created_at": "2026-09-02",
+    "row_index": 450
+  },
+  {
+    "id": "#0452",
+    "ja_term": "点検",
+    "tw_translation": "檢查、檢驗",
+    "reading": "てんけん",
+    "created_at": "2026-09-02",
+    "row_index": 451
+  },
+  {
+    "id": "#0453",
+    "ja_term": "独断専行",
+    "tw_translation": "獨斷獨行",
+    "reading": "どくだんせんこう",
+    "created_at": "2026-09-02",
+    "row_index": 452
+  },
+  {
+    "id": "#0454",
+    "ja_term": "珈琲",
+    "tw_translation": "咖啡",
+    "reading": "こーひー",
+    "created_at": "2026-09-02",
+    "row_index": 453
+  },
+  {
+    "id": "#0455",
+    "ja_term": "甚平",
+    "tw_translation": "甚平（傳統日式夏季休閒服）",
+    "reading": "じんべい",
+    "created_at": "2026-09-02",
+    "row_index": 454
+  },
+  {
+    "id": "#0456",
+    "ja_term": "甚平鮫",
+    "tw_translation": "鯨鯊（甚平鮫）",
+    "reading": "じんべいざめ",
+    "created_at": "2026-09-02",
+    "row_index": 455
+  },
+  {
+    "id": "#0457",
+    "ja_term": "疫病神",
+    "tw_translation": "掃把星、瘟神",
+    "reading": "やくびょうがみ",
+    "created_at": "2026-09-02",
+    "row_index": 456
+  },
+  {
+    "id": "#0458",
+    "ja_term": "発注",
+    "tw_translation": "下單、發包、採購",
+    "reading": "はっちゅう",
+    "created_at": "2026-09-02",
+    "row_index": 457
+  },
+  {
+    "id": "#0459",
+    "ja_term": "発展場",
+    "tw_translation": "同志尋歡場所（發展場）",
+    "reading": "はってんば",
+    "created_at": "2026-09-02",
+    "row_index": 458
+  },
+  {
+    "id": "#0460",
+    "ja_term": "相手",
+    "tw_translation": "對手、對方、伴侶",
+    "reading": "あいて",
+    "created_at": "2026-09-02",
+    "row_index": 459
+  },
+  {
+    "id": "#0461",
+    "ja_term": "相性",
+    "tw_translation": "契合度、合不合",
+    "reading": "あいしょう",
+    "created_at": "2026-09-02",
+    "row_index": 460
+  },
+  {
+    "id": "#0462",
+    "ja_term": "相席",
+    "tw_translation": "併桌",
+    "reading": "あいせき",
+    "created_at": "2026-09-02",
+    "row_index": 461
+  },
+  {
+    "id": "#0463",
+    "ja_term": "相場",
+    "tw_translation": "行情、市價",
+    "reading": "そうば",
+    "created_at": "2026-09-02",
+    "row_index": 462
+  },
+  {
+    "id": "#0464",
+    "ja_term": "相棒",
+    "tw_translation": "搭檔、好夥伴",
+    "reading": "あいぼう",
+    "created_at": "2026-09-02",
+    "row_index": 463
+  },
+  {
+    "id": "#0465",
+    "ja_term": "相撲茶屋",
+    "tw_translation": "相撲茶屋（相撲賽事的售票服務處）",
+    "reading": "すもうぢゃや",
+    "created_at": "2026-09-02",
+    "row_index": 464
+  },
+  {
+    "id": "#0466",
+    "ja_term": "相談",
+    "tw_translation": "商量、諮詢",
+    "reading": "そうだん",
+    "created_at": "2026-09-02",
+    "row_index": 465
+  },
+  {
+    "id": "#0467",
+    "ja_term": "看護師",
+    "tw_translation": "護理師",
+    "reading": "かんごし",
+    "created_at": "2026-09-02",
+    "row_index": 466
+  },
+  {
+    "id": "#0468",
+    "ja_term": "砂時計",
+    "tw_translation": "沙漏",
+    "reading": "すなどけい",
+    "created_at": "2026-09-02",
+    "row_index": 467
+  },
+  {
+    "id": "#0469",
+    "ja_term": "突拍子",
+    "tw_translation": "離譜、突兀",
+    "reading": "とっぴょうし",
+    "created_at": "2026-09-02",
+    "row_index": 468
+  },
+  {
+    "id": "#0470",
+    "ja_term": "約束",
+    "tw_translation": "約定、承諾",
+    "reading": "やくそく",
+    "created_at": "2026-09-02",
+    "row_index": 469
+  },
+  {
+    "id": "#0471",
+    "ja_term": "美意識",
+    "tw_translation": "審美觀、美感",
+    "reading": "びいしき",
+    "created_at": "2026-09-02",
+    "row_index": 470
+  },
+  {
+    "id": "#0472",
+    "ja_term": "胃袋",
+    "tw_translation": "胃口、胃",
+    "reading": "いぶくろ",
+    "created_at": "2026-09-02",
+    "row_index": 471
+  },
+  {
+    "id": "#0473",
+    "ja_term": "背中",
+    "tw_translation": "背部、後背",
+    "reading": "せなか",
+    "created_at": "2026-09-02",
+    "row_index": 472
+  },
+  {
+    "id": "#0474",
+    "ja_term": "苦手",
+    "tw_translation": "不擅長、討厭、棘手",
+    "reading": "にがて",
+    "created_at": "2026-09-02",
+    "row_index": 473
+  },
+  {
+    "id": "#0475",
+    "ja_term": "英雄譚",
+    "tw_translation": "英雄傳奇故事",
+    "reading": "えいゆうたん",
+    "created_at": "2026-09-02",
+    "row_index": 474
+  },
+  {
+    "id": "#0476",
+    "ja_term": "要件",
+    "tw_translation": "要件、必要條件 / 事由",
+    "reading": "ようけん",
+    "created_at": "2026-09-02",
+    "row_index": 475
+  },
+  {
+    "id": "#0477",
+    "ja_term": "降伏文書",
+    "tw_translation": "投降文書、降書",
+    "reading": "こうふくぶんしょ",
+    "created_at": "2026-09-02",
+    "row_index": 476
+  },
+  {
+    "id": "#0478",
+    "ja_term": "面倒",
+    "tw_translation": "麻煩、棘手",
+    "reading": "めんどう",
+    "created_at": "2026-09-02",
+    "row_index": 477
+  },
+  {
+    "id": "#0479",
+    "ja_term": "面接",
+    "tw_translation": "面試",
+    "reading": "めんせつ",
+    "created_at": "2026-09-02",
+    "row_index": 478
+  },
+  {
+    "id": "#0480",
+    "ja_term": "音信不通",
+    "tw_translation": "失聯、音訊全無",
+    "reading": "おんしんふつう",
+    "created_at": "2026-09-02",
+    "row_index": 479
+  },
+  {
+    "id": "#0481",
+    "ja_term": "風呂",
+    "tw_translation": "浴室、洗澡",
+    "reading": "ふろ",
+    "created_at": "2026-09-02",
+    "row_index": 480
+  },
+  {
+    "id": "#0482",
+    "ja_term": "風邪",
+    "tw_translation": "感冒",
+    "reading": "かぜ",
+    "created_at": "2026-09-02",
+    "row_index": 481
+  },
+  {
+    "id": "#0483",
+    "ja_term": "風林火山",
+    "tw_translation": "風林火山（日本戰國武將武田信玄軍旗用語）",
+    "reading": "ふうりんかざん",
+    "created_at": "2026-09-02",
+    "row_index": 482
+  },
+  {
+    "id": "#0484",
+    "ja_term": "風物詩",
+    "tw_translation": "風物詩（季節性景物）",
+    "reading": "ふうぶつし",
+    "created_at": "2026-09-02",
+    "row_index": 483
+  },
+  {
+    "id": "#0485",
+    "ja_term": "風船",
+    "tw_translation": "氣球",
+    "reading": "ふうせん",
+    "created_at": "2026-09-02",
+    "row_index": 484
+  },
+  {
+    "id": "#0486",
+    "ja_term": "風評被害",
+    "tw_translation": "形象受損、謠言傷害",
+    "reading": "ふうひょうひがい",
+    "created_at": "2026-09-02",
+    "row_index": 485
+  },
+  {
+    "id": "#0487",
+    "ja_term": "飛行機",
+    "tw_translation": "飛機",
+    "reading": "ひこうき",
+    "created_at": "2026-09-02",
+    "row_index": 486
+  },
+  {
+    "id": "#0488",
+    "ja_term": "食器",
+    "tw_translation": "餐具",
+    "reading": "しょっき",
+    "created_at": "2026-09-02",
+    "row_index": 487
+  },
+  {
+    "id": "#0489",
+    "ja_term": "俳優",
+    "tw_translation": "演員",
+    "reading": "はいゆう",
+    "created_at": "2026-09-02",
+    "row_index": 488
+  },
+  {
+    "id": "#0490",
+    "ja_term": "俺",
+    "tw_translation": "我（男性自稱，非正式）",
+    "reading": "おれ",
+    "created_at": "2026-09-02",
+    "row_index": 489
+  },
+  {
+    "id": "#0491",
+    "ja_term": "借金",
+    "tw_translation": "借錢、欠債、債務",
+    "reading": "しゃっきん",
+    "created_at": "2026-09-02",
+    "row_index": 490
+  },
+  {
+    "id": "#0492",
+    "ja_term": "値段",
+    "tw_translation": "價格",
+    "reading": "ねだん",
+    "created_at": "2026-09-02",
+    "row_index": 491
+  },
+  {
+    "id": "#0493",
+    "ja_term": "凄腕",
+    "tw_translation": "高手、神技",
+    "reading": "すごうで",
+    "created_at": "2026-09-02",
+    "row_index": 492
+  },
+  {
+    "id": "#0494",
+    "ja_term": "家事分担",
+    "tw_translation": "家事分工",
+    "reading": "かじぶんたん",
+    "created_at": "2026-09-02",
+    "row_index": 493
+  },
+  {
+    "id": "#0495",
+    "ja_term": "容姿端麗",
+    "tw_translation": "端莊美麗、容貌出眾",
+    "reading": "ようしたんれい",
+    "created_at": "2026-09-02",
+    "row_index": 494
+  },
+  {
+    "id": "#0496",
+    "ja_term": "帯域幅",
+    "tw_translation": "頻寬",
+    "reading": "たいいきはば",
+    "created_at": "2026-09-02",
+    "row_index": 495
+  },
+  {
+    "id": "#0497",
+    "ja_term": "帰宅",
+    "tw_translation": "回家",
+    "reading": "きたく",
+    "created_at": "2026-09-02",
+    "row_index": 496
+  },
+  {
+    "id": "#0498",
+    "ja_term": "座布団",
+    "tw_translation": "日式坐墊",
+    "reading": "ざぶとん",
+    "created_at": "2026-09-02",
+    "row_index": 497
+  },
+  {
+    "id": "#0499",
+    "ja_term": "座席",
+    "tw_translation": "座位",
+    "reading": "ざせき",
+    "created_at": "2026-09-02",
+    "row_index": 498
+  },
+  {
+    "id": "#0500",
+    "ja_term": "座敷",
+    "tw_translation": "榻榻米包廂、榻榻米房間",
+    "reading": "ざしき",
+    "created_at": "2026-09-02",
+    "row_index": 499
+  },
+  {
+    "id": "#0501",
+    "ja_term": "座敷童子",
+    "tw_translation": "座敷童子（家宅守護精靈）",
+    "reading": "ざしきわらし",
+    "created_at": "2026-09-02",
+    "row_index": 500
+  },
+  {
+    "id": "#0502",
+    "ja_term": "弱冷房車",
+    "tw_translation": "微冷車廂、弱冷車廂",
+    "reading": "じゃくれいぼうしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 501
+  },
+  {
+    "id": "#0503",
+    "ja_term": "従兄妹",
+    "tw_translation": "表堂兄弟姊妹",
+    "reading": "いとこ",
+    "created_at": "2026-09-02",
+    "row_index": 502
+  },
+  {
+    "id": "#0504",
+    "ja_term": "悩殺",
+    "tw_translation": "神魂顛倒、性感誘惑",
+    "reading": "のうさつ",
+    "created_at": "2026-09-02",
+    "row_index": 503
+  },
+  {
+    "id": "#0505",
+    "ja_term": "拳銃",
+    "tw_translation": "手槍",
+    "reading": "けんじゅう",
+    "created_at": "2026-09-02",
+    "row_index": 504
+  },
+  {
+    "id": "#0506",
+    "ja_term": "挙動不審",
+    "tw_translation": "行為可疑、神色慌張",
+    "reading": "きょどうふしん",
+    "created_at": "2026-09-02",
+    "row_index": 505
+  },
+  {
+    "id": "#0507",
+    "ja_term": "挨拶",
+    "tw_translation": "打招呼、問候",
+    "reading": "あいさつ",
+    "created_at": "2026-09-02",
+    "row_index": 506
+  },
+  {
+    "id": "#0508",
+    "ja_term": "料金",
+    "tw_translation": "費用、資費",
+    "reading": "りょうきん",
+    "created_at": "2026-09-02",
+    "row_index": 507
+  },
+  {
+    "id": "#0509",
+    "ja_term": "時系列",
+    "tw_translation": "時間軸、時間序列",
+    "reading": "じけいれつ",
+    "created_at": "2026-09-02",
+    "row_index": 508
+  },
+  {
+    "id": "#0510",
+    "ja_term": "時点",
+    "tw_translation": "時間點、該時刻",
+    "reading": "じてん",
+    "created_at": "2026-09-02",
+    "row_index": 509
+  },
+  {
+    "id": "#0511",
+    "ja_term": "時計",
+    "tw_translation": "鐘錶、手錶",
+    "reading": "とけい",
+    "created_at": "2026-09-02",
+    "row_index": 510
+  },
+  {
+    "id": "#0512",
+    "ja_term": "時間割",
+    "tw_translation": "課表",
+    "reading": "じかんわり",
+    "created_at": "2026-09-02",
+    "row_index": 511
+  },
+  {
+    "id": "#0513",
+    "ja_term": "株式会社",
+    "tw_translation": "股份有限公司",
+    "reading": "かぶしきがいしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 512
+  },
+  {
+    "id": "#0514",
+    "ja_term": "根性",
+    "tw_translation": "毅力、骨氣、韌性",
+    "reading": "こんじょう",
+    "created_at": "2026-09-02",
+    "row_index": 513
+  },
+  {
+    "id": "#0515",
+    "ja_term": "根性論",
+    "tw_translation": "精神論、唯意志論（靠精神力硬撐）",
+    "reading": "こんじょうろん",
+    "created_at": "2026-09-02",
+    "row_index": 514
+  },
+  {
+    "id": "#0516",
+    "ja_term": "根拠",
+    "tw_translation": "根據、依據",
+    "reading": "こんきょ",
+    "created_at": "2026-09-02",
+    "row_index": 515
+  },
+  {
+    "id": "#0517",
+    "ja_term": "格好",
+    "tw_translation": "外表、樣子",
+    "reading": "かっこう",
+    "created_at": "2026-09-02",
+    "row_index": 516
+  },
+  {
+    "id": "#0518",
+    "ja_term": "格安",
+    "tw_translation": "便宜、廉價",
+    "reading": "かくやす",
+    "created_at": "2026-09-02",
+    "row_index": 517
+  },
+  {
+    "id": "#0519",
+    "ja_term": "格別",
+    "tw_translation": "特別、格外、別具一格",
+    "reading": "かくべつ",
+    "created_at": "2026-09-02",
+    "row_index": 518
+  },
+  {
+    "id": "#0520",
+    "ja_term": "案内",
+    "tw_translation": "引導、導覽",
+    "reading": "あんない",
+    "created_at": "2026-09-02",
+    "row_index": 519
+  },
+  {
+    "id": "#0521",
+    "ja_term": "案内図",
+    "tw_translation": "導覽圖、地圖",
+    "reading": "あんないず",
+    "created_at": "2026-09-02",
+    "row_index": 520
+  },
+  {
+    "id": "#0522",
+    "ja_term": "案外",
+    "tw_translation": "意想之外、竟然",
+    "reading": "あんがい",
+    "created_at": "2026-09-02",
+    "row_index": 521
+  },
+  {
+    "id": "#0523",
+    "ja_term": "残念",
+    "tw_translation": "遺憾、可惜",
+    "reading": "ざんねん",
+    "created_at": "2026-09-02",
+    "row_index": 522
+  },
+  {
+    "id": "#0524",
+    "ja_term": "残業",
+    "tw_translation": "加班",
+    "reading": "ざんぎょう",
+    "created_at": "2026-09-02",
+    "row_index": 523
+  },
+  {
+    "id": "#0525",
+    "ja_term": "浪人",
+    "tw_translation": "重考生、浪人",
+    "reading": "ろうにん",
+    "created_at": "2026-09-02",
+    "row_index": 524
+  },
+  {
+    "id": "#0526",
+    "ja_term": "浮気",
+    "tw_translation": "劈腿、出軌",
+    "reading": "うわき",
+    "created_at": "2026-09-02",
+    "row_index": 525
+  },
+  {
+    "id": "#0527",
+    "ja_term": "浸水被害",
+    "tw_translation": "積水/淹水災情",
+    "reading": "しんすいひがい",
+    "created_at": "2026-09-02",
+    "row_index": 526
+  },
+  {
+    "id": "#0528",
+    "ja_term": "消化試合",
+    "tw_translation": "無關晉級的比賽",
+    "reading": "しょうかしあい",
+    "created_at": "2026-09-02",
+    "row_index": 527
+  },
+  {
+    "id": "#0529",
+    "ja_term": "消灯",
+    "tw_translation": "關燈、熄燈",
+    "reading": "しょうとう",
+    "created_at": "2026-09-02",
+    "row_index": 528
+  },
+  {
+    "id": "#0530",
+    "ja_term": "消防士",
+    "tw_translation": "消防員",
+    "reading": "しょうぼうし",
+    "created_at": "2026-09-02",
+    "row_index": 529
+  },
+  {
+    "id": "#0531",
+    "ja_term": "留年",
+    "tw_translation": "留級、延畢",
+    "reading": "りゅうねん",
+    "created_at": "2026-09-02",
+    "row_index": 530
+  },
+  {
+    "id": "#0532",
+    "ja_term": "真似",
+    "tw_translation": "模仿、假裝",
+    "reading": "まね",
+    "created_at": "2026-09-02",
+    "row_index": 531
+  },
+  {
+    "id": "#0533",
+    "ja_term": "真剣勝負",
+    "tw_translation": "真刀真槍勝負、認真決鬥",
+    "reading": "しんけんしょうぶ",
+    "created_at": "2026-09-02",
+    "row_index": 532
+  },
+  {
+    "id": "#0534",
+    "ja_term": "真珠湾攻撃",
+    "tw_translation": "珍珠港事件",
+    "reading": "しんじゅわんこうげき",
+    "created_at": "2026-09-02",
+    "row_index": 533
+  },
+  {
+    "id": "#0535",
+    "ja_term": "真骨頂",
+    "tw_translation": "本領、真實面目",
+    "reading": "しんこっちょう",
+    "created_at": "2026-09-02",
+    "row_index": 534
+  },
+  {
+    "id": "#0536",
+    "ja_term": "破綻",
+    "tw_translation": "破產、破綻",
+    "reading": "はたん",
+    "created_at": "2026-09-02",
+    "row_index": 535
+  },
+  {
+    "id": "#0537",
+    "ja_term": "神対応",
+    "tw_translation": "完美應對、神級服務",
+    "reading": "かみたいおう",
+    "created_at": "2026-09-02",
+    "row_index": 536
+  },
+  {
+    "id": "#0538",
+    "ja_term": "納品",
+    "tw_translation": "交貨、交件",
+    "reading": "のうひん",
+    "created_at": "2026-09-02",
+    "row_index": 537
+  },
+  {
+    "id": "#0539",
+    "ja_term": "納得",
+    "tw_translation": "理解、接受、服氣",
+    "reading": "なっとく",
+    "created_at": "2026-09-02",
+    "row_index": 538
+  },
+  {
+    "id": "#0540",
+    "ja_term": "納期",
+    "tw_translation": "交期、截止日期",
+    "reading": "のうき",
+    "created_at": "2026-09-02",
+    "row_index": 539
+  },
+  {
+    "id": "#0541",
+    "ja_term": "紙一重",
+    "tw_translation": "一紙之隔、毫釐之差",
+    "reading": "かみひとえ",
+    "created_at": "2026-09-02",
+    "row_index": 540
+  },
+  {
+    "id": "#0542",
+    "ja_term": "素人",
+    "tw_translation": "外行、素人",
+    "reading": "しろうと",
+    "created_at": "2026-09-02",
+    "row_index": 541
+  },
+  {
+    "id": "#0543",
+    "ja_term": "罠",
+    "tw_translation": "陷阱、圈套",
+    "reading": "わな",
+    "created_at": "2026-09-02",
+    "row_index": 542
+  },
+  {
+    "id": "#0544",
+    "ja_term": "討伐",
+    "tw_translation": "討伐、征討",
+    "reading": "とうばつ",
+    "created_at": "2026-09-02",
+    "row_index": 543
+  },
+  {
+    "id": "#0545",
+    "ja_term": "起動",
+    "tw_translation": "啟動、開機",
+    "reading": "きどう",
+    "created_at": "2026-09-02",
+    "row_index": 544
+  },
+  {
+    "id": "#0546",
+    "ja_term": "迷惑行為",
+    "tw_translation": "騷擾行為、給人添麻煩的行為",
+    "reading": "めいわくこうい",
+    "created_at": "2026-09-02",
+    "row_index": 545
+  },
+  {
+    "id": "#0547",
+    "ja_term": "追体験",
+    "tw_translation": "身歷其境的體驗、間接體驗",
+    "reading": "ついたいけん",
+    "created_at": "2026-09-02",
+    "row_index": 546
+  },
+  {
+    "id": "#0548",
+    "ja_term": "追放系",
+    "tw_translation": "退隊流（動漫作品分類）",
+    "reading": "ついほうけい",
+    "created_at": "2026-09-02",
+    "row_index": 547
+  },
+  {
+    "id": "#0549",
+    "ja_term": "退社",
+    "tw_translation": "離職",
+    "reading": "たいしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 548
+  },
+  {
+    "id": "#0550",
+    "ja_term": "退院",
+    "tw_translation": "出院",
+    "reading": "たいいん",
+    "created_at": "2026-09-02",
+    "row_index": 549
+  },
+  {
+    "id": "#0551",
+    "ja_term": "送信量",
+    "tw_translation": "發送傳輸量",
+    "reading": "そうしんりょう",
+    "created_at": "2026-09-02",
+    "row_index": 550
+  },
+  {
+    "id": "#0552",
+    "ja_term": "逆子",
+    "tw_translation": "胎位不正",
+    "reading": "さかご",
+    "created_at": "2026-09-02",
+    "row_index": 551
+  },
+  {
+    "id": "#0553",
+    "ja_term": "配布",
+    "tw_translation": "發放、分發",
+    "reading": "はいふ",
+    "created_at": "2026-09-02",
+    "row_index": 552
+  },
+  {
+    "id": "#0554",
+    "ja_term": "配達",
+    "tw_translation": "外送、外遞",
+    "reading": "はいたつ",
+    "created_at": "2026-09-02",
+    "row_index": 553
+  },
+  {
+    "id": "#0555",
+    "ja_term": "酒豪",
+    "tw_translation": "酒豪、千杯不醉的人",
+    "reading": "しゅごう",
+    "created_at": "2026-09-02",
+    "row_index": 554
+  },
+  {
+    "id": "#0556",
+    "ja_term": "馬券",
+    "tw_translation": "賽馬券、馬票",
+    "reading": "ばけん",
+    "created_at": "2026-09-02",
+    "row_index": 555
+  },
+  {
+    "id": "#0557",
+    "ja_term": "馬鹿",
+    "tw_translation": "笨蛋、傻瓜",
+    "reading": "ばか",
+    "created_at": "2026-09-02",
+    "row_index": 556
+  },
+  {
+    "id": "#0558",
+    "ja_term": "高飛車",
+    "tw_translation": "高傲、盛氣凌人、蠻橫",
+    "reading": "たかびしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 557
+  },
+  {
+    "id": "#0559",
+    "ja_term": "高校",
+    "tw_translation": "高中",
+    "reading": "こうこう",
+    "created_at": "2026-09-02",
+    "row_index": 558
+  },
+  {
+    "id": "#0560",
+    "ja_term": "高速代",
+    "tw_translation": "高速公路過路費",
+    "reading": "こうそくだい",
+    "created_at": "2026-09-02",
+    "row_index": 559
+  },
+  {
+    "id": "#0561",
+    "ja_term": "高等学校",
+    "tw_translation": "高中",
+    "reading": "こうとうがっこう",
+    "created_at": "2026-09-02",
+    "row_index": 560
+  },
+  {
+    "id": "#0562",
+    "ja_term": "高嶺之花",
+    "tw_translation": "高嶺之花（可望而不可即的人或物）",
+    "reading": "たかねのはな",
+    "created_at": "2026-09-02",
+    "row_index": 561
+  },
+  {
+    "id": "#0563",
+    "ja_term": "偏差値",
+    "tw_translation": "偏差值（日本升學指標，平均值為50）",
+    "reading": "へんさち",
+    "created_at": "2026-09-02",
+    "row_index": 562
+  },
+  {
+    "id": "#0564",
+    "ja_term": "健康診断",
+    "tw_translation": "健康檢查、體檢",
+    "reading": "けんこうしんだん",
+    "created_at": "2026-09-02",
+    "row_index": 563
+  },
+  {
+    "id": "#0565",
+    "ja_term": "動画",
+    "tw_translation": "影片",
+    "reading": "どうが",
+    "created_at": "2026-09-02",
+    "row_index": 564
+  },
+  {
+    "id": "#0566",
+    "ja_term": "勘弁",
+    "tw_translation": "饒了我吧",
+    "reading": "かんべん",
+    "created_at": "2026-09-02",
+    "row_index": 565
+  },
+  {
+    "id": "#0567",
+    "ja_term": "婚活",
+    "tw_translation": "聯誼/尋找結婚對象的活動",
+    "reading": "こんかつ",
+    "created_at": "2026-09-02",
+    "row_index": 566
+  },
+  {
+    "id": "#0568",
+    "ja_term": "宿題",
+    "tw_translation": "作業、功課",
+    "reading": "しゅくだい",
+    "created_at": "2026-09-02",
+    "row_index": 567
+  },
+  {
+    "id": "#0569",
+    "ja_term": "密輸",
+    "tw_translation": "走私",
+    "reading": "みつゆ",
+    "created_at": "2026-09-02",
+    "row_index": 568
+  },
+  {
+    "id": "#0570",
+    "ja_term": "常連",
+    "tw_translation": "熟客、常客",
+    "reading": "じょうれん",
+    "created_at": "2026-09-02",
+    "row_index": 569
+  },
+  {
+    "id": "#0571",
+    "ja_term": "張本人",
+    "tw_translation": "罪魁禍首、主謀",
+    "reading": "ちょうほんにん",
+    "created_at": "2026-09-02",
+    "row_index": 570
+  },
+  {
+    "id": "#0572",
+    "ja_term": "強引",
+    "tw_translation": "強硬、蠻橫",
+    "reading": "ごういん",
+    "created_at": "2026-09-02",
+    "row_index": 571
+  },
+  {
+    "id": "#0573",
+    "ja_term": "強制連行",
+    "tw_translation": "強制帶走、強行押走",
+    "reading": "きょうせいれんこう",
+    "created_at": "2026-09-02",
+    "row_index": 572
+  },
+  {
+    "id": "#0574",
+    "ja_term": "強豪",
+    "tw_translation": "強隊、勁旅",
+    "reading": "きょうごう",
+    "created_at": "2026-09-02",
+    "row_index": 573
+  },
+  {
+    "id": "#0575",
+    "ja_term": "悪口",
+    "tw_translation": "壞話、罵人話",
+    "reading": "わるくち",
+    "created_at": "2026-09-02",
+    "row_index": 574
+  },
+  {
+    "id": "#0576",
+    "ja_term": "悪役令嬢",
+    "tw_translation": "惡役千金（反派大小姐）",
+    "reading": "あくやくれいじょう",
+    "created_at": "2026-09-02",
+    "row_index": 575
+  },
+  {
+    "id": "#0577",
+    "ja_term": "悪循環",
+    "tw_translation": "惡性循環",
+    "reading": "あくじゅんかん",
+    "created_at": "2026-09-02",
+    "row_index": 576
+  },
+  {
+    "id": "#0578",
+    "ja_term": "情報",
+    "tw_translation": "資訊、情報",
+    "reading": "じょうほう",
+    "created_at": "2026-09-02",
+    "row_index": 577
+  },
+  {
+    "id": "#0579",
+    "ja_term": "情報屋",
+    "tw_translation": "情報販子、消息靈通人士",
+    "reading": "じょうほうや",
+    "created_at": "2026-09-02",
+    "row_index": 578
+  },
+  {
+    "id": "#0580",
+    "ja_term": "情報統制",
+    "tw_translation": "資訊管制",
+    "reading": "じょうほうとうせい",
+    "created_at": "2026-09-02",
+    "row_index": 579
+  },
+  {
+    "id": "#0581",
+    "ja_term": "惚気話",
+    "tw_translation": "放閃的話、曬恩愛的話",
+    "reading": "のろけばなし",
+    "created_at": "2026-09-02",
+    "row_index": 580
+  },
+  {
+    "id": "#0582",
+    "ja_term": "授業",
+    "tw_translation": "上課、授課",
+    "reading": "じゅぎょう",
+    "created_at": "2026-09-02",
+    "row_index": 581
+  },
+  {
+    "id": "#0583",
+    "ja_term": "接続",
+    "tw_translation": "連線、連接",
+    "reading": "せつぞく",
+    "created_at": "2026-09-02",
+    "row_index": 582
+  },
+  {
+    "id": "#0584",
+    "ja_term": "推奨",
+    "tw_translation": "推薦、提倡",
+    "reading": "すいしょう",
+    "created_at": "2026-09-02",
+    "row_index": 583
+  },
+  {
+    "id": "#0585",
+    "ja_term": "掲示板",
+    "tw_translation": "佈告欄、留言板",
+    "reading": "けいじばん",
+    "created_at": "2026-09-02",
+    "row_index": 584
+  },
+  {
+    "id": "#0586",
+    "ja_term": "斬新",
+    "tw_translation": "新穎、斬新",
+    "reading": "ざんしん",
+    "created_at": "2026-09-02",
+    "row_index": 585
+  },
+  {
+    "id": "#0587",
+    "ja_term": "断固拒否",
+    "tw_translation": "堅決拒絕",
+    "reading": "だんこきょひ",
+    "created_at": "2026-09-02",
+    "row_index": 586
+  },
+  {
+    "id": "#0588",
+    "ja_term": "晩酌",
+    "tw_translation": "晚餐時喝小酒、晚酌",
+    "reading": "ばんしゃく",
+    "created_at": "2026-09-02",
+    "row_index": 587
+  },
+  {
+    "id": "#0589",
+    "ja_term": "深夜来場者",
+    "tw_translation": "深夜來場者",
+    "reading": "しんやらいじょうしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 588
+  },
+  {
+    "id": "#0590",
+    "ja_term": "混雑",
+    "tw_translation": "擁擠、混雜",
+    "reading": "こんざつ",
+    "created_at": "2026-09-02",
+    "row_index": 589
+  },
+  {
+    "id": "#0591",
+    "ja_term": "清楚系",
+    "tw_translation": "清純系、清秀氣質型",
+    "reading": "せいそけい",
+    "created_at": "2026-09-02",
+    "row_index": 590
+  },
+  {
+    "id": "#0592",
+    "ja_term": "清潔系",
+    "tw_translation": "清爽乾淨型",
+    "reading": "せいけつけい",
+    "created_at": "2026-09-02",
+    "row_index": 591
+  },
+  {
+    "id": "#0593",
+    "ja_term": "渋滞",
+    "tw_translation": "塞車、擁堵",
+    "reading": "じゅうたい",
+    "created_at": "2026-09-02",
+    "row_index": 592
+  },
+  {
+    "id": "#0594",
+    "ja_term": "現状維持",
+    "tw_translation": "維持現狀",
+    "reading": "げんじょういじ",
+    "created_at": "2026-09-02",
+    "row_index": 593
+  },
+  {
+    "id": "#0595",
+    "ja_term": "現実逃避",
+    "tw_translation": "逃避現實",
+    "reading": "げんじつとうひ",
+    "created_at": "2026-09-02",
+    "row_index": 594
+  },
+  {
+    "id": "#0596",
+    "ja_term": "理不尽",
+    "tw_translation": "不講理、強詞奪理",
+    "reading": "りふじん",
+    "created_at": "2026-09-02",
+    "row_index": 595
+  },
+  {
+    "id": "#0597",
+    "ja_term": "理屈",
+    "tw_translation": "道理、歪理、邏輯",
+    "reading": "りくつ",
+    "created_at": "2026-09-02",
+    "row_index": 596
+  },
+  {
+    "id": "#0598",
+    "ja_term": "盗撮",
+    "tw_translation": "偷拍",
+    "reading": "とうさつ",
+    "created_at": "2026-09-02",
+    "row_index": 597
+  },
+  {
+    "id": "#0599",
+    "ja_term": "窒素",
+    "tw_translation": "氮氣",
+    "reading": "ちっそ",
+    "created_at": "2026-09-02",
+    "row_index": 598
+  },
+  {
+    "id": "#0600",
+    "ja_term": "窓側",
+    "tw_translation": "靠窗座位",
+    "reading": "まどがわ",
+    "created_at": "2026-09-02",
+    "row_index": 599
+  },
+  {
+    "id": "#0601",
+    "ja_term": "粗末",
+    "tw_translation": "簡陋、粗糙 / 浪費",
+    "reading": "そまつ",
+    "created_at": "2026-09-02",
+    "row_index": 600
+  },
+  {
+    "id": "#0602",
+    "ja_term": "紹介",
+    "tw_translation": "介紹",
+    "reading": "しょうかい",
+    "created_at": "2026-09-02",
+    "row_index": 601
+  },
+  {
+    "id": "#0603",
+    "ja_term": "紺色",
+    "tw_translation": "深藍色、紺青色",
+    "reading": "こんいろ",
+    "created_at": "2026-09-02",
+    "row_index": 602
+  },
+  {
+    "id": "#0604",
+    "ja_term": "終了",
+    "tw_translation": "結束、終止",
+    "reading": "しゅうりょう",
+    "created_at": "2026-09-02",
+    "row_index": 603
+  },
+  {
+    "id": "#0605",
+    "ja_term": "終電",
+    "tw_translation": "末班車",
+    "reading": "しゅうでん",
+    "created_at": "2026-09-02",
+    "row_index": 604
+  },
+  {
+    "id": "#0606",
+    "ja_term": "経由",
+    "tw_translation": "經由、途經",
+    "reading": "けいゆ",
+    "created_at": "2026-09-02",
+    "row_index": 605
+  },
+  {
+    "id": "#0607",
+    "ja_term": "経緯",
+    "tw_translation": "來龍去脈、經過",
+    "reading": "けいい",
+    "created_at": "2026-09-02",
+    "row_index": 606
+  },
+  {
+    "id": "#0608",
+    "ja_term": "翌朝",
+    "tw_translation": "隔天清晨",
+    "reading": "よくあさ",
+    "created_at": "2026-09-02",
+    "row_index": 607
+  },
+  {
+    "id": "#0609",
+    "ja_term": "脱線",
+    "tw_translation": "離題 / 出軌、脫軌",
+    "reading": "だっせん",
+    "created_at": "2026-09-02",
+    "row_index": 608
+  },
+  {
+    "id": "#0610",
+    "ja_term": "荷物",
+    "tw_translation": "行李、包裹",
+    "reading": "にもつ",
+    "created_at": "2026-09-02",
+    "row_index": 609
+  },
+  {
+    "id": "#0611",
+    "ja_term": "蛇口",
+    "tw_translation": "水龍頭",
+    "reading": "じゃぐち",
+    "created_at": "2026-09-02",
+    "row_index": 610
+  },
+  {
+    "id": "#0612",
+    "ja_term": "被爆者",
+    "tw_translation": "原爆受害者（核爆受害者）",
+    "reading": "ひばくしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 611
+  },
+  {
+    "id": "#0613",
+    "ja_term": "規格外",
+    "tw_translation": "規格外、不合標準 / 超乎尋常",
+    "reading": "きかくがい",
+    "created_at": "2026-09-02",
+    "row_index": 612
+  },
+  {
+    "id": "#0614",
+    "ja_term": "規範意識",
+    "tw_translation": "守法觀念、規範意識",
+    "reading": "きはんいしき",
+    "created_at": "2026-09-02",
+    "row_index": 613
+  },
+  {
+    "id": "#0615",
+    "ja_term": "貧乏人",
+    "tw_translation": "窮人",
+    "reading": "びんぼうにん",
+    "created_at": "2026-09-02",
+    "row_index": 614
+  },
+  {
+    "id": "#0616",
+    "ja_term": "軟体人間",
+    "tw_translation": "軟骨人、軟體人",
+    "reading": "なんたいにんげん",
+    "created_at": "2026-09-02",
+    "row_index": 615
+  },
+  {
+    "id": "#0617",
+    "ja_term": "転属",
+    "tw_translation": "調職、調動部門",
+    "reading": "てんぞく",
+    "created_at": "2026-09-02",
+    "row_index": 616
+  },
+  {
+    "id": "#0618",
+    "ja_term": "途絶",
+    "tw_translation": "中斷、斷絕",
+    "reading": "とぜつ",
+    "created_at": "2026-09-02",
+    "row_index": 617
+  },
+  {
+    "id": "#0619",
+    "ja_term": "通信制高校",
+    "tw_translation": "函授高中、線上高中",
+    "reading": "つうしんせいこうこう",
+    "created_at": "2026-09-02",
+    "row_index": 618
+  },
+  {
+    "id": "#0620",
+    "ja_term": "通信販売",
+    "tw_translation": "通訊販售、網購",
+    "reading": "つうしんはんばい",
+    "created_at": "2026-09-02",
+    "row_index": 619
+  },
+  {
+    "id": "#0621",
+    "ja_term": "通信障害",
+    "tw_translation": "網路障礙、電信故障",
+    "reading": "つうしんしょうがい",
+    "created_at": "2026-09-02",
+    "row_index": 620
+  },
+  {
+    "id": "#0622",
+    "ja_term": "通訳",
+    "tw_translation": "口譯、翻譯",
+    "reading": "つうやく",
+    "created_at": "2026-09-02",
+    "row_index": 621
+  },
+  {
+    "id": "#0623",
+    "ja_term": "通報",
+    "tw_translation": "檢舉、通報、報警",
+    "reading": "つうほう",
+    "created_at": "2026-09-02",
+    "row_index": 622
+  },
+  {
+    "id": "#0624",
+    "ja_term": "通路側",
+    "tw_translation": "靠走道座位",
+    "reading": "つうろがわ",
+    "created_at": "2026-09-02",
+    "row_index": 623
+  },
+  {
+    "id": "#0625",
+    "ja_term": "逢引",
+    "tw_translation": "幽會、密會",
+    "reading": "あいびき",
+    "created_at": "2026-09-02",
+    "row_index": 624
+  },
+  {
+    "id": "#0626",
+    "ja_term": "連中",
+    "tw_translation": "那群人、傢伙們",
+    "reading": "れんちゅう",
+    "created_at": "2026-09-02",
+    "row_index": 625
+  },
+  {
+    "id": "#0627",
+    "ja_term": "連携",
+    "tw_translation": "合作、連動",
+    "reading": "れんけい",
+    "created_at": "2026-09-02",
+    "row_index": 626
+  },
+  {
+    "id": "#0628",
+    "ja_term": "部活",
+    "tw_translation": "社團活動",
+    "reading": "ぶかつ",
+    "created_at": "2026-09-02",
+    "row_index": 627
+  },
+  {
+    "id": "#0629",
+    "ja_term": "部費",
+    "tw_translation": "社團費",
+    "reading": "ぶひ",
+    "created_at": "2026-09-02",
+    "row_index": 628
+  },
+  {
+    "id": "#0630",
+    "ja_term": "野良犬",
+    "tw_translation": "流浪狗",
+    "reading": "のらいぬ",
+    "created_at": "2026-09-02",
+    "row_index": 629
+  },
+  {
+    "id": "#0631",
+    "ja_term": "野良猫",
+    "tw_translation": "流浪貓",
+    "reading": "のらねこ",
+    "created_at": "2026-09-02",
+    "row_index": 630
+  },
+  {
+    "id": "#0632",
+    "ja_term": "野郎",
+    "tw_translation": "小子、混蛋",
+    "reading": "やろう",
+    "created_at": "2026-09-02",
+    "row_index": 631
+  },
+  {
+    "id": "#0633",
+    "ja_term": "野球",
+    "tw_translation": "棒球",
+    "reading": "やきゅう",
+    "created_at": "2026-09-02",
+    "row_index": 632
+  },
+  {
+    "id": "#0634",
+    "ja_term": "野球拳",
+    "tw_translation": "野球拳（猜拳脫衣遊戲）",
+    "reading": "やきゅうけん",
+    "created_at": "2026-09-02",
+    "row_index": 633
+  },
+  {
+    "id": "#0635",
+    "ja_term": "野暮",
+    "tw_translation": "俗氣、不解風情",
+    "reading": "やぼ",
+    "created_at": "2026-09-02",
+    "row_index": 634
+  },
+  {
+    "id": "#0636",
+    "ja_term": "陸上部",
+    "tw_translation": "田徑隊",
+    "reading": "りくじょうぶ",
+    "created_at": "2026-09-02",
+    "row_index": 635
+  },
+  {
+    "id": "#0637",
+    "ja_term": "雀荘",
+    "tw_translation": "麻將館、棋牌室",
+    "reading": "じゃんそう",
+    "created_at": "2026-09-02",
+    "row_index": 636
+  },
+  {
+    "id": "#0638",
+    "ja_term": "雪月花",
+    "tw_translation": "雪月花（四季自然美景的代稱）",
+    "reading": "せつげっか",
+    "created_at": "2026-09-02",
+    "row_index": 637
+  },
+  {
+    "id": "#0639",
+    "ja_term": "雫",
+    "tw_translation": "水滴、雨滴",
+    "reading": "しずく",
+    "created_at": "2026-09-02",
+    "row_index": 638
+  },
+  {
+    "id": "#0640",
+    "ja_term": "頂戴",
+    "tw_translation": "請給我、接受（頂戴）",
+    "reading": "ちょうだい",
+    "created_at": "2026-09-02",
+    "row_index": 639
+  },
+  {
+    "id": "#0641",
+    "ja_term": "麻雀",
+    "tw_translation": "麻將",
+    "reading": "マージャン",
+    "created_at": "2026-09-02",
+    "row_index": 640
+  },
+  {
+    "id": "#0642",
+    "ja_term": "最先端",
+    "tw_translation": "最尖端、最先進",
+    "reading": "さいせんたん",
+    "created_at": "2026-09-02",
+    "row_index": 641
+  },
+  {
+    "id": "#0643",
+    "ja_term": "最低",
+    "tw_translation": "最差、最爛、太渣了",
+    "reading": "さいてい",
+    "created_at": "2026-09-02",
+    "row_index": 642
+  },
+  {
+    "id": "#0644",
+    "ja_term": "最高裁",
+    "tw_translation": "最高法院",
+    "reading": "さいこうさい",
+    "created_at": "2026-09-02",
+    "row_index": 643
+  },
+  {
+    "id": "#0645",
+    "ja_term": "最適化",
+    "tw_translation": "最佳化、優化",
+    "reading": "さいてきか",
+    "created_at": "2026-09-02",
+    "row_index": 644
+  },
+  {
+    "id": "#0646",
+    "ja_term": "割合",
+    "tw_translation": "比例 / 意外地",
+    "reading": "わりあい",
+    "created_at": "2026-09-02",
+    "row_index": 645
+  },
+  {
+    "id": "#0647",
+    "ja_term": "勝手",
+    "tw_translation": "隨便、任性 / 習慣",
+    "reading": "かって",
+    "created_at": "2026-09-02",
+    "row_index": 646
+  },
+  {
+    "id": "#0648",
+    "ja_term": "勝負下着",
+    "tw_translation": "戰袍內衣褲（戰術內衣）",
+    "reading": "しょうぶしたぎ",
+    "created_at": "2026-09-02",
+    "row_index": 647
+  },
+  {
+    "id": "#0649",
+    "ja_term": "勝負勘",
+    "tw_translation": "直覺、對勝負的敏感度",
+    "reading": "しょうぶかん",
+    "created_at": "2026-09-02",
+    "row_index": 648
+  },
+  {
+    "id": "#0650",
+    "ja_term": "喧嘩",
+    "tw_translation": "吵架、打架",
+    "reading": "けんか",
+    "created_at": "2026-09-02",
+    "row_index": 649
+  },
+  {
+    "id": "#0651",
+    "ja_term": "喧嘩上等",
+    "tw_translation": "隨時奉陪打架、不怕打架（暴走族用語）",
+    "reading": "けんかじょうとう",
+    "created_at": "2026-09-02",
+    "row_index": 650
+  },
+  {
+    "id": "#0652",
+    "ja_term": "喫茶",
+    "tw_translation": "喝茶、飲茶",
+    "reading": "きっさ",
+    "created_at": "2026-09-02",
+    "row_index": 651
+  },
+  {
+    "id": "#0653",
+    "ja_term": "喫茶店",
+    "tw_translation": "咖啡廳、茶館",
+    "reading": "きっさてん",
+    "created_at": "2026-09-02",
+    "row_index": 652
+  },
+  {
+    "id": "#0654",
+    "ja_term": "喫煙",
+    "tw_translation": "吸菸、抽菸",
+    "reading": "きつえん",
+    "created_at": "2026-09-02",
+    "row_index": 653
+  },
+  {
+    "id": "#0655",
+    "ja_term": "喫煙所",
+    "tw_translation": "吸菸區、吸菸處",
+    "reading": "きつえんじょ",
+    "created_at": "2026-09-02",
+    "row_index": 654
+  },
+  {
+    "id": "#0656",
+    "ja_term": "喫煙室",
+    "tw_translation": "吸菸室",
+    "reading": "きつえんしつ",
+    "created_at": "2026-09-02",
+    "row_index": 655
+  },
+  {
+    "id": "#0657",
+    "ja_term": "報連相",
+    "tw_translation": "報告、連絡、相談（日本職場三大原則）",
+    "reading": "ほうれんそう",
+    "created_at": "2026-09-02",
+    "row_index": 656
+  },
+  {
+    "id": "#0658",
+    "ja_term": "就活",
+    "tw_translation": "求職活動（尋找工作）",
+    "reading": "しゅうかつ",
+    "created_at": "2026-09-02",
+    "row_index": 657
+  },
+  {
+    "id": "#0659",
+    "ja_term": "就職",
+    "tw_translation": "就業、就職",
+    "reading": "しゅうしょく",
+    "created_at": "2026-09-02",
+    "row_index": 658
+  },
+  {
+    "id": "#0660",
+    "ja_term": "嵐",
+    "tw_translation": "暴風雨、嵐",
+    "reading": "あらし",
+    "created_at": "2026-09-02",
+    "row_index": 659
+  },
+  {
+    "id": "#0661",
+    "ja_term": "弾圧",
+    "tw_translation": "鎮壓、壓迫",
+    "reading": "だんあつ",
+    "created_at": "2026-09-02",
+    "row_index": 660
+  },
+  {
+    "id": "#0662",
+    "ja_term": "復帰",
+    "tw_translation": "復職、回歸",
+    "reading": "ふっき",
+    "created_at": "2026-09-02",
+    "row_index": 661
+  },
+  {
+    "id": "#0663",
+    "ja_term": "惣菜",
+    "tw_translation": "家常配菜、熟食",
+    "reading": "そうざい",
+    "created_at": "2026-09-02",
+    "row_index": 662
+  },
+  {
+    "id": "#0664",
+    "ja_term": "散策",
+    "tw_translation": "散步、漫步",
+    "reading": "さんさく",
+    "created_at": "2026-09-02",
+    "row_index": 663
+  },
+  {
+    "id": "#0665",
+    "ja_term": "普段",
+    "tw_translation": "平時、平常",
+    "reading": "ふだん",
+    "created_at": "2026-09-02",
+    "row_index": 664
+  },
+  {
+    "id": "#0666",
+    "ja_term": "普段着",
+    "tw_translation": "便服、居家服",
+    "reading": "ふだんぎ",
+    "created_at": "2026-09-02",
+    "row_index": 665
+  },
+  {
+    "id": "#0667",
+    "ja_term": "朝礼",
+    "tw_translation": "晨會",
+    "reading": "ちょうれい",
+    "created_at": "2026-09-02",
+    "row_index": 666
+  },
+  {
+    "id": "#0668",
+    "ja_term": "検出",
+    "tw_translation": "檢測出、偵測",
+    "reading": "けんしゅつ",
+    "created_at": "2026-09-02",
+    "row_index": 667
+  },
+  {
+    "id": "#0669",
+    "ja_term": "検索",
+    "tw_translation": "搜尋、檢索",
+    "reading": "けんさく",
+    "created_at": "2026-09-02",
+    "row_index": 668
+  },
+  {
+    "id": "#0670",
+    "ja_term": "検討",
+    "tw_translation": "研議、討論",
+    "reading": "けんとう",
+    "created_at": "2026-09-02",
+    "row_index": 669
+  },
+  {
+    "id": "#0671",
+    "ja_term": "歯医者",
+    "tw_translation": "牙醫",
+    "reading": "はいしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 670
+  },
+  {
+    "id": "#0672",
+    "ja_term": "満員電車",
+    "tw_translation": "擠滿人的電車、爆滿電車",
+    "reading": "まんいんでんしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 671
+  },
+  {
+    "id": "#0673",
+    "ja_term": "満喫",
+    "tw_translation": "盡情享受、吃飽喝足",
+    "reading": "まんきつ",
+    "created_at": "2026-09-02",
+    "row_index": 672
+  },
+  {
+    "id": "#0674",
+    "ja_term": "満場一致",
+    "tw_translation": "全體一致同意、無異議通過",
+    "reading": "まんじょういっち",
+    "created_at": "2026-09-02",
+    "row_index": 673
+  },
+  {
+    "id": "#0675",
+    "ja_term": "無我夢中",
+    "tw_translation": "出神、忘我、全神貫注",
+    "reading": "むがむちゅう",
+    "created_at": "2026-09-02",
+    "row_index": 674
+  },
+  {
+    "id": "#0676",
+    "ja_term": "無限連鎖講",
+    "tw_translation": "老鼠會、龐氏騙局",
+    "reading": "むげんれんさこう",
+    "created_at": "2026-09-02",
+    "row_index": 675
+  },
+  {
+    "id": "#0677",
+    "ja_term": "無茶",
+    "tw_translation": "亂來、離譜",
+    "reading": "むちゃ",
+    "created_at": "2026-09-02",
+    "row_index": 676
+  },
+  {
+    "id": "#0678",
+    "ja_term": "無茶苦茶",
+    "tw_translation": "亂七八糟、荒謬",
+    "reading": "むちゃくちゃ",
+    "created_at": "2026-09-02",
+    "row_index": 677
+  },
+  {
+    "id": "#0679",
+    "ja_term": "無断転載",
+    "tw_translation": "未經授權轉載、擅自轉載",
+    "reading": "むだんてんさい",
+    "created_at": "2026-09-02",
+    "row_index": 678
+  },
+  {
+    "id": "#0680",
+    "ja_term": "無理矢理",
+    "tw_translation": "硬要、強迫",
+    "reading": "むりやり",
+    "created_at": "2026-09-02",
+    "row_index": 679
+  },
+  {
+    "id": "#0681",
+    "ja_term": "無期懲役",
+    "tw_translation": "無期徒刑",
+    "reading": "むきちょうえき",
+    "created_at": "2026-09-02",
+    "row_index": 680
+  },
+  {
+    "id": "#0682",
+    "ja_term": "無頓着",
+    "tw_translation": "不以為意、不在乎、不在意",
+    "reading": "むとんちゃく",
+    "created_at": "2026-09-02",
+    "row_index": 681
+  },
+  {
+    "id": "#0683",
+    "ja_term": "無駄",
+    "tw_translation": "徒勞、浪費",
+    "reading": "むだ",
+    "created_at": "2026-09-02",
+    "row_index": 682
+  },
+  {
+    "id": "#0684",
+    "ja_term": "焼失",
+    "tw_translation": "燒毀、焚毀",
+    "reading": "しょうしつ",
+    "created_at": "2026-09-02",
+    "row_index": 683
+  },
+  {
+    "id": "#0685",
+    "ja_term": "焼肉定食",
+    "tw_translation": "燒肉定食",
+    "reading": "やきにくていしょく",
+    "created_at": "2026-09-02",
+    "row_index": 684
+  },
+  {
+    "id": "#0686",
+    "ja_term": "猫又",
+    "tw_translation": "貓妖（雙尾貓妖怪）",
+    "reading": "ねこまた",
+    "created_at": "2026-09-02",
+    "row_index": 685
+  },
+  {
+    "id": "#0687",
+    "ja_term": "番組",
+    "tw_translation": "節目（電視/廣播）",
+    "reading": "ばんぐみ",
+    "created_at": "2026-09-02",
+    "row_index": 686
+  },
+  {
+    "id": "#0688",
+    "ja_term": "税込",
+    "tw_translation": "含稅、含稅價",
+    "reading": "ぜいこみ",
+    "created_at": "2026-09-02",
+    "row_index": 687
+  },
+  {
+    "id": "#0689",
+    "ja_term": "童貞",
+    "tw_translation": "處男",
+    "reading": "どうてい",
+    "created_at": "2026-09-02",
+    "row_index": 688
+  },
+  {
+    "id": "#0690",
+    "ja_term": "結束",
+    "tw_translation": "團結、凝聚力",
+    "reading": "けっそく",
+    "created_at": "2026-09-02",
+    "row_index": 689
+  },
+  {
+    "id": "#0691",
+    "ja_term": "結構",
+    "tw_translation": "很好、足夠 / 不用（拒絕）",
+    "reading": "けっこう",
+    "created_at": "2026-09-02",
+    "row_index": 690
+  },
+  {
+    "id": "#0692",
+    "ja_term": "統括",
+    "tw_translation": "統籌、總括",
+    "reading": "とうかつ",
+    "created_at": "2026-09-02",
+    "row_index": 691
+  },
+  {
+    "id": "#0693",
+    "ja_term": "絵空事",
+    "tw_translation": "紙上談兵、空想妄想",
+    "reading": "えそらごと",
+    "created_at": "2026-09-02",
+    "row_index": 692
+  },
+  {
+    "id": "#0694",
+    "ja_term": "絶好調",
+    "tw_translation": "狀態絕佳、手感極佳",
+    "reading": "ぜっこうちょう",
+    "created_at": "2026-09-02",
+    "row_index": 693
+  },
+  {
+    "id": "#0695",
+    "ja_term": "絶体絶命",
+    "tw_translation": "絕體絕命（千鈞一髮、走投無路）",
+    "reading": "ぜったいぜつめい",
+    "created_at": "2026-09-02",
+    "row_index": 694
+  },
+  {
+    "id": "#0696",
+    "ja_term": "絶対領域",
+    "tw_translation": "絕對領域（短裙與過膝襪之間的露腿區域）",
+    "reading": "ぜったいりょういき",
+    "created_at": "2026-09-02",
+    "row_index": 695
+  },
+  {
+    "id": "#0697",
+    "ja_term": "絶賛発売中",
+    "tw_translation": "熱賣中",
+    "reading": "ぜっさんはつばいちゅう",
+    "created_at": "2026-09-02",
+    "row_index": 696
+  },
+  {
+    "id": "#0698",
+    "ja_term": "腕時計",
+    "tw_translation": "手錶",
+    "reading": "うでとけい",
+    "created_at": "2026-09-02",
+    "row_index": 697
+  },
+  {
+    "id": "#0699",
+    "ja_term": "裁判",
+    "tw_translation": "審判、訴訟",
+    "reading": "さいばん",
+    "created_at": "2026-09-02",
+    "row_index": 698
+  },
+  {
+    "id": "#0700",
+    "ja_term": "裁判所",
+    "tw_translation": "法院",
+    "reading": "さいばんしょ",
+    "created_at": "2026-09-02",
+    "row_index": 699
+  },
+  {
+    "id": "#0701",
+    "ja_term": "詐欺師",
+    "tw_translation": "詐欺犯、騙子",
+    "reading": "さぎし",
+    "created_at": "2026-09-02",
+    "row_index": 700
+  },
+  {
+    "id": "#0702",
+    "ja_term": "貴様",
+    "tw_translation": "你這傢伙（極不禮貌用語）",
+    "reading": "きさま",
+    "created_at": "2026-09-02",
+    "row_index": 701
+  },
+  {
+    "id": "#0703",
+    "ja_term": "買取",
+    "tw_translation": "收購、賣回（二手/舊物）",
+    "reading": "かいとり",
+    "created_at": "2026-09-02",
+    "row_index": 702
+  },
+  {
+    "id": "#0704",
+    "ja_term": "超多忙",
+    "tw_translation": "超級繁忙、極度忙碌",
+    "reading": "ちょうたぼう",
+    "created_at": "2026-09-02",
+    "row_index": 703
+  },
+  {
+    "id": "#0705",
+    "ja_term": "進捗",
+    "tw_translation": "進度、進展",
+    "reading": "しんちょく",
+    "created_at": "2026-09-02",
+    "row_index": 704
+  },
+  {
+    "id": "#0706",
+    "ja_term": "逸材",
+    "tw_translation": "奇才、優秀人才",
+    "reading": "いつざい",
+    "created_at": "2026-09-02",
+    "row_index": 705
+  },
+  {
+    "id": "#0707",
+    "ja_term": "開催",
+    "tw_translation": "舉辦、開辦",
+    "reading": "かいさい",
+    "created_at": "2026-09-02",
+    "row_index": 706
+  },
+  {
+    "id": "#0708",
+    "ja_term": "間一髪",
+    "tw_translation": "千鈞一髮",
+    "reading": "かんいっぱつ",
+    "created_at": "2026-09-02",
+    "row_index": 707
+  },
+  {
+    "id": "#0709",
+    "ja_term": "雰囲気",
+    "tw_translation": "氣氛、氛圍",
+    "reading": "ふんいき",
+    "created_at": "2026-09-02",
+    "row_index": 708
+  },
+  {
+    "id": "#0710",
+    "ja_term": "順風満帆",
+    "tw_translation": "順風順水、一帆風順",
+    "reading": "じゅんぷうまんぱん",
+    "created_at": "2026-09-02",
+    "row_index": 709
+  },
+  {
+    "id": "#0711",
+    "ja_term": "順番",
+    "tw_translation": "順序、輪流",
+    "reading": "じゅんばん",
+    "created_at": "2026-09-02",
+    "row_index": 710
+  },
+  {
+    "id": "#0712",
+    "ja_term": "順調",
+    "tw_translation": "順利、順暢",
+    "reading": "じゅんちょう",
+    "created_at": "2026-09-02",
+    "row_index": 711
+  },
+  {
+    "id": "#0713",
+    "ja_term": "飲酒運転",
+    "tw_translation": "酒後駕車、酒駕",
+    "reading": "いんしゅうんてん",
+    "created_at": "2026-09-02",
+    "row_index": 712
+  },
+  {
+    "id": "#0714",
+    "ja_term": "勤務",
+    "tw_translation": "值班、工作",
+    "reading": "きんむ",
+    "created_at": "2026-09-02",
+    "row_index": 713
+  },
+  {
+    "id": "#0715",
+    "ja_term": "勧誘",
+    "tw_translation": "拉攏、推銷、招攬",
+    "reading": "かんゆう",
+    "created_at": "2026-09-02",
+    "row_index": 714
+  },
+  {
+    "id": "#0716",
+    "ja_term": "塩対応",
+    "tw_translation": "冷淡對待、敷衍應對（鹽對應）",
+    "reading": "しおたいおう",
+    "created_at": "2026-09-02",
+    "row_index": 715
+  },
+  {
+    "id": "#0717",
+    "ja_term": "塩素",
+    "tw_translation": "氯氣",
+    "reading": "えんそ",
+    "created_at": "2026-09-02",
+    "row_index": 716
+  },
+  {
+    "id": "#0718",
+    "ja_term": "寝不足",
+    "tw_translation": "睡眠不足",
+    "reading": "ねぶそく",
+    "created_at": "2026-09-02",
+    "row_index": 717
+  },
+  {
+    "id": "#0719",
+    "ja_term": "寝坊",
+    "tw_translation": "睡過頭",
+    "reading": "ねぼう",
+    "created_at": "2026-09-02",
+    "row_index": 718
+  },
+  {
+    "id": "#0720",
+    "ja_term": "想定外",
+    "tw_translation": "出乎意料",
+    "reading": "そうていがい",
+    "created_at": "2026-09-02",
+    "row_index": 719
+  },
+  {
+    "id": "#0721",
+    "ja_term": "意気投合",
+    "tw_translation": "意氣相投",
+    "reading": "いきとうごう",
+    "created_at": "2026-09-02",
+    "row_index": 720
+  },
+  {
+    "id": "#0722",
+    "ja_term": "意味",
+    "tw_translation": "意思、意義",
+    "reading": "いみ",
+    "created_at": "2026-09-02",
+    "row_index": 721
+  },
+  {
+    "id": "#0723",
+    "ja_term": "愚痴",
+    "tw_translation": "抱怨、牢騷",
+    "reading": "ぐち",
+    "created_at": "2026-09-02",
+    "row_index": 722
+  },
+  {
+    "id": "#0724",
+    "ja_term": "愛人",
+    "tw_translation": "情婦、小三",
+    "reading": "あいじん",
+    "created_at": "2026-09-02",
+    "row_index": 723
+  },
+  {
+    "id": "#0725",
+    "ja_term": "愛煙家",
+    "tw_translation": "老煙槍、愛抽菸的人",
+    "reading": "あいえんか",
+    "created_at": "2026-09-02",
+    "row_index": 724
+  },
+  {
+    "id": "#0726",
+    "ja_term": "愛羅武勇",
+    "tw_translation": "I Love You（暴走族諧音語）",
+    "reading": "あいらぶゆう",
+    "created_at": "2026-09-02",
+    "row_index": 725
+  },
+  {
+    "id": "#0727",
+    "ja_term": "携帯",
+    "tw_translation": "手機 / 攜帶",
+    "reading": "けいたい",
+    "created_at": "2026-09-02",
+    "row_index": 726
+  },
+  {
+    "id": "#0728",
+    "ja_term": "新米",
+    "tw_translation": "新手",
+    "reading": "しんまい",
+    "created_at": "2026-09-02",
+    "row_index": 727
+  },
+  {
+    "id": "#0729",
+    "ja_term": "新卒",
+    "tw_translation": "應屆畢業生",
+    "reading": "しんそつ",
+    "created_at": "2026-09-02",
+    "row_index": 728
+  },
+  {
+    "id": "#0730",
+    "ja_term": "新規",
+    "tw_translation": "新增、新創",
+    "reading": "しんき",
+    "created_at": "2026-09-02",
+    "row_index": 729
+  },
+  {
+    "id": "#0731",
+    "ja_term": "新選組",
+    "tw_translation": "新選組（日本幕末親幕府武士組織）",
+    "reading": "しんせんぐみ",
+    "created_at": "2026-09-02",
+    "row_index": 730
+  },
+  {
+    "id": "#0732",
+    "ja_term": "暗号",
+    "tw_translation": "密碼、暗號",
+    "reading": "あんごう",
+    "created_at": "2026-09-02",
+    "row_index": 731
+  },
+  {
+    "id": "#0733",
+    "ja_term": "暗記",
+    "tw_translation": "背誦、死記",
+    "reading": "あんき",
+    "created_at": "2026-09-02",
+    "row_index": 732
+  },
+  {
+    "id": "#0734",
+    "ja_term": "暗証番号",
+    "tw_translation": "提款卡/門禁PIN碼、個人密碼",
+    "reading": "あんしょうばんごう",
+    "created_at": "2026-09-02",
+    "row_index": 733
+  },
+  {
+    "id": "#0735",
+    "ja_term": "極楽浄土",
+    "tw_translation": "極樂淨土、西方極樂",
+    "reading": "ごくらくじょうど",
+    "created_at": "2026-09-02",
+    "row_index": 734
+  },
+  {
+    "id": "#0736",
+    "ja_term": "楽天家",
+    "tw_translation": "樂天派、樂觀的人",
+    "reading": "らくてんか",
+    "created_at": "2026-09-02",
+    "row_index": 735
+  },
+  {
+    "id": "#0737",
+    "ja_term": "楽屋",
+    "tw_translation": "後台、休息室",
+    "reading": "がくや",
+    "created_at": "2026-09-02",
+    "row_index": 736
+  },
+  {
+    "id": "#0738",
+    "ja_term": "楽勝",
+    "tw_translation": "輕鬆獲勝、輕而易舉",
+    "reading": "らくしょう",
+    "created_at": "2026-09-02",
+    "row_index": 737
+  },
+  {
+    "id": "#0739",
+    "ja_term": "準備万端",
+    "tw_translation": "準備就緒",
+    "reading": "じゅんびばんたん",
+    "created_at": "2026-09-02",
+    "row_index": 738
+  },
+  {
+    "id": "#0740",
+    "ja_term": "準優勝",
+    "tw_translation": "亞軍",
+    "reading": "じゅんゆうしょう",
+    "created_at": "2026-09-02",
+    "row_index": 739
+  },
+  {
+    "id": "#0741",
+    "ja_term": "猿轡",
+    "tw_translation": "口塞、口球（縛綁塞口）",
+    "reading": "さるぐつわ",
+    "created_at": "2026-09-02",
+    "row_index": 740
+  },
+  {
+    "id": "#0742",
+    "ja_term": "痴情",
+    "tw_translation": "痴情、男女私情爭端",
+    "reading": "ちじょう",
+    "created_at": "2026-09-02",
+    "row_index": 741
+  },
+  {
+    "id": "#0743",
+    "ja_term": "禁煙外来",
+    "tw_translation": "戒菸門診",
+    "reading": "きんえんがいらい",
+    "created_at": "2026-09-02",
+    "row_index": 742
+  },
+  {
+    "id": "#0744",
+    "ja_term": "群集事故",
+    "tw_translation": "踩踏事故、人潮擁擠事故",
+    "reading": "ぐんしゅうじこ",
+    "created_at": "2026-09-02",
+    "row_index": 743
+  },
+  {
+    "id": "#0745",
+    "ja_term": "葉巻",
+    "tw_translation": "雪茄",
+    "reading": "はまき",
+    "created_at": "2026-09-02",
+    "row_index": 744
+  },
+  {
+    "id": "#0746",
+    "ja_term": "蜃気楼",
+    "tw_translation": "海市蜃樓",
+    "reading": "しんきろう",
+    "created_at": "2026-09-02",
+    "row_index": 745
+  },
+  {
+    "id": "#0747",
+    "ja_term": "裏",
+    "tw_translation": "背面 / 暗處、幕後",
+    "reading": "うら",
+    "created_at": "2026-09-02",
+    "row_index": 746
+  },
+  {
+    "id": "#0748",
+    "ja_term": "裏技",
+    "tw_translation": "隱藏技巧、秘技",
+    "reading": "うらわざ",
+    "created_at": "2026-09-02",
+    "row_index": 747
+  },
+  {
+    "id": "#0749",
+    "ja_term": "裏腹",
+    "tw_translation": "相反、背道而馳",
+    "reading": "うらはら",
+    "created_at": "2026-09-02",
+    "row_index": 748
+  },
+  {
+    "id": "#0750",
+    "ja_term": "補完",
+    "tw_translation": "補充完整、補完",
+    "reading": "ほかん",
+    "created_at": "2026-09-02",
+    "row_index": 749
+  },
+  {
+    "id": "#0751",
+    "ja_term": "解消",
+    "tw_translation": "解除、消除、解決",
+    "reading": "かいしょう",
+    "created_at": "2026-09-02",
+    "row_index": 750
+  },
+  {
+    "id": "#0752",
+    "ja_term": "試合",
+    "tw_translation": "比賽",
+    "reading": "しあい",
+    "created_at": "2026-09-02",
+    "row_index": 751
+  },
+  {
+    "id": "#0753",
+    "ja_term": "試行錯誤",
+    "tw_translation": "嘗試錯誤、摸索試驗",
+    "reading": "しこうさくご",
+    "created_at": "2026-09-02",
+    "row_index": 752
+  },
+  {
+    "id": "#0754",
+    "ja_term": "試験",
+    "tw_translation": "考試、測驗",
+    "reading": "しけん",
+    "created_at": "2026-09-02",
+    "row_index": 753
+  },
+  {
+    "id": "#0755",
+    "ja_term": "賃金",
+    "tw_translation": "工資、薪水",
+    "reading": "ちんぎん",
+    "created_at": "2026-09-02",
+    "row_index": 754
+  },
+  {
+    "id": "#0756",
+    "ja_term": "賃貸",
+    "tw_translation": "出租、租賃",
+    "reading": "ちんたい",
+    "created_at": "2026-09-02",
+    "row_index": 755
+  },
+  {
+    "id": "#0757",
+    "ja_term": "遂行",
+    "tw_translation": "執行、貫徹",
+    "reading": "すいこう",
+    "created_at": "2026-09-02",
+    "row_index": 756
+  },
+  {
+    "id": "#0758",
+    "ja_term": "遊女",
+    "tw_translation": "遊女、妓女",
+    "reading": "ゆうじょ",
+    "created_at": "2026-09-02",
+    "row_index": 757
+  },
+  {
+    "id": "#0759",
+    "ja_term": "遊廓",
+    "tw_translation": "花街、遊廓",
+    "reading": "ゆうかく",
+    "created_at": "2026-09-02",
+    "row_index": 758
+  },
+  {
+    "id": "#0760",
+    "ja_term": "運転手",
+    "tw_translation": "司機",
+    "reading": "うんてんしゅ",
+    "created_at": "2026-09-02",
+    "row_index": 759
+  },
+  {
+    "id": "#0761",
+    "ja_term": "電光石火",
+    "tw_translation": "電光石火、極快",
+    "reading": "でんこうせっか",
+    "created_at": "2026-09-02",
+    "row_index": 760
+  },
+  {
+    "id": "#0762",
+    "ja_term": "電車",
+    "tw_translation": "電車、火車",
+    "reading": "でんしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 761
+  },
+  {
+    "id": "#0763",
+    "ja_term": "電波系",
+    "tw_translation": "電波系（怪異妄想言行的人）",
+    "reading": "でんぱけい",
+    "created_at": "2026-09-02",
+    "row_index": 762
+  },
+  {
+    "id": "#0764",
+    "ja_term": "電脳戦",
+    "tw_translation": "資訊戰、網路戰",
+    "reading": "でんのうせん",
+    "created_at": "2026-09-02",
+    "row_index": 763
+  },
+  {
+    "id": "#0765",
+    "ja_term": "電撃戦",
+    "tw_translation": "閃電戰",
+    "reading": "でんげきせん",
+    "created_at": "2026-09-02",
+    "row_index": 764
+  },
+  {
+    "id": "#0766",
+    "ja_term": "靴下",
+    "tw_translation": "襪子",
+    "reading": "くつした",
+    "created_at": "2026-09-02",
+    "row_index": 765
+  },
+  {
+    "id": "#0767",
+    "ja_term": "馴染金",
+    "tw_translation": "熟客小費（花街慣例）",
+    "reading": "なじみきん",
+    "created_at": "2026-09-02",
+    "row_index": 766
+  },
+  {
+    "id": "#0768",
+    "ja_term": "鼓動",
+    "tw_translation": "心跳、鼓動",
+    "reading": "こどう",
+    "created_at": "2026-09-02",
+    "row_index": 767
+  },
+  {
+    "id": "#0769",
+    "ja_term": "僕",
+    "tw_translation": "我（男性自稱，謙虛/日常）",
+    "reading": "ぼく",
+    "created_at": "2026-09-02",
+    "row_index": 768
+  },
+  {
+    "id": "#0770",
+    "ja_term": "嘘",
+    "tw_translation": "謊言",
+    "reading": "うそ",
+    "created_at": "2026-09-02",
+    "row_index": 769
+  },
+  {
+    "id": "#0771",
+    "ja_term": "夢中",
+    "tw_translation": "沉迷、著迷",
+    "reading": "むちゅう",
+    "created_at": "2026-09-02",
+    "row_index": 770
+  },
+  {
+    "id": "#0772",
+    "ja_term": "奪還",
+    "tw_translation": "奪回、收復",
+    "reading": "だっかん",
+    "created_at": "2026-09-02",
+    "row_index": 771
+  },
+  {
+    "id": "#0773",
+    "ja_term": "弊社",
+    "tw_translation": "敝公司",
+    "reading": "へいしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 772
+  },
+  {
+    "id": "#0774",
+    "ja_term": "構成員",
+    "tw_translation": "成員、組員",
+    "reading": "こうせいいん",
+    "created_at": "2026-09-02",
+    "row_index": 773
+  },
+  {
+    "id": "#0775",
+    "ja_term": "構築",
+    "tw_translation": "架構、建置",
+    "reading": "こうちく",
+    "created_at": "2026-09-02",
+    "row_index": 774
+  },
+  {
+    "id": "#0776",
+    "ja_term": "様",
+    "tw_translation": "大人、先生/小姐（尊稱）",
+    "reading": "さま",
+    "created_at": "2026-09-02",
+    "row_index": 775
+  },
+  {
+    "id": "#0777",
+    "ja_term": "漫才",
+    "tw_translation": "雙人站立喜劇（對口相聲）",
+    "reading": "まんざい",
+    "created_at": "2026-09-02",
+    "row_index": 776
+  },
+  {
+    "id": "#0778",
+    "ja_term": "漫才師",
+    "tw_translation": "漫才表演者",
+    "reading": "まんざいし",
+    "created_at": "2026-09-02",
+    "row_index": 777
+  },
+  {
+    "id": "#0779",
+    "ja_term": "監修",
+    "tw_translation": "監修、審定",
+    "reading": "かんしゅう",
+    "created_at": "2026-09-02",
+    "row_index": 778
+  },
+  {
+    "id": "#0780",
+    "ja_term": "監督",
+    "tw_translation": "導演、教練、監督",
+    "reading": "かんとく",
+    "created_at": "2026-09-02",
+    "row_index": 779
+  },
+  {
+    "id": "#0781",
+    "ja_term": "福利厚生",
+    "tw_translation": "員工福利、福利制度",
+    "reading": "ふくりこうせい",
+    "created_at": "2026-09-02",
+    "row_index": 780
+  },
+  {
+    "id": "#0782",
+    "ja_term": "稲妻",
+    "tw_translation": "閃電",
+    "reading": "いなずま",
+    "created_at": "2026-09-02",
+    "row_index": 781
+  },
+  {
+    "id": "#0783",
+    "ja_term": "綺麗",
+    "tw_translation": "美麗、乾淨",
+    "reading": "きれい",
+    "created_at": "2026-09-02",
+    "row_index": 782
+  },
+  {
+    "id": "#0784",
+    "ja_term": "総本山",
+    "tw_translation": "總本山（大本營、大本部）",
+    "reading": "そうほんざん",
+    "created_at": "2026-09-02",
+    "row_index": 783
+  },
+  {
+    "id": "#0785",
+    "ja_term": "蒟蒻問答",
+    "tw_translation": "雞同鴨講、各說各話（模稜兩可的問答）",
+    "reading": "こんにゃくもんどう",
+    "created_at": "2026-09-02",
+    "row_index": 784
+  },
+  {
+    "id": "#0786",
+    "ja_term": "誤情報",
+    "tw_translation": "錯誤資訊、假新聞",
+    "reading": "ごじょうほう",
+    "created_at": "2026-09-02",
+    "row_index": 785
+  },
+  {
+    "id": "#0787",
+    "ja_term": "豪速球",
+    "tw_translation": "剛速球、超快速球",
+    "reading": "ごうそっきゅう",
+    "created_at": "2026-09-02",
+    "row_index": 786
+  },
+  {
+    "id": "#0788",
+    "ja_term": "銃取引",
+    "tw_translation": "軍火黑槍交易",
+    "reading": "じゅうとりひき",
+    "created_at": "2026-09-02",
+    "row_index": 787
+  },
+  {
+    "id": "#0789",
+    "ja_term": "銃器",
+    "tw_translation": "槍械、軍火",
+    "reading": "じゅうき",
+    "created_at": "2026-09-02",
+    "row_index": 788
+  },
+  {
+    "id": "#0790",
+    "ja_term": "銘柄",
+    "tw_translation": "品牌、股票代號/類股",
+    "reading": "めいがら",
+    "created_at": "2026-09-02",
+    "row_index": 789
+  },
+  {
+    "id": "#0791",
+    "ja_term": "関西弁",
+    "tw_translation": "關西腔",
+    "reading": "かんさいべん",
+    "created_at": "2026-09-02",
+    "row_index": 790
+  },
+  {
+    "id": "#0792",
+    "ja_term": "関数",
+    "tw_translation": "函數",
+    "reading": "かんすう",
+    "created_at": "2026-09-02",
+    "row_index": 791
+  },
+  {
+    "id": "#0793",
+    "ja_term": "雑魚寝",
+    "tw_translation": "通鋪混睡、大通鋪",
+    "reading": "ざこね",
+    "created_at": "2026-09-02",
+    "row_index": 792
+  },
+  {
+    "id": "#0794",
+    "ja_term": "雑談",
+    "tw_translation": "閒聊",
+    "reading": "ざつだん",
+    "created_at": "2026-09-02",
+    "row_index": 793
+  },
+  {
+    "id": "#0795",
+    "ja_term": "駅",
+    "tw_translation": "車站",
+    "reading": "えき",
+    "created_at": "2026-09-02",
+    "row_index": 794
+  },
+  {
+    "id": "#0796",
+    "ja_term": "駅弁",
+    "tw_translation": "鐵路便當",
+    "reading": "えきべん",
+    "created_at": "2026-09-02",
+    "row_index": 795
+  },
+  {
+    "id": "#0797",
+    "ja_term": "寮",
+    "tw_translation": "宿舍",
+    "reading": "りょう",
+    "created_at": "2026-09-02",
+    "row_index": 796
+  },
+  {
+    "id": "#0798",
+    "ja_term": "影武者",
+    "tw_translation": "替身、幕後主使",
+    "reading": "かげむしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 797
+  },
+  {
+    "id": "#0799",
+    "ja_term": "徹夜組",
+    "tw_translation": "通宵排隊組",
+    "reading": "てつやぐみ",
+    "created_at": "2026-09-02",
+    "row_index": 798
+  },
+  {
+    "id": "#0800",
+    "ja_term": "敷地",
+    "tw_translation": "用地、占地面積",
+    "reading": "しきち",
+    "created_at": "2026-09-02",
+    "row_index": 799
+  },
+  {
+    "id": "#0801",
+    "ja_term": "横断歩道",
+    "tw_translation": "斑馬線",
+    "reading": "おうだんほどう",
+    "created_at": "2026-09-02",
+    "row_index": 800
+  },
+  {
+    "id": "#0802",
+    "ja_term": "横綱",
+    "tw_translation": "橫綱（相撲最高位階）",
+    "reading": "よこづな",
+    "created_at": "2026-09-02",
+    "row_index": 801
+  },
+  {
+    "id": "#0803",
+    "ja_term": "熱中症",
+    "tw_translation": "中暑",
+    "reading": "ねっちゅうしょう",
+    "created_at": "2026-09-02",
+    "row_index": 802
+  },
+  {
+    "id": "#0804",
+    "ja_term": "確信犯",
+    "tw_translation": "明知故犯（或堅信自身正當性的犯罪）",
+    "reading": "かくしんはん",
+    "created_at": "2026-09-02",
+    "row_index": 803
+  },
+  {
+    "id": "#0805",
+    "ja_term": "確率",
+    "tw_translation": "機率",
+    "reading": "かくりつ",
+    "created_at": "2026-09-02",
+    "row_index": 804
+  },
+  {
+    "id": "#0806",
+    "ja_term": "稽古",
+    "tw_translation": "練習、排練、習藝",
+    "reading": "けいこ",
+    "created_at": "2026-09-02",
+    "row_index": 805
+  },
+  {
+    "id": "#0807",
+    "ja_term": "窮屈",
+    "tw_translation": "狹窄、拘束、受限",
+    "reading": "きゅうくつ",
+    "created_at": "2026-09-02",
+    "row_index": 806
+  },
+  {
+    "id": "#0808",
+    "ja_term": "編成",
+    "tw_translation": "編組、編制",
+    "reading": "へんせい",
+    "created_at": "2026-09-02",
+    "row_index": 807
+  },
+  {
+    "id": "#0809",
+    "ja_term": "膣内",
+    "tw_translation": "陰道內",
+    "reading": "ちつない",
+    "created_at": "2026-09-02",
+    "row_index": 808
+  },
+  {
+    "id": "#0810",
+    "ja_term": "複勝",
+    "tw_translation": "位置（賽馬投注預測前三名即可）",
+    "reading": "ふくしょう",
+    "created_at": "2026-09-02",
+    "row_index": 809
+  },
+  {
+    "id": "#0811",
+    "ja_term": "調子",
+    "tw_translation": "狀況、健康狀態 / 節奏",
+    "reading": "ちょうし",
+    "created_at": "2026-09-02",
+    "row_index": 810
+  },
+  {
+    "id": "#0812",
+    "ja_term": "論外",
+    "tw_translation": "不予考慮、荒謬、不在討論範圍",
+    "reading": "ろんがい",
+    "created_at": "2026-09-02",
+    "row_index": 811
+  },
+  {
+    "id": "#0813",
+    "ja_term": "諸君",
+    "tw_translation": "各位、諸君",
+    "reading": "しょくん",
+    "created_at": "2026-09-02",
+    "row_index": 812
+  },
+  {
+    "id": "#0814",
+    "ja_term": "賞味期限",
+    "tw_translation": "最佳賞味期（非過期日）",
+    "reading": "しょうみきげん",
+    "created_at": "2026-09-02",
+    "row_index": 813
+  },
+  {
+    "id": "#0815",
+    "ja_term": "賞金",
+    "tw_translation": "獎金",
+    "reading": "しょうきん",
+    "created_at": "2026-09-02",
+    "row_index": 814
+  },
+  {
+    "id": "#0816",
+    "ja_term": "趣味",
+    "tw_translation": "興趣、嗜好",
+    "reading": "しゅみ",
+    "created_at": "2026-09-02",
+    "row_index": 815
+  },
+  {
+    "id": "#0817",
+    "ja_term": "養子縁組",
+    "tw_translation": "收養、收養關係",
+    "reading": "ようしえんぐみ",
+    "created_at": "2026-09-02",
+    "row_index": 816
+  },
+  {
+    "id": "#0818",
+    "ja_term": "駐車場",
+    "tw_translation": "停車場",
+    "reading": "ちゅうしゃじょう",
+    "created_at": "2026-09-02",
+    "row_index": 817
+  },
+  {
+    "id": "#0819",
+    "ja_term": "懐中時計",
+    "tw_translation": "懷錶",
+    "reading": "かいちゅうどけい",
+    "created_at": "2026-09-02",
+    "row_index": 818
+  },
+  {
+    "id": "#0820",
+    "ja_term": "懐中電灯",
+    "tw_translation": "手電筒",
+    "reading": "かいちゅうでんとう",
+    "created_at": "2026-09-02",
+    "row_index": 819
+  },
+  {
+    "id": "#0821",
+    "ja_term": "機嫌",
+    "tw_translation": "心情、脾氣",
+    "reading": "きげん",
+    "created_at": "2026-09-02",
+    "row_index": 820
+  },
+  {
+    "id": "#0822",
+    "ja_term": "機銃掃射",
+    "tw_translation": "機槍掃射",
+    "reading": "きじゅうそうしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 821
+  },
+  {
+    "id": "#0823",
+    "ja_term": "激安",
+    "tw_translation": "超便宜、破盤價",
+    "reading": "げきやす",
+    "created_at": "2026-09-02",
+    "row_index": 822
+  },
+  {
+    "id": "#0824",
+    "ja_term": "穏便",
+    "tw_translation": "圓滿、息事寧人",
+    "reading": "おんびん",
+    "created_at": "2026-09-02",
+    "row_index": 823
+  },
+  {
+    "id": "#0825",
+    "ja_term": "縦社会",
+    "tw_translation": "長幼尊卑階級社會",
+    "reading": "たてしゃかい",
+    "created_at": "2026-09-02",
+    "row_index": 824
+  },
+  {
+    "id": "#0826",
+    "ja_term": "興味本位",
+    "tw_translation": "出於好奇、趣味取向",
+    "reading": "きょうみほんい",
+    "created_at": "2026-09-02",
+    "row_index": 825
+  },
+  {
+    "id": "#0827",
+    "ja_term": "融通",
+    "tw_translation": "變通",
+    "reading": "ゆうずう",
+    "created_at": "2026-09-02",
+    "row_index": 826
+  },
+  {
+    "id": "#0828",
+    "ja_term": "親",
+    "tw_translation": "父母",
+    "reading": "おや",
+    "created_at": "2026-09-02",
+    "row_index": 827
+  },
+  {
+    "id": "#0829",
+    "ja_term": "親子丼",
+    "tw_translation": "親子丼（雞肉雞蛋蓋飯 / 滑蛋雞肉飯）",
+    "reading": "おやこどん",
+    "created_at": "2026-09-02",
+    "row_index": 828
+  },
+  {
+    "id": "#0830",
+    "ja_term": "親友",
+    "tw_translation": "摯友、閨蜜",
+    "reading": "しんゆう",
+    "created_at": "2026-09-02",
+    "row_index": 829
+  },
+  {
+    "id": "#0831",
+    "ja_term": "親指",
+    "tw_translation": "大拇指",
+    "reading": "おやゆび",
+    "created_at": "2026-09-02",
+    "row_index": 830
+  },
+  {
+    "id": "#0832",
+    "ja_term": "遺伝子",
+    "tw_translation": "基因",
+    "reading": "いでんし",
+    "created_at": "2026-09-02",
+    "row_index": 831
+  },
+  {
+    "id": "#0833",
+    "ja_term": "醍醐味",
+    "tw_translation": "精髓、樂趣精華",
+    "reading": "だいごみ",
+    "created_at": "2026-09-02",
+    "row_index": 832
+  },
+  {
+    "id": "#0834",
+    "ja_term": "錦穴子",
+    "tw_translation": "錦花園鰻",
+    "reading": "にしきあなご",
+    "created_at": "2026-09-02",
+    "row_index": 833
+  },
+  {
+    "id": "#0835",
+    "ja_term": "頭文字",
+    "tw_translation": "首字母、頭文字",
+    "reading": "かしらもじ",
+    "created_at": "2026-09-02",
+    "row_index": 834
+  },
+  {
+    "id": "#0836",
+    "ja_term": "優柔不断",
+    "tw_translation": "優柔寡斷、猶豫不決",
+    "reading": "ゆうじゅうふだん",
+    "created_at": "2026-09-02",
+    "row_index": 835
+  },
+  {
+    "id": "#0837",
+    "ja_term": "優勝",
+    "tw_translation": "冠軍、獲勝",
+    "reading": "ゆうしょう",
+    "created_at": "2026-09-02",
+    "row_index": 836
+  },
+  {
+    "id": "#0838",
+    "ja_term": "曖昧",
+    "tw_translation": "含糊、含糊不清",
+    "reading": "あいまい",
+    "created_at": "2026-09-02",
+    "row_index": 837
+  },
+  {
+    "id": "#0839",
+    "ja_term": "繁華街",
+    "tw_translation": "鬧區、繁華街區",
+    "reading": "はんかがい",
+    "created_at": "2026-09-02",
+    "row_index": 838
+  },
+  {
+    "id": "#0840",
+    "ja_term": "臨時便",
+    "tw_translation": "加班車、臨時班次",
+    "reading": "りんじびん",
+    "created_at": "2026-09-02",
+    "row_index": 839
+  },
+  {
+    "id": "#0841",
+    "ja_term": "薬指",
+    "tw_translation": "無名指",
+    "reading": "くすりゆび",
+    "created_at": "2026-09-02",
+    "row_index": 840
+  },
+  {
+    "id": "#0842",
+    "ja_term": "闇市場",
+    "tw_translation": "黑市",
+    "reading": "やみいちば",
+    "created_at": "2026-09-02",
+    "row_index": 841
+  },
+  {
+    "id": "#0843",
+    "ja_term": "闇医者",
+    "tw_translation": "密醫",
+    "reading": "やみいしゃ",
+    "created_at": "2026-09-02",
+    "row_index": 842
+  },
+  {
+    "id": "#0844",
+    "ja_term": "鮨",
+    "tw_translation": "壽司",
+    "reading": "すし",
+    "created_at": "2026-09-02",
+    "row_index": 843
+  },
+  {
+    "id": "#0845",
+    "ja_term": "鮫",
+    "tw_translation": "鯊魚",
+    "reading": "さめ",
+    "created_at": "2026-09-02",
+    "row_index": 844
+  },
+  {
+    "id": "#0846",
+    "ja_term": "癒着関係",
+    "tw_translation": "勾結關係、利益輸送",
+    "reading": "ゆちゃくかんけい",
+    "created_at": "2026-09-02",
+    "row_index": 845
+  },
+  {
+    "id": "#0847",
+    "ja_term": "職務質問",
+    "tw_translation": "盤查、臨檢（警察職務詢問）",
+    "reading": "しょくむしつもん",
+    "created_at": "2026-09-02",
+    "row_index": 846
+  },
+  {
+    "id": "#0848",
+    "ja_term": "贅沢",
+    "tw_translation": "奢華、奢侈",
+    "reading": "ぜいたく",
+    "created_at": "2026-09-02",
+    "row_index": 847
+  },
+  {
+    "id": "#0849",
+    "ja_term": "鎮守府",
+    "tw_translation": "鎮守府（海軍基地/司令部）",
+    "reading": "ちんじゅふ",
+    "created_at": "2026-09-02",
+    "row_index": 848
+  },
+  {
+    "id": "#0850",
+    "ja_term": "顔面偏差値",
+    "tw_translation": "顏值指數",
+    "reading": "がんめんへんさち",
+    "created_at": "2026-09-02",
+    "row_index": 849
+  },
+  {
+    "id": "#0851",
+    "ja_term": "顔採用",
+    "tw_translation": "外貌錄用（看顏值錄取）",
+    "reading": "かおさいよう",
+    "created_at": "2026-09-02",
+    "row_index": 850
+  },
+  {
+    "id": "#0852",
+    "ja_term": "競馬",
+    "tw_translation": "賽馬",
+    "reading": "けいば",
+    "created_at": "2026-09-02",
+    "row_index": 851
+  },
+  {
+    "id": "#0853",
+    "ja_term": "警戒態勢",
+    "tw_translation": "警戒狀態",
+    "reading": "けいかいたいせい",
+    "created_at": "2026-09-02",
+    "row_index": 852
+  },
+  {
+    "id": "#0854",
+    "ja_term": "警視庁",
+    "tw_translation": "警視廳（東京警察總局）",
+    "reading": "けいしちょう",
+    "created_at": "2026-09-02",
+    "row_index": 853
+  },
+  {
+    "id": "#0855",
+    "ja_term": "贔屓",
+    "tw_translation": "偏愛、袒護、支持者",
+    "reading": "ひいき",
+    "created_at": "2026-09-02",
+    "row_index": 854
+  },
+  {
+    "id": "#0856",
+    "ja_term": "飜数",
+    "tw_translation": "台數、番數（日麻台數）",
+    "reading": "はんすう",
+    "created_at": "2026-09-02",
+    "row_index": 855
+  },
+  {
+    "id": "#0857",
+    "ja_term": "魔法瓶",
+    "tw_translation": "保溫瓶、熱水瓶",
+    "reading": "まほうびん",
+    "created_at": "2026-09-02",
+    "row_index": 856
+  },
+  {
+    "id": "#0858",
+    "ja_term": "CA",
+    "tw_translation": "空服員（Cabin Attendant）",
+    "reading": "シーエー",
+    "created_at": "2026-09-02",
+    "row_index": 857
+  },
+  {
+    "id": "#0859",
+    "ja_term": "CM",
+    "tw_translation": "電視廣告（Commercial Message）",
+    "reading": "シーエム",
+    "created_at": "2026-09-02",
+    "row_index": 858
+  },
+  {
+    "id": "#0860",
+    "ja_term": "CV",
+    "tw_translation": "聲優/配音員（Character Voice）",
+    "reading": "シーブイ",
+    "created_at": "2026-09-02",
+    "row_index": 859
+  },
+  {
+    "id": "#0861",
+    "ja_term": "DNS 解決",
+    "tw_translation": "DNS 解析",
+    "reading": "ディーエヌエスかいけつ",
+    "created_at": "2026-09-02",
+    "row_index": 860
+  },
+  {
+    "id": "#0862",
+    "ja_term": "DV男",
+    "tw_translation": "家暴男",
+    "reading": "ディーブイおとこ",
+    "created_at": "2026-09-02",
+    "row_index": 861
+  },
+  {
+    "id": "#0863",
+    "ja_term": "ED治療薬",
+    "tw_translation": "勃起功能障礙藥物",
+    "reading": "イーディーちりょうやく",
+    "created_at": "2026-09-02",
+    "row_index": 862
+  },
+  {
+    "id": "#0864",
+    "ja_term": "GW",
+    "tw_translation": "黃金週（Golden Week）",
+    "reading": "ゴールデンウィーク",
+    "created_at": "2026-09-02",
+    "row_index": 863
+  },
+  {
+    "id": "#0865",
+    "ja_term": "JK",
+    "tw_translation": "女子高中生",
+    "reading": "ジェーケー",
+    "created_at": "2026-09-02",
+    "row_index": 864
+  },
+  {
+    "id": "#0866",
+    "ja_term": "JR",
+    "tw_translation": "日本旅客鐵道（Japan Railways）",
+    "reading": "ジェイアール",
+    "created_at": "2026-09-02",
+    "row_index": 865
+  },
+  {
+    "id": "#0867",
+    "ja_term": "NHK",
+    "tw_translation": "日本放送協會",
+    "reading": "エヌエイチケー",
+    "created_at": "2026-09-02",
+    "row_index": 866
+  },
+  {
+    "id": "#0868",
+    "ja_term": "OB",
+    "tw_translation": "校友（Old Boy）",
+    "reading": "オービー",
+    "created_at": "2026-09-02",
+    "row_index": 867
+  },
+  {
+    "id": "#0869",
+    "ja_term": "OG",
+    "tw_translation": "校友（Old Girl）",
+    "reading": "オージー",
+    "created_at": "2026-09-02",
+    "row_index": 868
+  },
+  {
+    "id": "#0870",
+    "ja_term": "OL",
+    "tw_translation": "辦公室女職員",
+    "reading": "オーエル",
+    "created_at": "2026-09-02",
+    "row_index": 869
+  },
+  {
+    "id": "#0871",
+    "ja_term": "PR",
+    "tw_translation": "宣傳、公關",
+    "reading": "ピーアール",
+    "created_at": "2026-09-02",
+    "row_index": 870
+  },
+  {
+    "id": "#0872",
+    "ja_term": "PV",
+    "tw_translation": "音樂錄影帶/宣傳影片/網頁瀏覽量",
+    "reading": "ピーブイ",
+    "created_at": "2026-09-02",
+    "row_index": 871
+  },
+  {
+    "id": "#0873",
+    "ja_term": "TBS",
+    "tw_translation": "東京放送（日本TBS電視台）",
+    "reading": "ティービーエス",
+    "created_at": "2026-09-02",
+    "row_index": 872
+  },
+  {
+    "id": "#0874",
+    "ja_term": "Web面接",
+    "tw_translation": "視訊面試、線上面試",
+    "reading": "ウェブめんせつ",
+    "created_at": "2026-09-02",
+    "row_index": 873
+  },
+  {
+    "id": "#0875",
+    "ja_term": "無自覺",
+    "tw_translation": "沒自覺",
+    "reading": "むじかく",
+    "created_at": "2026-09-03",
+    "row_index": 874
+  },
+  {
+    "id": "#0876",
+    "ja_term": "判子",
+    "tw_translation": "印章",
+    "reading": "はんこ",
+    "created_at": "2026-09-03",
+    "row_index": 875
+  },
+  {
+    "id": "#0877",
+    "ja_term": "印鑑",
+    "tw_translation": "印鑑",
+    "reading": "いんかん",
+    "created_at": "2026-09-03",
+    "row_index": 876
+  },
+  {
+    "id": "#0878",
+    "ja_term": "気絶",
+    "tw_translation": "暈倒",
+    "reading": "きぜつ",
+    "created_at": "2026-09-03",
+    "row_index": 877
+  },
+  {
+    "id": "#0879",
+    "ja_term": "古今東西",
+    "tw_translation": "古今中外",
+    "reading": "ここんとうざい",
+    "created_at": "2026-09-03",
+    "row_index": 878
+  },
+  {
+    "id": "#0880",
+    "ja_term": "御手洗",
+    "tw_translation": "洗手間、廁所",
+    "reading": "おてあらい",
+    "created_at": "2026-09-03",
+    "row_index": 879
+  },
+  {
+    "id": "#0881",
+    "ja_term": "中国地方",
+    "tw_translation": "中國地方（日本地域）",
+    "reading": "ちゅうごくちほう",
+    "created_at": "2026-09-03",
+    "row_index": 880
+  },
+  {
+    "id": "#0882",
+    "ja_term": "山陰地方",
+    "tw_translation": "山陰地方（日本地域）",
+    "reading": "さんいんちほう",
+    "created_at": "2026-09-03",
+    "row_index": 881
+  },
+  {
+    "id": "#0883",
+    "ja_term": "山陽地方",
+    "tw_translation": "山陽地方（日本地域）",
+    "reading": "さんようちほう",
+    "created_at": "2026-09-03",
+    "row_index": 882
+  },
+  {
+    "id": "#0884",
+    "ja_term": "噴火",
+    "tw_translation": "火山爆發",
+    "reading": "ふんか",
+    "created_at": "2026-09-03",
+    "row_index": 883
+  },
+  {
+    "id": "#0885",
+    "ja_term": "発売元",
+    "tw_translation": "發行商、經銷商",
+    "reading": "はつばいもと",
+    "created_at": "2026-09-03",
+    "row_index": 884
+  },
+  {
+    "id": "#0886",
+    "ja_term": "開発元",
+    "tw_translation": "開發商",
+    "reading": "かいはつもと",
+    "created_at": "2026-09-03",
+    "row_index": 885
+  },
+  {
+    "id": "#0887",
+    "ja_term": "山札",
+    "tw_translation": "牌庫、抽牌堆（卡牌遊戲）",
+    "reading": "やまふだ",
+    "created_at": "2026-09-03",
+    "row_index": 886
+  },
+  {
+    "id": "#0888",
+    "ja_term": "英題",
+    "tw_translation": "英文標題",
+    "reading": "えいだい",
+    "created_at": "2026-09-03",
+    "row_index": 887
+  },
+  {
+    "id": "#0889",
+    "ja_term": "点棒",
+    "tw_translation": "點棒（麻將）",
+    "reading": "てんぼう",
+    "created_at": "2026-09-03",
+    "row_index": 888
+  },
+  {
+    "id": "#0890",
+    "ja_term": "和了",
+    "tw_translation": "胡牌（麻將）",
+    "reading": "あがり",
+    "created_at": "2026-09-03",
+    "row_index": 889
+  },
+  {
+    "id": "#0891",
+    "ja_term": "栄和",
+    "tw_translation": "榮和、胡別人打出的牌（麻將）",
+    "reading": "ろん",
+    "created_at": "2026-09-03",
+    "row_index": 890
+  },
+  {
+    "id": "#0892",
+    "ja_term": "出願",
+    "tw_translation": "申請、報名",
+    "reading": "しゅつがん",
+    "created_at": "2026-09-03",
+    "row_index": 891
+  },
+  {
+    "id": "#0893",
+    "ja_term": "偶然役",
+    "tw_translation": "偶然役（麻將）",
+    "reading": "ぐうぜんやく",
+    "created_at": "2026-09-03",
+    "row_index": 892
+  },
+  {
+    "id": "#0894",
+    "ja_term": "現物",
+    "tw_translation": "現物、安全牌（麻將） / 現貨",
+    "reading": "げんぶつ",
+    "created_at": "2026-09-03",
+    "row_index": 893
+  },
+  {
+    "id": "#0895",
+    "ja_term": "紅一点",
+    "tw_translation": "萬綠叢中一點紅、唯一的女性",
+    "reading": "こういってん",
+    "created_at": "2026-09-03",
+    "row_index": 894
+  },
+  {
+    "id": "#0896",
+    "ja_term": "神經衰弱",
+    "tw_translation": "記憶配對（撲克牌遊戲） / 神經衰弱",
+    "reading": "しんけいすいじゃく",
+    "created_at": "2026-09-03",
+    "row_index": 895
+  },
+  {
+    "id": "#0897",
+    "ja_term": "放銃",
+    "tw_translation": "放槍（麻將）",
+    "reading": "ほうじゅう",
+    "created_at": "2026-09-03",
+    "row_index": 896
+  },
+  {
+    "id": "#0898",
+    "ja_term": "役満",
+    "tw_translation": "役滿（麻將）",
+    "reading": "やくまん",
+    "created_at": "2026-09-03",
+    "row_index": 897
+  },
+  {
+    "id": "#0899",
+    "ja_term": "三倍満",
+    "tw_translation": "三倍滿（麻將）",
+    "reading": "さんばいまん",
+    "created_at": "2026-09-03",
+    "row_index": 898
+  },
+  {
+    "id": "#0900",
+    "ja_term": "跳満",
+    "tw_translation": "跳滿（麻將）",
+    "reading": "はねまん",
+    "created_at": "2026-09-03",
+    "row_index": 899
+  },
+  {
+    "id": "#0901",
+    "ja_term": "倍満",
+    "tw_translation": "倍滿（麻將）",
+    "reading": "ばいまん",
+    "created_at": "2026-09-03",
+    "row_index": 900
+  },
+  {
+    "id": "#0902",
+    "ja_term": "本場",
+    "tw_translation": "本場（麻將連莊次數） / 發源地",
+    "reading": "ほんば",
+    "created_at": "2026-09-03",
+    "row_index": 901
+  },
+  {
+    "id": "#0903",
+    "ja_term": "本格",
+    "tw_translation": "正統、道地",
+    "reading": "ほんかく",
+    "created_at": "2026-09-03",
+    "row_index": 902
+  },
+  {
+    "id": "#0904",
+    "ja_term": "本社",
+    "tw_translation": "總公司",
+    "reading": "ほんしゃ",
+    "created_at": "2026-09-03",
+    "row_index": 903
+  },
+  {
+    "id": "#0905",
+    "ja_term": "不知火",
+    "tw_translation": "不知火",
+    "reading": "しらぬい",
+    "created_at": "2026-09-03",
+    "row_index": 904
+  },
+  {
+    "id": "#0906",
+    "ja_term": "合図",
+    "tw_translation": "信號、暗號",
+    "reading": "あいず",
+    "created_at": "2026-09-03",
+    "row_index": 905
+  },
+  {
+    "id": "#0907",
+    "ja_term": "味自慢",
+    "tw_translation": "招牌口味",
+    "reading": "あじじまん",
+    "created_at": "2026-09-03",
+    "row_index": 906
+  },
+  {
+    "id": "#0908",
+    "ja_term": "無料",
+    "tw_translation": "免費",
+    "reading": "むりょう",
+    "created_at": "2026-09-03",
+    "row_index": 907
+  },
+  {
+    "id": "#0909",
+    "ja_term": "有料",
+    "tw_translation": "收費",
+    "reading": "ゆうりょう",
+    "created_at": "2026-09-03",
+    "row_index": 908
+  },
+  {
+    "id": "#0910",
+    "ja_term": "櫓",
+    "tw_translation": "瞭望台/櫓",
+    "reading": "やぐら",
+    "created_at": "2026-09-03",
+    "row_index": 909
+  },
+  {
+    "id": "#0911",
+    "ja_term": "光熱代",
+    "tw_translation": "水電瓦斯費",
+    "reading": "こうねつだい",
+    "created_at": "2026-09-03",
+    "row_index": 910
+  },
+  {
+    "id": "#0912",
+    "ja_term": "一大事",
+    "tw_translation": "大事件",
+    "reading": "いちだいじ",
+    "created_at": "2026-09-03",
+    "row_index": 911
+  },
+  {
+    "id": "#0913",
+    "ja_term": "一番大事",
+    "tw_translation": "最重要",
+    "reading": "いちばんだいじ",
+    "created_at": "2026-09-03",
+    "row_index": 912
+  },
+  {
+    "id": "#0914",
+    "ja_term": "脱獄",
+    "tw_translation": "越獄",
+    "reading": "だつごく",
+    "created_at": "2026-09-03",
+    "row_index": 913
+  },
+  {
+    "id": "#0915",
+    "ja_term": "死刑囚",
+    "tw_translation": "死刑犯",
+    "reading": "しけいしゅう",
+    "created_at": "2026-09-03",
+    "row_index": 914
+  },
+  {
+    "id": "#0916",
+    "ja_term": "棄却",
+    "tw_translation": "駁回",
+    "reading": "ききゃく",
+    "created_at": "2026-09-03",
+    "row_index": 915
+  },
+  {
+    "id": "#0917",
+    "ja_term": "散骨",
+    "tw_translation": "撒骨灰/海葬",
+    "reading": "さんこつ",
+    "created_at": "2026-09-03",
+    "row_index": 916
+  },
+  {
+    "id": "#0918",
+    "ja_term": "永山基準",
+    "tw_translation": "永山基準（死刑量刑標準）",
+    "reading": "ながやまきじゅん",
+    "created_at": "2026-09-03",
+    "row_index": 917
+  },
+  {
+    "id": "#0919",
+    "ja_term": "生保",
+    "tw_translation": "生活保護（低收入戶補助）",
+    "reading": "せいほ",
+    "created_at": "2026-09-03",
+    "row_index": 918
+  },
+  {
+    "id": "#0920",
+    "ja_term": "生徒",
+    "tw_translation": "學生",
+    "reading": "せいと",
+    "created_at": "2026-09-03",
+    "row_index": 919
+  },
+  {
+    "id": "#0921",
+    "ja_term": "改竄",
+    "tw_translation": "篡改",
+    "reading": "かいざん",
+    "created_at": "2026-09-03",
+    "row_index": 920
+  },
+  {
+    "id": "#0922",
+    "ja_term": "協力者",
+    "tw_translation": "協助者/線人",
+    "reading": "きょうりょくしゃ",
+    "created_at": "2026-09-03",
+    "row_index": 921
+  },
+  {
+    "id": "#0923",
+    "ja_term": "年齢詐称",
+    "tw_translation": "謊報年齡",
+    "reading": "ねんれいさしょう",
+    "created_at": "2026-09-03",
+    "row_index": 922
+  },
+  {
+    "id": "#0924",
+    "ja_term": "容赦",
+    "tw_translation": "寬恕/手下留情",
+    "reading": "ようしゃ",
+    "created_at": "2026-09-03",
+    "row_index": 923
+  },
+  {
+    "id": "#0925",
+    "ja_term": "方向音痴",
+    "tw_translation": "路痴",
+    "reading": "ほうこうおんち",
+    "created_at": "2026-09-03",
+    "row_index": 924
+  },
+  {
+    "id": "#0926",
+    "ja_term": "運動音痴",
+    "tw_translation": "運動白痴",
+    "reading": "うんどうおんち",
+    "created_at": "2026-09-03",
+    "row_index": 925
+  },
+  {
+    "id": "#0927",
+    "ja_term": "愛嬌",
+    "tw_translation": "討人喜歡/魅力",
+    "reading": "あいきょう",
+    "created_at": "2026-09-03",
+    "row_index": 926
+  },
+  {
+    "id": "#0928",
+    "ja_term": "愛称",
+    "tw_translation": "暱稱",
+    "reading": "あいしょう",
+    "created_at": "2026-09-03",
+    "row_index": 927
+  },
+  {
+    "id": "#0929",
+    "ja_term": "乱暴",
+    "tw_translation": "粗暴",
+    "reading": "らんぼう",
+    "created_at": "2026-09-03",
+    "row_index": 928
+  },
+  {
+    "id": "#0930",
+    "ja_term": "既刊",
+    "tw_translation": "已出版",
+    "reading": "きかん",
+    "created_at": "2026-09-03",
+    "row_index": 929
+  },
+  {
+    "id": "#0931",
+    "ja_term": "辞書",
+    "tw_translation": "字典",
+    "reading": "じしょ",
+    "created_at": "2026-09-03",
+    "row_index": 930
+  },
+  {
+    "id": "#0932",
+    "ja_term": "磁石",
+    "tw_translation": "磁鐵",
+    "reading": "じしゃく",
+    "created_at": "2026-09-03",
+    "row_index": 931
+  },
+  {
+    "id": "#0933",
+    "ja_term": "部員",
+    "tw_translation": "社團成員",
+    "reading": "ぶいん",
+    "created_at": "2026-09-03",
+    "row_index": 932
+  },
+  {
+    "id": "#0934",
+    "ja_term": "面倒事",
+    "tw_translation": "麻煩事",
+    "reading": "めんどうごと",
+    "created_at": "2026-09-03",
+    "row_index": 933
+  },
+  {
+    "id": "#0935",
+    "ja_term": "素手",
+    "tw_translation": "徒手",
+    "reading": "すで",
+    "created_at": "2026-09-03",
+    "row_index": 934
+  },
+  {
+    "id": "#0936",
+    "ja_term": "脱却",
+    "tw_translation": "擺脫",
+    "reading": "だっきゃく",
+    "created_at": "2026-09-03",
+    "row_index": 935
+  },
+  {
+    "id": "#0937",
+    "ja_term": "失墜",
+    "tw_translation": "喪失/失去",
+    "reading": "しっつい",
+    "created_at": "2026-09-03",
+    "row_index": 936
+  },
+  {
+    "id": "#0938",
+    "ja_term": "強要",
+    "tw_translation": "強迫",
+    "reading": "きょうよう",
+    "created_at": "2026-09-03",
+    "row_index": 937
+  },
+  {
+    "id": "#0939",
+    "ja_term": "公式大会",
+    "tw_translation": "正式比賽",
+    "reading": "こうしきたいかい",
+    "created_at": "2026-09-03",
+    "row_index": 938
+  },
+  {
+    "id": "#0940",
+    "ja_term": "電子決済",
+    "tw_translation": "電子支付",
+    "reading": "でんしけっさい",
+    "created_at": "2026-09-03",
+    "row_index": 939
+  },
+  {
+    "id": "#0941",
+    "ja_term": "他界",
+    "tw_translation": "過世",
+    "reading": "たかい",
+    "created_at": "2026-09-03",
+    "row_index": 940
+  },
+  {
+    "id": "#0942",
+    "ja_term": "両親",
+    "tw_translation": "父母",
+    "reading": "りょうしん",
+    "created_at": "2026-09-03",
+    "row_index": 941
+  },
+  {
+    "id": "#0943",
+    "ja_term": "本物",
+    "tw_translation": "真品/真貨",
+    "reading": "ほんもの",
+    "created_at": "2026-09-03",
+    "row_index": 942
+  },
+  {
+    "id": "#0944",
+    "ja_term": "秘密主義",
+    "tw_translation": "神秘主義",
+    "reading": "ひみつしゅぎ",
+    "created_at": "2026-09-03",
+    "row_index": 943
+  },
+  {
+    "id": "#0945",
+    "ja_term": "最難関",
+    "tw_translation": "最高難度/最難考",
+    "reading": "さいなんかん",
+    "created_at": "2026-09-03",
+    "row_index": 944
+  },
+  {
+    "id": "#0946",
+    "ja_term": "婚約者",
+    "tw_translation": "未婚夫/未婚妻",
+    "reading": "こんやくしゃ",
+    "created_at": "2026-09-03",
+    "row_index": 945
+  },
+  {
+    "id": "#0947",
+    "ja_term": "制御不能",
+    "tw_translation": "失控",
+    "reading": "せいぎょふのう",
+    "created_at": "2026-09-03",
+    "row_index": 946
+  },
+  {
+    "id": "#0948",
+    "ja_term": "仮想通貨",
+    "tw_translation": "虛擬貨幣",
+    "reading": "かそうつうか",
+    "created_at": "2026-09-03",
+    "row_index": 947
+  },
+  {
+    "id": "#0949",
+    "ja_term": "大惨事",
+    "tw_translation": "大慘案/大災難",
+    "reading": "だいさんじ",
+    "created_at": "2026-09-03",
+    "row_index": 948
+  },
+  {
+    "id": "#0950",
+    "ja_term": "配慮",
+    "tw_translation": "關懷/體貼/照顧",
+    "reading": "はいりょ",
+    "created_at": "2026-09-03",
+    "row_index": 949
+  },
+  {
+    "id": "#0951",
+    "ja_term": "遠慮",
+    "tw_translation": "客氣/推辭",
+    "reading": "えんりょ",
+    "created_at": "2026-09-03",
+    "row_index": 950
+  },
+  {
+    "id": "#0952",
+    "ja_term": "仮想現実",
+    "tw_translation": "虛擬實境(VR)",
+    "reading": "かそうげんじつ",
+    "created_at": "2026-09-03",
+    "row_index": 951
+  },
+  {
+    "id": "#0953",
+    "ja_term": "交代",
+    "tw_translation": "交替/換人",
+    "reading": "こうたい",
+    "created_at": "2026-09-03",
+    "row_index": 952
+  },
+  {
+    "id": "#0954",
+    "ja_term": "修学旅行",
+    "tw_translation": "畢業旅行/校外教學",
+    "reading": "しゅうがくりょこう",
+    "created_at": "2026-09-03",
+    "row_index": 953
+  },
+  {
+    "id": "#0955",
+    "ja_term": "端末",
+    "tw_translation": "終端機/裝置",
+    "reading": "たんまつ",
+    "created_at": "2026-09-03",
+    "row_index": 954
+  },
+  {
+    "id": "#0956",
+    "ja_term": "南無三",
+    "tw_translation": "糟了/完蛋了",
+    "reading": "なむさん",
+    "created_at": "2026-09-03",
+    "row_index": 955
+  },
+  {
+    "id": "#0957",
+    "ja_term": "誕生日",
+    "tw_translation": "生日",
+    "reading": "たんじょうび",
+    "created_at": "2026-09-03",
+    "row_index": 956
+  },
+  {
+    "id": "#0958",
+    "ja_term": "誕生日会",
+    "tw_translation": "生日派對",
+    "reading": "たんじょうびかい",
+    "created_at": "2026-09-03",
+    "row_index": 957
+  },
+  {
+    "id": "#0959",
+    "ja_term": "鼻歌",
+    "tw_translation": "哼歌",
+    "reading": "はなうた",
+    "created_at": "2026-09-03",
+    "row_index": 958
+  },
+  {
+    "id": "#0960",
+    "ja_term": "財布",
+    "tw_translation": "錢包",
+    "reading": "さいふ",
+    "created_at": "2026-09-03",
+    "row_index": 959
+  },
+  {
+    "id": "#0961",
+    "ja_term": "帰省",
+    "tw_translation": "返鄉",
+    "reading": "きせい",
+    "created_at": "2026-09-03",
+    "row_index": 960
+  },
+  {
+    "id": "#0962",
+    "ja_term": "断酒",
+    "tw_translation": "戒酒",
+    "reading": "だんしゅ",
+    "created_at": "2026-09-03",
+    "row_index": 961
+  },
+  {
+    "id": "#0963",
+    "ja_term": "鳥肌",
+    "tw_translation": "雞皮疙瘩",
+    "reading": "とりはだ",
+    "created_at": "2026-09-03",
+    "row_index": 962
+  },
+  {
+    "id": "#0964",
+    "ja_term": "土砂",
+    "tw_translation": "泥沙/土石",
+    "reading": "どしゃ",
+    "created_at": "2026-09-03",
+    "row_index": 963
+  },
+  {
+    "id": "#0965",
+    "ja_term": "土砂災害",
+    "tw_translation": "土石流災害",
+    "reading": "どしゃさいがい",
+    "created_at": "2026-09-03",
+    "row_index": 964
+  },
+  {
+    "id": "#0966",
+    "ja_term": "火気厳禁",
+    "tw_translation": "嚴禁煙火",
+    "reading": "かきげんきん",
+    "created_at": "2026-09-03",
+    "row_index": 965
+  },
+  {
+    "id": "#0967",
+    "ja_term": "休憩室",
+    "tw_translation": "休息室",
+    "reading": "きゅうけいしつ",
+    "created_at": "2026-09-03",
+    "row_index": 966
+  },
+  {
+    "id": "#0968",
+    "ja_term": "器物損壊",
+    "tw_translation": "毀損器物",
+    "reading": "きぶつそんかい",
+    "created_at": "2026-09-03",
+    "row_index": 967
+  },
+  {
+    "id": "#0969",
+    "ja_term": "切符",
+    "tw_translation": "車票/門票",
+    "reading": "きっぷ",
+    "created_at": "2026-09-03",
+    "row_index": 968
+  },
+  {
+    "id": "#0970",
+    "ja_term": "見本",
+    "tw_translation": "樣本/樣品",
+    "reading": "みほん",
+    "created_at": "2026-09-03",
+    "row_index": 969
+  },
+  {
+    "id": "#0971",
+    "ja_term": "日本有線大賞",
+    "tw_translation": "日本有線大獎",
+    "reading": "にほんゆうせんたいしょう",
+    "created_at": "2026-09-03",
+    "row_index": 970
+  },
+  {
+    "id": "#0972",
+    "ja_term": "有線通信",
+    "tw_translation": "有線通訊",
+    "reading": "ゆうせんつうしん",
+    "created_at": "2026-09-03",
+    "row_index": 971
+  },
+  {
+    "id": "#0973",
+    "ja_term": "大好物",
+    "tw_translation": "最愛的食物",
+    "reading": "だいこうぶつ",
+    "created_at": "2026-09-03",
+    "row_index": 972
+  },
+  {
+    "id": "#0974",
+    "ja_term": "学園祭",
+    "tw_translation": "校慶",
+    "reading": "がくえんさい",
+    "created_at": "2026-09-03",
+    "row_index": 973
+  },
+  {
+    "id": "#0975",
+    "ja_term": "主人公",
+    "tw_translation": "主角",
+    "reading": "しゅじんこう",
+    "created_at": "2026-09-03",
+    "row_index": 974
+  },
+  {
+    "id": "#0976",
+    "ja_term": "昔話",
+    "tw_translation": "傳說/民間故事",
+    "reading": "むかしばなし",
+    "created_at": "2026-09-03",
+    "row_index": 975
+  },
+  {
+    "id": "#0977",
+    "ja_term": "運命",
+    "tw_translation": "命運",
+    "reading": "うんめい",
+    "created_at": "2026-09-03",
+    "row_index": 976
+  },
+  {
+    "id": "#0978",
+    "ja_term": "派遣社員",
+    "tw_translation": "派遣員工",
+    "reading": "はけんしゃいん",
+    "created_at": "2026-09-03",
+    "row_index": 977
+  },
+  {
+    "id": "#0979",
+    "ja_term": "肝要",
+    "tw_translation": "重要/關鍵",
+    "reading": "かんよう",
+    "created_at": "2026-09-03",
+    "row_index": 978
+  },
+  {
+    "id": "#0980",
+    "ja_term": "公衆電話",
+    "tw_translation": "公共電話",
+    "reading": "こうしゅうでんわ",
+    "created_at": "2026-09-03",
+    "row_index": 979
+  },
+  {
+    "id": "#0981",
+    "ja_term": "卓袱台",
+    "tw_translation": "矮圓桌/和室桌",
+    "reading": "ちゃぶだい",
+    "created_at": "2026-09-03",
+    "row_index": 980
+  },
+  {
+    "id": "#0982",
+    "ja_term": "金玉",
+    "tw_translation": "睪丸(俗稱)",
+    "reading": "きんたま",
+    "created_at": "2026-09-03",
+    "row_index": 981
+  },
+  {
+    "id": "#0983",
+    "ja_term": "金玉袋",
+    "tw_translation": "陰囊(俗稱)",
+    "reading": "きんたまぶくろ",
+    "created_at": "2026-09-03",
+    "row_index": 982
+  },
+  {
+    "id": "#0984",
+    "ja_term": "徒競走",
+    "tw_translation": "賽跑",
+    "reading": "ときょうそう",
+    "created_at": "2026-09-03",
+    "row_index": 983
+  },
+  {
+    "id": "#0985",
+    "ja_term": "保険証",
+    "tw_translation": "健保卡",
+    "reading": "ほけんしょう",
+    "created_at": "2026-09-03",
+    "row_index": 984
+  },
+  {
+    "id": "#0986",
+    "ja_term": "実印",
+    "tw_translation": "印鑑證明用印",
+    "reading": "じついん",
+    "created_at": "2026-09-03",
+    "row_index": 985
+  },
+  {
+    "id": "#0987",
+    "ja_term": "絵日記",
+    "tw_translation": "繪圖日記",
+    "reading": "えにっき",
+    "created_at": "2026-09-03",
+    "row_index": 986
+  },
+  {
+    "id": "#0988",
+    "ja_term": "気合",
+    "tw_translation": "氣勢/幹勁",
+    "reading": "きあい",
+    "created_at": "2026-09-03",
+    "row_index": 987
+  },
+  {
+    "id": "#0989",
+    "ja_term": "台本",
+    "tw_translation": "劇本",
+    "reading": "だいほん",
+    "created_at": "2026-09-03",
+    "row_index": 988
+  },
+  {
+    "id": "#0990",
+    "ja_term": "何故",
+    "tw_translation": "為什麼",
+    "reading": "なぜ",
+    "created_at": "2026-09-03",
+    "row_index": 989
+  },
+  {
+    "id": "#0991",
+    "ja_term": "病気",
+    "tw_translation": "生病",
+    "reading": "びょうき",
+    "created_at": "2026-09-03",
+    "row_index": 990
+  },
+  {
+    "id": "#0992",
+    "ja_term": "星屑",
+    "tw_translation": "星塵",
+    "reading": "ほしくず",
+    "created_at": "2026-09-03",
+    "row_index": 991
+  },
+  {
+    "id": "#0993",
+    "ja_term": "最悪",
+    "tw_translation": "最糟/極惡",
+    "reading": "さいあく",
+    "created_at": "2026-09-03",
+    "row_index": 992
+  },
+  {
+    "id": "#0994",
+    "ja_term": "容態",
+    "tw_translation": "病情/狀態",
+    "reading": "ようだい",
+    "created_at": "2026-09-03",
+    "row_index": 993
+  },
+  {
+    "id": "#0995",
+    "ja_term": "容姿",
+    "tw_translation": "容貌/姿態",
+    "reading": "ようし",
+    "created_at": "2026-09-03",
+    "row_index": 994
+  },
+  {
+    "id": "#0996",
+    "ja_term": "NTT",
+    "tw_translation": "日本電信電話公司",
+    "reading": "エヌティティ",
+    "created_at": "2026-09-03",
+    "row_index": 995
+  },
+  {
+    "id": "#0997",
+    "ja_term": "土佐犬",
+    "tw_translation": "土佐犬",
+    "reading": "とさけん",
+    "created_at": "2026-09-03",
+    "row_index": 996
+  },
+  {
+    "id": "#0998",
+    "ja_term": "不細工",
+    "tw_translation": "醜陋/笨拙",
+    "reading": "ぶさいく",
+    "created_at": "2026-09-03",
+    "row_index": 997
+  },
+  {
+    "id": "#0999",
+    "ja_term": "伝言",
+    "tw_translation": "留言",
+    "reading": "でんごん",
+    "created_at": "2026-09-03",
+    "row_index": 998
+  },
+  {
+    "id": "#1000",
+    "ja_term": "給料",
+    "tw_translation": "薪水",
+    "reading": "きゅうりょう",
+    "created_at": "2026-09-03",
+    "row_index": 999
+  },
+  {
+    "id": "#1001",
+    "ja_term": "息子",
+    "tw_translation": "兒子",
+    "reading": "むすこ",
+    "created_at": "2026-09-03",
+    "row_index": 1000
+  },
+  {
+    "id": "#1002",
+    "ja_term": "一人息子",
+    "tw_translation": "獨生子",
+    "reading": "ひとりむすこ",
+    "created_at": "2026-09-03",
+    "row_index": 1001
+  },
+  {
+    "id": "#1003",
+    "ja_term": "一人娘",
+    "tw_translation": "獨生女",
+    "reading": "ひとりむすめ",
+    "created_at": "2026-09-03",
+    "row_index": 1002
+  },
+  {
+    "id": "#1004",
+    "ja_term": "大暴落",
+    "tw_translation": "暴跌/崩盤",
+    "reading": "だいぼうらく",
+    "created_at": "2026-09-03",
+    "row_index": 1003
+  },
+  {
+    "id": "#1005",
+    "ja_term": "完全燃焼",
+    "tw_translation": "完全燃燒/全力以赴",
+    "reading": "かんぜんねんしょう",
+    "created_at": "2026-09-03",
+    "row_index": 1004
+  },
+  {
+    "id": "#1006",
+    "ja_term": "麻薬",
+    "tw_translation": "毒品/麻醉藥",
+    "reading": "まやく",
+    "created_at": "2026-09-03",
+    "row_index": 1005
+  },
+  {
+    "id": "#1007",
+    "ja_term": "二股",
+    "tw_translation": "劈腿/腳踏兩條船",
+    "reading": "ふたまた",
+    "created_at": "2026-09-03",
+    "row_index": 1006
+  },
+  {
+    "id": "#1008",
+    "ja_term": "選択肢",
+    "tw_translation": "選項",
+    "reading": "せんたくし",
+    "created_at": "2026-09-03",
+    "row_index": 1007
+  },
+  {
+    "id": "#1009",
+    "ja_term": "仕上",
+    "tw_translation": "完成/收尾",
+    "reading": "しあげ",
+    "created_at": "2026-09-03",
+    "row_index": 1008
+  },
+  {
+    "id": "#1010",
+    "ja_term": "床関数",
+    "tw_translation": "高斯函數(向下取整)",
+    "reading": "ゆかかんすう",
+    "created_at": "2026-09-03",
+    "row_index": 1009
+  },
+  {
+    "id": "#1011",
+    "ja_term": "天井関数",
+    "tw_translation": "向上取整函數",
+    "reading": "てんじょうかんすう",
+    "created_at": "2026-09-03",
+    "row_index": 1010
+  },
+  {
+    "id": "#1012",
+    "ja_term": "仮色",
+    "tw_translation": "假色(影像處理)",
+    "reading": "かりいろ",
+    "created_at": "2026-09-03",
+    "row_index": 1011
+  },
+  {
+    "id": "#1013",
+    "ja_term": "AD",
+    "tw_translation": "助理導播(Assistant Director)",
+    "reading": "エーディー",
+    "created_at": "2026-09-03",
+    "row_index": 1012
+  },
+  {
+    "id": "#1014",
+    "ja_term": "交差点",
+    "tw_translation": "十字路口",
+    "reading": "こうさてん",
+    "created_at": "2026-09-03",
+    "row_index": 1013
+  },
+  {
+    "id": "#1015",
+    "ja_term": "日付",
+    "tw_translation": "日期",
+    "reading": "ひづけ",
+    "created_at": "2026-09-03",
+    "row_index": 1014
+  },
+  {
+    "id": "#1016",
+    "ja_term": "司会",
+    "tw_translation": "主持人",
+    "reading": "しかい",
+    "created_at": "2026-09-03",
+    "row_index": 1015
+  },
+  {
+    "id": "#1017",
+    "ja_term": "包丁",
+    "tw_translation": "菜刀",
+    "reading": "ほうちょう",
+    "created_at": "2026-09-03",
+    "row_index": 1016
+  },
+  {
+    "id": "#1018",
+    "ja_term": "紙吹雪",
+    "tw_translation": "碎紙花",
+    "reading": "かみふぶき",
+    "created_at": "2026-09-03",
+    "row_index": 1017
+  },
+  {
+    "id": "#1019",
+    "ja_term": "入刀",
+    "tw_translation": "切蛋糕(婚禮)",
+    "reading": "にゅうとう",
+    "created_at": "2026-09-03",
+    "row_index": 1018
+  },
+  {
+    "id": "#1020",
+    "ja_term": "撤収",
+    "tw_translation": "撤收/收工",
+    "reading": "てっしゅう",
+    "created_at": "2026-09-03",
+    "row_index": 1019
+  },
+  {
+    "id": "#1021",
+    "ja_term": "医者",
+    "tw_translation": "醫生",
+    "reading": "いしゃ",
+    "created_at": "2026-09-03",
+    "row_index": 1020
+  },
+  {
+    "id": "#1022",
+    "ja_term": "外科医",
+    "tw_translation": "外科醫生",
+    "reading": "げかい",
+    "created_at": "2026-09-03",
+    "row_index": 1021
+  },
+  {
+    "id": "#1023",
+    "ja_term": "工夫",
+    "tw_translation": "下工夫/巧思",
+    "reading": "くふう",
+    "created_at": "2026-09-03",
+    "row_index": 1022
+  },
+  {
+    "id": "#1024",
+    "ja_term": "廊下",
+    "tw_translation": "走廊",
+    "reading": "ろうか",
+    "created_at": "2026-09-03",
+    "row_index": 1023
+  },
+  {
+    "id": "#1025",
+    "ja_term": "午前中",
+    "tw_translation": "整個上午",
+    "reading": "ごぜんちゅう",
+    "created_at": "2026-09-03",
+    "row_index": 1024
+  },
+  {
+    "id": "#1026",
+    "ja_term": "午前",
+    "tw_translation": "上午",
+    "reading": "ごぜん",
+    "created_at": "2026-09-03",
+    "row_index": 1025
+  },
+  {
+    "id": "#1027",
+    "ja_term": "午後",
+    "tw_translation": "下午",
+    "reading": "ごご",
+    "created_at": "2026-09-03",
+    "row_index": 1026
+  },
+  {
+    "id": "#1028",
+    "ja_term": "高級外車",
+    "tw_translation": "高級進口車",
+    "reading": "こうきゅうがいしゃ",
+    "created_at": "2026-09-03",
+    "row_index": 1027
+  },
+  {
+    "id": "#1029",
+    "ja_term": "平和",
+    "tw_translation": "和平",
+    "reading": "へいわ",
+    "created_at": "2026-09-03",
+    "row_index": 1028
+  },
+  {
+    "id": "#1030",
+    "ja_term": "悪趣味",
+    "tw_translation": "惡趣味/品味低劣",
+    "reading": "あくしゅみ",
+    "created_at": "2026-09-03",
+    "row_index": 1029
+  },
+  {
+    "id": "#1031",
+    "ja_term": "着信音",
+    "tw_translation": "來電鈴聲",
+    "reading": "ちゃくしんおん",
+    "created_at": "2026-09-03",
+    "row_index": 1030
+  },
+  {
+    "id": "#1032",
+    "ja_term": "指一本",
+    "tw_translation": "一根手指",
+    "reading": "ゆびいっぽん",
+    "created_at": "2026-09-03",
+    "row_index": 1031
+  },
+  {
+    "id": "#1033",
+    "ja_term": "捻挫",
+    "tw_translation": "扭傷",
+    "reading": "ねんざ",
+    "created_at": "2026-09-03",
+    "row_index": 1032
+  },
+  {
+    "id": "#1034",
+    "ja_term": "勿論",
+    "tw_translation": "當然",
+    "reading": "もちろん",
+    "created_at": "2026-09-03",
+    "row_index": 1033
+  },
+  {
+    "id": "#1035",
+    "ja_term": "記者会見",
+    "tw_translation": "記者會",
+    "reading": "きしゃかいけん",
+    "created_at": "2026-09-03",
+    "row_index": 1034
+  },
+  {
+    "id": "#1036",
+    "ja_term": "見積書",
+    "tw_translation": "報價單",
+    "reading": "みつもりしょ",
+    "created_at": "2026-09-03",
+    "row_index": 1035
+  },
+  {
+    "id": "#1037",
+    "ja_term": "欠片",
+    "tw_translation": "碎片",
+    "reading": "かけら",
+    "created_at": "2026-09-03",
+    "row_index": 1036
+  },
+  {
+    "id": "#1038",
+    "ja_term": "灰皿",
+    "tw_translation": "菸灰缸",
+    "reading": "はいざら",
+    "created_at": "2026-09-03",
+    "row_index": 1037
+  },
+  {
+    "id": "#1039",
+    "ja_term": "皿",
+    "tw_translation": "盤子",
+    "reading": "さら",
+    "created_at": "2026-09-03",
+    "row_index": 1038
+  },
+  {
+    "id": "#1040",
+    "ja_term": "個室",
+    "tw_translation": "包廂/個人房",
+    "reading": "こしつ",
+    "created_at": "2026-09-03",
+    "row_index": 1039
+  },
+  {
+    "id": "#1041",
+    "ja_term": "御馳走様",
+    "tw_translation": "謝謝招待 / 承蒙款待",
+    "reading": "ごちそうさま",
+    "created_at": "2026-09-04",
+    "row_index": 1040
+  },
+  {
+    "id": "#1042",
+    "ja_term": "存分",
+    "tw_translation": "盡情 / 充分",
+    "reading": "ぞんぶん",
+    "created_at": "2026-09-04",
+    "row_index": 1041
+  },
+  {
+    "id": "#1043",
+    "ja_term": "損得勘定",
+    "tw_translation": "利益算計 / 得失考量",
+    "reading": "そんとくかんじょう",
+    "created_at": "2026-09-04",
+    "row_index": 1042
+  },
+  {
+    "id": "#1044",
+    "ja_term": "追試",
+    "tw_translation": "補考",
+    "reading": "ついし",
+    "created_at": "2026-09-04",
+    "row_index": 1043
+  },
+  {
+    "id": "#1045",
+    "ja_term": "師匠",
+    "tw_translation": "師傅 / 老師",
+    "reading": "ししょう",
+    "created_at": "2026-09-04",
+    "row_index": 1044
+  },
+  {
+    "id": "#1046",
+    "ja_term": "決着",
+    "tw_translation": "解決 / 結論 / 決定勝負",
+    "reading": "けっちゃく",
+    "created_at": "2026-09-04",
+    "row_index": 1045
+  },
+  {
+    "id": "#1047",
+    "ja_term": "相合傘",
+    "tw_translation": "兩人共撐一把傘",
+    "reading": "あいあいがさ",
+    "created_at": "2026-09-04",
+    "row_index": 1046
+  },
+  {
+    "id": "#1048",
+    "ja_term": "領収書",
+    "tw_translation": "收據",
+    "reading": "りょうしゅうしょ",
+    "created_at": "2026-09-04",
+    "row_index": 1047
+  },
+  {
+    "id": "#1049",
+    "ja_term": "音声入力",
+    "tw_translation": "語音輸入",
+    "reading": "おんせいにゅうりょく",
+    "created_at": "2026-09-04",
+    "row_index": 1048
+  },
+  {
+    "id": "#1050",
+    "ja_term": "電卓",
+    "tw_translation": "計算機",
+    "reading": "でんたく",
+    "created_at": "2026-09-04",
+    "row_index": 1049
+  },
+  {
+    "id": "#1051",
+    "ja_term": "連絡先",
+    "tw_translation": "聯絡方式",
+    "reading": "れんらくさき",
+    "created_at": "2026-09-04",
+    "row_index": 1050
+  },
+  {
+    "id": "#1052",
+    "ja_term": "台湾坊主",
+    "tw_translation": "台灣低氣壓（氣象用語）",
+    "reading": "たいわんぼうず",
+    "created_at": "2026-09-04",
+    "row_index": 1051
+  },
+  {
+    "id": "#1053",
+    "ja_term": "大統領",
+    "tw_translation": "總統",
+    "reading": "だいとうりょう",
+    "created_at": "2026-09-04",
+    "row_index": 1052
+  },
+  {
+    "id": "#1054",
+    "ja_term": "米軍",
+    "tw_translation": "美軍",
+    "reading": "べいぐん",
+    "created_at": "2026-09-04",
+    "row_index": 1053
+  },
+  {
+    "id": "#1055",
+    "ja_term": "国際連合",
+    "tw_translation": "聯合國",
+    "reading": "こくさいれんごう",
+    "created_at": "2026-09-04",
+    "row_index": 1054
+  },
+  {
+    "id": "#1056",
+    "ja_term": "場合",
+    "tw_translation": "場合 / 情況",
+    "reading": "ばあい",
+    "created_at": "2026-09-04",
+    "row_index": 1055
+  },
+  {
+    "id": "#1057",
+    "ja_term": "場所",
+    "tw_translation": "場所 / 地方",
+    "reading": "ばしょ",
+    "created_at": "2026-09-04",
+    "row_index": 1056
+  },
+  {
+    "id": "#1058",
+    "ja_term": "惑星",
+    "tw_translation": "行星",
+    "reading": "わくせい",
+    "created_at": "2026-09-04",
+    "row_index": 1057
+  },
+  {
+    "id": "#1059",
+    "ja_term": "枠連",
+    "tw_translation": "括號連贏（賽馬等投注）",
+    "reading": "わくれん",
+    "created_at": "2026-09-04",
+    "row_index": 1058
+  },
+  {
+    "id": "#1060",
+    "ja_term": "奨学金",
+    "tw_translation": "獎學金",
+    "reading": "しょうがくきん",
+    "created_at": "2026-09-04",
+    "row_index": 1059
+  },
+  {
+    "id": "#1061",
+    "ja_term": "返済不要",
+    "tw_translation": "無須償還 / 不用還款",
+    "reading": "へんさいふよう",
+    "created_at": "2026-09-04",
+    "row_index": 1060
+  },
+  {
+    "id": "#1062",
+    "ja_term": "決算書",
+    "tw_translation": "決算書 / 財務報表",
+    "reading": "けっさんしょ",
+    "created_at": "2026-09-04",
+    "row_index": 1061
+  },
+  {
+    "id": "#1063",
+    "ja_term": "粉飾",
+    "tw_translation": "粉飾 / 作假帳",
+    "reading": "ふんしょく",
+    "created_at": "2026-09-04",
+    "row_index": 1062
+  },
+  {
+    "id": "#1064",
+    "ja_term": "引当金",
+    "tw_translation": "準備金 / 備抵帳款",
+    "reading": "ひきあてきん",
+    "created_at": "2026-09-04",
+    "row_index": 1063
+  },
+  {
+    "id": "#1065",
+    "ja_term": "買収",
+    "tw_translation": "收購 / 買收",
+    "reading": "ばいしゅう",
+    "created_at": "2026-09-04",
+    "row_index": 1064
+  },
+  {
+    "id": "#1066",
+    "ja_term": "逆質問",
+    "tw_translation": "反問（面試時應徵者向面試官提問）",
+    "reading": "ぎゃくしつもん",
+    "created_at": "2026-09-04",
+    "row_index": 1065
+  }
+]
