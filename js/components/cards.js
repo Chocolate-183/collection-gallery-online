@@ -113,7 +113,7 @@ export function renderCards() {
         <div class="awsui-card-top-content">
           <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${escapeHtml(rec.ja_term)}</div>
 
-          ${rec.reading ? `<span class="awsui-reading-subtext" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>` : '<span class="awsui-reading-subtext">&nbsp;</span>'}
+          ${rec.reading ? `<span class="awsui-reading-subtext" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>` : '<span class="awsui-reading-subtext">&nbsp;</span>'}
 
           <div class="awsui-card-divider"></div>
 

@@ -545,6 +545,17 @@ body {
   font-family: 'Noto Sans SC', var(--awsui-font-family);
 }
 
+/* Font override for Japanese terms */
+[data-collection="japanese-terms"] .awsui-card-header-title,
+.awsui-card-header-title[data-collection="japanese-terms"],
+[data-collection="japanese-terms"] .awsui-reading-subtext,
+.awsui-reading-subtext[data-collection="japanese-terms"],
+#modal-term-title[data-collection="japanese-terms"],
+#modal-reading-row[data-collection="japanese-terms"],
+#modal-reading-row {
+  font-family: 'Noto Sans JP', var(--awsui-font-family);
+}
+
 .awsui-reading-subtext {
   font-size: 12px;
   color: var(--awsui-color-text-body-secondary);

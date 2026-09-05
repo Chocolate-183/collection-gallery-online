@@ -80,4 +80,6 @@ test('ID and Date Monospace Font Styling Configuration', async () => {
   assert(css.includes('--awsui-font-mono'));
   assert(css.includes('#modal-created-at'));
   assert(css.includes('#modal-id'));
+  assert(css.includes('[data-collection="japanese-terms"]'));
+  assert(css.includes("'Noto Sans JP'"));
 });

@@ -21,6 +21,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     titleElem.setAttribute('data-collection', currentCollectionId || '');
   }
   if (readingElem) {
+    readingElem.setAttribute('data-collection', currentCollectionId || '');
     if (rec.reading) {
       readingElem.innerText = rec.reading;
       readingElem.style.display = 'block';
