@@ -103,7 +103,7 @@
       </div>
 
       <div class="awsui-side-nav-section" style="margin-top: 16px;">
-        <div class="awsui-side-nav-header">SYSTEM</div>
+        <div class="awsui-side-nav-header">INFO</div>
         <nav class="awsui-side-nav-menu">
           <button class="awsui-nav-link" id="nav-about" type="button" onclick="switchView('about', event)">
             <svg class="awsui-icon" viewBox="0 0 16 16">
@@ -233,13 +233,13 @@
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
               </span>
-              <input type="text" id="search-input" class="awsui-input" placeholder="搜尋展品名稱、標音或說明..." oninput="onSearchInput()">
+              <input type="text" id="search-input" class="awsui-input" placeholder="在展廳內探索..." oninput="onSearchInput()">
             </div>
 
             <div>
               <select id="sort-select" class="awsui-select" onchange="onFilterChange()">
-                <option value="reading-asc" selected>展品排序（正序）</option>
-                <option value="reading-desc">展品排序（倒序）</option>
+                <option value="reading-asc" selected>陳列順序（正序）</option>
+                <option value="reading-desc">陳列順序（倒序）</option>
               </select>
             </div>
 
@@ -261,8 +261,8 @@
               <span class="awsui-filter-label" id="quick-tabs-label">展品篩選：</span>
               <div class="awsui-tabs" id="kana-tabs">
                 <button class="awsui-tab" onclick="selectKanaTab('ALL', this)">全部展品</button>
-                <button class="awsui-tab active" onclick="selectKanaTab('RANDOM10', this)">隨機10件</button>
-                <button class="awsui-tab" onclick="selectKanaTab('LATEST10', this)">最新10件</button>
+                <button class="awsui-tab active" onclick="selectKanaTab('RANDOM10', this)">隨機探索</button>
+                <button class="awsui-tab" onclick="selectKanaTab('LATEST10', this)">最新展出</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('あ', this)">あ行</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('か', this)">か行</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('さ', this)">さ行</button>
@@ -278,7 +278,7 @@
 
             <!-- Length Filter Tabs -->
             <div class="awsui-filter-tabs-row">
-              <span class="awsui-filter-label">依字數檢索：</span>
+              <span class="awsui-filter-label">字數篩選：</span>
               <div class="awsui-tabs" id="length-tabs">
                 <button class="awsui-tab active" onclick="selectLengthTab('ALL', this)">不限</button>
                 <button class="awsui-tab" onclick="selectLengthTab('1', this)">1字</button>
@@ -403,7 +403,7 @@
   </div>
 
   <div class="awsui-toast" id="toast">
-    <span id="toast-msg">已同步最新展品</span>
+    <span id="toast-msg">展間內容已更新</span>
   </div>
 
   <!-- Main Application ES Module Entry Point -->

@@ -150,7 +150,7 @@ test('Quick Filter Label and Latest 10 Selection', async () => {
 
   // Verify label is updated to "展品篩選："
   assert(html.includes('id="quick-tabs-label">展品篩選：</span>'));
-  assert(html.includes("selectKanaTab('LATEST10', this)\">最新10件</button>"));
+  assert(html.includes("selectKanaTab('LATEST10', this)\">最新展出</button>"));
   assert(sidebarJs.includes("quickTabsLabel.innerText = '展品篩選：'"));
 
   // Verify LATEST10 sorting and slicing logic
@@ -194,29 +194,9 @@ test('Kana Reading Display and Toggle Removal', async () => {
 
 test('Empty State Card - Render Notice when Word Not Found via Search or URL', async () => {
   // Test message generation logic matching cards.js
-  const getEmptyStateMessage = (collectionName, targetWord) => {
-    return targetWord
-      ? `${collectionName} 展廳暫無 ${targetWord}`
-      : `${collectionName} 展廳暫無符合條件的展品`;
-  };
+  const getEmptyStateMessage = () => '尚無相符展品';
 
-  // Case 1: Search query with invalid word
-  assert.equal(
-    getEmptyStateMessage('日本特色詞彙', '不存在的詞'),
-    '日本特色詞彙 展廳暫無 不存在的詞'
-  );
-
-  // Case 2: URL invalid term
-  assert.equal(
-    getEmptyStateMessage('大陸特色詞彙', 'InvalidWord123'),
-    '大陸特色詞彙 展廳暫無 InvalidWord123'
-  );
-
-  // Case 3: Empty query / filter mismatch fallback
-  assert.equal(
-    getEmptyStateMessage('日本特色詞彙', ''),
-    '日本特色詞彙 展廳暫無符合條件的展品'
-  );
+  assert.equal(getEmptyStateMessage(), '尚無相符展品');
 });
 
 test('Empty State Card - DOM Rendering in card-grid', async () => {
@@ -248,7 +228,7 @@ test('Empty State Card - DOM Rendering in card-grid', async () => {
   renderCards();
 
   assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('日本特色詞彙 展廳暫無 <span class="awsui-empty-highlight">神奇寶貝</span>'));
+  assert(mockContainer.innerHTML.includes('尚無相符展品'));
 
   // Test Case 2: Search Query in China Terms
   store.set({
@@ -262,7 +242,7 @@ test('Empty State Card - DOM Rendering in card-grid', async () => {
   renderCards();
 
   assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('大陸特色詞彙 展廳暫無 <span class="awsui-empty-highlight">88888</span>'));
+  assert(mockContainer.innerHTML.includes('尚無相符展品'));
 
   if (originalGetElementById) {
     global.document.getElementById = originalGetElementById;

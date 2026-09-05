@@ -52,23 +52,13 @@ export function renderCards() {
   if (counter) counter.innerText = `(${filteredRecords.length})`;
 
   if (filteredRecords.length === 0) {
-    const { searchQuery, invalidTerm } = store.get();
-    const col = collectionsConfig[currentCollectionId];
-    const meta = col ? col.meta || col.defaultMeta : null;
-    const collectionName = meta && meta.title ? meta.title : (col ? col.name : currentCollectionId || 'Collection');
-
-    const targetWord = invalidTerm || searchQuery;
-    const messageText = targetWord
-      ? `${escapeHtml(collectionName)} 展廳暫無 <span class="awsui-empty-highlight">${escapeHtml(targetWord)}</span>`
-      : `${escapeHtml(collectionName)} 展廳暫無符合條件的展品`;
-
     container.innerHTML = `
       <div class="awsui-card awsui-empty-card">
         <svg class="awsui-icon awsui-icon-lg" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
         <div class="awsui-empty-title">
-          ${messageText}
+          尚無相符展品
         </div>
       </div>
     `;
