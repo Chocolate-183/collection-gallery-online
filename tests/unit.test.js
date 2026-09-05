@@ -150,7 +150,7 @@ test('Quick Filter Label and Latest 10 Selection', async () => {
 
   // Verify label is updated to "展品篩選："
   assert(html.includes('id="quick-tabs-label">展品篩選：</span>'));
-  assert(html.includes("selectKanaTab('LATEST10', this)\">最新展出</button>"));
+  assert(html.includes("selectKanaTab('LATEST10', this)\">新進展品</button>"));
   assert(sidebarJs.includes("quickTabsLabel.innerText = '展品篩選：'"));
 
   // Verify LATEST10 sorting and slicing logic

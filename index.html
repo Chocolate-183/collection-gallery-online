@@ -130,7 +130,7 @@
         <section class="awsui-welcome-hero">
           <h1 class="awsui-hero-title">Welcome to Collection Gallery Online !</h1>
           <p class="awsui-hero-description">
-            Collection Gallery Online 致力於打造沉浸式線上展廳。精選多元主題展區，呈現豐富的語言文化展覽，邀請您細細品味與探索。
+            CGO 致力於打造沉浸式線上展廳，邀請您細細品味與探索
           </p>
           <div class="awsui-hero-actions">
             <button class="awsui-btn awsui-btn-primary" type="button" onclick="switchCollection('japanese-terms')">
@@ -155,7 +155,7 @@
         <section class="awsui-welcome-section">
           <div class="awsui-welcome-section-header">
             <h2 class="awsui-welcome-section-title">精選展廳</h2>
-            <p class="awsui-welcome-section-subtitle">點擊下方展區卡片，開啟沉浸式線上觀展體驗</p>
+            <p class="awsui-welcome-section-subtitle">點擊即可進入展廳</p>
           </div>
 
           <div class="awsui-welcome-grid">
@@ -209,7 +209,7 @@
             <p class="awsui-header-subtitle" id="collection-header-subtitle" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin-top: 4px;"></p>
           </div>
           <div class="awsui-kpi-box">
-            <div class="awsui-kpi-label">展品數量</div>
+            <div class="awsui-kpi-label">展件總數</div>
             <div class="awsui-kpi-val" id="kpi-total-count">--</div>
           </div>
         </section>
@@ -220,7 +220,7 @@
           <!-- Cards Header -->
           <div class="awsui-cards-collection-header">
             <div class="awsui-cards-header-title">
-              <span>展品列表</span>
+              <span>Catalog</span>
               <span class="awsui-cards-counter" id="cards-counter">(0)</span>
             </div>
           </div>
@@ -233,13 +233,13 @@
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
               </span>
-              <input type="text" id="search-input" class="awsui-input" placeholder="在展廳內探索..." oninput="onSearchInput()">
+              <input type="text" id="search-input" class="awsui-input" placeholder="尋找展件..." oninput="onSearchInput()">
             </div>
 
             <div>
               <select id="sort-select" class="awsui-select" onchange="onFilterChange()">
-                <option value="reading-asc" selected>陳列順序（正序）</option>
-                <option value="reading-desc">陳列順序（倒序）</option>
+                <option value="reading-asc" selected>觀看順序（正序）</option>
+                <option value="reading-desc">觀看順序（倒序）</option>
               </select>
             </div>
 
@@ -249,7 +249,7 @@
                 <option value="24" selected>每頁 24 件</option>
                 <option value="48">每頁 48 件</option>
                 <option value="96">每頁 96 件</option>
-                <option value="9999">展示全部展品</option>
+                <option value="9999">展示全部</option>
               </select>
             </div>
           </div>
@@ -262,7 +262,7 @@
               <div class="awsui-tabs" id="kana-tabs">
                 <button class="awsui-tab" onclick="selectKanaTab('ALL', this)">全部展品</button>
                 <button class="awsui-tab active" onclick="selectKanaTab('RANDOM10', this)">隨機探索</button>
-                <button class="awsui-tab" onclick="selectKanaTab('LATEST10', this)">最新展出</button>
+                <button class="awsui-tab" onclick="selectKanaTab('LATEST10', this)">新進展品</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('あ', this)">あ行</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('か', this)">か行</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('さ', this)">さ行</button>
