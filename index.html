@@ -75,7 +75,7 @@
             <svg class="awsui-icon" viewBox="0 0 16 16">
               <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
             </svg>
-            <span class="awsui-nav-text">展覽大廳</span>
+            <span class="awsui-nav-text">大廳</span>
           </button>
         </nav>
       </div>
@@ -110,7 +110,7 @@
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
               <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
             </svg>
-            <span class="awsui-nav-text">策展說明</span>
+            <span class="awsui-nav-text">服務台</span>
           </button>
         </nav>
       </div>
@@ -146,7 +146,7 @@
               </svg>
             </button>
             <button class="awsui-btn awsui-btn-tertiary" type="button" onclick="switchView('about', event)">
-              <span>探索策展說明</span>
+              <span>前往服務台</span>
             </button>
           </div>
         </section>
@@ -173,7 +173,7 @@
                 佈展中
               </p>
               <div class="awsui-welcome-card-footer">
-                <span class="awsui-welcome-card-action">進入展廳觀展 &rarr;</span>
+                <span class="awsui-welcome-card-action">進入展廳 &rarr;</span>
               </div>
             </div>
 
@@ -191,7 +191,7 @@
                 佈展中
               </p>
               <div class="awsui-welcome-card-footer">
-                <span class="awsui-welcome-card-action">進入展廳觀展 &rarr;</span>
+                <span class="awsui-welcome-card-action">進入展廳 &rarr;</span>
               </div>
             </div>
           </div>
@@ -209,7 +209,7 @@
             <p class="awsui-header-subtitle" id="collection-header-subtitle" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin-top: 4px;"></p>
           </div>
           <div class="awsui-kpi-box">
-            <div class="awsui-kpi-label">典藏總數</div>
+            <div class="awsui-kpi-label">展品數量</div>
             <div class="awsui-kpi-val" id="kpi-total-count">--</div>
           </div>
         </section>
@@ -245,11 +245,11 @@
 
             <div>
               <select id="pagesize-select" class="awsui-select" onchange="onPageSizeChange()">
-                <option value="12">每頁 12 件展品</option>
-                <option value="24" selected>每頁 24 件展品</option>
-                <option value="48">每頁 48 件展品</option>
-                <option value="96">每頁 96 件展品</option>
-                <option value="9999">展示全部典藏展品</option>
+                <option value="12">每頁 12 件</option>
+                <option value="24" selected>每頁 24 件</option>
+                <option value="48">每頁 48 件</option>
+                <option value="96">每頁 96 件</option>
+                <option value="9999">顯示全部展品</option>
               </select>
             </div>
           </div>
@@ -312,11 +312,11 @@
 
       </div>
 
-      <!-- VIEW 2: About / Instructions Page (說明頁) -->
+      <!-- VIEW 2: About / Instructions Page (服務台) -->
       <div id="view-about" class="awsui-view-content" style="display: none;">
 
         <section class="awsui-header">
-          <h1 class="awsui-header-title">策展資訊</h1>
+          <h1 class="awsui-header-title">服務台</h1>
         </section>
 
         <div class="awsui-about-grid">
@@ -389,7 +389,7 @@
         </button>
       </div>
       <div class="awsui-modal-body">
-        <div style="font-size: 11px; font-weight: 600; color: #687078; text-transform: uppercase; margin-bottom: 6px;">展品導覽與解說</div>
+        <div style="font-size: 11px; font-weight: 600; color: #687078; text-transform: uppercase; margin-bottom: 6px;">展品解說</div>
         <div id="modal-meaning-text"></div>
         
         <!-- Bottom Right Creation Time & ID -->

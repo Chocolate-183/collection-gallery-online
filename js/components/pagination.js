@@ -13,7 +13,7 @@ export function renderPagination(total) {
   controls.innerHTML = '';
 
   if (total === 0) {
-    if (info) info.innerText = '顯示 0 - 0 件展品 / 共 0 件展品';
+    if (info) info.innerText = '顯示 0 - 0 件 / 共 0 件';
     return;
   }
 
@@ -21,7 +21,7 @@ export function renderPagination(total) {
   const startIdx = (currentPage - 1) * pageSize + 1;
   const endIdx = Math.min(currentPage * pageSize, total);
 
-  if (info) info.innerHTML = `顯示第 <strong>${startIdx} - ${endIdx}</strong> 件 / 共 <strong>${total}</strong> 件典藏展品`;
+  if (info) info.innerHTML = `顯示第 <strong>${startIdx} - ${endIdx}</strong> 件 / 共 <strong>${total}</strong> 件`;
 
   if (totalPages <= 1) return;
 
@@ -29,7 +29,7 @@ export function renderPagination(total) {
   prevBtn.className = 'awsui-page-btn';
   prevBtn.title = '上一頁';
   prevBtn.setAttribute('aria-label', '上一頁');
-  prevBtn.innerHTML = `<svg class="awsui-icon" viewBox="0 0 16 16"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 .708 0z"/></svg>`;
+  prevBtn.innerHTML = `<svg class="awsui-icon" viewBox="0 0 16 16"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>`;
   prevBtn.disabled = currentPage === 1;
   prevBtn.onclick = () => goToPage(currentPage - 1);
   controls.appendChild(prevBtn);
