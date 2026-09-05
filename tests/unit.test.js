@@ -249,7 +249,7 @@ test('Empty State Card - DOM Rendering in card-grid', async () => {
   renderCards();
 
   assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('日本特色詞彙 沒有 神奇寶貝'));
+  assert(mockContainer.innerHTML.includes('日本特色詞彙 沒有 <span class="awsui-empty-highlight">神奇寶貝</span>'));
 
   // Test Case 2: Search Query in China Terms
   store.set({
@@ -263,7 +263,7 @@ test('Empty State Card - DOM Rendering in card-grid', async () => {
   renderCards();
 
   assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('大陸特色詞彙 沒有 88888'));
+  assert(mockContainer.innerHTML.includes('大陸特色詞彙 沒有 <span class="awsui-empty-highlight">88888</span>'));
 
   if (originalGetElementById) {
     global.document.getElementById = originalGetElementById;

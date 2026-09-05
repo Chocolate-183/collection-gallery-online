@@ -59,15 +59,15 @@ export function renderCards() {
 
     const targetWord = invalidTerm || searchQuery;
     const messageText = targetWord
-      ? `${escapeHtml(collectionName)} 沒有 ${escapeHtml(targetWord)}`
+      ? `${escapeHtml(collectionName)} 沒有 <span class="awsui-empty-highlight">${escapeHtml(targetWord)}</span>`
       : `${escapeHtml(collectionName)} 沒有 符合條件的項目`;
 
     container.innerHTML = `
-      <div class="awsui-card awsui-empty-card" style="grid-column: 1 / -1; text-align: center; padding: 48px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: auto !important; min-height: 180px !important;">
-        <svg class="awsui-icon awsui-icon-lg" style="width:36px; height:36px; fill:var(--awsui-color-text-body-secondary, #879596); margin-bottom:12px;" viewBox="0 0 16 16">
+      <div class="awsui-card awsui-empty-card">
+        <svg class="awsui-icon awsui-icon-lg" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
-        <div class="awsui-empty-title" style="font-size: 16px; font-weight: 600; color: var(--awsui-color-text-heading, #16191f);">
+        <div class="awsui-empty-title">
           ${messageText}
         </div>
       </div>

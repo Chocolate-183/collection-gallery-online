@@ -497,6 +497,41 @@ body {
   box-shadow: var(--awsui-shadow-card-hover);
 }
 
+/* Empty State Card */
+.awsui-empty-card {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto !important;
+  min-height: 180px !important;
+  background: var(--awsui-color-background-container-content);
+  border: 1px solid var(--awsui-color-border-item-default);
+  border-radius: var(--awsui-border-radius-container);
+}
+
+.awsui-empty-card .awsui-icon {
+  width: 40px;
+  height: 40px;
+  fill: var(--awsui-color-text-body-secondary);
+  margin-bottom: 12px;
+}
+
+.awsui-empty-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--awsui-color-text-body-default);
+  line-height: 1.5;
+}
+
+.awsui-empty-highlight {
+  color: var(--awsui-color-text-interactive-default);
+  font-weight: 700;
+}
+
 .awsui-card-top-content {
   display: flex;
   flex-direction: column;
@@ -1241,6 +1276,23 @@ body {
 [data-theme="dark"] .awsui-modal {
   background-color: var(--awsui-color-background-container-content);
   border-color: var(--awsui-color-border-item-default);
+}
+
+[data-theme="dark"] .awsui-empty-card {
+  background-color: var(--awsui-color-background-container-content);
+  border-color: var(--awsui-color-border-item-default);
+}
+
+[data-theme="dark"] .awsui-empty-title {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .awsui-empty-highlight {
+  color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-empty-card .awsui-icon {
+  fill: #8b949e !important;
 }
 
 [data-theme="dark"] .awsui-card-header-title {
