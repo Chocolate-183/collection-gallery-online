@@ -4,13 +4,10 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { renderPagination } from './pagination.js';
-import { openMeaningModal } from './modal.js';
 import { showToast } from './toast.js';
+import { escapeHtml } from '../utils.js';
 
-export function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-}
+export { escapeHtml };
 
 export function showLoadingState() {
   const { currentCollectionId } = store.get();

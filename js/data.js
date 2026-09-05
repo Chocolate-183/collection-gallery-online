@@ -6,7 +6,8 @@ import { store } from './state.js';
 import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
-import { showLoadingState, renderCards } from './components/cards.js';
+import { showLoadingState } from './components/cards.js';
+import { safeFetchText } from './utils.js';
 
 // Cache for storing fetched collection records & metadata
 export const collectionsCache = {};
@@ -116,22 +117,16 @@ export async function fetchCollectionMeta(col) {
 
     let fetchedMeta = null;
 
-    try {
-      const response = await fetch(csvUrl, { signal: AbortSignal.timeout(2500) });
-      if (response.ok) {
-        const text = await response.text();
-        fetchedMeta = parseMetaCSVData(text);
-      }
-    } catch (err) {}
+    const csvText = await safeFetchText(csvUrl, 2500);
+    if (csvText) {
+      fetchedMeta = parseMetaCSVData(csvText);
+    }
 
     if (!fetchedMeta || !fetchedMeta.title) {
-      try {
-        const response = await fetch(gvizUrl, { signal: AbortSignal.timeout(2500) });
-        if (response.ok) {
-          const text = await response.text();
-          fetchedMeta = parseMetaGvizResponse(text);
-        }
-      } catch (err) {}
+      const gvizText = await safeFetchText(gvizUrl, 2500);
+      if (gvizText) {
+        fetchedMeta = parseMetaGvizResponse(gvizText);
+      }
     }
 
     if (fetchedMeta && fetchedMeta.title) {
@@ -191,37 +186,31 @@ export async function fetchSingleCollection(col) {
     const gvizUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
 
     // Method 1: Try CSV export endpoint
-    try {
-      const response = await fetch(csvUrl, { signal: AbortSignal.timeout(2500) });
-      if (response.ok) {
-        const csvText = await response.text();
-        fetchedData = parseCSVData(csvText);
-      }
-    } catch (err) {}
+    const csvText = await safeFetchText(csvUrl, 2500);
+    if (csvText) {
+      fetchedData = parseCSVData(csvText);
+    }
 
     // Method 2: Try GViz endpoint as secondary fallback
     if (!fetchedData || fetchedData.length <= 5) {
-      try {
-        const response = await fetch(gvizUrl, { signal: AbortSignal.timeout(2500) });
-        if (response.ok) {
-          const text = await response.text();
-          const gvizParsed = parseGvizResponse(text, col.id);
-          if (gvizParsed && gvizParsed.length > (fetchedData ? fetchedData.length : 0)) {
-            fetchedData = gvizParsed;
-          }
+      const gvizText = await safeFetchText(gvizUrl, 2500);
+      if (gvizText) {
+        const gvizParsed = parseGvizResponse(gvizText, col.id);
+        if (gvizParsed && gvizParsed.length > (fetchedData ? fetchedData.length : 0)) {
+          fetchedData = gvizParsed;
         }
-      } catch (err) {}
+      }
     }
 
     // Method 3: Fallback to local dataset snapshot if offline or blocked
     if (!fetchedData || fetchedData.length === 0) {
-      try {
-        const fallbackPath = col.localFallback || 'data.json';
-        const response = await fetch(fallbackPath, { signal: AbortSignal.timeout(2500) });
-        if (response.ok) {
-          fetchedData = await response.json();
-        }
-      } catch (err) {}
+      const fallbackPath = col.localFallback || 'data.json';
+      const fallbackText = await safeFetchText(fallbackPath, 2500);
+      if (fallbackText) {
+        try {
+          fetchedData = JSON.parse(fallbackText);
+        } catch (err) {}
+      }
     }
   }
 

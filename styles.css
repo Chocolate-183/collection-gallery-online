@@ -1387,11 +1387,6 @@ body {
   border-color: var(--awsui-color-border-item-default);
 }
 
-[data-theme="dark"] .awsui-hero-badge {
-  background-color: rgba(77, 162, 255, 0.15);
-  color: #4da2ff;
-}
-
 [data-theme="dark"] .awsui-welcome-card-title,
 [data-theme="dark"] .awsui-welcome-card-action {
   color: #4da2ff;

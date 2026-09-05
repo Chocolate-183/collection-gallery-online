@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCSVData, parseMetaCSVData } from '../js/parser.js';
+import { parseCSVData, parseMetaCSVData, parseCSVRows, extractGvizTable } from '../js/parser.js';
 import { matchesKanaGroup } from '../js/filter.js';
+import { escapeHtml, getUnicodeLength } from '../js/utils.js';
 
 test('CSV Parser - Multiline and Escaped Quotes', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期
@@ -17,6 +18,36 @@ test('CSV Parser - Multiline and Escaped Quotes', () => {
   assert.equal(parsed[1].tw_translation, '包含"雙引號"');
 });
 
+test('CSV Helper - parseCSVRows 2D array output', () => {
+  const sampleCSV = `a,b,c\n1,"2\n3",4`;
+  const rows = parseCSVRows(sampleCSV);
+  assert.equal(rows.length, 2);
+  assert.deepEqual(rows[0], ['a', 'b', 'c']);
+  assert.deepEqual(rows[1], ['1', '2\n3', '4']);
+});
+
+test('GViz Helper - extractGvizTable extraction', () => {
+  const sampleGviz = `google.visualization.Query.setResponse({"status":"ok","table":{"cols":[{"label":"id"}],"rows":[{"c":[{"v":"1"}]}]}});`;
+  const table = extractGvizTable(sampleGviz);
+  assert.notEqual(table, null);
+  assert.equal(table.rows.length, 1);
+  assert.equal(extractGvizTable('invalid input'), null);
+});
+
+test('Utils Helper - escapeHtml', () => {
+  assert.equal(escapeHtml('<script>alert("xss")</script>'), '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
+  assert.equal(escapeHtml('Tom & Jerry'), 'Tom &amp; Jerry');
+  assert.equal(escapeHtml("It's ok"), 'It&#039;s ok');
+  assert.equal(escapeHtml(''), '');
+});
+
+test('Utils Helper - getUnicodeLength', () => {
+  assert.equal(getUnicodeLength(''), 0);
+  assert.equal(getUnicodeLength('あい'), 2);
+  assert.equal(getUnicodeLength('🌸日本'), 3);
+  assert.equal(getUnicodeLength('お疲れ様'), 4);
+});
+
 test('Kana Group Matching', () => {
   assert.equal(matchesKanaGroup('ありがとう', 'あ'), true);
   assert.equal(matchesKanaGroup('いぬ', 'あ'), true);
@@ -26,10 +57,9 @@ test('Kana Group Matching', () => {
 });
 
 test('Unicode Character Length Calculation', () => {
-  const countLen = str => [...str].length;
-  assert.equal(countLen('あい'), 2);
-  assert.equal(countLen('🌸日本'), 3);
-  assert.equal(countLen('お疲れ様'), 4);
+  assert.equal(getUnicodeLength('あい'), 2);
+  assert.equal(getUnicodeLength('🌸日本'), 3);
+  assert.equal(getUnicodeLength('お疲れ様'), 4);
 });
 
 test('Default Welcome Route Resolution', () => {
@@ -111,4 +141,3 @@ test('Prevent unexpected scroll on modal open or hash sync', () => {
   // Case 3: Same view with explicit user navigation event
   assert.equal(checkScrollCondition('welcome', { type: 'click' }), true, 'Should scroll on user click event');
 });
-

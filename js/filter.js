@@ -3,6 +3,7 @@
  */
 import { store } from './state.js';
 import { renderCards } from './components/cards.js';
+import { getUnicodeLength } from './utils.js';
 
 export function matchesKanaGroup(str, group) {
   if (!str) return false;
@@ -46,7 +47,7 @@ export function applyFiltersAndSort() {
   if (currentLengthTab !== 'ALL') {
     result = result.filter(r => {
       const term = r.ja_term || '';
-      const len = [...term].length;
+      const len = getUnicodeLength(term);
       if (currentLengthTab === '1') return len === 1;
       if (currentLengthTab === '2') return len === 2;
       if (currentLengthTab === '3') return len === 3;
