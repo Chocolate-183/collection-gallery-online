@@ -27,9 +27,7 @@ class Store {
       currentKanaTab: 'RANDOM10',
       currentLengthTab: 'ALL',
       searchQuery: '',
-      showReading: safeLocalStorage.getItem('aws_show_reading') !== null
-        ? safeLocalStorage.getItem('aws_show_reading') === 'true'
-        : true,
+      invalidTerm: null,
       currentView: 'dictionary',
       currentTheme: safeLocalStorage.getItem('aws_theme') || (prefersDarkMode() ? 'dark' : 'light'),
       isLoading: false

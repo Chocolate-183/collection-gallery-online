@@ -32,7 +32,11 @@ export function switchCollection(collectionId, updateHash = true) {
   const { currentCollectionId, allRecords } = store.get();
   const isDifferent = currentCollectionId !== collectionId;
   
-  store.set({ currentCollectionId: collectionId });
+  store.set({
+    currentCollectionId: collectionId,
+    invalidTerm: null,
+    searchQuery: ''
+  });
   const col = collectionsConfig[collectionId];
 
   const cardGrid = document.getElementById('card-grid');
@@ -48,30 +52,27 @@ export function switchCollection(collectionId, updateHash = true) {
 
   // Update Search Input Placeholder
   const searchInput = document.getElementById('search-input');
-  if (searchInput && col.searchPlaceholder) {
-    searchInput.placeholder = col.searchPlaceholder;
+  if (searchInput) {
+    searchInput.value = '';
+    if (col.searchPlaceholder) {
+      searchInput.placeholder = col.searchPlaceholder;
+    }
   }
 
-  // Toggle Kana Tabs and Reading Display Button
+  // Toggle Kana Tabs
   const kanaTabsRow = document.getElementById('kana-tabs-row');
   const quickTabsLabel = document.getElementById('quick-tabs-label');
   const kanaOnlyTabs = document.querySelectorAll('#kana-tabs .kana-only');
-  const btnToggleReading = document.getElementById('btn-toggle-reading');
 
   if (kanaTabsRow) {
     kanaTabsRow.style.display = 'flex';
   }
 
+  if (quickTabsLabel) quickTabsLabel.innerText = '展品篩選：';
   if (col.hasReading) {
-    if (quickTabsLabel) quickTabsLabel.innerText = '快速索引：';
     kanaOnlyTabs.forEach(tab => tab.style.display = 'inline-flex');
   } else {
-    if (quickTabsLabel) quickTabsLabel.innerText = '快速篩選：';
     kanaOnlyTabs.forEach(tab => tab.style.display = 'none');
-  }
-
-  if (btnToggleReading) {
-    btnToggleReading.style.display = col.hasReading ? 'inline-flex' : 'none';
   }
 
   // Update Select Dropdown
@@ -94,6 +95,10 @@ export function switchCollection(collectionId, updateHash = true) {
   // Load Collection Data
   if (isDifferent || allRecords.length === 0) {
     loadCollectionData(collectionId);
+  }
+
+  if (isDifferent) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 

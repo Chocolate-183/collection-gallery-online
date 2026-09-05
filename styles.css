@@ -4,6 +4,7 @@
 :root {
   --awsui-font-family: 'Open Sans', 'Noto Sans TC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
   --awsui-font-mono: 'Roboto Mono', monospace;
+  --awsui-font-family-monospace: 'Roboto Mono', monospace;
   
   --awsui-color-background-layout-main: #f2f3f3;
   --awsui-color-background-container-content: #ffffff;
@@ -410,30 +411,6 @@ body {
   cursor: pointer;
 }
 
-/* Icon Toggle Control Button for Reading */
-.awsui-toggle-control {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--awsui-border-radius-input);
-  border: 1px solid var(--awsui-color-border-control-default);
-  background: #ffffff;
-  color: var(--awsui-color-text-body-secondary);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.awsui-toggle-control:hover {
-  border-color: #0f6ce0;
-  color: #0f6ce0;
-}
-.awsui-toggle-control.active {
-  background: #f1f8ff;
-  border-color: #0f6ce0;
-  color: #0f6ce0;
-}
-
 /* Kana Tabs & Filter Group */
 .awsui-filter-tabs-container {
   display: flex;
@@ -445,7 +422,7 @@ body {
 .awsui-filter-tabs-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -459,7 +436,16 @@ body {
   font-weight: 600;
   color: var(--awsui-color-text-body-default);
   flex-shrink: 0;
-  min-width: 90px;
+}
+
+#length-tabs .awsui-tab {
+  min-width: 60px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .awsui-tabs {
@@ -520,6 +506,41 @@ body {
   box-shadow: var(--awsui-shadow-card-hover);
 }
 
+/* Empty State Card */
+.awsui-empty-card {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto !important;
+  min-height: 180px !important;
+  background: var(--awsui-color-background-container-content);
+  border: 1px solid var(--awsui-color-border-item-default);
+  border-radius: var(--awsui-border-radius-container);
+}
+
+.awsui-empty-card .awsui-icon {
+  width: 40px;
+  height: 40px;
+  fill: var(--awsui-color-text-body-secondary);
+  margin-bottom: 12px;
+}
+
+.awsui-empty-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--awsui-color-text-body-default);
+  line-height: 1.5;
+}
+
+.awsui-empty-highlight {
+  color: var(--awsui-color-text-interactive-default);
+  font-weight: 700;
+}
+
 .awsui-card-top-content {
   display: flex;
   flex-direction: column;
@@ -544,6 +565,17 @@ body {
   font-family: 'Noto Sans SC', var(--awsui-font-family);
 }
 
+/* Font override for Japanese terms */
+[data-collection="japanese-terms"] .awsui-card-header-title,
+.awsui-card-header-title[data-collection="japanese-terms"],
+[data-collection="japanese-terms"] .awsui-reading-subtext,
+.awsui-reading-subtext[data-collection="japanese-terms"],
+#modal-term-title[data-collection="japanese-terms"],
+#modal-reading-row[data-collection="japanese-terms"],
+#modal-reading-row {
+  font-family: 'Noto Sans JP', var(--awsui-font-family);
+}
+
 .awsui-reading-subtext {
   font-size: 12px;
   color: var(--awsui-color-text-body-secondary);
@@ -554,11 +586,11 @@ body {
   height: 18px;
 }
 
-.awsui-cards-grid.hide-reading .awsui-reading-subtext {
+[data-collection="china-terms"] .awsui-reading-subtext {
   display: none;
 }
 
-.awsui-cards-grid.hide-reading .awsui-card {
+[data-collection="china-terms"] .awsui-card {
   height: 130px;
 }
 
@@ -867,8 +899,10 @@ body {
   letter-spacing: 0.2px;
 }
 
-.awsui-modal-created-time span {
-  font-family: 'Roboto Mono', var(--awsui-font-family-monospace);
+.awsui-modal-created-time span,
+#modal-created-at,
+#modal-id {
+  font-family: var(--awsui-font-mono, 'Roboto Mono', monospace);
   color: #879596;
 }
 
@@ -1253,6 +1287,23 @@ body {
   border-color: var(--awsui-color-border-item-default);
 }
 
+[data-theme="dark"] .awsui-empty-card {
+  background-color: var(--awsui-color-background-container-content);
+  border-color: var(--awsui-color-border-item-default);
+}
+
+[data-theme="dark"] .awsui-empty-title {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .awsui-empty-highlight {
+  color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-empty-card .awsui-icon {
+  fill: #8b949e !important;
+}
+
 [data-theme="dark"] .awsui-card-header-title {
   color: #4da2ff !important;
 }
@@ -1276,18 +1327,6 @@ body {
 [data-theme="dark"] .awsui-input:focus {
   border-color: #4da2ff;
   box-shadow: 0 0 0 1px #4da2ff;
-}
-
-[data-theme="dark"] .awsui-toggle-control {
-  background-color: #111c2b;
-  border-color: var(--awsui-color-border-control-default);
-  color: var(--awsui-color-text-body-secondary);
-}
-
-[data-theme="dark"] .awsui-toggle-control.active {
-  background-color: rgba(77, 162, 255, 0.15);
-  border-color: #4da2ff;
-  color: #4da2ff;
 }
 
 [data-theme="dark"] .awsui-tab {
@@ -1356,7 +1395,9 @@ body {
 }
 
 [data-theme="dark"] .awsui-modal-created-time,
-[data-theme="dark"] .awsui-modal-created-time span {
+[data-theme="dark"] .awsui-modal-created-time span,
+[data-theme="dark"] #modal-created-at,
+[data-theme="dark"] #modal-id {
   color: #687078;
 }
 
@@ -1369,11 +1410,6 @@ body {
 [data-theme="dark"] .awsui-welcome-hero {
   background-color: var(--awsui-color-background-container-content);
   border-color: var(--awsui-color-border-item-default);
-}
-
-[data-theme="dark"] .awsui-hero-badge {
-  background-color: rgba(77, 162, 255, 0.15);
-  color: #4da2ff;
 }
 
 [data-theme="dark"] .awsui-welcome-card-title,

@@ -6,11 +6,13 @@ import { store } from './state.js';
 import { switchCollection } from './components/sidebar.js';
 import { openMeaningModal, closeDetailModal } from './components/modal.js';
 import { renderCollectionNotice } from './data.js';
+import { applyFiltersAndSort } from './filter.js';
 
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
   
-  const { currentCollectionId } = store.get();
+  const { currentView, currentCollectionId } = store.get();
+  const isViewChanged = currentView !== viewName;
   store.set({ currentView: viewName });
 
   const navWelcome = document.getElementById('nav-welcome');
@@ -91,7 +93,9 @@ export function switchView(viewName, event, updateHash = true) {
     }
   }
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (isViewChanged || !!event) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 export function handleHashRoute() {
@@ -100,6 +104,7 @@ export function handleHashRoute() {
   const { currentCollectionId, allRecords } = store.get();
 
   if (!decodedHash || decodedHash === '#' || decodedHash === '#/') {
+    store.set({ invalidTerm: null });
     switchView('welcome', null, false);
     closeDetailModal(false);
     if (location.hash !== '#/welcome') {
@@ -110,12 +115,14 @@ export function handleHashRoute() {
 
   const path = decodedHash.replace(/^#\/?/, '');
   if (!path || path === 'welcome' || path === 'home') {
+    store.set({ invalidTerm: null });
     switchView('welcome', null, false);
     closeDetailModal(false);
     return;
   }
 
   if (path === 'about') {
+    store.set({ invalidTerm: null });
     switchView('about', null, false);
     closeDetailModal(false);
     return;
@@ -123,6 +130,7 @@ export function handleHashRoute() {
 
   const parts = path.split('/').map(p => p.trim()).filter(Boolean);
   if (parts.length === 0) {
+    store.set({ invalidTerm: null });
     closeDetailModal(false);
     return;
   }
@@ -147,20 +155,31 @@ export function handleHashRoute() {
     if (termName) {
       const rec = allRecords.find(r => r.ja_term === termName || r.id === termName);
       if (rec) {
+        store.set({ invalidTerm: null });
         openMeaningModal(rec.row_index, false);
       } else {
         closeDetailModal(false);
+        store.set({ invalidTerm: termName });
+        applyFiltersAndSort();
       }
     } else {
+      const { invalidTerm } = store.get();
+      if (invalidTerm) {
+        store.set({ invalidTerm: null });
+        applyFiltersAndSort();
+      }
       closeDetailModal(false);
     }
   } else {
     switchView('dictionary', null, false);
     const rec = allRecords.find(r => r.ja_term === colKey || r.id === colKey);
     if (rec) {
+      store.set({ invalidTerm: null });
       openMeaningModal(rec.row_index, false);
     } else {
       closeDetailModal(false);
+      store.set({ invalidTerm: colKey });
+      applyFiltersAndSort();
     }
   }
 }

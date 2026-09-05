@@ -3,6 +3,7 @@
  */
 import { store } from './state.js';
 import { renderCards } from './components/cards.js';
+import { getUnicodeLength } from './utils.js';
 
 export function matchesKanaGroup(str, group) {
   if (!str) return false;
@@ -28,8 +29,18 @@ export function applyFiltersAndSort() {
     allRecords,
     searchQuery,
     currentLengthTab,
-    currentKanaTab
+    currentKanaTab,
+    invalidTerm
   } = store.get();
+
+  if (invalidTerm) {
+    store.set({
+      filteredRecords: [],
+      currentPage: 1
+    });
+    renderCards();
+    return;
+  }
 
   let result = [...allRecords];
 
@@ -46,7 +57,7 @@ export function applyFiltersAndSort() {
   if (currentLengthTab !== 'ALL') {
     result = result.filter(r => {
       const term = r.ja_term || '';
-      const len = [...term].length;
+      const len = getUnicodeLength(term);
       if (currentLengthTab === '1') return len === 1;
       if (currentLengthTab === '2') return len === 2;
       if (currentLengthTab === '3') return len === 3;
@@ -64,22 +75,34 @@ export function applyFiltersAndSort() {
       result.sort((a, b) => (a._rand10 ?? 0) - (b._rand10 ?? 0));
       result = result.slice(0, 10);
     }
+  } else if (currentKanaTab === 'LATEST10') {
+    result.sort((a, b) => {
+      const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
+      const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
+      if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) {
+        return dateB - dateA;
+      }
+      return (b.row_index ?? 0) - (a.row_index ?? 0);
+    });
+    result = result.slice(0, 10);
   } else if (currentKanaTab !== 'ALL') {
     result = result.filter(r => matchesKanaGroup(r.reading || r.ja_term, currentKanaTab));
   }
 
-  const sortSelect = document.getElementById('sort-select');
-  const sortType = sortSelect ? sortSelect.value : 'reading-asc';
-  if (sortType === 'reading-asc') {
-    result.sort((a, b) => (a.reading || a.ja_term).localeCompare(b.reading || b.ja_term, 'ja'));
-  } else if (sortType === 'reading-desc') {
-    result.sort((a, b) => (b.reading || b.ja_term).localeCompare(a.reading || a.ja_term, 'ja'));
-  } else if (sortType === 'ja-asc') {
-    result.sort((a, b) => a.ja_term.localeCompare(b.ja_term, 'ja'));
-  } else if (sortType === 'ja-desc') {
-    result.sort((a, b) => b.ja_term.localeCompare(a.ja_term, 'ja'));
-  } else if (sortType === 'id-asc') {
-    result.sort((a, b) => a.row_index - b.row_index);
+  if (currentKanaTab !== 'LATEST10') {
+    const sortSelect = document.getElementById('sort-select');
+    const sortType = sortSelect ? sortSelect.value : 'reading-asc';
+    if (sortType === 'reading-asc') {
+      result.sort((a, b) => (a.reading || a.ja_term).localeCompare(b.reading || b.ja_term, 'ja'));
+    } else if (sortType === 'reading-desc') {
+      result.sort((a, b) => (b.reading || b.ja_term).localeCompare(a.reading || a.ja_term, 'ja'));
+    } else if (sortType === 'ja-asc') {
+      result.sort((a, b) => a.ja_term.localeCompare(b.ja_term, 'ja'));
+    } else if (sortType === 'ja-desc') {
+      result.sort((a, b) => b.ja_term.localeCompare(a.ja_term, 'ja'));
+    } else if (sortType === 'id-asc') {
+      result.sort((a, b) => a.row_index - b.row_index);
+    }
   }
 
   store.set({
@@ -93,7 +116,7 @@ export function applyFiltersAndSort() {
 export function onSearchInput() {
   const input = document.getElementById('search-input');
   const query = input ? input.value.trim() : '';
-  store.set({ searchQuery: query });
+  store.set({ searchQuery: query, invalidTerm: null });
   applyFiltersAndSort();
 }
 
@@ -105,7 +128,7 @@ export function selectKanaTab(tab, element) {
   if (tab === 'RANDOM10') {
     store.reshuffleRandom10();
   }
-  store.set({ currentKanaTab: tab });
+  store.set({ currentKanaTab: tab, invalidTerm: null });
 
   const pills = document.querySelectorAll('#kana-tabs .awsui-tab');
   pills.forEach(p => p.classList.remove('active'));
@@ -117,7 +140,7 @@ export function selectKanaTab(tab, element) {
 }
 
 export function selectLengthTab(tab, element) {
-  store.set({ currentLengthTab: tab });
+  store.set({ currentLengthTab: tab, invalidTerm: null });
 
   const pills = document.querySelectorAll('#length-tabs .awsui-tab');
   pills.forEach(p => p.classList.remove('active'));
