@@ -52,11 +52,10 @@ export function switchCollection(collectionId, updateHash = true) {
     searchInput.placeholder = col.searchPlaceholder;
   }
 
-  // Toggle Kana Tabs and Reading Display Button
+  // Toggle Kana Tabs
   const kanaTabsRow = document.getElementById('kana-tabs-row');
   const quickTabsLabel = document.getElementById('quick-tabs-label');
   const kanaOnlyTabs = document.querySelectorAll('#kana-tabs .kana-only');
-  const btnToggleReading = document.getElementById('btn-toggle-reading');
 
   if (kanaTabsRow) {
     kanaTabsRow.style.display = 'flex';
@@ -67,10 +66,6 @@ export function switchCollection(collectionId, updateHash = true) {
     kanaOnlyTabs.forEach(tab => tab.style.display = 'inline-flex');
   } else {
     kanaOnlyTabs.forEach(tab => tab.style.display = 'none');
-  }
-
-  if (btnToggleReading) {
-    btnToggleReading.style.display = col.hasReading ? 'inline-flex' : 'none';
   }
 
   // Update Select Dropdown

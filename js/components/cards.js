@@ -4,7 +4,6 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { renderPagination } from './pagination.js';
-import { showToast } from './toast.js';
 import { escapeHtml } from '../utils.js';
 
 export { escapeHtml };
@@ -39,37 +38,6 @@ export function showLoadingState() {
         <p style="font-size: 13px; margin: 0; opacity: 0.8;">請稍候，正在同步最新資料</p>
       </div>
     `;
-  }
-}
-
-export function toggleReadingDisplay() {
-  const { showReading } = store.get();
-  const nextShowReading = !showReading;
-  localStorage.setItem('aws_show_reading', nextShowReading);
-  store.set({ showReading: nextShowReading });
-  updateReadingToggleUI();
-  showToast(nextShowReading ? '已顯示標音/副標題' : '已隱藏標音/副標題');
-}
-
-export function updateReadingToggleUI() {
-  const { showReading, currentCollectionId } = store.get();
-  const btn = document.getElementById('btn-toggle-reading');
-  const grid = document.getElementById('card-grid');
-  const col = collectionsConfig[currentCollectionId];
-
-  if (col && !col.hasReading) {
-    if (grid) grid.classList.add('hide-reading');
-    return;
-  }
-  
-  if (showReading) {
-    if (btn) btn.classList.add('active');
-    if (btn) btn.setAttribute('title', '隱藏標音/副標題');
-    if (grid) grid.classList.remove('hide-reading');
-  } else {
-    if (btn) btn.classList.remove('active');
-    if (btn) btn.setAttribute('title', '顯示標音/副標題');
-    if (grid) grid.classList.add('hide-reading');
   }
 }
 
@@ -131,5 +99,4 @@ export function renderCards() {
   });
 
   renderPagination(total);
-  updateReadingToggleUI();
 }

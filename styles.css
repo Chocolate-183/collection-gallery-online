@@ -411,30 +411,6 @@ body {
   cursor: pointer;
 }
 
-/* Icon Toggle Control Button for Reading */
-.awsui-toggle-control {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--awsui-border-radius-input);
-  border: 1px solid var(--awsui-color-border-control-default);
-  background: #ffffff;
-  color: var(--awsui-color-text-body-secondary);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.awsui-toggle-control:hover {
-  border-color: #0f6ce0;
-  color: #0f6ce0;
-}
-.awsui-toggle-control.active {
-  background: #f1f8ff;
-  border-color: #0f6ce0;
-  color: #0f6ce0;
-}
-
 /* Kana Tabs & Filter Group */
 .awsui-filter-tabs-container {
   display: flex;
@@ -566,11 +542,11 @@ body {
   height: 18px;
 }
 
-.awsui-cards-grid.hide-reading .awsui-reading-subtext {
+[data-collection="china-terms"] .awsui-reading-subtext {
   display: none;
 }
 
-.awsui-cards-grid.hide-reading .awsui-card {
+[data-collection="china-terms"] .awsui-card {
   height: 130px;
 }
 
@@ -1290,18 +1266,6 @@ body {
 [data-theme="dark"] .awsui-input:focus {
   border-color: #4da2ff;
   box-shadow: 0 0 0 1px #4da2ff;
-}
-
-[data-theme="dark"] .awsui-toggle-control {
-  background-color: #111c2b;
-  border-color: var(--awsui-color-border-control-default);
-  color: var(--awsui-color-text-body-secondary);
-}
-
-[data-theme="dark"] .awsui-toggle-control.active {
-  background-color: rgba(77, 162, 255, 0.15);
-  border-color: #4da2ff;
-  color: #4da2ff;
 }
 
 [data-theme="dark"] .awsui-tab {

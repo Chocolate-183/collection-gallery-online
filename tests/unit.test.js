@@ -178,3 +178,18 @@ test('Quick Filter Label and Latest 10 Selection', async () => {
   assert.equal(sorted[3].id, '5');
   assert.equal(sorted[4].id, '1');
 });
+
+test('Kana Reading Display and Toggle Removal', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { resolve } = await import('node:path');
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const cardsJs = readFileSync(resolve('js/components/cards.js'), 'utf-8');
+
+  // Verify toggle button and class removal
+  assert(!html.includes('id="btn-toggle-reading"'), 'btn-toggle-reading should be removed from index.html');
+  assert(!css.includes('.awsui-toggle-control'), '.awsui-toggle-control should be removed from styles.css');
+  assert(!cardsJs.includes('toggleReadingDisplay'), 'toggleReadingDisplay should be removed from cards.js');
+  assert(!cardsJs.includes('updateReadingToggleUI'), 'updateReadingToggleUI should be removed from cards.js');
+});
+
