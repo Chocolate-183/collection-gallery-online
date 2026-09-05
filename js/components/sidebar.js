@@ -62,11 +62,10 @@ export function switchCollection(collectionId, updateHash = true) {
     kanaTabsRow.style.display = 'flex';
   }
 
+  if (quickTabsLabel) quickTabsLabel.innerText = '快速篩選：';
   if (col.hasReading) {
-    if (quickTabsLabel) quickTabsLabel.innerText = '快速索引：';
     kanaOnlyTabs.forEach(tab => tab.style.display = 'inline-flex');
   } else {
-    if (quickTabsLabel) quickTabsLabel.innerText = '快速篩選：';
     kanaOnlyTabs.forEach(tab => tab.style.display = 'none');
   }
 

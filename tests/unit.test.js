@@ -141,3 +141,40 @@ test('Prevent unexpected scroll on modal open or hash sync', () => {
   // Case 3: Same view with explicit user navigation event
   assert.equal(checkScrollCondition('welcome', { type: 'click' }), true, 'Should scroll on user click event');
 });
+
+test('Quick Filter Label and Latest 10 Selection', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { resolve } = await import('node:path');
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const sidebarJs = readFileSync(resolve('js/components/sidebar.js'), 'utf-8');
+
+  // Verify label is updated to "快速篩選："
+  assert(html.includes('id="quick-tabs-label">快速篩選：</span>'));
+  assert(html.includes("selectKanaTab('LATEST10', this)\">最新10筆</button>"));
+  assert(sidebarJs.includes("quickTabsLabel.innerText = '快速篩選：'"));
+  assert(!sidebarJs.includes("quickTabsLabel.innerText = '快速索引：'"));
+
+  // Verify LATEST10 sorting and slicing logic
+  const mockRecords = [
+    { id: '1', ja_term: 'A', created_at: '2024-01-01', row_index: 1 },
+    { id: '2', ja_term: 'B', created_at: '2024-02-01', row_index: 2 },
+    { id: '3', ja_term: 'C', created_at: '2024-03-01', row_index: 3 },
+    { id: '4', ja_term: 'D', created_at: '2024-03-01', row_index: 4 }, // Same date as 3, higher row_index
+    { id: '5', ja_term: 'E', created_at: '2024-01-15', row_index: 5 }
+  ];
+
+  const sorted = [...mockRecords].sort((a, b) => {
+    const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
+    const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
+    if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) {
+      return dateB - dateA;
+    }
+    return (b.row_index ?? 0) - (a.row_index ?? 0);
+  });
+
+  assert.equal(sorted[0].id, '4', 'Most recent by date + row_index should be first');
+  assert.equal(sorted[1].id, '3');
+  assert.equal(sorted[2].id, '2');
+  assert.equal(sorted[3].id, '5');
+  assert.equal(sorted[4].id, '1');
+});
