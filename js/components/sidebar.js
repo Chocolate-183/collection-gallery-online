@@ -95,6 +95,10 @@ export function switchCollection(collectionId, updateHash = true) {
   if (isDifferent || allRecords.length === 0) {
     loadCollectionData(collectionId);
   }
+
+  if (isDifferent) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 export function onCollectionSelectChange(elem) {

@@ -10,7 +10,8 @@ import { renderCollectionNotice } from './data.js';
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
   
-  const { currentCollectionId } = store.get();
+  const { currentView, currentCollectionId } = store.get();
+  const isViewChanged = currentView !== viewName;
   store.set({ currentView: viewName });
 
   const navWelcome = document.getElementById('nav-welcome');
@@ -91,7 +92,9 @@ export function switchView(viewName, event, updateHash = true) {
     }
   }
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (isViewChanged || !!event) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 export function handleHashRoute() {

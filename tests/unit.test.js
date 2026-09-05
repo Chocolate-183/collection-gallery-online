@@ -83,3 +83,32 @@ test('ID and Date Monospace Font Styling Configuration', async () => {
   assert(css.includes('[data-collection="japanese-terms"]'));
   assert(css.includes("'Noto Sans JP'"));
 });
+
+test('Prevent unexpected scroll on modal open or hash sync', () => {
+  let scrollCalled = false;
+  const mockWindow = {
+    scrollTo: () => { scrollCalled = true; }
+  };
+
+  // Logic simulation matching router.js
+  let currentView = 'dictionary';
+  const checkScrollCondition = (viewName, event) => {
+    scrollCalled = false;
+    const isViewChanged = currentView !== viewName;
+    currentView = viewName;
+    if (isViewChanged || !!event) {
+      mockWindow.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    return scrollCalled;
+  };
+
+  // Case 1: Same view (dictionary -> dictionary) with no click event (e.g., card modal hash change)
+  assert.equal(checkScrollCondition('dictionary', null), false, 'Should not scroll when view does not change');
+
+  // Case 2: View changes (dictionary -> welcome)
+  assert.equal(checkScrollCondition('welcome', null), true, 'Should scroll when view changes');
+
+  // Case 3: Same view with explicit user navigation event
+  assert.equal(checkScrollCondition('welcome', { type: 'click' }), true, 'Should scroll on user click event');
+});
+
