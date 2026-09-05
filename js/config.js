@@ -10,7 +10,7 @@ export const collectionsConfig = {
     metaGid: '1001',
     localFallback: 'data.json',
     hasReading: true,
-    searchPlaceholder: '搜尋展品名稱、標音或策展解說...',
+    searchPlaceholder: '搜尋展品名稱、標音或說明...',
     defaultMeta: {
       title: '日本特色詞彙',
       tags: ['日本文化', '流行新詞', '次文化用語'],
@@ -28,7 +28,7 @@ export const collectionsConfig = {
     metaGid: '1781155484',
     localFallback: 'china-data.json',
     hasReading: false,
-    searchPlaceholder: '搜尋展品名稱或策展解說...',
+    searchPlaceholder: '搜尋展品名稱或說明...',
     defaultMeta: {
       title: '大陸特色詞彙',
       tags: ['大陸用語', '網路流行語', '兩岸差異'],

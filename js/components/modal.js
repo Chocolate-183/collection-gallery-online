@@ -30,7 +30,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       readingElem.style.display = 'none';
     }
   }
-  if (meaningElem) meaningElem.innerText = rec.tw_translation || '（無展品解說內容）';
+  if (meaningElem) meaningElem.innerText = rec.tw_translation || '（無說明內容）';
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
 

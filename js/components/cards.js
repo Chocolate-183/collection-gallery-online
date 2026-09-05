@@ -82,11 +82,11 @@ export function renderCards() {
   const pageRecords = filteredRecords.slice(startIdx, endIdx);
 
   pageRecords.forEach(rec => {
-    const meaning = rec.tw_translation || '（無展品解說內容）';
+    const meaning = rec.tw_translation || '（無說明內容）';
     const isLongText = meaning.length > 20;
 
     const cardHtml = `
-      <div class="awsui-card" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟展品解說">
+      <div class="awsui-card" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
         <div class="awsui-card-top-content">
           <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${escapeHtml(rec.ja_term)}</div>
 
@@ -99,7 +99,7 @@ export function renderCards() {
               ${escapeHtml(meaning)}
             </div>
             ${isLongText ? `
-              <div class="awsui-expand-hint" title="瀏覽展品解說">
+              <div class="awsui-expand-hint" title="瀏覽說明">
                 <svg class="awsui-icon" style="width:12px; height:12px;" viewBox="0 0 16 16"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
               </div>
             ` : ''}
