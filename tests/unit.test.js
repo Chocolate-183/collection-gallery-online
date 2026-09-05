@@ -68,3 +68,16 @@ test('Meta Sheet CSV Parser', () => {
   assert.equal(meta.tags[0], '日本文化');
   assert.equal(meta.author, '巧克力');
 });
+
+test('ID and Date Monospace Font Styling Configuration', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { resolve } = await import('node:path');
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+
+  assert(html.includes('id="modal-created-at"'));
+  assert(html.includes('id="modal-id"'));
+  assert(css.includes('--awsui-font-mono'));
+  assert(css.includes('#modal-created-at'));
+  assert(css.includes('#modal-id'));
+});

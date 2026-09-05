@@ -4,6 +4,7 @@
 :root {
   --awsui-font-family: 'Open Sans', 'Noto Sans TC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
   --awsui-font-mono: 'Roboto Mono', monospace;
+  --awsui-font-family-monospace: 'Roboto Mono', monospace;
   
   --awsui-color-background-layout-main: #f2f3f3;
   --awsui-color-background-container-content: #ffffff;
@@ -867,8 +868,10 @@ body {
   letter-spacing: 0.2px;
 }
 
-.awsui-modal-created-time span {
-  font-family: 'Roboto Mono', var(--awsui-font-family-monospace);
+.awsui-modal-created-time span,
+#modal-created-at,
+#modal-id {
+  font-family: var(--awsui-font-mono, 'Roboto Mono', monospace);
   color: #879596;
 }
 
@@ -1356,7 +1359,9 @@ body {
 }
 
 [data-theme="dark"] .awsui-modal-created-time,
-[data-theme="dark"] .awsui-modal-created-time span {
+[data-theme="dark"] .awsui-modal-created-time span,
+[data-theme="dark"] #modal-created-at,
+[data-theme="dark"] #modal-id {
   color: #687078;
 }
 
