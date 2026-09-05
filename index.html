@@ -54,7 +54,7 @@
       </button>
 
       <!-- Icon-Only Refresh Action -->
-      <button class="awsui-icon-button" title="同步典藏展品" aria-label="同步典藏展品" onclick="loadCollectionData(window.currentCollectionId)">
+      <button class="awsui-icon-button" title="同步最新展品" aria-label="同步最新展品" onclick="loadCollectionData(window.currentCollectionId)">
         <svg class="awsui-icon" viewBox="0 0 16 16">
           <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.418A6 6 0 1 1 8 2v1z"/>
           <path d="M8 1v3.5l3-2L8 1z"/>
@@ -130,7 +130,7 @@
         <section class="awsui-welcome-hero">
           <h1 class="awsui-hero-title">Welcome to Collection Gallery Online !</h1>
           <p class="awsui-hero-description">
-            Collection Gallery Online 致力於打造沉浸式線上展廳。精選多元主題典藏，呈現豐富的語言文化展覽，邀請您細細品味與探索。
+            Collection Gallery Online 致力於打造沉浸式線上展廳。精選多元主題展區，呈現豐富的語言文化展覽，邀請您細細品味與探索。
           </p>
           <div class="awsui-hero-actions">
             <button class="awsui-btn awsui-btn-primary" type="button" onclick="switchCollection('japanese-terms')">
@@ -394,16 +394,16 @@
         
         <!-- Bottom Right Creation Time & ID -->
         <div class="awsui-modal-created-time">
-          典藏入庫時間: <span id="modal-created-at">--</span>
+          建置時間: <span id="modal-created-at">--</span>
           <span class="awsui-modal-meta-divider">|</span>
-          典藏編號: <span id="modal-id">--</span>
+          展品編號: <span id="modal-id">--</span>
         </div>
       </div>
     </div>
   </div>
 
   <div class="awsui-toast" id="toast">
-    <span id="toast-msg">已同步最新典藏展品</span>
+    <span id="toast-msg">已同步最新展品</span>
   </div>
 
   <!-- Main Application ES Module Entry Point -->

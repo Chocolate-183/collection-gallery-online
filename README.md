@@ -1,13 +1,13 @@
 # Collection Gallery Online / 線上展覽與數位藝廊平台
 
-本專案為通用型線上展覽與主題典藏檢索網頁應用程式（Collection Gallery Online），提供多展廳切換、側邊展廳導覽面板、獨立展廳與策展說明頁面、動態展品卡片矩陣、多維度動態篩選排序與展品導覽彈窗 (Modal)。
+本專案為通用型線上展覽與主題展品檢索網頁應用程式（Collection Gallery Online），提供多展廳切換、側邊展廳導覽面板、獨立展廳與策展說明頁面、動態展品卡片矩陣、多維度動態篩選排序與展品導覽彈窗 (Modal)。
 
 ## 🌟 核心功能特色
 
 1. **側邊導覽與展廳版面佈局 (App Layout & Navigation Panel)**
    - **多展廳動態切換**: 支援「日本特色詞彙展廳」與「大陸特色詞彙展廳」等多主題展區動態切換，以及「策展與展覽說明頁 (SYSTEM)」。
    - **可收折側欄**: 支援展廳導覽面板收折/展開，側欄收折時主內容區域保持全寬響應式居中。
-   - **頁面頂欄與典藏 KPI**: 整合頂部導覽列（品牌標籤、展廳切換按鈕、同步典藏展品按鈕），並於卡片標題右側顯示展品數量 KPI 數據（如 `520 件`）。
+   - **頁面頂欄與展品 KPI**: 整合頂部導覽列（品牌標籤、展廳切換按鈕、同步展品按鈕），並於卡片標題右側顯示展品數量 KPI 數據（如 `520 件`）。
 
 2. **動態資料同步與容錯備援 (Data Fetching & Fallback)**
    - **多管道 API 讀取**: 支援 Google Sheets GViz API JSON 與 CSV 格式動態匯入展品與策展詮釋資料。
@@ -16,7 +16,7 @@
 
 3. **雙色主題與沉浸式視覺體驗 (Light/Dark Mode)**
    - **展廳燈光模式**: 支援 Light Mode 與 Dark Mode 一鍵切換，預設自動跟隨系統偏好 (`prefers-color-scheme`) 並儲存於 `localStorage`。
-   - **純圖示化操作 (Icon-Only Actions)**: 採用原生 SVG Icon（燈光模式切換、典藏同步、展廳切換、Modal 關閉等），搭配清晰 Tooltip 與 Accessibility `aria-label`。
+   - **純圖示化操作 (Icon-Only Actions)**: 採用原生 SVG Icon（燈光模式切換、展品同步、展廳切換、Modal 關閉等），搭配清晰 Tooltip 與 Accessibility `aria-label`。
    - **等高展品卡片矩陣 (Uniform Card Grid)**: 嚴格等高卡片設計，標題採用專屬藍色 (`#0f6ce0` / `#4da2ff`)，解說超過 2 行自動截斷並提示點擊開啟展品詳細導覽。
 
 4. **多維度檢索與展品篩選機制 (Filter, Search & Sorting)**
@@ -27,7 +27,7 @@
 
 5. **展品詳細導覽彈窗與 Hash 路由 (Detail Modal & Hash Routing)**
    - **舒適無眩光 Modal**: 採用 Soft Gray (`#f2f3f3`) 展品導覽內容背景框，舒適不眩光。
-   - **典藏 Meta 標籤**: 彈窗右下角呈現典藏入庫時間與典藏編號 (`典藏入庫時間: YYYY-MM-DD | 典藏編號: XXX`)。
+   - **展品 Meta 標籤**: 彈窗右下角呈現建置時間與展品編號 (`建置時間: YYYY-MM-DD | 展品編號: XXX`)。
    - **Hash 路由 (Single Page Hash Routing)**: 支援純靜態伺服器（GitHub Pages / HTTP Server）直接以 `#/展廳名稱/展品名稱` 開啟指定展品 Modal，支援瀏覽器歷程紀錄與 `ESC` 快捷鍵關閉 Modal。
 
 ## 📁 專案檔案結構 (ES Modules 模組化)

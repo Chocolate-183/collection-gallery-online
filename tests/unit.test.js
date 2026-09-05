@@ -197,7 +197,7 @@ test('Empty State Card - Render Notice when Word Not Found via Search or URL', a
   const getEmptyStateMessage = (collectionName, targetWord) => {
     return targetWord
       ? `${collectionName} 展廳暫無 ${targetWord}`
-      : `${collectionName} 展廳暫無符合條件的典藏展品`;
+      : `${collectionName} 展廳暫無符合條件的展品`;
   };
 
   // Case 1: Search query with invalid word
@@ -215,7 +215,7 @@ test('Empty State Card - Render Notice when Word Not Found via Search or URL', a
   // Case 3: Empty query / filter mismatch fallback
   assert.equal(
     getEmptyStateMessage('日本特色詞彙', ''),
-    '日本特色詞彙 展廳暫無符合條件的典藏展品'
+    '日本特色詞彙 展廳暫無符合條件的展品'
   );
 });
 
