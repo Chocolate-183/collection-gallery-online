@@ -23,7 +23,7 @@
   <header class="awsui-top-navigation">
     <div class="awsui-top-nav-left">
       <!-- Toggle Side Panel Action Button -->
-      <button class="awsui-icon-button" id="btn-toggle-sidebar" title="切換導覽面板" aria-label="切換導覽面板" onclick="toggleSidebar()">
+      <button class="awsui-icon-button" id="btn-toggle-sidebar" title="切換展廳導覽面板" aria-label="切換展廳導覽面板" onclick="toggleSidebar()">
         <svg class="awsui-icon" viewBox="0 0 16 16">
           <path d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0 4.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0 4.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
         </svg>
@@ -54,7 +54,7 @@
       </button>
 
       <!-- Icon-Only Refresh Action -->
-      <button class="awsui-icon-button" title="重新載入資料" aria-label="重新載入資料" onclick="loadCollectionData(window.currentCollectionId)">
+      <button class="awsui-icon-button" title="同步典藏展品" aria-label="同步典藏展品" onclick="loadCollectionData(window.currentCollectionId)">
         <svg class="awsui-icon" viewBox="0 0 16 16">
           <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.418A6 6 0 1 1 8 2v1z"/>
           <path d="M8 1v3.5l3-2L8 1z"/>
@@ -75,7 +75,7 @@
             <svg class="awsui-icon" viewBox="0 0 16 16">
               <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
             </svg>
-            <span class="awsui-nav-text">歡迎頁面</span>
+            <span class="awsui-nav-text">展覽大廳</span>
           </button>
         </nav>
       </div>
@@ -110,7 +110,7 @@
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
               <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
             </svg>
-            <span class="awsui-nav-text">說明頁</span>
+            <span class="awsui-nav-text">策展說明</span>
           </button>
         </nav>
       </div>
@@ -130,23 +130,23 @@
         <section class="awsui-welcome-hero">
           <h1 class="awsui-hero-title">Welcome to Collection Gallery Online !</h1>
           <p class="awsui-hero-description">
-            Collection Gallery Online 致力於打造 Collection 展示空間。歡迎參觀與交流。
+            Collection Gallery Online 致力於打造沉浸式線上展廳。精選多元主題典藏，呈現豐富的語言文化展覽，邀請您細細品味與探索。
           </p>
           <div class="awsui-hero-actions">
             <button class="awsui-btn awsui-btn-primary" type="button" onclick="switchCollection('japanese-terms')">
-              <span>參觀 日本特色詞彙</span>
+              <span>進入「日本特色詞彙」展廳</span>
               <svg class="awsui-icon" viewBox="0 0 16 16">
                 <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
               </svg>
             </button>
             <button class="awsui-btn awsui-btn-normal" type="button" onclick="switchCollection('china-terms')">
-              <span>參觀 大陸特色詞彙</span>
+              <span>進入「大陸特色詞彙」展廳</span>
               <svg class="awsui-icon" viewBox="0 0 16 16">
                 <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
               </svg>
             </button>
             <button class="awsui-btn awsui-btn-tertiary" type="button" onclick="switchView('about', event)">
-              <span>查看系統說明</span>
+              <span>探索策展說明</span>
             </button>
           </div>
         </section>
@@ -154,8 +154,8 @@
         <!-- Featured Collections Grid -->
         <section class="awsui-welcome-section">
           <div class="awsui-welcome-section-header">
-            <h2 class="awsui-welcome-section-title">精選 Collection</h2>
-            <p class="awsui-welcome-section-subtitle">點擊即可進入 Collection 展示空間</p>
+            <h2 class="awsui-welcome-section-title">精選展廳</h2>
+            <p class="awsui-welcome-section-subtitle">點擊下方展區卡片，開啟沉浸式線上觀展體驗</p>
           </div>
 
           <div class="awsui-welcome-grid">
@@ -165,15 +165,15 @@
                 <div>
                   <h3 class="awsui-welcome-card-title" id="welcome-card-title-japanese-terms">日本特色詞彙</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-japanese-terms">
-                    <span class="awsui-welcome-card-tag">準備中</span>
+                    <span class="awsui-welcome-card-tag">佈展中</span>
                   </div>
                 </div>
               </div>
               <p class="awsui-welcome-card-desc" id="welcome-card-desc-japanese-terms">
-                準備中
+                佈展中
               </p>
               <div class="awsui-welcome-card-footer">
-                <span class="awsui-welcome-card-action">進入 Collection &rarr;</span>
+                <span class="awsui-welcome-card-action">進入展廳觀展 &rarr;</span>
               </div>
             </div>
 
@@ -183,15 +183,15 @@
                 <div>
                   <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms">大陸特色詞彙</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-china-terms">
-                    <span class="awsui-welcome-card-tag">準備中</span>
+                    <span class="awsui-welcome-card-tag">佈展中</span>
                   </div>
                 </div>
               </div>
               <p class="awsui-welcome-card-desc" id="welcome-card-desc-china-terms">
-                準備中
+                佈展中
               </p>
               <div class="awsui-welcome-card-footer">
-                <span class="awsui-welcome-card-action">進入 Collection &rarr;</span>
+                <span class="awsui-welcome-card-action">進入展廳觀展 &rarr;</span>
               </div>
             </div>
           </div>
@@ -209,7 +209,7 @@
             <p class="awsui-header-subtitle" id="collection-header-subtitle" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin-top: 4px;"></p>
           </div>
           <div class="awsui-kpi-box">
-            <div class="awsui-kpi-label">總筆數</div>
+            <div class="awsui-kpi-label">典藏總數</div>
             <div class="awsui-kpi-val" id="kpi-total-count">--</div>
           </div>
         </section>
@@ -220,7 +220,7 @@
           <!-- Cards Header -->
           <div class="awsui-cards-collection-header">
             <div class="awsui-cards-header-title">
-              <span>資料列表</span>
+              <span>展品列表</span>
               <span class="awsui-cards-counter" id="cards-counter">(0)</span>
             </div>
           </div>
@@ -233,23 +233,23 @@
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
               </span>
-              <input type="text" id="search-input" class="awsui-input" placeholder="搜尋標題、標音或說明內容..." oninput="onSearchInput()">
+              <input type="text" id="search-input" class="awsui-input" placeholder="搜尋展品名稱、標音或策展解說..." oninput="onSearchInput()">
             </div>
 
             <div>
               <select id="sort-select" class="awsui-select" onchange="onFilterChange()">
-                <option value="reading-asc" selected>排序（正序）</option>
-                <option value="reading-desc">排序（倒序）</option>
+                <option value="reading-asc" selected>展品排序（正序）</option>
+                <option value="reading-desc">展品排序（倒序）</option>
               </select>
             </div>
 
             <div>
               <select id="pagesize-select" class="awsui-select" onchange="onPageSizeChange()">
-                <option value="12">每頁 12 筆</option>
-                <option value="24" selected>每頁 24 筆</option>
-                <option value="48">每頁 48 筆</option>
-                <option value="96">每頁 96 筆</option>
-                <option value="9999">顯示全部筆數</option>
+                <option value="12">每頁 12 件展品</option>
+                <option value="24" selected>每頁 24 件展品</option>
+                <option value="48">每頁 48 件展品</option>
+                <option value="96">每頁 96 件展品</option>
+                <option value="9999">展示全部典藏展品</option>
               </select>
             </div>
           </div>
@@ -258,11 +258,11 @@
           <div class="awsui-filter-tabs-container">
             <!-- Kana / Quick Filter Tabs -->
             <div class="awsui-filter-tabs-row" id="kana-tabs-row">
-              <span class="awsui-filter-label" id="quick-tabs-label">快速篩選：</span>
+              <span class="awsui-filter-label" id="quick-tabs-label">展品篩選：</span>
               <div class="awsui-tabs" id="kana-tabs">
-                <button class="awsui-tab" onclick="selectKanaTab('ALL', this)">全部</button>
-                <button class="awsui-tab active" onclick="selectKanaTab('RANDOM10', this)">隨機10筆</button>
-                <button class="awsui-tab" onclick="selectKanaTab('LATEST10', this)">最新10筆</button>
+                <button class="awsui-tab" onclick="selectKanaTab('ALL', this)">全部展品</button>
+                <button class="awsui-tab active" onclick="selectKanaTab('RANDOM10', this)">隨機10件</button>
+                <button class="awsui-tab" onclick="selectKanaTab('LATEST10', this)">最新10件</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('あ', this)">あ行</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('か', this)">か行</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('さ', this)">さ行</button>
@@ -278,7 +278,7 @@
 
             <!-- Length Filter Tabs -->
             <div class="awsui-filter-tabs-row">
-              <span class="awsui-filter-label">以字數搜尋：</span>
+              <span class="awsui-filter-label">依字數檢索：</span>
               <div class="awsui-tabs" id="length-tabs">
                 <button class="awsui-tab active" onclick="selectLengthTab('ALL', this)">不限</button>
                 <button class="awsui-tab" onclick="selectLengthTab('1', this)">1字</button>
@@ -298,7 +298,7 @@
           <!-- Cards Component Pagination Footer -->
           <div class="awsui-cards-pagination-bar">
             <div class="awsui-pagination-info" id="pagination-info">
-              正在載入...
+              展廳載入中...
             </div>
             <div class="awsui-pagination-controls" id="pagination-controls">
               <!-- Page controls -->
@@ -316,7 +316,7 @@
       <div id="view-about" class="awsui-view-content" style="display: none;">
 
         <section class="awsui-header">
-          <h1 class="awsui-header-title">作者資訊</h1>
+          <h1 class="awsui-header-title">策展資訊</h1>
         </section>
 
         <div class="awsui-about-grid">
@@ -328,7 +328,7 @@
                 <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                 </svg>
-                <span>作者資訊</span>
+                <span>策展團隊</span>
               </div>
             </div>
 
@@ -341,25 +341,25 @@
                 </div>
                 <div class="awsui-author-meta">
                   <h2 class="awsui-author-name">巧克力</h2>
-                  <p class="awsui-author-subtitle">專案創作者 / Author</p>
+                  <p class="awsui-author-subtitle">首席策展人 / Chief Curator</p>
                 </div>
               </div>
 
               <div class="awsui-info-list">
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">專案作者</span>
+                  <span class="awsui-info-label">策展人</span>
                   <span class="awsui-info-value">巧克力</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">專案名稱</span>
+                  <span class="awsui-info-label">展廳名稱</span>
                   <span class="awsui-info-value">Collection Gallery Online</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">介面規範</span>
+                  <span class="awsui-info-label">展廳燈光模式</span>
                   <span class="awsui-info-value">雙色模式 (Light / Dark)</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">最新版本</span>
+                  <span class="awsui-info-label">展覽版本</span>
                   <span class="awsui-info-value"><span class="awsui-badge-beta">v2.1.0 Beta</span></span>
                 </div>
               </div>
@@ -389,21 +389,21 @@
         </button>
       </div>
       <div class="awsui-modal-body">
-        <div style="font-size: 11px; font-weight: 600; color: #687078; text-transform: uppercase; margin-bottom: 6px;">說明內容</div>
+        <div style="font-size: 11px; font-weight: 600; color: #687078; text-transform: uppercase; margin-bottom: 6px;">展品導覽與解說</div>
         <div id="modal-meaning-text"></div>
         
         <!-- Bottom Right Creation Time & ID -->
         <div class="awsui-modal-created-time">
-          created at: <span id="modal-created-at">--</span>
+          典藏入庫時間: <span id="modal-created-at">--</span>
           <span class="awsui-modal-meta-divider">|</span>
-          <span id="modal-id">--</span>
+          典藏編號: <span id="modal-id">--</span>
         </div>
       </div>
     </div>
   </div>
 
   <div class="awsui-toast" id="toast">
-    <span id="toast-msg">已更新</span>
+    <span id="toast-msg">已同步最新典藏展品</span>
   </div>
 
   <!-- Main Application ES Module Entry Point -->

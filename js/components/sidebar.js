@@ -68,7 +68,7 @@ export function switchCollection(collectionId, updateHash = true) {
     kanaTabsRow.style.display = 'flex';
   }
 
-  if (quickTabsLabel) quickTabsLabel.innerText = '快速篩選：';
+  if (quickTabsLabel) quickTabsLabel.innerText = '展品篩選：';
   if (col.hasReading) {
     kanaOnlyTabs.forEach(tab => tab.style.display = 'inline-flex');
   } else {

@@ -148,11 +148,10 @@ test('Quick Filter Label and Latest 10 Selection', async () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   const sidebarJs = readFileSync(resolve('js/components/sidebar.js'), 'utf-8');
 
-  // Verify label is updated to "快速篩選："
-  assert(html.includes('id="quick-tabs-label">快速篩選：</span>'));
-  assert(html.includes("selectKanaTab('LATEST10', this)\">最新10筆</button>"));
-  assert(sidebarJs.includes("quickTabsLabel.innerText = '快速篩選：'"));
-  assert(!sidebarJs.includes("quickTabsLabel.innerText = '快速索引：'"));
+  // Verify label is updated to "展品篩選："
+  assert(html.includes('id="quick-tabs-label">展品篩選：</span>'));
+  assert(html.includes("selectKanaTab('LATEST10', this)\">最新10件</button>"));
+  assert(sidebarJs.includes("quickTabsLabel.innerText = '展品篩選：'"));
 
   // Verify LATEST10 sorting and slicing logic
   const mockRecords = [
@@ -197,26 +196,26 @@ test('Empty State Card - Render Notice when Word Not Found via Search or URL', a
   // Test message generation logic matching cards.js
   const getEmptyStateMessage = (collectionName, targetWord) => {
     return targetWord
-      ? `${collectionName} 沒有 ${targetWord}`
-      : `${collectionName} 沒有 符合條件的項目`;
+      ? `${collectionName} 展廳暫無 ${targetWord}`
+      : `${collectionName} 展廳暫無符合條件的典藏展品`;
   };
 
   // Case 1: Search query with invalid word
   assert.equal(
     getEmptyStateMessage('日本特色詞彙', '不存在的詞'),
-    '日本特色詞彙 沒有 不存在的詞'
+    '日本特色詞彙 展廳暫無 不存在的詞'
   );
 
   // Case 2: URL invalid term
   assert.equal(
     getEmptyStateMessage('大陸特色詞彙', 'InvalidWord123'),
-    '大陸特色詞彙 沒有 InvalidWord123'
+    '大陸特色詞彙 展廳暫無 InvalidWord123'
   );
 
   // Case 3: Empty query / filter mismatch fallback
   assert.equal(
     getEmptyStateMessage('日本特色詞彙', ''),
-    '日本特色詞彙 沒有 符合條件的項目'
+    '日本特色詞彙 展廳暫無符合條件的典藏展品'
   );
 });
 
@@ -249,7 +248,7 @@ test('Empty State Card - DOM Rendering in card-grid', async () => {
   renderCards();
 
   assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('日本特色詞彙 沒有 <span class="awsui-empty-highlight">神奇寶貝</span>'));
+  assert(mockContainer.innerHTML.includes('日本特色詞彙 展廳暫無 <span class="awsui-empty-highlight">神奇寶貝</span>'));
 
   // Test Case 2: Search Query in China Terms
   store.set({
@@ -263,10 +262,9 @@ test('Empty State Card - DOM Rendering in card-grid', async () => {
   renderCards();
 
   assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('大陸特色詞彙 沒有 <span class="awsui-empty-highlight">88888</span>'));
+  assert(mockContainer.innerHTML.includes('大陸特色詞彙 展廳暫無 <span class="awsui-empty-highlight">88888</span>'));
 
   if (originalGetElementById) {
     global.document.getElementById = originalGetElementById;
   }
 });
-

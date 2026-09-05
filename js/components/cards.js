@@ -14,17 +14,17 @@ export function showLoadingState() {
 
   const totalElem = document.getElementById('kpi-total-count');
   if (totalElem) {
-    totalElem.innerHTML = `-- <span class="awsui-kpi-unit">筆</span>`;
+    totalElem.innerHTML = `-- <span class="awsui-kpi-unit">件</span>`;
   }
 
   const counter = document.getElementById('cards-counter');
-  if (counter) counter.innerText = '(載入中...)';
+  if (counter) counter.innerText = '(展廳載入中...)';
 
   const badgeElem = document.getElementById(`side-nav-count-${currentCollectionId}`);
   if (badgeElem) badgeElem.innerText = '...';
 
   const info = document.getElementById('pagination-info');
-  if (info) info.innerText = '正在載入...';
+  if (info) info.innerText = '展廳載入中...';
 
   const controls = document.getElementById('pagination-controls');
   if (controls) controls.innerHTML = '';
@@ -34,8 +34,8 @@ export function showLoadingState() {
     container.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--awsui-color-text-body-secondary, #5f6b7a);">
         <div class="awsui-spinner" style="margin: 0 auto 16px auto;"></div>
-        <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 4px 0; color: var(--awsui-color-text-heading, #16191f);">正在載入...</h3>
-        <p style="font-size: 13px; margin: 0; opacity: 0.8;">請稍候，正在同步最新資料</p>
+        <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 4px 0; color: var(--awsui-color-text-heading, #16191f);">展廳載入中...</h3>
+        <p style="font-size: 13px; margin: 0; opacity: 0.8;">請稍候，策展團隊正在佈展與同步典藏展品</p>
       </div>
     `;
   }
@@ -59,8 +59,8 @@ export function renderCards() {
 
     const targetWord = invalidTerm || searchQuery;
     const messageText = targetWord
-      ? `${escapeHtml(collectionName)} 沒有 <span class="awsui-empty-highlight">${escapeHtml(targetWord)}</span>`
-      : `${escapeHtml(collectionName)} 沒有 符合條件的項目`;
+      ? `${escapeHtml(collectionName)} 展廳暫無 <span class="awsui-empty-highlight">${escapeHtml(targetWord)}</span>`
+      : `${escapeHtml(collectionName)} 展廳暫無符合條件的典藏展品`;
 
     container.innerHTML = `
       <div class="awsui-card awsui-empty-card">
@@ -82,11 +82,11 @@ export function renderCards() {
   const pageRecords = filteredRecords.slice(startIdx, endIdx);
 
   pageRecords.forEach(rec => {
-    const meaning = rec.tw_translation || '（無說明內容）';
+    const meaning = rec.tw_translation || '（無展品解說內容）';
     const isLongText = meaning.length > 20;
 
     const cardHtml = `
-      <div class="awsui-card" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊檢視詳細內容">
+      <div class="awsui-card" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟展品解說">
         <div class="awsui-card-top-content">
           <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${escapeHtml(rec.ja_term)}</div>
 
@@ -95,11 +95,11 @@ export function renderCards() {
           <div class="awsui-card-divider"></div>
 
           <div class="awsui-meaning-wrapper">
-            <div class="awsui-meaning-value" title="點擊查看完整內容">
+            <div class="awsui-meaning-value" title="點擊瀏覽完整展品導覽">
               ${escapeHtml(meaning)}
             </div>
             ${isLongText ? `
-              <div class="awsui-expand-hint" title="檢視完整內容">
+              <div class="awsui-expand-hint" title="瀏覽展品解說">
                 <svg class="awsui-icon" style="width:12px; height:12px;" viewBox="0 0 16 16"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
               </div>
             ` : ''}
