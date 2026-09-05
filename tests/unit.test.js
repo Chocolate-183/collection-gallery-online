@@ -248,3 +248,20 @@ test('Empty State Card - DOM Rendering in card-grid', async () => {
     global.document.getElementById = originalGetElementById;
   }
 });
+
+test('Filter UI Adjustments - Label Spacing and Length Tabs Styling', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { resolve } = await import('node:path');
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+
+  // Verify 5字+ tab text in length-tabs
+  assert(html.includes("selectLengthTab('5+', this)\">5字+</button>"));
+  assert(!html.includes("5字以上"));
+
+  // Verify CSS styles for uniform length-tabs buttons and label spacing
+  assert(css.includes('#length-tabs .awsui-tab'));
+  assert(css.includes('min-width: 60px;'));
+  assert(!css.includes('min-width: 90px;'));
+});
+

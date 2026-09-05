@@ -422,7 +422,7 @@ body {
 .awsui-filter-tabs-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -436,7 +436,16 @@ body {
   font-weight: 600;
   color: var(--awsui-color-text-body-default);
   flex-shrink: 0;
-  min-width: 90px;
+}
+
+#length-tabs .awsui-tab {
+  min-width: 60px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .awsui-tabs {
