@@ -32,7 +32,11 @@ export function switchCollection(collectionId, updateHash = true) {
   const { currentCollectionId, allRecords } = store.get();
   const isDifferent = currentCollectionId !== collectionId;
   
-  store.set({ currentCollectionId: collectionId });
+  store.set({
+    currentCollectionId: collectionId,
+    invalidTerm: null,
+    searchQuery: ''
+  });
   const col = collectionsConfig[collectionId];
 
   const cardGrid = document.getElementById('card-grid');
@@ -48,8 +52,11 @@ export function switchCollection(collectionId, updateHash = true) {
 
   // Update Search Input Placeholder
   const searchInput = document.getElementById('search-input');
-  if (searchInput && col.searchPlaceholder) {
-    searchInput.placeholder = col.searchPlaceholder;
+  if (searchInput) {
+    searchInput.value = '';
+    if (col.searchPlaceholder) {
+      searchInput.placeholder = col.searchPlaceholder;
+    }
   }
 
   // Toggle Kana Tabs

@@ -27,6 +27,7 @@ class Store {
       currentKanaTab: 'RANDOM10',
       currentLengthTab: 'ALL',
       searchQuery: '',
+      invalidTerm: null,
       currentView: 'dictionary',
       currentTheme: safeLocalStorage.getItem('aws_theme') || (prefersDarkMode() ? 'dark' : 'light'),
       isLoading: false

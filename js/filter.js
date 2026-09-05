@@ -29,8 +29,18 @@ export function applyFiltersAndSort() {
     allRecords,
     searchQuery,
     currentLengthTab,
-    currentKanaTab
+    currentKanaTab,
+    invalidTerm
   } = store.get();
+
+  if (invalidTerm) {
+    store.set({
+      filteredRecords: [],
+      currentPage: 1
+    });
+    renderCards();
+    return;
+  }
 
   let result = [...allRecords];
 
@@ -106,7 +116,7 @@ export function applyFiltersAndSort() {
 export function onSearchInput() {
   const input = document.getElementById('search-input');
   const query = input ? input.value.trim() : '';
-  store.set({ searchQuery: query });
+  store.set({ searchQuery: query, invalidTerm: null });
   applyFiltersAndSort();
 }
 
@@ -118,7 +128,7 @@ export function selectKanaTab(tab, element) {
   if (tab === 'RANDOM10') {
     store.reshuffleRandom10();
   }
-  store.set({ currentKanaTab: tab });
+  store.set({ currentKanaTab: tab, invalidTerm: null });
 
   const pills = document.querySelectorAll('#kana-tabs .awsui-tab');
   pills.forEach(p => p.classList.remove('active'));
@@ -130,7 +140,7 @@ export function selectKanaTab(tab, element) {
 }
 
 export function selectLengthTab(tab, element) {
-  store.set({ currentLengthTab: tab });
+  store.set({ currentLengthTab: tab, invalidTerm: null });
 
   const pills = document.querySelectorAll('#length-tabs .awsui-tab');
   pills.forEach(p => p.classList.remove('active'));

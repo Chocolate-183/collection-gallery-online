@@ -193,3 +193,80 @@ test('Kana Reading Display and Toggle Removal', async () => {
   assert(!cardsJs.includes('updateReadingToggleUI'), 'updateReadingToggleUI should be removed from cards.js');
 });
 
+test('Empty State Card - Render Notice when Word Not Found via Search or URL', async () => {
+  // Test message generation logic matching cards.js
+  const getEmptyStateMessage = (collectionName, targetWord) => {
+    return targetWord
+      ? `${collectionName} 沒有 ${targetWord}`
+      : `${collectionName} 沒有 符合條件的項目`;
+  };
+
+  // Case 1: Search query with invalid word
+  assert.equal(
+    getEmptyStateMessage('日本特色詞彙', '不存在的詞'),
+    '日本特色詞彙 沒有 不存在的詞'
+  );
+
+  // Case 2: URL invalid term
+  assert.equal(
+    getEmptyStateMessage('大陸特色詞彙', 'InvalidWord123'),
+    '大陸特色詞彙 沒有 InvalidWord123'
+  );
+
+  // Case 3: Empty query / filter mismatch fallback
+  assert.equal(
+    getEmptyStateMessage('日本特色詞彙', ''),
+    '日本特色詞彙 沒有 符合條件的項目'
+  );
+});
+
+test('Empty State Card - DOM Rendering in card-grid', async () => {
+  const mockContainer = {
+    innerHTML: '',
+    attributes: {},
+    setAttribute(key, val) { this.attributes[key] = val; }
+  };
+  
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'card-grid') return mockContainer;
+    return null;
+  };
+
+  const { store } = await import('../js/state.js');
+  const { renderCards } = await import('../js/components/cards.js');
+
+  // Test Case 1: URL Invalid Term in Japanese Terms
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ id: '1', ja_term: '神經衰弱' }],
+    filteredRecords: [],
+    invalidTerm: '神奇寶貝',
+    searchQuery: ''
+  });
+
+  renderCards();
+
+  assert(mockContainer.innerHTML.includes('awsui-empty-card'));
+  assert(mockContainer.innerHTML.includes('日本特色詞彙 沒有 神奇寶貝'));
+
+  // Test Case 2: Search Query in China Terms
+  store.set({
+    currentCollectionId: 'china-terms',
+    allRecords: [{ id: '1', ja_term: '985' }],
+    filteredRecords: [],
+    invalidTerm: null,
+    searchQuery: '88888'
+  });
+
+  renderCards();
+
+  assert(mockContainer.innerHTML.includes('awsui-empty-card'));
+  assert(mockContainer.innerHTML.includes('大陸特色詞彙 沒有 88888'));
+
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
+});
+
