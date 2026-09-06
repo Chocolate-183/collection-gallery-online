@@ -1359,11 +1359,8 @@ body {
   border-left-color: #4da2ff;
 }
 
-[data-theme="dark"] .awsui-nav-id,
-[data-theme="dark"] .awsui-gallery-header-id {
-  color: #93c5fd;
-  background-color: #1e293b;
-  border-color: #334155;
+[data-theme="dark"] #collection-header-id {
+  color: #4da2ff !important;
 }
 
 [data-theme="dark"] .awsui-nav-badge {

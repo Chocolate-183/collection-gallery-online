@@ -426,15 +426,15 @@ test('Google Sheets Config URL Builders', async () => {
   assert.equal(metaUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.metaGid}`);
 });
 
-test('Sidebar Section Header GALLERYS & ID Element', async () => {
+test('Sidebar Section Header GALLERYS & Removed Sidebar ID Element', async () => {
   const { readFileSync } = await import('node:fs');
   const { resolve } = await import('node:path');
   const html = readFileSync(resolve('index.html'), 'utf-8');
 
   assert(html.includes('<div class="awsui-side-nav-header">GALLERYS</div>'));
   assert(!html.includes('<div class="awsui-side-nav-header">COLLECTIONS</div>'));
-  assert(html.includes('id="side-nav-id-japanese-terms">C101</span>'));
-  assert(html.includes('id="side-nav-id-china-terms">C102</span>'));
+  assert(!html.includes('id="side-nav-id-japanese-terms"'));
+  assert(!html.includes('id="side-nav-id-china-terms"'));
 });
 
 test('Meta Sheet CSV Parser - Parse ID Field', () => {
@@ -449,37 +449,19 @@ ID,C101
   assert.equal(meta.id, 'C101');
 });
 
-test('Sidebar Gallery ID Rendering Logic', async () => {
-  const mockIdEl = { innerText: '' };
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'side-nav-id-japanese-terms') return mockIdEl;
-    return null;
-  };
-
-  const { collectionsMetaCache } = await import('../js/data.js');
-  const { updateSidebarId } = await import('../js/components/sidebar.js');
-
-  collectionsMetaCache['japanese-terms'] = {
-    title: '日本特色詞彙',
-    id: 'C101'
-  };
-  updateSidebarId('japanese-terms');
-  assert.equal(mockIdEl.innerText, 'C101');
-
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
-});
-
-test('Gallery Page Header ID Element in HTML', async () => {
+test('Gallery Page Header ID Panel Left of Total Items', async () => {
   const { readFileSync } = await import('node:fs');
   const { resolve } = await import('node:path');
   const html = readFileSync(resolve('index.html'), 'utf-8');
 
-  assert(html.includes('id="collection-header-id">C101</span>'));
-  assert(!html.includes('id="welcome-card-id-japanese-terms"'));
+  assert(html.includes('id="collection-header-id"'));
+  assert(html.includes('展廳編號'));
+  assert(html.includes('展品總數'));
+
+  const idPos = html.indexOf('展廳編號');
+  const countPos = html.indexOf('展品總數');
+  assert(idPos !== -1 && countPos !== -1);
+  assert(idPos < countPos, 'Gallery ID panel ("展廳編號") must be positioned to the left of Total Items ("展品總數")');
 });
 
 
