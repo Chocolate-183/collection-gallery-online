@@ -28,7 +28,7 @@ export function getUnicodeLength(str) {
 }
 
 export const OPENING_HOURS_SCHEDULE = [
-  { day: '週日', hours: '06:00 - 23:55' },
+  { day: '週日', hours: '16:00 - 23:55' },
   { day: '週一', hours: '01:00 - 23:55' },
   { day: '週二', hours: '01:00 - 23:55' },
   { day: '週三', hours: '01:00 - 23:55' },

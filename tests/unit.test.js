@@ -45,7 +45,7 @@ test('Utils Helper - getTodayOpeningHoursText', () => {
 
   // Sunday (0)
   const sunday = new Date('2026-09-13T10:00:00'); // Sun
-  assert.equal(getTodayOpeningHoursText(sunday), '今日開館時間: 06:00 - 23:55');
+  assert.equal(getTodayOpeningHoursText(sunday), '今日開館時間: 16:00 - 23:55');
 });
 
 test('Utils Helper - escapeHtml', () => {
