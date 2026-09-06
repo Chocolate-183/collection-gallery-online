@@ -1359,10 +1359,6 @@ body {
   border-left-color: #4da2ff;
 }
 
-[data-theme="dark"] #collection-header-id {
-  color: #4da2ff !important;
-}
-
 [data-theme="dark"] .awsui-nav-badge {
   background-color: #1e293b;
   color: #94a3b8;
