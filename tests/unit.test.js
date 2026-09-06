@@ -37,15 +37,15 @@ test('GViz Helper - extractGvizTable extraction', () => {
 test('Utils Helper - getTodayOpeningHoursText', () => {
   // Monday (1)
   const monday = new Date('2026-09-07T10:00:00'); // Mon
-  assert.equal(getTodayOpeningHoursText(monday), '今日開館時間（週一）：01:00 - 23:55');
+  assert.equal(getTodayOpeningHoursText(monday), '今日開館時間: 01:00 - 23:55');
 
   // Friday (5)
   const friday = new Date('2026-09-11T10:00:00'); // Fri
-  assert.equal(getTodayOpeningHoursText(friday), '今日開館時間（週五）：06:00 - 23:55');
+  assert.equal(getTodayOpeningHoursText(friday), '今日開館時間: 06:00 - 23:55');
 
   // Sunday (0)
   const sunday = new Date('2026-09-13T10:00:00'); // Sun
-  assert.equal(getTodayOpeningHoursText(sunday), '今日開館時間（週日）：06:00 - 23:55');
+  assert.equal(getTodayOpeningHoursText(sunday), '今日開館時間: 06:00 - 23:55');
 });
 
 test('Utils Helper - escapeHtml', () => {

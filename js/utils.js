@@ -45,7 +45,7 @@ export const OPENING_HOURS_SCHEDULE = [
 export function getTodayOpeningHoursText(date = new Date()) {
   const dayIndex = date.getDay();
   const today = OPENING_HOURS_SCHEDULE[dayIndex];
-  return `今日開館時間（${today.day}）：${today.hours}`;
+  return `今日開館時間: ${today.hours}`;
 }
 
 /**
