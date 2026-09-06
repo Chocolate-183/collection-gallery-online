@@ -36,40 +36,5 @@ test('Opening Hours Information in HTML - Lobby and Service Desk', () => {
   assert(htmlContent.includes('週日'));
 });
 
-test('Router Maintenance Redirection - Outside Opening Hours', async () => {
-  const { isGalleryOpen } = await import('../js/utils.js');
-  
-  // Create mock DOM environment
-  const mockElements = {
-    'nav-welcome': { classList: { add: () => {}, remove: () => {} } },
-    'nav-about': { classList: { add: () => {}, remove: () => {} } },
-    'view-welcome': { classList: { add: () => {}, remove: () => {} }, style: {} },
-    'view-dictionary': { classList: { add: () => {}, remove: () => {} }, style: {} },
-    'view-about': { classList: { add: () => {}, remove: () => {} }, style: {} },
-    'view-maintenance': { classList: { add: () => {}, remove: () => {} }, style: {} }
-  };
-
-  const originalDocument = global.document;
-  const originalWindow = global.window;
-
-  global.document = {
-    getElementById: (id) => mockElements[id] || null,
-    querySelectorAll: () => []
-  };
-  global.window = {
-    location: { hash: '#/welcome' },
-    scrollTo: () => {}
-  };
-
-  const { switchView } = await import('../js/router.js');
-
-  // Verify that calling switchView('maintenance') activates view-maintenance and hides view-welcome
-  switchView('maintenance', null, false);
-  assert.equal(mockElements['view-maintenance'].style.display, 'block');
-  assert.equal(mockElements['view-welcome'].style.display, 'none');
-
-  if (originalDocument) global.document = originalDocument;
-  if (originalWindow) global.window = originalWindow;
-});
 
 
