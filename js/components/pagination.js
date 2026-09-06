@@ -81,7 +81,7 @@ export function goToPage(p) {
 
 export function onPageSizeChange() {
   const select = document.getElementById('pagesize-select');
-  const pageSize = select ? parseInt(select.value, 10) : 24;
+  const pageSize = select ? parseInt(select.value, 10) : 12;
   store.set({ pageSize });
   applyFiltersAndSort();
 }

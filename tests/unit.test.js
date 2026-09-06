@@ -298,6 +298,23 @@ test('Opening Hours CSV Parser', () => {
   assert.equal(schedule[1].hours, '01:00 - 23:55');
 });
 
+test('Default Exhibition Hall Filter and Page Size Defaults', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { resolve } = await import('node:path');
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const { store } = await import('../js/state.js');
+
+  // Verify HTML default selection
+  assert(html.includes('<option value="12" selected>每頁 12 件</option>'));
+  assert(html.includes('<button class="awsui-tab active" onclick="selectKanaTab(\'ALL\', this)">全部展品</button>'));
+
+  // Verify JS initial state
+  const state = store.get();
+  assert.equal(state.pageSize, 12);
+  assert.equal(state.currentKanaTab, 'ALL');
+});
+
+
 
 
 
