@@ -49,6 +49,19 @@ export function getTodayOpeningHoursText(date = new Date()) {
 }
 
 /**
+ * Returns formatted tomorrow's opening hours text based on date.
+ * @param {Date} [date] - Optional date object for testing
+ * @returns {string} Formatted tomorrow's opening hours string
+ */
+export function getTomorrowOpeningHoursText(date = new Date()) {
+  const tomorrow = new Date(date);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const dayIndex = tomorrow.getDay();
+  const tmr = OPENING_HOURS_SCHEDULE[dayIndex];
+  return `明日開館時間: ${tmr.hours}`;
+}
+
+/**
  * Checks whether the gallery is currently open based on OPENING_HOURS_SCHEDULE.
  * @param {Date} [date] - Optional date object for testing
  * @returns {boolean} True if within opening hours, false otherwise
