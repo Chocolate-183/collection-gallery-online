@@ -1,6 +1,7 @@
 /**
  * Data Fetching, Caching & Parallel Sync Handler
  */
+import { DEFAULT_TIMEOUT_MS, EXHIBITION_STATUS } from './constants.js';
 import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls } from './config.js';
 import { store } from './state.js';
 import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse } from './parser.js';
@@ -37,7 +38,8 @@ export function applyCollectionMetaToUI(colId, meta) {
   // 2. Update Welcome Card Tags
   const cardTagsElem = document.getElementById(`welcome-card-tags-${colId}`);
   if (cardTagsElem) {
-    const isAdjusting = meta.status === '調整中' || (typeof meta.status === 'string' && meta.status.includes('調整中'));
+    const isAdjusting = meta.status === EXHIBITION_STATUS.ADJUSTING ||
+                        (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING));
     if (isAdjusting) {
       let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>`;
       if (meta.tags && meta.tags.length > 0) {
@@ -135,14 +137,14 @@ export async function fetchCollectionMeta(col) {
     let fetchedMeta = null;
 
     if (csvUrl) {
-      const csvText = await safeFetchText(csvUrl, 2500);
+      const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
       if (csvText) {
         fetchedMeta = parseMetaCSVData(csvText);
       }
     }
 
     if ((!fetchedMeta || !fetchedMeta.title) && gvizUrl) {
-      const gvizText = await safeFetchText(gvizUrl, 2500);
+      const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
       if (gvizText) {
         fetchedMeta = parseMetaGvizResponse(gvizText);
       }
@@ -205,7 +207,7 @@ export async function fetchSingleCollection(col) {
 
     // Method 1: Try CSV export endpoint
     if (csvUrl) {
-      const csvText = await safeFetchText(csvUrl, 2500);
+      const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
       if (csvText) {
         fetchedData = parseCSVData(csvText);
       }
@@ -213,7 +215,7 @@ export async function fetchSingleCollection(col) {
 
     // Method 2: Try GViz endpoint as secondary fallback
     if ((!fetchedData || fetchedData.length <= 5) && gvizUrl) {
-      const gvizText = await safeFetchText(gvizUrl, 2500);
+      const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
       if (gvizText) {
         const gvizParsed = parseGvizResponse(gvizText, col.id);
         if (gvizParsed && gvizParsed.length > (fetchedData ? fetchedData.length : 0)) {
@@ -225,11 +227,13 @@ export async function fetchSingleCollection(col) {
     // Method 3: Fallback to local dataset snapshot if offline or blocked
     if (!fetchedData || fetchedData.length === 0) {
       const fallbackPath = col.localFallback || 'data.json';
-      const fallbackText = await safeFetchText(fallbackPath, 2500);
+      const fallbackText = await safeFetchText(fallbackPath, DEFAULT_TIMEOUT_MS);
       if (fallbackText) {
         try {
           fetchedData = JSON.parse(fallbackText);
-        } catch (err) {}
+        } catch (err) {
+          console.warn(`Failed to parse local fallback JSON at ${fallbackPath}:`, err);
+        }
       }
     }
   }
