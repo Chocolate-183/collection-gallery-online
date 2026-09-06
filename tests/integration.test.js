@@ -19,11 +19,13 @@ test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
 test('Opening Hours Information in HTML - Lobby and Service Desk', () => {
   const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
   
-  // Verify Lobby Page (view-welcome) layout: Title comes before supplementary opening hours note
+  // Verify Lobby Page (view-welcome) layout: Opening hours inline element is placed next to actions
   const titlePos = htmlContent.indexOf('Welcome to Collection Gallery Online !');
-  const notePos = htmlContent.indexOf('awsui-hero-hours-note');
-  assert(titlePos !== -1 && notePos !== -1);
-  assert(titlePos < notePos, 'Hero title must be placed at the top before supplementary opening hours note');
+  const aboutBtnPos = htmlContent.indexOf('前往服務台');
+  const inlineHoursPos = htmlContent.indexOf('awsui-hero-hours-inline');
+  assert(titlePos !== -1 && aboutBtnPos !== -1 && inlineHoursPos !== -1);
+  assert(titlePos < inlineHoursPos, 'Hero title must be placed at the top before opening hours');
+  assert(aboutBtnPos < inlineHoursPos, 'Opening hours must be placed directly to the right of "前往服務台" button');
 
   // Verify Service Desk Page (view-about) contains weekly opening hours schedule
   assert(htmlContent.includes('id="view-about"'));
