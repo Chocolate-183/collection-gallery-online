@@ -11,7 +11,7 @@ import { renderCards } from './components/cards.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop } from './components/modal.js';
 import { switchView, handleHashRoute } from './router.js';
-import { getTodayOpeningHoursText, getTomorrowOpeningHoursText, isGalleryOpen } from './utils.js';
+import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen } from './utils.js';
 
 // Expose functions globally for backward compatibility with inline HTML events
 window.collectionsConfig = collectionsConfig;
@@ -51,12 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const maintHoursEl = document.getElementById('maintenance-hours-text');
   if (maintHoursEl) {
-    maintHoursEl.textContent = getTodayOpeningHoursText();
-  }
-
-  const maintTomorrowHoursEl = document.getElementById('maintenance-tomorrow-hours-text');
-  if (maintTomorrowHoursEl) {
-    maintTomorrowHoursEl.textContent = getTomorrowOpeningHoursText();
+    maintHoursEl.textContent = getNextOpeningTimeText();
   }
 
   preloadAllCollections();

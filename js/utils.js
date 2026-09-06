@@ -49,16 +49,43 @@ export function getTodayOpeningHoursText(date = new Date()) {
 }
 
 /**
- * Returns formatted tomorrow's opening hours text based on date.
- * @param {Date} [date] - Optional date object for testing
- * @returns {string} Formatted tomorrow's opening hours string
+ * Returns formatted next opening time text with date based on OPENING_HOURS_SCHEDULE.
+ * @param {Date} [now] - Optional date object for testing
+ * @returns {string} Formatted next opening time string
  */
-export function getTomorrowOpeningHoursText(date = new Date()) {
-  const tomorrow = new Date(date);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const dayIndex = tomorrow.getDay();
-  const tmr = OPENING_HOURS_SCHEDULE[dayIndex];
-  return `明日開館時間: ${tmr.hours}`;
+export function getNextOpeningTimeText(now = new Date()) {
+  for (let offset = 0; offset < 7; offset++) {
+    const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    const dayIndex = targetDate.getDay();
+    const sched = OPENING_HOURS_SCHEDULE[dayIndex];
+
+    if (!sched || !sched.hours || sched.hours === '休館') {
+      continue;
+    }
+
+    const parts = sched.hours.split('-').map(s => s.trim());
+    if (parts.length !== 2) continue;
+
+    const [startStr] = parts;
+    const [startH, startM] = startStr.split(':').map(Number);
+    if (isNaN(startH) || isNaN(startM)) continue;
+
+    const startTotalMinutes = startH * 60 + startM;
+
+    if (offset === 0) {
+      const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
+      if (currentTotalMinutes >= startTotalMinutes) {
+        continue;
+      }
+    }
+
+    const year = targetDate.getFullYear();
+    const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+    const dateStr = String(targetDate.getDate()).padStart(2, '0');
+    return `下次開館時間: ${year}/${month}/${dateStr} (${sched.day}) ${sched.hours}`;
+  }
+
+  return '下次開館時間: 暫無資料';
 }
 
 /**
