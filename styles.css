@@ -784,6 +784,19 @@ body {
   font-weight: 600;
 }
 
+.awsui-tz-badge {
+  display: inline-block;
+  background-color: var(--awsui-color-background-input-default);
+  color: #0f6ce0;
+  border: 1px solid var(--awsui-color-border-item-default);
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
 .awsui-badge-success {
   display: inline-block;
   background-color: #e6f4ea;
@@ -1419,6 +1432,11 @@ body {
 [data-theme="dark"] .awsui-badge-warning {
   background-color: #3c2d00;
   color: #fdd663;
+}
+
+[data-theme="dark"] .awsui-tz-badge {
+  color: #4da2ff;
+  border-color: var(--awsui-color-border-item-default);
 }
 
 [data-theme="dark"] .awsui-modal-header {
