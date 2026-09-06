@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseCSVData, parseMetaCSVData, parseCSVRows, extractGvizTable } from '../js/parser.js';
 import { matchesKanaGroup } from '../js/filter.js';
-import { escapeHtml, getUnicodeLength, getTodayOpeningHoursText } from '../js/utils.js';
+import { escapeHtml, getUnicodeLength, getTodayOpeningHoursText, isGalleryOpen } from '../js/utils.js';
 
 test('CSV Parser - Multiline and Escaped Quotes', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期
@@ -278,4 +278,40 @@ test('Filter UI Adjustments - Label Spacing and Length Tabs Styling', async () =
   assert(css.includes('min-width: 60px;'));
   assert(!css.includes('min-width: 90px;'));
 });
+
+test('Utils Helper - isGalleryOpen during open and closed hours', () => {
+  // Monday: 01:00 - 23:55
+  const mondayClosedEarly = new Date('2026-09-07T00:30:00'); // Mon 00:30 (Closed)
+  assert.equal(isGalleryOpen(mondayClosedEarly), false);
+
+  const mondayOpenStart = new Date('2026-09-07T01:00:00'); // Mon 01:00 (Open)
+  assert.equal(isGalleryOpen(mondayOpenStart), true);
+
+  const mondayOpenNoon = new Date('2026-09-07T12:00:00'); // Mon 12:00 (Open)
+  assert.equal(isGalleryOpen(mondayOpenNoon), true);
+
+  const mondayOpenEnd = new Date('2026-09-07T23:55:00'); // Mon 23:55 (Open)
+  assert.equal(isGalleryOpen(mondayOpenEnd), true);
+
+  const mondayClosedLate = new Date('2026-09-07T23:56:00'); // Mon 23:56 (Closed)
+  assert.equal(isGalleryOpen(mondayClosedLate), false);
+
+  // Sunday: 06:00 - 23:55
+  const sundayClosedEarly = new Date('2026-09-13T05:59:00'); // Sun 05:59 (Closed)
+  assert.equal(isGalleryOpen(sundayClosedEarly), false);
+
+  const sundayOpenStart = new Date('2026-09-13T06:00:00'); // Sun 06:00 (Open)
+  assert.equal(isGalleryOpen(sundayOpenStart), true);
+});
+
+test('Maintenance View - HTML Element and Text Content', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { resolve } = await import('node:path');
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+
+  assert(html.includes('id="view-maintenance"'), 'index.html must contain view-maintenance container');
+  assert(html.includes('Collection Gallery Online 閉館中'), 'index.html must display "Collection Gallery Online 閉館中"');
+  assert(html.includes('id="maintenance-hours-text"'), 'index.html must contain maintenance-hours-text element');
+});
+
 

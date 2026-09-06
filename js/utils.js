@@ -49,6 +49,36 @@ export function getTodayOpeningHoursText(date = new Date()) {
 }
 
 /**
+ * Checks whether the gallery is currently open based on OPENING_HOURS_SCHEDULE.
+ * @param {Date} [date] - Optional date object for testing
+ * @returns {boolean} True if within opening hours, false otherwise
+ */
+export function isGalleryOpen(date = new Date()) {
+  const dayIndex = date.getDay();
+  const today = OPENING_HOURS_SCHEDULE[dayIndex];
+  if (!today || !today.hours || today.hours === '休館') {
+    return false;
+  }
+
+  const parts = today.hours.split('-').map(s => s.trim());
+  if (parts.length !== 2) return false;
+
+  const [startStr, endStr] = parts;
+  const [startH, startM] = startStr.split(':').map(Number);
+  const [endH, endM] = endStr.split(':').map(Number);
+
+  if (isNaN(startH) || isNaN(startM) || isNaN(endH) || isNaN(endM)) {
+    return false;
+  }
+
+  const startTotalMinutes = startH * 60 + startM;
+  const endTotalMinutes = endH * 60 + endM;
+  const currentTotalMinutes = date.getHours() * 60 + date.getMinutes();
+
+  return currentTotalMinutes >= startTotalMinutes && currentTotalMinutes <= endTotalMinutes;
+}
+
+/**
  * Safe fetch wrapper with timeout and error handling.
  * @param {string} url - Target URL to fetch
  * @param {number} timeoutMs - Timeout in milliseconds (default 2500)

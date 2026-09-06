@@ -11,11 +11,12 @@ import { renderCards } from './components/cards.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop } from './components/modal.js';
 import { switchView, handleHashRoute } from './router.js';
-import { getTodayOpeningHoursText } from './utils.js';
+import { getTodayOpeningHoursText, isGalleryOpen } from './utils.js';
 
 // Expose functions globally for backward compatibility with inline HTML events
 window.collectionsConfig = collectionsConfig;
 window.currentCollectionId = store.get().currentCollectionId;
+window.isGalleryOpen = isGalleryOpen;
 window.toggleSidebar = toggleSidebar;
 window.toggleTheme = toggleTheme;
 window.switchView = switchView;
@@ -46,6 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const todayHoursEl = document.getElementById('today-hours-text');
   if (todayHoursEl) {
     todayHoursEl.textContent = getTodayOpeningHoursText();
+  }
+
+  const maintHoursEl = document.getElementById('maintenance-hours-text');
+  if (maintHoursEl) {
+    maintHoursEl.textContent = getTodayOpeningHoursText();
   }
 
   preloadAllCollections();

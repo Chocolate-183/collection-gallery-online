@@ -7,9 +7,14 @@ import { switchCollection } from './components/sidebar.js';
 import { openMeaningModal, closeDetailModal } from './components/modal.js';
 import { renderCollectionNotice } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
+import { isGalleryOpen } from './utils.js';
 
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
+
+  if (!isGalleryOpen() && viewName !== 'maintenance') {
+    viewName = 'maintenance';
+  }
   
   const { currentView, currentCollectionId } = store.get();
   const isViewChanged = currentView !== viewName;
@@ -20,10 +25,34 @@ export function switchView(viewName, event, updateHash = true) {
   const viewWelcome = document.getElementById('view-welcome');
   const viewDictionary = document.getElementById('view-dictionary');
   const viewAbout = document.getElementById('view-about');
+  const viewMaintenance = document.getElementById('view-maintenance');
 
   document.querySelectorAll('.awsui-nav-link').forEach(btn => btn.classList.remove('active'));
 
-  if (viewName === 'welcome') {
+  if (viewName === 'maintenance') {
+    if (viewWelcome) {
+      viewWelcome.classList.remove('active');
+      viewWelcome.style.display = 'none';
+    }
+    if (viewDictionary) {
+      viewDictionary.classList.remove('active');
+      viewDictionary.style.display = 'none';
+    }
+    if (viewAbout) {
+      viewAbout.classList.remove('active');
+      viewAbout.style.display = 'none';
+    }
+    if (viewMaintenance) {
+      viewMaintenance.classList.add('active');
+      viewMaintenance.style.display = 'block';
+    }
+
+    if (updateHash) {
+      if (decodeURIComponent(window.location.hash) !== '#/maintenance') {
+        location.hash = '#/maintenance';
+      }
+    }
+  } else if (viewName === 'welcome') {
     if (navWelcome) navWelcome.classList.add('active');
 
     if (viewWelcome) {
@@ -37,6 +66,10 @@ export function switchView(viewName, event, updateHash = true) {
     if (viewAbout) {
       viewAbout.classList.remove('active');
       viewAbout.style.display = 'none';
+    }
+    if (viewMaintenance) {
+      viewMaintenance.classList.remove('active');
+      viewMaintenance.style.display = 'none';
     }
 
     if (updateHash) {
@@ -55,6 +88,10 @@ export function switchView(viewName, event, updateHash = true) {
     if (viewAbout) {
       viewAbout.classList.remove('active');
       viewAbout.style.display = 'none';
+    }
+    if (viewMaintenance) {
+      viewMaintenance.classList.remove('active');
+      viewMaintenance.style.display = 'none';
     }
     if (viewDictionary) {
       viewDictionary.classList.add('active');
@@ -81,6 +118,10 @@ export function switchView(viewName, event, updateHash = true) {
       viewDictionary.classList.remove('active');
       viewDictionary.style.display = 'none';
     }
+    if (viewMaintenance) {
+      viewMaintenance.classList.remove('active');
+      viewMaintenance.style.display = 'none';
+    }
     if (viewAbout) {
       viewAbout.classList.add('active');
       viewAbout.style.display = 'block';
@@ -99,6 +140,16 @@ export function switchView(viewName, event, updateHash = true) {
 }
 
 export function handleHashRoute() {
+  if (!isGalleryOpen()) {
+    store.set({ invalidTerm: null });
+    switchView('maintenance', null, false);
+    closeDetailModal(false);
+    if (decodeURIComponent(location.hash) !== '#/maintenance') {
+      location.hash = '#/maintenance';
+    }
+    return;
+  }
+
   const rawHash = window.location.hash;
   const decodedHash = decodeURIComponent(rawHash || '');
   const { currentCollectionId, allRecords } = store.get();
@@ -114,6 +165,16 @@ export function handleHashRoute() {
   }
 
   const path = decodedHash.replace(/^#\/?/, '');
+  if (path === 'maintenance') {
+    store.set({ invalidTerm: null });
+    switchView('welcome', null, false);
+    closeDetailModal(false);
+    if (location.hash !== '#/welcome') {
+      location.hash = '#/welcome';
+    }
+    return;
+  }
+
   if (!path || path === 'welcome' || path === 'home') {
     store.set({ invalidTerm: null });
     switchView('welcome', null, false);
