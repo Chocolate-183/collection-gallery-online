@@ -372,6 +372,41 @@ test('Exhibition Hall Maintenance Status View Routing', async () => {
   }
 });
 
+test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" Badge Only When Adjusting', async () => {
+  const mockBadgeEl = { innerText: '', style: { display: 'inline-block' } };
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'side-nav-count-japanese-terms') return mockBadgeEl;
+    return null;
+  };
+
+  const { collectionsMetaCache } = await import('../js/data.js');
+  const { updateSidebarBadge } = await import('../js/components/sidebar.js');
+
+  // Case 1: Normal open status (item counts should NOT be shown)
+  collectionsMetaCache['japanese-terms'] = {
+    title: '日本特色詞彙',
+    status: '開放中'
+  };
+  updateSidebarBadge('japanese-terms');
+  assert.equal(mockBadgeEl.innerText, '');
+  assert.equal(mockBadgeEl.style.display, 'none');
+
+  // Case 2: Adjusting status ("調整中" badge SHOULD be shown)
+  collectionsMetaCache['japanese-terms'] = {
+    title: '日本特色詞彙',
+    status: '調整中'
+  };
+  updateSidebarBadge('japanese-terms');
+  assert.equal(mockBadgeEl.innerText, '調整中');
+  assert.equal(mockBadgeEl.style.display, 'inline-block');
+
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
+});
+
 
 
 

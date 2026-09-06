@@ -5,6 +5,23 @@ import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
 import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
 
+export function updateSidebarBadge(colId) {
+  const badgeElem = document.getElementById(`side-nav-count-${colId}`);
+  if (!badgeElem) return;
+
+  const col = collectionsConfig[colId];
+  const meta = collectionsMetaCache[colId] || (col ? col.defaultMeta : null);
+  const isAdjusting = meta && (meta.status === '調整中' || (typeof meta.status === 'string' && meta.status.includes('調整中')));
+
+  if (isAdjusting) {
+    badgeElem.innerText = '調整中';
+    badgeElem.style.display = 'inline-block';
+  } else {
+    badgeElem.innerText = '';
+    badgeElem.style.display = 'none';
+  }
+}
+
 export function initSidebarState() {
   const collapsedVal = localStorage.getItem('aws_sidebar_collapsed');
   const collapsed = collapsedVal === 'true';

@@ -7,6 +7,7 @@ import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizRespons
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
+import { updateSidebarBadge } from './components/sidebar.js';
 import { safeFetchText } from './utils.js';
 
 // Cache for storing fetched collection records & metadata
@@ -80,7 +81,8 @@ export function applyCollectionMetaToUI(colId, meta) {
     }
   }
 
-  // 6. Update Collection Notice Section
+  // 6. Update Collection Notice Section & Sidebar Badge
+  updateSidebarBadge(colId);
   renderCollectionNotice();
 }
 
@@ -229,10 +231,7 @@ export async function fetchSingleCollection(col) {
     collectionsCache[col.id] = fetchedData;
 
     // Update sidebar badge for this collection
-    const badgeElem = document.getElementById(`side-nav-count-${col.id}`);
-    if (badgeElem) {
-      badgeElem.innerText = `${fetchedData.length}`;
-    }
+    updateSidebarBadge(col.id);
 
     // If this is currently active collection, update active view records
     const { currentCollectionId } = store.get();
@@ -267,10 +266,7 @@ export function processDataAndRender() {
     totalElem.innerHTML = `${allRecords.length.toLocaleString()} <span class="awsui-kpi-unit">件</span>`;
   }
 
-  const badgeElem = document.getElementById(`side-nav-count-${currentCollectionId}`);
-  if (badgeElem) {
-    badgeElem.innerText = `${allRecords.length}`;
-  }
+  updateSidebarBadge(currentCollectionId);
 
   applyFiltersAndSort();
   renderCollectionNotice();

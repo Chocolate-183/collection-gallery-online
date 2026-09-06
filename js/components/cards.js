@@ -4,6 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { renderPagination } from './pagination.js';
+import { updateSidebarBadge } from './sidebar.js';
 import { escapeHtml } from '../utils.js';
 
 export { escapeHtml };
@@ -20,8 +21,7 @@ export function showLoadingState() {
   const counter = document.getElementById('cards-counter');
   if (counter) counter.innerText = '(展廳載入中...)';
 
-  const badgeElem = document.getElementById(`side-nav-count-${currentCollectionId}`);
-  if (badgeElem) badgeElem.innerText = '...';
+  updateSidebarBadge(currentCollectionId);
 
   const info = document.getElementById('pagination-info');
   if (info) info.innerText = '展廳載入中...';
