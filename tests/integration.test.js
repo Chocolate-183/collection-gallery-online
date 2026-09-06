@@ -19,11 +19,11 @@ test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
 test('Opening Hours Information in HTML - Lobby and Service Desk', () => {
   const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
   
-  // Verify Lobby Page (view-welcome) layout: Title comes before opening hours badge
+  // Verify Lobby Page (view-welcome) layout: Title comes before supplementary opening hours note
   const titlePos = htmlContent.indexOf('Welcome to Collection Gallery Online !');
-  const badgePos = htmlContent.indexOf('awsui-hero-hours-badge');
-  assert(titlePos !== -1 && badgePos !== -1);
-  assert(titlePos < badgePos, 'Hero title must be placed at the top before opening hours badge');
+  const notePos = htmlContent.indexOf('awsui-hero-hours-note');
+  assert(titlePos !== -1 && notePos !== -1);
+  assert(titlePos < notePos, 'Hero title must be placed at the top before supplementary opening hours note');
 
   // Verify Service Desk Page (view-about) contains weekly opening hours schedule
   assert(htmlContent.includes('id="view-about"'));
