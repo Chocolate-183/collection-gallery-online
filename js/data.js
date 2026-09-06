@@ -28,10 +28,15 @@ export async function preloadAllCollections() {
 export function applyCollectionMetaToUI(colId, meta) {
   if (!meta) return;
 
-  // 1. Update Welcome Card Title
+  // 1. Update Welcome Card Title & ID
   const cardTitleElem = document.getElementById(`welcome-card-title-${colId}`);
   if (cardTitleElem && meta.title) {
     cardTitleElem.innerText = meta.title;
+  }
+
+  const cardIdElem = document.getElementById(`welcome-card-id-${colId}`);
+  if (cardIdElem && meta.id) {
+    cardIdElem.innerText = meta.id;
   }
 
   // 2. Update Welcome Card Tags
@@ -69,6 +74,11 @@ export function applyCollectionMetaToUI(colId, meta) {
     const headerTitle = document.getElementById('collection-header-title');
     if (headerTitle && meta.title) {
       headerTitle.innerText = meta.title;
+    }
+
+    const headerId = document.getElementById('collection-header-id');
+    if (headerId && meta.id) {
+      headerId.innerText = meta.id;
     }
 
     const headerSubtitle = document.getElementById('collection-header-subtitle');
@@ -257,6 +267,11 @@ export function processDataAndRender() {
   const titleElem = document.getElementById('collection-header-title');
   if (titleElem) {
     titleElem.innerText = meta && meta.title ? meta.title : (col ? col.name : '');
+  }
+
+  const idHeaderElem = document.getElementById('collection-header-id');
+  if (idHeaderElem) {
+    idHeaderElem.innerText = meta && meta.id ? meta.id : '';
   }
 
   const subtitleElem = document.getElementById('collection-header-subtitle');

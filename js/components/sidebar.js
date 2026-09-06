@@ -70,10 +70,13 @@ export function switchCollection(collectionId, updateHash = true) {
   const cardGrid = document.getElementById('card-grid');
   if (cardGrid) cardGrid.setAttribute('data-collection', collectionId);
 
-  // Update Header Title & Subtitle
+  // Update Header Title & Subtitle & ID
   const meta = collectionsMetaCache[collectionId] || col.defaultMeta;
   const headerTitle = document.getElementById('collection-header-title');
   if (headerTitle) headerTitle.innerText = (meta && meta.title) ? meta.title : col.name;
+
+  const headerId = document.getElementById('collection-header-id');
+  if (headerId) headerId.innerText = (meta && meta.id) ? meta.id : '';
 
   const headerSubtitle = document.getElementById('collection-header-subtitle');
   if (headerSubtitle) headerSubtitle.innerText = (meta && meta.subtitle) ? meta.subtitle : '';
