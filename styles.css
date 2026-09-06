@@ -1209,6 +1209,12 @@ body {
   line-height: 1.2;
 }
 
+.awsui-tag-adjusting {
+  background-color: #f2f3f5;
+  color: #5f6b7a;
+  border-color: #d1d5db;
+}
+
 .awsui-welcome-card-tag:hover {
   border-color: #0f6ce0;
   color: #0f6ce0;
@@ -1329,13 +1335,15 @@ body {
 }
 
 [data-theme="dark"] .awsui-nav-badge {
-  background-color: #1d2a3a;
-  color: #8b949e;
+  background-color: #1e293b;
+  color: #94a3b8;
+  border: 1px solid #334155;
 }
 
 [data-theme="dark"] .awsui-nav-link.active .awsui-nav-badge {
-  background-color: #0f6ce0;
-  color: #ffffff;
+  background-color: #1d3b66;
+  color: #93c5fd;
+  border: 1px solid #2563eb;
 }
 
 [data-theme="dark"] .awsui-kpi-box,
@@ -1489,6 +1497,12 @@ body {
 
 [data-theme="dark"] .awsui-welcome-card:hover {
   border-color: #4da2ff;
+}
+
+[data-theme="dark"] .awsui-tag-adjusting {
+  background-color: #1e293b;
+  color: #94a3b8;
+  border-color: #334155;
 }
 
 /* Responsive Styles for Mobile/Tablet */

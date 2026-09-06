@@ -39,7 +39,7 @@ export function applyCollectionMetaToUI(colId, meta) {
   if (cardTagsElem) {
     const isAdjusting = meta.status === '調整中' || (typeof meta.status === 'string' && meta.status.includes('調整中'));
     if (isAdjusting) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag" style="background: var(--awsui-color-badge-neutral-bg, #f2f3f3); color: var(--awsui-color-text-body-secondary, #5f6b7a);">展廳調整中</span>`;
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }
