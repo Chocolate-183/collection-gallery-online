@@ -12,7 +12,7 @@ import { isGalleryOpen } from './utils.js';
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
 
-  if (!isGalleryOpen() && viewName !== 'maintenance') {
+  if (!isGalleryOpen() && viewName !== 'maintenance' && viewName !== 'about') {
     viewName = 'maintenance';
   }
   
@@ -140,7 +140,19 @@ export function switchView(viewName, event, updateHash = true) {
 }
 
 export function handleHashRoute() {
+  const rawHash = window.location.hash;
+  const decodedHash = decodeURIComponent(rawHash || '');
+  const { currentCollectionId, allRecords } = store.get();
+  const path = decodedHash.replace(/^#\/?/, '');
+
   if (!isGalleryOpen()) {
+    if (path === 'about') {
+      store.set({ invalidTerm: null });
+      switchView('about', null, false);
+      closeDetailModal(false);
+      return;
+    }
+
     store.set({ invalidTerm: null });
     switchView('maintenance', null, false);
     closeDetailModal(false);
@@ -149,10 +161,6 @@ export function handleHashRoute() {
     }
     return;
   }
-
-  const rawHash = window.location.hash;
-  const decodedHash = decodeURIComponent(rawHash || '');
-  const { currentCollectionId, allRecords } = store.get();
 
   if (!decodedHash || decodedHash === '#' || decodedHash === '#/') {
     store.set({ invalidTerm: null });
@@ -164,7 +172,6 @@ export function handleHashRoute() {
     return;
   }
 
-  const path = decodedHash.replace(/^#\/?/, '');
   if (path === 'maintenance') {
     store.set({ invalidTerm: null });
     switchView('welcome', null, false);
