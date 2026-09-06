@@ -36,7 +36,14 @@ export function applyCollectionMetaToUI(colId, meta) {
   // 2. Update Welcome Card Tags
   const cardTagsElem = document.getElementById(`welcome-card-tags-${colId}`);
   if (cardTagsElem) {
-    if (meta.tags && meta.tags.length > 0) {
+    const isAdjusting = meta.status === '調整中' || (typeof meta.status === 'string' && meta.status.includes('調整中'));
+    if (isAdjusting) {
+      let tagsHtml = `<span class="awsui-welcome-card-tag" style="background: var(--awsui-color-badge-neutral-bg, #f2f3f3); color: var(--awsui-color-text-body-secondary, #5f6b7a);">展廳調整中</span>`;
+      if (meta.tags && meta.tags.length > 0) {
+        tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
+      }
+      cardTagsElem.innerHTML = tagsHtml;
+    } else if (meta.tags && meta.tags.length > 0) {
       cardTagsElem.innerHTML = meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
     } else if (meta.subtitle) {
       cardTagsElem.innerHTML = `<span class="awsui-welcome-card-tag">${meta.subtitle}</span>`;
@@ -56,7 +63,7 @@ export function applyCollectionMetaToUI(colId, meta) {
   }
 
   // 5. Update Active Collection Header in Dictionary View
-  const { currentCollectionId } = store.get();
+  const { currentCollectionId, currentView } = store.get();
   if (currentCollectionId === colId) {
     const headerTitle = document.getElementById('collection-header-title');
     if (headerTitle && meta.title) {
@@ -66,6 +73,10 @@ export function applyCollectionMetaToUI(colId, meta) {
     const headerSubtitle = document.getElementById('collection-header-subtitle');
     if (headerSubtitle && meta.subtitle) {
       headerSubtitle.innerText = meta.subtitle;
+    }
+
+    if (currentView === 'dictionary' || currentView === 'maintenance') {
+      handleHashRoute();
     }
   }
 

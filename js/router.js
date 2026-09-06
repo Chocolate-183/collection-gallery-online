@@ -5,18 +5,27 @@ import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection } from './components/sidebar.js';
 import { openMeaningModal, closeDetailModal } from './components/modal.js';
-import { renderCollectionNotice } from './data.js';
+import { renderCollectionNotice, collectionsMetaCache } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen } from './utils.js';
 
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
 
-  if (!isGalleryOpen() && viewName !== 'maintenance' && viewName !== 'about') {
+  const isClosed = !isGalleryOpen();
+  if (isClosed && viewName !== 'maintenance' && viewName !== 'about') {
     viewName = 'maintenance';
   }
   
   const { currentView, currentCollectionId } = store.get();
+  const col = collectionsConfig[currentCollectionId];
+  const colMeta = collectionsMetaCache[currentCollectionId] || (col ? col.defaultMeta : null);
+  const isColAdjusting = colMeta && (colMeta.status === '調整中' || (typeof colMeta.status === 'string' && colMeta.status.includes('調整中')));
+
+  if (!isClosed && viewName === 'dictionary' && isColAdjusting) {
+    viewName = 'maintenance';
+  }
+
   const isViewChanged = currentView !== viewName;
   store.set({ currentView: viewName });
 
@@ -27,9 +36,26 @@ export function switchView(viewName, event, updateHash = true) {
   const viewAbout = document.getElementById('view-about');
   const viewMaintenance = document.getElementById('view-maintenance');
 
+  const maintTitle = document.getElementById('maintenance-title');
+  const maintDesc1 = document.getElementById('maintenance-desc-1');
+  const maintDesc2 = document.getElementById('maintenance-desc-2');
+
   document.querySelectorAll('.awsui-nav-link').forEach(btn => btn.classList.remove('active'));
 
   if (viewName === 'maintenance') {
+    if (isClosed) {
+      if (maintTitle) maintTitle.innerText = '閉館中';
+      if (maintDesc1) maintDesc1.innerText = '目前非線上展廳開放時間，歡迎於開館時間再次蒞臨參觀。';
+      if (maintDesc2) maintDesc2.style.display = 'block';
+    } else if (isColAdjusting) {
+      if (maintTitle) maintTitle.innerText = '展廳調整中';
+      if (maintDesc1) maintDesc1.innerText = '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
+      if (maintDesc2) maintDesc2.style.display = 'none';
+
+      const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
+      if (activeColBtn) activeColBtn.classList.add('active');
+    }
+
     if (viewWelcome) {
       viewWelcome.classList.remove('active');
       viewWelcome.style.display = 'none';
@@ -48,8 +74,16 @@ export function switchView(viewName, event, updateHash = true) {
     }
 
     if (updateHash) {
-      if (decodeURIComponent(window.location.hash) !== '#/maintenance') {
-        location.hash = '#/maintenance';
+      if (isClosed) {
+        if (decodeURIComponent(window.location.hash) !== '#/maintenance') {
+          location.hash = '#/maintenance';
+        }
+      } else if (isColAdjusting) {
+        const colName = col ? col.name : currentCollectionId;
+        const targetHash = `#/${colName}`;
+        if (decodeURIComponent(window.location.hash) !== targetHash) {
+          location.hash = targetHash;
+        }
       }
     }
   } else if (viewName === 'welcome') {
@@ -135,7 +169,9 @@ export function switchView(viewName, event, updateHash = true) {
   }
 
   if (isViewChanged || !!event) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }
 

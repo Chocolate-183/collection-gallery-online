@@ -113,6 +113,18 @@ test('Meta Sheet CSV Parser', () => {
   assert.equal(meta.author, '巧克力');
 });
 
+test('Meta Sheet CSV Parser - Parse Status Field', () => {
+  const sampleMetaCSVWithStatus = `項目,內容
+標題,日本特色詞彙
+副標,探索日本流行與次文化用語的專屬辭典
+狀態,調整中
+作者,巧克力`;
+
+  const meta = parseMetaCSVData(sampleMetaCSVWithStatus);
+  assert.equal(meta.title, '日本特色詞彙');
+  assert.equal(meta.status, '調整中');
+});
+
 test('ID and Date Monospace Font Styling Configuration', async () => {
   const { readFileSync } = await import('node:fs');
   const { resolve } = await import('node:path');
@@ -312,6 +324,52 @@ test('Default Exhibition Hall Filter and Page Size Defaults', async () => {
   const state = store.get();
   assert.equal(state.pageSize, 12);
   assert.equal(state.currentKanaTab, 'ALL');
+});
+
+test('Exhibition Hall Maintenance Status View Routing', async () => {
+  const mockTitleEl = { innerText: '' };
+  const mockDesc1El = { innerText: '' };
+  const mockDesc2El = { style: { display: 'block' } };
+  const mockViewMaintEl = { classList: { add: () => {}, remove: () => {} }, style: { display: 'none' } };
+  const mockViewDictEl = { classList: { add: () => {}, remove: () => {} }, style: { display: 'none' } };
+  
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'maintenance-title') return mockTitleEl;
+    if (id === 'maintenance-desc-1') return mockDesc1El;
+    if (id === 'maintenance-desc-2') return mockDesc2El;
+    if (id === 'view-maintenance') return mockViewMaintEl;
+    if (id === 'view-dictionary') return mockViewDictEl;
+    return null;
+  };
+  global.document.querySelectorAll = () => [];
+
+  const { setOpeningHoursSchedule, OPENING_HOURS_SCHEDULE } = await import('../js/utils.js');
+  const originalSchedule = [...OPENING_HOURS_SCHEDULE];
+  setOpeningHoursSchedule(Array(7).fill({ day: '全天', hours: '00:00 - 23:59' }));
+
+  const { collectionsMetaCache } = await import('../js/data.js');
+  const { store } = await import('../js/state.js');
+  const { switchView } = await import('../js/router.js');
+
+  collectionsMetaCache['japanese-terms'] = {
+    title: '日本特色詞彙',
+    status: '調整中'
+  };
+
+  store.set({ currentCollectionId: 'japanese-terms' });
+  switchView('dictionary', null, false);
+
+  assert.equal(mockTitleEl.innerText, '展廳調整中');
+  assert.equal(mockDesc1El.innerText, '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。');
+  assert.equal(mockDesc2El.style.display, 'none');
+  assert.equal(mockViewMaintEl.style.display, 'block');
+
+  setOpeningHoursSchedule(originalSchedule);
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
 });
 
 

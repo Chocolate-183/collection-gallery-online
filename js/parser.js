@@ -182,7 +182,8 @@ export function parseMetaCSVData(csvText) {
     subtitle: '',
     description: '',
     notice: '',
-    author: ''
+    author: '',
+    status: ''
   };
 
   for (let i = 1; i < rows.length; i++) {
@@ -203,6 +204,8 @@ export function parseMetaCSVData(csvText) {
       meta.notice = val;
     } else if (key.includes('作者')) {
       meta.author = val;
+    } else if (key.includes('狀態')) {
+      meta.status = val;
     }
   }
 
@@ -222,7 +225,8 @@ export function parseMetaGvizResponse(gvizText) {
     subtitle: '',
     description: '',
     notice: '',
-    author: ''
+    author: '',
+    status: ''
   };
 
   table.rows.forEach(r => {
@@ -242,6 +246,8 @@ export function parseMetaGvizResponse(gvizText) {
       meta.notice = val;
     } else if (key.includes('作者')) {
       meta.author = val;
+    } else if (key.includes('狀態')) {
+      meta.status = val;
     }
   });
 
