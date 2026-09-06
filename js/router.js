@@ -1,6 +1,7 @@
 /**
  * Hash Routing & View Switcher Engine
  */
+import { VIEWS, EXHIBITION_STATUS } from './constants.js';
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection } from './components/sidebar.js';
@@ -9,21 +10,53 @@ import { renderCollectionNotice, collectionsMetaCache } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen } from './utils.js';
 
+/**
+ * Toggles visibility of top-level application view sections
+ */
+function toggleViewElements(targetView) {
+  const views = {
+    [VIEWS.WELCOME]: document.getElementById('view-welcome'),
+    [VIEWS.DICTIONARY]: document.getElementById('view-dictionary'),
+    [VIEWS.ABOUT]: document.getElementById('view-about'),
+    [VIEWS.MAINTENANCE]: document.getElementById('view-maintenance')
+  };
+
+  Object.entries(views).forEach(([viewKey, elem]) => {
+    if (!elem) return;
+    if (viewKey === targetView) {
+      elem.classList.add('active');
+      elem.style.display = 'block';
+    } else {
+      elem.classList.remove('active');
+      elem.style.display = 'none';
+    }
+  });
+}
+
+/**
+ * Checks if a collection's metadata status is adjusting/maintenance
+ */
+function isCollectionAdjusting(colMeta) {
+  if (!colMeta || !colMeta.status) return false;
+  return colMeta.status === EXHIBITION_STATUS.ADJUSTING ||
+         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.ADJUSTING));
+}
+
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
 
   const isClosed = !isGalleryOpen();
-  if (isClosed && viewName !== 'maintenance' && viewName !== 'about') {
-    viewName = 'maintenance';
+  if (isClosed && viewName !== VIEWS.MAINTENANCE && viewName !== VIEWS.ABOUT) {
+    viewName = VIEWS.MAINTENANCE;
   }
-  
+
   const { currentView, currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId];
   const colMeta = collectionsMetaCache[currentCollectionId] || (col ? col.defaultMeta : null);
-  const isColAdjusting = colMeta && (colMeta.status === '調整中' || (typeof colMeta.status === 'string' && colMeta.status.includes('調整中')));
+  const isColAdjusting = isCollectionAdjusting(colMeta);
 
-  if (!isClosed && viewName === 'dictionary' && isColAdjusting) {
-    viewName = 'maintenance';
+  if (!isClosed && viewName === VIEWS.DICTIONARY && isColAdjusting) {
+    viewName = VIEWS.MAINTENANCE;
   }
 
   const isViewChanged = currentView !== viewName;
@@ -31,10 +64,6 @@ export function switchView(viewName, event, updateHash = true) {
 
   const navWelcome = document.getElementById('nav-welcome');
   const navAbout = document.getElementById('nav-about');
-  const viewWelcome = document.getElementById('view-welcome');
-  const viewDictionary = document.getElementById('view-dictionary');
-  const viewAbout = document.getElementById('view-about');
-  const viewMaintenance = document.getElementById('view-maintenance');
 
   const maintTitle = document.getElementById('maintenance-title');
   const maintDesc1 = document.getElementById('maintenance-desc-1');
@@ -42,7 +71,9 @@ export function switchView(viewName, event, updateHash = true) {
 
   document.querySelectorAll('.awsui-nav-link').forEach(btn => btn.classList.remove('active'));
 
-  if (viewName === 'maintenance') {
+  toggleViewElements(viewName);
+
+  if (viewName === VIEWS.MAINTENANCE) {
     if (isClosed) {
       if (maintTitle) maintTitle.innerText = '閉館中';
       if (maintDesc1) maintDesc1.innerText = '目前非線上展廳開放時間，歡迎於開館時間再次蒞臨參觀。';
@@ -54,23 +85,6 @@ export function switchView(viewName, event, updateHash = true) {
 
       const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
       if (activeColBtn) activeColBtn.classList.add('active');
-    }
-
-    if (viewWelcome) {
-      viewWelcome.classList.remove('active');
-      viewWelcome.style.display = 'none';
-    }
-    if (viewDictionary) {
-      viewDictionary.classList.remove('active');
-      viewDictionary.style.display = 'none';
-    }
-    if (viewAbout) {
-      viewAbout.classList.remove('active');
-      viewAbout.style.display = 'none';
-    }
-    if (viewMaintenance) {
-      viewMaintenance.classList.add('active');
-      viewMaintenance.style.display = 'block';
     }
 
     if (updateHash) {
@@ -86,52 +100,19 @@ export function switchView(viewName, event, updateHash = true) {
         }
       }
     }
-  } else if (viewName === 'welcome') {
+  } else if (viewName === VIEWS.WELCOME) {
     if (navWelcome) navWelcome.classList.add('active');
-
-    if (viewWelcome) {
-      viewWelcome.classList.add('active');
-      viewWelcome.style.display = 'block';
-    }
-    if (viewDictionary) {
-      viewDictionary.classList.remove('active');
-      viewDictionary.style.display = 'none';
-    }
-    if (viewAbout) {
-      viewAbout.classList.remove('active');
-      viewAbout.style.display = 'none';
-    }
-    if (viewMaintenance) {
-      viewMaintenance.classList.remove('active');
-      viewMaintenance.style.display = 'none';
-    }
 
     if (updateHash) {
       if (decodeURIComponent(window.location.hash) !== '#/welcome') {
         location.hash = '#/welcome';
       }
     }
-  } else if (viewName === 'dictionary') {
+  } else if (viewName === VIEWS.DICTIONARY) {
     const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
     if (activeColBtn) activeColBtn.classList.add('active');
 
-    if (viewWelcome) {
-      viewWelcome.classList.remove('active');
-      viewWelcome.style.display = 'none';
-    }
-    if (viewAbout) {
-      viewAbout.classList.remove('active');
-      viewAbout.style.display = 'none';
-    }
-    if (viewMaintenance) {
-      viewMaintenance.classList.remove('active');
-      viewMaintenance.style.display = 'none';
-    }
-    if (viewDictionary) {
-      viewDictionary.classList.add('active');
-      viewDictionary.style.display = 'block';
-      renderCollectionNotice();
-    }
+    renderCollectionNotice();
 
     if (updateHash) {
       const col = collectionsConfig[currentCollectionId];
@@ -141,25 +122,8 @@ export function switchView(viewName, event, updateHash = true) {
         location.hash = targetHash;
       }
     }
-  } else if (viewName === 'about') {
+  } else if (viewName === VIEWS.ABOUT) {
     if (navAbout) navAbout.classList.add('active');
-
-    if (viewWelcome) {
-      viewWelcome.classList.remove('active');
-      viewWelcome.style.display = 'none';
-    }
-    if (viewDictionary) {
-      viewDictionary.classList.remove('active');
-      viewDictionary.style.display = 'none';
-    }
-    if (viewMaintenance) {
-      viewMaintenance.classList.remove('active');
-      viewMaintenance.style.display = 'none';
-    }
-    if (viewAbout) {
-      viewAbout.classList.add('active');
-      viewAbout.style.display = 'block';
-    }
 
     if (updateHash) {
       if (decodeURIComponent(window.location.hash) !== '#/about') {
@@ -184,13 +148,13 @@ export function handleHashRoute() {
   if (!isGalleryOpen()) {
     if (path === 'about') {
       store.set({ invalidTerm: null });
-      switchView('about', null, false);
+      switchView(VIEWS.ABOUT, null, false);
       closeDetailModal(false);
       return;
     }
 
     store.set({ invalidTerm: null });
-    switchView('maintenance', null, false);
+    switchView(VIEWS.MAINTENANCE, null, false);
     closeDetailModal(false);
     if (decodeURIComponent(location.hash) !== '#/maintenance') {
       location.hash = '#/maintenance';
@@ -198,36 +162,19 @@ export function handleHashRoute() {
     return;
   }
 
-  if (!decodedHash || decodedHash === '#' || decodedHash === '#/') {
+  if (!decodedHash || decodedHash === '#' || decodedHash === '#/' || !path || path === 'welcome' || path === 'home' || path === 'maintenance') {
     store.set({ invalidTerm: null });
-    switchView('welcome', null, false);
+    switchView(VIEWS.WELCOME, null, false);
     closeDetailModal(false);
-    if (location.hash !== '#/welcome') {
+    if ((path === 'maintenance' || !decodedHash || decodedHash === '#' || decodedHash === '#/') && location.hash !== '#/welcome') {
       location.hash = '#/welcome';
     }
-    return;
-  }
-
-  if (path === 'maintenance') {
-    store.set({ invalidTerm: null });
-    switchView('welcome', null, false);
-    closeDetailModal(false);
-    if (location.hash !== '#/welcome') {
-      location.hash = '#/welcome';
-    }
-    return;
-  }
-
-  if (!path || path === 'welcome' || path === 'home') {
-    store.set({ invalidTerm: null });
-    switchView('welcome', null, false);
-    closeDetailModal(false);
     return;
   }
 
   if (path === 'about') {
     store.set({ invalidTerm: null });
-    switchView('about', null, false);
+    switchView(VIEWS.ABOUT, null, false);
     closeDetailModal(false);
     return;
   }
@@ -254,7 +201,7 @@ export function handleHashRoute() {
       switchCollection(targetColId, false);
       return;
     }
-    switchView('dictionary', null, false);
+    switchView(VIEWS.DICTIONARY, null, false);
 
     if (termName) {
       const rec = allRecords.find(r => r.ja_term === termName || r.id === termName);
@@ -275,7 +222,7 @@ export function handleHashRoute() {
       closeDetailModal(false);
     }
   } else {
-    switchView('dictionary', null, false);
+    switchView(VIEWS.DICTIONARY, null, false);
     const rec = allRecords.find(r => r.ja_term === colKey || r.id === colKey);
     if (rec) {
       store.set({ invalidTerm: null });
