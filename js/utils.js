@@ -27,6 +27,27 @@ export function getUnicodeLength(str) {
   return [...str].length;
 }
 
+export const OPENING_HOURS_SCHEDULE = [
+  { day: '週日', hours: '06:00 - 23:55' },
+  { day: '週一', hours: '01:00 - 23:55' },
+  { day: '週二', hours: '01:00 - 23:55' },
+  { day: '週三', hours: '01:00 - 23:55' },
+  { day: '週四', hours: '01:00 - 23:55' },
+  { day: '週五', hours: '06:00 - 23:55' },
+  { day: '週六', hours: '06:00 - 23:55' }
+];
+
+/**
+ * Returns formatted today's opening hours text based on current day of week.
+ * @param {Date} [date] - Optional date object for testing
+ * @returns {string} Formatted opening hours string
+ */
+export function getTodayOpeningHoursText(date = new Date()) {
+  const dayIndex = date.getDay();
+  const today = OPENING_HOURS_SCHEDULE[dayIndex];
+  return `今日開館時間（${today.day}）：${today.hours}`;
+}
+
 /**
  * Safe fetch wrapper with timeout and error handling.
  * @param {string} url - Target URL to fetch

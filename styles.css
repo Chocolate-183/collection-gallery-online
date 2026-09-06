@@ -755,6 +755,35 @@ body {
   font-weight: 600;
 }
 
+.awsui-info-item-schedule {
+  align-items: flex-start;
+}
+
+.awsui-schedule-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 170px;
+}
+
+.awsui-schedule-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--awsui-color-text-body-default);
+}
+
+.awsui-schedule-row span:first-child {
+  color: var(--awsui-color-text-body-secondary);
+  font-weight: 500;
+}
+
+.awsui-schedule-row span:last-child {
+  font-family: var(--awsui-font-family-monospace);
+  font-weight: 600;
+}
+
 .awsui-badge-success {
   display: inline-block;
   background-color: #e6f4ea;

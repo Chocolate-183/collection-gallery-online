@@ -128,17 +128,17 @@
 
         <!-- Welcome Hero Banner -->
         <section class="awsui-welcome-hero">
+          <h1 class="awsui-hero-title">Welcome to Collection Gallery Online !</h1>
+          <p class="awsui-hero-description">
+            CGO 致力於打造沉浸式線上展廳，邀請您細細品味與探索
+          </p>
           <div class="awsui-hero-hours-badge">
             <svg class="awsui-icon" viewBox="0 0 16 16">
               <path d="M8 3.5a.5.5 0 0 1 .5.5v4l2.5 1.5a.5.5 0 0 1-.5.866l-3-1.8A.5.5 0 0 1 7 7.5V4a.5.5 0 0 1 .5-.5z"/>
               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm0-1A7 7 0 1 1 8 1a7 7 0 0 1 0 14z"/>
             </svg>
-            <span>今日開館時間：24小時全日開放</span>
+            <span id="today-hours-text">今日開館時間：週一至週四 01:00 - 23:55｜週五至週日 06:00 - 23:55</span>
           </div>
-          <h1 class="awsui-hero-title">Welcome to Collection Gallery Online !</h1>
-          <p class="awsui-hero-description">
-            CGO 致力於打造沉浸式線上展廳，邀請您細細品味與探索
-          </p>
           <div class="awsui-hero-actions">
             <button class="awsui-btn awsui-btn-primary" type="button" onclick="switchCollection('japanese-terms')">
               <span>進入「日本特色詞彙」展廳</span>
@@ -361,9 +361,17 @@
                   <span class="awsui-info-label">展廳名稱</span>
                   <span class="awsui-info-value">Collection Gallery Online</span>
                 </div>
-                <div class="awsui-info-item">
+                <div class="awsui-info-item awsui-info-item-schedule">
                   <span class="awsui-info-label">參觀時間</span>
-                  <span class="awsui-info-value">24小時全日開放</span>
+                  <div class="awsui-info-value awsui-schedule-grid">
+                    <div class="awsui-schedule-row"><span>週一</span><span>01:00 - 23:55</span></div>
+                    <div class="awsui-schedule-row"><span>週二</span><span>01:00 - 23:55</span></div>
+                    <div class="awsui-schedule-row"><span>週三</span><span>01:00 - 23:55</span></div>
+                    <div class="awsui-schedule-row"><span>週四</span><span>01:00 - 23:55</span></div>
+                    <div class="awsui-schedule-row"><span>週五</span><span>06:00 - 23:55</span></div>
+                    <div class="awsui-schedule-row"><span>週六</span><span>06:00 - 23:55</span></div>
+                    <div class="awsui-schedule-row"><span>週日</span><span>06:00 - 23:55</span></div>
+                  </div>
                 </div>
                 <div class="awsui-info-item">
                   <span class="awsui-info-label">展廳燈光模式</span>

@@ -19,13 +19,18 @@ test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
 test('Opening Hours Information in HTML - Lobby and Service Desk', () => {
   const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
   
-  // Verify Lobby Page (view-welcome) contains opening hours
-  assert(htmlContent.includes('id="view-welcome"'));
-  assert(htmlContent.includes('今日開館時間：24小時全日開放'));
+  // Verify Lobby Page (view-welcome) layout: Title comes before opening hours badge
+  const titlePos = htmlContent.indexOf('Welcome to Collection Gallery Online !');
+  const badgePos = htmlContent.indexOf('awsui-hero-hours-badge');
+  assert(titlePos !== -1 && badgePos !== -1);
+  assert(titlePos < badgePos, 'Hero title must be placed at the top before opening hours badge');
 
-  // Verify Service Desk Page (view-about) contains visiting hours
+  // Verify Service Desk Page (view-about) contains weekly opening hours schedule
   assert(htmlContent.includes('id="view-about"'));
   assert(htmlContent.includes('參觀時間'));
-  assert(htmlContent.includes('24小時全日開放'));
+  assert(htmlContent.includes('01:00 - 23:55'));
+  assert(htmlContent.includes('06:00 - 23:55'));
+  assert(htmlContent.includes('週一'));
+  assert(htmlContent.includes('週日'));
 });
 

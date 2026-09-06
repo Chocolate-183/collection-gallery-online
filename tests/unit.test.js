@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseCSVData, parseMetaCSVData, parseCSVRows, extractGvizTable } from '../js/parser.js';
 import { matchesKanaGroup } from '../js/filter.js';
-import { escapeHtml, getUnicodeLength } from '../js/utils.js';
+import { escapeHtml, getUnicodeLength, getTodayOpeningHoursText } from '../js/utils.js';
 
 test('CSV Parser - Multiline and Escaped Quotes', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期
@@ -32,6 +32,20 @@ test('GViz Helper - extractGvizTable extraction', () => {
   assert.notEqual(table, null);
   assert.equal(table.rows.length, 1);
   assert.equal(extractGvizTable('invalid input'), null);
+});
+
+test('Utils Helper - getTodayOpeningHoursText', () => {
+  // Monday (1)
+  const monday = new Date('2026-09-07T10:00:00'); // Mon
+  assert.equal(getTodayOpeningHoursText(monday), '今日開館時間（週一）：01:00 - 23:55');
+
+  // Friday (5)
+  const friday = new Date('2026-09-11T10:00:00'); // Fri
+  assert.equal(getTodayOpeningHoursText(friday), '今日開館時間（週五）：06:00 - 23:55');
+
+  // Sunday (0)
+  const sunday = new Date('2026-09-13T10:00:00'); // Sun
+  assert.equal(getTodayOpeningHoursText(sunday), '今日開館時間（週日）：06:00 - 23:55');
 });
 
 test('Utils Helper - escapeHtml', () => {
