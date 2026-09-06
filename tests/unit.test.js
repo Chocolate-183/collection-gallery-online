@@ -407,6 +407,25 @@ test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" Badge Onl
   }
 });
 
+test('Google Sheets Config URL Builders', async () => {
+  const { googleSheetsConfig, getCollectionDataUrls, getCollectionMetaUrls, collectionsConfig } = await import('../js/config.js');
+
+  const sheetId = 'TEST_SHEET_ID';
+  const gid = '12345';
+  const csvUrl = googleSheetsConfig.getCsvUrl(sheetId, gid);
+  const gvizUrl = googleSheetsConfig.getGvizUrl(sheetId, gid);
+
+  assert.equal(csvUrl, 'https://docs.google.com/spreadsheets/d/TEST_SHEET_ID/export?format=csv&gid=12345');
+  assert.equal(gvizUrl, 'https://docs.google.com/spreadsheets/d/TEST_SHEET_ID/gviz/tq?tqx=out:json&gid=12345');
+
+  const jpCol = collectionsConfig['japanese-terms'];
+  const dataUrls = getCollectionDataUrls(jpCol);
+  const metaUrls = getCollectionMetaUrls(jpCol);
+
+  assert.equal(dataUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.gid}`);
+  assert.equal(metaUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.metaGid}`);
+});
+
 
 
 

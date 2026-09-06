@@ -41,3 +41,48 @@ export const collectionsConfig = {
     }
   }
 };
+
+/**
+ * Google Sheets Base URL Configuration & Endpoint URL Builders
+ */
+export const googleSheetsConfig = {
+  baseUrl: 'https://docs.google.com/spreadsheets/d',
+
+  /**
+   * Constructs CSV export URL for a given sheet ID and gid
+   */
+  getCsvUrl: (sheetId, gid) => {
+    if (!sheetId || !gid) return null;
+    return `${googleSheetsConfig.baseUrl}/${sheetId}/export?format=csv&gid=${gid}`;
+  },
+
+  /**
+   * Constructs GViz JSON endpoint URL for a given sheet ID and gid
+   */
+  getGvizUrl: (sheetId, gid) => {
+    if (!sheetId || !gid) return null;
+    return `${googleSheetsConfig.baseUrl}/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+  }
+};
+
+/**
+ * Returns dataset CSV and GViz URLs for a collection configuration object
+ */
+export function getCollectionDataUrls(col) {
+  if (!col || !col.sheetId || !col.gid) return { csvUrl: null, gvizUrl: null };
+  return {
+    csvUrl: googleSheetsConfig.getCsvUrl(col.sheetId, col.gid),
+    gvizUrl: googleSheetsConfig.getGvizUrl(col.sheetId, col.gid)
+  };
+}
+
+/**
+ * Returns metadata CSV and GViz URLs for a collection configuration object
+ */
+export function getCollectionMetaUrls(col) {
+  if (!col || !col.sheetId || !col.metaGid) return { csvUrl: null, gvizUrl: null };
+  return {
+    csvUrl: googleSheetsConfig.getCsvUrl(col.sheetId, col.metaGid),
+    gvizUrl: googleSheetsConfig.getGvizUrl(col.sheetId, col.metaGid)
+  };
+}

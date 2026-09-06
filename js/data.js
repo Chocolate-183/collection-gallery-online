@@ -1,7 +1,7 @@
 /**
  * Data Fetching, Caching & Parallel Sync Handler
  */
-import { collectionsConfig } from './config.js';
+import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls } from './config.js';
 import { store } from './state.js';
 import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
@@ -125,17 +125,18 @@ export async function fetchCollectionMeta(col) {
   let meta = col.defaultMeta ? { ...col.defaultMeta } : null;
 
   if (col.metaGid && col.sheetId) {
-    const csvUrl = `https://docs.google.com/spreadsheets/d/${col.sheetId}/export?format=csv&gid=${col.metaGid}`;
-    const gvizUrl = `https://docs.google.com/spreadsheets/d/${col.sheetId}/gviz/tq?tqx=out:json&gid=${col.metaGid}`;
+    const { csvUrl, gvizUrl } = getCollectionMetaUrls(col);
 
     let fetchedMeta = null;
 
-    const csvText = await safeFetchText(csvUrl, 2500);
-    if (csvText) {
-      fetchedMeta = parseMetaCSVData(csvText);
+    if (csvUrl) {
+      const csvText = await safeFetchText(csvUrl, 2500);
+      if (csvText) {
+        fetchedMeta = parseMetaCSVData(csvText);
+      }
     }
 
-    if (!fetchedMeta || !fetchedMeta.title) {
+    if ((!fetchedMeta || !fetchedMeta.title) && gvizUrl) {
       const gvizText = await safeFetchText(gvizUrl, 2500);
       if (gvizText) {
         fetchedMeta = parseMetaGvizResponse(gvizText);
@@ -195,17 +196,18 @@ export async function fetchSingleCollection(col) {
   if (col.mockData) {
     fetchedData = col.mockData;
   } else if (sheetId && gid) {
-    const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
-    const gvizUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+    const { csvUrl, gvizUrl } = getCollectionDataUrls(col);
 
     // Method 1: Try CSV export endpoint
-    const csvText = await safeFetchText(csvUrl, 2500);
-    if (csvText) {
-      fetchedData = parseCSVData(csvText);
+    if (csvUrl) {
+      const csvText = await safeFetchText(csvUrl, 2500);
+      if (csvText) {
+        fetchedData = parseCSVData(csvText);
+      }
     }
 
     // Method 2: Try GViz endpoint as secondary fallback
-    if (!fetchedData || fetchedData.length <= 5) {
+    if ((!fetchedData || fetchedData.length <= 5) && gvizUrl) {
       const gvizText = await safeFetchText(gvizUrl, 2500);
       if (gvizText) {
         const gvizParsed = parseGvizResponse(gvizText, col.id);
