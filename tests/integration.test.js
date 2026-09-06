@@ -54,7 +54,7 @@ test('Google Form Feedback and Submission Link - About Page and Exhibition Hall 
   const dictViewHtml = htmlContent.substring(dictViewStart, aboutViewStart);
   assert(dictViewHtml.includes('id="collection-feedback-container"'), 'Exhibition hall view must contain feedback container');
   assert(dictViewHtml.includes(formUrl), 'Exhibition hall footer must contain Google Form link');
-  assert(dictViewHtml.includes('問題回報 / 投稿'), 'Exhibition hall footer must contain "問題回報 / 投稿" button');
+  assert(dictViewHtml.includes('填寫問題回報 / 投稿表單'), 'Exhibition hall footer must contain "填寫問題回報 / 投稿表單" link');
 });
 
 

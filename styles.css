@@ -1033,45 +1033,38 @@ body {
 }
 
 /* ==========================================================================
-   Collection Feedback Footer (Bottom of Exhibition Halls)
+   Subordinate Subtle Feedback Footer (Bottom of Exhibition Halls / Gallery)
    ========================================================================== */
-.awsui-collection-feedback-footer {
-  margin-top: 16px;
-  padding: 18px 24px;
-  background-color: var(--awsui-color-background-container-content, #ffffff);
-  border: 1px solid var(--awsui-color-border-item-default, #e9ebed);
-  border-radius: var(--awsui-border-radius-container, 8px);
-  box-shadow: var(--awsui-shadow-container);
-}
-
-.awsui-feedback-footer-content {
+.awsui-gallery-feedback-subtle {
+  margin-top: 10px;
+  padding: 4px 0 0 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.awsui-feedback-footer-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.awsui-feedback-footer-title {
-  display: flex;
-  align-items: center;
+  justify-content: flex-end;
   gap: 8px;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--awsui-color-text-body-default, #16191f);
+  font-size: 12px;
+  color: var(--awsui-color-text-body-secondary, #5f6b7a);
 }
 
-.awsui-feedback-footer-desc {
-  margin: 0;
-  font-size: 13px;
-  color: var(--awsui-color-text-body-secondary, #5f6b7a);
-  line-height: 1.5;
+.awsui-feedback-subtle-desc {
+  color: var(--awsui-color-text-body-secondary, #687078);
+  font-size: 12px;
+}
+
+.awsui-feedback-subtle-link {
+  color: #0f6ce0;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease-in-out;
+}
+
+.awsui-feedback-subtle-link:hover {
+  text-decoration: underline;
+  color: #0952b1;
 }
 
 /* ==========================================================================
