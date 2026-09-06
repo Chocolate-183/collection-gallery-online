@@ -1004,10 +1004,10 @@ body {
 }
 
 /* ==========================================================================
-   Collection Notice Footer (Supplementary / Muted Note)
+   Collection Notice & Supplementary Footer Panels
    ========================================================================== */
 .awsui-collection-notice-footer {
-  margin-top: 24px;
+  margin-top: 16px;
   padding: 16px 20px;
   background-color: var(--awsui-color-background-container-content, #ffffff);
   border: 1px dashed var(--awsui-color-border-item-default, #e9ebed);
@@ -1030,31 +1030,6 @@ body {
 .awsui-notice-footer-body {
   color: var(--awsui-color-text-body-secondary, #5f6b7a);
   white-space: pre-line;
-}
-
-/* ==========================================================================
-   Collection Feedback Panel (Bottom Panel of Exhibition Halls / Gallery)
-   ========================================================================== */
-.awsui-feedback-panel {
-  margin-top: 20px;
-  padding: 18px 20px;
-}
-
-.awsui-feedback-panel-body {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.awsui-feedback-panel-desc {
-  margin: 0;
-  font-size: 13px;
-  color: var(--awsui-color-text-body-secondary, #5f6b7a);
-  line-height: 1.5;
-  flex: 1;
-  min-width: 260px;
 }
 
 /* ==========================================================================
