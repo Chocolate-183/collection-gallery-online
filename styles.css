@@ -1033,38 +1033,28 @@ body {
 }
 
 /* ==========================================================================
-   Subordinate Subtle Feedback Footer (Bottom of Exhibition Halls / Gallery)
+   Collection Feedback Panel (Bottom Panel of Exhibition Halls / Gallery)
    ========================================================================== */
-.awsui-gallery-feedback-subtle {
-  margin-top: 10px;
-  padding: 4px 0 0 0;
+.awsui-feedback-panel {
+  margin-top: 20px;
+  padding: 18px 20px;
+}
+
+.awsui-feedback-panel-body {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  font-size: 12px;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.awsui-feedback-panel-desc {
+  margin: 0;
+  font-size: 13px;
   color: var(--awsui-color-text-body-secondary, #5f6b7a);
-}
-
-.awsui-feedback-subtle-desc {
-  color: var(--awsui-color-text-body-secondary, #687078);
-  font-size: 12px;
-}
-
-.awsui-feedback-subtle-link {
-  color: #0f6ce0;
-  font-size: 12px;
-  font-weight: 500;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: color 0.15s ease-in-out;
-}
-
-.awsui-feedback-subtle-link:hover {
-  text-decoration: underline;
-  color: #0952b1;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 260px;
 }
 
 /* ==========================================================================
