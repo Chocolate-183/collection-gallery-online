@@ -226,20 +226,6 @@ body {
   line-height: 1.2;
 }
 
-.awsui-gallery-card-id {
-  font-family: var(--awsui-font-mono, monospace);
-  font-size: 12px;
-  font-weight: 700;
-  color: #0f6ce0;
-  background-color: #ebf5ff;
-  border: 1px solid #b3d7ff;
-  padding: 2px 7px;
-  border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  line-height: 1.2;
-}
-
 .awsui-nav-badge {
   margin-left: auto;
   font-size: 11px;
@@ -1374,8 +1360,7 @@ body {
 }
 
 [data-theme="dark"] .awsui-nav-id,
-[data-theme="dark"] .awsui-gallery-header-id,
-[data-theme="dark"] .awsui-gallery-card-id {
+[data-theme="dark"] .awsui-gallery-header-id {
   color: #93c5fd;
   background-color: #1e293b;
   border-color: #334155;

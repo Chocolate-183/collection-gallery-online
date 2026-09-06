@@ -28,15 +28,10 @@ export async function preloadAllCollections() {
 export function applyCollectionMetaToUI(colId, meta) {
   if (!meta) return;
 
-  // 1. Update Welcome Card Title & ID
+  // 1. Update Welcome Card Title
   const cardTitleElem = document.getElementById(`welcome-card-title-${colId}`);
   if (cardTitleElem && meta.title) {
     cardTitleElem.innerText = meta.title;
-  }
-
-  const cardIdElem = document.getElementById(`welcome-card-id-${colId}`);
-  if (cardIdElem && meta.id) {
-    cardIdElem.innerText = meta.id;
   }
 
   // 2. Update Welcome Card Tags

@@ -473,14 +473,13 @@ test('Sidebar Gallery ID Rendering Logic', async () => {
   }
 });
 
-test('Gallery Page Header ID and Welcome Card ID Elements in HTML', async () => {
+test('Gallery Page Header ID Element in HTML', async () => {
   const { readFileSync } = await import('node:fs');
   const { resolve } = await import('node:path');
   const html = readFileSync(resolve('index.html'), 'utf-8');
 
   assert(html.includes('id="collection-header-id">C101</span>'));
-  assert(html.includes('id="welcome-card-id-japanese-terms">C101</span>'));
-  assert(html.includes('id="welcome-card-id-china-terms">C102</span>'));
+  assert(!html.includes('id="welcome-card-id-japanese-terms"'));
 });
 
 
