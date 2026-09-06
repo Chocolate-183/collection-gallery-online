@@ -201,6 +201,17 @@ body {
   border-left: 3px solid #0f6ce0;
 }
 
+.awsui-nav-id {
+  font-family: var(--awsui-font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #687078;
+  margin-left: 6px;
+  background-color: #f1f3f5;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
 .awsui-nav-badge {
   margin-left: auto;
   font-size: 11px;
@@ -1332,6 +1343,11 @@ body {
   background-color: #122238;
   color: #4da2ff;
   border-left-color: #4da2ff;
+}
+
+[data-theme="dark"] .awsui-nav-id {
+  color: #94a3b8;
+  background-color: #1e293b;
 }
 
 [data-theme="dark"] .awsui-nav-badge {

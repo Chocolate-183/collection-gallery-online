@@ -426,6 +426,53 @@ test('Google Sheets Config URL Builders', async () => {
   assert.equal(metaUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.metaGid}`);
 });
 
+test('Sidebar Section Header GALLERYS & ID Element', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { resolve } = await import('node:path');
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+
+  assert(html.includes('<div class="awsui-side-nav-header">GALLERYS</div>'));
+  assert(!html.includes('<div class="awsui-side-nav-header">COLLECTIONS</div>'));
+  assert(html.includes('id="side-nav-id-japanese-terms">C101</span>'));
+  assert(html.includes('id="side-nav-id-china-terms">C102</span>'));
+});
+
+test('Meta Sheet CSV Parser - Parse ID Field', () => {
+  const sampleMetaCSVWithId = `項目,內容
+標題,日本特色詞彙
+副標,探索日本流行與次文化用語的專屬辭典
+ID,C101
+作者,巧克力`;
+
+  const meta = parseMetaCSVData(sampleMetaCSVWithId);
+  assert.equal(meta.title, '日本特色詞彙');
+  assert.equal(meta.id, 'C101');
+});
+
+test('Sidebar Gallery ID Rendering Logic', async () => {
+  const mockIdEl = { innerText: '' };
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'side-nav-id-japanese-terms') return mockIdEl;
+    return null;
+  };
+
+  const { collectionsMetaCache } = await import('../js/data.js');
+  const { updateSidebarId } = await import('../js/components/sidebar.js');
+
+  collectionsMetaCache['japanese-terms'] = {
+    title: '日本特色詞彙',
+    id: 'C101'
+  };
+  updateSidebarId('japanese-terms');
+  assert.equal(mockIdEl.innerText, 'C101');
+
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
+});
+
 
 
 

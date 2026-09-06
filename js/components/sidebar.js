@@ -22,6 +22,17 @@ export function updateSidebarBadge(colId) {
   }
 }
 
+export function updateSidebarId(colId) {
+  const idElem = document.getElementById(`side-nav-id-${colId}`);
+  if (!idElem) return;
+
+  const col = collectionsConfig[colId];
+  const meta = collectionsMetaCache[colId] || (col ? col.defaultMeta : null);
+  if (meta && meta.id) {
+    idElem.innerText = meta.id;
+  }
+}
+
 export function initSidebarState() {
   const collapsedVal = localStorage.getItem('aws_sidebar_collapsed');
   const collapsed = collapsedVal === 'true';

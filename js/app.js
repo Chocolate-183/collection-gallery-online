@@ -6,7 +6,7 @@ import { store } from './state.js';
 import { initTheme, toggleTheme, applyTheme } from './theme.js';
 import { loadCollectionData, preloadAllCollections } from './data.js';
 import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from './filter.js';
-import { initSidebarState, toggleSidebar, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
+import { initSidebarState, toggleSidebar, switchCollection, onCollectionSelectChange, updateSidebarBadge, updateSidebarId } from './components/sidebar.js';
 import { renderCards } from './components/cards.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop } from './components/modal.js';
@@ -67,7 +67,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     maintHoursEl.textContent = getNextOpeningTimeText();
   }
 
-  Object.keys(collectionsConfig).forEach(updateSidebarBadge);
+  Object.keys(collectionsConfig).forEach(id => {
+    updateSidebarBadge(id);
+    updateSidebarId(id);
+  });
 
   preloadAllCollections();
   handleHashRoute();

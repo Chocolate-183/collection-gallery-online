@@ -7,7 +7,7 @@ import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizRespons
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
-import { updateSidebarBadge } from './components/sidebar.js';
+import { updateSidebarBadge, updateSidebarId } from './components/sidebar.js';
 import { safeFetchText } from './utils.js';
 
 // Cache for storing fetched collection records & metadata
@@ -81,8 +81,9 @@ export function applyCollectionMetaToUI(colId, meta) {
     }
   }
 
-  // 6. Update Collection Notice Section & Sidebar Badge
+  // 6. Update Collection Notice Section & Sidebar Badge & ID
   updateSidebarBadge(colId);
+  updateSidebarId(colId);
   renderCollectionNotice();
 }
 

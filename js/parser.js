@@ -183,7 +183,8 @@ export function parseMetaCSVData(csvText) {
     description: '',
     notice: '',
     author: '',
-    status: ''
+    status: '',
+    id: ''
   };
 
   for (let i = 1; i < rows.length; i++) {
@@ -206,6 +207,8 @@ export function parseMetaCSVData(csvText) {
       meta.author = val;
     } else if (key.includes('狀態')) {
       meta.status = val;
+    } else if (key.toUpperCase() === 'ID' || key.includes('編號') || key.includes('序號')) {
+      meta.id = val;
     }
   }
 
@@ -226,7 +229,8 @@ export function parseMetaGvizResponse(gvizText) {
     description: '',
     notice: '',
     author: '',
-    status: ''
+    status: '',
+    id: ''
   };
 
   table.rows.forEach(r => {
@@ -248,6 +252,8 @@ export function parseMetaGvizResponse(gvizText) {
       meta.author = val;
     } else if (key.includes('狀態')) {
       meta.status = val;
+    } else if (key.toUpperCase() === 'ID' || key.includes('編號') || key.includes('序號')) {
+      meta.id = val;
     }
   });
 
