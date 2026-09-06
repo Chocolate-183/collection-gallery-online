@@ -36,5 +36,26 @@ test('Opening Hours Information in HTML - Lobby and Service Desk', () => {
   assert(htmlContent.includes('週日'));
 });
 
+test('Google Form Feedback and Submission Link - About Page and Exhibition Hall Footer', () => {
+  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+  const formUrl = 'https://forms.gle/GjK2vAxdUiAoec636';
+
+  // 1. Verify Google Form link exists in About Page (view-about)
+  const aboutViewStart = htmlContent.indexOf('id="view-about"');
+  const aboutViewEnd = htmlContent.indexOf('id="view-maintenance"');
+  assert(aboutViewStart !== -1 && aboutViewEnd !== -1);
+  const aboutViewHtml = htmlContent.substring(aboutViewStart, aboutViewEnd);
+  assert(aboutViewHtml.includes(formUrl), 'About page must contain Google Form link');
+  assert(aboutViewHtml.includes('問題回報與投稿'), 'About page must contain "問題回報與投稿" section');
+
+  // 2. Verify Google Form link exists at the bottom of Exhibition Hall view (view-dictionary)
+  const dictViewStart = htmlContent.indexOf('id="view-dictionary"');
+  assert(dictViewStart !== -1 && dictViewStart < aboutViewStart);
+  const dictViewHtml = htmlContent.substring(dictViewStart, aboutViewStart);
+  assert(dictViewHtml.includes('id="collection-feedback-container"'), 'Exhibition hall view must contain feedback container');
+  assert(dictViewHtml.includes(formUrl), 'Exhibition hall footer must contain Google Form link');
+  assert(dictViewHtml.includes('問題回報 / 投稿'), 'Exhibition hall footer must contain "問題回報 / 投稿" button');
+});
+
 
 

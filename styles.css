@@ -1033,6 +1033,48 @@ body {
 }
 
 /* ==========================================================================
+   Collection Feedback Footer (Bottom of Exhibition Halls)
+   ========================================================================== */
+.awsui-collection-feedback-footer {
+  margin-top: 16px;
+  padding: 18px 24px;
+  background-color: var(--awsui-color-background-container-content, #ffffff);
+  border: 1px solid var(--awsui-color-border-item-default, #e9ebed);
+  border-radius: var(--awsui-border-radius-container, 8px);
+  box-shadow: var(--awsui-shadow-container);
+}
+
+.awsui-feedback-footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.awsui-feedback-footer-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.awsui-feedback-footer-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--awsui-color-text-body-default, #16191f);
+}
+
+.awsui-feedback-footer-desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--awsui-color-text-body-secondary, #5f6b7a);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
    Welcome Page Styles (Cloudscape Design System Specification)
    ========================================================================== */
 
