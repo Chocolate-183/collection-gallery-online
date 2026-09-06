@@ -990,6 +990,27 @@ body {
   background-color: #0f6ce0;
 }
 
+.awsui-hero-hours-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--awsui-color-background-input-default);
+  color: var(--awsui-color-text-body-default);
+  border: 1px solid var(--awsui-color-border-item-default);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.awsui-hero-hours-badge .awsui-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  color: #0f6ce0;
+}
+
 .awsui-hero-title {
   font-size: 38px;
   font-weight: 800;
@@ -1410,6 +1431,10 @@ body {
 [data-theme="dark"] .awsui-welcome-hero {
   background-color: var(--awsui-color-background-container-content);
   border-color: var(--awsui-color-border-item-default);
+}
+
+[data-theme="dark"] .awsui-hero-hours-badge .awsui-icon {
+  color: #4da2ff;
 }
 
 [data-theme="dark"] .awsui-welcome-card-title,
