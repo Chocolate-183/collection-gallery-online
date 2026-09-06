@@ -1,7 +1,7 @@
 /**
  * Shared Helper Utilities
  */
-
+import { DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
 import { parseOpeningHoursCSV } from './parser.js';
 
 /**
@@ -29,15 +29,7 @@ export function getUnicodeLength(str) {
   return [...str].length;
 }
 
-export let OPENING_HOURS_SCHEDULE = [
-  { day: '週日', hours: '16:00 - 23:55' },
-  { day: '週一', hours: '01:00 - 23:55' },
-  { day: '週二', hours: '01:00 - 23:55' },
-  { day: '週三', hours: '01:00 - 23:55' },
-  { day: '週四', hours: '01:00 - 23:55' },
-  { day: '週五', hours: '06:00 - 23:55' },
-  { day: '週六', hours: '06:00 - 23:55' }
-];
+export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];
 
 export function setOpeningHoursSchedule(newSchedule) {
   if (Array.isArray(newSchedule) && newSchedule.length === 7) {
@@ -65,7 +57,7 @@ export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
 export function getTodayOpeningHoursText(date = new Date()) {
   const dayIndex = date.getDay();
   const today = OPENING_HOURS_SCHEDULE[dayIndex];
-  return `今日開館時間: ${today.hours}`;
+  return `今日開館時間: ${today ? today.hours : '休館'}`;
 }
 
 /**
@@ -144,7 +136,7 @@ export function isGalleryOpen(date = new Date()) {
  * @param {number} timeoutMs - Timeout in milliseconds (default 2500)
  * @returns {Promise<Response|null>} Response object or null if failed/timed out
  */
-export async function safeFetch(url, timeoutMs = 2500) {
+export async function safeFetch(url, timeoutMs = DEFAULT_TIMEOUT_MS) {
   try {
     const response = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) });
     if (response.ok) {
@@ -162,7 +154,7 @@ export async function safeFetch(url, timeoutMs = 2500) {
  * @param {number} timeoutMs - Timeout in milliseconds (default 2500)
  * @returns {Promise<string|null>} Response text or null
  */
-export async function safeFetchText(url, timeoutMs = 2500) {
+export async function safeFetchText(url, timeoutMs = DEFAULT_TIMEOUT_MS) {
   const response = await safeFetch(url, timeoutMs);
   if (!response) return null;
   try {
