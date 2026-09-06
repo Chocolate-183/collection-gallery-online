@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCSVData, parseMetaCSVData, parseCSVRows, extractGvizTable } from '../js/parser.js';
+import { parseCSVData, parseMetaCSVData, parseCSVRows, extractGvizTable, parseOpeningHoursCSV } from '../js/parser.js';
 import { matchesKanaGroup } from '../js/filter.js';
 import { escapeHtml, getUnicodeLength, getTodayOpeningHoursText } from '../js/utils.js';
 
@@ -278,6 +278,26 @@ test('Filter UI Adjustments - Label Spacing and Length Tabs Styling', async () =
   assert(css.includes('min-width: 60px;'));
   assert(!css.includes('min-width: 90px;'));
 });
+
+test('Opening Hours CSV Parser', () => {
+  const sampleCSV = `星期,開放時間
+週日,16:00 - 23:55
+週一,01:00 - 23:55
+週二,01:00 - 23:55
+週三,01:00 - 23:55
+週四,01:00 - 23:55
+週五,06:00 - 23:55
+週六,06:00 - 23:55`;
+
+  const schedule = parseOpeningHoursCSV(sampleCSV);
+  assert.notEqual(schedule, null);
+  assert.equal(schedule.length, 7);
+  assert.equal(schedule[0].day, '週日');
+  assert.equal(schedule[0].hours, '16:00 - 23:55');
+  assert.equal(schedule[1].day, '週一');
+  assert.equal(schedule[1].hours, '01:00 - 23:55');
+});
+
 
 
 
