@@ -1,7 +1,7 @@
 /**
  * Global Application State Store
  */
-import { collectionsConfig } from './config.js';
+import { STORAGE_KEYS, VIEWS } from './constants.js';
 
 const safeLocalStorage = {
   getItem: (key) => typeof localStorage !== 'undefined' ? localStorage.getItem(key) : null,
@@ -23,13 +23,13 @@ class Store {
       allRecords: [],
       filteredRecords: [],
       currentPage: 1,
-      pageSize: 24,
-      currentKanaTab: 'RANDOM10',
+      pageSize: 12,
+      currentKanaTab: 'ALL',
       currentLengthTab: 'ALL',
       searchQuery: '',
       invalidTerm: null,
-      currentView: 'dictionary',
-      currentTheme: safeLocalStorage.getItem('aws_theme') || (prefersDarkMode() ? 'dark' : 'light'),
+      currentView: VIEWS.DICTIONARY,
+      currentTheme: safeLocalStorage.getItem(STORAGE_KEYS.THEME) || (prefersDarkMode() ? 'dark' : 'light'),
       isLoading: false
     };
   }

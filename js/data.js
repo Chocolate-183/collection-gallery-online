@@ -1,12 +1,14 @@
 /**
  * Data Fetching, Caching & Parallel Sync Handler
  */
-import { collectionsConfig } from './config.js';
+import { DEFAULT_TIMEOUT_MS, EXHIBITION_STATUS } from './constants.js';
+import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls } from './config.js';
 import { store } from './state.js';
 import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
+import { updateSidebarBadge } from './components/sidebar.js';
 import { safeFetchText } from './utils.js';
 
 // Cache for storing fetched collection records & metadata
@@ -36,7 +38,15 @@ export function applyCollectionMetaToUI(colId, meta) {
   // 2. Update Welcome Card Tags
   const cardTagsElem = document.getElementById(`welcome-card-tags-${colId}`);
   if (cardTagsElem) {
-    if (meta.tags && meta.tags.length > 0) {
+    const isAdjusting = meta.status === EXHIBITION_STATUS.ADJUSTING ||
+                        (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING));
+    if (isAdjusting) {
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>`;
+      if (meta.tags && meta.tags.length > 0) {
+        tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
+      }
+      cardTagsElem.innerHTML = tagsHtml;
+    } else if (meta.tags && meta.tags.length > 0) {
       cardTagsElem.innerHTML = meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
     } else if (meta.subtitle) {
       cardTagsElem.innerHTML = `<span class="awsui-welcome-card-tag">${meta.subtitle}</span>`;
@@ -56,20 +66,30 @@ export function applyCollectionMetaToUI(colId, meta) {
   }
 
   // 5. Update Active Collection Header in Dictionary View
-  const { currentCollectionId } = store.get();
+  const { currentCollectionId, currentView } = store.get();
   if (currentCollectionId === colId) {
     const headerTitle = document.getElementById('collection-header-title');
     if (headerTitle && meta.title) {
       headerTitle.innerText = meta.title;
     }
 
+    const headerId = document.getElementById('collection-header-id');
+    if (headerId && meta.id) {
+      headerId.innerText = meta.id;
+    }
+
     const headerSubtitle = document.getElementById('collection-header-subtitle');
     if (headerSubtitle && meta.subtitle) {
       headerSubtitle.innerText = meta.subtitle;
     }
+
+    if (currentView === 'dictionary' || currentView === 'maintenance') {
+      handleHashRoute();
+    }
   }
 
-  // 6. Update Collection Notice Section
+  // 6. Update Collection Notice Section & Sidebar Badge
+  updateSidebarBadge(colId);
   renderCollectionNotice();
 }
 
@@ -112,18 +132,19 @@ export async function fetchCollectionMeta(col) {
   let meta = col.defaultMeta ? { ...col.defaultMeta } : null;
 
   if (col.metaGid && col.sheetId) {
-    const csvUrl = `https://docs.google.com/spreadsheets/d/${col.sheetId}/export?format=csv&gid=${col.metaGid}`;
-    const gvizUrl = `https://docs.google.com/spreadsheets/d/${col.sheetId}/gviz/tq?tqx=out:json&gid=${col.metaGid}`;
+    const { csvUrl, gvizUrl } = getCollectionMetaUrls(col);
 
     let fetchedMeta = null;
 
-    const csvText = await safeFetchText(csvUrl, 2500);
-    if (csvText) {
-      fetchedMeta = parseMetaCSVData(csvText);
+    if (csvUrl) {
+      const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
+      if (csvText) {
+        fetchedMeta = parseMetaCSVData(csvText);
+      }
     }
 
-    if (!fetchedMeta || !fetchedMeta.title) {
-      const gvizText = await safeFetchText(gvizUrl, 2500);
+    if ((!fetchedMeta || !fetchedMeta.title) && gvizUrl) {
+      const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
       if (gvizText) {
         fetchedMeta = parseMetaGvizResponse(gvizText);
       }
@@ -182,18 +203,19 @@ export async function fetchSingleCollection(col) {
   if (col.mockData) {
     fetchedData = col.mockData;
   } else if (sheetId && gid) {
-    const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
-    const gvizUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+    const { csvUrl, gvizUrl } = getCollectionDataUrls(col);
 
     // Method 1: Try CSV export endpoint
-    const csvText = await safeFetchText(csvUrl, 2500);
-    if (csvText) {
-      fetchedData = parseCSVData(csvText);
+    if (csvUrl) {
+      const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
+      if (csvText) {
+        fetchedData = parseCSVData(csvText);
+      }
     }
 
     // Method 2: Try GViz endpoint as secondary fallback
-    if (!fetchedData || fetchedData.length <= 5) {
-      const gvizText = await safeFetchText(gvizUrl, 2500);
+    if ((!fetchedData || fetchedData.length <= 5) && gvizUrl) {
+      const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
       if (gvizText) {
         const gvizParsed = parseGvizResponse(gvizText, col.id);
         if (gvizParsed && gvizParsed.length > (fetchedData ? fetchedData.length : 0)) {
@@ -205,11 +227,13 @@ export async function fetchSingleCollection(col) {
     // Method 3: Fallback to local dataset snapshot if offline or blocked
     if (!fetchedData || fetchedData.length === 0) {
       const fallbackPath = col.localFallback || 'data.json';
-      const fallbackText = await safeFetchText(fallbackPath, 2500);
+      const fallbackText = await safeFetchText(fallbackPath, DEFAULT_TIMEOUT_MS);
       if (fallbackText) {
         try {
           fetchedData = JSON.parse(fallbackText);
-        } catch (err) {}
+        } catch (err) {
+          console.warn(`Failed to parse local fallback JSON at ${fallbackPath}:`, err);
+        }
       }
     }
   }
@@ -218,10 +242,7 @@ export async function fetchSingleCollection(col) {
     collectionsCache[col.id] = fetchedData;
 
     // Update sidebar badge for this collection
-    const badgeElem = document.getElementById(`side-nav-count-${col.id}`);
-    if (badgeElem) {
-      badgeElem.innerText = `${fetchedData.length}`;
-    }
+    updateSidebarBadge(col.id);
 
     // If this is currently active collection, update active view records
     const { currentCollectionId } = store.get();
@@ -246,6 +267,11 @@ export function processDataAndRender() {
     titleElem.innerText = meta && meta.title ? meta.title : (col ? col.name : '');
   }
 
+  const idHeaderElem = document.getElementById('collection-header-id');
+  if (idHeaderElem) {
+    idHeaderElem.innerText = meta && meta.id ? meta.id : '';
+  }
+
   const subtitleElem = document.getElementById('collection-header-subtitle');
   if (subtitleElem) {
     subtitleElem.innerText = meta && meta.subtitle ? meta.subtitle : '';
@@ -256,10 +282,7 @@ export function processDataAndRender() {
     totalElem.innerHTML = `${allRecords.length.toLocaleString()} <span class="awsui-kpi-unit">件</span>`;
   }
 
-  const badgeElem = document.getElementById(`side-nav-count-${currentCollectionId}`);
-  if (badgeElem) {
-    badgeElem.innerText = `${allRecords.length}`;
-  }
+  updateSidebarBadge(currentCollectionId);
 
   applyFiltersAndSort();
   renderCollectionNotice();

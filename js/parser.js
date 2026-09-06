@@ -4,6 +4,68 @@
 import { collectionsConfig } from './config.js';
 
 /**
+ * Helper to construct metadata object from key-value pairs
+ * @param {Array<[string, string]>} pairs - Array of [key, value] pairs
+ * @returns {object|null} Structured metadata object or null if title is missing
+ */
+function extractMetadataFromKeyValues(pairs) {
+  const meta = {
+    title: '',
+    tags: [],
+    subtitle: '',
+    description: '',
+    notice: '',
+    author: '',
+    status: '',
+    id: ''
+  };
+
+  for (const [rawKey, rawVal] of pairs) {
+    const key = (rawKey || '').trim();
+    const val = (rawVal || '').trim();
+    if (!key) continue;
+
+    if (key.includes('標題')) {
+      meta.title = val;
+    } else if (key.includes('標籤')) {
+      meta.tags = val.split(/[\n\r,，]/).map(t => t.trim()).filter(Boolean);
+    } else if (key.includes('副標')) {
+      meta.subtitle = val;
+    } else if (key.includes('說明')) {
+      meta.description = val;
+    } else if (key.includes('注意事項') || key.includes('注意')) {
+      meta.notice = val;
+    } else if (key.includes('作者')) {
+      meta.author = val;
+    } else if (key.includes('狀態')) {
+      meta.status = val;
+    } else if (key.toUpperCase() === 'ID' || key.includes('編號') || key.includes('序號')) {
+      meta.id = val;
+    }
+  }
+
+  return meta.title ? meta : null;
+}
+
+/**
+ * Finds standard column indexes for datasets from a list of header string titles.
+ */
+function findDatasetColumnIndexes(headerTitles) {
+  const headers = headerTitles.map(h => (h || '').toLowerCase());
+  let idIdx = headers.findIndex(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
+  let termIdx = headers.findIndex(h => h.includes('title') || h.includes('term') || h.includes('name') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目'));
+  let twIdx = headers.findIndex(h => h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容'));
+  let readingIdx = headers.findIndex(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('読み') || h.includes('音素'));
+  let dateIdx = headers.findIndex(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
+
+  if (idIdx === -1) idIdx = 0;
+  if (termIdx === -1) termIdx = 1;
+  if (twIdx === -1) twIdx = 2;
+
+  return { idIdx, termIdx, twIdx, readingIdx, dateIdx };
+}
+
+/**
  * Parses raw CSV text into a 2D array of string cells, preserving multiline values in quotes.
  * @param {string} csvText - Raw CSV content
  * @returns {string[][]} Array of row cell arrays
@@ -79,16 +141,7 @@ export function parseCSVData(csvText) {
   const rows = parseCSVRows(csvText);
   if (rows.length <= 1) return null;
 
-  const header = rows[0].map(c => c.trim().toLowerCase());
-  let idIdx = header.findIndex(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
-  let termIdx = header.findIndex(h => h.includes('title') || h.includes('term') || h.includes('name') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目'));
-  let twIdx = header.findIndex(h => h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容'));
-  let readingIdx = header.findIndex(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('読み') || h.includes('音素'));
-  let dateIdx = header.findIndex(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
-
-  if (idIdx === -1) idIdx = 0;
-  if (termIdx === -1) termIdx = 1;
-  if (twIdx === -1) twIdx = 2;
+  const { idIdx, termIdx, twIdx, readingIdx, dateIdx } = findDatasetColumnIndexes(rows[0]);
 
   const results = [];
   for (let i = 1; i < rows.length; i++) {
@@ -124,16 +177,13 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
 
   let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1;
   if (table.cols && table.cols.length > 0) {
-    const colsHeader = table.cols.map(col => ((col && col.label) || '').toLowerCase());
-    idIdx = colsHeader.findIndex(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
-    termIdx = colsHeader.findIndex(h => h.includes('title') || h.includes('term') || h.includes('name') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('標題') || h.includes('項目'));
-    twIdx = colsHeader.findIndex(h => h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('說明') || h.includes('內容'));
-    readingIdx = colsHeader.findIndex(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('読み') || h.includes('音素'));
-    dateIdx = colsHeader.findIndex(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
-
-    if (idIdx === -1) idIdx = 0;
-    if (termIdx === -1) termIdx = 1;
-    if (twIdx === -1) twIdx = 2;
+    const colsHeader = table.cols.map(col => (col && col.label) || '');
+    const found = findDatasetColumnIndexes(colsHeader);
+    idIdx = found.idIdx;
+    termIdx = found.termIdx;
+    twIdx = found.twIdx;
+    readingIdx = found.readingIdx;
+    dateIdx = found.dateIdx;
   } else {
     const colConfig = collectionsConfig[currentCollectionId];
     if (colConfig && colConfig.hasReading) {
@@ -176,37 +226,15 @@ export function parseMetaCSVData(csvText) {
   const rows = parseCSVRows(csvText);
   if (rows.length <= 1) return null;
 
-  const meta = {
-    title: '',
-    tags: [],
-    subtitle: '',
-    description: '',
-    notice: '',
-    author: ''
-  };
-
+  const pairs = [];
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
-    if (row.length < 2) continue;
-    const key = (row[0] || '').trim();
-    const val = (row[1] || '').trim();
-
-    if (key.includes('標題')) {
-      meta.title = val;
-    } else if (key.includes('標籤')) {
-      meta.tags = val.split(/[\n\r,，]/).map(t => t.trim()).filter(Boolean);
-    } else if (key.includes('副標')) {
-      meta.subtitle = val;
-    } else if (key.includes('說明')) {
-      meta.description = val;
-    } else if (key.includes('注意事項') || key.includes('注意')) {
-      meta.notice = val;
-    } else if (key.includes('作者')) {
-      meta.author = val;
+    if (row.length >= 2) {
+      pairs.push([row[0], row[1]]);
     }
   }
 
-  return meta.title ? meta : null;
+  return extractMetadataFromKeyValues(pairs);
 }
 
 /**
@@ -216,34 +244,61 @@ export function parseMetaGvizResponse(gvizText) {
   const table = extractGvizTable(gvizText);
   if (!table) return null;
 
-  const meta = {
-    title: '',
-    tags: [],
-    subtitle: '',
-    description: '',
-    notice: '',
-    author: ''
-  };
-
+  const pairs = [];
   table.rows.forEach(r => {
-    if (!r.c || r.c.length < 2) return;
-    const key = (r.c[0] && r.c[0].v ? r.c[0].v : '').toString().trim();
-    const val = (r.c[1] && (r.c[1].v || r.c[1].f) ? (r.c[1].v || r.c[1].f) : '').toString().trim();
-
-    if (key.includes('標題')) {
-      meta.title = val;
-    } else if (key.includes('標籤')) {
-      meta.tags = val.split(/[\n\r,，]/).map(t => t.trim()).filter(Boolean);
-    } else if (key.includes('副標')) {
-      meta.subtitle = val;
-    } else if (key.includes('說明')) {
-      meta.description = val;
-    } else if (key.includes('注意事項') || key.includes('注意')) {
-      meta.notice = val;
-    } else if (key.includes('作者')) {
-      meta.author = val;
+    if (r.c && r.c.length >= 2) {
+      const k = (r.c[0] && r.c[0].v ? r.c[0].v : '').toString();
+      const v = (r.c[1] && (r.c[1].v || r.c[1].f) ? (r.c[1].v || r.c[1].f) : '').toString();
+      pairs.push([k, v]);
     }
   });
 
-  return meta.title ? meta : null;
+  return extractMetadataFromKeyValues(pairs);
+}
+
+/**
+ * Parses opening hours schedule from CSV content.
+ * @param {string} csvText - Raw CSV content
+ * @returns {Array<{day: string, hours: string}>|null} Array of 7 day schedule items
+ */
+export function parseOpeningHoursCSV(csvText) {
+  const rows = parseCSVRows(csvText);
+  if (!rows || rows.length < 2) return null;
+
+  const dayMap = {
+    '週日': 0, '星期日': 0, '禮拜日': 0, '0': 0, 'sun': 0, 'sunday': 0,
+    '週一': 1, '星期一': 1, '禮拜一': 1, '1': 1, 'mon': 1, 'monday': 1,
+    '週二': 2, '星期二': 2, '禮拜二': 2, '2': 2, 'tue': 2, 'tuesday': 2,
+    '週三': 3, '星期三': 3, '禮拜三': 3, '3': 3, 'wed': 3, 'wednesday': 3,
+    '週四': 4, '星期四': 4, '禮拜四': 4, '4': 4, 'thu': 4, 'thursday': 4,
+    '週五': 5, '星期五': 5, '禮拜五': 5, '5': 5, 'fri': 5, 'friday': 5,
+    '週六': 6, '星期六': 6, '禮拜六': 6, '6': 6, 'sat': 6, 'saturday': 6
+  };
+
+  const schedule = [
+    { day: '週日', hours: '16:00 - 23:55' },
+    { day: '週一', hours: '01:00 - 23:55' },
+    { day: '週二', hours: '01:00 - 23:55' },
+    { day: '週三', hours: '01:00 - 23:55' },
+    { day: '週四', hours: '01:00 - 23:55' },
+    { day: '週五', hours: '06:00 - 23:55' },
+    { day: '週六', hours: '06:00 - 23:55' }
+  ];
+
+  let hasValidRow = false;
+
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    if (row.length < 2) continue;
+    const dayRaw = (row[0] || '').trim().toLowerCase();
+    const hours = (row[1] || '').trim();
+
+    const idx = dayMap[dayRaw];
+    if (idx !== undefined && hours) {
+      schedule[idx].hours = hours;
+      hasValidRow = true;
+    }
+  }
+
+  return hasValidRow ? schedule : null;
 }

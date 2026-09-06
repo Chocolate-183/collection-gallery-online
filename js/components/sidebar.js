@@ -1,12 +1,31 @@
 /**
  * Side Navigation & Collection Switcher Component
  */
+import { EXHIBITION_STATUS, STORAGE_KEYS } from '../constants.js';
 import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
 import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
 
+export function updateSidebarBadge(colId) {
+  const badgeElem = document.getElementById(`side-nav-count-${colId}`);
+  if (!badgeElem) return;
+
+  const col = collectionsConfig[colId];
+  const meta = collectionsMetaCache[colId] || (col ? col.defaultMeta : null);
+  const isAdjusting = meta && (meta.status === EXHIBITION_STATUS.ADJUSTING ||
+                      (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING)));
+
+  if (isAdjusting) {
+    badgeElem.innerText = EXHIBITION_STATUS.ADJUSTING;
+    badgeElem.style.display = 'inline-block';
+  } else {
+    badgeElem.innerText = '';
+    badgeElem.style.display = 'none';
+  }
+}
+
 export function initSidebarState() {
-  const collapsedVal = localStorage.getItem('aws_sidebar_collapsed');
+  const collapsedVal = localStorage.getItem(STORAGE_KEYS.SIDEBAR_COLLAPSED);
   const collapsed = collapsedVal === 'true';
   const wrapper = document.getElementById('app-layout-wrapper');
   if (wrapper) {
@@ -24,14 +43,14 @@ export function toggleSidebar() {
 
   const isCollapsed = wrapper.classList.toggle('sidebar-collapsed');
   wrapper.classList.toggle('sidebar-open', !isCollapsed);
-  localStorage.setItem('aws_sidebar_collapsed', isCollapsed);
+  localStorage.setItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, isCollapsed);
 }
 
 export function switchCollection(collectionId, updateHash = true) {
   if (!collectionsConfig[collectionId]) return;
   const { currentCollectionId, allRecords } = store.get();
   const isDifferent = currentCollectionId !== collectionId;
-  
+
   store.set({
     currentCollectionId: collectionId,
     invalidTerm: null,
@@ -42,10 +61,13 @@ export function switchCollection(collectionId, updateHash = true) {
   const cardGrid = document.getElementById('card-grid');
   if (cardGrid) cardGrid.setAttribute('data-collection', collectionId);
 
-  // Update Header Title & Subtitle
+  // Update Header Title & Subtitle & ID
   const meta = collectionsMetaCache[collectionId] || col.defaultMeta;
   const headerTitle = document.getElementById('collection-header-title');
   if (headerTitle) headerTitle.innerText = (meta && meta.title) ? meta.title : col.name;
+
+  const headerId = document.getElementById('collection-header-id');
+  if (headerId) headerId.innerText = (meta && meta.id) ? meta.id : '';
 
   const headerSubtitle = document.getElementById('collection-header-subtitle');
   if (headerSubtitle) headerSubtitle.innerText = (meta && meta.subtitle) ? meta.subtitle : '';

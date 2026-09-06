@@ -201,6 +201,31 @@ body {
   border-left: 3px solid #0f6ce0;
 }
 
+.awsui-nav-id {
+  font-family: var(--awsui-font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #687078;
+  margin-left: 6px;
+  background-color: #f1f3f5;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.awsui-gallery-header-id {
+  font-family: var(--awsui-font-mono, monospace);
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f6ce0;
+  background-color: #ebf5ff;
+  border: 1px solid #b3d7ff;
+  padding: 3px 9px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
 .awsui-nav-badge {
   margin-left: auto;
   font-size: 11px;
@@ -755,6 +780,48 @@ body {
   font-weight: 600;
 }
 
+.awsui-info-item-schedule {
+  align-items: flex-start;
+}
+
+.awsui-schedule-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.awsui-schedule-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--awsui-color-text-body-default);
+}
+
+.awsui-schedule-row span:first-child {
+  color: var(--awsui-color-text-body-secondary);
+  font-weight: 500;
+  min-width: 32px;
+}
+
+.awsui-schedule-row span:last-child {
+  font-family: var(--awsui-font-family);
+  font-weight: 600;
+}
+
+.awsui-tz-badge {
+  display: inline-block;
+  background-color: var(--awsui-color-background-input-default);
+  color: #0f6ce0;
+  border: 1px solid var(--awsui-color-border-item-default);
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
 .awsui-badge-success {
   display: inline-block;
   background-color: #e6f4ea;
@@ -937,10 +1004,10 @@ body {
 }
 
 /* ==========================================================================
-   Collection Notice Footer (Supplementary / Muted Note)
+   Collection Notice & Supplementary Footer Panels
    ========================================================================== */
 .awsui-collection-notice-footer {
-  margin-top: 24px;
+  margin-top: 16px;
   padding: 16px 20px;
   background-color: var(--awsui-color-background-container-content, #ffffff);
   border: 1px dashed var(--awsui-color-border-item-default, #e9ebed);
@@ -990,6 +1057,23 @@ body {
   background-color: #0f6ce0;
 }
 
+.awsui-hero-hours-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--awsui-color-text-body-secondary);
+  margin-left: 6px;
+}
+
+.awsui-hero-hours-inline .awsui-icon {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  color: var(--awsui-color-text-body-secondary);
+  opacity: 0.85;
+}
+
 .awsui-hero-title {
   font-size: 38px;
   font-weight: 800;
@@ -1023,7 +1107,7 @@ body {
   height: 38px;
   padding: 0 18px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
@@ -1150,6 +1234,12 @@ body {
   line-height: 1.2;
 }
 
+.awsui-tag-adjusting {
+  background-color: #f2f3f5;
+  color: #5f6b7a;
+  border-color: #d1d5db;
+}
+
 .awsui-welcome-card-tag:hover {
   border-color: #0f6ce0;
   color: #0f6ce0;
@@ -1270,13 +1360,15 @@ body {
 }
 
 [data-theme="dark"] .awsui-nav-badge {
-  background-color: #1d2a3a;
-  color: #8b949e;
+  background-color: #1e293b;
+  color: #94a3b8;
+  border: 1px solid #334155;
 }
 
 [data-theme="dark"] .awsui-nav-link.active .awsui-nav-badge {
-  background-color: #0f6ce0;
-  color: #ffffff;
+  background-color: #1d3b66;
+  color: #93c5fd;
+  border: 1px solid #2563eb;
 }
 
 [data-theme="dark"] .awsui-kpi-box,
@@ -1375,6 +1467,11 @@ body {
   color: #fdd663;
 }
 
+[data-theme="dark"] .awsui-tz-badge {
+  color: #4da2ff;
+  border-color: var(--awsui-color-border-item-default);
+}
+
 [data-theme="dark"] .awsui-modal-header {
   background-color: #111c2b;
   border-bottom-color: var(--awsui-color-border-divider-default);
@@ -1425,6 +1522,12 @@ body {
 
 [data-theme="dark"] .awsui-welcome-card:hover {
   border-color: #4da2ff;
+}
+
+[data-theme="dark"] .awsui-tag-adjusting {
+  background-color: #1e293b;
+  color: #94a3b8;
+  border-color: #334155;
 }
 
 /* Responsive Styles for Mobile/Tablet */

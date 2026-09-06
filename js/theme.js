@@ -1,6 +1,7 @@
 /**
  * Theme Management (Light / Dark Mode)
  */
+import { STORAGE_KEYS } from './constants.js';
 import { store } from './state.js';
 import { showToast } from './components/toast.js';
 
@@ -12,7 +13,7 @@ export function initTheme() {
 export function toggleTheme() {
   const { currentTheme } = store.get();
   const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('aws_theme', nextTheme);
+  localStorage.setItem(STORAGE_KEYS.THEME, nextTheme);
   store.set({ currentTheme: nextTheme });
   applyTheme(nextTheme);
   showToast(nextTheme === 'dark' ? '已切換至深色模式' : '已切換至淺色模式');

@@ -1,6 +1,8 @@
 /**
  * Shared Helper Utilities
  */
+import { DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
+import { parseOpeningHoursCSV } from './parser.js';
 
 /**
  * Escapes special HTML characters to prevent XSS in dynamic rendering.
@@ -27,13 +29,114 @@ export function getUnicodeLength(str) {
   return [...str].length;
 }
 
+export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];
+
+export function setOpeningHoursSchedule(newSchedule) {
+  if (Array.isArray(newSchedule) && newSchedule.length === 7) {
+    OPENING_HOURS_SCHEDULE = newSchedule;
+  }
+}
+
+export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
+  const csvText = await safeFetchText(csvUrl);
+  if (csvText) {
+    const parsed = parseOpeningHoursCSV(csvText);
+    if (parsed) {
+      setOpeningHoursSchedule(parsed);
+      return parsed;
+    }
+  }
+  return OPENING_HOURS_SCHEDULE;
+}
+
+/**
+ * Returns formatted today's opening hours text based on current day of week.
+ * @param {Date} [date] - Optional date object for testing
+ * @returns {string} Formatted opening hours string
+ */
+export function getTodayOpeningHoursText(date = new Date()) {
+  const dayIndex = date.getDay();
+  const today = OPENING_HOURS_SCHEDULE[dayIndex];
+  return `今日開館時間: ${today ? today.hours : '休館'}`;
+}
+
+/**
+ * Returns formatted next opening time text with date based on OPENING_HOURS_SCHEDULE.
+ * @param {Date} [now] - Optional date object for testing
+ * @returns {string} Formatted next opening time string
+ */
+export function getNextOpeningTimeText(now = new Date()) {
+  for (let offset = 0; offset < 7; offset++) {
+    const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    const dayIndex = targetDate.getDay();
+    const sched = OPENING_HOURS_SCHEDULE[dayIndex];
+
+    if (!sched || !sched.hours || sched.hours === '休館') {
+      continue;
+    }
+
+    const parts = sched.hours.split('-').map(s => s.trim());
+    if (parts.length !== 2) continue;
+
+    const [startStr] = parts;
+    const [startH, startM] = startStr.split(':').map(Number);
+    if (isNaN(startH) || isNaN(startM)) continue;
+
+    const startTotalMinutes = startH * 60 + startM;
+
+    if (offset === 0) {
+      const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
+      if (currentTotalMinutes >= startTotalMinutes) {
+        continue;
+      }
+    }
+
+    const year = targetDate.getFullYear();
+    const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+    const dateStr = String(targetDate.getDate()).padStart(2, '0');
+    return `下次開館時間: ${year}/${month}/${dateStr} (${sched.day}) ${sched.hours}`;
+  }
+
+  return '下次開館時間: 暫無資料';
+}
+
+/**
+ * Checks whether the gallery is currently open based on OPENING_HOURS_SCHEDULE.
+ * @param {Date} [date] - Optional date object for testing
+ * @returns {boolean} True if within opening hours, false otherwise
+ */
+export function isGalleryOpen(date = new Date()) {
+  const dayIndex = date.getDay();
+  const today = OPENING_HOURS_SCHEDULE[dayIndex];
+  if (!today || !today.hours || today.hours === '休館') {
+    return false;
+  }
+
+  const parts = today.hours.split('-').map(s => s.trim());
+  if (parts.length !== 2) return false;
+
+  const [startStr, endStr] = parts;
+  const [startH, startM] = startStr.split(':').map(Number);
+  const [endH, endM] = endStr.split(':').map(Number);
+
+  if (isNaN(startH) || isNaN(startM) || isNaN(endH) || isNaN(endM)) {
+    return false;
+  }
+
+  const startTotalMinutes = startH * 60 + startM;
+  const endTotalMinutes = endH * 60 + endM;
+  const currentTotalMinutes = date.getHours() * 60 + date.getMinutes();
+
+  return currentTotalMinutes >= startTotalMinutes && currentTotalMinutes <= endTotalMinutes;
+}
+
 /**
  * Safe fetch wrapper with timeout and error handling.
  * @param {string} url - Target URL to fetch
  * @param {number} timeoutMs - Timeout in milliseconds (default 2500)
  * @returns {Promise<Response|null>} Response object or null if failed/timed out
  */
-export async function safeFetch(url, timeoutMs = 2500) {
+export async function safeFetch(url, timeoutMs = DEFAULT_TIMEOUT_MS) {
   try {
     const response = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) });
     if (response.ok) {
@@ -51,7 +154,7 @@ export async function safeFetch(url, timeoutMs = 2500) {
  * @param {number} timeoutMs - Timeout in milliseconds (default 2500)
  * @returns {Promise<string|null>} Response text or null
  */
-export async function safeFetchText(url, timeoutMs = 2500) {
+export async function safeFetchText(url, timeoutMs = DEFAULT_TIMEOUT_MS) {
   const response = await safeFetch(url, timeoutMs);
   if (!response) return null;
   try {
