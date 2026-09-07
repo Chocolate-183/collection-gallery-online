@@ -6,7 +6,7 @@ import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection } from './components/sidebar.js';
 import { openMeaningModal, closeDetailModal } from './components/modal.js';
-import { renderCollectionNotice, collectionsMetaCache } from './data.js';
+import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen } from './utils.js';
 
@@ -18,6 +18,7 @@ function toggleViewElements(targetView) {
     [VIEWS.WELCOME]: document.getElementById('view-welcome'),
     [VIEWS.DICTIONARY]: document.getElementById('view-dictionary'),
     [VIEWS.ABOUT]: document.getElementById('view-about'),
+    [VIEWS.STATS]: document.getElementById('view-stats'),
     [VIEWS.MAINTENANCE]: document.getElementById('view-maintenance')
   };
 
@@ -42,11 +43,29 @@ function isCollectionAdjusting(colMeta) {
          (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.ADJUSTING));
 }
 
+/**
+ * Checks if a collection's metadata status is preparing
+ */
+function isCollectionPreparing(colMeta) {
+  if (!colMeta || !colMeta.status) return false;
+  return colMeta.status === EXHIBITION_STATUS.PREPARING ||
+         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.PREPARING));
+}
+
+/**
+ * Checks if a collection's metadata status is hidden ("不顯示")
+ */
+function isCollectionHidden(colMeta) {
+  if (!colMeta || !colMeta.status) return false;
+  return colMeta.status === EXHIBITION_STATUS.HIDDEN ||
+         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.HIDDEN));
+}
+
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
 
   const isClosed = !isGalleryOpen();
-  if (isClosed && viewName !== VIEWS.MAINTENANCE && viewName !== VIEWS.ABOUT) {
+  if (isClosed && viewName !== VIEWS.MAINTENANCE && viewName !== VIEWS.ABOUT && viewName !== VIEWS.STATS) {
     viewName = VIEWS.MAINTENANCE;
   }
 
@@ -54,8 +73,9 @@ export function switchView(viewName, event, updateHash = true) {
   const col = collectionsConfig[currentCollectionId];
   const colMeta = collectionsMetaCache[currentCollectionId] || (col ? col.defaultMeta : null);
   const isColAdjusting = isCollectionAdjusting(colMeta);
+  const isColPreparing = isCollectionPreparing(colMeta);
 
-  if (!isClosed && viewName === VIEWS.DICTIONARY && isColAdjusting) {
+  if (!isClosed && viewName === VIEWS.DICTIONARY && (isColAdjusting || isColPreparing)) {
     viewName = VIEWS.MAINTENANCE;
   }
 
@@ -64,6 +84,7 @@ export function switchView(viewName, event, updateHash = true) {
 
   const navWelcome = document.getElementById('nav-welcome');
   const navAbout = document.getElementById('nav-about');
+  const navStats = document.getElementById('nav-stats');
 
   const maintTitle = document.getElementById('maintenance-title');
   const maintDesc1 = document.getElementById('maintenance-desc-1');
@@ -76,11 +97,24 @@ export function switchView(viewName, event, updateHash = true) {
   if (viewName === VIEWS.MAINTENANCE) {
     if (isClosed) {
       if (maintTitle) maintTitle.innerText = '閉館中';
-      if (maintDesc1) maintDesc1.innerText = '目前非線上展廳開放時間，歡迎於開館時間再次蒞臨參觀。';
+      if (maintDesc1) maintDesc1.innerText = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
       if (maintDesc2) maintDesc2.style.display = 'block';
+    } else if (isColPreparing) {
+      if (maintTitle) maintTitle.innerText = '籌備中';
+      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中')
+        ? colMeta.announcement
+        : '本展廳目前正在籌備中，暫不開放參觀，敬請期待。';
+      if (maintDesc1) maintDesc1.innerText = prepareMsg;
+      if (maintDesc2) maintDesc2.style.display = 'none';
+
+      const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
+      if (activeColBtn) activeColBtn.classList.add('active');
     } else if (isColAdjusting) {
       if (maintTitle) maintTitle.innerText = '展廳調整中';
-      if (maintDesc1) maintDesc1.innerText = '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
+      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中')
+        ? colMeta.announcement
+        : '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
+      if (maintDesc1) maintDesc1.innerText = adjustMsg;
       if (maintDesc2) maintDesc2.style.display = 'none';
 
       const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
@@ -92,7 +126,7 @@ export function switchView(viewName, event, updateHash = true) {
         if (decodeURIComponent(window.location.hash) !== '#/maintenance') {
           location.hash = '#/maintenance';
         }
-      } else if (isColAdjusting) {
+      } else if (isColAdjusting || isColPreparing) {
         const colName = col ? col.name : currentCollectionId;
         const targetHash = `#/${colName}`;
         if (decodeURIComponent(window.location.hash) !== targetHash) {
@@ -130,6 +164,15 @@ export function switchView(viewName, event, updateHash = true) {
         location.hash = '#/about';
       }
     }
+  } else if (viewName === VIEWS.STATS) {
+    if (navStats) navStats.classList.add('active');
+
+    if (updateHash) {
+      if (decodeURIComponent(window.location.hash) !== '#/stats') {
+        location.hash = '#/stats';
+      }
+    }
+    updateStatsView();
   }
 
   if (isViewChanged || !!event) {
@@ -140,15 +183,16 @@ export function switchView(viewName, event, updateHash = true) {
 }
 
 export function handleHashRoute() {
+  if (typeof window === 'undefined') return;
   const rawHash = window.location.hash;
   const decodedHash = decodeURIComponent(rawHash || '');
   const { currentCollectionId, allRecords } = store.get();
   const path = decodedHash.replace(/^#\/?/, '');
 
   if (!isGalleryOpen()) {
-    if (path === 'about') {
+    if (path === 'about' || path === 'stats') {
       store.set({ invalidTerm: null });
-      switchView(VIEWS.ABOUT, null, false);
+      switchView(path === 'about' ? VIEWS.ABOUT : VIEWS.STATS, null, false);
       closeDetailModal(false);
       return;
     }
@@ -179,6 +223,13 @@ export function handleHashRoute() {
     return;
   }
 
+  if (path === 'stats') {
+    store.set({ invalidTerm: null });
+    switchView(VIEWS.STATS, null, false);
+    closeDetailModal(false);
+    return;
+  }
+
   const parts = path.split('/').map(p => p.trim()).filter(Boolean);
   if (parts.length === 0) {
     store.set({ invalidTerm: null });
@@ -197,6 +248,17 @@ export function handleHashRoute() {
   );
 
   if (targetColId) {
+    const targetMeta = collectionsMetaCache[targetColId] || (collectionsConfig[targetColId] ? collectionsConfig[targetColId].defaultMeta : null);
+    if (isCollectionHidden(targetMeta)) {
+      store.set({ invalidTerm: null });
+      switchView(VIEWS.WELCOME, null, false);
+      closeDetailModal(false);
+      if (location.hash !== '#/welcome') {
+        location.hash = '#/welcome';
+      }
+      return;
+    }
+
     if (targetColId !== currentCollectionId) {
       switchCollection(targetColId, false);
       return;

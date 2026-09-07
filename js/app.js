@@ -4,7 +4,7 @@
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { initTheme, toggleTheme, applyTheme } from './theme.js';
-import { loadCollectionData, preloadAllCollections } from './data.js';
+import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
 import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from './filter.js';
 import { initSidebarState, toggleSidebar, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
 import { renderCards } from './components/cards.js';
@@ -34,6 +34,7 @@ window.switchCollection = switchCollection;
 window.onCollectionSelectChange = onCollectionSelectChange;
 window.loadCollectionData = (colId) => loadCollectionData(colId, true);
 window.preloadAllCollections = preloadAllCollections;
+window.updateStatsView = updateStatsView;
 window.onSearchInput = onSearchInput;
 window.onFilterChange = onFilterChange;
 window.onPageSizeChange = onPageSizeChange;
@@ -70,6 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   Object.keys(collectionsConfig).forEach(updateSidebarBadge);
 
   preloadAllCollections();
+  updateStatsView();
   handleHashRoute();
 
   window.addEventListener('hashchange', () => {

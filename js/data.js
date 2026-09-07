@@ -2,9 +2,9 @@
  * Data Fetching, Caching & Parallel Sync Handler
  */
 import { DEFAULT_TIMEOUT_MS, EXHIBITION_STATUS } from './constants.js';
-import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls } from './config.js';
+import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls, getMetadataUrls } from './config.js';
 import { store } from './state.js';
-import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse } from './parser.js';
+import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
@@ -16,18 +16,94 @@ export const collectionsCache = {};
 export const collectionsMetaCache = {};
 
 /**
+ * Fetches metadata for all exhibition halls from the central metadata spreadsheet.
+ */
+export async function fetchAllMetadata() {
+  const { csvUrl, gvizUrl } = getMetadataUrls();
+  let fetchedMetaMap = {};
+
+  if (csvUrl) {
+    const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
+    if (csvText) {
+      fetchedMetaMap = parseAllCollectionsMetaCSVData(csvText);
+    }
+  }
+
+  if ((!fetchedMetaMap || Object.keys(fetchedMetaMap).length === 0) && gvizUrl) {
+    const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
+    if (gvizText) {
+      fetchedMetaMap = parseAllCollectionsMetaGvizResponse(gvizText);
+    }
+  }
+
+  for (const [fetchedColId, meta] of Object.entries(fetchedMetaMap)) {
+    if (!collectionsConfig[fetchedColId]) {
+      collectionsConfig[fetchedColId] = {
+        id: fetchedColId,
+        name: meta.title || fetchedColId,
+        sheetId: '',
+        gid: '',
+        localFallback: null,
+        hasReading: false,
+        searchPlaceholder: '尋找展品...',
+        defaultMeta: meta
+      };
+    }
+  }
+
+  for (const [colId, col] of Object.entries(collectionsConfig)) {
+    const fetchedMeta = fetchedMetaMap[colId];
+    const meta = fetchedMeta || (col.defaultMeta ? { ...col.defaultMeta } : null);
+    if (meta) {
+      collectionsMetaCache[colId] = meta;
+      col.meta = meta;
+      applyCollectionMetaToUI(colId, meta);
+    }
+  }
+
+  return collectionsMetaCache;
+}
+
+/**
  * Preload and synchronize all collections and metadata in parallel at app initialization.
  */
 export async function preloadAllCollections() {
+  await fetchAllMetadata();
   const colIds = Object.keys(collectionsConfig);
   await Promise.all(colIds.map(id => fetchSingleCollection(collectionsConfig[id])));
+}
+
+/**
+ * Helper to check if a collection's status is set to hidden ("不顯示")
+ */
+export function isCollectionHidden(meta) {
+  if (!meta || !meta.status) return false;
+  return meta.status === EXHIBITION_STATUS.HIDDEN ||
+         (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.HIDDEN));
 }
 
 /**
  * Apply metadata to UI elements (welcome cards, header titles, tags, descriptions, about page).
  */
 export function applyCollectionMetaToUI(colId, meta) {
-  if (!meta) return;
+  if (!meta || typeof document === 'undefined') return;
+
+  const isHidden = isCollectionHidden(meta);
+
+  // Toggle Sidebar Link Visibility
+  const navBtn = document.getElementById(`nav-col-${colId}`);
+  if (navBtn) {
+    navBtn.style.display = isHidden ? 'none' : '';
+  }
+
+  // Toggle Welcome Card Visibility
+  const cardElem = document.getElementById(`welcome-card-${colId}`) ||
+                   document.getElementById(`welcome-card-title-${colId}`)?.closest('.awsui-welcome-card');
+  if (cardElem) {
+    cardElem.style.display = isHidden ? 'none' : '';
+  }
+
+  if (isHidden) return;
 
   // 1. Update Welcome Card Title
   const cardTitleElem = document.getElementById(`welcome-card-title-${colId}`);
@@ -40,8 +116,16 @@ export function applyCollectionMetaToUI(colId, meta) {
   if (cardTagsElem) {
     const isAdjusting = meta.status === EXHIBITION_STATUS.ADJUSTING ||
                         (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING));
+    const isPreparing = meta.status === EXHIBITION_STATUS.PREPARING ||
+                        (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.PREPARING));
     if (isAdjusting) {
       let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>`;
+      if (meta.tags && meta.tags.length > 0) {
+        tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
+      }
+      cardTagsElem.innerHTML = tagsHtml;
+    } else if (isPreparing) {
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">籌備中</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }
@@ -97,6 +181,7 @@ export function applyCollectionMetaToUI(colId, meta) {
  * Render collection notice / disclaimer in supplementary muted style at the bottom of collection page
  */
 export function renderCollectionNotice() {
+  if (typeof document === 'undefined') return;
   const container = document.getElementById('collection-notice-container');
   if (!container) return;
 
@@ -124,40 +209,15 @@ export function renderCollectionNotice() {
 }
 
 /**
- * Fetch metadata sheet (gid) for a collection.
+ * Fetch metadata sheet for a collection or trigger central metadata sync.
  */
 export async function fetchCollectionMeta(col) {
   if (!col) return null;
 
-  let meta = col.defaultMeta ? { ...col.defaultMeta } : null;
+  await fetchAllMetadata();
 
-  if (col.metaGid && col.sheetId) {
-    const { csvUrl, gvizUrl } = getCollectionMetaUrls(col);
-
-    let fetchedMeta = null;
-
-    if (csvUrl) {
-      const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
-      if (csvText) {
-        fetchedMeta = parseMetaCSVData(csvText);
-      }
-    }
-
-    if ((!fetchedMeta || !fetchedMeta.title) && gvizUrl) {
-      const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
-      if (gvizText) {
-        fetchedMeta = parseMetaGvizResponse(gvizText);
-      }
-    }
-
-    if (fetchedMeta && fetchedMeta.title) {
-      meta = fetchedMeta;
-    }
-  }
-
+  const meta = collectionsMetaCache[col.id] || (col.defaultMeta ? { ...col.defaultMeta } : null);
   if (meta) {
-    collectionsMetaCache[col.id] = meta;
-    col.meta = meta;
     applyCollectionMetaToUI(col.id, meta);
   }
 
@@ -243,6 +303,7 @@ export async function fetchSingleCollection(col) {
 
     // Update sidebar badge for this collection
     updateSidebarBadge(col.id);
+    updateStatsView();
 
     // If this is currently active collection, update active view records
     const { currentCollectionId } = store.get();
@@ -286,5 +347,38 @@ export function processDataAndRender() {
 
   applyFiltersAndSort();
   renderCollectionNotice();
+  updateStatsView();
   handleHashRoute();
+}
+
+/**
+ * Updates KPI values on the Statistics page (Total Exhibition Halls & Total Exhibition Items).
+ */
+export function updateStatsView() {
+  if (typeof document === 'undefined') return;
+
+  const totalHallsElem = document.getElementById('stats-total-halls');
+  const totalItemsElem = document.getElementById('stats-total-items');
+
+  const visibleColIds = Object.keys(collectionsConfig).filter(id => {
+    const col = collectionsConfig[id];
+    const meta = collectionsMetaCache[id] || (col ? col.defaultMeta : null);
+    return !isCollectionHidden(meta);
+  });
+
+  const totalHalls = visibleColIds.length;
+
+  let totalItems = 0;
+  visibleColIds.forEach(id => {
+    if (collectionsCache[id] && Array.isArray(collectionsCache[id])) {
+      totalItems += collectionsCache[id].length;
+    }
+  });
+
+  if (totalHallsElem) {
+    totalHallsElem.innerHTML = `${totalHalls.toLocaleString()} <span class="awsui-kpi-unit">個</span>`;
+  }
+  if (totalItemsElem) {
+    totalItemsElem.innerHTML = `${totalItems.toLocaleString()} <span class="awsui-kpi-unit">件</span>`;
+  }
 }

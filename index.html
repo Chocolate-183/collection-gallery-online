@@ -88,7 +88,7 @@
               <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
               <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
             </svg>
-            <span class="awsui-nav-text" id="nav-text-japanese-terms">日本特色詞彙</span>
+            <span class="awsui-nav-text" id="nav-text-japanese-terms">日本特色詞彙一覽</span>
             <span class="awsui-nav-badge" id="side-nav-count-japanese-terms" style="display: none;"></span>
           </button>
           <button class="awsui-nav-link" id="nav-col-china-terms" type="button" onclick="switchCollection('china-terms')">
@@ -96,8 +96,16 @@
               <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
               <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
             </svg>
-            <span class="awsui-nav-text" id="nav-text-china-terms">大陸特色詞彙</span>
+            <span class="awsui-nav-text" id="nav-text-china-terms">大陸特色詞彙一覽</span>
             <span class="awsui-nav-badge" id="side-nav-count-china-terms" style="display: none;"></span>
+          </button>
+          <button class="awsui-nav-link" id="nav-col-korean-terms" type="button" onclick="switchCollection('korean-terms')">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
+              <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
+            </svg>
+            <span class="awsui-nav-text" id="nav-text-korean-terms">韓文單字加漢字 記憶更輕鬆</span>
+            <span class="awsui-nav-badge" id="side-nav-count-korean-terms" style="display: none;"></span>
           </button>
         </nav>
       </div>
@@ -111,6 +119,12 @@
               <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
             </svg>
             <span class="awsui-nav-text">服務台</span>
+          </button>
+          <button class="awsui-nav-link" id="nav-stats" type="button" onclick="switchView('stats', event)">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-4zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+            </svg>
+            <span class="awsui-nav-text">統計資料</span>
           </button>
         </nav>
       </div>
@@ -130,17 +144,17 @@
         <section class="awsui-welcome-hero">
           <h1 class="awsui-hero-title">Welcome to Collection Gallery Online !</h1>
           <p class="awsui-hero-description">
-            CGO 致力於打造沉浸式線上展廳，邀請您細細品味與探索
+            CGO 致力於打造沉浸式虛擬展廳，邀請您細細品味與探索
           </p>
           <div class="awsui-hero-actions">
             <button class="awsui-btn awsui-btn-primary" type="button" onclick="switchCollection('japanese-terms')">
-              <span>進入「日本特色詞彙」展廳</span>
+              <span>進入「日本特色詞彙一覽」展廳</span>
               <svg class="awsui-icon" viewBox="0 0 16 16">
                 <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
               </svg>
             </button>
             <button class="awsui-btn awsui-btn-normal" type="button" onclick="switchCollection('china-terms')">
-              <span>進入「大陸特色詞彙」展廳</span>
+              <span>進入「大陸特色詞彙一覽」展廳</span>
               <svg class="awsui-icon" viewBox="0 0 16 16">
                 <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
               </svg>
@@ -167,17 +181,20 @@
 
           <div class="awsui-welcome-grid">
             <!-- Collection Card 1 -->
-            <div class="awsui-welcome-card" onclick="switchCollection('japanese-terms')">
+            <div class="awsui-welcome-card" id="welcome-card-japanese-terms" onclick="switchCollection('japanese-terms')">
               <div class="awsui-welcome-card-header">
                 <div>
-                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-japanese-terms">日本特色詞彙</h3>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-japanese-terms">日本特色詞彙一覽</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-japanese-terms">
-                    <span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>
+                    <span class="awsui-welcome-card-tag">日本</span>
+                    <span class="awsui-welcome-card-tag">語彙</span>
                   </div>
                 </div>
               </div>
               <p class="awsui-welcome-card-desc" id="welcome-card-desc-japanese-terms">
-                佈展中
+                【同字不同義：日語漢字語彙展】
+
+看到「非常口」以為是非常時期用的出口？看到「手紙」以為是衛生紙？那些你以為看懂的日語漢字，背後含意往往出乎意料！本展區精選由漢字與數字組成的日語詞彙，帶你跨越中文字面的直覺迷思，一秒搞懂最真實的日語意思！
               </p>
               <div class="awsui-welcome-card-footer">
                 <span class="awsui-welcome-card-action">進入展廳 &rarr;</span>
@@ -185,17 +202,38 @@
             </div>
 
             <!-- Collection Card 2 -->
-            <div class="awsui-welcome-card" onclick="switchCollection('china-terms')">
+            <div class="awsui-welcome-card" id="welcome-card-china-terms" onclick="switchCollection('china-terms')">
               <div class="awsui-welcome-card-header">
                 <div>
-                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms">大陸特色詞彙</h3>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms">大陸特色詞彙一覽</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-china-terms">
-                    <span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>
+                    <span class="awsui-welcome-card-tag">大陸</span>
+                    <span class="awsui-welcome-card-tag">語彙</span>
                   </div>
                 </div>
               </div>
               <p class="awsui-welcome-card-desc" id="welcome-card-desc-china-terms">
-                佈展中
+                【同字不同義：兩岸詞彙對照】
+
+同樣是中文，意思居然差這麼多？本展區精選大陸當代的網路熱詞與生活用語，幫你精準對照台灣熟悉的在地說法。從社群梗到日常表達，帶你快速看懂兩岸語境差異，掌握最道地的流行語脈絡！
+              </p>
+              <div class="awsui-welcome-card-footer">
+                <span class="awsui-welcome-card-action">進入展廳 &rarr;</span>
+              </div>
+            </div>
+
+            <!-- Collection Card 3 -->
+            <div class="awsui-welcome-card" id="welcome-card-korean-terms" onclick="switchCollection('korean-terms')">
+              <div class="awsui-welcome-card-header">
+                <div>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-korean-terms">韓文單字加漢字 記憶更輕鬆</h3>
+                  <div class="awsui-welcome-card-tags" id="welcome-card-tags-korean-terms">
+                    <span class="awsui-welcome-card-tag awsui-tag-preparing">籌備中</span>
+                  </div>
+                </div>
+              </div>
+              <p class="awsui-welcome-card-desc" id="welcome-card-desc-korean-terms">
+                籌備中
               </p>
               <div class="awsui-welcome-card-footer">
                 <span class="awsui-welcome-card-action">進入展廳 &rarr;</span>
@@ -212,7 +250,7 @@
         <!-- Header Section with Inline KPI Panels -->
         <section class="awsui-header">
           <div>
-            <h1 class="awsui-header-title" id="collection-header-title">日本特色詞彙</h1>
+            <h1 class="awsui-header-title" id="collection-header-title">日本特色詞彙一覽</h1>
             <p class="awsui-header-subtitle" id="collection-header-subtitle" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin-top: 4px;"></p>
           </div>
           <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
@@ -362,7 +400,7 @@
                 <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                 </svg>
-                <span>策展團隊</span>
+                <span>經營團隊</span>
               </div>
             </div>
 
@@ -375,25 +413,25 @@
                 </div>
                 <div class="awsui-author-meta">
                   <h2 class="awsui-author-name">巧克力</h2>
-                  <p class="awsui-author-subtitle">首席策展人 / Chief Curator</p>
+                  <p class="awsui-author-subtitle">經營團隊 / Operating Team</p>
                 </div>
               </div>
 
               <div class="awsui-info-list">
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">策展人</span>
+                  <span class="awsui-info-label">經營團隊</span>
                   <span class="awsui-info-value">巧克力</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">展廳名稱</span>
+                  <span class="awsui-info-label">平台名稱</span>
                   <span class="awsui-info-value">Collection Gallery Online</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">展廳燈光模式</span>
+                  <span class="awsui-info-label">平台燈光模式</span>
                   <span class="awsui-info-value">雙色模式 (Light / Dark)</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">展覽版本</span>
+                  <span class="awsui-info-label">平台版本</span>
                   <span class="awsui-info-value"><span class="awsui-badge-beta">v2.1.0 Beta</span></span>
                 </div>
               </div>
@@ -415,7 +453,7 @@
 
             <div class="awsui-author-details">
               <p style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin: 0;">
-                Collection Gallery Online 線上展廳參觀開放時間如下（時區：UTC+8）：
+                Collection Gallery Online 開放時間如下（時區：UTC+8）：
               </p>
 
               <div class="awsui-info-list">
@@ -449,7 +487,7 @@
 
             <div class="awsui-author-details" style="justify-content: space-between; flex: 1;">
               <p style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin: 0; line-height: 1.6;">
-                若您在參觀過程中發現展品內容有誤、有想補充的資訊，或是希望能投稿，歡迎透過表單與策展團隊聯繫。
+                若您在參觀過程中發現展品內容有誤、有想補充的資訊，或是希望能投稿，歡迎透過表單與經營團隊聯繫。
               </p>
 
               <div class="awsui-info-list">
@@ -479,6 +517,57 @@
 
       </div>
 
+      <!-- VIEW: Statistics Page (統計資料) -->
+      <div id="view-stats" class="awsui-view-content" style="display: none;">
+
+        <section class="awsui-header">
+          <h1 class="awsui-header-title">統計資料</h1>
+        </section>
+
+        <div class="awsui-about-grid">
+
+          <!-- Total Exhibition Halls Card Panel -->
+          <section class="awsui-cards-container awsui-about-card">
+            <div class="awsui-cards-collection-header">
+              <div class="awsui-cards-header-title">
+                <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
+                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
+                  <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
+                </svg>
+                <span>總展廳數</span>
+              </div>
+            </div>
+
+            <div class="awsui-author-details" style="align-items: center; justify-content: center; padding: 24px 0;">
+              <div class="awsui-kpi-value" id="stats-total-halls" style="font-size: 36px; font-weight: 700; color: var(--awsui-color-text-body-default, #16191f);">
+                0 <span class="awsui-kpi-unit" style="font-size: 16px; font-weight: normal; color: var(--awsui-color-text-body-secondary, #5f6b7a);">個</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Total Exhibition Items Card Panel -->
+          <section class="awsui-cards-container awsui-about-card">
+            <div class="awsui-cards-collection-header">
+              <div class="awsui-cards-header-title">
+                <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
+                  <path d="M2.5 1A1.5 1.5 0 0 0 1 2.5v11A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 13.5 1h-11zm11 1a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5h11z"/>
+                  <path d="M3 4h10v1H3V4zm0 3h10v1H3V7zm0 3h7v1H3v-1z"/>
+                </svg>
+                <span>總展品數</span>
+              </div>
+            </div>
+
+            <div class="awsui-author-details" style="align-items: center; justify-content: center; padding: 24px 0;">
+              <div class="awsui-kpi-value" id="stats-total-items" style="font-size: 36px; font-weight: 700; color: var(--awsui-color-text-body-default, #16191f);">
+                0 <span class="awsui-kpi-unit" style="font-size: 16px; font-weight: normal; color: var(--awsui-color-text-body-secondary, #5f6b7a);">件</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
       <!-- VIEW 3: Maintenance Page (維護頁面) -->
       <div id="view-maintenance" class="awsui-view-content" style="display: none;">
         <section class="awsui-welcome-hero" style="text-align: center; padding: 96px 48px; min-height: 520px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -488,7 +577,7 @@
 
           <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; justify-content: center;">
             <div class="awsui-hero-hours-inline" id="maintenance-desc-1" style="font-size: 14px;">
-              目前非線上展廳開放時間，歡迎於開館時間再次蒞臨參觀。
+              目前非展廳開放時間，歡迎於開館時間再次蒞臨參觀。
             </div>
             <div class="awsui-hero-hours-inline" id="maintenance-desc-2" style="font-size: 14px;">
               <span id="maintenance-hours-text">下次開館時間: --</span>

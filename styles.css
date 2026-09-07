@@ -171,7 +171,10 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  box-sizing: border-box;
   border-radius: 6px;
   color: var(--awsui-color-text-body-default);
   text-decoration: none;
@@ -187,6 +190,21 @@ body {
   text-align: left;
   font-family: inherit;
   cursor: pointer;
+}
+
+.awsui-nav-link .awsui-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.awsui-nav-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
 }
 
 .awsui-nav-link:hover {
@@ -228,12 +246,14 @@ body {
 
 .awsui-nav-badge {
   margin-left: auto;
+  flex-shrink: 0;
   font-size: 11px;
   font-weight: 600;
   background-color: #eaedd1;
   color: #5f6b7a;
   padding: 2px 8px;
   border-radius: 10px;
+  white-space: nowrap;
 }
 
 .awsui-nav-link.active .awsui-nav-badge {
@@ -835,12 +855,30 @@ body {
 .awsui-badge-beta,
 .awsui-badge-warning {
   display: inline-block;
-  background-color: #feefc3;
-  color: #b06000;
-  padding: 2px 8px;
-  border-radius: 12px;
+  background-color: #f2f3f5;
+  color: #5f6b7a;
+  border: 1px solid #d1d5db;
+  padding: 1px 6px;
+  border-radius: 10px;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
+}
+
+/* Subtle Cloudscape Tag Component */
+.awsui-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 1px solid var(--awsui-color-border-item-default, #d1d5db);
+  background-color: var(--awsui-color-background-input-default, #f2f3f5);
+  color: var(--awsui-color-text-body-secondary, #5f6b7a);
+  line-height: 1.2;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
 .awsui-intro-text {
@@ -1234,7 +1272,8 @@ body {
   line-height: 1.2;
 }
 
-.awsui-tag-adjusting {
+.awsui-tag-adjusting,
+.awsui-tag-preparing {
   background-color: #f2f3f5;
   color: #5f6b7a;
   border-color: #d1d5db;
@@ -1463,8 +1502,15 @@ body {
 
 [data-theme="dark"] .awsui-badge-beta,
 [data-theme="dark"] .awsui-badge-warning {
-  background-color: #3c2d00;
-  color: #fdd663;
+  background-color: #1a2536;
+  color: #94a3b8;
+  border-color: #2e3e52;
+}
+
+[data-theme="dark"] .awsui-tag {
+  background-color: #1a2536;
+  color: #94a3b8;
+  border-color: #2e3e52;
 }
 
 [data-theme="dark"] .awsui-tz-badge {
@@ -1524,7 +1570,8 @@ body {
   border-color: #4da2ff;
 }
 
-[data-theme="dark"] .awsui-tag-adjusting {
+[data-theme="dark"] .awsui-tag-adjusting,
+[data-theme="dark"] .awsui-tag-preparing {
   background-color: #1e293b;
   color: #94a3b8;
   border-color: #334155;

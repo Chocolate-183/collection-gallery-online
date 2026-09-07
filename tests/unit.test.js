@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCSVData, parseMetaCSVData, parseCSVRows, extractGvizTable, parseOpeningHoursCSV } from '../js/parser.js';
+import { parseCSVData, parseMetaCSVData, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, parseOpeningHoursCSV } from '../js/parser.js';
 import { matchesKanaGroup } from '../js/filter.js';
 import { escapeHtml, getUnicodeLength, getTodayOpeningHoursText } from '../js/utils.js';
 
@@ -83,6 +83,7 @@ test('Default Welcome Route Resolution', () => {
     const path = decoded.replace(/^#\/?/, '');
     if (!path || path === 'welcome' || path === 'home') return 'welcome';
     if (path === 'about') return 'about';
+    if (path === 'stats') return 'stats';
     return 'dictionary';
   };
 
@@ -91,6 +92,7 @@ test('Default Welcome Route Resolution', () => {
   assert.equal(resolveRoute('#/'), 'welcome');
   assert.equal(resolveRoute('#/welcome'), 'welcome');
   assert.equal(resolveRoute('#/about'), 'about');
+  assert.equal(resolveRoute('#/stats'), 'stats');
   assert.equal(resolveRoute('#/日本特色詞彙'), 'dictionary');
 });
 
@@ -117,8 +119,7 @@ test('Meta Sheet CSV Parser - Parse Status Field', () => {
   const sampleMetaCSVWithStatus = `項目,內容
 標題,日本特色詞彙
 副標,探索日本流行與次文化用語的專屬辭典
-狀態,調整中
-作者,巧克力`;
+狀態,調整中`;
 
   const meta = parseMetaCSVData(sampleMetaCSVWithStatus);
   assert.equal(meta.title, '日本特色詞彙');
@@ -366,18 +367,32 @@ test('Exhibition Hall Maintenance Status View Routing', async () => {
   assert.equal(mockDesc2El.style.display, 'none');
   assert.equal(mockViewMaintEl.style.display, 'block');
 
+  // Test "籌備中" status routing
+  collectionsMetaCache['korean-terms'] = {
+    title: '最強韓文漢字學習法',
+    status: '籌備中'
+  };
+
+  store.set({ currentCollectionId: 'korean-terms' });
+  switchView('dictionary', null, false);
+
+  assert.equal(mockTitleEl.innerText, '籌備中');
+  assert.equal(mockDesc1El.innerText, '本展廳目前正在籌備中，暫不開放參觀，敬請期待。');
+  assert.equal(mockDesc2El.style.display, 'none');
+  assert.equal(mockViewMaintEl.style.display, 'block');
+
   setOpeningHoursSchedule(originalSchedule);
   if (originalGetElementById) {
     global.document.getElementById = originalGetElementById;
   }
 });
 
-test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" Badge Only When Adjusting', async () => {
+test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" and "籌備中" Badges', async () => {
   const mockBadgeEl = { innerText: '', style: { display: 'inline-block' } };
   const originalGetElementById = global.document?.getElementById;
   global.document = global.document || {};
   global.document.getElementById = (id) => {
-    if (id === 'side-nav-count-japanese-terms') return mockBadgeEl;
+    if (id === 'side-nav-count-japanese-terms' || id === 'side-nav-count-korean-terms') return mockBadgeEl;
     return null;
   };
 
@@ -402,6 +417,50 @@ test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" Badge Onl
   assert.equal(mockBadgeEl.innerText, '調整中');
   assert.equal(mockBadgeEl.style.display, 'inline-block');
 
+  // Case 3: Preparing status ("籌備中" badge SHOULD be shown)
+  collectionsMetaCache['korean-terms'] = {
+    title: '最強韓文漢字學習法',
+    status: '籌備中'
+  };
+  updateSidebarBadge('korean-terms');
+  assert.equal(mockBadgeEl.innerText, '籌備中');
+  assert.equal(mockBadgeEl.style.display, 'inline-block');
+
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
+});
+
+test('Exhibition Hall Hidden Status Display and Route Handling', async () => {
+  const { isCollectionHidden, applyCollectionMetaToUI } = await import('../js/data.js');
+
+  // 1. Helper function checks
+  assert.equal(isCollectionHidden({ status: '不顯示' }), true);
+  assert.equal(isCollectionHidden({ status: '開放中' }), false);
+  assert.equal(isCollectionHidden({ status: '籌備中' }), false);
+
+  // 2. UI Hiding checks (Sidebar button and Welcome card)
+  const mockNavBtn = { style: { display: '' } };
+  const mockWelcomeCard = { style: { display: '' } };
+
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'nav-col-korean-terms') return mockNavBtn;
+    if (id === 'welcome-card-korean-terms') return mockWelcomeCard;
+    return null;
+  };
+
+  // When status is "不顯示", both nav button and welcome card should be set to display: 'none'
+  applyCollectionMetaToUI('korean-terms', { title: '韓文單字加漢字 記憶更輕鬆', status: '不顯示' });
+  assert.equal(mockNavBtn.style.display, 'none');
+  assert.equal(mockWelcomeCard.style.display, 'none');
+
+  // When status is "籌備中", display should be reset to ''
+  applyCollectionMetaToUI('korean-terms', { title: '韓文單字加漢字 記憶更輕鬆', status: '籌備中' });
+  assert.equal(mockNavBtn.style.display, '');
+  assert.equal(mockWelcomeCard.style.display, '');
+
   if (originalGetElementById) {
     global.document.getElementById = originalGetElementById;
   }
@@ -423,7 +482,40 @@ test('Google Sheets Config URL Builders', async () => {
   const metaUrls = getCollectionMetaUrls(jpCol);
 
   assert.equal(dataUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.gid}`);
-  assert.equal(metaUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.metaGid}`);
+  assert.equal(metaUrls.csvUrl, 'https://docs.google.com/spreadsheets/d/162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs/export?format=csv&gid=0');
+});
+
+test('Multi-Collection Matrix Metadata CSV Parser', () => {
+  const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙,最強韓文漢字學習法
+展廳ID,C101,C102,C103
+展廳狀態,調整中,開放中,籌備中
+展廳公告,每日於 1230-1330 進行展廳調整,每日於 1230-1330 進行展廳調整,籌備中
+展廳標籤,"日本
+語彙","大陸
+語彙",韓語學習
+展廳副標,日語副標測試,大陸副標測試,籌備中
+展廳說明,日語說明測試,大陸說明測試,籌備中
+展廳注意事項,日語注意事項,大陸注意事項,籌備中
+展廳策劃,巧克力,巧克力,巧克力`;
+
+  const parsedMap = parseAllCollectionsMetaCSVData(sampleMatrixCSV);
+  assert('japanese-terms' in parsedMap);
+  assert('china-terms' in parsedMap);
+  assert('korean-terms' in parsedMap);
+
+  assert.equal(parsedMap['japanese-terms'].title, '日本特色詞彙');
+  assert.equal(parsedMap['japanese-terms'].id, 'C101');
+  assert.equal(parsedMap['japanese-terms'].status, '調整中');
+  assert.equal(parsedMap['japanese-terms'].subtitle, '日語副標測試');
+
+  assert.equal(parsedMap['china-terms'].title, '大陸特色詞彙');
+  assert.equal(parsedMap['china-terms'].id, 'C102');
+  assert.equal(parsedMap['china-terms'].status, '開放中');
+  assert.equal(parsedMap['china-terms'].subtitle, '大陸副標測試');
+
+  assert.equal(parsedMap['korean-terms'].title, '最強韓文漢字學習法');
+  assert.equal(parsedMap['korean-terms'].id, 'C103');
+  assert.equal(parsedMap['korean-terms'].status, '籌備中');
 });
 
 test('Sidebar Section Header GALLERYS & Removed Sidebar ID Element', async () => {
