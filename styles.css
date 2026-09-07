@@ -171,7 +171,10 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  box-sizing: border-box;
   border-radius: 6px;
   color: var(--awsui-color-text-body-default);
   text-decoration: none;
@@ -187,6 +190,21 @@ body {
   text-align: left;
   font-family: inherit;
   cursor: pointer;
+}
+
+.awsui-nav-link .awsui-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.awsui-nav-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
 }
 
 .awsui-nav-link:hover {
@@ -228,12 +246,14 @@ body {
 
 .awsui-nav-badge {
   margin-left: auto;
+  flex-shrink: 0;
   font-size: 11px;
   font-weight: 600;
   background-color: #eaedd1;
   color: #5f6b7a;
   padding: 2px 8px;
   border-radius: 10px;
+  white-space: nowrap;
 }
 
 .awsui-nav-link.active .awsui-nav-badge {
