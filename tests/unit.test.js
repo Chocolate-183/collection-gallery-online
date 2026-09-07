@@ -113,14 +113,15 @@ test('Meta Sheet CSV Parser', () => {
   assert.equal(meta.author, '巧克力');
 });
 
-test('Meta Sheet CSV Parser - Parse Curator and Responsible Person Field', () => {
-  const sampleMetaCSVWithCurator = `項目,內容
+test('Meta Sheet CSV Parser - Parse Status Field', () => {
+  const sampleMetaCSVWithStatus = `項目,內容
 標題,日本特色詞彙
-策劃與負責人,巧克力 (策劃與負責人)`;
+副標,探索日本流行與次文化用語的專屬辭典
+狀態,調整中`;
 
-  const meta = parseMetaCSVData(sampleMetaCSVWithCurator);
+  const meta = parseMetaCSVData(sampleMetaCSVWithStatus);
   assert.equal(meta.title, '日本特色詞彙');
-  assert.equal(meta.author, '巧克力 (策劃與負責人)');
+  assert.equal(meta.status, '調整中');
 });
 
 test('ID and Date Monospace Font Styling Configuration', async () => {
