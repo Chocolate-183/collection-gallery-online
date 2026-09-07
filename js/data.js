@@ -2,9 +2,9 @@
  * Data Fetching, Caching & Parallel Sync Handler
  */
 import { DEFAULT_TIMEOUT_MS, EXHIBITION_STATUS } from './constants.js';
-import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls } from './config.js';
+import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls, getMetadataUrls } from './config.js';
 import { store } from './state.js';
-import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse } from './parser.js';
+import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
@@ -16,9 +16,44 @@ export const collectionsCache = {};
 export const collectionsMetaCache = {};
 
 /**
+ * Fetches metadata for all exhibition halls from the central metadata spreadsheet.
+ */
+export async function fetchAllMetadata() {
+  const { csvUrl, gvizUrl } = getMetadataUrls();
+  let fetchedMetaMap = {};
+
+  if (csvUrl) {
+    const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
+    if (csvText) {
+      fetchedMetaMap = parseAllCollectionsMetaCSVData(csvText);
+    }
+  }
+
+  if ((!fetchedMetaMap || Object.keys(fetchedMetaMap).length === 0) && gvizUrl) {
+    const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
+    if (gvizText) {
+      fetchedMetaMap = parseAllCollectionsMetaGvizResponse(gvizText);
+    }
+  }
+
+  for (const [colId, col] of Object.entries(collectionsConfig)) {
+    const fetchedMeta = fetchedMetaMap[colId];
+    const meta = fetchedMeta || (col.defaultMeta ? { ...col.defaultMeta } : null);
+    if (meta) {
+      collectionsMetaCache[colId] = meta;
+      col.meta = meta;
+      applyCollectionMetaToUI(colId, meta);
+    }
+  }
+
+  return collectionsMetaCache;
+}
+
+/**
  * Preload and synchronize all collections and metadata in parallel at app initialization.
  */
 export async function preloadAllCollections() {
+  await fetchAllMetadata();
   const colIds = Object.keys(collectionsConfig);
   await Promise.all(colIds.map(id => fetchSingleCollection(collectionsConfig[id])));
 }
@@ -27,7 +62,7 @@ export async function preloadAllCollections() {
  * Apply metadata to UI elements (welcome cards, header titles, tags, descriptions, about page).
  */
 export function applyCollectionMetaToUI(colId, meta) {
-  if (!meta) return;
+  if (!meta || typeof document === 'undefined') return;
 
   // 1. Update Welcome Card Title
   const cardTitleElem = document.getElementById(`welcome-card-title-${colId}`);
@@ -97,6 +132,7 @@ export function applyCollectionMetaToUI(colId, meta) {
  * Render collection notice / disclaimer in supplementary muted style at the bottom of collection page
  */
 export function renderCollectionNotice() {
+  if (typeof document === 'undefined') return;
   const container = document.getElementById('collection-notice-container');
   if (!container) return;
 
@@ -124,40 +160,15 @@ export function renderCollectionNotice() {
 }
 
 /**
- * Fetch metadata sheet (gid) for a collection.
+ * Fetch metadata sheet for a collection or trigger central metadata sync.
  */
 export async function fetchCollectionMeta(col) {
   if (!col) return null;
 
-  let meta = col.defaultMeta ? { ...col.defaultMeta } : null;
+  await fetchAllMetadata();
 
-  if (col.metaGid && col.sheetId) {
-    const { csvUrl, gvizUrl } = getCollectionMetaUrls(col);
-
-    let fetchedMeta = null;
-
-    if (csvUrl) {
-      const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
-      if (csvText) {
-        fetchedMeta = parseMetaCSVData(csvText);
-      }
-    }
-
-    if ((!fetchedMeta || !fetchedMeta.title) && gvizUrl) {
-      const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
-      if (gvizText) {
-        fetchedMeta = parseMetaGvizResponse(gvizText);
-      }
-    }
-
-    if (fetchedMeta && fetchedMeta.title) {
-      meta = fetchedMeta;
-    }
-  }
-
+  const meta = collectionsMetaCache[col.id] || (col.defaultMeta ? { ...col.defaultMeta } : null);
   if (meta) {
-    collectionsMetaCache[col.id] = meta;
-    col.meta = meta;
     applyCollectionMetaToUI(col.id, meta);
   }
 

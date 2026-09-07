@@ -80,7 +80,7 @@ export function switchView(viewName, event, updateHash = true) {
       if (maintDesc2) maintDesc2.style.display = 'block';
     } else if (isColAdjusting) {
       if (maintTitle) maintTitle.innerText = '展廳調整中';
-      if (maintDesc1) maintDesc1.innerText = '本展廳正在進行裝修工程，暫不開放參觀，敬請期待。';
+      if (maintDesc1) maintDesc1.innerText = '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
       if (maintDesc2) maintDesc2.style.display = 'none';
 
       const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);

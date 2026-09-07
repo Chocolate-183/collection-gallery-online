@@ -15,6 +15,7 @@ function extractMetadataFromKeyValues(pairs) {
     subtitle: '',
     description: '',
     notice: '',
+    announcement: '',
     author: '',
     status: '',
     id: ''
@@ -25,26 +26,28 @@ function extractMetadataFromKeyValues(pairs) {
     const val = (rawVal || '').trim();
     if (!key) continue;
 
-    if (key.includes('標題')) {
+    if (key.includes('標題') || key.includes('展廳名') || key === 'name') {
       meta.title = val;
-    } else if (key.includes('標籤')) {
+    } else if (key.includes('標籤') || key.includes('tags')) {
       meta.tags = val.split(/[\n\r,，]/).map(t => t.trim()).filter(Boolean);
-    } else if (key.includes('副標')) {
+    } else if (key.includes('副標') || key.includes('subtitle')) {
       meta.subtitle = val;
-    } else if (key.includes('說明')) {
+    } else if (key.includes('說明') || key.includes('description')) {
       meta.description = val;
-    } else if (key.includes('注意事項') || key.includes('注意')) {
+    } else if (key.includes('注意事項') || key.includes('注意') || key.includes('notice')) {
       meta.notice = val;
-    } else if (key.includes('作者') || key.includes('策劃') || key.includes('負責人')) {
+    } else if (key.includes('公告') || key.includes('announcement')) {
+      meta.announcement = val;
+    } else if (key.includes('作者') || key.includes('策劃') || key.includes('負責人') || key.includes('author')) {
       meta.author = val;
-    } else if (key.includes('狀態')) {
+    } else if (key.includes('狀態') || key.includes('status')) {
       meta.status = val;
-    } else if (key.toUpperCase() === 'ID' || key.includes('編號') || key.includes('序號')) {
+    } else if (key.toUpperCase() === 'ID' || key.includes('編號') || key.includes('序號') || key.includes('展廳ID')) {
       meta.id = val;
     }
   }
 
-  return meta.title ? meta : null;
+  return (meta.title || meta.id) ? meta : null;
 }
 
 /**
@@ -220,20 +223,162 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
 }
 
 /**
- * Parses key-value pairs from metadata CSV sheets.
+ * Matches a parsed metadata object to a collection ID registered in collectionsConfig.
+ * @param {object} meta - Parsed metadata object containing title, id, etc.
+ * @returns {string|null} Matched collection ID (e.g. 'japanese-terms', 'china-terms') or null
  */
-export function parseMetaCSVData(csvText) {
-  const rows = parseCSVRows(csvText);
-  if (rows.length <= 1) return null;
+export function matchCollectionIdForMeta(meta) {
+  if (!meta) return null;
 
-  const pairs = [];
-  for (let i = 1; i < rows.length; i++) {
-    const row = rows[i];
-    if (row.length >= 2) {
-      pairs.push([row[0], row[1]]);
+  for (const [colId, col] of Object.entries(collectionsConfig)) {
+    // 1. Match by ID (e.g. 'C101', 'C102')
+    if (meta.id && (meta.id === col.id || (col.defaultMeta && meta.id === col.defaultMeta.id))) {
+      return colId;
+    }
+    // 2. Match by title or name (e.g. '日本特色詞彙', '大陸特色詞彙')
+    if (meta.title && (meta.title === col.name || (col.defaultMeta && meta.title === col.defaultMeta.title))) {
+      return colId;
     }
   }
 
+  // Fallback: direct match if meta.id is equal to col.id key
+  if (meta.id && collectionsConfig[meta.id]) {
+    return meta.id;
+  }
+
+  return null;
+}
+
+/**
+ * Parses CSV text containing metadata for one or more exhibition halls.
+ * Supports matrix format (rows = attribute keys, columns = exhibition halls)
+ * as well as legacy 2-column key-value format.
+ * @param {string} csvText - Raw CSV content
+ * @returns {Object.<string, object>} Map of colId -> metadata object
+ */
+export function parseAllCollectionsMetaCSVData(csvText) {
+  const rows = parseCSVRows(csvText);
+  if (!rows || rows.length === 0) return {};
+
+  const results = {};
+  const maxCols = Math.max(...rows.map(r => r.length));
+
+  if (maxCols > 2) {
+    // Matrix format: each column index >= 1 represents one exhibition hall
+    for (let colIdx = 1; colIdx < maxCols; colIdx++) {
+      const pairs = [];
+      for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+        const row = rows[rowIdx];
+        if (row.length > colIdx) {
+          pairs.push([row[0], row[colIdx]]);
+        }
+      }
+      const meta = extractMetadataFromKeyValues(pairs);
+      if (meta) {
+        const matchedColId = matchCollectionIdForMeta(meta);
+        if (matchedColId) {
+          results[matchedColId] = meta;
+        }
+      }
+    }
+  } else {
+    // 2-column key-value format (Col 0 = key, Col 1 = value)
+    const pairs = [];
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      if (row.length >= 2) {
+        pairs.push([row[0], row[1]]);
+      }
+    }
+    const meta = extractMetadataFromKeyValues(pairs);
+    if (meta) {
+      const matchedColId = matchCollectionIdForMeta(meta);
+      if (matchedColId) {
+        results[matchedColId] = meta;
+      }
+    }
+  }
+
+  return results;
+}
+
+/**
+ * Parses GViz response containing metadata for one or more exhibition halls.
+ * @param {string} gvizText - Raw GViz endpoint response
+ * @returns {Object.<string, object>} Map of colId -> metadata object
+ */
+export function parseAllCollectionsMetaGvizResponse(gvizText) {
+  const table = extractGvizTable(gvizText);
+  if (!table) return {};
+
+  const rows = [];
+  if (table.cols && table.cols.length > 0) {
+    const headerRow = table.cols.map(col => (col && col.label) || '');
+    if (headerRow.some(Boolean)) {
+      rows.push(headerRow);
+    }
+  }
+
+  if (table.rows) {
+    table.rows.forEach(r => {
+      if (!r.c) return;
+      const rowVals = r.c.map(cell => (cell && cell.v !== null && cell.v !== undefined) ? (cell.v || cell.f || '').toString() : '');
+      rows.push(rowVals);
+    });
+  }
+
+  if (rows.length === 0) return {};
+
+  const results = {};
+  const maxCols = Math.max(...rows.map(r => r.length));
+
+  if (maxCols > 2) {
+    for (let colIdx = 1; colIdx < maxCols; colIdx++) {
+      const pairs = [];
+      for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+        const row = rows[rowIdx];
+        if (row.length > colIdx) {
+          pairs.push([row[0], row[colIdx]]);
+        }
+      }
+      const meta = extractMetadataFromKeyValues(pairs);
+      if (meta) {
+        const matchedColId = matchCollectionIdForMeta(meta);
+        if (matchedColId) {
+          results[matchedColId] = meta;
+        }
+      }
+    }
+  } else {
+    const pairs = [];
+    rows.forEach(row => {
+      if (row.length >= 2) pairs.push([row[0], row[1]]);
+    });
+    const meta = extractMetadataFromKeyValues(pairs);
+    if (meta) {
+      const matchedColId = matchCollectionIdForMeta(meta);
+      if (matchedColId) {
+        results[matchedColId] = meta;
+      }
+    }
+  }
+
+  return results;
+}
+
+/**
+ * Parses key-value pairs from metadata CSV sheets.
+ */
+export function parseMetaCSVData(csvText) {
+  const allMeta = parseAllCollectionsMetaCSVData(csvText);
+  const keys = Object.keys(allMeta);
+  if (keys.length > 0) {
+    return allMeta[keys[0]];
+  }
+
+  const rows = parseCSVRows(csvText);
+  if (rows.length === 0) return null;
+  const pairs = rows.filter(r => r.length >= 2).map(r => [r[0], r[1]]);
   return extractMetadataFromKeyValues(pairs);
 }
 
@@ -241,13 +386,19 @@ export function parseMetaCSVData(csvText) {
  * Parses key-value pairs from metadata GViz responses.
  */
 export function parseMetaGvizResponse(gvizText) {
+  const allMeta = parseAllCollectionsMetaGvizResponse(gvizText);
+  const keys = Object.keys(allMeta);
+  if (keys.length > 0) {
+    return allMeta[keys[0]];
+  }
+
   const table = extractGvizTable(gvizText);
   if (!table) return null;
 
   const pairs = [];
   table.rows.forEach(r => {
     if (r.c && r.c.length >= 2) {
-      const k = (r.c[0] && r.c[0].v ? r.c[0].v : '').toString();
+      const k = (r.c[0] && (r.c[0].v !== null && r.c[0].v !== undefined) ? r.c[0].v : '').toString();
       const v = (r.c[1] && (r.c[1].v || r.c[1].f) ? (r.c[1].v || r.c[1].f) : '').toString();
       pairs.push([k, v]);
     }

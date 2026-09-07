@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCSVData, parseMetaCSVData, parseCSVRows, extractGvizTable, parseOpeningHoursCSV } from '../js/parser.js';
+import { parseCSVData, parseMetaCSVData, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, parseOpeningHoursCSV } from '../js/parser.js';
 import { matchesKanaGroup } from '../js/filter.js';
 import { escapeHtml, getUnicodeLength, getTodayOpeningHoursText } from '../js/utils.js';
 
@@ -422,7 +422,35 @@ test('Google Sheets Config URL Builders', async () => {
   const metaUrls = getCollectionMetaUrls(jpCol);
 
   assert.equal(dataUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.gid}`);
-  assert.equal(metaUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.metaGid}`);
+  assert.equal(metaUrls.csvUrl, 'https://docs.google.com/spreadsheets/d/162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs/export?format=csv&gid=0');
+});
+
+test('Multi-Collection Matrix Metadata CSV Parser', () => {
+  const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙
+展廳ID,C101,C102
+展廳狀態,調整中,開放中
+展廳公告,每日於 1230-1330 進行展廳調整,每日於 1230-1330 進行展廳調整
+展廳標籤,"日本
+語彙","大陸
+語彙"
+展廳副標,日語副標測試,大陸副標測試
+展廳說明,日語說明測試,大陸說明測試
+展廳注意事項,日語注意事項,大陸注意事項
+展廳策劃,巧克力,巧克力`;
+
+  const parsedMap = parseAllCollectionsMetaCSVData(sampleMatrixCSV);
+  assert('japanese-terms' in parsedMap);
+  assert('china-terms' in parsedMap);
+
+  assert.equal(parsedMap['japanese-terms'].title, '日本特色詞彙');
+  assert.equal(parsedMap['japanese-terms'].id, 'C101');
+  assert.equal(parsedMap['japanese-terms'].status, '調整中');
+  assert.equal(parsedMap['japanese-terms'].subtitle, '日語副標測試');
+
+  assert.equal(parsedMap['china-terms'].title, '大陸特色詞彙');
+  assert.equal(parsedMap['china-terms'].id, 'C102');
+  assert.equal(parsedMap['china-terms'].status, '開放中');
+  assert.equal(parsedMap['china-terms'].subtitle, '大陸副標測試');
 });
 
 test('Sidebar Section Header GALLERYS & Removed Sidebar ID Element', async () => {
