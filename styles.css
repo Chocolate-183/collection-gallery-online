@@ -861,12 +861,6 @@ body {
   vertical-align: middle;
 }
 
-.awsui-tag-trial {
-  background-color: #f2f3f5;
-  color: #5f6b7a;
-  border: 1px solid #d1d5db;
-}
-
 .awsui-intro-text {
   font-size: 14px;
   color: var(--awsui-color-text-body-default);
@@ -1493,12 +1487,6 @@ body {
 }
 
 [data-theme="dark"] .awsui-tag {
-  background-color: #1a2536;
-  color: #94a3b8;
-  border-color: #2e3e52;
-}
-
-[data-theme="dark"] .awsui-tag-trial {
   background-color: #1a2536;
   color: #94a3b8;
   border-color: #2e3e52;

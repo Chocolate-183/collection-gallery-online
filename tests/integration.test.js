@@ -57,7 +57,7 @@ test('Google Form Feedback and Submission Link - About Page and Exhibition Hall 
   assert(dictViewHtml.includes('填寫問題回報 / 投稿表單'), 'Exhibition hall footer must contain "填寫問題回報 / 投稿表單" link');
 });
 
-test('Service Desk Operating Team and Trial Beta Badge', () => {
+test('Service Desk Operating Team and Platform Setup', () => {
   const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
 
   // 1. Verify Service Desk (view-about) contains "經營團隊" and "平台名稱"
@@ -68,10 +68,6 @@ test('Service Desk Operating Team and Trial Beta Badge', () => {
   assert(aboutViewHtml.includes('<span>經營團隊</span>'), 'Service Desk header must show "經營團隊"');
   assert(aboutViewHtml.includes('經營團隊 / Operating Team'), 'Profile subtitle must show Operating Team');
   assert(aboutViewHtml.includes('平台名稱'), 'Service Desk info list must describe platform name');
-
-  // 2. Verify "試營運" trial tags exist across key entry points
-  assert(htmlContent.includes('awsui-tag-trial'), 'Trial tag class must exist');
-  assert(htmlContent.includes('試營運'), 'Trial badge text "試營運" must be present');
 });
 
 
