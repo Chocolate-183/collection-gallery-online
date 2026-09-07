@@ -35,7 +35,7 @@ function extractMetadataFromKeyValues(pairs) {
       meta.description = val;
     } else if (key.includes('注意事項') || key.includes('注意')) {
       meta.notice = val;
-    } else if (key.includes('作者')) {
+    } else if (key.includes('作者') || key.includes('策劃') || key.includes('負責人')) {
       meta.author = val;
     } else if (key.includes('狀態')) {
       meta.status = val;

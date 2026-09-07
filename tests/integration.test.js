@@ -57,5 +57,29 @@ test('Google Form Feedback and Submission Link - About Page and Exhibition Hall 
   assert(dictViewHtml.includes('填寫問題回報 / 投稿表單'), 'Exhibition hall footer must contain "填寫問題回報 / 投稿表單" link');
 });
 
+test('Service Desk Operating Team, Gallery Curators, and Trial Beta Badge', () => {
+  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+
+  // 1. Verify Service Desk (view-about) contains "經營團隊" and "平台名稱"
+  const aboutViewStart = htmlContent.indexOf('id="view-about"');
+  const aboutViewEnd = htmlContent.indexOf('id="view-maintenance"');
+  assert(aboutViewStart !== -1 && aboutViewEnd !== -1);
+  const aboutViewHtml = htmlContent.substring(aboutViewStart, aboutViewEnd);
+  assert(aboutViewHtml.includes('<span>經營團隊</span>'), 'Service Desk header must show "經營團隊"');
+  assert(aboutViewHtml.includes('經營團隊 / Operating Team'), 'Profile subtitle must show Operating Team');
+  assert(aboutViewHtml.includes('平台名稱'), 'Service Desk info list must describe platform name');
+  assert(aboutViewHtml.includes('展廳策劃與負責人'), 'Service Desk must contain gallery curators panel');
+
+  // 2. Verify "試營運" trial tags exist across key entry points
+  assert(htmlContent.includes('awsui-badge-trial'), 'Trial badge class must exist');
+  assert(htmlContent.includes('試營運'), 'Trial badge text "試營運" must be present');
+
+  // 3. Verify Dictionary view header contains gallery curator & responsible person KPI box
+  const dictViewStart = htmlContent.indexOf('id="view-dictionary"');
+  const dictViewHtml = htmlContent.substring(dictViewStart, aboutViewStart);
+  assert(dictViewHtml.includes('collection-header-author'), 'Dictionary view must contain curator/responsible person KPI box');
+  assert(dictViewHtml.includes('策劃與負責人'), 'Dictionary view KPI label must show "策劃與負責人"');
+});
+
 
 

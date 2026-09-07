@@ -37,6 +37,7 @@
           </svg>
         </div>
         <span>Collection Gallery Online</span>
+        <span class="awsui-badge-trial" style="margin-left: 8px;">試營運</span>
       </div>
     </div>
 
@@ -116,7 +117,7 @@
       </div>
 
       <div class="awsui-side-nav-footer">
-        <div class="awsui-version-tag">Version 2.1.0 (Beta)</div>
+        <div class="awsui-version-tag">Version 2.1.0 (Beta) <span class="awsui-badge-trial" style="margin-left: 4px;">試營運</span></div>
       </div>
     </aside>
 
@@ -128,7 +129,10 @@
 
         <!-- Welcome Hero Banner -->
         <section class="awsui-welcome-hero">
-          <h1 class="awsui-hero-title">Welcome to Collection Gallery Online !</h1>
+          <h1 class="awsui-hero-title">
+            Welcome to Collection Gallery Online !
+            <span class="awsui-badge-trial" style="font-size: 13px; margin-left: 8px; vertical-align: middle;">試營運</span>
+          </h1>
           <p class="awsui-hero-description">
             CGO 致力於打造沉浸式線上展廳，邀請您細細品味與探索
           </p>
@@ -219,6 +223,10 @@
             <div class="awsui-kpi-box">
               <div class="awsui-kpi-label">展廳編號</div>
               <div class="awsui-kpi-val" id="collection-header-id">C101</div>
+            </div>
+            <div class="awsui-kpi-box">
+              <div class="awsui-kpi-label">策劃與負責人</div>
+              <div class="awsui-kpi-val" id="collection-header-author">巧克力</div>
             </div>
             <div class="awsui-kpi-box">
               <div class="awsui-kpi-label">展品總數</div>
@@ -362,7 +370,7 @@
                 <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                 </svg>
-                <span>策展團隊</span>
+                <span>經營團隊</span>
               </div>
             </div>
 
@@ -375,26 +383,26 @@
                 </div>
                 <div class="awsui-author-meta">
                   <h2 class="awsui-author-name">巧克力</h2>
-                  <p class="awsui-author-subtitle">首席策展人 / Chief Curator</p>
+                  <p class="awsui-author-subtitle">經營團隊 / Operating Team</p>
                 </div>
               </div>
 
               <div class="awsui-info-list">
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">策展人</span>
+                  <span class="awsui-info-label">經營團隊</span>
                   <span class="awsui-info-value">巧克力</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">展廳名稱</span>
+                  <span class="awsui-info-label">平台名稱</span>
                   <span class="awsui-info-value">Collection Gallery Online</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">展廳燈光模式</span>
+                  <span class="awsui-info-label">平台燈光模式</span>
                   <span class="awsui-info-value">雙色模式 (Light / Dark)</span>
                 </div>
                 <div class="awsui-info-item">
-                  <span class="awsui-info-label">展覽版本</span>
-                  <span class="awsui-info-value"><span class="awsui-badge-beta">v2.1.0 Beta</span></span>
+                  <span class="awsui-info-label">平台版本</span>
+                  <span class="awsui-info-value"><span class="awsui-badge-beta">v2.1.0 Beta</span> <span class="awsui-badge-trial">試營運</span></span>
                 </div>
               </div>
             </div>
@@ -435,6 +443,36 @@
             </div>
           </section>
 
+          <!-- Gallery Curators & Responsible Persons Card Panel -->
+          <section class="awsui-cards-container awsui-about-card">
+            <div class="awsui-cards-collection-header">
+              <div class="awsui-cards-header-title">
+                <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
+                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
+                  <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
+                </svg>
+                <span>展廳策劃與負責人</span>
+              </div>
+            </div>
+
+            <div class="awsui-author-details">
+              <p style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin: 0; line-height: 1.6;">
+                Collection Gallery Online 作為通用線上展覽平台，旗下各展廳皆設有獨立的策劃與負責人：
+              </p>
+
+              <div class="awsui-info-list" id="about-galleries-author-list">
+                <div class="awsui-info-item">
+                  <span class="awsui-info-label">日本特色詞彙 (C101)</span>
+                  <span class="awsui-info-value">巧克力 (策劃與負責人)</span>
+                </div>
+                <div class="awsui-info-item">
+                  <span class="awsui-info-label">大陸特色詞彙 (C102)</span>
+                  <span class="awsui-info-value">巧克力 (策劃與負責人)</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <!-- Feedback & Submission Card Panel -->
           <section class="awsui-cards-container awsui-about-card">
             <div class="awsui-cards-collection-header">
@@ -449,7 +487,7 @@
 
             <div class="awsui-author-details" style="justify-content: space-between; flex: 1;">
               <p style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin: 0; line-height: 1.6;">
-                若您在參觀過程中發現展品內容有誤、有想補充的資訊，或是希望能投稿，歡迎透過表單與策展團隊聯繫。
+                若您在參觀過程中發現展品內容有誤、有想補充的資訊，或是希望能投稿，歡迎透過表單與經營團隊聯繫。
               </p>
 
               <div class="awsui-info-list">

@@ -72,6 +72,9 @@ export function switchCollection(collectionId, updateHash = true) {
   const headerSubtitle = document.getElementById('collection-header-subtitle');
   if (headerSubtitle) headerSubtitle.innerText = (meta && meta.subtitle) ? meta.subtitle : '';
 
+  const headerAuthor = document.getElementById('collection-header-author');
+  if (headerAuthor) headerAuthor.innerText = (meta && meta.author) ? meta.author : '';
+
   // Update Search Input Placeholder
   const searchInput = document.getElementById('search-input');
   if (searchInput) {

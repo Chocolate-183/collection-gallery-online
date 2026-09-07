@@ -35,7 +35,7 @@ export function showLoadingState() {
       <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--awsui-color-text-body-secondary, #5f6b7a);">
         <div class="awsui-spinner" style="margin: 0 auto 16px auto;"></div>
         <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 4px 0; color: var(--awsui-color-text-heading, #16191f);">展廳載入中...</h3>
-        <p style="font-size: 13px; margin: 0; opacity: 0.8;">請稍候，策展團隊正在佈展與同步最新展品</p>
+        <p style="font-size: 13px; margin: 0; opacity: 0.8;">請稍候，團隊正在佈展與同步最新展品</p>
       </div>
     `;
   }

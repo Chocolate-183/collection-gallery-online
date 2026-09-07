@@ -83,6 +83,11 @@ export function applyCollectionMetaToUI(colId, meta) {
       headerSubtitle.innerText = meta.subtitle;
     }
 
+    const headerAuthor = document.getElementById('collection-header-author');
+    if (headerAuthor && meta.author) {
+      headerAuthor.innerText = meta.author;
+    }
+
     if (currentView === 'dictionary' || currentView === 'maintenance') {
       handleHashRoute();
     }
@@ -275,6 +280,11 @@ export function processDataAndRender() {
   const subtitleElem = document.getElementById('collection-header-subtitle');
   if (subtitleElem) {
     subtitleElem.innerText = meta && meta.subtitle ? meta.subtitle : '';
+  }
+
+  const authorElem = document.getElementById('collection-header-author');
+  if (authorElem) {
+    authorElem.innerText = meta && meta.author ? meta.author : (col && col.defaultMeta ? col.defaultMeta.author : '');
   }
 
   const totalElem = document.getElementById('kpi-total-count');
