@@ -4,16 +4,16 @@
 export const collectionsConfig = {
   'japanese-terms': {
     id: 'japanese-terms',
-    name: '日本特色詞彙',
+    name: '日本特色詞彙一覽',
     sheetId: '1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI',
     gid: '1857942500',
     localFallback: 'data.json',
     hasReading: true,
     searchPlaceholder: '尋找展品...',
     defaultMeta: {
-      title: '日本特色詞彙',
+      title: '日本特色詞彙一覽',
       id: 'C101',
-      status: '調整中',
+      status: '開放中',
       announcement: '每日於 1230-1330 進行展廳調整',
       tags: ['日本', '語彙'],
       subtitle: '本展區精選由漢字與數字組成的日語詞彙，帶你跨越中文字面的直覺迷思，一秒搞懂最真實的日語意思',
@@ -23,14 +23,14 @@ export const collectionsConfig = {
   },
   'china-terms': {
     id: 'china-terms',
-    name: '大陸特色詞彙',
+    name: '大陸特色詞彙一覽',
     sheetId: '16q_oTeadINeCErFrnokO4iiTS2BUwo2umT3wAHH53J8',
     gid: '826763333',
     localFallback: 'china-data.json',
     hasReading: false,
     searchPlaceholder: '尋找展品...',
     defaultMeta: {
-      title: '大陸特色詞彙',
+      title: '大陸特色詞彙一覽',
       id: 'C102',
       status: '開放中',
       announcement: '每日於 1230-1330 進行展廳調整',
