@@ -51,6 +51,15 @@ function isCollectionPreparing(colMeta) {
          (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.PREPARING));
 }
 
+/**
+ * Checks if a collection's metadata status is hidden ("不顯示")
+ */
+function isCollectionHidden(colMeta) {
+  if (!colMeta || !colMeta.status) return false;
+  return colMeta.status === EXHIBITION_STATUS.HIDDEN ||
+         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.HIDDEN));
+}
+
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
 
@@ -163,6 +172,7 @@ export function switchView(viewName, event, updateHash = true) {
 }
 
 export function handleHashRoute() {
+  if (typeof window === 'undefined') return;
   const rawHash = window.location.hash;
   const decodedHash = decodeURIComponent(rawHash || '');
   const { currentCollectionId, allRecords } = store.get();
@@ -220,6 +230,17 @@ export function handleHashRoute() {
   );
 
   if (targetColId) {
+    const targetMeta = collectionsMetaCache[targetColId] || (collectionsConfig[targetColId] ? collectionsConfig[targetColId].defaultMeta : null);
+    if (isCollectionHidden(targetMeta)) {
+      store.set({ invalidTerm: null });
+      switchView(VIEWS.WELCOME, null, false);
+      closeDetailModal(false);
+      if (location.hash !== '#/welcome') {
+        location.hash = '#/welcome';
+      }
+      return;
+    }
+
     if (targetColId !== currentCollectionId) {
       switchCollection(targetColId, false);
       return;

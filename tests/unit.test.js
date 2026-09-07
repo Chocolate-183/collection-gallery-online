@@ -429,6 +429,41 @@ test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" and "籌�
   }
 });
 
+test('Exhibition Hall Hidden Status Display and Route Handling', async () => {
+  const { isCollectionHidden, applyCollectionMetaToUI } = await import('../js/data.js');
+
+  // 1. Helper function checks
+  assert.equal(isCollectionHidden({ status: '不顯示' }), true);
+  assert.equal(isCollectionHidden({ status: '開放中' }), false);
+  assert.equal(isCollectionHidden({ status: '籌備中' }), false);
+
+  // 2. UI Hiding checks (Sidebar button and Welcome card)
+  const mockNavBtn = { style: { display: '' } };
+  const mockWelcomeCard = { style: { display: '' } };
+
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'nav-col-korean-terms') return mockNavBtn;
+    if (id === 'welcome-card-korean-terms') return mockWelcomeCard;
+    return null;
+  };
+
+  // When status is "不顯示", both nav button and welcome card should be set to display: 'none'
+  applyCollectionMetaToUI('korean-terms', { title: '韓文單字加漢字 記憶更輕鬆', status: '不顯示' });
+  assert.equal(mockNavBtn.style.display, 'none');
+  assert.equal(mockWelcomeCard.style.display, 'none');
+
+  // When status is "籌備中", display should be reset to ''
+  applyCollectionMetaToUI('korean-terms', { title: '韓文單字加漢字 記憶更輕鬆', status: '籌備中' });
+  assert.equal(mockNavBtn.style.display, '');
+  assert.equal(mockWelcomeCard.style.display, '');
+
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
+});
+
 test('Google Sheets Config URL Builders', async () => {
   const { googleSheetsConfig, getCollectionDataUrls, getCollectionMetaUrls, collectionsConfig } = await import('../js/config.js');
 

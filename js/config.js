@@ -42,14 +42,14 @@ export const collectionsConfig = {
   },
   'korean-terms': {
     id: 'korean-terms',
-    name: '最強韓文漢字學習法',
+    name: '韓文單字加漢字 記憶更輕鬆',
     sheetId: '',
     gid: '',
     localFallback: null,
     hasReading: false,
     searchPlaceholder: '尋找展品...',
     defaultMeta: {
-      title: '最強韓文漢字學習法',
+      title: '韓文單字加漢字 記憶更輕鬆',
       id: 'C103',
       status: '籌備中',
       announcement: '籌備中',

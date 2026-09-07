@@ -74,10 +74,36 @@ export async function preloadAllCollections() {
 }
 
 /**
+ * Helper to check if a collection's status is set to hidden ("不顯示")
+ */
+export function isCollectionHidden(meta) {
+  if (!meta || !meta.status) return false;
+  return meta.status === EXHIBITION_STATUS.HIDDEN ||
+         (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.HIDDEN));
+}
+
+/**
  * Apply metadata to UI elements (welcome cards, header titles, tags, descriptions, about page).
  */
 export function applyCollectionMetaToUI(colId, meta) {
   if (!meta || typeof document === 'undefined') return;
+
+  const isHidden = isCollectionHidden(meta);
+
+  // Toggle Sidebar Link Visibility
+  const navBtn = document.getElementById(`nav-col-${colId}`);
+  if (navBtn) {
+    navBtn.style.display = isHidden ? 'none' : '';
+  }
+
+  // Toggle Welcome Card Visibility
+  const cardElem = document.getElementById(`welcome-card-${colId}`) ||
+                   document.getElementById(`welcome-card-title-${colId}`)?.closest('.awsui-welcome-card');
+  if (cardElem) {
+    cardElem.style.display = isHidden ? 'none' : '';
+  }
+
+  if (isHidden) return;
 
   // 1. Update Welcome Card Title
   const cardTitleElem = document.getElementById(`welcome-card-title-${colId}`);

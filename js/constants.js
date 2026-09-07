@@ -42,7 +42,8 @@ export const DEFAULT_TIMEOUT_MS = 2500;
 export const EXHIBITION_STATUS = {
   ADJUSTING: '調整中',
   OPEN: '開放中',
-  PREPARING: '籌備中'
+  PREPARING: '籌備中',
+  HIDDEN: '不顯示'
 };
 
 export const KANA_RANGES = {
