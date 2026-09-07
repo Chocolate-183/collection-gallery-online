@@ -71,7 +71,7 @@ test('Service Desk Operating Team, Gallery Curators, and Trial Beta Badge', () =
   assert(aboutViewHtml.includes('展廳策劃與負責人'), 'Service Desk must contain gallery curators panel');
 
   // 2. Verify "試營運" trial tags exist across key entry points
-  assert(htmlContent.includes('awsui-badge-trial'), 'Trial badge class must exist');
+  assert(htmlContent.includes('awsui-tag-trial'), 'Trial tag class must exist');
   assert(htmlContent.includes('試營運'), 'Trial badge text "試營運" must be present');
 
   // 3. Verify Dictionary view header contains gallery curator & responsible person KPI box
