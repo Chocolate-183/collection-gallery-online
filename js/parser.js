@@ -231,19 +231,20 @@ export function matchCollectionIdForMeta(meta) {
   if (!meta) return null;
 
   for (const [colId, col] of Object.entries(collectionsConfig)) {
-    // 1. Match by ID (e.g. 'C101', 'C102')
+    // 1. Match by ID (e.g. 'C101', 'C102', 'C103')
     if (meta.id && (meta.id === col.id || (col.defaultMeta && meta.id === col.defaultMeta.id))) {
       return colId;
     }
-    // 2. Match by title or name (e.g. '日本特色詞彙', '大陸特色詞彙')
+    // 2. Match by title or name (e.g. '日本特色詞彙', '大陸特色詞彙', '最強韓文漢字學習法')
     if (meta.title && (meta.title === col.name || (col.defaultMeta && meta.title === col.defaultMeta.title))) {
       return colId;
     }
   }
 
-  // Fallback: direct match if meta.id is equal to col.id key
-  if (meta.id && collectionsConfig[meta.id]) {
-    return meta.id;
+  // Fallback: direct match if meta.id is equal to col.id key or formatted
+  if (meta.id) {
+    if (collectionsConfig[meta.id]) return meta.id;
+    return meta.id.toLowerCase();
   }
 
   return null;

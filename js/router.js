@@ -42,6 +42,15 @@ function isCollectionAdjusting(colMeta) {
          (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.ADJUSTING));
 }
 
+/**
+ * Checks if a collection's metadata status is preparing
+ */
+function isCollectionPreparing(colMeta) {
+  if (!colMeta || !colMeta.status) return false;
+  return colMeta.status === EXHIBITION_STATUS.PREPARING ||
+         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.PREPARING));
+}
+
 export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
 
@@ -54,8 +63,9 @@ export function switchView(viewName, event, updateHash = true) {
   const col = collectionsConfig[currentCollectionId];
   const colMeta = collectionsMetaCache[currentCollectionId] || (col ? col.defaultMeta : null);
   const isColAdjusting = isCollectionAdjusting(colMeta);
+  const isColPreparing = isCollectionPreparing(colMeta);
 
-  if (!isClosed && viewName === VIEWS.DICTIONARY && isColAdjusting) {
+  if (!isClosed && viewName === VIEWS.DICTIONARY && (isColAdjusting || isColPreparing)) {
     viewName = VIEWS.MAINTENANCE;
   }
 
@@ -78,9 +88,22 @@ export function switchView(viewName, event, updateHash = true) {
       if (maintTitle) maintTitle.innerText = '閉館中';
       if (maintDesc1) maintDesc1.innerText = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
       if (maintDesc2) maintDesc2.style.display = 'block';
+    } else if (isColPreparing) {
+      if (maintTitle) maintTitle.innerText = '籌備中';
+      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中')
+        ? colMeta.announcement
+        : '本展廳目前正在籌備中，暫不開放參觀，敬請期待。';
+      if (maintDesc1) maintDesc1.innerText = prepareMsg;
+      if (maintDesc2) maintDesc2.style.display = 'none';
+
+      const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
+      if (activeColBtn) activeColBtn.classList.add('active');
     } else if (isColAdjusting) {
       if (maintTitle) maintTitle.innerText = '展廳調整中';
-      if (maintDesc1) maintDesc1.innerText = '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
+      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中')
+        ? colMeta.announcement
+        : '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
+      if (maintDesc1) maintDesc1.innerText = adjustMsg;
       if (maintDesc2) maintDesc2.style.display = 'none';
 
       const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
@@ -92,7 +115,7 @@ export function switchView(viewName, event, updateHash = true) {
         if (decodeURIComponent(window.location.hash) !== '#/maintenance') {
           location.hash = '#/maintenance';
         }
-      } else if (isColAdjusting) {
+      } else if (isColAdjusting || isColPreparing) {
         const colName = col ? col.name : currentCollectionId;
         const targetHash = `#/${colName}`;
         if (decodeURIComponent(window.location.hash) !== targetHash) {

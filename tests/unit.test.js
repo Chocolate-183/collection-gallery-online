@@ -365,18 +365,32 @@ test('Exhibition Hall Maintenance Status View Routing', async () => {
   assert.equal(mockDesc2El.style.display, 'none');
   assert.equal(mockViewMaintEl.style.display, 'block');
 
+  // Test "籌備中" status routing
+  collectionsMetaCache['korean-terms'] = {
+    title: '最強韓文漢字學習法',
+    status: '籌備中'
+  };
+
+  store.set({ currentCollectionId: 'korean-terms' });
+  switchView('dictionary', null, false);
+
+  assert.equal(mockTitleEl.innerText, '籌備中');
+  assert.equal(mockDesc1El.innerText, '本展廳目前正在籌備中，暫不開放參觀，敬請期待。');
+  assert.equal(mockDesc2El.style.display, 'none');
+  assert.equal(mockViewMaintEl.style.display, 'block');
+
   setOpeningHoursSchedule(originalSchedule);
   if (originalGetElementById) {
     global.document.getElementById = originalGetElementById;
   }
 });
 
-test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" Badge Only When Adjusting', async () => {
+test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" and "籌備中" Badges', async () => {
   const mockBadgeEl = { innerText: '', style: { display: 'inline-block' } };
   const originalGetElementById = global.document?.getElementById;
   global.document = global.document || {};
   global.document.getElementById = (id) => {
-    if (id === 'side-nav-count-japanese-terms') return mockBadgeEl;
+    if (id === 'side-nav-count-japanese-terms' || id === 'side-nav-count-korean-terms') return mockBadgeEl;
     return null;
   };
 
@@ -399,6 +413,15 @@ test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" Badge Onl
   };
   updateSidebarBadge('japanese-terms');
   assert.equal(mockBadgeEl.innerText, '調整中');
+  assert.equal(mockBadgeEl.style.display, 'inline-block');
+
+  // Case 3: Preparing status ("籌備中" badge SHOULD be shown)
+  collectionsMetaCache['korean-terms'] = {
+    title: '最強韓文漢字學習法',
+    status: '籌備中'
+  };
+  updateSidebarBadge('korean-terms');
+  assert.equal(mockBadgeEl.innerText, '籌備中');
   assert.equal(mockBadgeEl.style.display, 'inline-block');
 
   if (originalGetElementById) {
@@ -426,21 +449,22 @@ test('Google Sheets Config URL Builders', async () => {
 });
 
 test('Multi-Collection Matrix Metadata CSV Parser', () => {
-  const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙
-展廳ID,C101,C102
-展廳狀態,調整中,開放中
-展廳公告,每日於 1230-1330 進行展廳調整,每日於 1230-1330 進行展廳調整
+  const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙,最強韓文漢字學習法
+展廳ID,C101,C102,C103
+展廳狀態,調整中,開放中,籌備中
+展廳公告,每日於 1230-1330 進行展廳調整,每日於 1230-1330 進行展廳調整,籌備中
 展廳標籤,"日本
 語彙","大陸
-語彙"
-展廳副標,日語副標測試,大陸副標測試
-展廳說明,日語說明測試,大陸說明測試
-展廳注意事項,日語注意事項,大陸注意事項
-展廳策劃,巧克力,巧克力`;
+語彙",韓語學習
+展廳副標,日語副標測試,大陸副標測試,籌備中
+展廳說明,日語說明測試,大陸說明測試,籌備中
+展廳注意事項,日語注意事項,大陸注意事項,籌備中
+展廳策劃,巧克力,巧克力,巧克力`;
 
   const parsedMap = parseAllCollectionsMetaCSVData(sampleMatrixCSV);
   assert('japanese-terms' in parsedMap);
   assert('china-terms' in parsedMap);
+  assert('korean-terms' in parsedMap);
 
   assert.equal(parsedMap['japanese-terms'].title, '日本特色詞彙');
   assert.equal(parsedMap['japanese-terms'].id, 'C101');
@@ -451,6 +475,10 @@ test('Multi-Collection Matrix Metadata CSV Parser', () => {
   assert.equal(parsedMap['china-terms'].id, 'C102');
   assert.equal(parsedMap['china-terms'].status, '開放中');
   assert.equal(parsedMap['china-terms'].subtitle, '大陸副標測試');
+
+  assert.equal(parsedMap['korean-terms'].title, '最強韓文漢字學習法');
+  assert.equal(parsedMap['korean-terms'].id, 'C103');
+  assert.equal(parsedMap['korean-terms'].status, '籌備中');
 });
 
 test('Sidebar Section Header GALLERYS & Removed Sidebar ID Element', async () => {

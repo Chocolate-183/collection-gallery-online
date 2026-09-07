@@ -39,6 +39,25 @@ export const collectionsConfig = {
       description: '【同字不同義：兩岸詞彙對照】\n\n同樣是中文，意思居然差這麼多？本展區精選大陸當代的網路熱詞與生活用語，幫你精準對照台灣熟悉的在地說法。從社群梗到日常表達，帶你快速看懂兩岸語境差異，掌握最道地的流行語脈絡！',
       notice: '詞彙可能因地區或時間有所變化，僅供參考。'
     }
+  },
+  'korean-terms': {
+    id: 'korean-terms',
+    name: '最強韓文漢字學習法',
+    sheetId: '',
+    gid: '',
+    localFallback: null,
+    hasReading: false,
+    searchPlaceholder: '尋找展品...',
+    defaultMeta: {
+      title: '最強韓文漢字學習法',
+      id: 'C103',
+      status: '籌備中',
+      announcement: '籌備中',
+      tags: ['韓語學習'],
+      subtitle: '籌備中',
+      description: '籌備中',
+      notice: '籌備中'
+    }
   }
 };
 

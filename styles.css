@@ -1252,7 +1252,8 @@ body {
   line-height: 1.2;
 }
 
-.awsui-tag-adjusting {
+.awsui-tag-adjusting,
+.awsui-tag-preparing {
   background-color: #f2f3f5;
   color: #5f6b7a;
   border-color: #d1d5db;
@@ -1549,7 +1550,8 @@ body {
   border-color: #4da2ff;
 }
 
-[data-theme="dark"] .awsui-tag-adjusting {
+[data-theme="dark"] .awsui-tag-adjusting,
+[data-theme="dark"] .awsui-tag-preparing {
   background-color: #1e293b;
   color: #94a3b8;
   border-color: #334155;

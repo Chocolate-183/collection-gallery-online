@@ -36,6 +36,21 @@ export async function fetchAllMetadata() {
     }
   }
 
+  for (const [fetchedColId, meta] of Object.entries(fetchedMetaMap)) {
+    if (!collectionsConfig[fetchedColId]) {
+      collectionsConfig[fetchedColId] = {
+        id: fetchedColId,
+        name: meta.title || fetchedColId,
+        sheetId: '',
+        gid: '',
+        localFallback: null,
+        hasReading: false,
+        searchPlaceholder: '尋找展品...',
+        defaultMeta: meta
+      };
+    }
+  }
+
   for (const [colId, col] of Object.entries(collectionsConfig)) {
     const fetchedMeta = fetchedMetaMap[colId];
     const meta = fetchedMeta || (col.defaultMeta ? { ...col.defaultMeta } : null);
@@ -75,8 +90,16 @@ export function applyCollectionMetaToUI(colId, meta) {
   if (cardTagsElem) {
     const isAdjusting = meta.status === EXHIBITION_STATUS.ADJUSTING ||
                         (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING));
+    const isPreparing = meta.status === EXHIBITION_STATUS.PREPARING ||
+                        (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.PREPARING));
     if (isAdjusting) {
       let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>`;
+      if (meta.tags && meta.tags.length > 0) {
+        tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
+      }
+      cardTagsElem.innerHTML = tagsHtml;
+    } else if (isPreparing) {
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">籌備中</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }

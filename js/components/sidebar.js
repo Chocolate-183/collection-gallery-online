@@ -14,9 +14,14 @@ export function updateSidebarBadge(colId) {
   const meta = collectionsMetaCache[colId] || (col ? col.defaultMeta : null);
   const isAdjusting = meta && (meta.status === EXHIBITION_STATUS.ADJUSTING ||
                       (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING)));
+  const isPreparing = meta && (meta.status === EXHIBITION_STATUS.PREPARING ||
+                      (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.PREPARING)));
 
   if (isAdjusting) {
     badgeElem.innerText = EXHIBITION_STATUS.ADJUSTING;
+    badgeElem.style.display = 'inline-block';
+  } else if (isPreparing) {
+    badgeElem.innerText = EXHIBITION_STATUS.PREPARING;
     badgeElem.style.display = 'inline-block';
   } else {
     badgeElem.innerText = '';
