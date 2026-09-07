@@ -841,35 +841,36 @@ body {
 .awsui-badge-beta,
 .awsui-badge-warning {
   display: inline-block;
-  background-color: #feefc3;
-  color: #b06000;
-  padding: 2px 8px;
-  border-radius: 12px;
+  background-color: #f2f3f5;
+  color: #5f6b7a;
+  border: 1px solid #d1d5db;
+  padding: 1px 6px;
+  border-radius: 10px;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
-/* Cloudscape Tag Component */
+/* Subtle Cloudscape Tag Component */
 .awsui-tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 3px 10px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 12px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 10px;
   border: 1px solid var(--awsui-color-border-item-default, #d1d5db);
-  background-color: var(--awsui-color-background-container-content, #ffffff);
-  color: var(--awsui-color-text-body-default, #16191f);
+  background-color: var(--awsui-color-background-input-default, #f2f3f5);
+  color: var(--awsui-color-text-body-secondary, #5f6b7a);
   line-height: 1.2;
   white-space: nowrap;
   vertical-align: middle;
 }
 
 .awsui-tag-trial {
-  background-color: #feefc3;
-  color: #b06000;
-  border: 1px solid #f2994a;
+  background-color: #f2f3f5;
+  color: #5f6b7a;
+  border: 1px solid #d1d5db;
 }
 
 .awsui-intro-text {
@@ -1492,20 +1493,21 @@ body {
 
 [data-theme="dark"] .awsui-badge-beta,
 [data-theme="dark"] .awsui-badge-warning {
-  background-color: #3c2d00;
-  color: #fdd663;
+  background-color: #1a2536;
+  color: #94a3b8;
+  border-color: #2e3e52;
 }
 
 [data-theme="dark"] .awsui-tag {
   background-color: #1a2536;
-  color: #e9ebed;
+  color: #94a3b8;
   border-color: #2e3e52;
 }
 
 [data-theme="dark"] .awsui-tag-trial {
-  background-color: #3c2d00;
-  color: #fdd663;
-  border-color: #b06000;
+  background-color: #1a2536;
+  color: #94a3b8;
+  border-color: #2e3e52;
 }
 
 [data-theme="dark"] .awsui-tz-badge {
