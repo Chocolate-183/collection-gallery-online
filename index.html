@@ -120,6 +120,12 @@
             </svg>
             <span class="awsui-nav-text">服務台</span>
           </button>
+          <button class="awsui-nav-link" id="nav-stats" type="button" onclick="switchView('stats', event)">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-4zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+            </svg>
+            <span class="awsui-nav-text">統計資料</span>
+          </button>
         </nav>
       </div>
 
@@ -503,6 +509,57 @@
                     <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
                   </svg>
                 </a>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+      <!-- VIEW: Statistics Page (統計資料) -->
+      <div id="view-stats" class="awsui-view-content" style="display: none;">
+
+        <section class="awsui-header">
+          <h1 class="awsui-header-title">統計資料</h1>
+        </section>
+
+        <div class="awsui-about-grid">
+
+          <!-- Total Exhibition Halls Card Panel -->
+          <section class="awsui-cards-container awsui-about-card">
+            <div class="awsui-cards-collection-header">
+              <div class="awsui-cards-header-title">
+                <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
+                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
+                  <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
+                </svg>
+                <span>總展廳數</span>
+              </div>
+            </div>
+
+            <div class="awsui-author-details" style="align-items: center; justify-content: center; padding: 24px 0;">
+              <div class="awsui-kpi-value" id="stats-total-halls" style="font-size: 36px; font-weight: 700; color: var(--awsui-color-text-body-default, #16191f);">
+                0 <span class="awsui-kpi-unit" style="font-size: 16px; font-weight: normal; color: var(--awsui-color-text-body-secondary, #5f6b7a);">個</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Total Exhibition Items Card Panel -->
+          <section class="awsui-cards-container awsui-about-card">
+            <div class="awsui-cards-collection-header">
+              <div class="awsui-cards-header-title">
+                <svg class="awsui-icon" style="color: #0f6ce0;" viewBox="0 0 16 16">
+                  <path d="M2.5 1A1.5 1.5 0 0 0 1 2.5v11A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 13.5 1h-11zm11 1a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5h11z"/>
+                  <path d="M3 4h10v1H3V4zm0 3h10v1H3V7zm0 3h7v1H3v-1z"/>
+                </svg>
+                <span>總展品數</span>
+              </div>
+            </div>
+
+            <div class="awsui-author-details" style="align-items: center; justify-content: center; padding: 24px 0;">
+              <div class="awsui-kpi-value" id="stats-total-items" style="font-size: 36px; font-weight: 700; color: var(--awsui-color-text-body-default, #16191f);">
+                0 <span class="awsui-kpi-unit" style="font-size: 16px; font-weight: normal; color: var(--awsui-color-text-body-secondary, #5f6b7a);">件</span>
               </div>
             </div>
           </section>

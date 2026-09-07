@@ -62,12 +62,42 @@ test('Service Desk Operating Team and Platform Setup', () => {
 
   // 1. Verify Service Desk (view-about) contains "經營團隊" and "平台名稱"
   const aboutViewStart = htmlContent.indexOf('id="view-about"');
-  const aboutViewEnd = htmlContent.indexOf('id="view-maintenance"');
+  const aboutViewEnd = htmlContent.indexOf('id="view-stats"');
   assert(aboutViewStart !== -1 && aboutViewEnd !== -1);
   const aboutViewHtml = htmlContent.substring(aboutViewStart, aboutViewEnd);
   assert(aboutViewHtml.includes('<span>經營團隊</span>'), 'Service Desk header must show "經營團隊"');
   assert(aboutViewHtml.includes('經營團隊 / Operating Team'), 'Profile subtitle must show Operating Team');
   assert(aboutViewHtml.includes('平台名稱'), 'Service Desk info list must describe platform name');
+});
+
+test('Statistics Page under INFO Section - Nav Link and View Content', () => {
+  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+
+  // 1. Verify INFO section contains nav-stats button
+  const infoSectionStart = htmlContent.indexOf('class="awsui-side-nav-header">INFO');
+  assert(infoSectionStart !== -1, 'HTML must contain INFO sidebar section header');
+
+  const navStatsStart = htmlContent.indexOf('id="nav-stats"');
+  assert(navStatsStart !== -1, 'Sidebar must contain nav-stats button');
+  assert(navStatsStart > infoSectionStart, 'nav-stats must be inside INFO section');
+
+  const statsNavSub = htmlContent.substring(navStatsStart, navStatsStart + 500);
+  assert(statsNavSub.includes('統計資料'), 'nav-stats must contain "統計資料" text');
+  assert(statsNavSub.includes("switchView('stats', event)"), 'nav-stats must call switchView for stats');
+
+  // 2. Verify Statistics Page (view-stats) content layout
+  const statsViewStart = htmlContent.indexOf('id="view-stats"');
+  assert(statsViewStart !== -1, 'HTML must contain view-stats container');
+
+  const statsViewEnd = htmlContent.indexOf('id="view-maintenance"');
+  assert(statsViewEnd !== -1 && statsViewStart < statsViewEnd);
+  const statsViewHtml = htmlContent.substring(statsViewStart, statsViewEnd);
+
+  assert(statsViewHtml.includes('統計資料'), 'Statistics view must have "統計資料" header');
+  assert(statsViewHtml.includes('總展廳數'), 'Statistics view must display "總展廳數" KPI title');
+  assert(statsViewHtml.includes('總展品數'), 'Statistics view must display "總展品數" KPI title');
+  assert(statsViewHtml.includes('id="stats-total-halls"'), 'Statistics view must contain stats-total-halls element');
+  assert(statsViewHtml.includes('id="stats-total-items"'), 'Statistics view must contain stats-total-items element');
 });
 
 

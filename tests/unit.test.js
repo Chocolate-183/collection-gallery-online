@@ -83,6 +83,7 @@ test('Default Welcome Route Resolution', () => {
     const path = decoded.replace(/^#\/?/, '');
     if (!path || path === 'welcome' || path === 'home') return 'welcome';
     if (path === 'about') return 'about';
+    if (path === 'stats') return 'stats';
     return 'dictionary';
   };
 
@@ -91,6 +92,7 @@ test('Default Welcome Route Resolution', () => {
   assert.equal(resolveRoute('#/'), 'welcome');
   assert.equal(resolveRoute('#/welcome'), 'welcome');
   assert.equal(resolveRoute('#/about'), 'about');
+  assert.equal(resolveRoute('#/stats'), 'stats');
   assert.equal(resolveRoute('#/日本特色詞彙'), 'dictionary');
 });
 

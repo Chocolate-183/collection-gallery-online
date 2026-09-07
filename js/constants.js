@@ -6,6 +6,7 @@ export const VIEWS = {
   WELCOME: 'welcome',
   DICTIONARY: 'dictionary',
   ABOUT: 'about',
+  STATS: 'stats',
   MAINTENANCE: 'maintenance'
 };
 

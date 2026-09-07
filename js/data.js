@@ -303,6 +303,7 @@ export async function fetchSingleCollection(col) {
 
     // Update sidebar badge for this collection
     updateSidebarBadge(col.id);
+    updateStatsView();
 
     // If this is currently active collection, update active view records
     const { currentCollectionId } = store.get();
@@ -346,5 +347,38 @@ export function processDataAndRender() {
 
   applyFiltersAndSort();
   renderCollectionNotice();
+  updateStatsView();
   handleHashRoute();
+}
+
+/**
+ * Updates KPI values on the Statistics page (Total Exhibition Halls & Total Exhibition Items).
+ */
+export function updateStatsView() {
+  if (typeof document === 'undefined') return;
+
+  const totalHallsElem = document.getElementById('stats-total-halls');
+  const totalItemsElem = document.getElementById('stats-total-items');
+
+  const visibleColIds = Object.keys(collectionsConfig).filter(id => {
+    const col = collectionsConfig[id];
+    const meta = collectionsMetaCache[id] || (col ? col.defaultMeta : null);
+    return !isCollectionHidden(meta);
+  });
+
+  const totalHalls = visibleColIds.length;
+
+  let totalItems = 0;
+  visibleColIds.forEach(id => {
+    if (collectionsCache[id] && Array.isArray(collectionsCache[id])) {
+      totalItems += collectionsCache[id].length;
+    }
+  });
+
+  if (totalHallsElem) {
+    totalHallsElem.innerHTML = `${totalHalls.toLocaleString()} <span class="awsui-kpi-unit">個</span>`;
+  }
+  if (totalItemsElem) {
+    totalItemsElem.innerHTML = `${totalItems.toLocaleString()} <span class="awsui-kpi-unit">件</span>`;
+  }
 }

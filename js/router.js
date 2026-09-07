@@ -6,7 +6,7 @@ import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection } from './components/sidebar.js';
 import { openMeaningModal, closeDetailModal } from './components/modal.js';
-import { renderCollectionNotice, collectionsMetaCache } from './data.js';
+import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen } from './utils.js';
 
@@ -18,6 +18,7 @@ function toggleViewElements(targetView) {
     [VIEWS.WELCOME]: document.getElementById('view-welcome'),
     [VIEWS.DICTIONARY]: document.getElementById('view-dictionary'),
     [VIEWS.ABOUT]: document.getElementById('view-about'),
+    [VIEWS.STATS]: document.getElementById('view-stats'),
     [VIEWS.MAINTENANCE]: document.getElementById('view-maintenance')
   };
 
@@ -64,7 +65,7 @@ export function switchView(viewName, event, updateHash = true) {
   if (event && event.preventDefault) event.preventDefault();
 
   const isClosed = !isGalleryOpen();
-  if (isClosed && viewName !== VIEWS.MAINTENANCE && viewName !== VIEWS.ABOUT) {
+  if (isClosed && viewName !== VIEWS.MAINTENANCE && viewName !== VIEWS.ABOUT && viewName !== VIEWS.STATS) {
     viewName = VIEWS.MAINTENANCE;
   }
 
@@ -83,6 +84,7 @@ export function switchView(viewName, event, updateHash = true) {
 
   const navWelcome = document.getElementById('nav-welcome');
   const navAbout = document.getElementById('nav-about');
+  const navStats = document.getElementById('nav-stats');
 
   const maintTitle = document.getElementById('maintenance-title');
   const maintDesc1 = document.getElementById('maintenance-desc-1');
@@ -162,6 +164,15 @@ export function switchView(viewName, event, updateHash = true) {
         location.hash = '#/about';
       }
     }
+  } else if (viewName === VIEWS.STATS) {
+    if (navStats) navStats.classList.add('active');
+
+    if (updateHash) {
+      if (decodeURIComponent(window.location.hash) !== '#/stats') {
+        location.hash = '#/stats';
+      }
+    }
+    updateStatsView();
   }
 
   if (isViewChanged || !!event) {
@@ -179,9 +190,9 @@ export function handleHashRoute() {
   const path = decodedHash.replace(/^#\/?/, '');
 
   if (!isGalleryOpen()) {
-    if (path === 'about') {
+    if (path === 'about' || path === 'stats') {
       store.set({ invalidTerm: null });
-      switchView(VIEWS.ABOUT, null, false);
+      switchView(path === 'about' ? VIEWS.ABOUT : VIEWS.STATS, null, false);
       closeDetailModal(false);
       return;
     }
@@ -208,6 +219,13 @@ export function handleHashRoute() {
   if (path === 'about') {
     store.set({ invalidTerm: null });
     switchView(VIEWS.ABOUT, null, false);
+    closeDetailModal(false);
+    return;
+  }
+
+  if (path === 'stats') {
+    store.set({ invalidTerm: null });
+    switchView(VIEWS.STATS, null, false);
     closeDetailModal(false);
     return;
   }
