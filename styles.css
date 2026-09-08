@@ -1047,7 +1047,7 @@ body {
 
 /* Bottom Right Creation Time in Modal */
 .awsui-modal-created-time {
-  margin-top: 12px;
+  margin-top: 24px;
   text-align: right;
   font-size: 11px;
   color: #879596;
