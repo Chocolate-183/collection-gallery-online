@@ -1003,7 +1003,6 @@ body {
   min-height: calc(15px * 1.65 * 5 + 32px); /* at least 5 lines of text plus vertical padding */
   border-radius: 8px;
   border: 1px solid var(--awsui-color-border-item-default, #eaedd1);
-  border-left: 4px solid #0f6ce0;
   box-sizing: border-box;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
@@ -1589,7 +1588,6 @@ body {
   background-color: #111c2b;
   color: var(--awsui-color-text-body-default, #ffffff);
   border-color: var(--awsui-color-border-item-default, #2a3b50);
-  border-left-color: #4da2ff;
   box-shadow: none;
 }
 
