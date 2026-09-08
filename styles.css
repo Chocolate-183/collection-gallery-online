@@ -970,33 +970,90 @@ body {
   transform: scale(1);
 }
 
-.awsui-modal-header {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--awsui-color-border-divider-default);
+.awsui-modal-title-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  background: #fbfcfc;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+#modal-term-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f6ce0;
+  line-height: 1.25;
 }
 
 .awsui-modal-body {
-  padding: 20px;
+  padding: 24px;
+}
+
+.awsui-modal-section-title,
+.awsui-modal-recommendations-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #687078;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
 }
 
 #modal-meaning-text {
   font-size: 15px;
-  color: var(--awsui-color-text-body-default);
-  line-height: 1.6;
+  color: var(--awsui-color-text-body-default, #16191f);
+  line-height: 1.65;
   white-space: pre-wrap;
+  background-color: #fafafa;
+  padding: 16px 18px;
+  min-height: calc(15px * 1.65 * 5 + 32px); /* at least 5 lines of text plus vertical padding */
+  border-radius: 8px;
+  border: 1px solid var(--awsui-color-border-item-default, #eaedd1);
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* Recommended Items Section in Modal */
+.awsui-modal-recommendations-section {
+  margin-top: 20px;
+}
+
+.awsui-modal-recommendations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.awsui-recommendation-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #545b64;
   background-color: #f2f3f3;
-  padding: 14px;
-  border-radius: 6px;
-  border: 1px solid var(--awsui-color-border-item-default);
+  border: 1px solid #e9ebed;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  line-height: 1.4;
+  outline: none;
+}
+
+.awsui-recommendation-chip:hover {
+  background-color: #e0f0ff;
+  border-color: #0f6ce0;
+  color: #0f6ce0;
+  transform: translateY(-1px);
+}
+
+.awsui-recommendation-chip:active {
+  transform: translateY(0);
 }
 
 /* Bottom Right Creation Time in Modal */
 .awsui-modal-created-time {
-  margin-top: 12px;
+  margin-top: 24px;
   text-align: right;
   font-size: 11px;
   color: #879596;
@@ -1223,7 +1280,7 @@ body {
   border-radius: var(--awsui-border-radius-container);
   padding: 24px;
   box-shadow: var(--awsui-shadow-container);
-  cursor: pointer;
+  cursor: default;
   transition: all 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -1232,7 +1289,6 @@ body {
 
 .awsui-welcome-card:hover {
   border-color: #0f6ce0;
-  transform: translateY(-2px);
   box-shadow: var(--awsui-shadow-card-hover);
 }
 
@@ -1302,6 +1358,20 @@ body {
   font-size: 13px;
   font-weight: 700;
   color: #0f6ce0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease-in-out;
+}
+
+.awsui-welcome-card-action:hover {
+  color: #094694;
+  text-decoration: underline;
 }
 
 /* Features Grid */
@@ -1518,23 +1588,36 @@ body {
   border-color: var(--awsui-color-border-item-default);
 }
 
-[data-theme="dark"] .awsui-modal-header {
-  background-color: #111c2b;
-  border-bottom-color: var(--awsui-color-border-divider-default);
-}
-
-[data-theme="dark"] .awsui-modal-header strong {
+[data-theme="dark"] #modal-term-title {
   color: #4da2ff !important;
 }
 
-[data-theme="dark"] .awsui-modal-header .awsui-icon-button {
+[data-theme="dark"] .awsui-modal .awsui-icon-button {
   color: var(--awsui-color-text-body-default) !important;
 }
 
 [data-theme="dark"] #modal-meaning-text {
   background-color: #111c2b;
-  color: var(--awsui-color-text-body-default);
-  border-color: var(--awsui-color-border-item-default);
+  color: var(--awsui-color-text-body-default, #ffffff);
+  border-color: var(--awsui-color-border-item-default, #2a3b50);
+  box-shadow: none;
+}
+
+[data-theme="dark"] .awsui-modal-section-title,
+[data-theme="dark"] .awsui-modal-recommendations-title {
+  color: #aab7b8;
+}
+
+[data-theme="dark"] .awsui-recommendation-chip {
+  color: #aab7b8;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .awsui-recommendation-chip:hover {
+  background-color: rgba(77, 162, 255, 0.2);
+  border-color: #4da2ff;
+  color: #80beff;
 }
 
 [data-theme="dark"] .awsui-modal-created-time,

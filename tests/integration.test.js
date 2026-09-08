@@ -100,5 +100,38 @@ test('Statistics Page under INFO Section - Nav Link and View Content', () => {
   assert(statsViewHtml.includes('id="stats-total-items"'), 'Statistics view must contain stats-total-items element');
 });
 
+test('Modal Recommendation Elements in HTML', () => {
+  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+  const cssContent = readFileSync(resolve('styles.css'), 'utf-8');
+
+  assert(htmlContent.includes('id="detail-modal"'), 'HTML must contain detail-modal container');
+  assert(!htmlContent.includes('class="awsui-modal-header"'), 'Modal header container must be removed');
+  assert(htmlContent.includes('class="awsui-modal-title-row"'), 'Modal must contain modal title row');
+  assert(cssContent.includes('#modal-term-title'), 'CSS must style modal-term-title');
+  assert(cssContent.includes('font-size: 26px;'), 'Modal term title font size must be 26px');
+  assert(htmlContent.includes('id="modal-recommendations-section"'), 'Modal must contain recommendations section container');
+  assert(htmlContent.includes('id="modal-recommendations-list"'), 'Modal must contain recommendations list container');
+  assert(htmlContent.includes('推薦展品'), 'Modal must render "推薦展品" title label');
+});
+
+test('Lobby Page Featured Cards Navigation and Structure', () => {
+  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+
+  const welcomeViewStart = htmlContent.indexOf('id="view-welcome"');
+  const welcomeViewEnd = htmlContent.indexOf('id="view-dictionary"');
+  assert(welcomeViewStart !== -1 && welcomeViewEnd !== -1);
+  const welcomeHtml = htmlContent.substring(welcomeViewStart, welcomeViewEnd);
+
+  // 1. Verify "韓文單字加漢字 記憶更輕鬆" card is removed from lobby page view-welcome
+  assert(!welcomeHtml.includes('id="welcome-card-korean-terms"'), 'Lobby page must not contain welcome-card-korean-terms');
+
+  // 2. Verify cards do not have onclick on card container, and "進入展廳" button has onclick
+  assert(!welcomeHtml.includes('<div class="awsui-welcome-card" id="welcome-card-japanese-terms" onclick='), 'Card container must not have onclick');
+  assert(welcomeHtml.includes('onclick="switchCollection(\'japanese-terms\')"'), 'Enter hall button must have switchCollection click handler');
+  assert(!welcomeHtml.includes('<div class="awsui-welcome-card" id="welcome-card-china-terms" onclick='), 'Card container must not have onclick');
+  assert(welcomeHtml.includes('onclick="switchCollection(\'china-terms\')"'), 'Enter hall button must have switchCollection click handler');
+});
+
+
 
 
