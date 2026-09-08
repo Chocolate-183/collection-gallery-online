@@ -106,7 +106,7 @@ test('Modal Recommendation Elements in HTML', () => {
   assert(htmlContent.includes('id="detail-modal"'), 'HTML must contain detail-modal container');
   assert(htmlContent.includes('id="modal-recommendations-section"'), 'Modal must contain recommendations section container');
   assert(htmlContent.includes('id="modal-recommendations-list"'), 'Modal must contain recommendations list container');
-  assert(htmlContent.includes('推薦項目'), 'Modal must render "推薦項目" title label');
+  assert(htmlContent.includes('推薦展品'), 'Modal must render "推薦展品" title label');
 });
 
 
