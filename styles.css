@@ -1010,8 +1010,6 @@ body {
 /* Recommended Items Section in Modal */
 .awsui-modal-recommendations-section {
   margin-top: 20px;
-  padding-top: 14px;
-  border-top: 1px dashed var(--awsui-color-border-divider-default, #eaedd1);
 }
 
 .awsui-modal-recommendations-list {
@@ -1589,10 +1587,6 @@ body {
   color: var(--awsui-color-text-body-default, #ffffff);
   border-color: var(--awsui-color-border-item-default, #2a3b50);
   box-shadow: none;
-}
-
-[data-theme="dark"] .awsui-modal-recommendations-section {
-  border-top-color: var(--awsui-color-border-divider-default, #2a3b50);
 }
 
 [data-theme="dark"] .awsui-modal-section-title,
