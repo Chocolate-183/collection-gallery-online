@@ -114,5 +114,24 @@ test('Modal Recommendation Elements in HTML', () => {
   assert(htmlContent.includes('推薦展品'), 'Modal must render "推薦展品" title label');
 });
 
+test('Lobby Page Featured Cards Navigation and Structure', () => {
+  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+
+  const welcomeViewStart = htmlContent.indexOf('id="view-welcome"');
+  const welcomeViewEnd = htmlContent.indexOf('id="view-dictionary"');
+  assert(welcomeViewStart !== -1 && welcomeViewEnd !== -1);
+  const welcomeHtml = htmlContent.substring(welcomeViewStart, welcomeViewEnd);
+
+  // 1. Verify "韓文單字加漢字 記憶更輕鬆" card is removed from lobby page view-welcome
+  assert(!welcomeHtml.includes('id="welcome-card-korean-terms"'), 'Lobby page must not contain welcome-card-korean-terms');
+
+  // 2. Verify cards do not have onclick on card container, and "進入展廳" button has onclick
+  assert(!welcomeHtml.includes('<div class="awsui-welcome-card" id="welcome-card-japanese-terms" onclick='), 'Card container must not have onclick');
+  assert(welcomeHtml.includes('onclick="switchCollection(\'japanese-terms\')"'), 'Enter hall button must have switchCollection click handler');
+  assert(!welcomeHtml.includes('<div class="awsui-welcome-card" id="welcome-card-china-terms" onclick='), 'Card container must not have onclick');
+  assert(welcomeHtml.includes('onclick="switchCollection(\'china-terms\')"'), 'Enter hall button must have switchCollection click handler');
+});
+
+
 
 

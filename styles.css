@@ -1280,7 +1280,7 @@ body {
   border-radius: var(--awsui-border-radius-container);
   padding: 24px;
   box-shadow: var(--awsui-shadow-container);
-  cursor: pointer;
+  cursor: default;
   transition: all 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -1289,7 +1289,6 @@ body {
 
 .awsui-welcome-card:hover {
   border-color: #0f6ce0;
-  transform: translateY(-2px);
   box-shadow: var(--awsui-shadow-card-hover);
 }
 
@@ -1359,6 +1358,20 @@ body {
   font-size: 13px;
   font-weight: 700;
   color: #0f6ce0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease-in-out;
+}
+
+.awsui-welcome-card-action:hover {
+  color: #094694;
+  text-decoration: underline;
 }
 
 /* Features Grid */

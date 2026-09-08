@@ -176,12 +176,12 @@
         <section class="awsui-welcome-section">
           <div class="awsui-welcome-section-header">
             <h2 class="awsui-welcome-section-title">精選展廳</h2>
-            <p class="awsui-welcome-section-subtitle">點擊即可進入展廳</p>
+            <p class="awsui-welcome-section-subtitle">點擊「進入展廳」即可進入展廳</p>
           </div>
 
           <div class="awsui-welcome-grid">
             <!-- Collection Card 1 -->
-            <div class="awsui-welcome-card" id="welcome-card-japanese-terms" onclick="switchCollection('japanese-terms')">
+            <div class="awsui-welcome-card" id="welcome-card-japanese-terms">
               <div class="awsui-welcome-card-header">
                 <div>
                   <h3 class="awsui-welcome-card-title" id="welcome-card-title-japanese-terms">日本特色詞彙一覽</h3>
@@ -197,12 +197,12 @@
 看到「非常口」以為是非常時期用的出口？看到「手紙」以為是衛生紙？那些你以為看懂的日語漢字，背後含意往往出乎意料！本展區精選由漢字與數字組成的日語詞彙，帶你跨越中文字面的直覺迷思，一秒搞懂最真實的日語意思！
               </p>
               <div class="awsui-welcome-card-footer">
-                <span class="awsui-welcome-card-action">進入展廳 &rarr;</span>
+                <button class="awsui-welcome-card-action" type="button" onclick="switchCollection('japanese-terms')">進入展廳 &rarr;</button>
               </div>
             </div>
 
             <!-- Collection Card 2 -->
-            <div class="awsui-welcome-card" id="welcome-card-china-terms" onclick="switchCollection('china-terms')">
+            <div class="awsui-welcome-card" id="welcome-card-china-terms">
               <div class="awsui-welcome-card-header">
                 <div>
                   <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms">大陸特色詞彙一覽</h3>
@@ -218,25 +218,7 @@
 同樣是中文，意思居然差這麼多？本展區精選大陸當代的網路熱詞與生活用語，幫你精準對照台灣熟悉的在地說法。從社群梗到日常表達，帶你快速看懂兩岸語境差異，掌握最道地的流行語脈絡！
               </p>
               <div class="awsui-welcome-card-footer">
-                <span class="awsui-welcome-card-action">進入展廳 &rarr;</span>
-              </div>
-            </div>
-
-            <!-- Collection Card 3 -->
-            <div class="awsui-welcome-card" id="welcome-card-korean-terms" onclick="switchCollection('korean-terms')">
-              <div class="awsui-welcome-card-header">
-                <div>
-                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-korean-terms">韓文單字加漢字 記憶更輕鬆</h3>
-                  <div class="awsui-welcome-card-tags" id="welcome-card-tags-korean-terms">
-                    <span class="awsui-welcome-card-tag awsui-tag-preparing">籌備中</span>
-                  </div>
-                </div>
-              </div>
-              <p class="awsui-welcome-card-desc" id="welcome-card-desc-korean-terms">
-                籌備中
-              </p>
-              <div class="awsui-welcome-card-footer">
-                <span class="awsui-welcome-card-action">進入展廳 &rarr;</span>
+                <button class="awsui-welcome-card-action" type="button" onclick="switchCollection('china-terms')">進入展廳 &rarr;</button>
               </div>
             </div>
           </div>
