@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCSVData, parseMetaCSVData, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, parseOpeningHoursCSV } from '../js/parser.js';
+import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, parseOpeningHoursCSV } from '../js/parser.js';
 import { matchesKanaGroup } from '../js/filter.js';
 import { escapeHtml, getUnicodeLength, getTodayOpeningHoursText } from '../js/utils.js';
 
@@ -554,6 +554,32 @@ test('Gallery Page Header ID Panel Left of Total Items', async () => {
   const countPos = html.indexOf('展品總數');
   assert(idPos !== -1 && countPos !== -1);
   assert(idPos < countPos, 'Gallery ID panel ("展廳編號") must be positioned to the left of Total Items ("展品總數")');
+});
+
+test('CSV Parser - Recommendations Column Extraction', () => {
+  const sampleCSV = `ID,大陆,台灣用詞,新增日期,推薦條目
+#C102-0002,985,中國大陸的大學,2026-09-04,"211
+一本
+二本
+高考
+本科"
+#C102-0003,996,工作制度,2026-09-04,牛马<br>大厂<br>团建`;
+
+  const parsed = parseCSVData(sampleCSV);
+  assert.equal(parsed.length, 2);
+  assert.equal(parsed[0].ja_term, '985');
+  assert.deepEqual(parsed[0].recommendations, ['211', '一本', '二本', '高考', '本科']);
+  assert.equal(parsed[1].ja_term, '996');
+  assert.deepEqual(parsed[1].recommendations, ['牛马', '大厂', '团建']);
+});
+
+test('GViz Parser - Recommendations Column Extraction', () => {
+  const sampleGviz = `google.visualization.Query.setResponse({"status":"ok","table":{"cols":[{"label":"id"},{"label":"大陆"},{"label":"台灣用詞"},{"label":"新增日期"},{"label":"推薦條目"}],"rows":[{"c":[{"v":"#C102-0002"},{"v":"985"},{"v":"說明"},{"v":"2026-09-04"},{"v":"211\\n一本\\n二本"}]}]}});`;
+
+  const parsed = parseGvizResponse(sampleGviz, 'china-terms');
+  assert.equal(parsed.length, 1);
+  assert.equal(parsed[0].ja_term, '985');
+  assert.deepEqual(parsed[0].recommendations, ['211', '一本', '二本']);
 });
 
 

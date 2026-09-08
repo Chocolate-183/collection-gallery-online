@@ -9,7 +9,7 @@ import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from '.
 import { initSidebarState, toggleSidebar, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
 import { renderCards } from './components/cards.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
-import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm } from './components/modal.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
 
@@ -43,6 +43,7 @@ window.selectLengthTab = selectLengthTab;
 window.openMeaningModal = openMeaningModal;
 window.closeDetailModal = closeDetailModal;
 window.closeDetailModalOnBackdrop = closeDetailModalOnBackdrop;
+window.navigateToTerm = navigateToTerm;
 window.goToPage = goToPage;
 
 // Sync state changes with window.currentCollectionId for legacy scripts if any
@@ -83,4 +84,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       closeDetailModal();
     }
   });
+
+  const recListElem = document.getElementById('modal-recommendations-list');
+  if (recListElem) {
+    recListElem.addEventListener('click', (e) => {
+      const chip = e.target.closest('.awsui-recommendation-chip');
+      if (chip) {
+        const term = chip.getAttribute('data-term');
+        if (term) {
+          navigateToTerm(term);
+        }
+      }
+    });
+  }
 });

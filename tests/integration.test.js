@@ -100,5 +100,14 @@ test('Statistics Page under INFO Section - Nav Link and View Content', () => {
   assert(statsViewHtml.includes('id="stats-total-items"'), 'Statistics view must contain stats-total-items element');
 });
 
+test('Modal Recommendation Elements in HTML', () => {
+  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+
+  assert(htmlContent.includes('id="detail-modal"'), 'HTML must contain detail-modal container');
+  assert(htmlContent.includes('id="modal-recommendations-section"'), 'Modal must contain recommendations section container');
+  assert(htmlContent.includes('id="modal-recommendations-list"'), 'Modal must contain recommendations list container');
+  assert(htmlContent.includes('推薦項目'), 'Modal must render "推薦項目" title label');
+});
+
 
 

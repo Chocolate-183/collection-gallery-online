@@ -55,17 +55,20 @@ function extractMetadataFromKeyValues(pairs) {
  */
 function findDatasetColumnIndexes(headerTitles) {
   const headers = headerTitles.map(h => (h || '').toLowerCase());
+  const isRecommendHeader = (h) => h.includes('recommend') || h.includes('推薦') || h.includes('推荐');
+
   let idIdx = headers.findIndex(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
-  let termIdx = headers.findIndex(h => h.includes('title') || h.includes('term') || h.includes('name') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目'));
-  let twIdx = headers.findIndex(h => h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容'));
+  let termIdx = headers.findIndex(h => !isRecommendHeader(h) && (h.includes('title') || h.includes('term') || h.includes('name') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目')));
+  let twIdx = headers.findIndex(h => !isRecommendHeader(h) && (h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容')));
   let readingIdx = headers.findIndex(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('読み') || h.includes('音素'));
   let dateIdx = headers.findIndex(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
+  let recommendIdx = headers.findIndex(h => isRecommendHeader(h));
 
   if (idIdx === -1) idIdx = 0;
   if (termIdx === -1) termIdx = 1;
   if (twIdx === -1) twIdx = 2;
 
-  return { idIdx, termIdx, twIdx, readingIdx, dateIdx };
+  return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx };
 }
 
 /**
@@ -144,7 +147,7 @@ export function parseCSVData(csvText) {
   const rows = parseCSVRows(csvText);
   if (rows.length <= 1) return null;
 
-  const { idIdx, termIdx, twIdx, readingIdx, dateIdx } = findDatasetColumnIndexes(rows[0]);
+  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx } = findDatasetColumnIndexes(rows[0]);
 
   const results = [];
   for (let i = 1; i < rows.length; i++) {
@@ -155,6 +158,10 @@ export function parseCSVData(csvText) {
       const tw = cols[twIdx] ? cols[twIdx].trim() : '';
       const reading = (readingIdx !== -1 && cols[readingIdx]) ? cols[readingIdx].trim() : '';
       const created_at = (dateIdx !== -1 && cols[dateIdx]) ? cols[dateIdx].trim() : '';
+      const rawRecommend = (recommendIdx !== -1 && cols[recommendIdx]) ? cols[recommendIdx].trim() : '';
+      const recommendations = rawRecommend
+        ? rawRecommend.replace(/<br\s*\/?>/gi, '\n').split(/[\n\r,，、;；]/).map(s => s.trim()).filter(Boolean)
+        : [];
 
       if (ja && ja !== '日語用詞' && ja !== '大陆' && ja !== '大陸' && ja.toLowerCase() !== 'title' && ja.toLowerCase() !== 'term') {
         results.push({
@@ -163,6 +170,7 @@ export function parseCSVData(csvText) {
           tw_translation: tw,
           reading: reading,
           created_at: created_at,
+          recommendations: recommendations,
           row_index: i
         });
       }
@@ -178,7 +186,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
   const table = extractGvizTable(gvizText);
   if (!table) return null;
 
-  let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1;
+  let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1;
   if (table.cols && table.cols.length > 0) {
     const colsHeader = table.cols.map(col => (col && col.label) || '');
     const found = findDatasetColumnIndexes(colsHeader);
@@ -187,14 +195,17 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     twIdx = found.twIdx;
     readingIdx = found.readingIdx;
     dateIdx = found.dateIdx;
+    recommendIdx = found.recommendIdx;
   } else {
     const colConfig = collectionsConfig[currentCollectionId];
     if (colConfig && colConfig.hasReading) {
       readingIdx = 3;
       dateIdx = 4;
+      recommendIdx = 5;
     } else {
       readingIdx = -1;
       dateIdx = 3;
+      recommendIdx = 4;
     }
   }
 
@@ -207,6 +218,10 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     const tw = (twIdx >= 0 && c[twIdx]) ? (c[twIdx].v || '').toString().trim() : '';
     const reading = (readingIdx >= 0 && c[readingIdx]) ? (c[readingIdx].v || '').toString().trim() : '';
     const created_at = (dateIdx >= 0 && c[dateIdx]) ? (c[dateIdx].v || c[dateIdx].f || '').toString().trim() : '';
+    const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? (c[recommendIdx].v || c[recommendIdx].f || '').toString().trim() : '';
+    const recommendations = rawRecommend
+      ? rawRecommend.replace(/<br\s*\/?>/gi, '\n').split(/[\n\r,，、;；]/).map(s => s.trim()).filter(Boolean)
+      : [];
 
     if (ja && ja !== '日語用詞' && ja !== '大陆' && ja !== '大陸' && ja.toLowerCase() !== 'title' && ja.toLowerCase() !== 'term') {
       results.push({
@@ -215,6 +230,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
         tw_translation: tw,
         reading: reading,
         created_at: created_at,
+        recommendations: recommendations,
         row_index: idx + 1
       });
     }

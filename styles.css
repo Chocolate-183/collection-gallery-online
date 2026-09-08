@@ -994,6 +994,52 @@ body {
   border: 1px solid var(--awsui-color-border-item-default);
 }
 
+/* Recommended Items Section in Modal */
+.awsui-modal-recommendations-section {
+  margin-top: 16px;
+}
+
+.awsui-modal-recommendations-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #687078;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.awsui-modal-recommendations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.awsui-recommendation-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f6ce0;
+  background-color: #f0f7ff;
+  border: 1px solid #c8e1ff;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  line-height: 1.4;
+  outline: none;
+}
+
+.awsui-recommendation-chip:hover {
+  background-color: #e0f0ff;
+  border-color: #0f6ce0;
+  color: #094696;
+  transform: translateY(-1px);
+}
+
+.awsui-recommendation-chip:active {
+  transform: translateY(0);
+}
+
 /* Bottom Right Creation Time in Modal */
 .awsui-modal-created-time {
   margin-top: 12px;
@@ -1535,6 +1581,22 @@ body {
   background-color: #111c2b;
   color: var(--awsui-color-text-body-default);
   border-color: var(--awsui-color-border-item-default);
+}
+
+[data-theme="dark"] .awsui-modal-recommendations-title {
+  color: #aab7b8;
+}
+
+[data-theme="dark"] .awsui-recommendation-chip {
+  color: #4da2ff;
+  background-color: rgba(77, 162, 255, 0.12);
+  border-color: rgba(77, 162, 255, 0.3);
+}
+
+[data-theme="dark"] .awsui-recommendation-chip:hover {
+  background-color: rgba(77, 162, 255, 0.25);
+  border-color: #4da2ff;
+  color: #80beff;
 }
 
 [data-theme="dark"] .awsui-modal-created-time,
