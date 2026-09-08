@@ -970,13 +970,19 @@ body {
   transform: scale(1);
 }
 
-.awsui-modal-header {
-  padding: 18px 24px;
-  border-bottom: 1px solid var(--awsui-color-border-divider-default);
+.awsui-modal-title-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  background: #fbfcfc;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+#modal-term-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f6ce0;
+  line-height: 1.25;
 }
 
 .awsui-modal-body {
@@ -1569,16 +1575,11 @@ body {
   border-color: var(--awsui-color-border-item-default);
 }
 
-[data-theme="dark"] .awsui-modal-header {
-  background-color: #111c2b;
-  border-bottom-color: var(--awsui-color-border-divider-default);
-}
-
-[data-theme="dark"] .awsui-modal-header strong {
+[data-theme="dark"] #modal-term-title {
   color: #4da2ff !important;
 }
 
-[data-theme="dark"] .awsui-modal-header .awsui-icon-button {
+[data-theme="dark"] .awsui-modal .awsui-icon-button {
   color: var(--awsui-color-text-body-default) !important;
 }
 

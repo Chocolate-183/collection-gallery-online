@@ -102,8 +102,13 @@ test('Statistics Page under INFO Section - Nav Link and View Content', () => {
 
 test('Modal Recommendation Elements in HTML', () => {
   const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+  const cssContent = readFileSync(resolve('styles.css'), 'utf-8');
 
   assert(htmlContent.includes('id="detail-modal"'), 'HTML must contain detail-modal container');
+  assert(!htmlContent.includes('class="awsui-modal-header"'), 'Modal header container must be removed');
+  assert(htmlContent.includes('class="awsui-modal-title-row"'), 'Modal must contain modal title row');
+  assert(cssContent.includes('#modal-term-title'), 'CSS must style modal-term-title');
+  assert(cssContent.includes('font-size: 26px;'), 'Modal term title font size must be 26px');
   assert(htmlContent.includes('id="modal-recommendations-section"'), 'Modal must contain recommendations section container');
   assert(htmlContent.includes('id="modal-recommendations-list"'), 'Modal must contain recommendations list container');
   assert(htmlContent.includes('推薦展品'), 'Modal must render "推薦展品" title label');
