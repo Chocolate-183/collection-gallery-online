@@ -110,8 +110,8 @@ test('Modal Section Header Formatting and Styling', () => {
   assert(cssContent.includes('font-size: 26px;'), 'Modal term title font size must be 26px');
   assert(htmlContent.includes('id="modal-recommendations-section"'), 'Modal must contain recommendations section container');
   assert(htmlContent.includes('id="modal-recommendations-list"'), 'Modal must contain recommendations list container');
-  assert(htmlContent.includes('<span>說明</span>'), 'Modal "說明" title must be wrapped in span element');
-  assert(htmlContent.includes('<span>推薦展品</span>'), 'Modal "推薦展品" title must be wrapped in span element');
+  assert(htmlContent.includes('<span>Description</span>'), 'Modal "Description" title must be wrapped in span element');
+  assert(htmlContent.includes('<span>Recommendations</span>'), 'Modal "Recommendations" title must be wrapped in span element');
 
   // Verify modal section title CSS matching notice-footer-header style
   assert(cssContent.includes('.awsui-modal-section-title'), 'CSS must contain .awsui-modal-section-title class');
