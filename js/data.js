@@ -379,9 +379,9 @@ export function updateStatsView() {
   });
 
   if (totalHallsElem) {
-    totalHallsElem.innerHTML = `${totalHalls.toLocaleString()} <span class="awsui-kpi-unit">個</span>`;
+    totalHallsElem.innerText = totalHalls.toLocaleString();
   }
   if (totalItemsElem) {
-    totalItemsElem.innerHTML = `${totalItems.toLocaleString()} <span class="awsui-kpi-unit">件</span>`;
+    totalItemsElem.innerText = totalItems.toLocaleString();
   }
 }

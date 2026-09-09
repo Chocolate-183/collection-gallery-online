@@ -94,8 +94,8 @@ test('Statistics Page under INFO Section - Nav Link and View Content', () => {
   const statsViewHtml = htmlContent.substring(statsViewStart, statsViewEnd);
 
   assert(statsViewHtml.includes('Stats'), 'Statistics view must have "Stats" header');
-  assert(statsViewHtml.includes('總展廳數'), 'Statistics view must display "總展廳數" KPI title');
-  assert(statsViewHtml.includes('總展品數'), 'Statistics view must display "總展品數" KPI title');
+  assert(statsViewHtml.includes('Total Galleries'), 'Statistics view must display "Total Galleries" KPI title');
+  assert(statsViewHtml.includes('Total Items'), 'Statistics view must display "Total Items" KPI title');
   assert(statsViewHtml.includes('id="stats-total-halls"'), 'Statistics view must contain stats-total-halls element');
   assert(statsViewHtml.includes('id="stats-total-items"'), 'Statistics view must contain stats-total-items element');
 });
