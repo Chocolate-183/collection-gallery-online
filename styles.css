@@ -1122,23 +1122,26 @@ body {
    ========================================================================== */
 .awsui-collection-notice-footer {
   margin-top: 16px;
-  padding: 16px 20px;
+  padding: 20px;
   background-color: var(--awsui-color-background-container-content, #ffffff);
-  border: 1px dashed var(--awsui-color-border-item-default, #e9ebed);
+  border: 1px solid var(--awsui-color-border-item-default, #e9ebed);
   border-radius: var(--awsui-border-radius-container, 8px);
+  box-shadow: var(--awsui-shadow-container);
   color: var(--awsui-color-text-body-secondary, #5f6b7a);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
 .awsui-notice-footer-header {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-weight: 600;
-  color: var(--awsui-color-text-body-secondary, #5f6b7a);
-  margin-bottom: 6px;
-  font-size: 13px;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--awsui-color-text-body-default, #16191f);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--awsui-color-border-item-default, #e9ebed);
 }
 
 .awsui-notice-footer-body {
