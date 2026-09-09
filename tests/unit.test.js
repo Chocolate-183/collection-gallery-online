@@ -126,7 +126,7 @@ test('Meta Sheet CSV Parser - Parse Status Field', () => {
   assert.equal(meta.status, '調整中');
 });
 
-test('ID and Date Monospace Font Styling Configuration', async () => {
+test('ID and Date Font Styling Configuration', async () => {
   const { readFileSync } = await import('node:fs');
   const { resolve } = await import('node:path');
   const html = readFileSync(resolve('index.html'), 'utf-8');
@@ -134,7 +134,6 @@ test('ID and Date Monospace Font Styling Configuration', async () => {
 
   assert(html.includes('id="modal-created-at"'));
   assert(html.includes('id="modal-id"'));
-  assert(css.includes('--awsui-font-mono'));
   assert(css.includes('#modal-created-at'));
   assert(css.includes('#modal-id'));
   assert(css.includes('#modal-meaning-text'));

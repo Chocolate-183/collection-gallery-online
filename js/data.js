@@ -343,7 +343,7 @@ export function processDataAndRender() {
 
   const totalElem = document.getElementById('kpi-total-count');
   if (totalElem) {
-    totalElem.innerText = allRecords.length.toLocaleString();
+    totalElem.innerText = allRecords.length;
   }
 
   updateSidebarBadge(currentCollectionId);
@@ -379,9 +379,9 @@ export function updateStatsView() {
   });
 
   if (totalHallsElem) {
-    totalHallsElem.innerText = totalHalls.toLocaleString();
+    totalHallsElem.innerText = totalHalls;
   }
   if (totalItemsElem) {
-    totalItemsElem.innerText = totalItems.toLocaleString();
+    totalItemsElem.innerText = totalItems;
   }
 }

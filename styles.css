@@ -4,8 +4,8 @@
 :root {
   --awsui-font-family: 'Kdam Thmor Pro', 'Open Sans', 'Noto Sans TC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
   --awsui-font-family-exhibit: 'Open Sans', 'Noto Sans TC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
-  --awsui-font-mono: 'Roboto Mono', monospace;
-  --awsui-font-family-monospace: 'Roboto Mono', monospace;
+  --awsui-font-mono: var(--awsui-font-family);
+  --awsui-font-family-monospace: var(--awsui-font-family);
   font-synthesis: none;
   
   --awsui-color-background-layout-main: #f2f3f3;
@@ -222,7 +222,6 @@ body {
 }
 
 .awsui-nav-id {
-  font-family: var(--awsui-font-mono, monospace);
   font-size: 11px;
   font-weight: 600;
   color: #687078;
@@ -233,7 +232,6 @@ body {
 }
 
 .awsui-gallery-header-id {
-  font-family: var(--awsui-font-mono, monospace);
   font-size: 13px;
   font-weight: 700;
   color: #0f6ce0;
@@ -1075,7 +1073,6 @@ body {
 .awsui-modal-created-time span,
 #modal-created-at,
 #modal-id {
-  font-family: var(--awsui-font-mono, 'Roboto Mono', monospace);
   color: #879596;
 }
 
