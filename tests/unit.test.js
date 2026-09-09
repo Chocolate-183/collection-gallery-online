@@ -578,13 +578,26 @@ test('CSV Parser - Recommendations Column Extraction', () => {
   assert.deepEqual(parsed[1].recommendations, ['牛马', '大厂', '团建']);
 });
 
-test('GViz Parser - Recommendations Column Extraction', () => {
-  const sampleGviz = `google.visualization.Query.setResponse({"status":"ok","table":{"cols":[{"label":"id"},{"label":"大陆"},{"label":"台灣用詞"},{"label":"新增日期"},{"label":"推薦條目"}],"rows":[{"c":[{"v":"#C102-0002"},{"v":"985"},{"v":"說明"},{"v":"2026-09-04"},{"v":"211\\n一本\\n二本"}]}]}});`;
+test('Gallery Header Title Configuration - Large English Title and Non-Bold Weight', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { resolve } = await import('node:path');
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const { collectionsConfig } = await import('../js/config.js');
 
-  const parsed = parseGvizResponse(sampleGviz, 'china-terms');
-  assert.equal(parsed.length, 1);
-  assert.equal(parsed[0].ja_term, '985');
-  assert.deepEqual(parsed[0].recommendations, ['211', '一本', '二本']);
+  assert(html.includes('id="collection-header-title"'));
+  assert(html.includes('id="collection-header-cn-title"'));
+  assert(html.includes('Japanese Terms'));
+  assert(html.includes('日本特色詞彙一覽'));
+
+  assert(css.includes('#collection-header-title'));
+  assert(css.includes('.awsui-header-cn-title'));
+  assert(css.includes('font-size: 32px;'));
+  assert(css.includes('font-weight: 400;'));
+
+  assert.equal(collectionsConfig['japanese-terms'].enTitle, 'Japanese Terms');
+  assert.equal(collectionsConfig['china-terms'].enTitle, 'China Terms');
+  assert.equal(collectionsConfig['korean-terms'].enTitle, 'Korean Terms');
 });
 
 

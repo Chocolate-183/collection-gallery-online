@@ -156,8 +156,13 @@ export function applyCollectionMetaToUI(colId, meta) {
   const { currentCollectionId, currentView } = store.get();
   if (currentCollectionId === colId) {
     const headerTitle = document.getElementById('collection-header-title');
-    if (headerTitle && meta.title) {
-      headerTitle.innerText = meta.title;
+    if (headerTitle) {
+      headerTitle.innerText = (meta && meta.enTitle) ? meta.enTitle : (col && col.enTitle ? col.enTitle : (colId === 'china-terms' ? 'China Terms' : (colId === 'korean-terms' ? 'Korean Terms' : 'Japanese Terms')));
+    }
+
+    const headerCnTitle = document.getElementById('collection-header-cn-title');
+    if (headerCnTitle && meta.title) {
+      headerCnTitle.innerText = meta.title;
     }
 
     const headerId = document.getElementById('collection-header-id');
@@ -324,7 +329,12 @@ export function processDataAndRender() {
 
   const titleElem = document.getElementById('collection-header-title');
   if (titleElem) {
-    titleElem.innerText = meta && meta.title ? meta.title : (col ? col.name : '');
+    titleElem.innerText = (meta && meta.enTitle) ? meta.enTitle : (col && col.enTitle ? col.enTitle : (currentCollectionId === 'china-terms' ? 'China Terms' : (currentCollectionId === 'korean-terms' ? 'Korean Terms' : 'Japanese Terms')));
+  }
+
+  const cnTitleElem = document.getElementById('collection-header-cn-title');
+  if (cnTitleElem) {
+    cnTitleElem.innerText = meta && meta.title ? meta.title : (col ? col.name : '');
   }
 
   const idHeaderElem = document.getElementById('collection-header-id');

@@ -312,13 +312,21 @@ body {
   gap: 6px;
 }
 .awsui-header-title {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 400;
   color: var(--awsui-color-text-body-default);
 }
 
 #collection-header-title {
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.awsui-header-cn-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--awsui-color-text-body-secondary);
+  margin-top: 2px;
 }
 
 #view-about .awsui-header-title,

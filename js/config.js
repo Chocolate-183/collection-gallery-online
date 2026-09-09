@@ -5,6 +5,7 @@ export const collectionsConfig = {
   'japanese-terms': {
     id: 'japanese-terms',
     name: '日本特色詞彙一覽',
+    enTitle: 'Japanese Terms',
     sheetId: '1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI',
     gid: '1857942500',
     localFallback: 'data.json',
@@ -12,6 +13,7 @@ export const collectionsConfig = {
     searchPlaceholder: '尋找展品...',
     defaultMeta: {
       title: '日本特色詞彙一覽',
+      enTitle: 'Japanese Terms',
       id: 'C101',
       status: '開放中',
       announcement: '每日於 1230-1330 進行展廳調整',
@@ -24,6 +26,7 @@ export const collectionsConfig = {
   'china-terms': {
     id: 'china-terms',
     name: '大陸特色詞彙一覽',
+    enTitle: 'China Terms',
     sheetId: '16q_oTeadINeCErFrnokO4iiTS2BUwo2umT3wAHH53J8',
     gid: '826763333',
     localFallback: 'china-data.json',
@@ -31,6 +34,7 @@ export const collectionsConfig = {
     searchPlaceholder: '尋找展品...',
     defaultMeta: {
       title: '大陸特色詞彙一覽',
+      enTitle: 'China Terms',
       id: 'C102',
       status: '開放中',
       announcement: '每日於 1230-1330 進行展廳調整',
@@ -43,6 +47,7 @@ export const collectionsConfig = {
   'korean-terms': {
     id: 'korean-terms',
     name: '韓文單字加漢字 記憶更輕鬆',
+    enTitle: 'Korean Terms',
     sheetId: '',
     gid: '',
     localFallback: null,
@@ -50,6 +55,7 @@ export const collectionsConfig = {
     searchPlaceholder: '尋找展品...',
     defaultMeta: {
       title: '韓文單字加漢字 記憶更輕鬆',
+      enTitle: 'Korean Terms',
       id: 'C103',
       status: 'PREPARING',
       announcement: 'PREPARING',

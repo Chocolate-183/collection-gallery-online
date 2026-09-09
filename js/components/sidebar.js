@@ -81,7 +81,14 @@ export function switchCollection(collectionId, updateHash = true) {
 
   // Update Header Title & Subtitle & ID
   const headerTitle = document.getElementById('collection-header-title');
-  if (headerTitle) headerTitle.innerText = (meta && meta.title) ? meta.title : col.name;
+  if (headerTitle) {
+    headerTitle.innerText = (meta && meta.enTitle) ? meta.enTitle : (col && col.enTitle ? col.enTitle : (collectionId === 'china-terms' ? 'China Terms' : (collectionId === 'korean-terms' ? 'Korean Terms' : 'Japanese Terms')));
+  }
+
+  const headerCnTitle = document.getElementById('collection-header-cn-title');
+  if (headerCnTitle) {
+    headerCnTitle.innerText = (meta && meta.title) ? meta.title : col.name;
+  }
 
   const headerId = document.getElementById('collection-header-id');
   if (headerId) headerId.innerText = (meta && meta.id) ? meta.id : '';

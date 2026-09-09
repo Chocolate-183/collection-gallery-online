@@ -11,6 +11,7 @@ import { collectionsConfig } from './config.js';
 function extractMetadataFromKeyValues(pairs) {
   const meta = {
     title: '',
+    enTitle: '',
     tags: [],
     subtitle: '',
     description: '',
@@ -26,7 +27,9 @@ function extractMetadataFromKeyValues(pairs) {
     const val = (rawVal || '').trim();
     if (!key) continue;
 
-    if (key.includes('標題') || key.includes('展廳名') || key === 'name') {
+    if (key.includes('英文標題') || key.includes('en_title') || key.includes('enTitle')) {
+      meta.enTitle = val;
+    } else if (key.includes('標題') || key.includes('展廳名') || key === 'name') {
       meta.title = val;
     } else if (key.includes('標籤') || key.includes('tags')) {
       meta.tags = val.split(/[\n\r,，]/).map(t => t.trim()).filter(Boolean);
