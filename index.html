@@ -230,12 +230,14 @@
 
         <!-- Header Section with Inline KPI Panels -->
         <section class="awsui-header">
-          <div>
-            <h1 class="awsui-header-title" id="collection-header-title">Japanese Terms</h1>
-            <div class="awsui-header-cn-title" id="collection-header-cn-title">日本特色詞彙一覽</div>
-            <p class="awsui-header-subtitle" id="collection-header-subtitle" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin-top: 4px;"></p>
+          <div class="awsui-header-main-group" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; flex: 1 1 auto; min-width: 0;">
+            <h1 class="awsui-header-title" id="collection-header-title" style="white-space: nowrap;">Japanese Terms</h1>
+            <div class="awsui-header-cn-block" style="display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--awsui-color-border-divider-default); padding-left: 16px; gap: 2px;">
+              <div class="awsui-header-cn-title" id="collection-header-cn-title">日本特色詞彙一覽</div>
+              <p class="awsui-header-subtitle" id="collection-header-subtitle" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin: 0; line-height: 1.4;"></p>
+            </div>
           </div>
-          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex-shrink: 0;">
             <div class="awsui-kpi-box">
               <div class="awsui-kpi-label">Gallery ID</div>
               <div class="awsui-kpi-val" id="collection-header-id">C101</div>

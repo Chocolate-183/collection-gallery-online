@@ -326,11 +326,11 @@ body {
   line-height: 1.25;
 }
 
-.awsui-header-cn-title {
-  font-size: 16px;
+.awsui-header-cn-title,
+#collection-header-cn-title {
+  font-size: 15px;
   font-weight: 400;
-  color: var(--awsui-color-text-body-secondary);
-  margin-top: 4px;
+  color: var(--awsui-color-text-body-default);
   line-height: 1.3;
 }
 
