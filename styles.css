@@ -2,9 +2,11 @@
    Cloudscape Design System - Clean Dictionary Specification
    ========================================================================== */
 :root {
-  --awsui-font-family: 'Open Sans', 'Noto Sans TC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  --awsui-font-family: 'Kdam Thmor Pro', 'Open Sans', 'Noto Sans TC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  --awsui-font-family-exhibit: 'Open Sans', 'Noto Sans TC', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
   --awsui-font-mono: 'Roboto Mono', monospace;
   --awsui-font-family-monospace: 'Roboto Mono', monospace;
+  font-synthesis: none;
   
   --awsui-color-background-layout-main: #f2f3f3;
   --awsui-color-background-container-content: #ffffff;
@@ -82,7 +84,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 17px;
 }
 
@@ -215,7 +217,7 @@ body {
 .awsui-nav-link.active {
   background-color: #f1f8ff;
   color: #0f6ce0;
-  font-weight: 600;
+  font-weight: 400;
   border-left: 3px solid #0f6ce0;
 }
 
@@ -248,7 +250,7 @@ body {
   margin-left: auto;
   flex-shrink: 0;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 400;
   background-color: #eaedd1;
   color: #5f6b7a;
   padding: 2px 8px;
@@ -313,7 +315,7 @@ body {
 }
 .awsui-header-title {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--awsui-color-text-body-default);
 }
 .awsui-collection-selector-wrapper {
@@ -349,7 +351,7 @@ body {
 
 .awsui-kpi-label {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--awsui-color-text-form-label);
   text-transform: uppercase;
   margin-bottom: 2px;
@@ -1176,7 +1178,7 @@ body {
 
 .awsui-hero-title {
   font-size: 38px;
-  font-weight: 800;
+  font-weight: 400;
   color: var(--awsui-color-text-body-default);
   margin-bottom: 10px;
   line-height: 1.2;
@@ -1256,7 +1258,7 @@ body {
 
 .awsui-welcome-section-title {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--awsui-color-text-body-default);
   margin-bottom: 4px;
 }
@@ -1324,7 +1326,7 @@ body {
   align-items: center;
   padding: 6px 12px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   border-radius: 16px;
   border: 1px solid var(--awsui-color-border-item-default);
   background: var(--awsui-color-background-container-content, #ffffff);
