@@ -1039,7 +1039,7 @@ body {
   color: var(--awsui-color-text-body-default, #16191f);
   line-height: 1.65;
   white-space: pre-wrap;
-  min-height: calc(15px * 1.65 * 10); /* at least 10 lines of text height */
+  min-height: calc(15px * 1.65 * 5); /* at least 5 lines of text height */
 }
 
 /* Recommended Items Section in Modal */
