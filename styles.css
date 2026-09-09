@@ -1188,7 +1188,8 @@ body {
   opacity: 0.85;
 }
 
-.awsui-hero-title {
+.awsui-hero-title,
+#maintenance-title {
   font-size: 56px;
   font-weight: 400;
   color: var(--awsui-color-text-body-default);
