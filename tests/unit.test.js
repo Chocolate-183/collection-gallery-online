@@ -139,6 +139,9 @@ test('ID and Date Monospace Font Styling Configuration', async () => {
   assert(css.includes('#modal-id'));
   assert(css.includes('#modal-meaning-text'));
   assert(css.includes('.awsui-recommendation-chip'));
+  assert(css.includes('font-family: inherit;'));
+  assert(css.includes('[data-collection="china-terms"] .awsui-recommendation-chip'));
+  assert(css.includes('[data-collection="japanese-terms"] .awsui-recommendation-chip'));
   assert(css.includes('color: #545b64;'));
   assert(css.includes('[data-collection="japanese-terms"]'));
   assert(css.includes("'Noto Sans JP'"));

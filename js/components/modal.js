@@ -73,6 +73,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const recSectionElem = document.getElementById('modal-recommendations-section');
   const recListElem = document.getElementById('modal-recommendations-list');
   if (recSectionElem && recListElem) {
+    recListElem.setAttribute('data-collection', currentCollectionId || '');
     const rawRecs = rec.recommendations;
     let recItems = [];
     if (Array.isArray(rawRecs)) {
@@ -83,7 +84,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
     if (recItems.length > 0) {
       recListElem.innerHTML = recItems.map(item => `
-        <button type="button" class="awsui-recommendation-chip" data-term="${escapeHtml(item)}">
+        <button type="button" class="awsui-recommendation-chip" data-collection="${escapeHtml(currentCollectionId || '')}" data-term="${escapeHtml(item)}">
           ${escapeHtml(item)}
         </button>
       `).join('');

@@ -606,7 +606,9 @@ body {
 /* Font override for Mainland China terms */
 [data-collection="china-terms"] .awsui-card-header-title,
 .awsui-card-header-title[data-collection="china-terms"],
-#modal-term-title[data-collection="china-terms"] {
+#modal-term-title[data-collection="china-terms"],
+[data-collection="china-terms"] .awsui-recommendation-chip,
+.awsui-recommendation-chip[data-collection="china-terms"] {
   font-family: 'Noto Sans SC', var(--awsui-font-family);
 }
 
@@ -617,7 +619,9 @@ body {
 .awsui-reading-subtext[data-collection="japanese-terms"],
 #modal-term-title[data-collection="japanese-terms"],
 #modal-reading-row[data-collection="japanese-terms"],
-#modal-reading-row {
+#modal-reading-row,
+[data-collection="japanese-terms"] .awsui-recommendation-chip,
+.awsui-recommendation-chip[data-collection="japanese-terms"] {
   font-family: 'Noto Sans JP', var(--awsui-font-family);
 }
 
@@ -1038,6 +1042,7 @@ body {
   transition: all 0.15s ease-in-out;
   line-height: 1.4;
   outline: none;
+  font-family: inherit;
 }
 
 .awsui-recommendation-chip:hover {
