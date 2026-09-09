@@ -94,10 +94,10 @@ export function getNextOpeningTimeText(now = new Date()) {
     const year = targetDate.getFullYear();
     const month = String(targetDate.getMonth() + 1).padStart(2, '0');
     const dateStr = String(targetDate.getDate()).padStart(2, '0');
-    return `下次開館時間: ${year}/${month}/${dateStr} (${sched.day}) ${sched.hours}`;
+    return `Next Opening: ${year}/${month}/${dateStr} (${sched.day}) ${sched.hours}`;
   }
 
-  return '下次開館時間: 暫無資料';
+  return 'Next Opening: N/A';
 }
 
 /**

@@ -65,8 +65,8 @@ test('Service Desk Operating Team and Platform Setup', () => {
   const aboutViewEnd = htmlContent.indexOf('id="view-stats"');
   assert(aboutViewStart !== -1 && aboutViewEnd !== -1);
   const aboutViewHtml = htmlContent.substring(aboutViewStart, aboutViewEnd);
-  assert(aboutViewHtml.includes('<span>經營團隊</span>'), 'Service Desk header must show "經營團隊"');
-  assert(aboutViewHtml.includes('經營團隊 / Operating Team'), 'Profile subtitle must show Operating Team');
+  assert(aboutViewHtml.includes('<span>Team</span>'), 'Service Desk header must show "Team"');
+  assert(aboutViewHtml.includes('Operating Team'), 'Profile subtitle must show Operating Team');
   assert(aboutViewHtml.includes('平台名稱'), 'Service Desk info list must describe platform name');
 });
 
