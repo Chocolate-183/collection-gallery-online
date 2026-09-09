@@ -61,11 +61,11 @@ export const KANA_RANGES = {
 };
 
 export const DEFAULT_OPENING_HOURS = [
-  { day: '週日', hours: '16:00 - 23:55' },
-  { day: '週一', hours: '01:00 - 23:55' },
-  { day: '週二', hours: '01:00 - 23:55' },
-  { day: '週三', hours: '01:00 - 23:55' },
-  { day: '週四', hours: '01:00 - 23:55' },
-  { day: '週五', hours: '06:00 - 23:55' },
-  { day: '週六', hours: '06:00 - 23:55' }
+  { day: '週日', hours: '00:01 - 23:59' },
+  { day: '週一', hours: '00:01 - 23:59' },
+  { day: '週二', hours: '00:01 - 23:59' },
+  { day: '週三', hours: '00:01 - 23:59' },
+  { day: '週四', hours: '00:01 - 23:59' },
+  { day: '週五', hours: '00:01 - 23:59' },
+  { day: '週六', hours: '00:01 - 23:59' }
 ];

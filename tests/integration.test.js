@@ -30,8 +30,7 @@ test('Opening Hours Information in HTML - Lobby and Service Desk', () => {
   // Verify Service Desk Page (view-about) contains weekly opening hours schedule
   assert(htmlContent.includes('id="view-about"'));
   assert(htmlContent.includes('參觀時間'));
-  assert(htmlContent.includes('01:00 - 23:55'));
-  assert(htmlContent.includes('06:00 - 23:55'));
+  assert(htmlContent.includes('00:01 - 23:59'));
   assert(htmlContent.includes('週一'));
   assert(htmlContent.includes('週日'));
 });

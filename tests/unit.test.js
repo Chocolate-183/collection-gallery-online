@@ -37,15 +37,15 @@ test('GViz Helper - extractGvizTable extraction', () => {
 test('Utils Helper - getTodayOpeningHoursText', () => {
   // Monday (1)
   const monday = new Date('2026-09-07T10:00:00'); // Mon
-  assert.equal(getTodayOpeningHoursText(monday), "Today's Hours: 01:00 - 23:55");
+  assert.equal(getTodayOpeningHoursText(monday), "Today's Hours: 00:01 - 23:59");
 
   // Friday (5)
   const friday = new Date('2026-09-11T10:00:00'); // Fri
-  assert.equal(getTodayOpeningHoursText(friday), "Today's Hours: 06:00 - 23:55");
+  assert.equal(getTodayOpeningHoursText(friday), "Today's Hours: 00:01 - 23:59");
 
   // Sunday (0)
   const sunday = new Date('2026-09-13T10:00:00'); // Sun
-  assert.equal(getTodayOpeningHoursText(sunday), "Today's Hours: 16:00 - 23:55");
+  assert.equal(getTodayOpeningHoursText(sunday), "Today's Hours: 00:01 - 23:59");
 });
 
 test('Utils Helper - escapeHtml', () => {
@@ -299,21 +299,21 @@ test('Filter UI Adjustments - Label Spacing and Length Tabs Styling', async () =
 
 test('Opening Hours CSV Parser', () => {
   const sampleCSV = `星期,開放時間
-週日,16:00 - 23:55
-週一,01:00 - 23:55
-週二,01:00 - 23:55
-週三,01:00 - 23:55
-週四,01:00 - 23:55
-週五,06:00 - 23:55
-週六,06:00 - 23:55`;
+週日,00:01 - 23:59
+週一,00:01 - 23:59
+週二,00:01 - 23:59
+週三,00:01 - 23:59
+週四,00:01 - 23:59
+週五,00:01 - 23:59
+週六,00:01 - 23:59`;
 
   const schedule = parseOpeningHoursCSV(sampleCSV);
   assert.notEqual(schedule, null);
   assert.equal(schedule.length, 7);
   assert.equal(schedule[0].day, '週日');
-  assert.equal(schedule[0].hours, '16:00 - 23:55');
+  assert.equal(schedule[0].hours, '00:01 - 23:59');
   assert.equal(schedule[1].day, '週一');
-  assert.equal(schedule[1].hours, '01:00 - 23:55');
+  assert.equal(schedule[1].hours, '00:01 - 23:59');
 });
 
 test('Default Exhibition Hall Filter and Page Size Defaults', async () => {
