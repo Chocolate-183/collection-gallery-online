@@ -158,6 +158,9 @@ test('Tag and button components styling - less rounded border radius', () => {
   assert(!cssContent.match(/\.awsui-tag\s*\{[^}]*border-radius:\s*10px/));
   assert(!cssContent.match(/\.awsui-recommendation-chip\s*\{[^}]*border-radius:\s*12px/));
   assert(!cssContent.match(/\.awsui-btn\s*\{[^}]*border-radius:\s*20px/));
+
+  // Verify recommendation chips font-size matches description text (15px)
+  assert(cssContent.includes('font-size: 15px;'), 'Modal recommendation chips font-size must be 15px');
 });
 
 
