@@ -1,8 +1,46 @@
 /**
  * Shared Helper Utilities
  */
-import { DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
+import { EXHIBITION_STATUS, DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
 import { parseOpeningHoursCSV } from './parser.js';
+
+/**
+ * Checks if a collection's status is adjusting / under maintenance.
+ */
+export function isCollectionAdjusting(meta) {
+  if (!meta || !meta.status) return false;
+  const s = String(meta.status);
+  return s === EXHIBITION_STATUS.ADJUSTING || s === '調整中' || s.includes('調整中') || s.includes('ADJUSTMENT');
+}
+
+/**
+ * Checks if a collection's status is preparing / under development.
+ */
+export function isCollectionPreparing(meta) {
+  if (!meta || !meta.status) return false;
+  const s = String(meta.status);
+  return s === EXHIBITION_STATUS.PREPARING || s === '籌備中' || s.includes('籌備中') || s.includes('PREPARATION');
+}
+
+/**
+ * Checks if a collection's status is hidden ("不顯示").
+ */
+export function isCollectionHidden(meta) {
+  if (!meta || !meta.status) return false;
+  const s = String(meta.status);
+  return s === EXHIBITION_STATUS.HIDDEN || s.includes(EXHIBITION_STATUS.HIDDEN);
+}
+
+/**
+ * Returns English Title for a collection with proper fallbacks.
+ */
+export function getCollectionEnTitle(colId, meta, col) {
+  if (meta && meta.enTitle) return meta.enTitle;
+  if (col && col.enTitle) return col.enTitle;
+  if (colId === 'china-terms') return 'China Terms';
+  if (colId === 'korean-terms') return 'Korean Terms';
+  return 'Japanese Terms';
+}
 
 /**
  * Escapes special HTML characters to prevent XSS in dynamic rendering.

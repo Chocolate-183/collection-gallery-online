@@ -1,14 +1,14 @@
 /**
  * Hash Routing & View Switcher Engine
  */
-import { VIEWS, EXHIBITION_STATUS } from './constants.js';
+import { VIEWS } from './constants.js';
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection } from './components/sidebar.js';
 import { openMeaningModal, closeDetailModal } from './components/modal.js';
 import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
-import { isGalleryOpen } from './utils.js';
+import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
 
 /**
  * Toggles visibility of top-level application view sections
@@ -32,39 +32,6 @@ function toggleViewElements(targetView) {
       elem.style.display = 'none';
     }
   });
-}
-
-/**
- * Checks if a collection's metadata status is adjusting/maintenance
- */
-function isCollectionAdjusting(colMeta) {
-  if (!colMeta || !colMeta.status) return false;
-  const statusStr = String(colMeta.status);
-  return statusStr === EXHIBITION_STATUS.ADJUSTING ||
-         statusStr.includes(EXHIBITION_STATUS.ADJUSTING) ||
-         statusStr === '調整中' || statusStr.includes('調整中') ||
-         statusStr.includes('ADJUSTMENT');
-}
-
-/**
- * Checks if a collection's metadata status is preparing
- */
-function isCollectionPreparing(colMeta) {
-  if (!colMeta || !colMeta.status) return false;
-  const statusStr = String(colMeta.status);
-  return statusStr === EXHIBITION_STATUS.PREPARING ||
-         statusStr.includes(EXHIBITION_STATUS.PREPARING) ||
-         statusStr === '籌備中' || statusStr.includes('籌備中') ||
-         statusStr.includes('PREPARATION');
-}
-
-/**
- * Checks if a collection's metadata status is hidden ("不顯示")
- */
-function isCollectionHidden(colMeta) {
-  if (!colMeta || !colMeta.status) return false;
-  return colMeta.status === EXHIBITION_STATUS.HIDDEN ||
-         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.HIDDEN));
 }
 
 export function switchView(viewName, event, updateHash = true) {

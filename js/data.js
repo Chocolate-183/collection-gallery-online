@@ -1,7 +1,7 @@
 /**
  * Data Fetching, Caching & Parallel Sync Handler
  */
-import { DEFAULT_TIMEOUT_MS, EXHIBITION_STATUS } from './constants.js';
+import { DEFAULT_TIMEOUT_MS } from './constants.js';
 import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls, getMetadataUrls } from './config.js';
 import { store } from './state.js';
 import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse } from './parser.js';
@@ -9,7 +9,9 @@ import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
 import { updateSidebarBadge } from './components/sidebar.js';
-import { safeFetchText } from './utils.js';
+import { safeFetchText, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from './utils.js';
+
+export { isCollectionHidden };
 
 // Cache for storing fetched collection records & metadata
 export const collectionsCache = {};
@@ -74,15 +76,6 @@ export async function preloadAllCollections() {
 }
 
 /**
- * Helper to check if a collection's status is set to hidden ("不顯示")
- */
-export function isCollectionHidden(meta) {
-  if (!meta || !meta.status) return false;
-  return meta.status === EXHIBITION_STATUS.HIDDEN ||
-         (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.HIDDEN));
-}
-
-/**
  * Apply metadata to UI elements (welcome cards, header titles, tags, descriptions, about page).
  */
 export function applyCollectionMetaToUI(colId, meta) {
@@ -114,13 +107,8 @@ export function applyCollectionMetaToUI(colId, meta) {
   // 2. Update Welcome Card Tags
   const cardTagsElem = document.getElementById(`welcome-card-tags-${colId}`);
   if (cardTagsElem) {
-    const statusStr = meta.status ? String(meta.status) : '';
-    const isAdjusting = statusStr === EXHIBITION_STATUS.ADJUSTING ||
-                        statusStr === '調整中' || statusStr.includes('調整中') ||
-                        statusStr.includes('ADJUSTMENT');
-    const isPreparing = statusStr === EXHIBITION_STATUS.PREPARING ||
-                        statusStr === '籌備中' || statusStr.includes('籌備中') ||
-                        statusStr.includes('PREPARATION');
+    const isAdjusting = isCollectionAdjusting(meta);
+    const isPreparing = isCollectionPreparing(meta);
     if (isAdjusting) {
       let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">ADJUSTING</span>`;
       if (meta.tags && meta.tags.length > 0) {
@@ -155,9 +143,10 @@ export function applyCollectionMetaToUI(colId, meta) {
   // 5. Update Active Collection Header in Dictionary View
   const { currentCollectionId, currentView } = store.get();
   if (currentCollectionId === colId) {
+    const col = collectionsConfig[colId];
     const headerTitle = document.getElementById('collection-header-title');
     if (headerTitle) {
-      headerTitle.innerText = (meta && meta.enTitle) ? meta.enTitle : (col && col.enTitle ? col.enTitle : (colId === 'china-terms' ? 'China Terms' : (colId === 'korean-terms' ? 'Korean Terms' : 'Japanese Terms')));
+      headerTitle.innerText = getCollectionEnTitle(colId, meta, col);
     }
 
     const headerCnTitle = document.getElementById('collection-header-cn-title');
@@ -329,7 +318,7 @@ export function processDataAndRender() {
 
   const titleElem = document.getElementById('collection-header-title');
   if (titleElem) {
-    titleElem.innerText = (meta && meta.enTitle) ? meta.enTitle : (col && col.enTitle ? col.enTitle : (currentCollectionId === 'china-terms' ? 'China Terms' : (currentCollectionId === 'korean-terms' ? 'Korean Terms' : 'Japanese Terms')));
+    titleElem.innerText = getCollectionEnTitle(currentCollectionId, meta, col);
   }
 
   const cnTitleElem = document.getElementById('collection-header-cn-title');

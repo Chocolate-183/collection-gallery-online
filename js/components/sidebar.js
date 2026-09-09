@@ -4,7 +4,8 @@
 import { EXHIBITION_STATUS, STORAGE_KEYS } from '../constants.js';
 import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
-import { loadCollectionData, collectionsMetaCache, renderCollectionNotice, isCollectionHidden } from '../data.js';
+import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
+import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from '../utils.js';
 
 export function updateSidebarBadge(colId) {
   const badgeElem = document.getElementById(`side-nav-count-${colId}`);
@@ -12,13 +13,8 @@ export function updateSidebarBadge(colId) {
 
   const col = collectionsConfig[colId];
   const meta = collectionsMetaCache[colId] || (col ? col.defaultMeta : null);
-  const statusStr = meta && meta.status ? String(meta.status) : '';
-  const isAdjusting = statusStr === EXHIBITION_STATUS.ADJUSTING ||
-                      statusStr === '調整中' || statusStr.includes('調整中') ||
-                      statusStr.includes('ADJUSTMENT');
-  const isPreparing = statusStr === EXHIBITION_STATUS.PREPARING ||
-                      statusStr === '籌備中' || statusStr.includes('籌備中') ||
-                      statusStr.includes('PREPARATION');
+  const isAdjusting = isCollectionAdjusting(meta);
+  const isPreparing = isCollectionPreparing(meta);
 
   if (isAdjusting) {
     badgeElem.innerText = EXHIBITION_STATUS.ADJUSTING;
@@ -82,7 +78,7 @@ export function switchCollection(collectionId, updateHash = true) {
   // Update Header Title & Subtitle & ID
   const headerTitle = document.getElementById('collection-header-title');
   if (headerTitle) {
-    headerTitle.innerText = (meta && meta.enTitle) ? meta.enTitle : (col && col.enTitle ? col.enTitle : (collectionId === 'china-terms' ? 'China Terms' : (collectionId === 'korean-terms' ? 'Korean Terms' : 'Japanese Terms')));
+    headerTitle.innerText = getCollectionEnTitle(collectionId, meta, col);
   }
 
   const headerCnTitle = document.getElementById('collection-header-cn-title');
