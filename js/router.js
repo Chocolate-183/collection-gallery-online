@@ -39,8 +39,11 @@ function toggleViewElements(targetView) {
  */
 function isCollectionAdjusting(colMeta) {
   if (!colMeta || !colMeta.status) return false;
-  return colMeta.status === EXHIBITION_STATUS.ADJUSTING ||
-         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.ADJUSTING));
+  const statusStr = String(colMeta.status);
+  return statusStr === EXHIBITION_STATUS.ADJUSTING ||
+         statusStr.includes(EXHIBITION_STATUS.ADJUSTING) ||
+         statusStr === '調整中' || statusStr.includes('調整中') ||
+         statusStr.includes('ADJUSTMENT');
 }
 
 /**
@@ -48,8 +51,11 @@ function isCollectionAdjusting(colMeta) {
  */
 function isCollectionPreparing(colMeta) {
   if (!colMeta || !colMeta.status) return false;
-  return colMeta.status === EXHIBITION_STATUS.PREPARING ||
-         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.PREPARING));
+  const statusStr = String(colMeta.status);
+  return statusStr === EXHIBITION_STATUS.PREPARING ||
+         statusStr.includes(EXHIBITION_STATUS.PREPARING) ||
+         statusStr === '籌備中' || statusStr.includes('籌備中') ||
+         statusStr.includes('PREPARATION');
 }
 
 /**
@@ -96,12 +102,12 @@ export function switchView(viewName, event, updateHash = true) {
 
   if (viewName === VIEWS.MAINTENANCE) {
     if (isClosed) {
-      if (maintTitle) maintTitle.innerText = '閉館中';
+      if (maintTitle) maintTitle.innerText = 'CLOSED';
       if (maintDesc1) maintDesc1.innerText = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
       if (maintDesc2) maintDesc2.style.display = 'block';
     } else if (isColPreparing) {
-      if (maintTitle) maintTitle.innerText = '籌備中';
-      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中')
+      if (maintTitle) maintTitle.innerText = 'IN PREPARATION';
+      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中' && colMeta.announcement !== 'IN PREPARATION')
         ? colMeta.announcement
         : '本展廳目前正在籌備中，暫不開放參觀，敬請期待。';
       if (maintDesc1) maintDesc1.innerText = prepareMsg;
@@ -110,8 +116,8 @@ export function switchView(viewName, event, updateHash = true) {
       const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
       if (activeColBtn) activeColBtn.classList.add('active');
     } else if (isColAdjusting) {
-      if (maintTitle) maintTitle.innerText = '展廳調整中';
-      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中')
+      if (maintTitle) maintTitle.innerText = 'UNDER ADJUSTMENT';
+      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中' && colMeta.announcement !== '展廳調整中' && colMeta.announcement !== 'UNDER ADJUSTMENT')
         ? colMeta.announcement
         : '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
       if (maintDesc1) maintDesc1.innerText = adjustMsg;

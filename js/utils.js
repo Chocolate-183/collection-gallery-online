@@ -57,7 +57,7 @@ export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
 export function getTodayOpeningHoursText(date = new Date()) {
   const dayIndex = date.getDay();
   const today = OPENING_HOURS_SCHEDULE[dayIndex];
-  return `今日開館時間: ${today ? today.hours : '休館'}`;
+  return `Today's Hours: ${today ? (today.hours === '休館' || today.hours === 'CLOSED' ? 'CLOSED' : today.hours) : 'CLOSED'}`;
 }
 
 /**
@@ -71,7 +71,7 @@ export function getNextOpeningTimeText(now = new Date()) {
     const dayIndex = targetDate.getDay();
     const sched = OPENING_HOURS_SCHEDULE[dayIndex];
 
-    if (!sched || !sched.hours || sched.hours === '休館') {
+    if (!sched || !sched.hours || sched.hours === '休館' || sched.hours === 'CLOSED') {
       continue;
     }
 
@@ -108,7 +108,7 @@ export function getNextOpeningTimeText(now = new Date()) {
 export function isGalleryOpen(date = new Date()) {
   const dayIndex = date.getDay();
   const today = OPENING_HOURS_SCHEDULE[dayIndex];
-  if (!today || !today.hours || today.hours === '休館') {
+  if (!today || !today.hours || today.hours === '休館' || today.hours === 'CLOSED') {
     return false;
   }
 

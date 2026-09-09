@@ -51,12 +51,12 @@ export const collectionsConfig = {
     defaultMeta: {
       title: '韓文單字加漢字 記憶更輕鬆',
       id: 'C103',
-      status: '籌備中',
-      announcement: '籌備中',
+      status: 'IN PREPARATION',
+      announcement: 'IN PREPARATION',
       tags: ['韓語學習'],
-      subtitle: '籌備中',
-      description: '籌備中',
-      notice: '籌備中'
+      subtitle: 'IN PREPARATION',
+      description: 'IN PREPARATION',
+      notice: 'IN PREPARATION'
     }
   }
 };

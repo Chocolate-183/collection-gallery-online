@@ -12,10 +12,13 @@ export function updateSidebarBadge(colId) {
 
   const col = collectionsConfig[colId];
   const meta = collectionsMetaCache[colId] || (col ? col.defaultMeta : null);
-  const isAdjusting = meta && (meta.status === EXHIBITION_STATUS.ADJUSTING ||
-                      (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING)));
-  const isPreparing = meta && (meta.status === EXHIBITION_STATUS.PREPARING ||
-                      (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.PREPARING)));
+  const statusStr = meta && meta.status ? String(meta.status) : '';
+  const isAdjusting = statusStr === EXHIBITION_STATUS.ADJUSTING ||
+                      statusStr === '調整中' || statusStr.includes('調整中') ||
+                      statusStr.includes('ADJUSTMENT');
+  const isPreparing = statusStr === EXHIBITION_STATUS.PREPARING ||
+                      statusStr === '籌備中' || statusStr.includes('籌備中') ||
+                      statusStr.includes('PREPARATION');
 
   if (isAdjusting) {
     badgeElem.innerText = EXHIBITION_STATUS.ADJUSTING;

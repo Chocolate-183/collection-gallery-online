@@ -37,15 +37,15 @@ test('GViz Helper - extractGvizTable extraction', () => {
 test('Utils Helper - getTodayOpeningHoursText', () => {
   // Monday (1)
   const monday = new Date('2026-09-07T10:00:00'); // Mon
-  assert.equal(getTodayOpeningHoursText(monday), '今日開館時間: 01:00 - 23:55');
+  assert.equal(getTodayOpeningHoursText(monday), "Today's Hours: 01:00 - 23:55");
 
   // Friday (5)
   const friday = new Date('2026-09-11T10:00:00'); // Fri
-  assert.equal(getTodayOpeningHoursText(friday), '今日開館時間: 06:00 - 23:55');
+  assert.equal(getTodayOpeningHoursText(friday), "Today's Hours: 06:00 - 23:55");
 
   // Sunday (0)
   const sunday = new Date('2026-09-13T10:00:00'); // Sun
-  assert.equal(getTodayOpeningHoursText(sunday), '今日開館時間: 16:00 - 23:55');
+  assert.equal(getTodayOpeningHoursText(sunday), "Today's Hours: 16:00 - 23:55");
 });
 
 test('Utils Helper - escapeHtml', () => {
@@ -368,7 +368,7 @@ test('Exhibition Hall Maintenance Status View Routing', async () => {
   store.set({ currentCollectionId: 'japanese-terms' });
   switchView('dictionary', null, false);
 
-  assert.equal(mockTitleEl.innerText, '展廳調整中');
+  assert.equal(mockTitleEl.innerText, 'UNDER ADJUSTMENT');
   assert.equal(mockDesc1El.innerText, '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。');
   assert.equal(mockDesc2El.style.display, 'none');
   assert.equal(mockViewMaintEl.style.display, 'block');
@@ -382,7 +382,7 @@ test('Exhibition Hall Maintenance Status View Routing', async () => {
   store.set({ currentCollectionId: 'korean-terms' });
   switchView('dictionary', null, false);
 
-  assert.equal(mockTitleEl.innerText, '籌備中');
+  assert.equal(mockTitleEl.innerText, 'IN PREPARATION');
   assert.equal(mockDesc1El.innerText, '本展廳目前正在籌備中，暫不開放參觀，敬請期待。');
   assert.equal(mockDesc2El.style.display, 'none');
   assert.equal(mockViewMaintEl.style.display, 'block');
@@ -414,22 +414,22 @@ test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" and "籌�
   assert.equal(mockBadgeEl.innerText, '');
   assert.equal(mockBadgeEl.style.display, 'none');
 
-  // Case 2: Adjusting status ("調整中" badge SHOULD be shown)
+  // Case 2: Adjusting status ("UNDER ADJUSTMENT" badge SHOULD be shown)
   collectionsMetaCache['japanese-terms'] = {
     title: '日本特色詞彙',
     status: '調整中'
   };
   updateSidebarBadge('japanese-terms');
-  assert.equal(mockBadgeEl.innerText, '調整中');
+  assert.equal(mockBadgeEl.innerText, 'UNDER ADJUSTMENT');
   assert.equal(mockBadgeEl.style.display, 'inline-block');
 
-  // Case 3: Preparing status ("籌備中" badge SHOULD be shown)
+  // Case 3: Preparing status ("IN PREPARATION" badge SHOULD be shown)
   collectionsMetaCache['korean-terms'] = {
     title: '最強韓文漢字學習法',
     status: '籌備中'
   };
   updateSidebarBadge('korean-terms');
-  assert.equal(mockBadgeEl.innerText, '籌備中');
+  assert.equal(mockBadgeEl.innerText, 'IN PREPARATION');
   assert.equal(mockBadgeEl.style.display, 'inline-block');
 
   if (originalGetElementById) {
@@ -553,13 +553,13 @@ test('Gallery Page Header ID Panel Left of Total Items', async () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
 
   assert(html.includes('id="collection-header-id"'));
-  assert(html.includes('展廳編號'));
-  assert(html.includes('展品總數'));
+  assert(html.includes('Gallery ID'));
+  assert(html.includes('Total Exhibits'));
 
-  const idPos = html.indexOf('展廳編號');
-  const countPos = html.indexOf('展品總數');
+  const idPos = html.indexOf('Gallery ID');
+  const countPos = html.indexOf('Total Exhibits');
   assert(idPos !== -1 && countPos !== -1);
-  assert(idPos < countPos, 'Gallery ID panel ("展廳編號") must be positioned to the left of Total Items ("展品總數")');
+  assert(idPos < countPos, 'Gallery ID panel ("Gallery ID") must be positioned to the left of Total Items ("Total Exhibits")');
 });
 
 test('CSV Parser - Recommendations Column Extraction', () => {

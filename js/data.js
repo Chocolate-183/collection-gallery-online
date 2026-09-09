@@ -114,18 +114,21 @@ export function applyCollectionMetaToUI(colId, meta) {
   // 2. Update Welcome Card Tags
   const cardTagsElem = document.getElementById(`welcome-card-tags-${colId}`);
   if (cardTagsElem) {
-    const isAdjusting = meta.status === EXHIBITION_STATUS.ADJUSTING ||
-                        (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING));
-    const isPreparing = meta.status === EXHIBITION_STATUS.PREPARING ||
-                        (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.PREPARING));
+    const statusStr = meta.status ? String(meta.status) : '';
+    const isAdjusting = statusStr === EXHIBITION_STATUS.ADJUSTING ||
+                        statusStr === '調整中' || statusStr.includes('調整中') ||
+                        statusStr.includes('ADJUSTMENT');
+    const isPreparing = statusStr === EXHIBITION_STATUS.PREPARING ||
+                        statusStr === '籌備中' || statusStr.includes('籌備中') ||
+                        statusStr.includes('PREPARATION');
     if (isAdjusting) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>`;
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">UNDER ADJUSTMENT</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }
       cardTagsElem.innerHTML = tagsHtml;
     } else if (isPreparing) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">籌備中</span>`;
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">IN PREPARATION</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }
