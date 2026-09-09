@@ -110,6 +110,7 @@ test('Modal Section Header Formatting and Styling', () => {
   assert(cssContent.includes('font-size: 26px;'), 'Modal term title font size must be 26px');
   assert(htmlContent.includes('id="modal-recommendations-section"'), 'Modal must contain recommendations section container');
   assert(htmlContent.includes('id="modal-recommendations-list"'), 'Modal must contain recommendations list container');
+  assert(htmlContent.includes('<span>Item</span>'), 'Modal "Item" title must be wrapped in span element');
   assert(htmlContent.includes('<span>Description</span>'), 'Modal "Description" title must be wrapped in span element');
   assert(htmlContent.includes('<span>Recommendations</span>'), 'Modal "Recommendations" title must be wrapped in span element');
 
