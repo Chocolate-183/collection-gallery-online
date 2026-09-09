@@ -554,12 +554,12 @@ test('Gallery Page Header ID Panel Left of Total Items', async () => {
 
   assert(html.includes('id="collection-header-id"'));
   assert(html.includes('Gallery ID'));
-  assert(html.includes('Total Exhibits'));
+  assert(html.includes('Total Items'));
 
   const idPos = html.indexOf('Gallery ID');
-  const countPos = html.indexOf('Total Exhibits');
+  const countPos = html.indexOf('Total Items');
   assert(idPos !== -1 && countPos !== -1);
-  assert(idPos < countPos, 'Gallery ID panel ("Gallery ID") must be positioned to the left of Total Items ("Total Exhibits")');
+  assert(idPos < countPos, 'Gallery ID panel ("Gallery ID") must be positioned to the left of Total Items ("Total Items")');
 });
 
 test('CSV Parser - Recommendations Column Extraction', () => {
