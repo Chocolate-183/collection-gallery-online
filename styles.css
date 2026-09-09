@@ -1195,7 +1195,7 @@ body {
   color: var(--awsui-color-text-body-default);
   margin-bottom: 10px;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .awsui-hero-description {
