@@ -99,7 +99,7 @@ test('Statistics Page under INFO Section - Nav Link and View Content', () => {
   assert(statsViewHtml.includes('id="stats-total-items"'), 'Statistics view must contain stats-total-items element');
 });
 
-test('Modal Recommendation Elements in HTML', () => {
+test('Modal Section Header Formatting and Styling', () => {
   const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
   const cssContent = readFileSync(resolve('styles.css'), 'utf-8');
 
@@ -110,7 +110,14 @@ test('Modal Recommendation Elements in HTML', () => {
   assert(cssContent.includes('font-size: 26px;'), 'Modal term title font size must be 26px');
   assert(htmlContent.includes('id="modal-recommendations-section"'), 'Modal must contain recommendations section container');
   assert(htmlContent.includes('id="modal-recommendations-list"'), 'Modal must contain recommendations list container');
-  assert(htmlContent.includes('推薦展品'), 'Modal must render "推薦展品" title label');
+  assert(htmlContent.includes('<span>說明</span>'), 'Modal "說明" title must be wrapped in span element');
+  assert(htmlContent.includes('<span>推薦展品</span>'), 'Modal "推薦展品" title must be wrapped in span element');
+
+  // Verify modal section title CSS matching notice-footer-header style
+  assert(cssContent.includes('.awsui-modal-section-title'), 'CSS must contain .awsui-modal-section-title class');
+  assert(cssContent.includes('font-size: 16px;'), 'Modal section title font size must be 16px');
+  assert(cssContent.includes('font-weight: 400;'), 'Modal section title font weight must be 400');
+  assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-item-default'), 'Modal section title must have border bottom');
 });
 
 test('Lobby Page Featured Cards Navigation and Structure', () => {

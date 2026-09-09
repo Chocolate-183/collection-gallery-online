@@ -1023,12 +1023,15 @@ body {
 
 .awsui-modal-section-title,
 .awsui-modal-recommendations-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: #687078;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--awsui-color-text-body-default, #16191f);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--awsui-color-border-item-default, #e9ebed);
 }
 
 #modal-meaning-text {
@@ -1637,11 +1640,6 @@ body {
   color: var(--awsui-color-text-body-default, #ffffff);
   border-color: var(--awsui-color-border-item-default, #2a3b50);
   box-shadow: none;
-}
-
-[data-theme="dark"] .awsui-modal-section-title,
-[data-theme="dark"] .awsui-modal-recommendations-title {
-  color: #aab7b8;
 }
 
 [data-theme="dark"] .awsui-recommendation-chip {
