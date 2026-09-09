@@ -41,7 +41,7 @@ export const STORAGE_KEYS = {
 export const DEFAULT_TIMEOUT_MS = 2500;
 
 export const EXHIBITION_STATUS = {
-  ADJUSTING: 'UNDER ADJUSTMENT',
+  ADJUSTING: 'ADJUSTING',
   OPEN: '開放中',
   PREPARING: 'PREPARING',
   HIDDEN: '不顯示'

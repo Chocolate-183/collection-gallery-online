@@ -116,8 +116,8 @@ export function switchView(viewName, event, updateHash = true) {
       const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
       if (activeColBtn) activeColBtn.classList.add('active');
     } else if (isColAdjusting) {
-      if (maintTitle) maintTitle.innerText = 'UNDER ADJUSTMENT';
-      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中' && colMeta.announcement !== '展廳調整中' && colMeta.announcement !== 'UNDER ADJUSTMENT')
+      if (maintTitle) maintTitle.innerText = 'ADJUSTING';
+      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中' && colMeta.announcement !== '展廳調整中' && colMeta.announcement !== 'UNDER ADJUSTMENT' && colMeta.announcement !== 'ADJUSTING')
         ? colMeta.announcement
         : '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
       if (maintDesc1) maintDesc1.innerText = adjustMsg;

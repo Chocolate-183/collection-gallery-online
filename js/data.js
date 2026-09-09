@@ -122,7 +122,7 @@ export function applyCollectionMetaToUI(colId, meta) {
                         statusStr === '籌備中' || statusStr.includes('籌備中') ||
                         statusStr.includes('PREPARATION');
     if (isAdjusting) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">UNDER ADJUSTMENT</span>`;
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">ADJUSTING</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }

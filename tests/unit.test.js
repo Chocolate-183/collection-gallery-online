@@ -367,7 +367,7 @@ test('Exhibition Hall Maintenance Status View Routing', async () => {
   store.set({ currentCollectionId: 'japanese-terms' });
   switchView('dictionary', null, false);
 
-  assert.equal(mockTitleEl.innerText, 'UNDER ADJUSTMENT');
+  assert.equal(mockTitleEl.innerText, 'ADJUSTING');
   assert.equal(mockDesc1El.innerText, '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。');
   assert.equal(mockDesc2El.style.display, 'none');
   assert.equal(mockViewMaintEl.style.display, 'block');
@@ -413,13 +413,13 @@ test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" and "籌�
   assert.equal(mockBadgeEl.innerText, '');
   assert.equal(mockBadgeEl.style.display, 'none');
 
-  // Case 2: Adjusting status ("UNDER ADJUSTMENT" badge SHOULD be shown)
+  // Case 2: Adjusting status ("ADJUSTING" badge SHOULD be shown)
   collectionsMetaCache['japanese-terms'] = {
     title: '日本特色詞彙',
     status: '調整中'
   };
   updateSidebarBadge('japanese-terms');
-  assert.equal(mockBadgeEl.innerText, 'UNDER ADJUSTMENT');
+  assert.equal(mockBadgeEl.innerText, 'ADJUSTING');
   assert.equal(mockBadgeEl.style.display, 'inline-block');
 
   // Case 3: Preparing status ("PREPARING" badge SHOULD be shown)
