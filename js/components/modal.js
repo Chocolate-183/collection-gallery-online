@@ -45,6 +45,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   if (!rec) return;
 
   const titleElem = document.getElementById('modal-term-title');
+  const readingSectionElem = document.getElementById('modal-reading-section');
   const readingElem = document.getElementById('modal-reading-row');
   const meaningElem = document.getElementById('modal-meaning-text');
   const createdAtElem = document.getElementById('modal-created-at');
@@ -59,10 +60,10 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     readingElem.setAttribute('data-collection', currentCollectionId || '');
     if (rec.reading) {
       readingElem.innerText = rec.reading;
-      readingElem.style.display = 'block';
+      if (readingSectionElem) readingSectionElem.style.display = 'block';
     } else {
       readingElem.innerText = '';
-      readingElem.style.display = 'none';
+      if (readingSectionElem) readingSectionElem.style.display = 'none';
     }
   }
   if (meaningElem) meaningElem.innerText = rec.tw_translation || '（無說明內容）';

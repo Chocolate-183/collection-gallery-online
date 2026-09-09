@@ -558,17 +558,23 @@
           <span>Item</span>
         </div>
         <div class="awsui-modal-title-row">
-          <div style="display: flex; flex-direction: column; gap: 4px;">
-            <strong id="modal-term-title">--</strong>
-            <div id="modal-reading-row" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); font-weight: 500;"></div>
-          </div>
+          <strong id="modal-term-title">--</strong>
           <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeDetailModal()">
             <svg class="awsui-icon" viewBox="0 0 16 16">
               <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
             </svg>
           </button>
         </div>
-        <div class="awsui-modal-section">
+
+        <!-- Pronunciation Section (Japanese Kana Reading) -->
+        <div id="modal-reading-section" class="awsui-modal-section" style="display: none; margin-top: 20px;">
+          <div class="awsui-modal-section-title">
+            <span>Pronunciation</span>
+          </div>
+          <div id="modal-reading-row" style="font-size: 15px; color: var(--awsui-color-text-body-default); font-weight: 500;"></div>
+        </div>
+
+        <div class="awsui-modal-section" style="margin-top: 20px;">
           <div class="awsui-modal-section-title">
             <span>Description</span>
           </div>
