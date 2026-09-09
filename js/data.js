@@ -343,7 +343,7 @@ export function processDataAndRender() {
 
   const totalElem = document.getElementById('kpi-total-count');
   if (totalElem) {
-    totalElem.innerHTML = `${allRecords.length.toLocaleString()} <span class="awsui-kpi-unit">件</span>`;
+    totalElem.innerText = allRecords.length.toLocaleString();
   }
 
   updateSidebarBadge(currentCollectionId);
