@@ -370,21 +370,21 @@ body {
   background: #ffffff;
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
-  padding: 10px 18px;
+  padding: 6px 12px;
   box-shadow: var(--awsui-shadow-container);
-  min-width: 180px;
+  min-width: 120px;
 }
 
 .awsui-kpi-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   color: var(--awsui-color-text-form-label);
   text-transform: uppercase;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .awsui-kpi-val {
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--awsui-color-text-body-default);
 }
