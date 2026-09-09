@@ -25,6 +25,8 @@
   --awsui-border-radius-container: 8px;
   --awsui-border-radius-control: 20px;
   --awsui-border-radius-input: 8px;
+  --awsui-border-radius-badge: 4px;
+  --awsui-border-radius-tag: 4px;
 
   --awsui-shadow-container: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --awsui-shadow-card-hover: 0 4px 12px rgba(15, 108, 224, 0.12);
@@ -252,7 +254,7 @@ body {
   background-color: #eaedd1;
   color: #5f6b7a;
   padding: 2px 8px;
-  border-radius: 10px;
+  border-radius: var(--awsui-border-radius-badge, 4px);
   white-space: nowrap;
 }
 
@@ -535,7 +537,7 @@ body {
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 500;
-  border-radius: 16px;
+  border-radius: var(--awsui-border-radius-badge, 4px);
   border: 1px solid var(--awsui-color-border-item-default);
   background: #ffffff;
   color: var(--awsui-color-text-body-secondary);
@@ -868,7 +870,7 @@ body {
   color: #0f6ce0;
   border: 1px solid var(--awsui-color-border-item-default);
   padding: 1px 8px;
-  border-radius: 10px;
+  border-radius: var(--awsui-border-radius-badge, 4px);
   font-size: 11px;
   font-weight: 700;
   margin-left: 6px;
@@ -880,7 +882,7 @@ body {
   background-color: #e6f4ea;
   color: #137333;
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: var(--awsui-border-radius-badge, 4px);
   font-size: 11px;
   font-weight: 700;
 }
@@ -892,7 +894,7 @@ body {
   color: #5f6b7a;
   border: 1px solid #d1d5db;
   padding: 1px 6px;
-  border-radius: 10px;
+  border-radius: var(--awsui-border-radius-badge, 4px);
   font-size: 11px;
   font-weight: 500;
 }
@@ -905,7 +907,7 @@ body {
   padding: 1px 6px;
   font-size: 11px;
   font-weight: 500;
-  border-radius: 10px;
+  border-radius: var(--awsui-border-radius-tag, 4px);
   border: 1px solid var(--awsui-color-border-item-default, #d1d5db);
   background-color: var(--awsui-color-background-input-default, #f2f3f5);
   color: var(--awsui-color-text-body-secondary, #5f6b7a);
@@ -1064,7 +1066,7 @@ body {
   color: #545b64;
   background-color: #f2f3f3;
   border: 1px solid #e9ebed;
-  border-radius: 12px;
+  border-radius: var(--awsui-border-radius-tag, 4px);
   cursor: pointer;
   transition: all 0.15s ease-in-out;
   line-height: 1.4;
@@ -1355,7 +1357,7 @@ body {
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 400;
-  border-radius: 16px;
+  border-radius: var(--awsui-border-radius-tag, 4px);
   border: 1px solid var(--awsui-color-border-item-default);
   background: var(--awsui-color-background-container-content, #ffffff);
   color: var(--awsui-color-text-body-secondary);
