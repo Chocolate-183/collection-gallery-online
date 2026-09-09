@@ -382,7 +382,7 @@ test('Exhibition Hall Maintenance Status View Routing', async () => {
   store.set({ currentCollectionId: 'korean-terms' });
   switchView('dictionary', null, false);
 
-  assert.equal(mockTitleEl.innerText, 'IN PREPARATION');
+  assert.equal(mockTitleEl.innerText, 'PREPARING');
   assert.equal(mockDesc1El.innerText, '本展廳目前正在籌備中，暫不開放參觀，敬請期待。');
   assert.equal(mockDesc2El.style.display, 'none');
   assert.equal(mockViewMaintEl.style.display, 'block');
@@ -423,13 +423,13 @@ test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" and "籌�
   assert.equal(mockBadgeEl.innerText, 'UNDER ADJUSTMENT');
   assert.equal(mockBadgeEl.style.display, 'inline-block');
 
-  // Case 3: Preparing status ("IN PREPARATION" badge SHOULD be shown)
+  // Case 3: Preparing status ("PREPARING" badge SHOULD be shown)
   collectionsMetaCache['korean-terms'] = {
     title: '最強韓文漢字學習法',
     status: '籌備中'
   };
   updateSidebarBadge('korean-terms');
-  assert.equal(mockBadgeEl.innerText, 'IN PREPARATION');
+  assert.equal(mockBadgeEl.innerText, 'PREPARING');
   assert.equal(mockBadgeEl.style.display, 'inline-block');
 
   if (originalGetElementById) {
