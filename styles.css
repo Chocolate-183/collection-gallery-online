@@ -320,6 +320,16 @@ body {
 #collection-header-title {
   font-weight: 700;
 }
+
+#view-about .awsui-header-title {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.awsui-about-card .awsui-cards-header-title {
+  font-size: 20px;
+  font-weight: 400;
+}
 .awsui-collection-selector-wrapper {
   display: flex;
   align-items: center;
@@ -1178,7 +1188,7 @@ body {
 }
 
 .awsui-hero-title {
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 400;
   color: var(--awsui-color-text-body-default);
   margin-bottom: 10px;
@@ -1258,7 +1268,7 @@ body {
 }
 
 .awsui-welcome-section-title {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 400;
   color: var(--awsui-color-text-body-default);
   margin-bottom: 4px;
