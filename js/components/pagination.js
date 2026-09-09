@@ -13,7 +13,7 @@ export function renderPagination(total) {
   controls.innerHTML = '';
 
   if (total === 0) {
-    if (info) info.innerText = '展示 0 - 0 件 / 共 0 件';
+    if (info) info.innerText = '0 - 0 / 0';
     return;
   }
 
@@ -21,7 +21,7 @@ export function renderPagination(total) {
   const startIdx = (currentPage - 1) * pageSize + 1;
   const endIdx = Math.min(currentPage * pageSize, total);
 
-  if (info) info.innerHTML = `展示第 <strong>${startIdx} - ${endIdx}</strong> 件 / 共 <strong>${total}</strong> 件`;
+  if (info) info.innerHTML = `<strong>${startIdx} - ${endIdx}</strong> / <strong>${total}</strong>`;
 
   if (totalPages <= 1) return;
 

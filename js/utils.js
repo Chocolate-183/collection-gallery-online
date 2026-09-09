@@ -1,8 +1,46 @@
 /**
  * Shared Helper Utilities
  */
-import { DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
+import { EXHIBITION_STATUS, DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
 import { parseOpeningHoursCSV } from './parser.js';
+
+/**
+ * Checks if a collection's status is adjusting / under maintenance.
+ */
+export function isCollectionAdjusting(meta) {
+  if (!meta || !meta.status) return false;
+  const s = String(meta.status);
+  return s === EXHIBITION_STATUS.ADJUSTING || s === '調整中' || s.includes('調整中') || s.includes('ADJUSTMENT');
+}
+
+/**
+ * Checks if a collection's status is preparing / under development.
+ */
+export function isCollectionPreparing(meta) {
+  if (!meta || !meta.status) return false;
+  const s = String(meta.status);
+  return s === EXHIBITION_STATUS.PREPARING || s === '籌備中' || s.includes('籌備中') || s.includes('PREPARATION');
+}
+
+/**
+ * Checks if a collection's status is hidden ("不顯示").
+ */
+export function isCollectionHidden(meta) {
+  if (!meta || !meta.status) return false;
+  const s = String(meta.status);
+  return s === EXHIBITION_STATUS.HIDDEN || s.includes(EXHIBITION_STATUS.HIDDEN);
+}
+
+/**
+ * Returns English Title for a collection with proper fallbacks.
+ */
+export function getCollectionEnTitle(colId, meta, col) {
+  if (meta && meta.enTitle) return meta.enTitle;
+  if (col && col.enTitle) return col.enTitle;
+  if (colId === 'china-terms') return 'China Terms';
+  if (colId === 'korean-terms') return 'Korean Terms';
+  return 'Japanese Terms';
+}
 
 /**
  * Escapes special HTML characters to prevent XSS in dynamic rendering.
@@ -57,7 +95,7 @@ export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
 export function getTodayOpeningHoursText(date = new Date()) {
   const dayIndex = date.getDay();
   const today = OPENING_HOURS_SCHEDULE[dayIndex];
-  return `今日開館時間: ${today ? today.hours : '休館'}`;
+  return `Today's Hours: ${today ? (today.hours === '休館' || today.hours === 'CLOSED' ? 'CLOSED' : today.hours) : 'CLOSED'}`;
 }
 
 /**
@@ -71,7 +109,7 @@ export function getNextOpeningTimeText(now = new Date()) {
     const dayIndex = targetDate.getDay();
     const sched = OPENING_HOURS_SCHEDULE[dayIndex];
 
-    if (!sched || !sched.hours || sched.hours === '休館') {
+    if (!sched || !sched.hours || sched.hours === '休館' || sched.hours === 'CLOSED') {
       continue;
     }
 
@@ -94,10 +132,10 @@ export function getNextOpeningTimeText(now = new Date()) {
     const year = targetDate.getFullYear();
     const month = String(targetDate.getMonth() + 1).padStart(2, '0');
     const dateStr = String(targetDate.getDate()).padStart(2, '0');
-    return `下次開館時間: ${year}/${month}/${dateStr} (${sched.day}) ${sched.hours}`;
+    return `Next Opening: ${year}/${month}/${dateStr} (${sched.day}) ${sched.hours}`;
   }
 
-  return '下次開館時間: 暫無資料';
+  return 'Next Opening: N/A';
 }
 
 /**
@@ -108,7 +146,7 @@ export function getNextOpeningTimeText(now = new Date()) {
 export function isGalleryOpen(date = new Date()) {
   const dayIndex = date.getDay();
   const today = OPENING_HOURS_SCHEDULE[dayIndex];
-  if (!today || !today.hours || today.hours === '休館') {
+  if (!today || !today.hours || today.hours === '休館' || today.hours === 'CLOSED') {
     return false;
   }
 

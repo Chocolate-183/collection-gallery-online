@@ -1,14 +1,14 @@
 /**
  * Hash Routing & View Switcher Engine
  */
-import { VIEWS, EXHIBITION_STATUS } from './constants.js';
+import { VIEWS } from './constants.js';
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection } from './components/sidebar.js';
 import { openMeaningModal, closeDetailModal } from './components/modal.js';
 import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
-import { isGalleryOpen } from './utils.js';
+import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
 
 /**
  * Toggles visibility of top-level application view sections
@@ -32,33 +32,6 @@ function toggleViewElements(targetView) {
       elem.style.display = 'none';
     }
   });
-}
-
-/**
- * Checks if a collection's metadata status is adjusting/maintenance
- */
-function isCollectionAdjusting(colMeta) {
-  if (!colMeta || !colMeta.status) return false;
-  return colMeta.status === EXHIBITION_STATUS.ADJUSTING ||
-         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.ADJUSTING));
-}
-
-/**
- * Checks if a collection's metadata status is preparing
- */
-function isCollectionPreparing(colMeta) {
-  if (!colMeta || !colMeta.status) return false;
-  return colMeta.status === EXHIBITION_STATUS.PREPARING ||
-         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.PREPARING));
-}
-
-/**
- * Checks if a collection's metadata status is hidden ("不顯示")
- */
-function isCollectionHidden(colMeta) {
-  if (!colMeta || !colMeta.status) return false;
-  return colMeta.status === EXHIBITION_STATUS.HIDDEN ||
-         (typeof colMeta.status === 'string' && colMeta.status.includes(EXHIBITION_STATUS.HIDDEN));
 }
 
 export function switchView(viewName, event, updateHash = true) {
@@ -96,12 +69,12 @@ export function switchView(viewName, event, updateHash = true) {
 
   if (viewName === VIEWS.MAINTENANCE) {
     if (isClosed) {
-      if (maintTitle) maintTitle.innerText = '閉館中';
+      if (maintTitle) maintTitle.innerText = 'CLOSED';
       if (maintDesc1) maintDesc1.innerText = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
       if (maintDesc2) maintDesc2.style.display = 'block';
     } else if (isColPreparing) {
-      if (maintTitle) maintTitle.innerText = '籌備中';
-      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中')
+      if (maintTitle) maintTitle.innerText = 'PREPARING';
+      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中' && colMeta.announcement !== 'IN PREPARATION' && colMeta.announcement !== 'PREPARING')
         ? colMeta.announcement
         : '本展廳目前正在籌備中，暫不開放參觀，敬請期待。';
       if (maintDesc1) maintDesc1.innerText = prepareMsg;
@@ -110,8 +83,8 @@ export function switchView(viewName, event, updateHash = true) {
       const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
       if (activeColBtn) activeColBtn.classList.add('active');
     } else if (isColAdjusting) {
-      if (maintTitle) maintTitle.innerText = '展廳調整中';
-      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中')
+      if (maintTitle) maintTitle.innerText = 'ADJUSTING';
+      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中' && colMeta.announcement !== '展廳調整中' && colMeta.announcement !== 'UNDER ADJUSTMENT' && colMeta.announcement !== 'ADJUSTING')
         ? colMeta.announcement
         : '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
       if (maintDesc1) maintDesc1.innerText = adjustMsg;

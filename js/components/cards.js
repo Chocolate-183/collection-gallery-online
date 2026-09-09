@@ -15,7 +15,7 @@ export function showLoadingState() {
 
   const totalElem = document.getElementById('kpi-total-count');
   if (totalElem) {
-    totalElem.innerHTML = `-- <span class="awsui-kpi-unit">件</span>`;
+    totalElem.innerText = '--';
   }
 
   const counter = document.getElementById('cards-counter');

@@ -1,7 +1,7 @@
 /**
  * Data Fetching, Caching & Parallel Sync Handler
  */
-import { DEFAULT_TIMEOUT_MS, EXHIBITION_STATUS } from './constants.js';
+import { DEFAULT_TIMEOUT_MS } from './constants.js';
 import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls, getMetadataUrls } from './config.js';
 import { store } from './state.js';
 import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse } from './parser.js';
@@ -9,7 +9,9 @@ import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
 import { updateSidebarBadge } from './components/sidebar.js';
-import { safeFetchText } from './utils.js';
+import { safeFetchText, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from './utils.js';
+
+export { isCollectionHidden };
 
 // Cache for storing fetched collection records & metadata
 export const collectionsCache = {};
@@ -74,15 +76,6 @@ export async function preloadAllCollections() {
 }
 
 /**
- * Helper to check if a collection's status is set to hidden ("不顯示")
- */
-export function isCollectionHidden(meta) {
-  if (!meta || !meta.status) return false;
-  return meta.status === EXHIBITION_STATUS.HIDDEN ||
-         (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.HIDDEN));
-}
-
-/**
  * Apply metadata to UI elements (welcome cards, header titles, tags, descriptions, about page).
  */
 export function applyCollectionMetaToUI(colId, meta) {
@@ -114,18 +107,16 @@ export function applyCollectionMetaToUI(colId, meta) {
   // 2. Update Welcome Card Tags
   const cardTagsElem = document.getElementById(`welcome-card-tags-${colId}`);
   if (cardTagsElem) {
-    const isAdjusting = meta.status === EXHIBITION_STATUS.ADJUSTING ||
-                        (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING));
-    const isPreparing = meta.status === EXHIBITION_STATUS.PREPARING ||
-                        (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.PREPARING));
+    const isAdjusting = isCollectionAdjusting(meta);
+    const isPreparing = isCollectionPreparing(meta);
     if (isAdjusting) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">展廳調整中</span>`;
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">ADJUSTING</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }
       cardTagsElem.innerHTML = tagsHtml;
     } else if (isPreparing) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">籌備中</span>`;
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">PREPARING</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }
@@ -152,9 +143,15 @@ export function applyCollectionMetaToUI(colId, meta) {
   // 5. Update Active Collection Header in Dictionary View
   const { currentCollectionId, currentView } = store.get();
   if (currentCollectionId === colId) {
+    const col = collectionsConfig[colId];
     const headerTitle = document.getElementById('collection-header-title');
-    if (headerTitle && meta.title) {
-      headerTitle.innerText = meta.title;
+    if (headerTitle) {
+      headerTitle.innerText = getCollectionEnTitle(colId, meta, col);
+    }
+
+    const headerCnTitle = document.getElementById('collection-header-cn-title');
+    if (headerCnTitle && meta.title) {
+      headerCnTitle.innerText = meta.title;
     }
 
     const headerId = document.getElementById('collection-header-id');
@@ -198,11 +195,7 @@ export function renderCollectionNotice() {
   container.style.display = 'block';
   container.innerHTML = `
     <div class="awsui-notice-footer-header">
-      <svg class="awsui-icon" style="width:14px; height:14px; opacity:0.65;" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-      </svg>
-      <span>注意事項</span>
+      <span>Notice</span>
     </div>
     <div class="awsui-notice-footer-body">${meta.notice.replace(/\n/g, '<br>')}</div>
   `;
@@ -325,7 +318,12 @@ export function processDataAndRender() {
 
   const titleElem = document.getElementById('collection-header-title');
   if (titleElem) {
-    titleElem.innerText = meta && meta.title ? meta.title : (col ? col.name : '');
+    titleElem.innerText = getCollectionEnTitle(currentCollectionId, meta, col);
+  }
+
+  const cnTitleElem = document.getElementById('collection-header-cn-title');
+  if (cnTitleElem) {
+    cnTitleElem.innerText = meta && meta.title ? meta.title : (col ? col.name : '');
   }
 
   const idHeaderElem = document.getElementById('collection-header-id');
@@ -340,7 +338,7 @@ export function processDataAndRender() {
 
   const totalElem = document.getElementById('kpi-total-count');
   if (totalElem) {
-    totalElem.innerHTML = `${allRecords.length.toLocaleString()} <span class="awsui-kpi-unit">件</span>`;
+    totalElem.innerText = allRecords.length;
   }
 
   updateSidebarBadge(currentCollectionId);
@@ -376,9 +374,9 @@ export function updateStatsView() {
   });
 
   if (totalHallsElem) {
-    totalHallsElem.innerHTML = `${totalHalls.toLocaleString()} <span class="awsui-kpi-unit">個</span>`;
+    totalHallsElem.innerText = totalHalls;
   }
   if (totalItemsElem) {
-    totalItemsElem.innerHTML = `${totalItems.toLocaleString()} <span class="awsui-kpi-unit">件</span>`;
+    totalItemsElem.innerText = totalItems;
   }
 }

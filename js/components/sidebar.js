@@ -4,7 +4,8 @@
 import { EXHIBITION_STATUS, STORAGE_KEYS } from '../constants.js';
 import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
-import { loadCollectionData, collectionsMetaCache, renderCollectionNotice, isCollectionHidden } from '../data.js';
+import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
+import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from '../utils.js';
 
 export function updateSidebarBadge(colId) {
   const badgeElem = document.getElementById(`side-nav-count-${colId}`);
@@ -12,10 +13,8 @@ export function updateSidebarBadge(colId) {
 
   const col = collectionsConfig[colId];
   const meta = collectionsMetaCache[colId] || (col ? col.defaultMeta : null);
-  const isAdjusting = meta && (meta.status === EXHIBITION_STATUS.ADJUSTING ||
-                      (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.ADJUSTING)));
-  const isPreparing = meta && (meta.status === EXHIBITION_STATUS.PREPARING ||
-                      (typeof meta.status === 'string' && meta.status.includes(EXHIBITION_STATUS.PREPARING)));
+  const isAdjusting = isCollectionAdjusting(meta);
+  const isPreparing = isCollectionPreparing(meta);
 
   if (isAdjusting) {
     badgeElem.innerText = EXHIBITION_STATUS.ADJUSTING;
@@ -78,7 +77,14 @@ export function switchCollection(collectionId, updateHash = true) {
 
   // Update Header Title & Subtitle & ID
   const headerTitle = document.getElementById('collection-header-title');
-  if (headerTitle) headerTitle.innerText = (meta && meta.title) ? meta.title : col.name;
+  if (headerTitle) {
+    headerTitle.innerText = getCollectionEnTitle(collectionId, meta, col);
+  }
+
+  const headerCnTitle = document.getElementById('collection-header-cn-title');
+  if (headerCnTitle) {
+    headerCnTitle.innerText = (meta && meta.title) ? meta.title : col.name;
+  }
 
   const headerId = document.getElementById('collection-header-id');
   if (headerId) headerId.innerText = (meta && meta.id) ? meta.id : '';
