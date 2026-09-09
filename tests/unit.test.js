@@ -524,12 +524,12 @@ test('Multi-Collection Matrix Metadata CSV Parser', () => {
   assert.equal(parsedMap['korean-terms'].status, '籌備中');
 });
 
-test('Sidebar Section Header GALLERYS & Removed Sidebar ID Element', async () => {
+test('Sidebar Section Header GALLERY & Removed Sidebar ID Element', async () => {
   const { readFileSync } = await import('node:fs');
   const { resolve } = await import('node:path');
   const html = readFileSync(resolve('index.html'), 'utf-8');
 
-  assert(html.includes('<div class="awsui-side-nav-header">GALLERYS</div>'));
+  assert(html.includes('<div class="awsui-side-nav-header">GALLERY</div>'));
   assert(!html.includes('<div class="awsui-side-nav-header">COLLECTIONS</div>'));
   assert(!html.includes('id="side-nav-id-japanese-terms"'));
   assert(!html.includes('id="side-nav-id-china-terms"'));
