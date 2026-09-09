@@ -21,11 +21,11 @@ test('Opening Hours Information in HTML - Lobby and Service Desk', () => {
   
   // Verify Lobby Page (view-welcome) layout: Opening hours inline element is placed next to actions
   const titlePos = htmlContent.indexOf('Welcome to Collection Gallery Online !');
-  const aboutBtnPos = htmlContent.indexOf('前往服務台');
+  const aboutBtnPos = htmlContent.indexOf("switchView('about', event)");
   const inlineHoursPos = htmlContent.indexOf('awsui-hero-hours-inline');
   assert(titlePos !== -1 && aboutBtnPos !== -1 && inlineHoursPos !== -1);
   assert(titlePos < inlineHoursPos, 'Hero title must be placed at the top before opening hours');
-  assert(aboutBtnPos < inlineHoursPos, 'Opening hours must be placed directly to the right of "前往服務台" button');
+  assert(aboutBtnPos < inlineHoursPos, 'Opening hours must be placed directly to the right of Info button');
 
   // Verify Service Desk Page (view-about) contains weekly opening hours schedule
   assert(htmlContent.includes('id="view-about"'));
@@ -82,7 +82,7 @@ test('Statistics Page under INFO Section - Nav Link and View Content', () => {
   assert(navStatsStart > infoSectionStart, 'nav-stats must be inside INFO section');
 
   const statsNavSub = htmlContent.substring(navStatsStart, navStatsStart + 500);
-  assert(statsNavSub.includes('統計資料'), 'nav-stats must contain "統計資料" text');
+  assert(statsNavSub.includes('Stats'), 'nav-stats must contain "Stats" text');
   assert(statsNavSub.includes("switchView('stats', event)"), 'nav-stats must call switchView for stats');
 
   // 2. Verify Statistics Page (view-stats) content layout
@@ -93,7 +93,7 @@ test('Statistics Page under INFO Section - Nav Link and View Content', () => {
   assert(statsViewEnd !== -1 && statsViewStart < statsViewEnd);
   const statsViewHtml = htmlContent.substring(statsViewStart, statsViewEnd);
 
-  assert(statsViewHtml.includes('統計資料'), 'Statistics view must have "統計資料" header');
+  assert(statsViewHtml.includes('Stats'), 'Statistics view must have "Stats" header');
   assert(statsViewHtml.includes('總展廳數'), 'Statistics view must display "總展廳數" KPI title');
   assert(statsViewHtml.includes('總展品數'), 'Statistics view must display "總展品數" KPI title');
   assert(statsViewHtml.includes('id="stats-total-halls"'), 'Statistics view must contain stats-total-halls element');
