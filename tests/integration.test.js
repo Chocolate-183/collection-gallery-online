@@ -113,7 +113,7 @@ test('Modal Section Header Formatting and Styling', () => {
   assert(htmlContent.includes('<span>Item</span>'), 'Modal "Item" title must be wrapped in span element');
   assert(htmlContent.includes('<span>Pronunciation</span>'), 'Modal "Pronunciation" title must be wrapped in span element');
   assert(htmlContent.includes('id="modal-reading-section"'), 'Modal must contain modal-reading-section container');
-  assert(htmlContent.includes('id="modal-reading-row" style="font-size: 15px; color: var(--awsui-color-text-body-default); font-weight: 400;"'), 'Modal reading row must have font-weight 400');
+  assert(htmlContent.includes('min-height: calc(15px * 1.65 * 2)'), 'Modal reading row must have min-height for at least 2 lines');
   assert(htmlContent.includes('<span>Description</span>'), 'Modal "Description" title must be wrapped in span element');
   assert(htmlContent.includes('<span>Recommendations</span>'), 'Modal "Recommendations" title must be wrapped in span element');
 
