@@ -23,7 +23,7 @@
   --awsui-color-text-interactive-default: #0f6ce0;
 
   --awsui-border-radius-container: 8px;
-  --awsui-border-radius-control: 20px;
+  --awsui-border-radius-control: 8px;
   --awsui-border-radius-input: 8px;
   --awsui-border-radius-badge: 4px;
   --awsui-border-radius-tag: 4px;
@@ -1240,7 +1240,7 @@ body {
   padding: 0 18px;
   font-size: 14px;
   font-weight: 400;
-  border-radius: 20px;
+  border-radius: var(--awsui-border-radius-control, 8px);
   cursor: pointer;
   transition: all 0.15s ease-in-out;
   border: 1px solid transparent;

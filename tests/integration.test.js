@@ -145,17 +145,19 @@ test('Lobby Page Featured Cards Navigation and Structure', () => {
   assert(welcomeHtml.includes('onclick="switchCollection(\'china-terms\')"'), 'Enter hall button must have switchCollection click handler');
 });
 
-test('Tag components styling - less rounded border radius', () => {
+test('Tag and button components styling - less rounded border radius', () => {
   const cssContent = readFileSync(resolve('styles.css'), 'utf-8');
 
-  // Verify CSS variables for badge and tag border radius
+  // Verify CSS variables for badge, tag, and control border radius
   assert(cssContent.includes('--awsui-border-radius-badge: 4px;'), 'CSS must define --awsui-border-radius-badge: 4px');
   assert(cssContent.includes('--awsui-border-radius-tag: 4px;'), 'CSS must define --awsui-border-radius-tag: 4px');
+  assert(cssContent.includes('--awsui-border-radius-control: 8px;'), 'CSS must define --awsui-border-radius-control: 8px');
 
-  // Verify tag and badge classes use less rounded border radius instead of 10px, 12px, 16px pills
+  // Verify tag, badge, and button classes use less rounded border radius instead of 10px, 12px, 16px, 20px pills
   assert(!cssContent.match(/\.awsui-welcome-card-tag\s*\{[^}]*border-radius:\s*16px/));
   assert(!cssContent.match(/\.awsui-tag\s*\{[^}]*border-radius:\s*10px/));
   assert(!cssContent.match(/\.awsui-recommendation-chip\s*\{[^}]*border-radius:\s*12px/));
+  assert(!cssContent.match(/\.awsui-btn\s*\{[^}]*border-radius:\s*20px/));
 });
 
 
