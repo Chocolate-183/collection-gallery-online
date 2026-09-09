@@ -120,6 +120,7 @@ test('Modal Section Header Formatting and Styling', () => {
   assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-item-default'), 'Modal section title must have border bottom');
   assert(cssContent.includes('min-height: calc(15px * 1.65 * 5)'), 'Modal meaning text must have min-height for at least 5 lines');
   assert(cssContent.includes("font-family: 'Noto Sans SC'"), 'Modal meaning text must use Noto Sans SC font family');
+  assert(cssContent.includes('.awsui-meaning-value'), 'CSS must contain .awsui-meaning-value class');
 });
 
 test('Lobby Page Featured Cards Navigation and Structure', () => {

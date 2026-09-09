@@ -682,6 +682,7 @@ body {
 }
 
 .awsui-meaning-value {
+  font-family: 'Noto Sans SC', sans-serif;
   font-size: 13px;
   color: var(--awsui-color-text-body-default);
   line-height: 1.4;
