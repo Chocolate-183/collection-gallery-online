@@ -321,7 +321,8 @@ body {
   font-weight: 700;
 }
 
-#view-about .awsui-header-title {
+#view-about .awsui-header-title,
+#view-stats .awsui-header-title {
   font-size: 32px;
   font-weight: 400;
 }
