@@ -1039,13 +1039,6 @@ body {
   color: var(--awsui-color-text-body-default, #16191f);
   line-height: 1.65;
   white-space: pre-wrap;
-  background-color: #fafafa;
-  padding: 16px 18px;
-  min-height: calc(15px * 1.65 * 5 + 32px); /* at least 5 lines of text plus vertical padding */
-  border-radius: 8px;
-  border: 1px solid var(--awsui-color-border-item-default, #eaedd1);
-  box-sizing: border-box;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 /* Recommended Items Section in Modal */
@@ -1633,13 +1626,6 @@ body {
 
 [data-theme="dark"] .awsui-modal .awsui-icon-button {
   color: var(--awsui-color-text-body-default) !important;
-}
-
-[data-theme="dark"] #modal-meaning-text {
-  background-color: #111c2b;
-  color: var(--awsui-color-text-body-default, #ffffff);
-  border-color: var(--awsui-color-border-item-default, #2a3b50);
-  box-shadow: none;
 }
 
 [data-theme="dark"] .awsui-recommendation-chip {
