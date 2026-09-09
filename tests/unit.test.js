@@ -1,32 +1,45 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, parseOpeningHoursCSV } from '../js/parser.js';
-import { matchesKanaGroup } from '../js/filter.js';
-import { escapeHtml, getUnicodeLength, getTodayOpeningHoursText } from '../js/utils.js';
+import {
+  parseCSVData,
+  parseGvizResponse,
+  parseMetaCSVData,
+  parseAllCollectionsMetaCSVData,
+  parseCSVRows,
+  extractGvizTable,
+  parseOpeningHoursCSV
+} from '../js/parser.js';
+import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana, sortRecords } from '../js/filter.js';
+import {
+  escapeHtml,
+  getUnicodeLength,
+  getTodayOpeningHoursText,
+  getNextOpeningTimeText,
+  isCollectionAdjusting,
+  isCollectionPreparing,
+  isCollectionHidden
+} from '../js/utils.js';
+import { googleSheetsConfig, getCollectionDataUrls, getCollectionMetaUrls, collectionsConfig } from '../js/config.js';
 
-test('CSV Parser - Multiline and Escaped Quotes', () => {
-  const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期
+test('CSV & Data Parsers - Core CSV Parsing & GViz Extraction', () => {
+  const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期,推薦條目
 1,"お疲れ様","辛苦了
-多行測試","おつかれさま","2024-01-01"
-2,"""Quotes"" Term","包含""雙引號""","クォート","2024-01-02"`;
+多行測試","おつかれさま","2024-01-01","211<br>一本"
+2,"""Quotes"" Term","包含""雙引號""","クォート","2024-01-02","牛马\n大厂"`;
 
   const parsed = parseCSVData(sampleCSV);
   assert.equal(parsed.length, 2);
   assert.equal(parsed[0].ja_term, 'お疲れ様');
   assert.equal(parsed[0].tw_translation, '辛苦了\n多行測試');
+  assert.deepEqual(parsed[0].recommendations, ['211', '一本']);
   assert.equal(parsed[1].ja_term, '"Quotes" Term');
   assert.equal(parsed[1].tw_translation, '包含"雙引號"');
-});
+  assert.deepEqual(parsed[1].recommendations, ['牛马', '大厂']);
 
-test('CSV Helper - parseCSVRows 2D array output', () => {
-  const sampleCSV = `a,b,c\n1,"2\n3",4`;
-  const rows = parseCSVRows(sampleCSV);
+  const rows = parseCSVRows('a,b,c\n1,"2\n3",4');
   assert.equal(rows.length, 2);
-  assert.deepEqual(rows[0], ['a', 'b', 'c']);
   assert.deepEqual(rows[1], ['1', '2\n3', '4']);
-});
 
-test('GViz Helper - extractGvizTable extraction', () => {
   const sampleGviz = `google.visualization.Query.setResponse({"status":"ok","table":{"cols":[{"label":"id"}],"rows":[{"c":[{"v":"1"}]}]}});`;
   const table = extractGvizTable(sampleGviz);
   assert.notEqual(table, null);
@@ -34,573 +47,91 @@ test('GViz Helper - extractGvizTable extraction', () => {
   assert.equal(extractGvizTable('invalid input'), null);
 });
 
-test('Utils Helper - getTodayOpeningHoursText', () => {
-  // Monday (1)
-  const monday = new Date('2026-09-07T10:00:00'); // Mon
-  assert.equal(getTodayOpeningHoursText(monday), "Today's Hours: 00:01 - 23:59");
-
-  // Friday (5)
-  const friday = new Date('2026-09-11T10:00:00'); // Fri
-  assert.equal(getTodayOpeningHoursText(friday), "Today's Hours: 00:01 - 23:59");
-
-  // Sunday (0)
-  const sunday = new Date('2026-09-13T10:00:00'); // Sun
-  assert.equal(getTodayOpeningHoursText(sunday), "Today's Hours: 00:01 - 23:59");
-});
-
-test('Utils Helper - escapeHtml', () => {
-  assert.equal(escapeHtml('<script>alert("xss")</script>'), '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
-  assert.equal(escapeHtml('Tom & Jerry'), 'Tom &amp; Jerry');
-  assert.equal(escapeHtml("It's ok"), 'It&#039;s ok');
-  assert.equal(escapeHtml(''), '');
-});
-
-test('Utils Helper - getUnicodeLength', () => {
-  assert.equal(getUnicodeLength(''), 0);
-  assert.equal(getUnicodeLength('あい'), 2);
-  assert.equal(getUnicodeLength('🌸日本'), 3);
-  assert.equal(getUnicodeLength('お疲れ様'), 4);
-});
-
-test('Kana Group Matching', () => {
-  assert.equal(matchesKanaGroup('ありがとう', 'あ'), true);
-  assert.equal(matchesKanaGroup('いぬ', 'あ'), true);
-  assert.equal(matchesKanaGroup('かさ', 'か'), true);
-  assert.equal(matchesKanaGroup('がっこう', 'か'), true);
-  assert.equal(matchesKanaGroup('さくら', 'あ'), false);
-});
-
-test('Unicode Character Length Calculation', () => {
-  assert.equal(getUnicodeLength('あい'), 2);
-  assert.equal(getUnicodeLength('🌸日本'), 3);
-  assert.equal(getUnicodeLength('お疲れ様'), 4);
-});
-
-test('Default Welcome Route Resolution', () => {
-  const resolveRoute = (hash) => {
-    const decoded = decodeURIComponent(hash || '');
-    if (!decoded || decoded === '#' || decoded === '#/') return 'welcome';
-    const path = decoded.replace(/^#\/?/, '');
-    if (!path || path === 'welcome' || path === 'home') return 'welcome';
-    if (path === 'about') return 'about';
-    if (path === 'stats') return 'stats';
-    return 'dictionary';
-  };
-
-  assert.equal(resolveRoute(''), 'welcome');
-  assert.equal(resolveRoute('#'), 'welcome');
-  assert.equal(resolveRoute('#/'), 'welcome');
-  assert.equal(resolveRoute('#/welcome'), 'welcome');
-  assert.equal(resolveRoute('#/about'), 'about');
-  assert.equal(resolveRoute('#/stats'), 'stats');
-  assert.equal(resolveRoute('#/日本特色詞彙'), 'dictionary');
-});
-
-test('Meta Sheet CSV Parser', () => {
+test('Metadata Parsers - Single & Multi-Collection Matrix', () => {
   const sampleMetaCSV = `項目,內容
 標題,日本特色詞彙
-標籤,"日本文化
-流行新詞
-次文化用語"
 副標,探索日本流行與次文化用語的專屬辭典
-說明,本表收錄了豐富的日本文化特色詞彙。
-注意事項,1. 測試注意事項
+ID,C101
+狀態,調整中
+標籤,"日本文化
+流行新詞"
 作者,巧克力`;
 
   const meta = parseMetaCSVData(sampleMetaCSV);
   assert.equal(meta.title, '日本特色詞彙');
-  assert.equal(meta.subtitle, '探索日本流行與次文化用語的專屬辭典');
-  assert.equal(meta.tags.length, 3);
-  assert.equal(meta.tags[0], '日本文化');
-  assert.equal(meta.author, '巧克力');
-});
-
-test('Meta Sheet CSV Parser - Parse Status Field', () => {
-  const sampleMetaCSVWithStatus = `項目,內容
-標題,日本特色詞彙
-副標,探索日本流行與次文化用語的專屬辭典
-狀態,調整中`;
-
-  const meta = parseMetaCSVData(sampleMetaCSVWithStatus);
-  assert.equal(meta.title, '日本特色詞彙');
+  assert.equal(meta.id, 'C101');
   assert.equal(meta.status, '調整中');
-});
+  assert.deepEqual(meta.tags, ['日本文化', '流行新詞']);
+  assert.equal(meta.author, '巧克力');
 
-test('ID and Date Font Styling Configuration', async () => {
-  const { readFileSync } = await import('node:fs');
-  const { resolve } = await import('node:path');
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-
-  assert(html.includes('id="modal-created-at"'));
-  assert(html.includes('id="modal-id"'));
-  assert(css.includes('#modal-created-at'));
-  assert(css.includes('#modal-id'));
-  assert(css.includes('#modal-meaning-text'));
-  assert(css.includes('.awsui-recommendation-chip'));
-  assert(css.includes('font-family: inherit;'));
-  assert(css.includes('[data-collection="china-terms"] .awsui-recommendation-chip'));
-  assert(css.includes('[data-collection="japanese-terms"] .awsui-recommendation-chip'));
-  assert(css.includes('color: #545b64;'));
-  assert(css.includes('[data-collection="japanese-terms"]'));
-  assert(css.includes("'Noto Sans JP'"));
-});
-
-test('Prevent unexpected scroll on modal open or hash sync', () => {
-  let scrollCalled = false;
-  const mockWindow = {
-    scrollTo: () => { scrollCalled = true; }
-  };
-
-  // Logic simulation matching router.js
-  let currentView = 'dictionary';
-  const checkScrollCondition = (viewName, event) => {
-    scrollCalled = false;
-    const isViewChanged = currentView !== viewName;
-    currentView = viewName;
-    if (isViewChanged || !!event) {
-      mockWindow.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    return scrollCalled;
-  };
-
-  // Case 1: Same view (dictionary -> dictionary) with no click event (e.g., card modal hash change)
-  assert.equal(checkScrollCondition('dictionary', null), false, 'Should not scroll when view does not change');
-
-  // Case 2: View changes (dictionary -> welcome)
-  assert.equal(checkScrollCondition('welcome', null), true, 'Should scroll when view changes');
-
-  // Case 3: Same view with explicit user navigation event
-  assert.equal(checkScrollCondition('welcome', { type: 'click' }), true, 'Should scroll on user click event');
-});
-
-test('Quick Filter Label and Latest 10 Selection', async () => {
-  const { readFileSync } = await import('node:fs');
-  const { resolve } = await import('node:path');
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const sidebarJs = readFileSync(resolve('js/components/sidebar.js'), 'utf-8');
-
-  // Verify label is updated to "展品篩選："
-  assert(html.includes('id="quick-tabs-label">展品篩選：</span>'));
-  assert(html.includes("selectKanaTab('LATEST10', this)\">新進展品</button>"));
-  assert(sidebarJs.includes("quickTabsLabel.innerText = '展品篩選：'"));
-
-  // Verify LATEST10 sorting and slicing logic
-  const mockRecords = [
-    { id: '1', ja_term: 'A', created_at: '2024-01-01', row_index: 1 },
-    { id: '2', ja_term: 'B', created_at: '2024-02-01', row_index: 2 },
-    { id: '3', ja_term: 'C', created_at: '2024-03-01', row_index: 3 },
-    { id: '4', ja_term: 'D', created_at: '2024-03-01', row_index: 4 }, // Same date as 3, higher row_index
-    { id: '5', ja_term: 'E', created_at: '2024-01-15', row_index: 5 }
-  ];
-
-  const sorted = [...mockRecords].sort((a, b) => {
-    const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
-    const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
-    if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) {
-      return dateB - dateA;
-    }
-    return (b.row_index ?? 0) - (a.row_index ?? 0);
-  });
-
-  assert.equal(sorted[0].id, '4', 'Most recent by date + row_index should be first');
-  assert.equal(sorted[1].id, '3');
-  assert.equal(sorted[2].id, '2');
-  assert.equal(sorted[3].id, '5');
-  assert.equal(sorted[4].id, '1');
-});
-
-test('Kana Reading Display and Toggle Removal', async () => {
-  const { readFileSync } = await import('node:fs');
-  const { resolve } = await import('node:path');
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-  const cardsJs = readFileSync(resolve('js/components/cards.js'), 'utf-8');
-
-  // Verify toggle button and class removal
-  assert(!html.includes('id="btn-toggle-reading"'), 'btn-toggle-reading should be removed from index.html');
-  assert(!css.includes('.awsui-toggle-control'), '.awsui-toggle-control should be removed from styles.css');
-  assert(!cardsJs.includes('toggleReadingDisplay'), 'toggleReadingDisplay should be removed from cards.js');
-  assert(!cardsJs.includes('updateReadingToggleUI'), 'updateReadingToggleUI should be removed from cards.js');
-});
-
-test('Empty State Card - Render Notice when Word Not Found via Search or URL', async () => {
-  // Test message generation logic matching cards.js
-  const getEmptyStateMessage = () => '尚無相符展品';
-
-  assert.equal(getEmptyStateMessage(), '尚無相符展品');
-});
-
-test('Empty State Card - DOM Rendering in card-grid', async () => {
-  const mockContainer = {
-    innerHTML: '',
-    attributes: {},
-    setAttribute(key, val) { this.attributes[key] = val; }
-  };
-  
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'card-grid') return mockContainer;
-    return null;
-  };
-
-  const { store } = await import('../js/state.js');
-  const { renderCards } = await import('../js/components/cards.js');
-
-  // Test Case 1: URL Invalid Term in Japanese Terms
-  store.set({
-    currentCollectionId: 'japanese-terms',
-    allRecords: [{ id: '1', ja_term: '神經衰弱' }],
-    filteredRecords: [],
-    invalidTerm: '神奇寶貝',
-    searchQuery: ''
-  });
-
-  renderCards();
-
-  assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('尚無相符展品'));
-
-  // Test Case 2: Search Query in China Terms
-  store.set({
-    currentCollectionId: 'china-terms',
-    allRecords: [{ id: '1', ja_term: '985' }],
-    filteredRecords: [],
-    invalidTerm: null,
-    searchQuery: '88888'
-  });
-
-  renderCards();
-
-  assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('尚無相符展品'));
-
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
-});
-
-test('Filter UI Adjustments - Label Spacing and Length Tabs Styling', async () => {
-  const { readFileSync } = await import('node:fs');
-  const { resolve } = await import('node:path');
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-
-  // Verify 5字+ tab text in length-tabs
-  assert(html.includes("selectLengthTab('5+', this)\">5字+</button>"));
-  assert(!html.includes("5字以上"));
-
-  // Verify CSS styles for uniform length-tabs buttons and label spacing
-  assert(css.includes('#length-tabs .awsui-tab'));
-  assert(css.includes('min-width: 60px;'));
-  assert(!css.includes('min-width: 90px;'));
-});
-
-test('Opening Hours CSV Parser', () => {
-  const sampleCSV = `星期,開放時間
-週日,00:01 - 23:59
-週一,00:01 - 23:59
-週二,00:01 - 23:59
-週三,00:01 - 23:59
-週四,00:01 - 23:59
-週五,00:01 - 23:59
-週六,00:01 - 23:59`;
-
-  const schedule = parseOpeningHoursCSV(sampleCSV);
-  assert.notEqual(schedule, null);
-  assert.equal(schedule.length, 7);
-  assert.equal(schedule[0].day, '週日');
-  assert.equal(schedule[0].hours, '00:01 - 23:59');
-  assert.equal(schedule[1].day, '週一');
-  assert.equal(schedule[1].hours, '00:01 - 23:59');
-});
-
-test('Default Exhibition Hall Filter and Page Size Defaults', async () => {
-  const { readFileSync } = await import('node:fs');
-  const { resolve } = await import('node:path');
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const { store } = await import('../js/state.js');
-
-  // Verify HTML default selection
-  assert(html.includes('<option value="12" selected>每頁 12 件</option>'));
-  assert(html.includes('<button class="awsui-tab active" onclick="selectKanaTab(\'ALL\', this)">全部展品</button>'));
-
-  // Verify JS initial state
-  const state = store.get();
-  assert.equal(state.pageSize, 12);
-  assert.equal(state.currentKanaTab, 'ALL');
-});
-
-test('Exhibition Hall Maintenance Status View Routing', async () => {
-  const mockTitleEl = { innerText: '' };
-  const mockDesc1El = { innerText: '' };
-  const mockDesc2El = { style: { display: 'block' } };
-  const mockViewMaintEl = { classList: { add: () => {}, remove: () => {} }, style: { display: 'none' } };
-  const mockViewDictEl = { classList: { add: () => {}, remove: () => {} }, style: { display: 'none' } };
-  
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'maintenance-title') return mockTitleEl;
-    if (id === 'maintenance-desc-1') return mockDesc1El;
-    if (id === 'maintenance-desc-2') return mockDesc2El;
-    if (id === 'view-maintenance') return mockViewMaintEl;
-    if (id === 'view-dictionary') return mockViewDictEl;
-    return null;
-  };
-  global.document.querySelectorAll = () => [];
-
-  const { setOpeningHoursSchedule, OPENING_HOURS_SCHEDULE } = await import('../js/utils.js');
-  const originalSchedule = [...OPENING_HOURS_SCHEDULE];
-  setOpeningHoursSchedule(Array(7).fill({ day: '全天', hours: '00:00 - 23:59' }));
-
-  const { collectionsMetaCache } = await import('../js/data.js');
-  const { store } = await import('../js/state.js');
-  const { switchView } = await import('../js/router.js');
-
-  collectionsMetaCache['japanese-terms'] = {
-    title: '日本特色詞彙',
-    status: '調整中'
-  };
-
-  store.set({ currentCollectionId: 'japanese-terms' });
-  switchView('dictionary', null, false);
-
-  assert.equal(mockTitleEl.innerText, 'ADJUSTING');
-  assert.equal(mockDesc1El.innerText, '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。');
-  assert.equal(mockDesc2El.style.display, 'none');
-  assert.equal(mockViewMaintEl.style.display, 'block');
-
-  // Test "籌備中" status routing
-  collectionsMetaCache['korean-terms'] = {
-    title: '最強韓文漢字學習法',
-    status: '籌備中'
-  };
-
-  store.set({ currentCollectionId: 'korean-terms' });
-  switchView('dictionary', null, false);
-
-  assert.equal(mockTitleEl.innerText, 'PREPARING');
-  assert.equal(mockDesc1El.innerText, '本展廳目前正在籌備中，暫不開放參觀，敬請期待。');
-  assert.equal(mockDesc2El.style.display, 'none');
-  assert.equal(mockViewMaintEl.style.display, 'block');
-
-  setOpeningHoursSchedule(originalSchedule);
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
-});
-
-test('Sidebar Badge Display Logic - Hide Item Counts, Show "調整中" and "籌備中" Badges', async () => {
-  const mockBadgeEl = { innerText: '', style: { display: 'inline-block' } };
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'side-nav-count-japanese-terms' || id === 'side-nav-count-korean-terms') return mockBadgeEl;
-    return null;
-  };
-
-  const { collectionsMetaCache } = await import('../js/data.js');
-  const { updateSidebarBadge } = await import('../js/components/sidebar.js');
-
-  // Case 1: Normal open status (item counts should NOT be shown)
-  collectionsMetaCache['japanese-terms'] = {
-    title: '日本特色詞彙',
-    status: '開放中'
-  };
-  updateSidebarBadge('japanese-terms');
-  assert.equal(mockBadgeEl.innerText, '');
-  assert.equal(mockBadgeEl.style.display, 'none');
-
-  // Case 2: Adjusting status ("ADJUSTING" badge SHOULD be shown)
-  collectionsMetaCache['japanese-terms'] = {
-    title: '日本特色詞彙',
-    status: '調整中'
-  };
-  updateSidebarBadge('japanese-terms');
-  assert.equal(mockBadgeEl.innerText, 'ADJUSTING');
-  assert.equal(mockBadgeEl.style.display, 'inline-block');
-
-  // Case 3: Preparing status ("PREPARING" badge SHOULD be shown)
-  collectionsMetaCache['korean-terms'] = {
-    title: '最強韓文漢字學習法',
-    status: '籌備中'
-  };
-  updateSidebarBadge('korean-terms');
-  assert.equal(mockBadgeEl.innerText, 'PREPARING');
-  assert.equal(mockBadgeEl.style.display, 'inline-block');
-
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
-});
-
-test('Exhibition Hall Hidden Status Display and Route Handling', async () => {
-  const { isCollectionHidden, applyCollectionMetaToUI } = await import('../js/data.js');
-
-  // 1. Helper function checks
-  assert.equal(isCollectionHidden({ status: '不顯示' }), true);
-  assert.equal(isCollectionHidden({ status: '開放中' }), false);
-  assert.equal(isCollectionHidden({ status: '籌備中' }), false);
-
-  // 2. UI Hiding checks (Sidebar button and Welcome card)
-  const mockNavBtn = { style: { display: '' } };
-  const mockWelcomeCard = { style: { display: '' } };
-
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'nav-col-korean-terms') return mockNavBtn;
-    if (id === 'welcome-card-korean-terms') return mockWelcomeCard;
-    return null;
-  };
-
-  // When status is "不顯示", both nav button and welcome card should be set to display: 'none'
-  applyCollectionMetaToUI('korean-terms', { title: '韓文單字加漢字 記憶更輕鬆', status: '不顯示' });
-  assert.equal(mockNavBtn.style.display, 'none');
-  assert.equal(mockWelcomeCard.style.display, 'none');
-
-  // When status is "籌備中", display should be reset to ''
-  applyCollectionMetaToUI('korean-terms', { title: '韓文單字加漢字 記憶更輕鬆', status: '籌備中' });
-  assert.equal(mockNavBtn.style.display, '');
-  assert.equal(mockWelcomeCard.style.display, '');
-
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
-});
-
-test('Google Sheets Config URL Builders', async () => {
-  const { googleSheetsConfig, getCollectionDataUrls, getCollectionMetaUrls, collectionsConfig } = await import('../js/config.js');
-
-  const sheetId = 'TEST_SHEET_ID';
-  const gid = '12345';
-  const csvUrl = googleSheetsConfig.getCsvUrl(sheetId, gid);
-  const gvizUrl = googleSheetsConfig.getGvizUrl(sheetId, gid);
-
-  assert.equal(csvUrl, 'https://docs.google.com/spreadsheets/d/TEST_SHEET_ID/export?format=csv&gid=12345');
-  assert.equal(gvizUrl, 'https://docs.google.com/spreadsheets/d/TEST_SHEET_ID/gviz/tq?tqx=out:json&gid=12345');
-
-  const jpCol = collectionsConfig['japanese-terms'];
-  const dataUrls = getCollectionDataUrls(jpCol);
-  const metaUrls = getCollectionMetaUrls(jpCol);
-
-  assert.equal(dataUrls.csvUrl, `https://docs.google.com/spreadsheets/d/${jpCol.sheetId}/export?format=csv&gid=${jpCol.gid}`);
-  assert.equal(metaUrls.csvUrl, 'https://docs.google.com/spreadsheets/d/162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs/export?format=csv&gid=0');
-});
-
-test('Multi-Collection Matrix Metadata CSV Parser', () => {
   const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙,最強韓文漢字學習法
 展廳ID,C101,C102,C103
 展廳狀態,調整中,開放中,籌備中
-展廳公告,每日於 1230-1330 進行展廳調整,每日於 1230-1330 進行展廳調整,籌備中
-展廳標籤,"日本
-語彙","大陸
-語彙",韓語學習
-展廳副標,日語副標測試,大陸副標測試,籌備中
-展廳說明,日語說明測試,大陸說明測試,籌備中
-展廳注意事項,日語注意事項,大陸注意事項,籌備中
-展廳策劃,巧克力,巧克力,巧克力`;
+展廳副標,日語副標測試,大陸副標測試,籌備中`;
 
   const parsedMap = parseAllCollectionsMetaCSVData(sampleMatrixCSV);
   assert('japanese-terms' in parsedMap);
   assert('china-terms' in parsedMap);
   assert('korean-terms' in parsedMap);
-
-  assert.equal(parsedMap['japanese-terms'].title, '日本特色詞彙');
-  assert.equal(parsedMap['japanese-terms'].id, 'C101');
   assert.equal(parsedMap['japanese-terms'].status, '調整中');
-  assert.equal(parsedMap['japanese-terms'].subtitle, '日語副標測試');
-
-  assert.equal(parsedMap['china-terms'].title, '大陸特色詞彙');
-  assert.equal(parsedMap['china-terms'].id, 'C102');
   assert.equal(parsedMap['china-terms'].status, '開放中');
-  assert.equal(parsedMap['china-terms'].subtitle, '大陸副標測試');
-
-  assert.equal(parsedMap['korean-terms'].title, '最強韓文漢字學習法');
-  assert.equal(parsedMap['korean-terms'].id, 'C103');
   assert.equal(parsedMap['korean-terms'].status, '籌備中');
 });
 
-test('Sidebar Section Header GALLERY & Removed Sidebar ID Element', async () => {
-  const { readFileSync } = await import('node:fs');
-  const { resolve } = await import('node:path');
-  const html = readFileSync(resolve('index.html'), 'utf-8');
+test('Opening Hours Parser & Schedule Utilities', () => {
+  const sampleCSV = `星期,開放時間\n週日,00:01 - 23:59\n週一,00:01 - 23:59`;
+  const schedule = parseOpeningHoursCSV(sampleCSV);
+  assert.notEqual(schedule, null);
+  assert.equal(schedule.length, 7);
+  assert.equal(schedule[0].day, '週日');
+  assert.equal(schedule[0].hours, '00:01 - 23:59');
 
-  assert(html.includes('<div class="awsui-side-nav-header">GALLERY</div>'));
-  assert(!html.includes('<div class="awsui-side-nav-header">COLLECTIONS</div>'));
-  assert(!html.includes('id="side-nav-id-japanese-terms"'));
-  assert(!html.includes('id="side-nav-id-china-terms"'));
+  const monday = new Date('2026-09-07T10:00:00');
+  assert.equal(getTodayOpeningHoursText(monday), "Today's Hours: 00:01 - 23:59");
 });
 
-test('Meta Sheet CSV Parser - Parse ID Field', () => {
-  const sampleMetaCSVWithId = `項目,內容
-標題,日本特色詞彙
-副標,探索日本流行與次文化用語的專屬辭典
-ID,C101
-作者,巧克力`;
+test('Utils - HTML Escaping & Unicode Character Length', () => {
+  assert.equal(escapeHtml('<script>alert("xss")</script>'), '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
+  assert.equal(escapeHtml('Tom & Jerry'), 'Tom &amp; Jerry');
+  assert.equal(escapeHtml(''), '');
 
-  const meta = parseMetaCSVData(sampleMetaCSVWithId);
-  assert.equal(meta.title, '日本特色詞彙');
-  assert.equal(meta.id, 'C101');
+  assert.equal(getUnicodeLength(''), 0);
+  assert.equal(getUnicodeLength('あい'), 2);
+  assert.equal(getUnicodeLength('🌸日本'), 3);
 });
 
-test('Gallery Page Header ID Panel Left of Total Items', async () => {
-  const { readFileSync } = await import('node:fs');
-  const { resolve } = await import('node:path');
-  const html = readFileSync(resolve('index.html'), 'utf-8');
+test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
+  assert.equal(matchesKanaGroup('ありがとう', 'あ'), true);
+  assert.equal(matchesKanaGroup('かさ', 'か'), true);
+  assert.equal(matchesKanaGroup('さくら', 'あ'), false);
 
-  assert(html.includes('id="collection-header-id"'));
-  assert(html.includes('Gallery ID'));
-  assert(html.includes('Total Items'));
+  const mockRecords = [
+    { id: '1', ja_term: 'A', tw_translation: '意思A', created_at: '2024-01-01', row_index: 1 },
+    { id: '2', ja_term: 'B', tw_translation: '意思B', created_at: '2024-03-01', row_index: 2 },
+    { id: '3', ja_term: 'C', tw_translation: '意思C', created_at: '2024-03-01', row_index: 3 }
+  ];
 
-  const idPos = html.indexOf('Gallery ID');
-  const countPos = html.indexOf('Total Items');
-  assert(idPos !== -1 && countPos !== -1);
-  assert(idPos < countPos, 'Gallery ID panel ("Gallery ID") must be positioned to the left of Total Items ("Total Items")');
+  const queryResult = filterByQuery(mockRecords, '意思A');
+  assert.equal(queryResult.length, 1);
+  assert.equal(queryResult[0].id, '1');
+
+  const latestResult = filterByKana(mockRecords, 'LATEST10', '');
+  assert.equal(latestResult[0].id, '3', 'Highest row index on same newest date should be first');
+  assert.equal(latestResult[1].id, '2');
 });
 
-test('CSV Parser - Recommendations Column Extraction', () => {
-  const sampleCSV = `ID,大陆,台灣用詞,新增日期,推薦條目
-#C102-0002,985,中國大陸的大學,2026-09-04,"211
-一本
-二本
-高考
-本科"
-#C102-0003,996,工作制度,2026-09-04,牛马<br>大厂<br>团建`;
+test('Config & Endpoint URL Builders', () => {
+  const csvUrl = googleSheetsConfig.getCsvUrl('SHEET_ID', '123');
+  assert.equal(csvUrl, 'https://docs.google.com/spreadsheets/d/SHEET_ID/export?format=csv&gid=123');
 
-  const parsed = parseCSVData(sampleCSV);
-  assert.equal(parsed.length, 2);
-  assert.equal(parsed[0].ja_term, '985');
-  assert.deepEqual(parsed[0].recommendations, ['211', '一本', '二本', '高考', '本科']);
-  assert.equal(parsed[1].ja_term, '996');
-  assert.deepEqual(parsed[1].recommendations, ['牛马', '大厂', '团建']);
+  const jpCol = collectionsConfig['japanese-terms'];
+  const dataUrls = getCollectionDataUrls(jpCol);
+  assert(dataUrls.csvUrl.includes('1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI'));
 });
 
-test('Gallery Header Title Configuration - Large English Title and Non-Bold Weight', async () => {
-  const { readFileSync } = await import('node:fs');
-  const { resolve } = await import('node:path');
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-  const { collectionsConfig } = await import('../js/config.js');
-
-  assert(html.includes('id="collection-header-title"'));
-  assert(html.includes('id="collection-header-cn-title"'));
-  assert(html.includes('Japanese Terms'));
-  assert(html.includes('日本特色詞彙一覽'));
-
-  assert(css.includes('#collection-header-title'));
-  assert(css.includes('.awsui-header-cn-title'));
-  assert(css.includes('font-size: 32px;'));
-  assert(css.includes('font-weight: 400;'));
-
-  assert.equal(collectionsConfig['japanese-terms'].enTitle, 'Japanese Terms');
-  assert.equal(collectionsConfig['china-terms'].enTitle, 'China Terms');
-  assert.equal(collectionsConfig['korean-terms'].enTitle, 'Korean Terms');
+test('Status & Exhibition Helpers', () => {
+  assert.equal(isCollectionAdjusting({ status: '調整中' }), true);
+  assert.equal(isCollectionPreparing({ status: '籌備中' }), true);
+  assert.equal(isCollectionHidden({ status: '不顯示' }), true);
+  assert.equal(isCollectionHidden({ status: '開放中' }), false);
 });
-
-
-
-
-

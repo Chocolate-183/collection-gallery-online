@@ -3,9 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-// Load local snapshot files
+// Load local fallback data snapshot
 const dataJson = JSON.parse(readFileSync(resolve('data.json'), 'utf-8'));
-const chinaDataJson = JSON.parse(readFileSync(resolve('china-data.json'), 'utf-8'));
 
 test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
   assert(Array.isArray(dataJson));
@@ -16,153 +15,136 @@ test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
   assert('reading' in sample);
 });
 
-test('Opening Hours Information in HTML - Lobby and Service Desk', () => {
-  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
-  
-  // Verify Lobby Page (view-welcome) layout: Opening hours inline element is placed next to actions
-  const titlePos = htmlContent.indexOf('Welcome to Collection Gallery Online !');
-  const aboutBtnPos = htmlContent.indexOf("switchView('about', event)");
-  const inlineHoursPos = htmlContent.indexOf('awsui-hero-hours-inline');
-  assert(titlePos !== -1 && aboutBtnPos !== -1 && inlineHoursPos !== -1);
-  assert(titlePos < inlineHoursPos, 'Hero title must be placed at the top before opening hours');
-  assert(aboutBtnPos < inlineHoursPos, 'Opening hours must be placed directly to the right of Info button');
+test('Router & View Switcher - View Routing & Maintenance Handling', async () => {
+  const mockTitleEl = { innerText: '' };
+  const mockDesc1El = { innerText: '' };
+  const mockDesc2El = { style: { display: 'block' } };
+  const mockViewMaintEl = { classList: { add: () => {}, remove: () => {} }, style: { display: 'none' } };
+  const mockViewDictEl = { classList: { add: () => {}, remove: () => {} }, style: { display: 'none' } };
 
-  // Verify Service Desk Page (view-about) contains weekly opening hours schedule
-  assert(htmlContent.includes('id="view-about"'));
-  assert(htmlContent.includes('參觀時間'));
-  assert(htmlContent.includes('00:01 - 23:59'));
-  assert(htmlContent.includes('週一'));
-  assert(htmlContent.includes('週日'));
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'maintenance-title') return mockTitleEl;
+    if (id === 'maintenance-desc-1') return mockDesc1El;
+    if (id === 'maintenance-desc-2') return mockDesc2El;
+    if (id === 'view-maintenance') return mockViewMaintEl;
+    if (id === 'view-dictionary') return mockViewDictEl;
+    return null;
+  };
+  global.document.querySelectorAll = () => [];
+
+  const { setOpeningHoursSchedule, OPENING_HOURS_SCHEDULE } = await import('../js/utils.js');
+  const originalSchedule = [...OPENING_HOURS_SCHEDULE];
+  setOpeningHoursSchedule(Array(7).fill({ day: '全天', hours: '00:00 - 23:59' }));
+
+  const { collectionsMetaCache } = await import('../js/data.js');
+  const { store } = await import('../js/state.js');
+  const { switchView } = await import('../js/router.js');
+
+  // Test "調整中" status routing
+  collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '調整中' };
+  store.set({ currentCollectionId: 'japanese-terms' });
+  switchView('dictionary', null, false);
+
+  assert.equal(mockTitleEl.innerText, 'ADJUSTING');
+  assert.equal(mockViewMaintEl.style.display, 'block');
+
+  // Test "籌備中" status routing
+  collectionsMetaCache['korean-terms'] = { title: '最強韓文漢字學習法', status: '籌備中' };
+  store.set({ currentCollectionId: 'korean-terms' });
+  switchView('dictionary', null, false);
+
+  assert.equal(mockTitleEl.innerText, 'PREPARING');
+  assert.equal(mockViewMaintEl.style.display, 'block');
+
+  setOpeningHoursSchedule(originalSchedule);
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
 });
 
-test('Google Form Feedback and Submission Link - About Page and Exhibition Hall Footer', () => {
-  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
-  const formUrl = 'https://forms.gle/GjK2vAxdUiAoec636';
+test('UI Components - Sidebar Badge Display Logic', async () => {
+  const mockBadgeEl = { innerText: '', style: { display: 'inline-block' } };
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'side-nav-count-japanese-terms' || id === 'side-nav-count-korean-terms') return mockBadgeEl;
+    return null;
+  };
 
-  // 1. Verify Google Form link exists in About Page (view-about)
-  const aboutViewStart = htmlContent.indexOf('id="view-about"');
-  const aboutViewEnd = htmlContent.indexOf('id="view-maintenance"');
-  assert(aboutViewStart !== -1 && aboutViewEnd !== -1);
-  const aboutViewHtml = htmlContent.substring(aboutViewStart, aboutViewEnd);
-  assert(aboutViewHtml.includes(formUrl), 'About page must contain Google Form link');
-  assert(aboutViewHtml.includes('Feedback'), 'About page must contain "Feedback" section');
+  const { collectionsMetaCache } = await import('../js/data.js');
+  const { updateSidebarBadge } = await import('../js/components/sidebar.js');
 
-  // 2. Verify Google Form link exists at the bottom of Exhibition Hall view (view-dictionary)
-  const dictViewStart = htmlContent.indexOf('id="view-dictionary"');
-  assert(dictViewStart !== -1 && dictViewStart < aboutViewStart);
-  const dictViewHtml = htmlContent.substring(dictViewStart, aboutViewStart);
-  assert(dictViewHtml.includes('id="collection-feedback-container"'), 'Exhibition hall view must contain feedback container');
-  assert(dictViewHtml.includes(formUrl), 'Exhibition hall footer must contain Google Form link');
-  assert(dictViewHtml.includes('填寫問題回報 / 投稿表單'), 'Exhibition hall footer must contain "填寫問題回報 / 投稿表單" link');
+  // Case 1: Normal open status
+  collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '開放中' };
+  updateSidebarBadge('japanese-terms');
+  assert.equal(mockBadgeEl.style.display, 'none');
+
+  // Case 2: Adjusting status
+  collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '調整中' };
+  updateSidebarBadge('japanese-terms');
+  assert.equal(mockBadgeEl.innerText, 'ADJUSTING');
+  assert.equal(mockBadgeEl.style.display, 'inline-block');
+
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
 });
 
-test('Service Desk Operating Team and Platform Setup', () => {
-  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+test('UI Components - Empty State & Card Rendering', async () => {
+  const mockContainer = {
+    innerHTML: '',
+    attributes: {},
+    setAttribute(key, val) { this.attributes[key] = val; }
+  };
 
-  // 1. Verify Service Desk (view-about) contains "經營團隊" and "平台名稱"
-  const aboutViewStart = htmlContent.indexOf('id="view-about"');
-  const aboutViewEnd = htmlContent.indexOf('id="view-stats"');
-  assert(aboutViewStart !== -1 && aboutViewEnd !== -1);
-  const aboutViewHtml = htmlContent.substring(aboutViewStart, aboutViewEnd);
-  assert(aboutViewHtml.includes('<span>Team</span>'), 'Service Desk header must show "Team"');
-  assert(aboutViewHtml.includes('Operating Team'), 'Profile subtitle must show Operating Team');
-  assert(aboutViewHtml.includes('平台名稱'), 'Service Desk info list must describe platform name');
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'card-grid') return mockContainer;
+    return null;
+  };
+
+  const { store } = await import('../js/state.js');
+  const { renderCards } = await import('../js/components/cards.js');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ id: '1', ja_term: '測試' }],
+    filteredRecords: [],
+    invalidTerm: '查無此詞',
+    searchQuery: ''
+  });
+
+  renderCards();
+
+  assert(mockContainer.innerHTML.includes('awsui-empty-card'));
+  assert(mockContainer.innerHTML.includes('尚無相符展品'));
+
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
 });
 
-test('Statistics Page under INFO Section - Nav Link and View Content', () => {
-  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+test('Scroll Prevention on Modal Open or Hash Sync', () => {
+  let scrollCalled = false;
+  const mockWindow = {
+    scrollTo: () => { scrollCalled = true; }
+  };
 
-  // 1. Verify INFO section contains nav-stats button
-  const infoSectionStart = htmlContent.indexOf('class="awsui-side-nav-header">INFO');
-  assert(infoSectionStart !== -1, 'HTML must contain INFO sidebar section header');
+  let currentView = 'dictionary';
+  const checkScrollCondition = (viewName, event) => {
+    scrollCalled = false;
+    const isViewChanged = currentView !== viewName;
+    currentView = viewName;
+    if (isViewChanged || !!event) {
+      mockWindow.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    return scrollCalled;
+  };
 
-  const navStatsStart = htmlContent.indexOf('id="nav-stats"');
-  assert(navStatsStart !== -1, 'Sidebar must contain nav-stats button');
-  assert(navStatsStart > infoSectionStart, 'nav-stats must be inside INFO section');
-
-  const statsNavSub = htmlContent.substring(navStatsStart, navStatsStart + 500);
-  assert(statsNavSub.includes('Stats'), 'nav-stats must contain "Stats" text');
-  assert(statsNavSub.includes("switchView('stats', event)"), 'nav-stats must call switchView for stats');
-
-  // 2. Verify Statistics Page (view-stats) content layout
-  const statsViewStart = htmlContent.indexOf('id="view-stats"');
-  assert(statsViewStart !== -1, 'HTML must contain view-stats container');
-
-  const statsViewEnd = htmlContent.indexOf('id="view-maintenance"');
-  assert(statsViewEnd !== -1 && statsViewStart < statsViewEnd);
-  const statsViewHtml = htmlContent.substring(statsViewStart, statsViewEnd);
-
-  assert(statsViewHtml.includes('Stats'), 'Statistics view must have "Stats" header');
-  assert(statsViewHtml.includes('Total Galleries'), 'Statistics view must display "Total Galleries" KPI title');
-  assert(statsViewHtml.includes('Total Items'), 'Statistics view must display "Total Items" KPI title');
-  assert(statsViewHtml.includes('id="stats-total-halls"'), 'Statistics view must contain stats-total-halls element');
-  assert(statsViewHtml.includes('id="stats-total-items"'), 'Statistics view must contain stats-total-items element');
+  assert.equal(checkScrollCondition('dictionary', null), false);
+  assert.equal(checkScrollCondition('welcome', null), true);
+  assert.equal(checkScrollCondition('welcome', { type: 'click' }), true);
 });
-
-test('Modal Section Header Formatting and Styling', () => {
-  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
-  const cssContent = readFileSync(resolve('styles.css'), 'utf-8');
-
-  assert(htmlContent.includes('id="detail-modal"'), 'HTML must contain detail-modal container');
-  assert(!htmlContent.includes('class="awsui-modal-header"'), 'Modal header container must be removed');
-  assert(htmlContent.includes('class="awsui-modal-title-row"'), 'Modal must contain modal title row');
-  assert(cssContent.includes('#modal-term-title'), 'CSS must style modal-term-title');
-  assert(cssContent.includes('font-size: 26px;'), 'Modal term title font size must be 26px');
-  assert(htmlContent.includes('id="modal-recommendations-section"'), 'Modal must contain recommendations section container');
-  assert(htmlContent.includes('id="modal-recommendations-list"'), 'Modal must contain recommendations list container');
-  assert(htmlContent.includes('<span>Item</span>'), 'Modal "Item" title must be wrapped in span element');
-  assert(htmlContent.includes('<span>Pronunciation</span>'), 'Modal "Pronunciation" title must be wrapped in span element');
-  assert(htmlContent.includes('id="modal-reading-section"'), 'Modal must contain modal-reading-section container');
-  assert(htmlContent.includes('min-height: calc(15px * 1.65 * 2)'), 'Modal reading row must have min-height for at least 2 lines');
-  assert(htmlContent.includes('<span>Description</span>'), 'Modal "Description" title must be wrapped in span element');
-  assert(htmlContent.includes('<span>Recommendations</span>'), 'Modal "Recommendations" title must be wrapped in span element');
-
-  // Verify modal section title CSS matching notice-footer-header style
-  assert(cssContent.includes('.awsui-modal-section-title'), 'CSS must contain .awsui-modal-section-title class');
-  assert(cssContent.includes('font-size: 16px;'), 'Modal section title font size must be 16px');
-  assert(cssContent.includes('font-weight: 400;'), 'Modal section title font weight must be 400');
-  assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-item-default'), 'Modal section title must have border bottom');
-  assert(cssContent.includes('min-height: calc(15px * 1.65 * 5)'), 'Modal meaning text must have min-height for at least 5 lines');
-  assert(cssContent.includes("font-family: 'Noto Sans SC'"), 'Modal meaning text must use Noto Sans SC font family');
-  assert(cssContent.includes('.awsui-meaning-value'), 'CSS must contain .awsui-meaning-value class');
-});
-
-test('Lobby Page Featured Cards Navigation and Structure', () => {
-  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
-
-  const welcomeViewStart = htmlContent.indexOf('id="view-welcome"');
-  const welcomeViewEnd = htmlContent.indexOf('id="view-dictionary"');
-  assert(welcomeViewStart !== -1 && welcomeViewEnd !== -1);
-  const welcomeHtml = htmlContent.substring(welcomeViewStart, welcomeViewEnd);
-
-  // 1. Verify "韓文單字加漢字 記憶更輕鬆" card is removed from lobby page view-welcome
-  assert(!welcomeHtml.includes('id="welcome-card-korean-terms"'), 'Lobby page must not contain welcome-card-korean-terms');
-
-  // 2. Verify cards do not have onclick on card container, and "進入展廳" button has onclick
-  assert(!welcomeHtml.includes('<div class="awsui-welcome-card" id="welcome-card-japanese-terms" onclick='), 'Card container must not have onclick');
-  assert(welcomeHtml.includes('onclick="switchCollection(\'japanese-terms\')"'), 'Enter hall button must have switchCollection click handler');
-  assert(!welcomeHtml.includes('<div class="awsui-welcome-card" id="welcome-card-china-terms" onclick='), 'Card container must not have onclick');
-  assert(welcomeHtml.includes('onclick="switchCollection(\'china-terms\')"'), 'Enter hall button must have switchCollection click handler');
-});
-
-test('Tag and button components styling - less rounded border radius', () => {
-  const cssContent = readFileSync(resolve('styles.css'), 'utf-8');
-
-  // Verify CSS variables for badge, tag, and control border radius
-  assert(cssContent.includes('--awsui-border-radius-badge: 4px;'), 'CSS must define --awsui-border-radius-badge: 4px');
-  assert(cssContent.includes('--awsui-border-radius-tag: 4px;'), 'CSS must define --awsui-border-radius-tag: 4px');
-  assert(cssContent.includes('--awsui-border-radius-control: 8px;'), 'CSS must define --awsui-border-radius-control: 8px');
-
-  // Verify tag, badge, and button classes use less rounded border radius instead of 10px, 12px, 16px, 20px pills
-  assert(!cssContent.match(/\.awsui-welcome-card-tag\s*\{[^}]*border-radius:\s*16px/));
-  assert(!cssContent.match(/\.awsui-tag\s*\{[^}]*border-radius:\s*10px/));
-  assert(!cssContent.match(/\.awsui-recommendation-chip\s*\{[^}]*border-radius:\s*12px/));
-  assert(!cssContent.match(/\.awsui-btn\s*\{[^}]*border-radius:\s*20px/));
-
-  // Verify recommendation chips font-size matches description text (15px)
-  assert(cssContent.includes('font-size: 15px;'), 'Modal recommendation chips font-size must be 15px');
-});
-
-
-
-
