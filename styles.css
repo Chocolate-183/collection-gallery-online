@@ -1035,6 +1035,7 @@ body {
 }
 
 #modal-meaning-text {
+  font-family: 'Noto Sans SC', sans-serif;
   font-size: 15px;
   color: var(--awsui-color-text-body-default, #16191f);
   line-height: 1.65;

@@ -119,6 +119,7 @@ test('Modal Section Header Formatting and Styling', () => {
   assert(cssContent.includes('font-weight: 400;'), 'Modal section title font weight must be 400');
   assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-item-default'), 'Modal section title must have border bottom');
   assert(cssContent.includes('min-height: calc(15px * 1.65 * 5)'), 'Modal meaning text must have min-height for at least 5 lines');
+  assert(cssContent.includes("font-family: 'Noto Sans SC'"), 'Modal meaning text must use Noto Sans SC font family');
 });
 
 test('Lobby Page Featured Cards Navigation and Structure', () => {
