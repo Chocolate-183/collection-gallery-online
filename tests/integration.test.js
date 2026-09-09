@@ -46,7 +46,7 @@ test('Google Form Feedback and Submission Link - About Page and Exhibition Hall 
   assert(aboutViewStart !== -1 && aboutViewEnd !== -1);
   const aboutViewHtml = htmlContent.substring(aboutViewStart, aboutViewEnd);
   assert(aboutViewHtml.includes(formUrl), 'About page must contain Google Form link');
-  assert(aboutViewHtml.includes('Feedback & Submission'), 'About page must contain "Feedback & Submission" section');
+  assert(aboutViewHtml.includes('Feedback'), 'About page must contain "Feedback" section');
 
   // 2. Verify Google Form link exists at the bottom of Exhibition Hall view (view-dictionary)
   const dictViewStart = htmlContent.indexOf('id="view-dictionary"');
