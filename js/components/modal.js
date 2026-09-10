@@ -3,7 +3,7 @@
  */
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
-import { collectionsCache } from '../data.js';
+import { collectionsCache, collectionsMetaCache } from '../data.js';
 import { escapeHtml, getUnicodeLength } from '../utils.js';
 
 /**
@@ -97,6 +97,32 @@ export function checkMeaningExceedsTwoLines(text, meaningElem) {
   return checkMeaningExceedsLineCount(text, 2, meaningElem);
 }
 
+/**
+ * Checks if the meaning element has vertical scrolling content.
+ * @param {HTMLElement} meaningElem
+ * @returns {boolean}
+ */
+export function checkMeaningHasScroll(meaningElem) {
+  if (!meaningElem) return false;
+  if (meaningElem.clientHeight > 0) {
+    return meaningElem.scrollHeight > (meaningElem.clientHeight + 1);
+  }
+  return false;
+}
+
+export function handleMeaningTextClick() {
+  const meaningElem = document.getElementById('modal-meaning-text');
+  if (!meaningElem) return;
+  const hasScroll = (meaningElem.classList && meaningElem.classList.contains('has-scroll')) || checkMeaningHasScroll(meaningElem);
+  if (hasScroll) {
+    const rowIndexStr = typeof meaningElem.getAttribute === 'function' ? meaningElem.getAttribute('data-row-index') : meaningElem['data-row-index'];
+    const rowIndex = rowIndexStr !== null && rowIndexStr !== undefined ? parseInt(rowIndexStr, 10) : null;
+    if (rowIndex !== null && !isNaN(rowIndex)) {
+      openDescriptionModal(rowIndex);
+    }
+  }
+}
+
 export function openMeaningModal(rowIndex, updateHash = true) {
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
@@ -125,6 +151,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
   }
   if (meaningElem) {
+    meaningElem.setAttribute('data-row-index', String(rowIndex));
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';
     const meaningText = rec.tw_translation || '';
     if (meaningElem.classList) {
@@ -196,6 +223,11 @@ export function openMeaningModal(rowIndex, updateHash = true) {
           } else {
             meaningElem.classList.remove('is-multiline');
           }
+          if (checkMeaningHasScroll(meaningElem)) {
+            meaningElem.classList.add('has-scroll');
+          } else {
+            meaningElem.classList.remove('has-scroll');
+          }
         }
         if (isJapanese && checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
           modalBox.classList.add('awsui-modal-lg');
@@ -220,6 +252,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 }
 
 export function closeDetailModal(updateHash = true) {
+  closeDescriptionModal(false);
   const modal = document.getElementById('detail-modal');
   if (modal) modal.classList.remove('open');
 
@@ -237,5 +270,133 @@ export function closeDetailModal(updateHash = true) {
 export function closeDetailModalOnBackdrop(e) {
   if (e.target.id === 'detail-modal') {
     closeDetailModal();
+  }
+}
+
+export function openDescriptionModal(rowIndex, updateHash = true) {
+  const { allRecords, currentCollectionId } = store.get();
+  const rec = allRecords.find(r => r.row_index === rowIndex);
+  if (!rec) return;
+
+  const descTextElem = document.getElementById('description-modal-text');
+  const modal = document.getElementById('description-modal');
+
+  if (descTextElem) {
+    descTextElem.innerText = rec.tw_translation || '（無說明內容）';
+  }
+
+  if (modal) {
+    modal.classList.add('open');
+  }
+
+  if (updateHash) {
+    const col = collectionsConfig[currentCollectionId];
+    const colName = col ? col.name : currentCollectionId;
+    const targetHash = `#/${colName}/${rec.ja_term}/description`;
+    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
+      location.hash = `#/${colName}/${rec.ja_term}/description`;
+    }
+  }
+}
+
+export function closeDescriptionModal(updateHash = true) {
+  const modal = document.getElementById('description-modal');
+  if (modal) modal.classList.remove('open');
+
+  if (updateHash) {
+    const { currentCollectionId, allRecords } = store.get();
+    const col = collectionsConfig[currentCollectionId];
+    const colName = col ? col.name : currentCollectionId;
+
+    const meaningElem = document.getElementById('modal-meaning-text');
+    const rowIndexStr = meaningElem ? meaningElem.getAttribute('data-row-index') : null;
+    const rowIndex = rowIndexStr !== null ? parseInt(rowIndexStr, 10) : null;
+    const rec = (rowIndex !== null && !isNaN(rowIndex)) ? allRecords.find(r => r.row_index === rowIndex) : null;
+
+    const targetHash = rec ? `#/${colName}/${rec.ja_term}` : `#/${colName}`;
+    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
+      location.hash = targetHash;
+    }
+  }
+}
+
+export function closeDescriptionModalOnBackdrop(e) {
+  if (e.target.id === 'description-modal') {
+    closeDescriptionModal();
+  }
+}
+
+export function openCollectionModal(collectionId, updateHash = true) {
+  const { currentCollectionId } = store.get();
+  const targetColId = collectionId || currentCollectionId || 'china-terms';
+  const col = collectionsConfig[targetColId];
+  if (!col) return;
+
+  const meta = collectionsMetaCache[targetColId] || (col ? col.defaultMeta : null);
+  const modal = document.getElementById('collection-modal');
+  if (!modal) return;
+
+  const titleElem = document.getElementById('collection-modal-title');
+  const enTitleElem = document.getElementById('collection-modal-entitle');
+  const subtitleElem = document.getElementById('collection-modal-subtitle');
+  const descElem = document.getElementById('collection-modal-description');
+  const totalElem = document.getElementById('collection-modal-total-items');
+  const idElem = document.getElementById('collection-modal-id');
+
+  if (titleElem) {
+    titleElem.innerText = (meta && meta.title) ? meta.title : col.name;
+  }
+  if (enTitleElem) {
+    enTitleElem.innerText = (meta && meta.enTitle) ? meta.enTitle : (col.enTitle || targetColId);
+  }
+  if (subtitleElem) {
+    if (meta && meta.subtitle) {
+      subtitleElem.innerText = meta.subtitle;
+      subtitleElem.style.display = 'block';
+    } else {
+      subtitleElem.innerText = '';
+      subtitleElem.style.display = 'none';
+    }
+  }
+  if (descElem) {
+    descElem.innerText = (meta && meta.description) ? meta.description : '（無說明內容）';
+  }
+  if (totalElem) {
+    const items = collectionsCache[targetColId];
+    totalElem.innerText = Array.isArray(items) ? items.length : '--';
+  }
+  if (idElem) {
+    idElem.innerText = (meta && meta.id) ? meta.id : 'N/A';
+  }
+
+  modal.classList.add('open');
+
+  if (updateHash) {
+    const colName = col ? col.name : targetColId;
+    const targetHash = `#/${colName}/info`;
+    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
+      location.hash = `#/${colName}/info`;
+    }
+  }
+}
+
+export function closeCollectionModal(updateHash = true) {
+  const modal = document.getElementById('collection-modal');
+  if (modal) modal.classList.remove('open');
+
+  if (updateHash) {
+    const { currentCollectionId } = store.get();
+    const col = collectionsConfig[currentCollectionId];
+    const colName = col ? col.name : currentCollectionId;
+    const targetHash = `#/${colName}`;
+    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
+      location.hash = `#/${colName}`;
+    }
+  }
+}
+
+export function closeCollectionModalOnBackdrop(e) {
+  if (e.target.id === 'collection-modal') {
+    closeCollectionModal();
   }
 }

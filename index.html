@@ -195,8 +195,9 @@
 
 看到「非常口」以為是非常時期用的出口？看到「手紙」以為是衛生紙？那些你以為看懂的日語漢字，背後含意往往出乎意料！本展區精選由漢字與數字組成的日語詞彙，帶你跨越中文字面的直覺迷思，一秒搞懂最真實的日語意思！
               </p>
-              <div class="awsui-welcome-card-footer">
+              <div class="awsui-welcome-card-footer" style="display: flex; gap: 8px; align-items: center;">
                 <button class="awsui-welcome-card-action" type="button" onclick="switchCollection('japanese-terms')">Enter Gallery &rarr;</button>
+                <button class="awsui-btn awsui-btn-normal" type="button" onclick="openCollectionModal('japanese-terms')" style="height: 32px; padding: 0 14px; font-size: 13px;">Info</button>
               </div>
             </div>
 
@@ -216,8 +217,9 @@
 
 同樣是中文，意思居然差這麼多？本展區精選大陸當代的網路熱詞與生活用語，幫你精準對照台灣熟悉的在地說法。從社群梗到日常表達，帶你快速看懂兩岸語境差異，掌握最道地的流行語脈絡！
               </p>
-              <div class="awsui-welcome-card-footer">
+              <div class="awsui-welcome-card-footer" style="display: flex; gap: 8px; align-items: center;">
                 <button class="awsui-welcome-card-action" type="button" onclick="switchCollection('china-terms')">Enter Gallery &rarr;</button>
+                <button class="awsui-btn awsui-btn-normal" type="button" onclick="openCollectionModal('china-terms')" style="height: 32px; padding: 0 14px; font-size: 13px;">Info</button>
               </div>
             </div>
           </div>
@@ -228,24 +230,10 @@
       <!-- VIEW 1: Dictionary / Collection Cards List View -->
       <div id="view-dictionary" class="awsui-view-content" style="display: none;">
 
-        <!-- Header Section with Inline KPI Panels -->
+        <!-- Header Section -->
         <section class="awsui-header">
           <div class="awsui-header-main-group" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; flex: 1 1 auto; min-width: 0;">
-            <h1 class="awsui-header-title" id="collection-header-title" style="white-space: nowrap;">Japanese Terms</h1>
-            <div class="awsui-header-cn-block" style="display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--awsui-color-border-divider-default); padding-left: 16px; gap: 2px;">
-              <div class="awsui-header-cn-title" id="collection-header-cn-title">日本特色詞彙一覽</div>
-              <p class="awsui-header-subtitle" id="collection-header-subtitle" style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin: 0; line-height: 1.4;"></p>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex-shrink: 0;">
-            <div class="awsui-kpi-box">
-              <div class="awsui-kpi-label">Gallery ID</div>
-              <div class="awsui-kpi-val" id="collection-header-id">C101</div>
-            </div>
-            <div class="awsui-kpi-box">
-              <div class="awsui-kpi-label">Total Items</div>
-              <div class="awsui-kpi-val" id="kpi-total-count">--</div>
-            </div>
+            <h1 class="awsui-header-title" id="collection-header-title" style="white-space: nowrap; cursor: pointer;" onclick="openCollectionModal()" title="點擊檢視展廳詳細資訊">Japanese Terms</h1>
           </div>
         </section>
 
@@ -581,7 +569,7 @@
           <div class="awsui-modal-section-title">
             <span>Description</span>
           </div>
-          <div id="modal-meaning-text"></div>
+          <div id="modal-meaning-text" ondblclick="handleMeaningTextClick()"></div>
         </div>
         
         <!-- Recommended Exhibition Items Section -->
@@ -592,12 +580,75 @@
           <div id="modal-recommendations-list" class="awsui-modal-recommendations-list"></div>
         </div>
 
-        <!-- Bottom Right Creation Time & ID -->
+        <!-- Bottom Creation Time & ID Row -->
         <div class="awsui-modal-created-time">
-          Created at: <span id="modal-created-at">--</span>
-          <span class="awsui-modal-meta-divider">|</span>
-          Item ID: <span id="modal-id">--</span>
+          <div class="awsui-modal-meta-item">
+            <span class="awsui-modal-meta-label">Timestamp</span>
+            <span id="modal-created-at">--</span>
+          </div>
+          <div class="awsui-modal-meta-item">
+            <span class="awsui-modal-meta-label">ID</span>
+            <span id="modal-id">--</span>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collection Detail Modal -->
+  <div class="awsui-modal-backdrop" id="collection-modal" onclick="closeCollectionModalOnBackdrop(event)">
+    <div class="awsui-modal">
+      <div class="awsui-modal-body">
+        <div class="awsui-modal-section-title awsui-modal-header-title">
+          <span>Collection</span>
+          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeCollectionModal()">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="awsui-modal-title-row" style="flex-direction: column; gap: 4px;">
+          <strong id="collection-modal-title">--</strong>
+          <span id="collection-modal-entitle" style="font-size: 14px; color: var(--awsui-color-text-body-secondary); font-weight: 400;">--</span>
+        </div>
+
+        <div id="collection-modal-subtitle" style="font-size: 14px; color: var(--awsui-color-text-body-secondary); line-height: 1.5; margin-top: 4px; display: none;"></div>
+
+        <div class="awsui-modal-section awsui-modal-description-section" style="margin-top: 20px;">
+          <div class="awsui-modal-section-title">
+            <span>Description</span>
+          </div>
+          <div id="collection-modal-description" style="font-family: 'Noto Sans TC', sans-serif; font-size: 16px; color: var(--awsui-color-text-body-default, #16191f); line-height: 1.65; white-space: pre-wrap;"></div>
+        </div>
+
+        <div class="awsui-modal-created-time">
+          <div class="awsui-modal-meta-item">
+            <span class="awsui-modal-meta-label">Total Items</span>
+            <span id="collection-modal-total-items">--</span>
+          </div>
+          <div class="awsui-modal-meta-item">
+            <span class="awsui-modal-meta-label">ID</span>
+            <span id="collection-modal-id">--</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Description Full Content Modal -->
+  <div class="awsui-modal-backdrop" id="description-modal" onclick="closeDescriptionModalOnBackdrop(event)">
+    <div class="awsui-modal awsui-modal-lg">
+      <div class="awsui-modal-body">
+        <div class="awsui-modal-section-title awsui-modal-header-title">
+          <span>Description</span>
+          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeDescriptionModal()">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div id="description-modal-text" style="font-family: 'Noto Sans TC', sans-serif; font-size: 18px; color: var(--awsui-color-text-body-default, #16191f); line-height: 1.65; white-space: pre-wrap; flex: 1; overflow-y: auto; margin-top: 16px;"></div>
       </div>
     </div>
   </div>

@@ -179,3 +179,102 @@ test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Moda
   assert(!mockModalBox.classes.has('awsui-modal-sm'));
   assert(mockMeaning.classes.has('is-multiline'));
 });
+
+test('Collection Modal Component - Population and Open/Close Logic', async () => {
+  const mockModal = createMockElement();
+  const mockTitle = createMockElement();
+  const mockEnTitle = createMockElement();
+  const mockSubtitle = createMockElement();
+  const mockTags = createMockElement();
+  const mockDesc = createMockElement();
+  const mockNoticeSec = createMockElement({ style: { display: 'none' } });
+  const mockNotice = createMockElement();
+  const mockTotal = createMockElement();
+  const mockId = createMockElement();
+
+  mockDOM({
+    'collection-modal': mockModal,
+    'collection-modal-title': mockTitle,
+    'collection-modal-entitle': mockEnTitle,
+    'collection-modal-subtitle': mockSubtitle,
+    'collection-modal-description': mockDesc,
+    'collection-modal-total-items': mockTotal,
+    'collection-modal-id': mockId
+  });
+
+  const { collectionsMetaCache, collectionsCache } = await import('../js/data.js');
+  const { openCollectionModal, closeCollectionModal } = await import('../js/components/modal.js');
+
+  collectionsMetaCache['china-terms'] = {
+    title: '大陸特色詞彙一覽',
+    enTitle: 'China Terms',
+    id: 'C102',
+    subtitle: '兩岸詞彙對照',
+    tags: ['大陸', '語彙'],
+    description: '大陸特色詞彙說明內容',
+    notice: '詞彙僅供參考'
+  };
+  collectionsCache['china-terms'] = [{ id: '1' }, { id: '2' }];
+
+  openCollectionModal('china-terms', false);
+
+  assert(mockModal.classes.has('open'));
+  assert.equal(mockTitle.innerText, '大陸特色詞彙一覽');
+  assert.equal(mockEnTitle.innerText, 'China Terms');
+  assert.equal(mockSubtitle.innerText, '兩岸詞彙對照');
+  assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容');
+  assert.equal(mockTotal.innerText, 2);
+  assert.equal(mockId.innerText, 'C102');
+
+  closeCollectionModal(false);
+  assert(!mockModal.classes.has('open'));
+});
+
+test('Collection Modal Integration - HTML Structure and Click Handlers', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  assert(html.includes('id="collection-modal"'), 'Should contain collection-modal backdrop element');
+  assert(html.includes('onclick="openCollectionModal(\'china-terms\')"'), 'Should contain openCollectionModal call for china-terms');
+  assert(html.includes('onclick="closeCollectionModal()"'), 'Should contain closeCollectionModal call');
+  assert(html.includes('id="collection-header-title"'), 'Should contain collection header title element');
+  assert(html.includes('onclick="openCollectionModal()"'), 'Header title should trigger openCollectionModal()');
+});
+
+test('Description Modal Component & Interaction Logic', async () => {
+  const mockDescModal = createMockElement();
+  const mockDescText = createMockElement();
+  const mockMeaning = createMockElement({ clientHeight: 100, scrollHeight: 200, 'data-row-index': '1' });
+  mockMeaning.classList.add('has-scroll');
+
+  mockDOM({
+    'description-modal': mockDescModal,
+    'description-modal-text': mockDescText,
+    'modal-meaning-text': mockMeaning
+  });
+
+  const { store } = await import('../js/state.js');
+  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ row_index: 1, ja_term: '測試詞彙', reading: 'チェシー', tw_translation: '測試詳細說明內容', created_at: '2024-01-01', id: 'J101' }]
+  });
+
+  // Test opening Description Modal directly
+  openDescriptionModal(1, false);
+  assert(mockDescModal.classes.has('open'));
+  assert.equal(mockDescText.innerText, '測試詳細說明內容');
+
+  closeDescriptionModal(false);
+  assert(!mockDescModal.classes.has('open'));
+
+  // Test handleMeaningTextClick
+  handleMeaningTextClick();
+  assert(mockDescModal.classes.has('open'));
+});
+
+test('Description Modal HTML Structure', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  assert(html.includes('id="description-modal"'), 'Should contain description-modal backdrop element');
+  assert(html.includes('onclick="closeDescriptionModal()"'), 'Should contain closeDescriptionModal call');
+  assert(html.includes('id="modal-meaning-text" ondblclick="handleMeaningTextClick()"'), 'modal-meaning-text should have ondblclick handleMeaningTextClick handler');
+});

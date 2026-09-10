@@ -179,17 +179,31 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('.awsui-modal-sm'), 'Should define .awsui-modal-sm selector');
   assert(cssContent.includes('.awsui-modal-lg'), 'Should define .awsui-modal-lg selector');
   assert(cssContent.includes('max-width: 640px;'), 'Large modal should use reduced max-width of 640px');
-  assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Modal should use 1:1 aspect ratio');
+  assert(cssContent.includes('aspect-ratio: 1 / 1.1;'), 'Modal should use 1:1.1 aspect ratio');
   assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
   assert(cssContent.includes('#modal-meaning-text.is-multiline'), 'modal-meaning-text.is-multiline should be defined in CSS');
   assert(cssContent.includes('background-color: #f8f9fa;'), 'is-multiline should set a subtle background color #f8f9fa');
   assert(cssContent.includes('border: none;'), 'is-multiline should have border: none');
   assert(cssContent.includes('border-radius: 0;'), 'is-multiline should have border-radius: 0');
   assert(cssContent.includes('margin-left: -14px;'), 'is-multiline should offset margin-left to align text with Description title');
+  assert(cssContent.includes('.awsui-modal-header-title'), 'Should define .awsui-modal-header-title selector');
+  assert(cssContent.includes('justify-content: center;'), 'awsui-modal-header-title should center title text');
+  assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-header-title should have a bottom border line');
+  assert(cssContent.includes('.awsui-modal-created-time'), 'Should define .awsui-modal-created-time selector');
+  assert(cssContent.includes('border-top: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-created-time should have a top border line');
+  assert(cssContent.includes('grid-template-columns: 1.2fr 1fr;'), 'awsui-modal-created-time should use grid layout with ID column around middle-right');
+  assert(cssContent.includes('.awsui-modal-meta-item'), 'Should define .awsui-modal-meta-item selector');
+  assert(cssContent.includes('#modal-created-at,\n#modal-id {\n  font-weight: 400;\n  color: var(--awsui-color-text-body-secondary, #687078);'), 'footer metadata values should match secondary text color');
+  assert(cssContent.includes('#modal-meaning-text.has-scroll'), 'modal-meaning-text.has-scroll should be defined in CSS');
+  assert(cssContent.includes('cursor: pointer;'), 'has-scroll should set cursor: pointer');
+  assert(cssContent.includes('#description-modal'), '#description-modal should be defined in CSS');
+  assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');
+  assert(cssContent.includes('#description-modal.open .awsui-modal'), '#description-modal.open .awsui-modal should be defined in CSS');
+  assert(cssContent.includes('transition-delay: 0.18s;') || cssContent.includes('transition-delay: 0.2s;'), 'Modal opening transition should have transition-delay so backdrop darkens first');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
-  const { checkMeaningExceedsTwoLines } = await import('../js/components/modal.js');
+  const { checkMeaningExceedsTwoLines, checkMeaningHasScroll } = await import('../js/components/modal.js');
 
   // 1 or 2 lines
   assert.equal(checkMeaningExceedsTwoLines('暴風雨、嵐'), false);
@@ -202,4 +216,9 @@ test('Modal Meaning Text Multiline Detection', async () => {
 
   // Exceeds 2 lines with long CJK text (>50 CJK chars)
   assert.equal(checkMeaningExceedsTwoLines('這是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常長超過五十個字的詳細說明文字內容介紹與翻譯對照'), true);
+
+  // Test checkMeaningHasScroll
+  assert.equal(checkMeaningHasScroll(null), false);
+  assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 100 }), false);
+  assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 150 }), true);
 });
