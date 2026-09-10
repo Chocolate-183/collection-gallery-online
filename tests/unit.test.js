@@ -158,6 +158,5 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes', async () => {
   assert(cssContent.includes('@media (min-width: 769px)'), 'Should contain desktop media query @media (min-width: 769px)');
   assert(cssContent.includes('.awsui-modal-sm'), 'Should define .awsui-modal-sm selector');
   assert(cssContent.includes('.awsui-modal-lg'), 'Should define .awsui-modal-lg selector');
-  assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Small modal should use 1:1 aspect ratio');
-  assert(cssContent.includes('aspect-ratio: 16 / 10;'), 'Large modal should use 16:10 aspect ratio');
+  assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Modal should use 1:1 aspect ratio');
 });
