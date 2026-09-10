@@ -1049,7 +1049,7 @@ a:focus {
 #modal-term-title {
   font-size: 30px;
   font-weight: 700;
-  color: #0f6ce0;
+  color: var(--awsui-color-text-body-default, #16191f);
   line-height: 1.25;
 }
 
@@ -1709,10 +1709,6 @@ a:focus {
 [data-theme="dark"] .awsui-tz-badge {
   color: #4da2ff;
   border-color: var(--awsui-color-border-item-default);
-}
-
-[data-theme="dark"] #modal-term-title {
-  color: #4da2ff !important;
 }
 
 [data-theme="dark"] #modal-meaning-text.is-multiline {
