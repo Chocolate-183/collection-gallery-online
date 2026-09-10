@@ -1033,7 +1033,7 @@ a:focus {
 }
 
 #modal-term-title {
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 700;
   color: #0f6ce0;
   line-height: 1.25;
@@ -1049,9 +1049,9 @@ a:focus {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--awsui-color-text-body-default, #16191f);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--awsui-color-text-body-secondary, #687078);
   margin-bottom: 4px;
   padding-bottom: 0;
   border-bottom: none;
@@ -1059,11 +1059,11 @@ a:focus {
 
 #modal-meaning-text {
   font-family: 'Noto Sans SC', sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   color: var(--awsui-color-text-body-default, #16191f);
   line-height: 1.65;
   white-space: pre-wrap;
-  min-height: calc(15px * 1.65 * 5); /* at least 5 lines of text height */
+  min-height: calc(18px * 1.65 * 5); /* at least 5 lines of text height */
 }
 
 /* Recommended Items Section in Modal */
@@ -1080,8 +1080,8 @@ a:focus {
 .awsui-recommendation-chip {
   display: inline-flex;
   align-items: center;
-  padding: 4px 10px;
-  font-size: 15px;
+  padding: 6px 12px;
+  font-size: 16px;
   font-weight: 500;
   color: #545b64;
   background-color: transparent;
@@ -1109,7 +1109,7 @@ a:focus {
 .awsui-modal-created-time {
   margin-top: 24px;
   text-align: right;
-  font-size: 11px;
+  font-size: 13px;
   color: #879596;
   font-weight: 400;
   letter-spacing: 0.2px;
