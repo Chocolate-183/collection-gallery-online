@@ -3,7 +3,7 @@
  */
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
-import { collectionsCache } from '../data.js';
+import { collectionsCache, collectionsMetaCache } from '../data.js';
 import { escapeHtml, getUnicodeLength } from '../utils.js';
 
 /**
@@ -237,5 +237,101 @@ export function closeDetailModal(updateHash = true) {
 export function closeDetailModalOnBackdrop(e) {
   if (e.target.id === 'detail-modal') {
     closeDetailModal();
+  }
+}
+
+export function openCollectionModal(collectionId, updateHash = true) {
+  const { currentCollectionId } = store.get();
+  const targetColId = collectionId || currentCollectionId || 'china-terms';
+  const col = collectionsConfig[targetColId];
+  if (!col) return;
+
+  const meta = collectionsMetaCache[targetColId] || (col ? col.defaultMeta : null);
+  const modal = document.getElementById('collection-modal');
+  if (!modal) return;
+
+  const titleElem = document.getElementById('collection-modal-title');
+  const enTitleElem = document.getElementById('collection-modal-entitle');
+  const subtitleElem = document.getElementById('collection-modal-subtitle');
+  const tagsElem = document.getElementById('collection-modal-tags');
+  const descElem = document.getElementById('collection-modal-description');
+  const noticeSectionElem = document.getElementById('collection-modal-notice-section');
+  const noticeElem = document.getElementById('collection-modal-notice');
+  const totalElem = document.getElementById('collection-modal-total-items');
+  const idElem = document.getElementById('collection-modal-id');
+
+  if (titleElem) {
+    titleElem.innerText = (meta && meta.title) ? meta.title : col.name;
+  }
+  if (enTitleElem) {
+    enTitleElem.innerText = (meta && meta.enTitle) ? meta.enTitle : (col.enTitle || targetColId);
+  }
+  if (subtitleElem) {
+    if (meta && meta.subtitle) {
+      subtitleElem.innerText = meta.subtitle;
+      subtitleElem.style.display = 'block';
+    } else {
+      subtitleElem.innerText = '';
+      subtitleElem.style.display = 'none';
+    }
+  }
+  if (tagsElem) {
+    if (meta && meta.tags && meta.tags.length > 0) {
+      tagsElem.innerHTML = meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${escapeHtml(tag)}</span>`).join('');
+      tagsElem.style.display = 'flex';
+    } else {
+      tagsElem.innerHTML = '';
+      tagsElem.style.display = 'none';
+    }
+  }
+  if (descElem) {
+    descElem.innerText = (meta && meta.description) ? meta.description : '（無說明內容）';
+  }
+  if (noticeSectionElem && noticeElem) {
+    if (meta && meta.notice) {
+      noticeElem.innerText = meta.notice;
+      noticeSectionElem.style.display = 'block';
+    } else {
+      noticeElem.innerText = '';
+      noticeSectionElem.style.display = 'none';
+    }
+  }
+  if (totalElem) {
+    const items = collectionsCache[targetColId];
+    totalElem.innerText = Array.isArray(items) ? items.length : '--';
+  }
+  if (idElem) {
+    idElem.innerText = (meta && meta.id) ? meta.id : 'N/A';
+  }
+
+  modal.classList.add('open');
+
+  if (updateHash) {
+    const colName = col ? col.name : targetColId;
+    const targetHash = `#/${colName}/info`;
+    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
+      location.hash = `#/${colName}/info`;
+    }
+  }
+}
+
+export function closeCollectionModal(updateHash = true) {
+  const modal = document.getElementById('collection-modal');
+  if (modal) modal.classList.remove('open');
+
+  if (updateHash) {
+    const { currentCollectionId } = store.get();
+    const col = collectionsConfig[currentCollectionId];
+    const colName = col ? col.name : currentCollectionId;
+    const targetHash = `#/${colName}`;
+    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
+      location.hash = `#/${colName}`;
+    }
+  }
+}
+
+export function closeCollectionModalOnBackdrop(e) {
+  if (e.target.id === 'collection-modal') {
+    closeCollectionModal();
   }
 }
