@@ -40,36 +40,37 @@ export function navigateToTerm(term) {
 }
 
 /**
- * Checks if the Japanese meaning-text content exceeds 5 lines.
+ * Checks if the meaning-text content exceeds a given line threshold.
  * @param {string} text - Explanation / translation text
+ * @param {number} threshold - Maximum line threshold
  * @param {HTMLElement} [meaningElem] - Optional DOM element for measuring scroll height
- * @returns {boolean} True if line count exceeds 5 lines
+ * @returns {boolean} True if line count exceeds threshold
  */
-export function checkMeaningExceedsFiveLines(text, meaningElem) {
+function checkMeaningExceedsLineCount(text, threshold, meaningElem) {
   if (!text) return false;
 
   // 1. Explicit line breaks in raw string
   const rawLines = text.split(/\r?\n/);
-  if (rawLines.length > 5) return true;
+  if (rawLines.length > threshold) return true;
 
-  // 2. DOM Range measurement when rendered in browser (counts actual text line boxes, ignoring container min-height)
+  // 2. DOM Range measurement when rendered in browser
   if (meaningElem && typeof document !== 'undefined' && typeof document.createRange === 'function') {
     try {
       const range = document.createRange();
       range.selectNodeContents(meaningElem);
       const rects = range.getClientRects();
       if (rects && rects.length > 0) {
-        return rects.length > 5;
+        return rects.length > threshold;
       }
     } catch (e) {
-      // Fallback if range selection is not available
+      // Fallback
     }
   }
 
   // 3. DOM measurement fallback
   if (meaningElem && meaningElem.clientHeight > 0) {
     const linePixelHeight = 18 * 1.65;
-    if (meaningElem.scrollHeight > (linePixelHeight * 5 + 1)) {
+    if (meaningElem.scrollHeight > (linePixelHeight * threshold + 1)) {
       return true;
     }
   }
@@ -79,42 +80,21 @@ export function checkMeaningExceedsFiveLines(text, meaningElem) {
   for (const line of rawLines) {
     totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
   }
-  return totalWrappedLines > 5;
+  return totalWrappedLines > threshold;
+}
+
+/**
+ * Checks if the Japanese meaning-text content exceeds 5 lines.
+ */
+export function checkMeaningExceedsFiveLines(text, meaningElem) {
+  return checkMeaningExceedsLineCount(text, 5, meaningElem);
 }
 
 /**
  * Checks if the meaning-text content exceeds 2 lines.
- * @param {string} text - Explanation / translation text
- * @param {HTMLElement} [meaningElem] - Optional DOM element for measuring scroll height
- * @returns {boolean} True if line count exceeds 2 lines
  */
 export function checkMeaningExceedsTwoLines(text, meaningElem) {
-  if (!text) return false;
-
-  // 1. Explicit line breaks in raw string
-  const rawLines = text.split(/\r?\n/);
-  if (rawLines.length > 2) return true;
-
-  // 2. DOM Range measurement when rendered in browser (counts actual text line boxes, ignoring container min-height)
-  if (meaningElem && typeof document !== 'undefined' && typeof document.createRange === 'function') {
-    try {
-      const range = document.createRange();
-      range.selectNodeContents(meaningElem);
-      const rects = range.getClientRects();
-      if (rects && rects.length > 0) {
-        return rects.length > 2;
-      }
-    } catch (e) {
-      // Fallback if range selection is not available
-    }
-  }
-
-  // 3. Estimated wrapped lines for long paragraphs (~25 CJK chars per line in modal)
-  let totalWrappedLines = 0;
-  for (const line of rawLines) {
-    totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
-  }
-  return totalWrappedLines > 2;
+  return checkMeaningExceedsLineCount(text, 2, meaningElem);
 }
 
 export function openMeaningModal(rowIndex, updateHash = true) {

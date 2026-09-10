@@ -144,6 +144,28 @@ export function extractGvizTable(gvizText) {
 }
 
 /**
+> Helper to construct a standard record object if valid.
+> */
+function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex }) {
+  if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
+    return null;
+  }
+  const recommendations = rawRecommend
+    ? rawRecommend.replace(/<br\s*\/?>/gi, '\n').split(/[\n\r,，、;；]/).map(s => s.trim()).filter(Boolean)
+    : [];
+
+  return {
+    id: id || `ROW-${rowIndex}`,
+    ja_term: ja,
+    tw_translation: tw,
+    reading: reading || '',
+    created_at: created_at || '',
+    recommendations,
+    row_index: rowIndex
+  };
+}
+
+/**
  * Parses CSV dataset into standard collection records.
  */
 export function parseCSVData(csvText) {
@@ -162,21 +184,9 @@ export function parseCSVData(csvText) {
       const reading = (readingIdx !== -1 && cols[readingIdx]) ? cols[readingIdx].trim() : '';
       const created_at = (dateIdx !== -1 && cols[dateIdx]) ? cols[dateIdx].trim() : '';
       const rawRecommend = (recommendIdx !== -1 && cols[recommendIdx]) ? cols[recommendIdx].trim() : '';
-      const recommendations = rawRecommend
-        ? rawRecommend.replace(/<br\s*\/?>/gi, '\n').split(/[\n\r,，、;；]/).map(s => s.trim()).filter(Boolean)
-        : [];
 
-      if (ja && ja !== '日語用詞' && ja !== '大陆' && ja !== '大陸' && ja.toLowerCase() !== 'title' && ja.toLowerCase() !== 'term') {
-        results.push({
-          id: id || `ROW-${i}`,
-          ja_term: ja,
-          tw_translation: tw,
-          reading: reading,
-          created_at: created_at,
-          recommendations: recommendations,
-          row_index: i
-        });
-      }
+      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex: i });
+      if (record) results.push(record);
     }
   }
   return results;
@@ -216,27 +226,16 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
   table.rows.forEach((r, idx) => {
     const c = r.c;
     if (!c) return;
-    const id = (idIdx >= 0 && c[idIdx]) ? (c[idIdx].v || '').toString().trim() : `ROW-${idx + 1}`;
+    const rowIndex = idx + 1;
+    const id = (idIdx >= 0 && c[idIdx]) ? (c[idIdx].v || '').toString().trim() : `ROW-${rowIndex}`;
     const ja = (termIdx >= 0 && c[termIdx]) ? (c[termIdx].v || '').toString().trim() : '';
     const tw = (twIdx >= 0 && c[twIdx]) ? (c[twIdx].v || '').toString().trim() : '';
     const reading = (readingIdx >= 0 && c[readingIdx]) ? (c[readingIdx].v || '').toString().trim() : '';
     const created_at = (dateIdx >= 0 && c[dateIdx]) ? (c[dateIdx].v || c[dateIdx].f || '').toString().trim() : '';
     const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? (c[recommendIdx].v || c[recommendIdx].f || '').toString().trim() : '';
-    const recommendations = rawRecommend
-      ? rawRecommend.replace(/<br\s*\/?>/gi, '\n').split(/[\n\r,，、;；]/).map(s => s.trim()).filter(Boolean)
-      : [];
 
-    if (ja && ja !== '日語用詞' && ja !== '大陆' && ja !== '大陸' && ja.toLowerCase() !== 'title' && ja.toLowerCase() !== 'term') {
-      results.push({
-        id: id || `ROW-${idx + 1}`,
-        ja_term: ja,
-        tw_translation: tw,
-        reading: reading,
-        created_at: created_at,
-        recommendations: recommendations,
-        row_index: idx + 1
-      });
-    }
+    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex });
+    if (record) results.push(record);
   });
   return results;
 }
@@ -270,21 +269,25 @@ export function matchCollectionIdForMeta(meta) {
 }
 
 /**
- * Parses CSV text containing metadata for one or more exhibition halls.
- * Supports matrix format (rows = attribute keys, columns = exhibition halls)
- * as well as legacy 2-column key-value format.
- * @param {string} csvText - Raw CSV content
- * @returns {Object.<string, object>} Map of colId -> metadata object
+ * Helper to process matrix rows or 2-column key-value rows into collection metadata.
  */
-export function parseAllCollectionsMetaCSVData(csvText) {
-  const rows = parseCSVRows(csvText);
+function parseMetadataMatrixRows(rows) {
   if (!rows || rows.length === 0) return {};
 
   const results = {};
   const maxCols = Math.max(...rows.map(r => r.length));
 
+  const processPairs = (pairs) => {
+    const meta = extractMetadataFromKeyValues(pairs);
+    if (meta) {
+      const matchedColId = matchCollectionIdForMeta(meta);
+      if (matchedColId) {
+        results[matchedColId] = meta;
+      }
+    }
+  };
+
   if (maxCols > 2) {
-    // Matrix format: each column index >= 1 represents one exhibition hall
     for (let colIdx = 1; colIdx < maxCols; colIdx++) {
       const pairs = [];
       for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
@@ -293,33 +296,26 @@ export function parseAllCollectionsMetaCSVData(csvText) {
           pairs.push([row[0], row[colIdx]]);
         }
       }
-      const meta = extractMetadataFromKeyValues(pairs);
-      if (meta) {
-        const matchedColId = matchCollectionIdForMeta(meta);
-        if (matchedColId) {
-          results[matchedColId] = meta;
-        }
-      }
+      processPairs(pairs);
     }
   } else {
-    // 2-column key-value format (Col 0 = key, Col 1 = value)
-    const pairs = [];
-    for (let i = 0; i < rows.length; i++) {
-      const row = rows[i];
-      if (row.length >= 2) {
-        pairs.push([row[0], row[1]]);
-      }
-    }
-    const meta = extractMetadataFromKeyValues(pairs);
-    if (meta) {
-      const matchedColId = matchCollectionIdForMeta(meta);
-      if (matchedColId) {
-        results[matchedColId] = meta;
-      }
-    }
+    const pairs = rows.filter(row => row.length >= 2).map(row => [row[0], row[1]]);
+    processPairs(pairs);
   }
 
   return results;
+}
+
+/**
+ * Parses CSV text containing metadata for one or more exhibition halls.
+ * Supports matrix format (rows = attribute keys, columns = exhibition halls)
+ * as well as legacy 2-column key-value format.
+ * @param {string} csvText - Raw CSV content
+ * @returns {Object.<string, object>} Map of colId -> metadata object
+ */
+export function parseAllCollectionsMetaCSVData(csvText) {
+  const rows = parseCSVRows(csvText);
+  return parseMetadataMatrixRows(rows);
 }
 
 /**
@@ -347,43 +343,7 @@ export function parseAllCollectionsMetaGvizResponse(gvizText) {
     });
   }
 
-  if (rows.length === 0) return {};
-
-  const results = {};
-  const maxCols = Math.max(...rows.map(r => r.length));
-
-  if (maxCols > 2) {
-    for (let colIdx = 1; colIdx < maxCols; colIdx++) {
-      const pairs = [];
-      for (let rowIdx = 0; rowIdx < rows.length; rowIdx++) {
-        const row = rows[rowIdx];
-        if (row.length > colIdx) {
-          pairs.push([row[0], row[colIdx]]);
-        }
-      }
-      const meta = extractMetadataFromKeyValues(pairs);
-      if (meta) {
-        const matchedColId = matchCollectionIdForMeta(meta);
-        if (matchedColId) {
-          results[matchedColId] = meta;
-        }
-      }
-    }
-  } else {
-    const pairs = [];
-    rows.forEach(row => {
-      if (row.length >= 2) pairs.push([row[0], row[1]]);
-    });
-    const meta = extractMetadataFromKeyValues(pairs);
-    if (meta) {
-      const matchedColId = matchCollectionIdForMeta(meta);
-      if (matchedColId) {
-        results[matchedColId] = meta;
-      }
-    }
-  }
-
-  return results;
+  return parseMetadataMatrixRows(rows);
 }
 
 /**

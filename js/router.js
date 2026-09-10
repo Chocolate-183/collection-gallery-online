@@ -10,6 +10,12 @@ import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from '.
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
 
+function setHash(targetHash, updateHash = true) {
+  if (updateHash && typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
+    location.hash = targetHash;
+  }
+}
+
 /**
  * Toggles visibility of top-level application view sections
  */
@@ -94,57 +100,30 @@ export function switchView(viewName, event, updateHash = true) {
       if (activeColBtn) activeColBtn.classList.add('active');
     }
 
-    if (updateHash) {
-      if (isClosed) {
-        if (decodeURIComponent(window.location.hash) !== '#/maintenance') {
-          location.hash = '#/maintenance';
-        }
-      } else if (isColAdjusting || isColPreparing) {
-        const colName = col ? col.name : currentCollectionId;
-        const targetHash = `#/${colName}`;
-        if (decodeURIComponent(window.location.hash) !== targetHash) {
-          location.hash = targetHash;
-        }
-      }
+    if (isClosed) {
+      setHash('#/maintenance', updateHash);
+    } else if (isColAdjusting || isColPreparing) {
+      const colName = col ? col.name : currentCollectionId;
+      setHash(`#/${colName}`, updateHash);
     }
   } else if (viewName === VIEWS.WELCOME) {
     if (navWelcome) navWelcome.classList.add('active');
-
-    if (updateHash) {
-      if (decodeURIComponent(window.location.hash) !== '#/welcome') {
-        location.hash = '#/welcome';
-      }
-    }
+    setHash('#/welcome', updateHash);
   } else if (viewName === VIEWS.DICTIONARY) {
     const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
     if (activeColBtn) activeColBtn.classList.add('active');
 
     renderCollectionNotice();
 
-    if (updateHash) {
-      const col = collectionsConfig[currentCollectionId];
-      const colName = col ? col.name : currentCollectionId;
-      const targetHash = `#/${colName}`;
-      if (decodeURIComponent(window.location.hash) !== targetHash) {
-        location.hash = targetHash;
-      }
-    }
+    const col = collectionsConfig[currentCollectionId];
+    const colName = col ? col.name : currentCollectionId;
+    setHash(`#/${colName}`, updateHash);
   } else if (viewName === VIEWS.ABOUT) {
     if (navAbout) navAbout.classList.add('active');
-
-    if (updateHash) {
-      if (decodeURIComponent(window.location.hash) !== '#/about') {
-        location.hash = '#/about';
-      }
-    }
+    setHash('#/about', updateHash);
   } else if (viewName === VIEWS.STATS) {
     if (navStats) navStats.classList.add('active');
-
-    if (updateHash) {
-      if (decodeURIComponent(window.location.hash) !== '#/stats') {
-        location.hash = '#/stats';
-      }
-    }
+    setHash('#/stats', updateHash);
     updateStatsView();
   }
 

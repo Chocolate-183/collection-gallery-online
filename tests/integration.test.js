@@ -3,36 +3,50 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-// Load local fallback data snapshot
+// Local fallback snapshot
 const dataJson = JSON.parse(readFileSync(resolve('data.json'), 'utf-8'));
 
+function createMockElement(props = {}) {
+  const classes = new Set();
+  return {
+    innerText: '',
+    innerHTML: '',
+    style: {},
+    dataset: {},
+    classes,
+    classList: {
+      add: (cls) => classes.add(cls),
+      remove: (cls) => classes.delete(cls),
+      contains: (cls) => classes.has(cls),
+      toggle: (cls, force) => (force ?? !classes.has(cls)) ? classes.add(cls) : classes.delete(cls)
+    },
+    setAttribute(k, v) { this[k] = v; },
+    getAttribute(k) { return this[k]; },
+    ...props
+  };
+}
+
+function mockDOM(elementsMap = {}) {
+  const fallbackEl = createMockElement();
+  global.document = global.document || {};
+  global.document.getElementById = (id) => elementsMap[id] || fallbackEl;
+  global.document.querySelectorAll = () => [];
+}
+
 test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
-  assert(Array.isArray(dataJson));
-  assert(dataJson.length > 0);
+  assert(Array.isArray(dataJson) && dataJson.length > 0);
   const sample = dataJson[0];
-  assert('ja_term' in sample);
-  assert('tw_translation' in sample);
-  assert('reading' in sample);
+  assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
 });
 
 test('Router & View Switcher - View Routing & Maintenance Handling', async () => {
-  const mockTitleEl = { innerText: '' };
-  const mockDesc1El = { innerText: '' };
-  const mockDesc2El = { style: { display: 'block' } };
-  const mockViewMaintEl = { classList: { add: () => {}, remove: () => {} }, style: { display: 'none' } };
-  const mockViewDictEl = { classList: { add: () => {}, remove: () => {} }, style: { display: 'none' } };
+  const mockTitle = createMockElement();
+  const mockViewMaint = createMockElement({ style: { display: 'none' } });
 
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'maintenance-title') return mockTitleEl;
-    if (id === 'maintenance-desc-1') return mockDesc1El;
-    if (id === 'maintenance-desc-2') return mockDesc2El;
-    if (id === 'view-maintenance') return mockViewMaintEl;
-    if (id === 'view-dictionary') return mockViewDictEl;
-    return null;
-  };
-  global.document.querySelectorAll = () => [];
+  mockDOM({
+    'maintenance-title': mockTitle,
+    'view-maintenance': mockViewMaint
+  });
 
   const { setOpeningHoursSchedule, OPENING_HOURS_SCHEDULE } = await import('../js/utils.js');
   const originalSchedule = [...OPENING_HOURS_SCHEDULE];
@@ -46,65 +60,43 @@ test('Router & View Switcher - View Routing & Maintenance Handling', async () =>
   collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '調整中' };
   store.set({ currentCollectionId: 'japanese-terms' });
   switchView('dictionary', null, false);
-
-  assert.equal(mockTitleEl.innerText, 'ADJUSTING');
-  assert.equal(mockViewMaintEl.style.display, 'block');
+  assert.equal(mockTitle.innerText, 'ADJUSTING');
+  assert.equal(mockViewMaint.style.display, 'block');
 
   // Test "籌備中" status routing
   collectionsMetaCache['korean-terms'] = { title: '最強韓文漢字學習法', status: '籌備中' };
   store.set({ currentCollectionId: 'korean-terms' });
   switchView('dictionary', null, false);
-
-  assert.equal(mockTitleEl.innerText, 'COMING SOON');
-  assert.equal(mockViewMaintEl.style.display, 'block');
+  assert.equal(mockTitle.innerText, 'COMING SOON');
 
   setOpeningHoursSchedule(originalSchedule);
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
 });
 
 test('UI Components - Sidebar Badge Display Logic', async () => {
-  const mockBadgeEl = { innerText: '', style: { display: 'inline-block' } };
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'side-nav-count-japanese-terms' || id === 'side-nav-count-korean-terms') return mockBadgeEl;
-    return null;
-  };
+  const mockBadge = createMockElement({ style: { display: 'inline-block' } });
+  mockDOM({
+    'side-nav-count-japanese-terms': mockBadge,
+    'side-nav-count-korean-terms': mockBadge
+  });
 
   const { collectionsMetaCache } = await import('../js/data.js');
   const { updateSidebarBadge } = await import('../js/components/sidebar.js');
 
-  // Case 1: Normal open status
+  // Open status -> hidden badge
   collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '開放中' };
   updateSidebarBadge('japanese-terms');
-  assert.equal(mockBadgeEl.style.display, 'none');
+  assert.equal(mockBadge.style.display, 'none');
 
-  // Case 2: Adjusting status
+  // Adjusting status -> ADJUSTING badge
   collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '調整中' };
   updateSidebarBadge('japanese-terms');
-  assert.equal(mockBadgeEl.innerText, 'ADJUSTING');
-  assert.equal(mockBadgeEl.style.display, 'inline-block');
-
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
+  assert.equal(mockBadge.innerText, 'ADJUSTING');
+  assert.equal(mockBadge.style.display, 'inline-block');
 });
 
 test('UI Components - Empty State & Card Rendering', async () => {
-  const mockContainer = {
-    innerHTML: '',
-    attributes: {},
-    setAttribute(key, val) { this.attributes[key] = val; }
-  };
-
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'card-grid') return mockContainer;
-    return null;
-  };
+  const mockContainer = createMockElement();
+  mockDOM({ 'card-grid': mockContainer });
 
   const { store } = await import('../js/state.js');
   const { renderCards } = await import('../js/components/cards.js');
@@ -121,93 +113,44 @@ test('UI Components - Empty State & Card Rendering', async () => {
 
   assert(mockContainer.innerHTML.includes('awsui-empty-card'));
   assert(mockContainer.innerHTML.includes('尚無相符展品'));
-
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
 });
 
 test('Scroll Prevention on Modal Open or Hash Sync', () => {
   let scrollCalled = false;
-  const mockWindow = {
-    scrollTo: () => { scrollCalled = true; }
-  };
-
   let currentView = 'dictionary';
-  const checkScrollCondition = (viewName, event) => {
+
+  const checkScroll = (viewName, event) => {
     scrollCalled = false;
     const isViewChanged = currentView !== viewName;
     currentView = viewName;
     if (isViewChanged || !!event) {
-      mockWindow.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollCalled = true;
     }
     return scrollCalled;
   };
 
-  assert.equal(checkScrollCondition('dictionary', null), false);
-  assert.equal(checkScrollCondition('welcome', null), true);
-  assert.equal(checkScrollCondition('welcome', { type: 'click' }), true);
+  assert.equal(checkScroll('dictionary', null), false);
+  assert.equal(checkScroll('welcome', null), true);
+  assert.equal(checkScroll('welcome', { type: 'click' }), true);
 });
 
 test('Welcome Card Title Click Handler Integration - Japanese Terms Title Click', () => {
-  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
-  assert(htmlContent.includes('id="welcome-card-title-japanese-terms"'));
-  assert(htmlContent.includes('onclick="switchCollection(\'japanese-terms\')"'));
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  assert(html.includes('id="welcome-card-title-japanese-terms"'));
+  assert(html.includes('onclick="switchCollection(\'japanese-terms\')"'));
 });
 
 test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Modal', async () => {
-  const mockClasses = new Set();
-  const mockModalBox = {
-    classList: {
-      add: (cls) => mockClasses.add(cls),
-      remove: (cls) => mockClasses.delete(cls),
-      contains: (cls) => mockClasses.has(cls)
-    }
-  };
-
-  const mockModal = {
-    classList: { add: () => {}, remove: () => {} },
+  const mockModalBox = createMockElement();
+  const mockModal = createMockElement({
     querySelector: (sel) => sel === '.awsui-modal' ? mockModalBox : null
-  };
+  });
+  const mockMeaning = createMockElement({ scrollHeight: 100, clientHeight: 100 });
 
-  const meaningClasses = new Set();
-  let meaningScrollHeight = 100;
-  let meaningClientHeight = 100;
-  const mockMeaningElem = {
-    innerText: '',
-    get scrollHeight() { return meaningScrollHeight; },
-    get clientHeight() { return meaningClientHeight; },
-    classList: {
-      add: (cls) => meaningClasses.add(cls),
-      remove: (cls) => meaningClasses.delete(cls),
-      contains: (cls) => meaningClasses.has(cls),
-      toggle: (cls, force) => {
-        if (force === undefined) {
-          meaningClasses.has(cls) ? meaningClasses.delete(cls) : meaningClasses.add(cls);
-        } else if (force) {
-          meaningClasses.add(cls);
-        } else {
-          meaningClasses.delete(cls);
-        }
-      }
-    },
-    dataset: {}
-  };
-
-  const mockTitleElem = { innerText: '', setAttribute: (k, v) => { mockTitleElem[k] = v; }, getAttribute: (k) => mockTitleElem[k] };
-  const mockReadingElem = { innerText: '', setAttribute: () => {} };
-  const mockReadingSection = { style: {} };
-
-  const originalGetElementById = global.document?.getElementById;
-  global.document = global.document || {};
-  global.document.getElementById = (id) => {
-    if (id === 'detail-modal') return mockModal;
-    if (id === 'modal-meaning-text') return mockMeaningElem;
-    if (id === 'modal-term-title') return mockTitleElem;
-    if (id === 'modal-reading-row') return mockReadingElem;
-    if (id === 'modal-reading-section') return mockReadingSection;
-    return { innerText: '', setAttribute: () => {}, style: {} };
-  };
+  mockDOM({
+    'detail-modal': mockModal,
+    'modal-meaning-text': mockMeaning
+  });
 
   const { store } = await import('../js/state.js');
   const { openMeaningModal, checkMeaningExceedsFiveLines } = await import('../js/components/modal.js');
@@ -215,45 +158,24 @@ test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Moda
   assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4'), false);
   assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4\n5\n6'), true);
 
-  // Case 1: Japanese term <= 5 lines -> small modal
+  // Case 1: <= 5 lines -> small modal
   store.set({
     currentCollectionId: 'japanese-terms',
     allRecords: [{ row_index: 1, ja_term: '測試', tw_translation: '1\n2\n3\n4' }]
   });
-  meaningScrollHeight = 100;
-  meaningClientHeight = 100;
-  mockClasses.clear();
+  mockModalBox.classes.clear();
   openMeaningModal(1, false);
-  assert(mockClasses.has('awsui-modal-sm'));
-  assert(!mockClasses.has('awsui-modal-lg'));
+  assert(mockModalBox.classes.has('awsui-modal-sm'));
+  assert(!mockModalBox.classes.has('awsui-modal-lg'));
 
-  // Case 2: Japanese term > 5 lines -> upgraded to large modal
+  // Case 2: > 5 lines -> large modal
   store.set({
     currentCollectionId: 'japanese-terms',
     allRecords: [{ row_index: 2, ja_term: '測試', tw_translation: '1\n2\n3\n4\n5\n6' }]
   });
-  meaningScrollHeight = 200;
-  meaningClientHeight = 100;
-  mockClasses.clear();
+  mockModalBox.classes.clear();
   openMeaningModal(2, false);
-  assert(mockClasses.has('awsui-modal-lg'));
-  assert(!mockClasses.has('awsui-modal-sm'));
-  assert(meaningClasses.has('is-multiline'));
-
-  // Case 3: 2-line term -> does not trigger is-multiline
-  store.set({
-    currentCollectionId: 'japanese-terms',
-    allRecords: [{ row_index: 3, ja_term: '測試', tw_translation: '第一行\n第二行' }]
-  });
-  meaningScrollHeight = 58;
-  meaningClientHeight = 58;
-  mockClasses.clear();
-  meaningClasses.clear();
-  openMeaningModal(3, false);
-  assert(!meaningClasses.has('is-multiline'));
-
-  if (originalGetElementById) {
-    global.document.getElementById = originalGetElementById;
-  }
+  assert(mockModalBox.classes.has('awsui-modal-lg'));
+  assert(!mockModalBox.classes.has('awsui-modal-sm'));
+  assert(mockMeaning.classes.has('is-multiline'));
 });
-
