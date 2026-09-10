@@ -172,6 +172,7 @@ test('Modal Meaning Text Multiline Detection', async () => {
   const { checkMeaningExceedsTwoLines } = await import('../js/components/modal.js');
 
   // 1 or 2 lines
+  assert.equal(checkMeaningExceedsTwoLines('暴風雨、嵐'), false);
   assert.equal(checkMeaningExceedsTwoLines('單行說明'), false);
   assert.equal(checkMeaningExceedsTwoLines('第一行\n第二行'), false);
   assert.equal(checkMeaningExceedsTwoLines(''), false);

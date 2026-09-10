@@ -52,16 +52,29 @@ export function checkMeaningExceedsFiveLines(text, meaningElem) {
   const rawLines = text.split(/\r?\n/);
   if (rawLines.length > 5) return true;
 
-  // 2. DOM measurement when rendered in browser (line-height is 18px * 1.65 = 29.7px)
+  // 2. DOM Range measurement when rendered in browser (counts actual text line boxes, ignoring container min-height)
+  if (meaningElem && typeof document !== 'undefined' && typeof document.createRange === 'function') {
+    try {
+      const range = document.createRange();
+      range.selectNodeContents(meaningElem);
+      const rects = range.getClientRects();
+      if (rects && rects.length > 0) {
+        return rects.length > 5;
+      }
+    } catch (e) {
+      // Fallback if range selection is not available
+    }
+  }
+
+  // 3. DOM measurement fallback
   if (meaningElem && meaningElem.clientHeight > 0) {
     const linePixelHeight = 18 * 1.65;
-    // 5 lines height threshold = 5 * 29.7 = 148.5px
     if (meaningElem.scrollHeight > (linePixelHeight * 5 + 1)) {
       return true;
     }
   }
 
-  // 3. Estimated wrapped lines for long paragraphs (~25 CJK chars per line in modal)
+  // 4. Estimated wrapped lines for long paragraphs (~25 CJK chars per line in modal)
   let totalWrappedLines = 0;
   for (const line of rawLines) {
     totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
@@ -82,12 +95,17 @@ export function checkMeaningExceedsTwoLines(text, meaningElem) {
   const rawLines = text.split(/\r?\n/);
   if (rawLines.length > 2) return true;
 
-  // 2. DOM measurement when rendered in browser (line-height is 18px * 1.65 = 29.7px)
-  if (meaningElem && meaningElem.clientHeight > 0) {
-    const linePixelHeight = 18 * 1.65;
-    // 2 lines height threshold = 2 * 29.7 = 59.4px + buffer = 65.3px
-    if (meaningElem.scrollHeight > (linePixelHeight * 2.2)) {
-      return true;
+  // 2. DOM Range measurement when rendered in browser (counts actual text line boxes, ignoring container min-height)
+  if (meaningElem && typeof document !== 'undefined' && typeof document.createRange === 'function') {
+    try {
+      const range = document.createRange();
+      range.selectNodeContents(meaningElem);
+      const rects = range.getClientRects();
+      if (rects && rects.length > 0) {
+        return rects.length > 2;
+      }
+    } catch (e) {
+      // Fallback if range selection is not available
     }
   }
 
