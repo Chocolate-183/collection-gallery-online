@@ -158,6 +158,7 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('@media (min-width: 769px)'), 'Should contain desktop media query @media (min-width: 769px)');
   assert(cssContent.includes('.awsui-modal-sm'), 'Should define .awsui-modal-sm selector');
   assert(cssContent.includes('.awsui-modal-lg'), 'Should define .awsui-modal-lg selector');
+  assert(cssContent.includes('max-width: 640px;'), 'Large modal should use reduced max-width of 640px');
   assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Modal should use 1:1 aspect ratio');
   assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
 });

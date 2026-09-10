@@ -1764,9 +1764,9 @@ a:focus {
 
   /* Large Modal (for term title > 15 chars): 1:1 ratio */
   .awsui-modal.awsui-modal-lg {
-    max-width: 760px;
+    max-width: 640px;
     aspect-ratio: 1 / 1;
-    max-height: 88vh;
+    max-height: 82vh;
   }
 
   .awsui-modal-body {
