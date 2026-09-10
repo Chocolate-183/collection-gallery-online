@@ -1079,6 +1079,7 @@ a:focus {
   font-size: 26px;
   font-weight: 600;
   color: var(--awsui-color-text-body-secondary, #687078);
+  margin-top: -10px;
   margin-bottom: 16px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--awsui-color-border-control-default, #aab7b8);
