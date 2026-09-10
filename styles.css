@@ -1057,6 +1057,12 @@ a:focus {
   border-bottom: 1px solid var(--awsui-color-border-item-default, #e9ebed);
 }
 
+.awsui-modal-header-title {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 4px;
+}
+
 #modal-meaning-text {
   font-family: 'Noto Sans SC', sans-serif;
   font-size: 15px;
