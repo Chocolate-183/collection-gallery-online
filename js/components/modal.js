@@ -104,7 +104,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     const modalBox = modal.querySelector('.awsui-modal');
     if (modalBox) {
       const termTitle = rec.ja_term || '';
-      if (getUnicodeLength(termTitle) > 10) {
+      if (getUnicodeLength(termTitle) > 15) {
         modalBox.classList.add('awsui-modal-lg');
         modalBox.classList.remove('awsui-modal-sm');
       } else {

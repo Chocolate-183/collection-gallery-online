@@ -1727,7 +1727,7 @@ a:focus {
     transition: max-width 0.2s ease, aspect-ratio 0.2s ease;
   }
 
-  /* Small Modal (default for term title <= 10 chars): 1:1 ratio */
+  /* Small Modal (default for term title <= 15 chars): 1:1 ratio */
   .awsui-modal,
   .awsui-modal.awsui-modal-sm {
     max-width: 520px;
@@ -1735,7 +1735,7 @@ a:focus {
     max-height: 85vh;
   }
 
-  /* Large Modal (for term title > 10 chars): 1:1 ratio */
+  /* Large Modal (for term title > 15 chars): 1:1 ratio */
   .awsui-modal.awsui-modal-lg {
     max-width: 760px;
     aspect-ratio: 1 / 1;
