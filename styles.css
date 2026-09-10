@@ -1076,8 +1076,8 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: 600;
   color: var(--awsui-color-text-body-secondary, #687078);
   margin-bottom: 16px;
   padding-bottom: 10px;
