@@ -1063,8 +1063,8 @@ a:focus {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  font-weight: 500;
-  font-size: 13px;
+  font-weight: 600;
+  font-size: 15px;
   color: var(--awsui-color-text-body-secondary, #687078);
   margin-bottom: 4px;
   padding-bottom: 0;
