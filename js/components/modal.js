@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache } from '../data.js';
-import { escapeHtml } from '../utils.js';
+import { escapeHtml, getUnicodeLength } from '../utils.js';
 
 /**
  * Navigates directly to a target recommended term's detail modal.
@@ -39,6 +39,64 @@ export function navigateToTerm(term) {
   location.hash = `#/${colName}/${term}`;
 }
 
+/**
+ * Checks if the meaning-text content exceeds a given line threshold.
+ * @param {string} text - Explanation / translation text
+ * @param {number} threshold - Maximum line threshold
+ * @param {HTMLElement} [meaningElem] - Optional DOM element for measuring scroll height
+ * @returns {boolean} True if line count exceeds threshold
+ */
+function checkMeaningExceedsLineCount(text, threshold, meaningElem) {
+  if (!text) return false;
+
+  // 1. Explicit line breaks in raw string
+  const rawLines = text.split(/\r?\n/);
+  if (rawLines.length > threshold) return true;
+
+  // 2. DOM Range measurement when rendered in browser
+  if (meaningElem && typeof document !== 'undefined' && typeof document.createRange === 'function') {
+    try {
+      const range = document.createRange();
+      range.selectNodeContents(meaningElem);
+      const rects = range.getClientRects();
+      if (rects && rects.length > 0) {
+        return rects.length > threshold;
+      }
+    } catch (e) {
+      // Fallback
+    }
+  }
+
+  // 3. DOM measurement fallback
+  if (meaningElem && meaningElem.clientHeight > 0) {
+    const linePixelHeight = 18 * 1.65;
+    if (meaningElem.scrollHeight > (linePixelHeight * threshold + 1)) {
+      return true;
+    }
+  }
+
+  // 4. Estimated wrapped lines for long paragraphs (~25 CJK chars per line in modal)
+  let totalWrappedLines = 0;
+  for (const line of rawLines) {
+    totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
+  }
+  return totalWrappedLines > threshold;
+}
+
+/**
+ * Checks if the Japanese meaning-text content exceeds 5 lines.
+ */
+export function checkMeaningExceedsFiveLines(text, meaningElem) {
+  return checkMeaningExceedsLineCount(text, 5, meaningElem);
+}
+
+/**
+ * Checks if the meaning-text content exceeds 2 lines.
+ */
+export function checkMeaningExceedsTwoLines(text, meaningElem) {
+  return checkMeaningExceedsLineCount(text, 2, meaningElem);
+}
+
 export function openMeaningModal(rowIndex, updateHash = true) {
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
@@ -66,7 +124,17 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       if (readingSectionElem) readingSectionElem.style.display = 'none';
     }
   }
-  if (meaningElem) meaningElem.innerText = rec.tw_translation || '（無說明內容）';
+  if (meaningElem) {
+    meaningElem.innerText = rec.tw_translation || '（無說明內容）';
+    const meaningText = rec.tw_translation || '';
+    if (meaningElem.classList) {
+      if (checkMeaningExceedsTwoLines(meaningText, meaningElem)) {
+        meaningElem.classList.add('is-multiline');
+      } else {
+        meaningElem.classList.remove('is-multiline');
+      }
+    }
+  }
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
 
@@ -84,11 +152,15 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
 
     if (recItems.length > 0) {
-      recListElem.innerHTML = recItems.map(item => `
-        <button type="button" class="awsui-recommendation-chip" data-collection="${escapeHtml(currentCollectionId || '')}" data-term="${escapeHtml(item)}">
-          ${escapeHtml(item)}
-        </button>
-      `).join('');
+      recListElem.innerHTML = recItems.map(item => {
+        const chars = Array.from(item);
+        const displayText = chars.length > 5 ? chars.slice(0, 5).join('') + '..' : item;
+        return `
+          <button type="button" class="awsui-recommendation-chip" data-collection="${escapeHtml(currentCollectionId || '')}" data-term="${escapeHtml(item)}" title="${escapeHtml(item)}">
+            ${escapeHtml(displayText)}
+          </button>
+        `;
+      }).join('');
       recSectionElem.style.display = 'block';
     } else {
       recListElem.innerHTML = '';
@@ -96,7 +168,46 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
   }
 
-  if (modal) modal.classList.add('open');
+  if (modal) {
+    const modalBox = modal.querySelector('.awsui-modal');
+    const isJapanese = (currentCollectionId === 'japanese-terms' || (titleElem && titleElem.getAttribute('data-collection') === 'japanese-terms'));
+    if (modalBox) {
+      const termTitle = rec.ja_term || '';
+      const meaningText = rec.tw_translation || '';
+
+      const titleExceedsLimit = getUnicodeLength(termTitle) > 15;
+      const meaningExceedsFiveLines = isJapanese && checkMeaningExceedsFiveLines(meaningText, meaningElem);
+
+      if (titleExceedsLimit || meaningExceedsFiveLines) {
+        modalBox.classList.add('awsui-modal-lg');
+        modalBox.classList.remove('awsui-modal-sm');
+      } else {
+        modalBox.classList.add('awsui-modal-sm');
+        modalBox.classList.remove('awsui-modal-lg');
+      }
+    }
+    modal.classList.add('open');
+
+    if (modalBox && meaningElem && rec.tw_translation) {
+      const checkLines = () => {
+        if (meaningElem.classList) {
+          if (checkMeaningExceedsTwoLines(rec.tw_translation, meaningElem)) {
+            meaningElem.classList.add('is-multiline');
+          } else {
+            meaningElem.classList.remove('is-multiline');
+          }
+        }
+        if (isJapanese && checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
+          modalBox.classList.add('awsui-modal-lg');
+          modalBox.classList.remove('awsui-modal-sm');
+        }
+      };
+      checkLines();
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(checkLines);
+      }
+    }
+  }
 
   if (updateHash) {
     const col = collectionsConfig[currentCollectionId];

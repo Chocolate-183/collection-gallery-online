@@ -10,6 +10,7 @@ import {
   parseOpeningHoursCSV
 } from '../js/parser.js';
 import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana, sortRecords } from '../js/filter.js';
+import { LENGTH_TABS } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
@@ -118,6 +119,25 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   const latestResult = filterByKana(mockRecords, 'LATEST10', '');
   assert.equal(latestResult[0].id, '3', 'Highest row index on same newest date should be first');
   assert.equal(latestResult[1].id, '2');
+
+  const lengthRecords = [
+    { id: '1', ja_term: '一' },
+    { id: '2', ja_term: '二字' },
+    { id: '3', ja_term: '三字詞' },
+    { id: '4', ja_term: '四字詞語' },
+    { id: '5', ja_term: '五字詞語長' },
+    { id: '6', ja_term: '六字詞語長度' },
+    { id: '7', ja_term: '七字詞語長度啊' },
+    { id: '8', ja_term: '八字詞語長度啊哈' },
+    { id: '9', ja_term: '九字詞語長度啊哈喔' }
+  ];
+
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ALL).length, 9);
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ONE)[0].id, '1');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE)[0].id, '5');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SIX)[0].id, '6');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SEVEN)[0].id, '7');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.EIGHT_PLUS).length, 2);
 });
 
 test('Config & Endpoint URL Builders', () => {
@@ -132,6 +152,54 @@ test('Config & Endpoint URL Builders', () => {
 test('Status & Exhibition Helpers', () => {
   assert.equal(isCollectionAdjusting({ status: '調整中' }), true);
   assert.equal(isCollectionPreparing({ status: '籌備中' }), true);
+  assert.equal(isCollectionPreparing({ status: 'COMING SOON' }), true);
   assert.equal(isCollectionHidden({ status: '不顯示' }), true);
   assert.equal(isCollectionHidden({ status: '開放中' }), false);
+});
+
+test('Explore Recommendation Tag Truncation', () => {
+  const formatTag = (item) => {
+    const chars = Array.from(item);
+    return chars.length > 5 ? chars.slice(0, 5).join('') + '..' : item;
+  };
+
+  assert.equal(formatTag('12345'), '12345');
+  assert.equal(formatTag('123456'), '12345..');
+  assert.equal(formatTag('お疲れ様です'), 'お疲れ様で..');
+  assert.equal(formatTag('日本特色'), '日本特色');
+});
+
+test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const cssPath = path.resolve('styles.css');
+  const cssContent = fs.readFileSync(cssPath, 'utf8');
+
+  assert(cssContent.includes('@media (min-width: 769px)'), 'Should contain desktop media query @media (min-width: 769px)');
+  assert(cssContent.includes('.awsui-modal-sm'), 'Should define .awsui-modal-sm selector');
+  assert(cssContent.includes('.awsui-modal-lg'), 'Should define .awsui-modal-lg selector');
+  assert(cssContent.includes('max-width: 640px;'), 'Large modal should use reduced max-width of 640px');
+  assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Modal should use 1:1 aspect ratio');
+  assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
+  assert(cssContent.includes('#modal-meaning-text.is-multiline'), 'modal-meaning-text.is-multiline should be defined in CSS');
+  assert(cssContent.includes('background-color: #f8f9fa;'), 'is-multiline should set a subtle background color #f8f9fa');
+  assert(cssContent.includes('border: none;'), 'is-multiline should have border: none');
+  assert(cssContent.includes('border-radius: 0;'), 'is-multiline should have border-radius: 0');
+  assert(cssContent.includes('margin-left: -14px;'), 'is-multiline should offset margin-left to align text with Description title');
+});
+
+test('Modal Meaning Text Multiline Detection', async () => {
+  const { checkMeaningExceedsTwoLines } = await import('../js/components/modal.js');
+
+  // 1 or 2 lines
+  assert.equal(checkMeaningExceedsTwoLines('暴風雨、嵐'), false);
+  assert.equal(checkMeaningExceedsTwoLines('單行說明'), false);
+  assert.equal(checkMeaningExceedsTwoLines('第一行\n第二行'), false);
+  assert.equal(checkMeaningExceedsTwoLines(''), false);
+
+  // Exceeds 2 lines with newlines
+  assert.equal(checkMeaningExceedsTwoLines('第一行\n第二行\n第三行'), true);
+
+  // Exceeds 2 lines with long CJK text (>50 CJK chars)
+  assert.equal(checkMeaningExceedsTwoLines('這是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常長超過五十個字的詳細說明文字內容介紹與翻譯對照'), true);
 });

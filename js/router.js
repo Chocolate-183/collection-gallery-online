@@ -10,6 +10,12 @@ import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from '.
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
 
+function setHash(targetHash, updateHash = true) {
+  if (updateHash && typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
+    location.hash = targetHash;
+  }
+}
+
 /**
  * Toggles visibility of top-level application view sections
  */
@@ -73,8 +79,8 @@ export function switchView(viewName, event, updateHash = true) {
       if (maintDesc1) maintDesc1.innerText = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
       if (maintDesc2) maintDesc2.style.display = 'block';
     } else if (isColPreparing) {
-      if (maintTitle) maintTitle.innerText = 'PREPARING';
-      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中' && colMeta.announcement !== 'IN PREPARATION' && colMeta.announcement !== 'PREPARING')
+      if (maintTitle) maintTitle.innerText = 'COMING SOON';
+      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中' && colMeta.announcement !== 'IN PREPARATION' && colMeta.announcement !== 'PREPARING' && colMeta.announcement !== 'COMING SOON')
         ? colMeta.announcement
         : '本展廳目前正在籌備中，暫不開放參觀，敬請期待。';
       if (maintDesc1) maintDesc1.innerText = prepareMsg;
@@ -94,57 +100,30 @@ export function switchView(viewName, event, updateHash = true) {
       if (activeColBtn) activeColBtn.classList.add('active');
     }
 
-    if (updateHash) {
-      if (isClosed) {
-        if (decodeURIComponent(window.location.hash) !== '#/maintenance') {
-          location.hash = '#/maintenance';
-        }
-      } else if (isColAdjusting || isColPreparing) {
-        const colName = col ? col.name : currentCollectionId;
-        const targetHash = `#/${colName}`;
-        if (decodeURIComponent(window.location.hash) !== targetHash) {
-          location.hash = targetHash;
-        }
-      }
+    if (isClosed) {
+      setHash('#/maintenance', updateHash);
+    } else if (isColAdjusting || isColPreparing) {
+      const colName = col ? col.name : currentCollectionId;
+      setHash(`#/${colName}`, updateHash);
     }
   } else if (viewName === VIEWS.WELCOME) {
     if (navWelcome) navWelcome.classList.add('active');
-
-    if (updateHash) {
-      if (decodeURIComponent(window.location.hash) !== '#/welcome') {
-        location.hash = '#/welcome';
-      }
-    }
+    setHash('#/welcome', updateHash);
   } else if (viewName === VIEWS.DICTIONARY) {
     const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
     if (activeColBtn) activeColBtn.classList.add('active');
 
     renderCollectionNotice();
 
-    if (updateHash) {
-      const col = collectionsConfig[currentCollectionId];
-      const colName = col ? col.name : currentCollectionId;
-      const targetHash = `#/${colName}`;
-      if (decodeURIComponent(window.location.hash) !== targetHash) {
-        location.hash = targetHash;
-      }
-    }
+    const col = collectionsConfig[currentCollectionId];
+    const colName = col ? col.name : currentCollectionId;
+    setHash(`#/${colName}`, updateHash);
   } else if (viewName === VIEWS.ABOUT) {
     if (navAbout) navAbout.classList.add('active');
-
-    if (updateHash) {
-      if (decodeURIComponent(window.location.hash) !== '#/about') {
-        location.hash = '#/about';
-      }
-    }
+    setHash('#/about', updateHash);
   } else if (viewName === VIEWS.STATS) {
     if (navStats) navStats.classList.add('active');
-
-    if (updateHash) {
-      if (decodeURIComponent(window.location.hash) !== '#/stats') {
-        location.hash = '#/stats';
-      }
-    }
+    setHash('#/stats', updateHash);
     updateStatsView();
   }
 

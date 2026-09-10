@@ -24,27 +24,29 @@ export function renderScheduleGrid() {
 }
 
 // Expose functions globally for backward compatibility with inline HTML events
-window.collectionsConfig = collectionsConfig;
-window.currentCollectionId = store.get().currentCollectionId;
-window.isGalleryOpen = isGalleryOpen;
-window.toggleSidebar = toggleSidebar;
-window.toggleTheme = toggleTheme;
-window.switchView = switchView;
-window.switchCollection = switchCollection;
-window.onCollectionSelectChange = onCollectionSelectChange;
-window.loadCollectionData = (colId) => loadCollectionData(colId, true);
-window.preloadAllCollections = preloadAllCollections;
-window.updateStatsView = updateStatsView;
-window.onSearchInput = onSearchInput;
-window.onFilterChange = onFilterChange;
-window.onPageSizeChange = onPageSizeChange;
-window.selectKanaTab = selectKanaTab;
-window.selectLengthTab = selectLengthTab;
-window.openMeaningModal = openMeaningModal;
-window.closeDetailModal = closeDetailModal;
-window.closeDetailModalOnBackdrop = closeDetailModalOnBackdrop;
-window.navigateToTerm = navigateToTerm;
-window.goToPage = goToPage;
+Object.assign(window, {
+  collectionsConfig,
+  currentCollectionId: store.get().currentCollectionId,
+  isGalleryOpen,
+  toggleSidebar,
+  toggleTheme,
+  switchView,
+  switchCollection,
+  onCollectionSelectChange,
+  loadCollectionData: (colId) => loadCollectionData(colId, true),
+  preloadAllCollections,
+  updateStatsView,
+  onSearchInput,
+  onFilterChange,
+  onPageSizeChange,
+  selectKanaTab,
+  selectLengthTab,
+  openMeaningModal,
+  closeDetailModal,
+  closeDetailModalOnBackdrop,
+  navigateToTerm,
+  goToPage
+});
 
 // Sync state changes with window.currentCollectionId for legacy scripts if any
 store.subscribe(state => {

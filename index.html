@@ -183,7 +183,7 @@
             <div class="awsui-welcome-card" id="welcome-card-japanese-terms">
               <div class="awsui-welcome-card-header">
                 <div>
-                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-japanese-terms">日本特色詞彙一覽</h3>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-japanese-terms" onclick="switchCollection('japanese-terms')" style="cursor: pointer;">日本特色詞彙一覽</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-japanese-terms">
                     <span class="awsui-welcome-card-tag">日本</span>
                     <span class="awsui-welcome-card-tag">語彙</span>
@@ -204,7 +204,7 @@
             <div class="awsui-welcome-card" id="welcome-card-china-terms">
               <div class="awsui-welcome-card-header">
                 <div>
-                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms">大陸特色詞彙一覽</h3>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms" onclick="switchCollection('china-terms')" style="cursor: pointer;">大陸特色詞彙一覽</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-china-terms">
                     <span class="awsui-welcome-card-tag">大陸</span>
                     <span class="awsui-welcome-card-tag">語彙</span>
@@ -320,7 +320,10 @@
                 <button class="awsui-tab" onclick="selectLengthTab('2', this)">2字</button>
                 <button class="awsui-tab" onclick="selectLengthTab('3', this)">3字</button>
                 <button class="awsui-tab" onclick="selectLengthTab('4', this)">4字</button>
-                <button class="awsui-tab" onclick="selectLengthTab('5+', this)">5字+</button>
+                <button class="awsui-tab" onclick="selectLengthTab('5', this)">5字</button>
+                <button class="awsui-tab" onclick="selectLengthTab('6', this)">6字</button>
+                <button class="awsui-tab" onclick="selectLengthTab('7', this)">7字</button>
+                <button class="awsui-tab" onclick="selectLengthTab('8+', this)">8字＋</button>
               </div>
             </div>
           </div>
@@ -554,16 +557,16 @@
   <div class="awsui-modal-backdrop" id="detail-modal" onclick="closeDetailModalOnBackdrop(event)">
     <div class="awsui-modal">
       <div class="awsui-modal-body">
-        <div class="awsui-modal-section-title">
+        <div class="awsui-modal-section-title awsui-modal-header-title">
           <span>Item</span>
-        </div>
-        <div class="awsui-modal-title-row">
-          <strong id="modal-term-title">--</strong>
           <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeDetailModal()">
             <svg class="awsui-icon" viewBox="0 0 16 16">
               <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
             </svg>
           </button>
+        </div>
+        <div class="awsui-modal-title-row">
+          <strong id="modal-term-title">--</strong>
         </div>
 
         <!-- Pronunciation Section (Japanese Kana Reading) -->
@@ -571,10 +574,10 @@
           <div class="awsui-modal-section-title">
             <span>Pronunciation</span>
           </div>
-          <div id="modal-reading-row" style="font-size: 15px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65; min-height: calc(15px * 1.65 * 2);"></div>
+          <div id="modal-reading-row" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65; min-height: calc(18px * 1.65 * 2);"></div>
         </div>
 
-        <div class="awsui-modal-section" style="margin-top: 20px;">
+        <div class="awsui-modal-section awsui-modal-description-section" style="margin-top: 20px;">
           <div class="awsui-modal-section-title">
             <span>Description</span>
           </div>
@@ -584,7 +587,7 @@
         <!-- Recommended Exhibition Items Section -->
         <div id="modal-recommendations-section" class="awsui-modal-recommendations-section" style="display: none;">
           <div class="awsui-modal-section-title">
-            <span>Recommendations</span>
+            <span>Explore</span>
           </div>
           <div id="modal-recommendations-list" class="awsui-modal-recommendations-list"></div>
         </div>

@@ -4,31 +4,31 @@
 import { EXHIBITION_STATUS, DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
 import { parseOpeningHoursCSV } from './parser.js';
 
+function matchStatus(meta, keywords) {
+  if (!meta || !meta.status) return false;
+  const s = String(meta.status).trim().toUpperCase();
+  return keywords.some(k => k && (s === k.toUpperCase() || s.includes(k.toUpperCase())));
+}
+
 /**
  * Checks if a collection's status is adjusting / under maintenance.
  */
 export function isCollectionAdjusting(meta) {
-  if (!meta || !meta.status) return false;
-  const s = String(meta.status);
-  return s === EXHIBITION_STATUS.ADJUSTING || s === '調整中' || s.includes('調整中') || s.includes('ADJUSTMENT');
+  return matchStatus(meta, [EXHIBITION_STATUS.ADJUSTING, '調整中', 'ADJUSTMENT']);
 }
 
 /**
  * Checks if a collection's status is preparing / under development.
  */
 export function isCollectionPreparing(meta) {
-  if (!meta || !meta.status) return false;
-  const s = String(meta.status);
-  return s === EXHIBITION_STATUS.PREPARING || s === '籌備中' || s.includes('籌備中') || s.includes('PREPARATION');
+  return matchStatus(meta, [EXHIBITION_STATUS.PREPARING, 'PREPARING', 'COMING SOON', '籌備中', 'PREPARATION']);
 }
 
 /**
  * Checks if a collection's status is hidden ("不顯示").
  */
 export function isCollectionHidden(meta) {
-  if (!meta || !meta.status) return false;
-  const s = String(meta.status);
-  return s === EXHIBITION_STATUS.HIDDEN || s.includes(EXHIBITION_STATUS.HIDDEN);
+  return matchStatus(meta, [EXHIBITION_STATUS.HIDDEN]);
 }
 
 /**

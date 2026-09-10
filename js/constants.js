@@ -30,7 +30,10 @@ export const LENGTH_TABS = {
   TWO: '2',
   THREE: '3',
   FOUR: '4',
-  FIVE_PLUS: '5+'
+  FIVE: '5',
+  SIX: '6',
+  SEVEN: '7',
+  EIGHT_PLUS: '8+'
 };
 
 export const STORAGE_KEYS = {
@@ -43,7 +46,7 @@ export const DEFAULT_TIMEOUT_MS = 2500;
 export const EXHIBITION_STATUS = {
   ADJUSTING: 'ADJUSTING',
   OPEN: '開放中',
-  PREPARING: 'PREPARING',
+  PREPARING: 'COMING SOON',
   HIDDEN: '不顯示'
 };
 
