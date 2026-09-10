@@ -70,23 +70,23 @@ export function checkMeaningExceedsFiveLines(text, meaningElem) {
 }
 
 /**
- * Checks if the meaning-text content exceeds 1 line.
+ * Checks if the meaning-text content exceeds 2 lines.
  * @param {string} text - Explanation / translation text
  * @param {HTMLElement} [meaningElem] - Optional DOM element for measuring scroll height
- * @returns {boolean} True if line count exceeds 1 line
+ * @returns {boolean} True if line count exceeds 2 lines
  */
-export function checkMeaningExceedsOneLine(text, meaningElem) {
+export function checkMeaningExceedsTwoLines(text, meaningElem) {
   if (!text) return false;
 
   // 1. Explicit line breaks in raw string
   const rawLines = text.split(/\r?\n/);
-  if (rawLines.length > 1) return true;
+  if (rawLines.length > 2) return true;
 
   // 2. DOM measurement when rendered in browser (line-height is 18px * 1.65 = 29.7px)
   if (meaningElem && meaningElem.clientHeight > 0) {
     const linePixelHeight = 18 * 1.65;
-    // 1 line height threshold = 29.7px + buffer = 35.6px
-    if (meaningElem.scrollHeight > (linePixelHeight * 1.2)) {
+    // 2 lines height threshold = 2 * 29.7 = 59.4px + buffer = 65.3px
+    if (meaningElem.scrollHeight > (linePixelHeight * 2.2)) {
       return true;
     }
   }
@@ -96,7 +96,7 @@ export function checkMeaningExceedsOneLine(text, meaningElem) {
   for (const line of rawLines) {
     totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
   }
-  return totalWrappedLines > 1;
+  return totalWrappedLines > 2;
 }
 
 export function openMeaningModal(rowIndex, updateHash = true) {
@@ -130,7 +130,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';
     const meaningText = rec.tw_translation || '';
     if (meaningElem.classList) {
-      if (checkMeaningExceedsOneLine(meaningText, meaningElem)) {
+      if (checkMeaningExceedsTwoLines(meaningText, meaningElem)) {
         meaningElem.classList.add('is-multiline');
       } else {
         meaningElem.classList.remove('is-multiline');
@@ -193,7 +193,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     if (modalBox && meaningElem && rec.tw_translation) {
       const checkLines = () => {
         if (meaningElem.classList) {
-          if (checkMeaningExceedsOneLine(rec.tw_translation, meaningElem)) {
+          if (checkMeaningExceedsTwoLines(rec.tw_translation, meaningElem)) {
             meaningElem.classList.add('is-multiline');
           } else {
             meaningElem.classList.remove('is-multiline');

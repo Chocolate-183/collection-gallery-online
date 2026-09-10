@@ -240,13 +240,13 @@ test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Moda
   assert(!mockClasses.has('awsui-modal-sm'));
   assert(meaningClasses.has('is-multiline'));
 
-  // Case 3: Single line term -> does not trigger is-multiline
+  // Case 3: 2-line term -> does not trigger is-multiline
   store.set({
     currentCollectionId: 'japanese-terms',
-    allRecords: [{ row_index: 3, ja_term: '測試', tw_translation: '單行說明' }]
+    allRecords: [{ row_index: 3, ja_term: '測試', tw_translation: '第一行\n第二行' }]
   });
-  meaningScrollHeight = 29;
-  meaningClientHeight = 29;
+  meaningScrollHeight = 58;
+  meaningClientHeight = 58;
   mockClasses.clear();
   meaningClasses.clear();
   openMeaningModal(3, false);

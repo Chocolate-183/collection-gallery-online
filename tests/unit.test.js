@@ -163,18 +163,20 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
   assert(cssContent.includes('#modal-meaning-text.is-multiline'), 'modal-meaning-text.is-multiline should be defined in CSS');
   assert(cssContent.includes('background-color: #f8f9fa;'), 'is-multiline should set a subtle background color #f8f9fa');
+  assert(cssContent.includes('border: none;'), 'is-multiline should have border: none');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
-  const { checkMeaningExceedsOneLine } = await import('../js/components/modal.js');
+  const { checkMeaningExceedsTwoLines } = await import('../js/components/modal.js');
 
-  // Single line text
-  assert.equal(checkMeaningExceedsOneLine('單行說明'), false);
-  assert.equal(checkMeaningExceedsOneLine(''), false);
+  // 1 or 2 lines
+  assert.equal(checkMeaningExceedsTwoLines('單行說明'), false);
+  assert.equal(checkMeaningExceedsTwoLines('第一行\n第二行'), false);
+  assert.equal(checkMeaningExceedsTwoLines(''), false);
 
-  // Multiline with newlines
-  assert.equal(checkMeaningExceedsOneLine('第一行\n第二行'), true);
+  // Exceeds 2 lines with newlines
+  assert.equal(checkMeaningExceedsTwoLines('第一行\n第二行\n第三行'), true);
 
-  // Multiline with long CJK text
-  assert.equal(checkMeaningExceedsOneLine('這是一段非常非常非常非常非常非常非常非常非常長超過二十五個字的說明內容'), true);
+  // Exceeds 2 lines with long CJK text (>50 CJK chars)
+  assert.equal(checkMeaningExceedsTwoLines('這是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常長超過五十個字的詳細說明文字內容介紹與翻譯對照'), true);
 });
