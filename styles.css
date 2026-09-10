@@ -1052,15 +1052,9 @@ a:focus {
   font-weight: 400;
   font-size: 16px;
   color: var(--awsui-color-text-body-default, #16191f);
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--awsui-color-border-item-default, #e9ebed);
-}
-
-.awsui-modal-header-title {
-  border-bottom: none;
-  padding-bottom: 0;
   margin-bottom: 4px;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 #modal-meaning-text {
