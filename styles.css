@@ -1013,7 +1013,7 @@ a:focus {
   z-index: 2000;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .awsui-modal-backdrop.open {
@@ -1028,12 +1028,15 @@ a:focus {
   max-width: 520px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
   overflow: hidden;
+  opacity: 0;
   transform: scale(0.95);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .awsui-modal-backdrop.open .awsui-modal {
+  opacity: 1;
   transform: scale(1);
+  transition-delay: 0.18s;
 }
 
 .awsui-modal-title-row {
@@ -1782,7 +1785,7 @@ a:focus {
     width: 90%;
     display: flex;
     flex-direction: column;
-    transition: max-width 0.2s ease, aspect-ratio 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.2s ease, aspect-ratio 0.2s ease;
   }
 
   /* Small Modal (default for term title <= 15 chars): 1:1.1 ratio */
