@@ -10,6 +10,7 @@ import {
   parseOpeningHoursCSV
 } from '../js/parser.js';
 import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana, sortRecords } from '../js/filter.js';
+import { LENGTH_TABS } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
@@ -118,6 +119,25 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   const latestResult = filterByKana(mockRecords, 'LATEST10', '');
   assert.equal(latestResult[0].id, '3', 'Highest row index on same newest date should be first');
   assert.equal(latestResult[1].id, '2');
+
+  const lengthRecords = [
+    { id: '1', ja_term: '一' },
+    { id: '2', ja_term: '二字' },
+    { id: '3', ja_term: '三字詞' },
+    { id: '4', ja_term: '四字詞語' },
+    { id: '5', ja_term: '五字詞語長' },
+    { id: '6', ja_term: '六字詞語長度' },
+    { id: '7', ja_term: '七字詞語長度啊' },
+    { id: '8', ja_term: '八字詞語長度啊哈' },
+    { id: '9', ja_term: '九字詞語長度啊哈喔' }
+  ];
+
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ALL).length, 9);
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ONE)[0].id, '1');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE)[0].id, '5');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SIX)[0].id, '6');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SEVEN)[0].id, '7');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.EIGHT_PLUS).length, 2);
 });
 
 test('Config & Endpoint URL Builders', () => {

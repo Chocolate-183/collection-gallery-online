@@ -43,7 +43,10 @@ export function filterByLength(records, lengthTab) {
     if (lengthTab === LENGTH_TABS.TWO) return len === 2;
     if (lengthTab === LENGTH_TABS.THREE) return len === 3;
     if (lengthTab === LENGTH_TABS.FOUR) return len === 4;
-    if (lengthTab === LENGTH_TABS.FIVE_PLUS) return len >= 5;
+    if (lengthTab === LENGTH_TABS.FIVE) return len === 5;
+    if (lengthTab === LENGTH_TABS.SIX) return len === 6;
+    if (lengthTab === LENGTH_TABS.SEVEN) return len === 7;
+    if (lengthTab === LENGTH_TABS.EIGHT_PLUS || lengthTab === '8+' || lengthTab === '8字＋') return len >= 8;
     return true;
   });
 }
