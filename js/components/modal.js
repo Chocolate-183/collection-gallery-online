@@ -84,11 +84,15 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
 
     if (recItems.length > 0) {
-      recListElem.innerHTML = recItems.map(item => `
-        <button type="button" class="awsui-recommendation-chip" data-collection="${escapeHtml(currentCollectionId || '')}" data-term="${escapeHtml(item)}">
-          ${escapeHtml(item)}
-        </button>
-      `).join('');
+      recListElem.innerHTML = recItems.map(item => {
+        const chars = Array.from(item);
+        const displayText = chars.length > 5 ? chars.slice(0, 5).join('') + '..' : item;
+        return `
+          <button type="button" class="awsui-recommendation-chip" data-collection="${escapeHtml(currentCollectionId || '')}" data-term="${escapeHtml(item)}" title="${escapeHtml(item)}">
+            ${escapeHtml(displayText)}
+          </button>
+        `;
+      }).join('');
       recSectionElem.style.display = 'block';
     } else {
       recListElem.innerHTML = '';

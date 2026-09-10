@@ -137,6 +137,18 @@ test('Status & Exhibition Helpers', () => {
   assert.equal(isCollectionHidden({ status: '開放中' }), false);
 });
 
+test('Explore Recommendation Tag Truncation', () => {
+  const formatTag = (item) => {
+    const chars = Array.from(item);
+    return chars.length > 5 ? chars.slice(0, 5).join('') + '..' : item;
+  };
+
+  assert.equal(formatTag('12345'), '12345');
+  assert.equal(formatTag('123456'), '12345..');
+  assert.equal(formatTag('お疲れ様です'), 'お疲れ様で..');
+  assert.equal(formatTag('日本特色'), '日本特色');
+});
+
 test('CSS Stylesheet - Desktop Modal 1:1 Aspect Ratio Size', async () => {
   const fs = await import('node:fs');
   const path = await import('node:path');
