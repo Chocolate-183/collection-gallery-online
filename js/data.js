@@ -116,7 +116,7 @@ export function applyCollectionMetaToUI(colId, meta) {
       }
       cardTagsElem.innerHTML = tagsHtml;
     } else if (isPreparing) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">PREPARING</span>`;
+      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">COMING SOON</span>`;
       if (meta.tags && meta.tags.length > 0) {
         tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
       }

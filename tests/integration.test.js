@@ -55,7 +55,7 @@ test('Router & View Switcher - View Routing & Maintenance Handling', async () =>
   store.set({ currentCollectionId: 'korean-terms' });
   switchView('dictionary', null, false);
 
-  assert.equal(mockTitleEl.innerText, 'PREPARING');
+  assert.equal(mockTitleEl.innerText, 'COMING SOON');
   assert.equal(mockViewMaintEl.style.display, 'block');
 
   setOpeningHoursSchedule(originalSchedule);

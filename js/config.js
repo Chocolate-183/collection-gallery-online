@@ -57,12 +57,12 @@ export const collectionsConfig = {
       title: '韓文單字加漢字 記憶更輕鬆',
       enTitle: 'Korean Terms',
       id: 'C103',
-      status: 'PREPARING',
-      announcement: 'PREPARING',
+      status: 'COMING SOON',
+      announcement: 'COMING SOON',
       tags: ['韓語學習'],
-      subtitle: 'PREPARING',
-      description: 'PREPARING',
-      notice: 'PREPARING'
+      subtitle: 'COMING SOON',
+      description: 'COMING SOON',
+      notice: 'COMING SOON'
     }
   }
 };

@@ -18,8 +18,8 @@ export function isCollectionAdjusting(meta) {
  */
 export function isCollectionPreparing(meta) {
   if (!meta || !meta.status) return false;
-  const s = String(meta.status);
-  return s === EXHIBITION_STATUS.PREPARING || s === '籌備中' || s.includes('籌備中') || s.includes('PREPARATION');
+  const s = String(meta.status).trim().toUpperCase();
+  return s === EXHIBITION_STATUS.PREPARING || s === 'PREPARING' || s === 'COMING SOON' || s === '籌備中' || s.includes('籌備中') || s.includes('PREPARATION') || s.includes('COMING SOON');
 }
 
 /**

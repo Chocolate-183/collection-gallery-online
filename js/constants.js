@@ -43,7 +43,7 @@ export const DEFAULT_TIMEOUT_MS = 2500;
 export const EXHIBITION_STATUS = {
   ADJUSTING: 'ADJUSTING',
   OPEN: '開放中',
-  PREPARING: 'PREPARING',
+  PREPARING: 'COMING SOON',
   HIDDEN: '不顯示'
 };
 

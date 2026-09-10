@@ -132,6 +132,7 @@ test('Config & Endpoint URL Builders', () => {
 test('Status & Exhibition Helpers', () => {
   assert.equal(isCollectionAdjusting({ status: '調整中' }), true);
   assert.equal(isCollectionPreparing({ status: '籌備中' }), true);
+  assert.equal(isCollectionPreparing({ status: 'COMING SOON' }), true);
   assert.equal(isCollectionHidden({ status: '不顯示' }), true);
   assert.equal(isCollectionHidden({ status: '開放中' }), false);
 });

@@ -73,8 +73,8 @@ export function switchView(viewName, event, updateHash = true) {
       if (maintDesc1) maintDesc1.innerText = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
       if (maintDesc2) maintDesc2.style.display = 'block';
     } else if (isColPreparing) {
-      if (maintTitle) maintTitle.innerText = 'PREPARING';
-      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中' && colMeta.announcement !== 'IN PREPARATION' && colMeta.announcement !== 'PREPARING')
+      if (maintTitle) maintTitle.innerText = 'COMING SOON';
+      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中' && colMeta.announcement !== 'IN PREPARATION' && colMeta.announcement !== 'PREPARING' && colMeta.announcement !== 'COMING SOON')
         ? colMeta.announcement
         : '本展廳目前正在籌備中，暫不開放參觀，敬請期待。';
       if (maintDesc1) maintDesc1.innerText = prepareMsg;
