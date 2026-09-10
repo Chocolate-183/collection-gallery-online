@@ -253,10 +253,7 @@ export function openCollectionModal(collectionId, updateHash = true) {
   const titleElem = document.getElementById('collection-modal-title');
   const enTitleElem = document.getElementById('collection-modal-entitle');
   const subtitleElem = document.getElementById('collection-modal-subtitle');
-  const tagsElem = document.getElementById('collection-modal-tags');
   const descElem = document.getElementById('collection-modal-description');
-  const noticeSectionElem = document.getElementById('collection-modal-notice-section');
-  const noticeElem = document.getElementById('collection-modal-notice');
   const totalElem = document.getElementById('collection-modal-total-items');
   const idElem = document.getElementById('collection-modal-id');
 
@@ -275,26 +272,8 @@ export function openCollectionModal(collectionId, updateHash = true) {
       subtitleElem.style.display = 'none';
     }
   }
-  if (tagsElem) {
-    if (meta && meta.tags && meta.tags.length > 0) {
-      tagsElem.innerHTML = meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${escapeHtml(tag)}</span>`).join('');
-      tagsElem.style.display = 'flex';
-    } else {
-      tagsElem.innerHTML = '';
-      tagsElem.style.display = 'none';
-    }
-  }
   if (descElem) {
     descElem.innerText = (meta && meta.description) ? meta.description : '（無說明內容）';
-  }
-  if (noticeSectionElem && noticeElem) {
-    if (meta && meta.notice) {
-      noticeElem.innerText = meta.notice;
-      noticeSectionElem.style.display = 'block';
-    } else {
-      noticeElem.innerText = '';
-      noticeSectionElem.style.display = 'none';
-    }
   }
   if (totalElem) {
     const items = collectionsCache[targetColId];

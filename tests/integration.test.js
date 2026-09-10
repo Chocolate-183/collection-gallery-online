@@ -197,10 +197,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
     'collection-modal-title': mockTitle,
     'collection-modal-entitle': mockEnTitle,
     'collection-modal-subtitle': mockSubtitle,
-    'collection-modal-tags': mockTags,
     'collection-modal-description': mockDesc,
-    'collection-modal-notice-section': mockNoticeSec,
-    'collection-modal-notice': mockNotice,
     'collection-modal-total-items': mockTotal,
     'collection-modal-id': mockId
   });
@@ -226,8 +223,6 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   assert.equal(mockEnTitle.innerText, 'China Terms');
   assert.equal(mockSubtitle.innerText, '兩岸詞彙對照');
   assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容');
-  assert.equal(mockNotice.innerText, '詞彙僅供參考');
-  assert.equal(mockNoticeSec.style.display, 'block');
   assert.equal(mockTotal.innerText, 2);
   assert.equal(mockId.innerText, 'C102');
 
