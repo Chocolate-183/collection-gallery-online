@@ -1076,12 +1076,12 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 600;
   color: var(--awsui-color-text-body-secondary, #687078);
   margin-bottom: 16px;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--awsui-color-border-item-default, #e9ebed);
+  border-bottom: 1px solid var(--awsui-color-border-control-default, #aab7b8);
 }
 
 .awsui-modal-header-title .awsui-icon-button {
