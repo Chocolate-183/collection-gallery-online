@@ -1717,6 +1717,24 @@ a:focus {
   border-color: #334155;
 }
 
+/* Responsive Styles for Desktop (Modal 16:10 Aspect Ratio Size) */
+@media (min-width: 769px) {
+  .awsui-modal {
+    width: 90%;
+    max-width: 640px;
+    aspect-ratio: 16 / 10;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .awsui-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+}
+
 /* Responsive Styles for Mobile/Tablet */
 @media (max-width: 768px) {
   .awsui-side-navigation {

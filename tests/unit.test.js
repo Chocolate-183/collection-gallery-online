@@ -136,3 +136,13 @@ test('Status & Exhibition Helpers', () => {
   assert.equal(isCollectionHidden({ status: '不顯示' }), true);
   assert.equal(isCollectionHidden({ status: '開放中' }), false);
 });
+
+test('CSS Stylesheet - Desktop Modal 16:10 Aspect Ratio Size', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const cssPath = path.resolve('styles.css');
+  const cssContent = fs.readFileSync(cssPath, 'utf8');
+
+  assert(cssContent.includes('@media (min-width: 769px)'), 'Should contain desktop media query @media (min-width: 769px)');
+  assert(cssContent.includes('aspect-ratio: 16 / 10;'), 'Should define 16:10 aspect ratio for desktop modal size');
+});
