@@ -9,8 +9,8 @@
   font-synthesis: none;
   
   --awsui-color-background-layout-main: #f2f3f3;
-  --awsui-color-background-container-content: #ffffff;
-  --awsui-color-background-header: #0f1b2a;
+  --awsui-color-background-container-content: rgba(255, 255, 255, 0.85);
+  --awsui-color-background-header: rgba(15, 27, 42, 0.88);
   
   --awsui-color-border-divider-default: #eaedd1;
   --awsui-color-border-item-default: #e9ebed;
@@ -41,6 +41,8 @@
 body {
   font-family: var(--awsui-font-family);
   background-color: var(--awsui-color-background-layout-main);
+  background: radial-gradient(circle at 10% 10%, rgba(15, 108, 224, 0.07), transparent 45%), radial-gradient(circle at 90% 85%, rgba(99, 102, 241, 0.06), transparent 45%), var(--awsui-color-background-layout-main);
+  background-attachment: fixed;
   color: var(--awsui-color-text-body-default);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -76,6 +78,8 @@ a:focus {
 /* Navigation Bar */
 .awsui-top-navigation {
   background-color: var(--awsui-color-background-header);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   color: #ffffff;
   padding: 0 24px;
   height: 56px;
@@ -159,6 +163,8 @@ a:focus {
   width: 240px;
   min-width: 240px;
   background-color: var(--awsui-color-background-container-content);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border-right: 1px solid var(--awsui-color-border-item-default);
   display: flex;
   flex-direction: column;
@@ -388,7 +394,9 @@ a:focus {
 
 /* KPI Summary Box */
 .awsui-kpi-box {
-  background: #ffffff;
+  background: var(--awsui-color-background-container-content);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   padding: 6px 12px;
@@ -419,7 +427,9 @@ a:focus {
 
 /* Cloudscape Cards Collection Container Component */
 .awsui-cards-container {
-  background: #ffffff;
+  background: var(--awsui-color-background-container-content);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   box-shadow: var(--awsui-shadow-container);
@@ -583,7 +593,9 @@ a:focus {
 
 /* Card Component with Uniform Fixed Height & Title Color #0f6ce0 */
 .awsui-card {
-  background: #ffffff;
+  background: var(--awsui-color-background-container-content);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   padding: 16px;
@@ -1010,7 +1022,9 @@ a:focus {
 }
 
 .awsui-modal {
-  background: #ffffff;
+  background: var(--awsui-color-background-container-content);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-radius: var(--awsui-border-radius-container);
   width: 90%;
   max-width: 520px;
@@ -1158,6 +1172,8 @@ a:focus {
   margin-top: 16px;
   padding: 20px;
   background-color: var(--awsui-color-background-container-content, #ffffff);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid var(--awsui-color-border-item-default, #e9ebed);
   border-radius: var(--awsui-border-radius-container, 8px);
   box-shadow: var(--awsui-shadow-container);
@@ -1189,6 +1205,8 @@ a:focus {
 
 .awsui-welcome-hero {
   background-color: var(--awsui-color-background-container-content);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   padding: 40px 36px;
@@ -1333,6 +1351,8 @@ a:focus {
 
 .awsui-welcome-card {
   background-color: var(--awsui-color-background-container-content);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   padding: 24px;
@@ -1458,6 +1478,8 @@ a:focus {
 
 .awsui-feature-card {
   background-color: var(--awsui-color-background-container-content);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   padding: 20px;
@@ -1495,8 +1517,8 @@ a:focus {
    ========================================================================== */
 [data-theme="dark"] {
   --awsui-color-background-layout-main: #090d12;
-  --awsui-color-background-container-content: #111c2b;
-  --awsui-color-background-header: #0a1018;
+  --awsui-color-background-container-content: rgba(17, 28, 43, 0.85);
+  --awsui-color-background-header: rgba(10, 16, 24, 0.88);
 
   --awsui-color-border-divider-default: #1e2d42;
   --awsui-color-border-item-default: #1d2a3a;
@@ -1511,8 +1533,13 @@ a:focus {
 }
 
 /* Dark Mode Component Overrides */
+[data-theme="dark"] body {
+  background: radial-gradient(circle at 10% 10%, rgba(15, 108, 224, 0.15), transparent 45%), radial-gradient(circle at 90% 85%, rgba(99, 102, 241, 0.12), transparent 45%), #090d12;
+  background-attachment: fixed;
+}
+
 [data-theme="dark"] .awsui-side-navigation {
-  background-color: #0d1520;
+  background-color: rgba(13, 21, 32, 0.85);
   border-color: #1d2a3a;
 }
 
