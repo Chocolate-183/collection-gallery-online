@@ -193,6 +193,7 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('border-top: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-created-time should have a top border line');
   assert(cssContent.includes('grid-template-columns: 1.2fr 1fr;'), 'awsui-modal-created-time should use grid layout with ID column around middle-right');
   assert(cssContent.includes('.awsui-modal-meta-item'), 'Should define .awsui-modal-meta-item selector');
+  assert(cssContent.includes('#modal-created-at,\n#modal-id {\n  font-weight: 400;\n  color: var(--awsui-color-text-body-secondary, #687078);'), 'footer metadata values should match secondary text color');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {

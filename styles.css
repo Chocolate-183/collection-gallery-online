@@ -1178,7 +1178,7 @@ a:focus {
 #modal-created-at,
 #modal-id {
   font-weight: 400;
-  color: var(--awsui-color-text-body-default, #16191f);
+  color: var(--awsui-color-text-body-secondary, #687078);
 }
 
 /* Toast Message */
