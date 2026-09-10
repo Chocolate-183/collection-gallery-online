@@ -1157,22 +1157,26 @@ a:focus {
   margin-top: 20px;
   padding-top: 12px;
   border-top: 1px solid var(--awsui-color-border-control-default, #aab7b8);
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  font-size: 15px;
 }
 
-.awsui-modal-meta-block {
+.awsui-modal-meta-item {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
 }
 
-.awsui-modal-meta-value,
+.awsui-modal-meta-label {
+  font-weight: 600;
+  color: var(--awsui-color-text-body-secondary, #687078);
+}
+
 #modal-created-at,
 #modal-id {
-  font-size: 15px;
   font-weight: 400;
   color: var(--awsui-color-text-body-default, #16191f);
 }
