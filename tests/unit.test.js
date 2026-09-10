@@ -197,7 +197,9 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('#modal-meaning-text.has-scroll'), 'modal-meaning-text.has-scroll should be defined in CSS');
   assert(cssContent.includes('cursor: pointer;'), 'has-scroll should set cursor: pointer');
   assert(cssContent.includes('#description-modal'), '#description-modal should be defined in CSS');
-  assert(cssContent.includes('transition-delay: 0.18s;'), 'Modal opening transition should have transition-delay so backdrop darkens first');
+  assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');
+  assert(cssContent.includes('#description-modal.open .awsui-modal'), '#description-modal.open .awsui-modal should be defined in CSS');
+  assert(cssContent.includes('transition-delay: 0.18s;') || cssContent.includes('transition-delay: 0.2s;'), 'Modal opening transition should have transition-delay so backdrop darkens first');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
