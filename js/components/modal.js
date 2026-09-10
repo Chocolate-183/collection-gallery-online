@@ -278,31 +278,12 @@ export function openDescriptionModal(rowIndex, updateHash = true) {
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec) return;
 
-  const titleElem = document.getElementById('description-modal-title');
-  const readingSectionElem = document.getElementById('description-modal-reading-section');
-  const readingElem = document.getElementById('description-modal-reading-row');
   const descTextElem = document.getElementById('description-modal-text');
-  const createdAtElem = document.getElementById('description-modal-created-at');
-  const idElem = document.getElementById('description-modal-id');
   const modal = document.getElementById('description-modal');
 
-  if (titleElem) {
-    titleElem.innerText = rec.ja_term || '--';
-  }
-  if (readingElem) {
-    if (rec.reading) {
-      readingElem.innerText = rec.reading;
-      if (readingSectionElem) readingSectionElem.style.display = 'block';
-    } else {
-      readingElem.innerText = '';
-      if (readingSectionElem) readingSectionElem.style.display = 'none';
-    }
-  }
   if (descTextElem) {
     descTextElem.innerText = rec.tw_translation || '（無說明內容）';
   }
-  if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
-  if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
 
   if (modal) {
     modal.classList.add('open');

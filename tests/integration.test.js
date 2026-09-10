@@ -241,23 +241,13 @@ test('Collection Modal Integration - HTML Structure and Click Handlers', () => {
 
 test('Description Modal Component & Interaction Logic', async () => {
   const mockDescModal = createMockElement();
-  const mockTitle = createMockElement();
-  const mockReadingSec = createMockElement({ style: { display: 'none' } });
-  const mockReadingRow = createMockElement();
   const mockDescText = createMockElement();
-  const mockCreatedAt = createMockElement();
-  const mockId = createMockElement();
   const mockMeaning = createMockElement({ clientHeight: 100, scrollHeight: 200, 'data-row-index': '1' });
   mockMeaning.classList.add('has-scroll');
 
   mockDOM({
     'description-modal': mockDescModal,
-    'description-modal-title': mockTitle,
-    'description-modal-reading-section': mockReadingSec,
-    'description-modal-reading-row': mockReadingRow,
     'description-modal-text': mockDescText,
-    'description-modal-created-at': mockCreatedAt,
-    'description-modal-id': mockId,
     'modal-meaning-text': mockMeaning
   });
 
@@ -272,11 +262,7 @@ test('Description Modal Component & Interaction Logic', async () => {
   // Test opening Description Modal directly
   openDescriptionModal(1, false);
   assert(mockDescModal.classes.has('open'));
-  assert.equal(mockTitle.innerText, '測試詞彙');
-  assert.equal(mockReadingRow.innerText, 'チェシー');
   assert.equal(mockDescText.innerText, '測試詳細說明內容');
-  assert.equal(mockCreatedAt.innerText, '2024-01-01');
-  assert.equal(mockId.innerText, 'J101');
 
   closeDescriptionModal(false);
   assert(!mockDescModal.classes.has('open'));
