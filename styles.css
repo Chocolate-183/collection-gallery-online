@@ -47,6 +47,18 @@ body {
   padding-bottom: 60px;
 }
 
+a {
+  color: var(--awsui-color-text-interactive-default, #0f6ce0);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover,
+a:focus {
+  color: #094694;
+  text-decoration: none;
+}
+
 /* Cloudscape SVG Icon */
 .awsui-icon {
   display: inline-block;
@@ -88,6 +100,13 @@ body {
   gap: 10px;
   font-weight: 400;
   font-size: 17px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.awsui-brand-title:hover {
+  color: #4da2ff;
+  text-decoration: none;
 }
 
 .awsui-brand-icon-box {
@@ -1346,7 +1365,8 @@ body {
 }
 
 .awsui-welcome-card-title:hover {
-  text-decoration: underline;
+  color: #094694;
+  text-decoration: none;
 }
 
 .awsui-welcome-card-tags {
@@ -1414,7 +1434,7 @@ body {
 
 .awsui-welcome-card-action:hover {
   color: #094694;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Features Grid */
@@ -1672,6 +1692,12 @@ body {
 [data-theme="dark"] .awsui-welcome-card-title,
 [data-theme="dark"] .awsui-welcome-card-action {
   color: #4da2ff;
+}
+
+[data-theme="dark"] .awsui-welcome-card-title:hover,
+[data-theme="dark"] .awsui-welcome-card-action:hover {
+  color: #80c1ff;
+  text-decoration: none;
 }
 
 [data-theme="dark"] .awsui-welcome-card-icon,
