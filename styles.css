@@ -1722,9 +1722,9 @@ a:focus {
 @media (min-width: 769px) {
   .awsui-modal {
     width: 90%;
-    max-width: 440px;
+    max-width: 520px;
     aspect-ratio: 1 / 1;
-    max-height: 80vh;
+    max-height: 85vh;
     display: flex;
     flex-direction: column;
   }
