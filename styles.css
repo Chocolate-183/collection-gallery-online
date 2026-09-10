@@ -1341,6 +1341,12 @@ body {
   font-weight: 700;
   color: #0f6ce0;
   margin-bottom: 6px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.awsui-welcome-card-title:hover {
+  text-decoration: underline;
 }
 
 .awsui-welcome-card-tags {

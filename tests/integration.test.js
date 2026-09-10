@@ -148,3 +148,9 @@ test('Scroll Prevention on Modal Open or Hash Sync', () => {
   assert.equal(checkScrollCondition('welcome', null), true);
   assert.equal(checkScrollCondition('welcome', { type: 'click' }), true);
 });
+
+test('Welcome Card Title Click Handler Integration - Japanese Terms Title Click', () => {
+  const htmlContent = readFileSync(resolve('index.html'), 'utf-8');
+  assert(htmlContent.includes('id="welcome-card-title-japanese-terms"'));
+  assert(htmlContent.includes('onclick="switchCollection(\'japanese-terms\')"'));
+});
