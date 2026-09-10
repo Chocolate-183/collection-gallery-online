@@ -192,6 +192,7 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('.awsui-modal-created-time'), 'Should define .awsui-modal-created-time selector');
   assert(cssContent.includes('border-top: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-created-time should have a top border line');
   assert(cssContent.includes('justify-content: space-between;'), 'awsui-modal-created-time should use space-between layout');
+  assert(cssContent.includes('.awsui-modal-meta-block'), 'Should define .awsui-modal-meta-block selector');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
