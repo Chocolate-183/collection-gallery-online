@@ -149,7 +149,7 @@ test('Explore Recommendation Tag Truncation', () => {
   assert.equal(formatTag('日本特色'), '日本特色');
 });
 
-test('CSS Stylesheet - Desktop Small and Large Modal Sizes', async () => {
+test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', async () => {
   const fs = await import('node:fs');
   const path = await import('node:path');
   const cssPath = path.resolve('styles.css');
@@ -159,4 +159,5 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes', async () => {
   assert(cssContent.includes('.awsui-modal-sm'), 'Should define .awsui-modal-sm selector');
   assert(cssContent.includes('.awsui-modal-lg'), 'Should define .awsui-modal-lg selector');
   assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Modal should use 1:1 aspect ratio');
+  assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
 });
