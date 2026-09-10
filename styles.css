@@ -1152,26 +1152,28 @@ a:focus {
   transform: translateY(0);
 }
 
-/* Bottom Right Creation Time in Modal */
+/* Bottom Creation Time & ID Row in Modal */
 .awsui-modal-created-time {
-  margin-top: 24px;
-  text-align: right;
-  font-size: 13px;
-  color: #879596;
-  font-weight: 400;
-  letter-spacing: 0.2px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--awsui-color-border-control-default, #aab7b8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 15px;
 }
 
-.awsui-modal-created-time span,
+.awsui-modal-created-time .awsui-modal-meta-label {
+  font-weight: 600;
+  color: var(--awsui-color-text-body-secondary, #687078);
+  margin-right: 4px;
+}
+
 #modal-created-at,
 #modal-id {
-  color: #879596;
-}
-
-.awsui-modal-created-time .awsui-modal-meta-divider {
-  margin: 0 6px;
-  opacity: 0.5;
-  font-family: inherit;
+  font-weight: 400;
+  color: var(--awsui-color-text-body-default, #16191f);
 }
 
 /* Toast Message */
@@ -1730,13 +1732,6 @@ a:focus {
   background-color: rgba(77, 162, 255, 0.2);
   border-color: #4da2ff;
   color: #80beff;
-}
-
-[data-theme="dark"] .awsui-modal-created-time,
-[data-theme="dark"] .awsui-modal-created-time span,
-[data-theme="dark"] #modal-created-at,
-[data-theme="dark"] #modal-id {
-  color: #687078;
 }
 
 [data-theme="dark"] .awsui-toast {

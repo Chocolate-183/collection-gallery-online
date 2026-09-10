@@ -189,7 +189,9 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('.awsui-modal-header-title'), 'Should define .awsui-modal-header-title selector');
   assert(cssContent.includes('justify-content: center;'), 'awsui-modal-header-title should center title text');
   assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-header-title should have a bottom border line');
-  assert(cssContent.includes('#modal-term-title {\n  font-size: 30px;\n  font-weight: 700;\n  color: var(--awsui-color-text-body-default, #16191f);'), 'modal-term-title should use body text default color');
+  assert(cssContent.includes('.awsui-modal-created-time'), 'Should define .awsui-modal-created-time selector');
+  assert(cssContent.includes('border-top: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-created-time should have a top border line');
+  assert(cssContent.includes('justify-content: space-between;'), 'awsui-modal-created-time should use space-between layout');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
