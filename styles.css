@@ -1718,15 +1718,28 @@ a:focus {
   border-color: #334155;
 }
 
-/* Responsive Styles for Desktop (Modal 1:1 Aspect Ratio Size) */
+/* Responsive Styles for Desktop (Small & Large Modal Sizes) */
 @media (min-width: 769px) {
   .awsui-modal {
     width: 90%;
+    display: flex;
+    flex-direction: column;
+    transition: max-width 0.2s ease, aspect-ratio 0.2s ease;
+  }
+
+  /* Small Modal (default for term title <= 10 chars): 1:1 ratio */
+  .awsui-modal,
+  .awsui-modal.awsui-modal-sm {
     max-width: 520px;
     aspect-ratio: 1 / 1;
     max-height: 85vh;
-    display: flex;
-    flex-direction: column;
+  }
+
+  /* Large Modal (for term title > 10 chars): 16:10 ratio */
+  .awsui-modal.awsui-modal-lg {
+    max-width: 760px;
+    aspect-ratio: 16 / 10;
+    max-height: 88vh;
   }
 
   .awsui-modal-body {

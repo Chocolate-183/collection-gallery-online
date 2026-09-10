@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache } from '../data.js';
-import { escapeHtml } from '../utils.js';
+import { escapeHtml, getUnicodeLength } from '../utils.js';
 
 /**
  * Navigates directly to a target recommended term's detail modal.
@@ -100,7 +100,20 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
   }
 
-  if (modal) modal.classList.add('open');
+  if (modal) {
+    const modalBox = modal.querySelector('.awsui-modal');
+    if (modalBox) {
+      const termTitle = rec.ja_term || '';
+      if (getUnicodeLength(termTitle) > 10) {
+        modalBox.classList.add('awsui-modal-lg');
+        modalBox.classList.remove('awsui-modal-sm');
+      } else {
+        modalBox.classList.add('awsui-modal-sm');
+        modalBox.classList.remove('awsui-modal-lg');
+      }
+    }
+    modal.classList.add('open');
+  }
 
   if (updateHash) {
     const col = collectionsConfig[currentCollectionId];

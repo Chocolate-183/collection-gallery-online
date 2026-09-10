@@ -149,14 +149,15 @@ test('Explore Recommendation Tag Truncation', () => {
   assert.equal(formatTag('日本特色'), '日本特色');
 });
 
-test('CSS Stylesheet - Desktop Modal 1:1 Aspect Ratio Size', async () => {
+test('CSS Stylesheet - Desktop Small and Large Modal Sizes', async () => {
   const fs = await import('node:fs');
   const path = await import('node:path');
   const cssPath = path.resolve('styles.css');
   const cssContent = fs.readFileSync(cssPath, 'utf8');
 
   assert(cssContent.includes('@media (min-width: 769px)'), 'Should contain desktop media query @media (min-width: 769px)');
-  assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Should define 1:1 aspect ratio for desktop modal size');
-  assert(cssContent.includes('#modal-meaning-text'), 'Should target description text element');
-  assert(cssContent.includes('overflow-y: auto;'), 'Should enable internal scrolling for description text');
+  assert(cssContent.includes('.awsui-modal-sm'), 'Should define .awsui-modal-sm selector');
+  assert(cssContent.includes('.awsui-modal-lg'), 'Should define .awsui-modal-lg selector');
+  assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Small modal should use 1:1 aspect ratio');
+  assert(cssContent.includes('aspect-ratio: 16 / 10;'), 'Large modal should use 16:10 aspect ratio');
 });
