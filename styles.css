@@ -1718,13 +1718,13 @@ a:focus {
   border-color: #334155;
 }
 
-/* Responsive Styles for Desktop (Modal 10:16 Aspect Ratio Size) */
+/* Responsive Styles for Desktop (Modal 1:1 Aspect Ratio Size) */
 @media (min-width: 769px) {
   .awsui-modal {
     width: 90%;
-    max-width: 500px;
-    aspect-ratio: 10 / 16;
-    max-height: 85vh;
+    max-width: 440px;
+    aspect-ratio: 1 / 1;
+    max-height: 80vh;
     display: flex;
     flex-direction: column;
   }
