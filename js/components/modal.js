@@ -39,6 +39,36 @@ export function navigateToTerm(term) {
   location.hash = `#/${colName}/${term}`;
 }
 
+/**
+ * Checks if the Japanese meaning-text content exceeds 5 lines.
+ * @param {string} text - Explanation / translation text
+ * @param {HTMLElement} [meaningElem] - Optional DOM element for measuring scroll height
+ * @returns {boolean} True if line count exceeds 5 lines
+ */
+export function checkMeaningExceedsFiveLines(text, meaningElem) {
+  if (!text) return false;
+
+  // 1. Explicit line breaks in raw string
+  const rawLines = text.split(/\r?\n/);
+  if (rawLines.length > 5) return true;
+
+  // 2. DOM measurement when rendered in browser (line-height is 18px * 1.65 = 29.7px)
+  if (meaningElem && meaningElem.clientHeight > 0) {
+    const linePixelHeight = 18 * 1.65;
+    // 5 lines height threshold = 5 * 29.7 = 148.5px
+    if (meaningElem.scrollHeight > (linePixelHeight * 5 + 1)) {
+      return true;
+    }
+  }
+
+  // 3. Estimated wrapped lines for long paragraphs (~25 CJK chars per line in modal)
+  let totalWrappedLines = 0;
+  for (const line of rawLines) {
+    totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
+  }
+  return totalWrappedLines > 5;
+}
+
 export function openMeaningModal(rowIndex, updateHash = true) {
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
@@ -102,9 +132,15 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
   if (modal) {
     const modalBox = modal.querySelector('.awsui-modal');
+    const isJapanese = (currentCollectionId === 'japanese-terms' || (titleElem && titleElem.getAttribute('data-collection') === 'japanese-terms'));
     if (modalBox) {
       const termTitle = rec.ja_term || '';
-      if (getUnicodeLength(termTitle) > 15) {
+      const meaningText = rec.tw_translation || '';
+
+      const titleExceedsLimit = getUnicodeLength(termTitle) > 15;
+      const meaningExceedsFiveLines = isJapanese && checkMeaningExceedsFiveLines(meaningText, meaningElem);
+
+      if (titleExceedsLimit || meaningExceedsFiveLines) {
         modalBox.classList.add('awsui-modal-lg');
         modalBox.classList.remove('awsui-modal-sm');
       } else {
@@ -113,6 +149,19 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       }
     }
     modal.classList.add('open');
+
+    if (modalBox && isJapanese && meaningElem && rec.tw_translation) {
+      const checkLines = () => {
+        if (checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
+          modalBox.classList.add('awsui-modal-lg');
+          modalBox.classList.remove('awsui-modal-sm');
+        }
+      };
+      checkLines();
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(checkLines);
+      }
+    }
   }
 
   if (updateHash) {

@@ -154,3 +154,78 @@ test('Welcome Card Title Click Handler Integration - Japanese Terms Title Click'
   assert(htmlContent.includes('id="welcome-card-title-japanese-terms"'));
   assert(htmlContent.includes('onclick="switchCollection(\'japanese-terms\')"'));
 });
+
+test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Modal', async () => {
+  const mockClasses = new Set();
+  const mockModalBox = {
+    classList: {
+      add: (cls) => mockClasses.add(cls),
+      remove: (cls) => mockClasses.delete(cls),
+      contains: (cls) => mockClasses.has(cls)
+    }
+  };
+
+  const mockModal = {
+    classList: { add: () => {}, remove: () => {} },
+    querySelector: (sel) => sel === '.awsui-modal' ? mockModalBox : null
+  };
+
+  let meaningScrollHeight = 100;
+  let meaningClientHeight = 100;
+  const mockMeaningElem = {
+    innerText: '',
+    get scrollHeight() { return meaningScrollHeight; },
+    get clientHeight() { return meaningClientHeight; },
+    dataset: {}
+  };
+
+  const mockTitleElem = { innerText: '', setAttribute: (k, v) => { mockTitleElem[k] = v; }, getAttribute: (k) => mockTitleElem[k] };
+  const mockReadingElem = { innerText: '', setAttribute: () => {} };
+  const mockReadingSection = { style: {} };
+
+  const originalGetElementById = global.document?.getElementById;
+  global.document = global.document || {};
+  global.document.getElementById = (id) => {
+    if (id === 'detail-modal') return mockModal;
+    if (id === 'modal-meaning-text') return mockMeaningElem;
+    if (id === 'modal-term-title') return mockTitleElem;
+    if (id === 'modal-reading-row') return mockReadingElem;
+    if (id === 'modal-reading-section') return mockReadingSection;
+    return { innerText: '', setAttribute: () => {}, style: {} };
+  };
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal, checkMeaningExceedsFiveLines } = await import('../js/components/modal.js');
+
+  assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4'), false);
+  assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4\n5\n6'), true);
+
+  // Case 1: Japanese term <= 5 lines -> small modal
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ row_index: 1, ja_term: '測試', tw_translation: '1\n2\n3\n4' }]
+  });
+  meaningScrollHeight = 100;
+  meaningClientHeight = 100;
+  mockClasses.clear();
+  openMeaningModal(1, false);
+  assert(mockClasses.has('awsui-modal-sm'));
+  assert(!mockClasses.has('awsui-modal-lg'));
+
+  // Case 2: Japanese term > 5 lines -> upgraded to large modal
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ row_index: 2, ja_term: '測試', tw_translation: '1\n2\n3\n4\n5\n6' }]
+  });
+  meaningScrollHeight = 200;
+  meaningClientHeight = 100;
+  mockClasses.clear();
+  openMeaningModal(2, false);
+  assert(mockClasses.has('awsui-modal-lg'));
+  assert(!mockClasses.has('awsui-modal-sm'));
+
+  if (originalGetElementById) {
+    global.document.getElementById = originalGetElementById;
+  }
+});
+
