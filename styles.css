@@ -1078,6 +1078,15 @@ a:focus {
   line-height: 1.65;
   white-space: pre-wrap;
   min-height: calc(18px * 1.65 * 5); /* at least 5 lines of text height */
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, border-color 0.2s ease, padding 0.2s ease;
+}
+
+#modal-meaning-text.is-multiline {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ebed;
+  border-radius: 8px;
+  padding: 12px 14px;
 }
 
 /* Recommended Items Section in Modal */
@@ -1681,6 +1690,11 @@ a:focus {
 
 [data-theme="dark"] #modal-term-title {
   color: #4da2ff !important;
+}
+
+[data-theme="dark"] #modal-meaning-text.is-multiline {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="dark"] .awsui-modal .awsui-icon-button {

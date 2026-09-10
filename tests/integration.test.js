@@ -170,12 +170,27 @@ test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Moda
     querySelector: (sel) => sel === '.awsui-modal' ? mockModalBox : null
   };
 
+  const meaningClasses = new Set();
   let meaningScrollHeight = 100;
   let meaningClientHeight = 100;
   const mockMeaningElem = {
     innerText: '',
     get scrollHeight() { return meaningScrollHeight; },
     get clientHeight() { return meaningClientHeight; },
+    classList: {
+      add: (cls) => meaningClasses.add(cls),
+      remove: (cls) => meaningClasses.delete(cls),
+      contains: (cls) => meaningClasses.has(cls),
+      toggle: (cls, force) => {
+        if (force === undefined) {
+          meaningClasses.has(cls) ? meaningClasses.delete(cls) : meaningClasses.add(cls);
+        } else if (force) {
+          meaningClasses.add(cls);
+        } else {
+          meaningClasses.delete(cls);
+        }
+      }
+    },
     dataset: {}
   };
 
@@ -223,6 +238,19 @@ test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Moda
   openMeaningModal(2, false);
   assert(mockClasses.has('awsui-modal-lg'));
   assert(!mockClasses.has('awsui-modal-sm'));
+  assert(meaningClasses.has('is-multiline'));
+
+  // Case 3: Single line term -> does not trigger is-multiline
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ row_index: 3, ja_term: '測試', tw_translation: '單行說明' }]
+  });
+  meaningScrollHeight = 29;
+  meaningClientHeight = 29;
+  mockClasses.clear();
+  meaningClasses.clear();
+  openMeaningModal(3, false);
+  assert(!meaningClasses.has('is-multiline'));
 
   if (originalGetElementById) {
     global.document.getElementById = originalGetElementById;

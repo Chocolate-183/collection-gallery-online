@@ -161,4 +161,20 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('max-width: 640px;'), 'Large modal should use reduced max-width of 640px');
   assert(cssContent.includes('aspect-ratio: 1 / 1;'), 'Modal should use 1:1 aspect ratio');
   assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
+  assert(cssContent.includes('#modal-meaning-text.is-multiline'), 'modal-meaning-text.is-multiline should be defined in CSS');
+  assert(cssContent.includes('background-color: #f8f9fa;'), 'is-multiline should set a subtle background color #f8f9fa');
+});
+
+test('Modal Meaning Text Multiline Detection', async () => {
+  const { checkMeaningExceedsOneLine } = await import('../js/components/modal.js');
+
+  // Single line text
+  assert.equal(checkMeaningExceedsOneLine('單行說明'), false);
+  assert.equal(checkMeaningExceedsOneLine(''), false);
+
+  // Multiline with newlines
+  assert.equal(checkMeaningExceedsOneLine('第一行\n第二行'), true);
+
+  // Multiline with long CJK text
+  assert.equal(checkMeaningExceedsOneLine('這是一段非常非常非常非常非常非常非常非常非常長超過二十五個字的說明內容'), true);
 });

@@ -69,6 +69,36 @@ export function checkMeaningExceedsFiveLines(text, meaningElem) {
   return totalWrappedLines > 5;
 }
 
+/**
+ * Checks if the meaning-text content exceeds 1 line.
+ * @param {string} text - Explanation / translation text
+ * @param {HTMLElement} [meaningElem] - Optional DOM element for measuring scroll height
+ * @returns {boolean} True if line count exceeds 1 line
+ */
+export function checkMeaningExceedsOneLine(text, meaningElem) {
+  if (!text) return false;
+
+  // 1. Explicit line breaks in raw string
+  const rawLines = text.split(/\r?\n/);
+  if (rawLines.length > 1) return true;
+
+  // 2. DOM measurement when rendered in browser (line-height is 18px * 1.65 = 29.7px)
+  if (meaningElem && meaningElem.clientHeight > 0) {
+    const linePixelHeight = 18 * 1.65;
+    // 1 line height threshold = 29.7px + buffer = 35.6px
+    if (meaningElem.scrollHeight > (linePixelHeight * 1.2)) {
+      return true;
+    }
+  }
+
+  // 3. Estimated wrapped lines for long paragraphs (~25 CJK chars per line in modal)
+  let totalWrappedLines = 0;
+  for (const line of rawLines) {
+    totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
+  }
+  return totalWrappedLines > 1;
+}
+
 export function openMeaningModal(rowIndex, updateHash = true) {
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
@@ -96,7 +126,17 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       if (readingSectionElem) readingSectionElem.style.display = 'none';
     }
   }
-  if (meaningElem) meaningElem.innerText = rec.tw_translation || '（無說明內容）';
+  if (meaningElem) {
+    meaningElem.innerText = rec.tw_translation || '（無說明內容）';
+    const meaningText = rec.tw_translation || '';
+    if (meaningElem.classList) {
+      if (checkMeaningExceedsOneLine(meaningText, meaningElem)) {
+        meaningElem.classList.add('is-multiline');
+      } else {
+        meaningElem.classList.remove('is-multiline');
+      }
+    }
+  }
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
 
@@ -150,9 +190,16 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
     modal.classList.add('open');
 
-    if (modalBox && isJapanese && meaningElem && rec.tw_translation) {
+    if (modalBox && meaningElem && rec.tw_translation) {
       const checkLines = () => {
-        if (checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
+        if (meaningElem.classList) {
+          if (checkMeaningExceedsOneLine(rec.tw_translation, meaningElem)) {
+            meaningElem.classList.add('is-multiline');
+          } else {
+            meaningElem.classList.remove('is-multiline');
+          }
+        }
+        if (isJapanese && checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
           modalBox.classList.add('awsui-modal-lg');
           modalBox.classList.remove('awsui-modal-sm');
         }
