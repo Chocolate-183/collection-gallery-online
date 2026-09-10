@@ -290,5 +290,5 @@ test('Description Modal HTML Structure', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   assert(html.includes('id="description-modal"'), 'Should contain description-modal backdrop element');
   assert(html.includes('onclick="closeDescriptionModal()"'), 'Should contain closeDescriptionModal call');
-  assert(html.includes('id="modal-meaning-text" onclick="handleMeaningTextClick()"'), 'modal-meaning-text should have handleMeaningTextClick handler');
+  assert(html.includes('id="modal-meaning-text" ondblclick="handleMeaningTextClick()"'), 'modal-meaning-text should have ondblclick handleMeaningTextClick handler');
 });

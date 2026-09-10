@@ -225,14 +225,8 @@ export function openMeaningModal(rowIndex, updateHash = true) {
           }
           if (checkMeaningHasScroll(meaningElem)) {
             meaningElem.classList.add('has-scroll');
-            if (typeof meaningElem.setAttribute === 'function') {
-              meaningElem.setAttribute('title', '點擊開啟 Description Modal 顯示完整內容');
-            }
           } else {
             meaningElem.classList.remove('has-scroll');
-            if (typeof meaningElem.removeAttribute === 'function') {
-              meaningElem.removeAttribute('title');
-            }
           }
         }
         if (isJapanese && checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
