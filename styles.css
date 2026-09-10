@@ -1717,12 +1717,12 @@ a:focus {
   border-color: #334155;
 }
 
-/* Responsive Styles for Desktop (Modal 9:16 Aspect Ratio Size) */
+/* Responsive Styles for Desktop (Modal 10:16 Aspect Ratio Size) */
 @media (min-width: 769px) {
   .awsui-modal {
     width: 90%;
-    max-width: 480px;
-    aspect-ratio: 9 / 16;
+    max-width: 500px;
+    aspect-ratio: 10 / 16;
     max-height: 85vh;
     display: flex;
     flex-direction: column;
