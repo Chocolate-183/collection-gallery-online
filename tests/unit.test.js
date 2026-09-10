@@ -186,6 +186,9 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('border: none;'), 'is-multiline should have border: none');
   assert(cssContent.includes('border-radius: 0;'), 'is-multiline should have border-radius: 0');
   assert(cssContent.includes('margin-left: -14px;'), 'is-multiline should offset margin-left to align text with Description title');
+  assert(cssContent.includes('.awsui-modal-header-title'), 'Should define .awsui-modal-header-title selector');
+  assert(cssContent.includes('justify-content: center;'), 'awsui-modal-header-title should center title text');
+  assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-item-default'), 'awsui-modal-header-title should have a bottom border line');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
