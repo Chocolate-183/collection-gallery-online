@@ -5,7 +5,7 @@ import { VIEWS } from './constants.js';
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection } from './components/sidebar.js';
-import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal } from './components/modal.js';
 import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
@@ -194,6 +194,7 @@ export function handleHashRoute() {
     colKey = '大陸特色詞彙';
   }
   let termName = parts.length >= 2 ? parts[1] : null;
+  let subAction = parts.length >= 3 ? parts[2] : null;
 
   const targetColId = Object.keys(collectionsConfig).find(
     key => key === colKey || collectionsConfig[key].name === colKey
@@ -228,6 +229,11 @@ export function handleHashRoute() {
           store.set({ invalidTerm: null });
           closeCollectionModal(false);
           openMeaningModal(rec.row_index, false);
+          if (subAction === 'description') {
+            openDescriptionModal(rec.row_index, false);
+          } else {
+            closeDescriptionModal(false);
+          }
         } else {
           closeDetailModal(false);
           closeCollectionModal(false);
@@ -250,6 +256,11 @@ export function handleHashRoute() {
     if (rec) {
       store.set({ invalidTerm: null });
       openMeaningModal(rec.row_index, false);
+      if (termName === 'description') {
+        openDescriptionModal(rec.row_index, false);
+      } else {
+        closeDescriptionModal(false);
+      }
     } else {
       closeDetailModal(false);
       store.set({ invalidTerm: colKey });

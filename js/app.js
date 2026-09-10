@@ -9,7 +9,7 @@ import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from '.
 import { initSidebarState, toggleSidebar, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
 import { renderCards } from './components/cards.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
-import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick } from './components/modal.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
 
@@ -47,6 +47,10 @@ Object.assign(window, {
   openCollectionModal,
   closeCollectionModal,
   closeCollectionModalOnBackdrop,
+  openDescriptionModal,
+  closeDescriptionModal,
+  closeDescriptionModalOnBackdrop,
+  handleMeaningTextClick,
   navigateToTerm,
   goToPage
 });
@@ -86,8 +90,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeDetailModal();
-      closeCollectionModal();
+      const descModal = document.getElementById('description-modal');
+      if (descModal && descModal.classList.contains('open')) {
+        closeDescriptionModal();
+      } else {
+        closeDetailModal();
+        closeCollectionModal();
+      }
     }
   });
 

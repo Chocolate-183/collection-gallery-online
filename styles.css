@@ -1114,6 +1114,19 @@ a:focus {
   margin-top: 6px;
 }
 
+#modal-meaning-text.has-scroll {
+  cursor: pointer;
+}
+
+#modal-meaning-text.has-scroll:hover {
+  outline: 1px dashed var(--awsui-color-text-accent, #0f6ce0);
+  outline-offset: -2px;
+}
+
+#description-modal {
+  z-index: 1050;
+}
+
 /* Recommended Items Section in Modal */
 .awsui-modal-recommendations-section {
   margin-top: 20px;
@@ -1722,6 +1735,10 @@ a:focus {
 
 [data-theme="dark"] #modal-meaning-text.is-multiline {
   background-color: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] #modal-meaning-text.has-scroll:hover {
+  outline-color: #4da2ff;
 }
 
 [data-theme="dark"] .awsui-modal .awsui-icon-button {

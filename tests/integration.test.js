@@ -238,3 +238,57 @@ test('Collection Modal Integration - HTML Structure and Click Handlers', () => {
   assert(html.includes('id="collection-header-title"'), 'Should contain collection header title element');
   assert(html.includes('onclick="openCollectionModal()"'), 'Header title should trigger openCollectionModal()');
 });
+
+test('Description Modal Component & Interaction Logic', async () => {
+  const mockDescModal = createMockElement();
+  const mockTitle = createMockElement();
+  const mockReadingSec = createMockElement({ style: { display: 'none' } });
+  const mockReadingRow = createMockElement();
+  const mockDescText = createMockElement();
+  const mockCreatedAt = createMockElement();
+  const mockId = createMockElement();
+  const mockMeaning = createMockElement({ clientHeight: 100, scrollHeight: 200, 'data-row-index': '1' });
+  mockMeaning.classList.add('has-scroll');
+
+  mockDOM({
+    'description-modal': mockDescModal,
+    'description-modal-title': mockTitle,
+    'description-modal-reading-section': mockReadingSec,
+    'description-modal-reading-row': mockReadingRow,
+    'description-modal-text': mockDescText,
+    'description-modal-created-at': mockCreatedAt,
+    'description-modal-id': mockId,
+    'modal-meaning-text': mockMeaning
+  });
+
+  const { store } = await import('../js/state.js');
+  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ row_index: 1, ja_term: '測試詞彙', reading: 'チェシー', tw_translation: '測試詳細說明內容', created_at: '2024-01-01', id: 'J101' }]
+  });
+
+  // Test opening Description Modal directly
+  openDescriptionModal(1, false);
+  assert(mockDescModal.classes.has('open'));
+  assert.equal(mockTitle.innerText, '測試詞彙');
+  assert.equal(mockReadingRow.innerText, 'チェシー');
+  assert.equal(mockDescText.innerText, '測試詳細說明內容');
+  assert.equal(mockCreatedAt.innerText, '2024-01-01');
+  assert.equal(mockId.innerText, 'J101');
+
+  closeDescriptionModal(false);
+  assert(!mockDescModal.classes.has('open'));
+
+  // Test handleMeaningTextClick
+  handleMeaningTextClick();
+  assert(mockDescModal.classes.has('open'));
+});
+
+test('Description Modal HTML Structure', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  assert(html.includes('id="description-modal"'), 'Should contain description-modal backdrop element');
+  assert(html.includes('onclick="closeDescriptionModal()"'), 'Should contain closeDescriptionModal call');
+  assert(html.includes('id="modal-meaning-text" onclick="handleMeaningTextClick()"'), 'modal-meaning-text should have handleMeaningTextClick handler');
+});
