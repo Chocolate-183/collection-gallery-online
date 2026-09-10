@@ -1085,7 +1085,7 @@ a:focus {
 #modal-meaning-text.is-multiline {
   background-color: #f8f9fa;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 12px 14px;
   margin-left: -14px;
   margin-right: -14px;
