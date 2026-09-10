@@ -1087,6 +1087,9 @@ a:focus {
   border: none;
   border-radius: 8px;
   padding: 12px 14px;
+  margin-left: -14px;
+  margin-right: -14px;
+  margin-top: 6px;
 }
 
 /* Recommended Items Section in Modal */
