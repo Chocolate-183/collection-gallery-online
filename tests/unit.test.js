@@ -203,6 +203,7 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('--awsui-shadow-card-hover: none;'), '--awsui-shadow-card-hover should be set to none');
   assert(cssContent.includes('.awsui-card:hover {\n  border-color: #0f6ce0;\n  box-shadow: none;\n}'), '.awsui-card:hover should have box-shadow: none');
   assert(cssContent.includes('.awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '.awsui-recommendation-chip:hover should set border-color to currentColor');
+  assert(cssContent.includes('[data-theme="dark"] .awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '[data-theme="dark"] .awsui-recommendation-chip:hover should set border-color to currentColor');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {

@@ -1752,6 +1752,10 @@ a:focus {
   border-color: rgba(255, 255, 255, 0.15);
 }
 
+[data-theme="dark"] .awsui-recommendation-chip:hover {
+  border-color: currentColor;
+}
+
 [data-theme="dark"] .awsui-toast {
   background-color: #1e2d42;
   color: #ffffff;
