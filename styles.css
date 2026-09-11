@@ -29,7 +29,7 @@
   --awsui-border-radius-tag: 4px;
 
   --awsui-shadow-container: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --awsui-shadow-card-hover: 0 4px 12px rgba(15, 108, 224, 0.12);
+  --awsui-shadow-card-hover: none;
 }
 
 * {
@@ -603,13 +603,12 @@ a:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
   position: relative;
 }
 .awsui-card:hover {
-  transform: translateY(-2px);
   border-color: #0f6ce0;
-  box-shadow: var(--awsui-shadow-card-hover);
+  box-shadow: none;
 }
 
 /* Empty State Card */
@@ -1022,7 +1021,8 @@ a:focus {
 }
 
 .awsui-modal {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   width: 90%;
   max-width: 520px;
@@ -1164,14 +1164,7 @@ a:focus {
 }
 
 .awsui-recommendation-chip:hover {
-  background-color: #e0f0ff;
-  border-color: #0f6ce0;
-  color: #0f6ce0;
-  transform: translateY(-1px);
-}
-
-.awsui-recommendation-chip:active {
-  transform: translateY(0);
+  border-color: currentColor;
 }
 
 /* Bottom Creation Time & ID Row in Modal */
@@ -1428,7 +1421,7 @@ a:focus {
 
 .awsui-welcome-card:hover {
   border-color: #0f6ce0;
-  box-shadow: var(--awsui-shadow-card-hover);
+  box-shadow: var(--awsui-shadow-container);
 }
 
 .awsui-welcome-card-header {
@@ -1591,7 +1584,7 @@ a:focus {
   --awsui-color-text-form-label: #8b949e;
 
   --awsui-shadow-container: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --awsui-shadow-card-hover: 0 4px 16px rgba(77, 162, 255, 0.2);
+  --awsui-shadow-card-hover: none;
 }
 
 /* Dark Mode Component Overrides */
@@ -1749,6 +1742,10 @@ a:focus {
   color: var(--awsui-color-text-body-default) !important;
 }
 
+[data-theme="dark"] .awsui-modal-backdrop {
+  background: rgba(0, 0, 0, 0.70);
+}
+
 [data-theme="dark"] .awsui-recommendation-chip {
   color: #aab7b8;
   background-color: transparent;
@@ -1756,9 +1753,7 @@ a:focus {
 }
 
 [data-theme="dark"] .awsui-recommendation-chip:hover {
-  background-color: rgba(77, 162, 255, 0.2);
-  border-color: #4da2ff;
-  color: #80beff;
+  border-color: currentColor;
 }
 
 [data-theme="dark"] .awsui-toast {
@@ -1848,8 +1843,33 @@ a:focus {
   }
 }
 
+.awsui-sidebar-overlay {
+  display: none;
+}
+
 /* Responsive Styles for Mobile/Tablet */
 @media (max-width: 768px) {
+  .awsui-sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 27, 42, 0.4);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .awsui-app-layout-wrapper.sidebar-open .awsui-sidebar-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .awsui-side-navigation {
     position: fixed;
     top: 56px;
@@ -1857,6 +1877,7 @@ a:focus {
     left: 0;
     margin-left: -240px;
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
   }
 
   .awsui-app-layout-wrapper.sidebar-open .awsui-side-navigation {
@@ -1873,6 +1894,136 @@ a:focus {
 
   .awsui-about-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Mobile Modal Sizing, Scrollbar & Typography Adjustments (iPhone 17e Baseline) */
+  .awsui-modal-backdrop {
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .awsui-modal,
+  .awsui-modal.awsui-modal-sm,
+  .awsui-modal.awsui-modal-lg {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100dvh - 24px);
+    max-height: calc(100vh - 24px);
+    aspect-ratio: auto !important;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .awsui-modal-body {
+    padding: 18px 14px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .awsui-modal-description-section {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    margin-top: 10px !important;
+  }
+
+  #modal-meaning-text {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0 !important;
+    -webkit-overflow-scrolling: touch;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  #modal-meaning-text.is-multiline {
+    padding: 10px 12px !important;
+    margin-left: -12px !important;
+    margin-right: -12px !important;
+    margin-top: 4px !important;
+  }
+
+  #collection-modal-description {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: 240px;
+    -webkit-overflow-scrolling: touch;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  #description-modal-text {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: calc(100dvh - 120px);
+    -webkit-overflow-scrolling: touch;
+    margin-top: 10px !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .awsui-modal-header-title {
+    font-size: 18px !important;
+    margin-top: -4px !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 8px !important;
+  }
+
+  #modal-term-title,
+  #collection-modal-title {
+    font-size: 20px !important;
+    line-height: 1.3 !important;
+  }
+
+  #collection-modal-entitle,
+  #collection-modal-subtitle {
+    font-size: 13px !important;
+  }
+
+  #modal-reading-section {
+    margin-top: 10px !important;
+  }
+
+  #modal-reading-row {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    min-height: auto !important;
+  }
+
+  .awsui-modal-section-title,
+  .awsui-modal-recommendations-title {
+    font-size: 13px !important;
+  }
+
+  .awsui-modal-recommendations-section {
+    margin-top: 10px !important;
+  }
+
+  .awsui-recommendation-chip {
+    font-size: 13px !important;
+    padding: 4px 10px !important;
+  }
+
+  .awsui-modal-created-time {
+    font-size: 12px !important;
+    margin-top: 12px !important;
+    padding-top: 8px !important;
+  }
+
+  .awsui-modal-meta-item,
+  .awsui-modal-meta-label,
+  #modal-created-at,
+  #modal-id,
+  #collection-modal-total-items,
+  #collection-modal-id {
+    font-size: 12px !important;
   }
 }
 

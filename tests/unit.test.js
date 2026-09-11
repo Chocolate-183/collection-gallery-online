@@ -200,6 +200,27 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');
   assert(cssContent.includes('#description-modal.open .awsui-modal'), '#description-modal.open .awsui-modal should be defined in CSS');
   assert(cssContent.includes('transition-delay: 0.18s;') || cssContent.includes('transition-delay: 0.2s;'), 'Modal opening transition should have transition-delay so backdrop darkens first');
+  assert(cssContent.includes('--awsui-shadow-card-hover: none;'), '--awsui-shadow-card-hover should be set to none');
+  assert(cssContent.includes('.awsui-card:hover {\n  border-color: #0f6ce0;\n  box-shadow: none;\n}'), '.awsui-card:hover should have box-shadow: none');
+  assert(cssContent.includes('.awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '.awsui-recommendation-chip:hover should set border-color to currentColor');
+  assert(cssContent.includes('[data-theme="dark"] .awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '[data-theme="dark"] .awsui-recommendation-chip:hover should set border-color to currentColor');
+});
+
+test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const cssPath = path.resolve('styles.css');
+  const cssContent = fs.readFileSync(cssPath, 'utf8');
+
+  assert(cssContent.includes('@media (max-width: 768px)'), 'Should contain mobile media query @media (max-width: 768px)');
+  assert(cssContent.includes('max-height: calc(100dvh - 24px);'), 'Mobile modal should constrain max-height with calc(100dvh - 24px)');
+  assert(cssContent.includes('overflow-y: auto;'), 'Mobile modal body/text should enable overflow-y scrolling');
+  assert(cssContent.includes('-webkit-overflow-scrolling: touch;'), 'Mobile modal body/text should use smooth touch scrolling');
+  assert(cssContent.includes('font-size: 18px !important;'), 'Mobile header title should reduce font size to 18px');
+  assert(cssContent.includes('font-size: 20px !important;'), 'Mobile modal term title should reduce font size to 20px');
+  assert(cssContent.includes('font-size: 15px !important;'), 'Mobile modal description text should reduce font size to 15px');
+  assert(cssContent.includes('font-size: 13px !important;'), 'Mobile recommendation chips and section titles should reduce font size to 13px');
+  assert(cssContent.includes('font-size: 12px !important;'), 'Mobile footer metadata row should reduce font size to 12px');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
