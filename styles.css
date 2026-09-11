@@ -29,7 +29,7 @@
   --awsui-border-radius-tag: 4px;
 
   --awsui-shadow-container: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --awsui-shadow-card-hover: 0 4px 12px rgba(15, 108, 224, 0.12);
+  --awsui-shadow-card-hover: none;
 }
 
 * {
@@ -609,7 +609,7 @@ a:focus {
 .awsui-card:hover {
   transform: translateY(-2px);
   border-color: #0f6ce0;
-  box-shadow: var(--awsui-shadow-card-hover);
+  box-shadow: none;
 }
 
 /* Empty State Card */
@@ -1428,7 +1428,7 @@ a:focus {
 
 .awsui-welcome-card:hover {
   border-color: #0f6ce0;
-  box-shadow: var(--awsui-shadow-card-hover);
+  box-shadow: var(--awsui-shadow-container);
 }
 
 .awsui-welcome-card-header {
@@ -1591,7 +1591,7 @@ a:focus {
   --awsui-color-text-form-label: #8b949e;
 
   --awsui-shadow-container: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --awsui-shadow-card-hover: 0 4px 16px rgba(77, 162, 255, 0.2);
+  --awsui-shadow-card-hover: none;
 }
 
 /* Dark Mode Component Overrides */
