@@ -41,6 +41,44 @@ export function initSidebarState() {
   }
 }
 
+export function closeSidebarOnMobile() {
+  const wrapper = document.getElementById('app-layout-wrapper');
+  if (!wrapper) return;
+  const win = typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : null);
+  const isMobile = win && typeof win.innerWidth === 'number' ? win.innerWidth <= 768 : true;
+  if (isMobile) {
+    wrapper.classList.add('sidebar-collapsed');
+    wrapper.classList.remove('sidebar-open');
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, 'true');
+    }
+  }
+}
+
+export function initSidebarOutsideClick() {
+  if (typeof document === 'undefined') return;
+  document.addEventListener('click', (e) => {
+    const wrapper = document.getElementById('app-layout-wrapper');
+    if (!wrapper) return;
+
+    const win = typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : null);
+    const isMobile = win && typeof win.innerWidth === 'number' ? win.innerWidth <= 768 : true;
+    const isSidebarOpen = wrapper.classList.contains('sidebar-open') || !wrapper.classList.contains('sidebar-collapsed');
+
+    if (isMobile && isSidebarOpen) {
+      const sidebar = (typeof document.querySelector === 'function') ? document.querySelector('.awsui-side-navigation') : document.getElementById('side-navigation');
+      const toggleBtn = document.getElementById('btn-toggle-sidebar');
+
+      const isOutsideSidebar = sidebar && typeof sidebar.contains === 'function' ? !sidebar.contains(e.target) : (sidebar !== e.target);
+      const isOutsideToggle = toggleBtn && typeof toggleBtn.contains === 'function' ? !toggleBtn.contains(e.target) : (toggleBtn !== e.target);
+
+      if (isOutsideSidebar && isOutsideToggle) {
+        closeSidebarOnMobile();
+      }
+    }
+  });
+}
+
 export function toggleSidebar() {
   const wrapper = document.getElementById('app-layout-wrapper');
   if (!wrapper) return;
@@ -51,6 +89,7 @@ export function toggleSidebar() {
 }
 
 export function switchCollection(collectionId, updateHash = true) {
+  closeSidebarOnMobile();
   if (!collectionsConfig[collectionId]) return;
 
   const col = collectionsConfig[collectionId];

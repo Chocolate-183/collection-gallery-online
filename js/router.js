@@ -4,7 +4,7 @@
 import { VIEWS } from './constants.js';
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
-import { switchCollection } from './components/sidebar.js';
+import { switchCollection, closeSidebarOnMobile } from './components/sidebar.js';
 import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal } from './components/modal.js';
 import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
@@ -41,6 +41,7 @@ function toggleViewElements(targetView) {
 }
 
 export function switchView(viewName, event, updateHash = true) {
+  closeSidebarOnMobile();
   if (event && event.preventDefault) event.preventDefault();
 
   const isClosed = !isGalleryOpen();

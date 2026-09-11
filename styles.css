@@ -1843,8 +1843,33 @@ a:focus {
   }
 }
 
+.awsui-sidebar-overlay {
+  display: none;
+}
+
 /* Responsive Styles for Mobile/Tablet */
 @media (max-width: 768px) {
+  .awsui-sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 27, 42, 0.4);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .awsui-app-layout-wrapper.sidebar-open .awsui-sidebar-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .awsui-side-navigation {
     position: fixed;
     top: 56px;
@@ -1852,6 +1877,7 @@ a:focus {
     left: 0;
     margin-left: -240px;
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
   }
 
   .awsui-app-layout-wrapper.sidebar-open .awsui-side-navigation {

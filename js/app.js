@@ -6,7 +6,7 @@ import { store } from './state.js';
 import { initTheme, toggleTheme, applyTheme } from './theme.js';
 import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
 import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from './filter.js';
-import { initSidebarState, toggleSidebar, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
+import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
 import { renderCards } from './components/cards.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick } from './components/modal.js';
@@ -29,6 +29,7 @@ Object.assign(window, {
   currentCollectionId: store.get().currentCollectionId,
   isGalleryOpen,
   toggleSidebar,
+  closeSidebarOnMobile,
   toggleTheme,
   switchView,
   switchCollection,
@@ -64,6 +65,7 @@ store.subscribe(state => {
 document.addEventListener('DOMContentLoaded', async () => {
   initTheme();
   initSidebarState();
+  initSidebarOutsideClick();
 
   await loadOpeningHours();
   renderScheduleGrid();

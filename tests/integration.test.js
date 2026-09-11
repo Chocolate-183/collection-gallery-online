@@ -94,6 +94,64 @@ test('UI Components - Sidebar Badge Display Logic', async () => {
   assert.equal(mockBadge.style.display, 'inline-block');
 });
 
+test('UI Components - Mobile Sidebar Outside Click & Auto-Collapse Logic', async () => {
+  const mockWrapper = createMockElement();
+  mockWrapper.classList.add('sidebar-open');
+  const mockSidebar = createMockElement();
+  const mockToggleBtn = createMockElement();
+
+  mockSidebar.contains = (target) => target === mockSidebar;
+  mockToggleBtn.contains = (target) => target === mockToggleBtn;
+
+  mockDOM({
+    'app-layout-wrapper': mockWrapper,
+    'side-navigation': mockSidebar,
+    'btn-toggle-sidebar': mockToggleBtn
+  });
+
+  const { closeSidebarOnMobile, initSidebarOutsideClick } = await import('../js/components/sidebar.js');
+
+  // Simulate mobile window width <= 768
+  const originalInnerWidth = global.innerWidth;
+  global.innerWidth = 393; // iPhone 17e width
+
+  // 1. Explicit closeSidebarOnMobile
+  closeSidebarOnMobile();
+  assert(mockWrapper.classList.contains('sidebar-collapsed'));
+  assert(!mockWrapper.classList.contains('sidebar-open'));
+
+  // Reset to open
+  mockWrapper.classList.add('sidebar-open');
+  mockWrapper.classList.remove('sidebar-collapsed');
+
+  // 2. Simulate outside click event handler
+  let clickHandler = null;
+  const originalAddEventListener = global.document.addEventListener;
+  global.document.addEventListener = (event, listener) => {
+    if (event === 'click') clickHandler = listener;
+  };
+
+  initSidebarOutsideClick();
+  assert.equal(typeof clickHandler, 'function');
+
+  // Click inside sidebar -> should NOT close
+  clickHandler({ target: mockSidebar });
+  assert(mockWrapper.classList.contains('sidebar-open'));
+
+  // Click on toggle button -> should NOT close via listener
+  clickHandler({ target: mockToggleBtn });
+  assert(mockWrapper.classList.contains('sidebar-open'));
+
+  // Click outside sidebar -> SHOULD close
+  const mockOutsideElem = createMockElement();
+  clickHandler({ target: mockOutsideElem });
+  assert(mockWrapper.classList.contains('sidebar-collapsed'));
+  assert(!mockWrapper.classList.contains('sidebar-open'));
+
+  global.innerWidth = originalInnerWidth;
+  global.document.addEventListener = originalAddEventListener;
+});
+
 test('UI Components - Empty State & Card Rendering', async () => {
   const mockContainer = createMockElement();
   mockDOM({ 'card-grid': mockContainer });
