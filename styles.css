@@ -1750,6 +1750,10 @@ a:focus {
   color: var(--awsui-color-text-body-default) !important;
 }
 
+[data-theme="dark"] .awsui-modal-backdrop {
+  background: rgba(0, 0, 0, 0.70);
+}
+
 [data-theme="dark"] .awsui-recommendation-chip {
   color: #aab7b8;
   background-color: transparent;
