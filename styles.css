@@ -1022,7 +1022,7 @@ a:focus {
 }
 
 .awsui-modal {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.96);
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   width: 90%;
