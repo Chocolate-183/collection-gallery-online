@@ -1023,8 +1023,6 @@ a:focus {
 
 .awsui-modal {
   background: var(--awsui-color-background-container-content);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   width: 90%;
