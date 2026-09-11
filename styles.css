@@ -1869,6 +1869,136 @@ a:focus {
   .awsui-about-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Mobile Modal Sizing, Scrollbar & Typography Adjustments (iPhone 17e Baseline) */
+  .awsui-modal-backdrop {
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .awsui-modal,
+  .awsui-modal.awsui-modal-sm,
+  .awsui-modal.awsui-modal-lg {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100dvh - 24px);
+    max-height: calc(100vh - 24px);
+    aspect-ratio: auto !important;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .awsui-modal-body {
+    padding: 18px 14px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .awsui-modal-description-section {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    margin-top: 10px !important;
+  }
+
+  #modal-meaning-text {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0 !important;
+    -webkit-overflow-scrolling: touch;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  #modal-meaning-text.is-multiline {
+    padding: 10px 12px !important;
+    margin-left: -12px !important;
+    margin-right: -12px !important;
+    margin-top: 4px !important;
+  }
+
+  #collection-modal-description {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: 240px;
+    -webkit-overflow-scrolling: touch;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  #description-modal-text {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: calc(100dvh - 120px);
+    -webkit-overflow-scrolling: touch;
+    margin-top: 10px !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .awsui-modal-header-title {
+    font-size: 18px !important;
+    margin-top: -4px !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 8px !important;
+  }
+
+  #modal-term-title,
+  #collection-modal-title {
+    font-size: 20px !important;
+    line-height: 1.3 !important;
+  }
+
+  #collection-modal-entitle,
+  #collection-modal-subtitle {
+    font-size: 13px !important;
+  }
+
+  #modal-reading-section {
+    margin-top: 10px !important;
+  }
+
+  #modal-reading-row {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    min-height: auto !important;
+  }
+
+  .awsui-modal-section-title,
+  .awsui-modal-recommendations-title {
+    font-size: 13px !important;
+  }
+
+  .awsui-modal-recommendations-section {
+    margin-top: 10px !important;
+  }
+
+  .awsui-recommendation-chip {
+    font-size: 13px !important;
+    padding: 4px 10px !important;
+  }
+
+  .awsui-modal-created-time {
+    font-size: 12px !important;
+    margin-top: 12px !important;
+    padding-top: 8px !important;
+  }
+
+  .awsui-modal-meta-item,
+  .awsui-modal-meta-label,
+  #modal-created-at,
+  #modal-id,
+  #collection-modal-total-items,
+  #collection-modal-id {
+    font-size: 12px !important;
+  }
 }
 
 /* Cloudscape Loading Spinner */
