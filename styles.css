@@ -1164,9 +1164,7 @@ a:focus {
 }
 
 .awsui-recommendation-chip:hover {
-  background-color: #e0f0ff;
-  border-color: #0f6ce0;
-  color: #0f6ce0;
+  border-color: currentColor;
 }
 
 /* Bottom Creation Time & ID Row in Modal */
@@ -1752,12 +1750,6 @@ a:focus {
   color: #aab7b8;
   background-color: transparent;
   border-color: rgba(255, 255, 255, 0.15);
-}
-
-[data-theme="dark"] .awsui-recommendation-chip:hover {
-  background-color: rgba(77, 162, 255, 0.2);
-  border-color: #4da2ff;
-  color: #80beff;
 }
 
 [data-theme="dark"] .awsui-toast {
