@@ -1907,10 +1907,10 @@ a:focus {
   .awsui-modal.awsui-modal-lg {
     width: 88%;
     max-width: 400px;
-    height: calc(100vh - 120px);
-    height: calc(100dvh - 120px);
-    max-height: calc(100vh - 120px);
-    max-height: calc(100dvh - 120px);
+    height: calc(100vh - 180px);
+    height: calc(100dvh - 180px);
+    max-height: calc(100vh - 180px);
+    max-height: calc(100dvh - 180px);
     aspect-ratio: auto !important;
     display: flex;
     flex-direction: column;

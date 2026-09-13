@@ -213,8 +213,8 @@ test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', asyn
   const cssContent = fs.readFileSync(cssPath, 'utf8');
 
   assert(cssContent.includes('@media (max-width: 768px)'), 'Should contain mobile media query @media (max-width: 768px)');
-  assert(cssContent.includes('height: calc(100dvh - 120px);'), 'Mobile modal should set fixed height with calc(100dvh - 120px)');
-  assert(cssContent.includes('max-height: calc(100dvh - 120px);'), 'Mobile modal should constrain max-height with calc(100dvh - 120px)');
+  assert(cssContent.includes('height: calc(100dvh - 180px);'), 'Mobile modal should set fixed height with calc(100dvh - 180px)');
+  assert(cssContent.includes('max-height: calc(100dvh - 180px);'), 'Mobile modal should constrain max-height with calc(100dvh - 180px)');
   assert(cssContent.includes('overflow-y: auto;'), 'Mobile modal body/text should enable overflow-y scrolling');
   assert(cssContent.includes('-webkit-overflow-scrolling: touch;'), 'Mobile modal body/text should use smooth touch scrolling');
   assert(cssContent.includes('font-size: 18px !important;'), 'Mobile header title should reduce font size to 18px');
