@@ -215,6 +215,8 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('[data-theme="dark"] .awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '[data-theme="dark"] .awsui-recommendation-chip:hover should set border-color to currentColor');
   assert(cssContent.includes('.awsui-card:hover .awsui-card-header-title,\n.awsui-card:hover .awsui-reading-subtext,\n.awsui-card:hover .awsui-meaning-value,\n.awsui-card:hover .awsui-expand-hint'), 'All card text elements should change color on card hover');
   assert(cssContent.includes('[data-theme="dark"] .awsui-card:hover .awsui-card-header-title,\n[data-theme="dark"] .awsui-card:hover .awsui-reading-subtext,\n[data-theme="dark"] .awsui-card:hover .awsui-meaning-value,\n[data-theme="dark"] .awsui-card:hover .awsui-expand-hint'), 'All card text elements in dark theme should change color to #4da2ff on card hover');
+  assert(cssContent.includes('.awsui-card.active,\n.awsui-card:active {\n  background: #0f6ce0 !important;'), 'Card active state should invert background color to #0f6ce0');
+  assert(cssContent.includes('.awsui-card.active .awsui-card-header-title'), 'Card active state should invert text color to white');
 });
 
 test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', async () => {

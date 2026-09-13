@@ -603,7 +603,7 @@ a:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   position: relative;
 }
 .awsui-card:hover {
@@ -616,6 +616,35 @@ a:focus {
 .awsui-card:hover .awsui-meaning-value,
 .awsui-card:hover .awsui-expand-hint {
   color: #0f6ce0;
+}
+
+/* Card Active State: inverted background and text colors */
+.awsui-card.active,
+.awsui-card:active {
+  background: #0f6ce0 !important;
+  border-color: #0f6ce0 !important;
+  color: #ffffff !important;
+}
+
+.awsui-card.active .awsui-card-header-title,
+.awsui-card.active .awsui-reading-subtext,
+.awsui-card.active .awsui-meaning-value,
+.awsui-card.active .awsui-expand-hint,
+.awsui-card:active .awsui-card-header-title,
+.awsui-card:active .awsui-reading-subtext,
+.awsui-card:active .awsui-meaning-value,
+.awsui-card:active .awsui-expand-hint {
+  color: #ffffff !important;
+}
+
+.awsui-card.active .awsui-card-divider,
+.awsui-card:active .awsui-card-divider {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.awsui-card.active .awsui-expand-hint,
+.awsui-card:active .awsui-expand-hint {
+  background: linear-gradient(to right, transparent, #0f6ce0 60%) !important;
 }
 
 /* Empty State Card */
@@ -1675,6 +1704,38 @@ a:focus {
 [data-theme="dark"] .awsui-card:hover .awsui-meaning-value,
 [data-theme="dark"] .awsui-card:hover .awsui-expand-hint {
   color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-card:hover .awsui-card-divider {
+  background-color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-card.active,
+[data-theme="dark"] .awsui-card:active {
+  background-color: #0f6ce0 !important;
+  border-color: #0f6ce0 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-card-header-title,
+[data-theme="dark"] .awsui-card.active .awsui-reading-subtext,
+[data-theme="dark"] .awsui-card.active .awsui-meaning-value,
+[data-theme="dark"] .awsui-card.active .awsui-expand-hint,
+[data-theme="dark"] .awsui-card:active .awsui-card-header-title,
+[data-theme="dark"] .awsui-card:active .awsui-reading-subtext,
+[data-theme="dark"] .awsui-card:active .awsui-meaning-value,
+[data-theme="dark"] .awsui-card:active .awsui-expand-hint {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-card-divider,
+[data-theme="dark"] .awsui-card:active .awsui-card-divider {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-expand-hint,
+[data-theme="dark"] .awsui-card:active .awsui-expand-hint {
+  background: linear-gradient(to right, transparent, #0f6ce0 60%) !important;
 }
 
 [data-theme="dark"] .awsui-meaning-value:hover,
