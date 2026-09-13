@@ -1021,7 +1021,7 @@ a:focus {
 }
 
 .awsui-modal {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   width: 90%;
@@ -1628,9 +1628,13 @@ a:focus {
 
 [data-theme="dark"] .awsui-kpi-box,
 [data-theme="dark"] .awsui-cards-container,
-[data-theme="dark"] .awsui-card,
-[data-theme="dark"] .awsui-modal {
+[data-theme="dark"] .awsui-card {
   background-color: var(--awsui-color-background-container-content);
+  border-color: var(--awsui-color-border-item-default);
+}
+
+[data-theme="dark"] .awsui-modal {
+  background-color: #111c2b;
   border-color: var(--awsui-color-border-item-default);
 }
 

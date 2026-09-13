@@ -204,6 +204,8 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('transition-delay: 0.18s;') || cssContent.includes('transition-delay: 0.2s;'), 'Modal opening transition should have transition-delay so backdrop darkens first');
   assert(cssContent.includes('--awsui-shadow-card-hover: none;'), '--awsui-shadow-card-hover should be set to none');
   assert(cssContent.includes('.awsui-card:hover {\n  border-color: #0f6ce0;\n  box-shadow: none;\n}'), '.awsui-card:hover should have box-shadow: none');
+  assert(cssContent.includes('.awsui-modal {\n  background: #ffffff;'), 'Modal background should be opaque white #ffffff in light mode');
+  assert(cssContent.includes('[data-theme="dark"] .awsui-modal {\n  background-color: #111c2b;'), 'Modal background should be opaque #111c2b in dark mode');
   assert(cssContent.includes('.awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '.awsui-recommendation-chip:hover should set border-color to currentColor');
   assert(cssContent.includes('[data-theme="dark"] .awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '[data-theme="dark"] .awsui-recommendation-chip:hover should set border-color to currentColor');
 });
