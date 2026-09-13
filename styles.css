@@ -603,12 +603,48 @@ a:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   position: relative;
 }
 .awsui-card:hover {
   border-color: #0f6ce0;
   box-shadow: none;
+}
+
+.awsui-card:hover .awsui-card-header-title,
+.awsui-card:hover .awsui-reading-subtext,
+.awsui-card:hover .awsui-meaning-value,
+.awsui-card:hover .awsui-expand-hint {
+  color: #0f6ce0;
+}
+
+/* Card Active State: inverted background and text colors */
+.awsui-card.active,
+.awsui-card:active {
+  background: #0f6ce0 !important;
+  border-color: #0f6ce0 !important;
+  color: #ffffff !important;
+}
+
+.awsui-card.active .awsui-card-header-title,
+.awsui-card.active .awsui-reading-subtext,
+.awsui-card.active .awsui-meaning-value,
+.awsui-card.active .awsui-expand-hint,
+.awsui-card:active .awsui-card-header-title,
+.awsui-card:active .awsui-reading-subtext,
+.awsui-card:active .awsui-meaning-value,
+.awsui-card:active .awsui-expand-hint {
+  color: #ffffff !important;
+}
+
+.awsui-card.active .awsui-card-divider,
+.awsui-card:active .awsui-card-divider {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.awsui-card.active .awsui-expand-hint,
+.awsui-card:active .awsui-expand-hint {
+  background: linear-gradient(to right, transparent, #0f6ce0 60%) !important;
 }
 
 /* Empty State Card */
@@ -661,6 +697,7 @@ a:focus {
   text-overflow: ellipsis;
   margin-bottom: 2px;
   line-height: 1.25;
+  transition: color 0.15s ease;
 }
 
 /* Font override for Mainland China terms */
@@ -693,6 +730,7 @@ a:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   height: 18px;
+  transition: color 0.15s ease;
 }
 
 [data-collection="china-terms"] .awsui-reading-subtext {
@@ -724,6 +762,7 @@ a:focus {
   overflow: hidden;
   cursor: pointer;
   white-space: pre-line;
+  transition: color 0.15s ease;
 }
 .awsui-meaning-value:hover {
   color: #0f6ce0;
@@ -739,6 +778,7 @@ a:focus {
   align-items: center;
   cursor: pointer;
   color: #0f6ce0;
+  transition: color 0.15s ease;
 }
 
 /* Pagination Footer */
@@ -1021,7 +1061,7 @@ a:focus {
 }
 
 .awsui-modal {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   width: 90%;
@@ -1029,13 +1069,13 @@ a:focus {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
   overflow: hidden;
   opacity: 0;
-  transform: scale(0.95);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .awsui-modal-backdrop.open .awsui-modal {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0) scale(1);
   transition-delay: 0.18s;
 }
 
@@ -1067,7 +1107,7 @@ a:focus {
   font-weight: 600;
   font-size: 15px;
   color: var(--awsui-color-text-body-secondary, #687078);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   padding-bottom: 0;
   border-bottom: none;
 }
@@ -1111,7 +1151,7 @@ a:focus {
   padding: 12px 14px;
   margin-left: -14px;
   margin-right: -14px;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 #modal-meaning-text.has-scroll {
@@ -1121,18 +1161,18 @@ a:focus {
 #description-modal {
   z-index: 3000;
   background: transparent;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 #description-modal .awsui-modal {
   opacity: 0;
-  transform: scale(0.95);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px) scale(0.96);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #description-modal.open .awsui-modal {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0) scale(1);
 }
 
 /* Recommended Items Section in Modal */
@@ -1628,9 +1668,13 @@ a:focus {
 
 [data-theme="dark"] .awsui-kpi-box,
 [data-theme="dark"] .awsui-cards-container,
-[data-theme="dark"] .awsui-card,
-[data-theme="dark"] .awsui-modal {
+[data-theme="dark"] .awsui-card {
   background-color: var(--awsui-color-background-container-content);
+  border-color: var(--awsui-color-border-item-default);
+}
+
+[data-theme="dark"] .awsui-modal {
+  background-color: #111c2b;
   border-color: var(--awsui-color-border-item-default);
 }
 
@@ -1653,6 +1697,45 @@ a:focus {
 
 [data-theme="dark"] .awsui-card-header-title {
   color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-card:hover .awsui-card-header-title,
+[data-theme="dark"] .awsui-card:hover .awsui-reading-subtext,
+[data-theme="dark"] .awsui-card:hover .awsui-meaning-value,
+[data-theme="dark"] .awsui-card:hover .awsui-expand-hint {
+  color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-card:hover .awsui-card-divider {
+  background-color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-card.active,
+[data-theme="dark"] .awsui-card:active {
+  background-color: #0f6ce0 !important;
+  border-color: #0f6ce0 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-card-header-title,
+[data-theme="dark"] .awsui-card.active .awsui-reading-subtext,
+[data-theme="dark"] .awsui-card.active .awsui-meaning-value,
+[data-theme="dark"] .awsui-card.active .awsui-expand-hint,
+[data-theme="dark"] .awsui-card:active .awsui-card-header-title,
+[data-theme="dark"] .awsui-card:active .awsui-reading-subtext,
+[data-theme="dark"] .awsui-card:active .awsui-meaning-value,
+[data-theme="dark"] .awsui-card:active .awsui-expand-hint {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-card-divider,
+[data-theme="dark"] .awsui-card:active .awsui-card-divider {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-expand-hint,
+[data-theme="dark"] .awsui-card:active .awsui-expand-hint {
+  background: linear-gradient(to right, transparent, #0f6ce0 60%) !important;
 }
 
 [data-theme="dark"] .awsui-meaning-value:hover,
@@ -1801,7 +1884,7 @@ a:focus {
     width: 90%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.2s ease, aspect-ratio 0.2s ease;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.2s ease, aspect-ratio 0.2s ease;
   }
 
   /* Small Modal (default for term title <= 15 chars): 1:1.1 ratio */
@@ -1840,6 +1923,18 @@ a:focus {
     overflow-y: auto;
     min-height: 0;
     padding-right: 6px;
+  }
+
+  /* Description Modal Desktop Position: Left Edge Aligned to Center (50vw) */
+  #description-modal {
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  #description-modal .awsui-modal {
+    margin-left: 50vw;
+    max-width: calc(50vw - 32px);
   }
 }
 
@@ -1905,10 +2000,12 @@ a:focus {
   .awsui-modal,
   .awsui-modal.awsui-modal-sm,
   .awsui-modal.awsui-modal-lg {
-    width: 100%;
-    max-width: 100%;
-    max-height: calc(100dvh - 24px);
-    max-height: calc(100vh - 24px);
+    width: 88%;
+    max-width: 400px;
+    height: calc(100vh - 180px);
+    height: calc(100dvh - 180px);
+    max-height: calc(100vh - 180px);
+    max-height: calc(100dvh - 180px);
     aspect-ratio: auto !important;
     display: flex;
     flex-direction: column;
@@ -1947,7 +2044,7 @@ a:focus {
     padding: 10px 12px !important;
     margin-left: -12px !important;
     margin-right: -12px !important;
-    margin-top: 4px !important;
+    margin-top: 2px !important;
   }
 
   #collection-modal-description {
@@ -1970,7 +2067,7 @@ a:focus {
   }
 
   .awsui-modal-header-title {
-    font-size: 18px !important;
+    font-size: 22px !important;
     margin-top: -4px !important;
     margin-bottom: 12px !important;
     padding-bottom: 8px !important;
@@ -2009,6 +2106,10 @@ a:focus {
   .awsui-recommendation-chip {
     font-size: 13px !important;
     padding: 4px 10px !important;
+  }
+
+  .awsui-recommendation-chip:nth-child(n+4) {
+    display: none !important;
   }
 
   .awsui-modal-created-time {
