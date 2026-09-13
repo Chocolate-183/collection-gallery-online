@@ -170,6 +170,11 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       } else {
         meaningElem.classList.remove('is-multiline');
       }
+      if (checkMeaningHasScroll(meaningElem)) {
+        meaningElem.classList.add('has-scroll');
+      } else {
+        meaningElem.classList.remove('has-scroll');
+      }
     }
   }
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
@@ -225,31 +230,6 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       }
     }
     modal.classList.add('open');
-
-    if (modalBox && meaningElem && rec.tw_translation) {
-      const checkLines = () => {
-        if (meaningElem.classList) {
-          if (checkMeaningExceedsTwoLines(rec.tw_translation, meaningElem)) {
-            meaningElem.classList.add('is-multiline');
-          } else {
-            meaningElem.classList.remove('is-multiline');
-          }
-          if (checkMeaningHasScroll(meaningElem)) {
-            meaningElem.classList.add('has-scroll');
-          } else {
-            meaningElem.classList.remove('has-scroll');
-          }
-        }
-        if (isJapanese && checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
-          modalBox.classList.add('awsui-modal-lg');
-          modalBox.classList.remove('awsui-modal-sm');
-        }
-      };
-      checkLines();
-      if (typeof requestAnimationFrame === 'function') {
-        requestAnimationFrame(checkLines);
-      }
-    }
   }
 
   if (updateHash) {
