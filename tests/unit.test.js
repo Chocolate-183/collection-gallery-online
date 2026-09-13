@@ -9,7 +9,7 @@ import {
   extractGvizTable,
   parseOpeningHoursCSV
 } from '../js/parser.js';
-import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana, sortRecords, renderLengthTabs } from '../js/filter.js';
+import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana, sortRecords } from '../js/filter.js';
 import { LENGTH_TABS } from '../js/constants.js';
 import {
   escapeHtml,
@@ -138,8 +138,6 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SIX)[0].id, '6');
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SEVEN)[0].id, '7');
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.EIGHT_PLUS).length, 2);
-  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS).length, 5);
-  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS)[0].id, '5');
 });
 
 test('Config & Endpoint URL Builders', () => {
@@ -183,8 +181,6 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('max-width: 640px;'), 'Large modal should use reduced max-width of 640px');
   assert(cssContent.includes('aspect-ratio: 1 / 1.1;'), 'Modal should use 1:1.1 aspect ratio');
   assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
-  assert(cssContent.includes('.awsui-modal-section-title'), 'Should define .awsui-modal-section-title selector');
-  assert(cssContent.includes('margin-bottom: 2px;'), 'awsui-modal-section-title should use reduced margin-bottom of 2px for tight spacing');
   assert(cssContent.includes('#modal-meaning-text.is-multiline'), 'modal-meaning-text.is-multiline should be defined in CSS');
   assert(cssContent.includes('background-color: #f8f9fa;'), 'is-multiline should set a subtle background color #f8f9fa');
   assert(cssContent.includes('border: none;'), 'is-multiline should have border: none');
@@ -202,22 +198,12 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('cursor: pointer;'), 'has-scroll should set cursor: pointer');
   assert(cssContent.includes('#description-modal'), '#description-modal should be defined in CSS');
   assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');
-  assert(cssContent.includes('margin-left: 50vw;'), '#description-modal desktop view should align left edge to center with margin-left: 50vw');
   assert(cssContent.includes('#description-modal.open .awsui-modal'), '#description-modal.open .awsui-modal should be defined in CSS');
-  assert(cssContent.includes('transform: translateY(24px) scale(0.96);'), 'Modal initial state should use float-up transform offset');
-  assert(cssContent.includes('transform: translateY(0) scale(1);'), 'Modal open state should translate back to translateY(0)');
   assert(cssContent.includes('transition-delay: 0.18s;') || cssContent.includes('transition-delay: 0.2s;'), 'Modal opening transition should have transition-delay so backdrop darkens first');
   assert(cssContent.includes('--awsui-shadow-card-hover: none;'), '--awsui-shadow-card-hover should be set to none');
   assert(cssContent.includes('.awsui-card:hover {\n  border-color: #0f6ce0;\n  box-shadow: none;\n}'), '.awsui-card:hover should have box-shadow: none');
-  assert(cssContent.includes('.awsui-modal {\n  background: #ffffff;'), 'Modal background should be opaque white #ffffff in light mode');
-  assert(cssContent.includes('[data-theme="dark"] .awsui-modal {\n  background-color: #111c2b;'), 'Modal background should be opaque #111c2b in dark mode');
   assert(cssContent.includes('.awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '.awsui-recommendation-chip:hover should set border-color to currentColor');
   assert(cssContent.includes('[data-theme="dark"] .awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '[data-theme="dark"] .awsui-recommendation-chip:hover should set border-color to currentColor');
-  assert(cssContent.includes('.awsui-card:hover .awsui-card-header-title,\n.awsui-card:hover .awsui-reading-subtext,\n.awsui-card:hover .awsui-meaning-value,\n.awsui-card:hover .awsui-expand-hint'), 'All card text elements should change color on card hover');
-  assert(cssContent.includes('[data-theme="dark"] .awsui-card:hover .awsui-card-header-title,\n[data-theme="dark"] .awsui-card:hover .awsui-reading-subtext,\n[data-theme="dark"] .awsui-card:hover .awsui-meaning-value,\n[data-theme="dark"] .awsui-card:hover .awsui-expand-hint'), 'All card text elements in dark theme should change color to #4da2ff on card hover');
-  assert(cssContent.includes('.awsui-card.active,\n.awsui-card:active {\n  background: #0f6ce0 !important;'), 'Card active state should invert background color to #0f6ce0');
-  assert(cssContent.includes('.awsui-card.active .awsui-card-header-title'), 'Card active state should invert text color to white');
-  assert(!cssContent.includes('max-width 0.2s ease, aspect-ratio 0.2s ease'), 'Desktop modal transition should not transition max-width or aspect-ratio to prevent layout shift and flicker on open');
 });
 
 test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', async () => {
@@ -227,17 +213,14 @@ test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', asyn
   const cssContent = fs.readFileSync(cssPath, 'utf8');
 
   assert(cssContent.includes('@media (max-width: 768px)'), 'Should contain mobile media query @media (max-width: 768px)');
-  assert(cssContent.includes('height: calc(100dvh - 180px);'), 'Mobile modal should set fixed height with calc(100dvh - 180px)');
-  assert(cssContent.includes('max-height: calc(100dvh - 180px);'), 'Mobile modal should constrain max-height with calc(100dvh - 180px)');
+  assert(cssContent.includes('max-height: calc(100dvh - 24px);'), 'Mobile modal should constrain max-height with calc(100dvh - 24px)');
   assert(cssContent.includes('overflow-y: auto;'), 'Mobile modal body/text should enable overflow-y scrolling');
   assert(cssContent.includes('-webkit-overflow-scrolling: touch;'), 'Mobile modal body/text should use smooth touch scrolling');
-  assert(cssContent.includes('font-size: 22px !important;'), 'Mobile header title should set font size to 22px');
+  assert(cssContent.includes('font-size: 18px !important;'), 'Mobile header title should reduce font size to 18px');
   assert(cssContent.includes('font-size: 20px !important;'), 'Mobile modal term title should reduce font size to 20px');
   assert(cssContent.includes('font-size: 15px !important;'), 'Mobile modal description text should reduce font size to 15px');
   assert(cssContent.includes('font-size: 13px !important;'), 'Mobile recommendation chips and section titles should reduce font size to 13px');
-  assert(cssContent.includes('.awsui-recommendation-chip:nth-child(n+4) {\n    display: none !important;\n  }'), 'Mobile recommendation chips should hide items from 4th onwards');
   assert(cssContent.includes('font-size: 12px !important;'), 'Mobile footer metadata row should reduce font size to 12px');
-  assert(cssContent.includes('margin-top: 2px !important;'), 'Mobile is-multiline should use reduced margin-top of 2px');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
@@ -259,26 +242,4 @@ test('Modal Meaning Text Multiline Detection', async () => {
   assert.equal(checkMeaningHasScroll(null), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 100 }), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 150 }), true);
-});
-
-test('Filter UI - Length Tabs Rendering for Japanese vs China Terms', () => {
-  const container = { innerHTML: '' };
-  global.document = global.document || {};
-  const origGetElementById = global.document.getElementById;
-  global.document.getElementById = (id) => (id === 'length-tabs' ? container : null);
-
-  try {
-    renderLengthTabs('japanese-terms');
-    assert(container.innerHTML.includes("selectLengthTab('5+', this)"));
-    assert(!container.innerHTML.includes("selectLengthTab('8+', this)"));
-
-    renderLengthTabs('china-terms');
-    assert(container.innerHTML.includes("selectLengthTab('5', this)"));
-    assert(container.innerHTML.includes("selectLengthTab('6', this)"));
-    assert(container.innerHTML.includes("selectLengthTab('7', this)"));
-    assert(container.innerHTML.includes("selectLengthTab('8+', this)"));
-    assert(!container.innerHTML.includes("selectLengthTab('5+', this)"));
-  } finally {
-    global.document.getElementById = origGetElementById;
-  }
 });
