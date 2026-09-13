@@ -336,3 +336,39 @@ test('Description Modal HTML Structure', () => {
   assert(html.includes('onclick="closeDescriptionModal()"'), 'Should contain closeDescriptionModal call');
   assert(html.includes('id="modal-meaning-text" ondblclick="handleMeaningTextClick()"'), 'modal-meaning-text should have ondblclick handleMeaningTextClick handler');
 });
+
+test('Explore Recommendation Items Limited to 3', async () => {
+  const mockRecSection = createMockElement({ style: { display: 'none' } });
+  const mockRecList = createMockElement();
+  const mockModalBox = createMockElement();
+  const mockModal = createMockElement({
+    querySelector: () => mockModalBox
+  });
+  const mockTitle = createMockElement();
+
+  mockDOM({
+    'detail-modal': mockModal,
+    'modal-term-title': mockTitle,
+    'modal-recommendations-section': mockRecSection,
+    'modal-recommendations-list': mockRecList
+  });
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'china-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '985',
+      tw_translation: '測試',
+      recommendations: ['211', '一本', '二本', '高考', '本科']
+    }]
+  });
+
+  openMeaningModal(1, false);
+
+  assert.equal(mockRecSection.style.display, 'block');
+  const chipMatches = mockRecList.innerHTML.match(/awsui-recommendation-chip/g) || [];
+  assert.equal(chipMatches.length, 3, 'Explore section should display at most 3 recommendation items');
+});

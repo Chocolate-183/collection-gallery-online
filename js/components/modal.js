@@ -179,6 +179,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
 
     if (recItems.length > 0) {
+      recItems = recItems.slice(0, 3);
       recListElem.innerHTML = recItems.map(item => {
         const chars = Array.from(item);
         const displayText = chars.length > 5 ? chars.slice(0, 5).join('') + '..' : item;
