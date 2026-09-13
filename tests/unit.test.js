@@ -217,7 +217,7 @@ test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', asyn
   assert(cssContent.includes('max-height: calc(100dvh - 180px);'), 'Mobile modal should constrain max-height with calc(100dvh - 180px)');
   assert(cssContent.includes('overflow-y: auto;'), 'Mobile modal body/text should enable overflow-y scrolling');
   assert(cssContent.includes('-webkit-overflow-scrolling: touch;'), 'Mobile modal body/text should use smooth touch scrolling');
-  assert(cssContent.includes('font-size: 18px !important;'), 'Mobile header title should reduce font size to 18px');
+  assert(cssContent.includes('font-size: 22px !important;'), 'Mobile header title should set font size to 22px');
   assert(cssContent.includes('font-size: 20px !important;'), 'Mobile modal term title should reduce font size to 20px');
   assert(cssContent.includes('font-size: 15px !important;'), 'Mobile modal description text should reduce font size to 15px');
   assert(cssContent.includes('font-size: 13px !important;'), 'Mobile recommendation chips and section titles should reduce font size to 13px');
