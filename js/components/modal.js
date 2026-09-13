@@ -163,19 +163,6 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';
-    const meaningText = rec.tw_translation || '';
-    if (meaningElem.classList) {
-      if (checkMeaningExceedsTwoLines(meaningText, meaningElem)) {
-        meaningElem.classList.add('is-multiline');
-      } else {
-        meaningElem.classList.remove('is-multiline');
-      }
-      if (checkMeaningHasScroll(meaningElem)) {
-        meaningElem.classList.add('has-scroll');
-      } else {
-        meaningElem.classList.remove('has-scroll');
-      }
-    }
   }
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
@@ -211,6 +198,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
   }
 
+  // Set Modal Box Size Class (sm vs lg) FIRST before measuring multiline/scroll heights
   if (modal) {
     const modalBox = modal.querySelector('.awsui-modal');
     const isJapanese = (currentCollectionId === 'japanese-terms' || (titleElem && titleElem.getAttribute('data-collection') === 'japanese-terms'));
@@ -229,6 +217,26 @@ export function openMeaningModal(rowIndex, updateHash = true) {
         modalBox.classList.remove('awsui-modal-lg');
       }
     }
+  }
+
+  // Apply multiline & scroll detection AFTER modal size class is set so DOM measurement uses target width
+  if (meaningElem) {
+    const meaningText = rec.tw_translation || '';
+    if (meaningElem.classList) {
+      if (checkMeaningExceedsTwoLines(meaningText, meaningElem)) {
+        meaningElem.classList.add('is-multiline');
+      } else {
+        meaningElem.classList.remove('is-multiline');
+      }
+      if (checkMeaningHasScroll(meaningElem)) {
+        meaningElem.classList.add('has-scroll');
+      } else {
+        meaningElem.classList.remove('has-scroll');
+      }
+    }
+  }
+
+  if (modal) {
     modal.classList.add('open');
   }
 
