@@ -5,7 +5,7 @@ import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { initTheme, toggleTheme, applyTheme } from './theme.js';
 import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
-import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab, renderLengthTabs } from './filter.js';
+import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
 import { renderCards } from './components/cards.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
@@ -42,7 +42,6 @@ Object.assign(window, {
   onPageSizeChange,
   selectKanaTab,
   selectLengthTab,
-  renderLengthTabs,
   openMeaningModal,
   closeDetailModal,
   closeDetailModalOnBackdrop,

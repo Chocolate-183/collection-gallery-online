@@ -128,16 +128,6 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec) return;
 
-  if (typeof document !== 'undefined') {
-    document.querySelectorAll('.awsui-card').forEach(card => {
-      if (card.getAttribute('data-row-index') === String(rowIndex)) {
-        card.classList.add('active');
-      } else {
-        card.classList.remove('active');
-      }
-    });
-  }
-
   const titleElem = document.getElementById('modal-term-title');
   const readingSectionElem = document.getElementById('modal-reading-section');
   const readingElem = document.getElementById('modal-reading-row');
@@ -163,6 +153,14 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';
+    const meaningText = rec.tw_translation || '';
+    if (meaningElem.classList) {
+      if (checkMeaningExceedsTwoLines(meaningText, meaningElem)) {
+        meaningElem.classList.add('is-multiline');
+      } else {
+        meaningElem.classList.remove('is-multiline');
+      }
+    }
   }
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
@@ -181,7 +179,6 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
 
     if (recItems.length > 0) {
-      recItems = recItems.slice(0, 5);
       recListElem.innerHTML = recItems.map(item => {
         const chars = Array.from(item);
         const displayText = chars.length > 5 ? chars.slice(0, 5).join('') + '..' : item;
@@ -198,7 +195,6 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
   }
 
-  // Set Modal Box Size Class (sm vs lg) FIRST before measuring multiline/scroll heights
   if (modal) {
     const modalBox = modal.querySelector('.awsui-modal');
     const isJapanese = (currentCollectionId === 'japanese-terms' || (titleElem && titleElem.getAttribute('data-collection') === 'japanese-terms'));
@@ -217,27 +213,32 @@ export function openMeaningModal(rowIndex, updateHash = true) {
         modalBox.classList.remove('awsui-modal-lg');
       }
     }
-  }
+    modal.classList.add('open');
 
-  // Apply multiline & scroll detection AFTER modal size class is set so DOM measurement uses target width
-  if (meaningElem) {
-    const meaningText = rec.tw_translation || '';
-    if (meaningElem.classList) {
-      if (checkMeaningExceedsTwoLines(meaningText, meaningElem)) {
-        meaningElem.classList.add('is-multiline');
-      } else {
-        meaningElem.classList.remove('is-multiline');
-      }
-      if (checkMeaningHasScroll(meaningElem)) {
-        meaningElem.classList.add('has-scroll');
-      } else {
-        meaningElem.classList.remove('has-scroll');
+    if (modalBox && meaningElem && rec.tw_translation) {
+      const checkLines = () => {
+        if (meaningElem.classList) {
+          if (checkMeaningExceedsTwoLines(rec.tw_translation, meaningElem)) {
+            meaningElem.classList.add('is-multiline');
+          } else {
+            meaningElem.classList.remove('is-multiline');
+          }
+          if (checkMeaningHasScroll(meaningElem)) {
+            meaningElem.classList.add('has-scroll');
+          } else {
+            meaningElem.classList.remove('has-scroll');
+          }
+        }
+        if (isJapanese && checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
+          modalBox.classList.add('awsui-modal-lg');
+          modalBox.classList.remove('awsui-modal-sm');
+        }
+      };
+      checkLines();
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(checkLines);
       }
     }
-  }
-
-  if (modal) {
-    modal.classList.add('open');
   }
 
   if (updateHash) {
@@ -254,9 +255,6 @@ export function closeDetailModal(updateHash = true) {
   closeDescriptionModal(false);
   const modal = document.getElementById('detail-modal');
   if (modal) modal.classList.remove('open');
-  if (typeof document !== 'undefined') {
-    document.querySelectorAll('.awsui-card').forEach(card => card.classList.remove('active'));
-  }
 
   if (updateHash) {
     const { currentCollectionId } = store.get();

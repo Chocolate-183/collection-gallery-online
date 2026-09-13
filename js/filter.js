@@ -39,15 +39,14 @@ export function filterByLength(records, lengthTab) {
   return records.filter(r => {
     const term = r.ja_term || '';
     const len = getUnicodeLength(term);
-    if (lengthTab === LENGTH_TABS.ONE || lengthTab === '1') return len === 1;
-    if (lengthTab === LENGTH_TABS.TWO || lengthTab === '2') return len === 2;
-    if (lengthTab === LENGTH_TABS.THREE || lengthTab === '3') return len === 3;
-    if (lengthTab === LENGTH_TABS.FOUR || lengthTab === '4') return len === 4;
-    if (lengthTab === LENGTH_TABS.FIVE || lengthTab === '5') return len === 5;
-    if (lengthTab === LENGTH_TABS.SIX || lengthTab === '6') return len === 6;
-    if (lengthTab === LENGTH_TABS.SEVEN || lengthTab === '7') return len === 7;
+    if (lengthTab === LENGTH_TABS.ONE) return len === 1;
+    if (lengthTab === LENGTH_TABS.TWO) return len === 2;
+    if (lengthTab === LENGTH_TABS.THREE) return len === 3;
+    if (lengthTab === LENGTH_TABS.FOUR) return len === 4;
+    if (lengthTab === LENGTH_TABS.FIVE) return len === 5;
+    if (lengthTab === LENGTH_TABS.SIX) return len === 6;
+    if (lengthTab === LENGTH_TABS.SEVEN) return len === 7;
     if (lengthTab === LENGTH_TABS.EIGHT_PLUS || lengthTab === '8+' || lengthTab === '8字＋') return len >= 8;
-    if (lengthTab === LENGTH_TABS.FIVE_PLUS || lengthTab === '5+' || lengthTab === '5字+' || lengthTab === '5字＋') return len >= 5;
     return true;
   });
 }
@@ -179,39 +178,4 @@ export function selectLengthTab(tab, element) {
   }
 
   applyFiltersAndSort();
-}
-
-/**
- * Dynamically renders length filter tabs based on active collection.
- * - japanese-terms: 不限, 1字, 2字, 3字, 4字, 5字+
- * - china-terms / others: 不限, 1字, 2字, 3字, 4字, 5字, 6字, 7字, 8字＋
- */
-export function renderLengthTabs(collectionId) {
-  const container = document.getElementById('length-tabs');
-  if (!container) return;
-
-  const currentTab = store.get().currentLengthTab || 'ALL';
-
-  if (collectionId === 'japanese-terms') {
-    container.innerHTML = `
-      <button class="awsui-tab ${currentTab === 'ALL' ? 'active' : ''}" onclick="selectLengthTab('ALL', this)">不限</button>
-      <button class="awsui-tab ${currentTab === '1' ? 'active' : ''}" onclick="selectLengthTab('1', this)">1字</button>
-      <button class="awsui-tab ${currentTab === '2' ? 'active' : ''}" onclick="selectLengthTab('2', this)">2字</button>
-      <button class="awsui-tab ${currentTab === '3' ? 'active' : ''}" onclick="selectLengthTab('3', this)">3字</button>
-      <button class="awsui-tab ${currentTab === '4' ? 'active' : ''}" onclick="selectLengthTab('4', this)">4字</button>
-      <button class="awsui-tab ${currentTab === '5+' ? 'active' : ''}" onclick="selectLengthTab('5+', this)">5字+</button>
-    `;
-  } else {
-    container.innerHTML = `
-      <button class="awsui-tab ${currentTab === 'ALL' ? 'active' : ''}" onclick="selectLengthTab('ALL', this)">不限</button>
-      <button class="awsui-tab ${currentTab === '1' ? 'active' : ''}" onclick="selectLengthTab('1', this)">1字</button>
-      <button class="awsui-tab ${currentTab === '2' ? 'active' : ''}" onclick="selectLengthTab('2', this)">2字</button>
-      <button class="awsui-tab ${currentTab === '3' ? 'active' : ''}" onclick="selectLengthTab('3', this)">3字</button>
-      <button class="awsui-tab ${currentTab === '4' ? 'active' : ''}" onclick="selectLengthTab('4', this)">4字</button>
-      <button class="awsui-tab ${currentTab === '5' ? 'active' : ''}" onclick="selectLengthTab('5', this)">5字</button>
-      <button class="awsui-tab ${currentTab === '6' ? 'active' : ''}" onclick="selectLengthTab('6', this)">6字</button>
-      <button class="awsui-tab ${currentTab === '7' ? 'active' : ''}" onclick="selectLengthTab('7', this)">7字</button>
-      <button class="awsui-tab ${currentTab === '8+' ? 'active' : ''}" onclick="selectLengthTab('8+', this)">8字＋</button>
-    `;
-  }
 }
