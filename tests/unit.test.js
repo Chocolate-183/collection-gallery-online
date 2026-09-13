@@ -9,7 +9,7 @@ import {
   extractGvizTable,
   parseOpeningHoursCSV
 } from '../js/parser.js';
-import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana, sortRecords } from '../js/filter.js';
+import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana, sortRecords, renderLengthTabs } from '../js/filter.js';
 import { LENGTH_TABS } from '../js/constants.js';
 import {
   escapeHtml,
@@ -134,6 +134,10 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
 
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ALL).length, 9);
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ONE)[0].id, '1');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE)[0].id, '5');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SIX)[0].id, '6');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SEVEN)[0].id, '7');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.EIGHT_PLUS).length, 2);
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS).length, 5);
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS)[0].id, '5');
 });
@@ -241,4 +245,26 @@ test('Modal Meaning Text Multiline Detection', async () => {
   assert.equal(checkMeaningHasScroll(null), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 100 }), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 150 }), true);
+});
+
+test('Filter UI - Length Tabs Rendering for Japanese vs China Terms', () => {
+  const container = { innerHTML: '' };
+  global.document = global.document || {};
+  const origGetElementById = global.document.getElementById;
+  global.document.getElementById = (id) => (id === 'length-tabs' ? container : null);
+
+  try {
+    renderLengthTabs('japanese-terms');
+    assert(container.innerHTML.includes("selectLengthTab('5+', this)"));
+    assert(!container.innerHTML.includes("selectLengthTab('8+', this)"));
+
+    renderLengthTabs('china-terms');
+    assert(container.innerHTML.includes("selectLengthTab('5', this)"));
+    assert(container.innerHTML.includes("selectLengthTab('6', this)"));
+    assert(container.innerHTML.includes("selectLengthTab('7', this)"));
+    assert(container.innerHTML.includes("selectLengthTab('8+', this)"));
+    assert(!container.innerHTML.includes("selectLengthTab('5+', this)"));
+  } finally {
+    global.document.getElementById = origGetElementById;
+  }
 });

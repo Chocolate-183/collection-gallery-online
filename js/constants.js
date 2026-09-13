@@ -30,6 +30,10 @@ export const LENGTH_TABS = {
   TWO: '2',
   THREE: '3',
   FOUR: '4',
+  FIVE: '5',
+  SIX: '6',
+  SEVEN: '7',
+  EIGHT_PLUS: '8+',
   FIVE_PLUS: '5+'
 };
 

@@ -6,6 +6,7 @@ import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
 import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
 import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from '../utils.js';
+import { renderLengthTabs } from '../filter.js';
 
 export function updateSidebarBadge(colId) {
   const badgeElem = document.getElementById(`side-nav-count-${colId}`);
@@ -155,6 +156,9 @@ export function switchCollection(collectionId, updateHash = true) {
   } else {
     kanaOnlyTabs.forEach(tab => tab.style.display = 'none');
   }
+
+  // Render Length Tabs dynamically for the selected collection
+  renderLengthTabs(collectionId);
 
   // Update Select Dropdown
   const selectElem = document.getElementById('collection-select');
