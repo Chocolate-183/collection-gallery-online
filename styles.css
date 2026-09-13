@@ -1845,6 +1845,18 @@ a:focus {
     min-height: 0;
     padding-right: 6px;
   }
+
+  /* Description Modal Desktop Position: Right Center */
+  #description-modal {
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 48px;
+    box-sizing: border-box;
+  }
+
+  #description-modal .awsui-modal {
+    max-width: 540px;
+  }
 }
 
 .awsui-sidebar-overlay {

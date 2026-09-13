@@ -202,6 +202,7 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('cursor: pointer;'), 'has-scroll should set cursor: pointer');
   assert(cssContent.includes('#description-modal'), '#description-modal should be defined in CSS');
   assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');
+  assert(cssContent.includes('justify-content: flex-end;'), '#description-modal desktop view should align to the right with justify-content: flex-end');
   assert(cssContent.includes('#description-modal.open .awsui-modal'), '#description-modal.open .awsui-modal should be defined in CSS');
   assert(cssContent.includes('transform: translateY(24px) scale(0.96);'), 'Modal initial state should use float-up transform offset');
   assert(cssContent.includes('transform: translateY(0) scale(1);'), 'Modal open state should translate back to translateY(0)');
