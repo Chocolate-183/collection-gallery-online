@@ -1846,16 +1846,16 @@ a:focus {
     padding-right: 6px;
   }
 
-  /* Description Modal Desktop Position: Right Center */
+  /* Description Modal Desktop Position: Left Edge Aligned to Center (50vw) */
   #description-modal {
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
-    padding-right: 48px;
     box-sizing: border-box;
   }
 
   #description-modal .awsui-modal {
-    max-width: 540px;
+    margin-left: 50vw;
+    max-width: calc(50vw - 32px);
   }
 }
 
