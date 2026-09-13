@@ -225,6 +225,7 @@ test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', asyn
   assert(cssContent.includes('font-size: 20px !important;'), 'Mobile modal term title should reduce font size to 20px');
   assert(cssContent.includes('font-size: 15px !important;'), 'Mobile modal description text should reduce font size to 15px');
   assert(cssContent.includes('font-size: 13px !important;'), 'Mobile recommendation chips and section titles should reduce font size to 13px');
+  assert(cssContent.includes('.awsui-recommendation-chip:nth-child(n+4) {\n    display: none !important;\n  }'), 'Mobile recommendation chips should hide items from 4th onwards');
   assert(cssContent.includes('font-size: 12px !important;'), 'Mobile footer metadata row should reduce font size to 12px');
 });
 

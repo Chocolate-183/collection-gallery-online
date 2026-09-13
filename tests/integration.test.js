@@ -337,7 +337,7 @@ test('Description Modal HTML Structure', () => {
   assert(html.includes('id="modal-meaning-text" ondblclick="handleMeaningTextClick()"'), 'modal-meaning-text should have ondblclick handleMeaningTextClick handler');
 });
 
-test('Explore Recommendation Items Limited to 3', async () => {
+test('Explore Recommendation Items Limited to 5 on Desktop', async () => {
   const mockRecSection = createMockElement({ style: { display: 'none' } });
   const mockRecList = createMockElement();
   const mockModalBox = createMockElement();
@@ -362,7 +362,7 @@ test('Explore Recommendation Items Limited to 3', async () => {
       row_index: 1,
       ja_term: '985',
       tw_translation: '測試',
-      recommendations: ['211', '一本', '二本', '高考', '本科']
+      recommendations: ['211', '一本', '二本', '高考', '本科', '碩士']
     }]
   });
 
@@ -370,5 +370,5 @@ test('Explore Recommendation Items Limited to 3', async () => {
 
   assert.equal(mockRecSection.style.display, 'block');
   const chipMatches = mockRecList.innerHTML.match(/awsui-recommendation-chip/g) || [];
-  assert.equal(chipMatches.length, 3, 'Explore section should display at most 3 recommendation items');
+  assert.equal(chipMatches.length, 5, 'Explore section should display at most 5 recommendation items rendered in JS');
 });
