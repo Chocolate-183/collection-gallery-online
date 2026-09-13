@@ -1067,7 +1067,7 @@ a:focus {
   font-weight: 600;
   font-size: 15px;
   color: var(--awsui-color-text-body-secondary, #687078);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   padding-bottom: 0;
   border-bottom: none;
 }
@@ -1111,7 +1111,7 @@ a:focus {
   padding: 12px 14px;
   margin-left: -14px;
   margin-right: -14px;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 #modal-meaning-text.has-scroll {
@@ -1953,7 +1953,7 @@ a:focus {
     padding: 10px 12px !important;
     margin-left: -12px !important;
     margin-right: -12px !important;
-    margin-top: 4px !important;
+    margin-top: 2px !important;
   }
 
   #collection-modal-description {

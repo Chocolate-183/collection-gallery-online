@@ -183,6 +183,8 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('max-width: 640px;'), 'Large modal should use reduced max-width of 640px');
   assert(cssContent.includes('aspect-ratio: 1 / 1.1;'), 'Modal should use 1:1.1 aspect ratio');
   assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
+  assert(cssContent.includes('.awsui-modal-section-title'), 'Should define .awsui-modal-section-title selector');
+  assert(cssContent.includes('margin-bottom: 2px;'), 'awsui-modal-section-title should use reduced margin-bottom of 2px for tight spacing');
   assert(cssContent.includes('#modal-meaning-text.is-multiline'), 'modal-meaning-text.is-multiline should be defined in CSS');
   assert(cssContent.includes('background-color: #f8f9fa;'), 'is-multiline should set a subtle background color #f8f9fa');
   assert(cssContent.includes('border: none;'), 'is-multiline should have border: none');
@@ -227,6 +229,7 @@ test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', asyn
   assert(cssContent.includes('font-size: 13px !important;'), 'Mobile recommendation chips and section titles should reduce font size to 13px');
   assert(cssContent.includes('.awsui-recommendation-chip:nth-child(n+4) {\n    display: none !important;\n  }'), 'Mobile recommendation chips should hide items from 4th onwards');
   assert(cssContent.includes('font-size: 12px !important;'), 'Mobile footer metadata row should reduce font size to 12px');
+  assert(cssContent.includes('margin-top: 2px !important;'), 'Mobile is-multiline should use reduced margin-top of 2px');
 });
 
 test('Modal Meaning Text Multiline Detection', async () => {
