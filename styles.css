@@ -1030,7 +1030,7 @@ a:focus {
   overflow: hidden;
   opacity: 0;
   transform: translateY(24px) scale(0.96);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .awsui-modal-backdrop.open .awsui-modal {
@@ -1127,7 +1127,7 @@ a:focus {
 #description-modal .awsui-modal {
   opacity: 0;
   transform: translateY(24px) scale(0.96);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #description-modal.open .awsui-modal {
@@ -1805,7 +1805,7 @@ a:focus {
     width: 90%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.2s ease, aspect-ratio 0.2s ease;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.2s ease, aspect-ratio 0.2s ease;
   }
 
   /* Small Modal (default for term title <= 15 chars): 1:1.1 ratio */
