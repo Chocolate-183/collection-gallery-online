@@ -611,6 +611,13 @@ a:focus {
   box-shadow: none;
 }
 
+.awsui-card:hover .awsui-card-header-title,
+.awsui-card:hover .awsui-reading-subtext,
+.awsui-card:hover .awsui-meaning-value,
+.awsui-card:hover .awsui-expand-hint {
+  color: #0f6ce0;
+}
+
 /* Empty State Card */
 .awsui-empty-card {
   grid-column: 1 / -1;
@@ -661,6 +668,7 @@ a:focus {
   text-overflow: ellipsis;
   margin-bottom: 2px;
   line-height: 1.25;
+  transition: color 0.15s ease;
 }
 
 /* Font override for Mainland China terms */
@@ -693,6 +701,7 @@ a:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   height: 18px;
+  transition: color 0.15s ease;
 }
 
 [data-collection="china-terms"] .awsui-reading-subtext {
@@ -724,6 +733,7 @@ a:focus {
   overflow: hidden;
   cursor: pointer;
   white-space: pre-line;
+  transition: color 0.15s ease;
 }
 .awsui-meaning-value:hover {
   color: #0f6ce0;
@@ -739,6 +749,7 @@ a:focus {
   align-items: center;
   cursor: pointer;
   color: #0f6ce0;
+  transition: color 0.15s ease;
 }
 
 /* Pagination Footer */
@@ -1656,6 +1667,13 @@ a:focus {
 }
 
 [data-theme="dark"] .awsui-card-header-title {
+  color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-card:hover .awsui-card-header-title,
+[data-theme="dark"] .awsui-card:hover .awsui-reading-subtext,
+[data-theme="dark"] .awsui-card:hover .awsui-meaning-value,
+[data-theme="dark"] .awsui-card:hover .awsui-expand-hint {
   color: #4da2ff !important;
 }
 
