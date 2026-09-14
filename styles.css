@@ -1883,6 +1883,18 @@ a:focus {
     padding-right: 6px;
     scrollbar-gutter: stable;
   }
+
+  /* Description Modal Desktop Position: Right Side & Overlapping on Item Modal */
+  #description-modal {
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  #description-modal .awsui-modal {
+    margin-left: 50vw;
+    max-width: min(640px, calc(50vw - 32px));
+  }
 }
 
 .awsui-sidebar-overlay {

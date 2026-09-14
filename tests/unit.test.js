@@ -203,3 +203,14 @@ test('Item Modal Description Standard Accessor and Logic', async () => {
 
   global.document = origDocument;
 });
+
+test('CSS Stylesheet - Description Modal Desktop Right Position & Overlap', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const cssPath = path.resolve('styles.css');
+  const cssContent = fs.readFileSync(cssPath, 'utf8');
+
+  assert(cssContent.includes('#description-modal'), '#description-modal should be defined in CSS');
+  assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');
+  assert(cssContent.includes('margin-left: 50vw;'), '#description-modal desktop view should align to the right half with margin-left: 50vw');
+});
