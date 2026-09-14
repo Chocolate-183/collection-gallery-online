@@ -1139,20 +1139,37 @@ a:focus {
 
 /* Recommended Items Section in Modal */
 .awsui-modal-recommendations-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-top: 16px;
+  overflow: hidden;
+}
+
+.awsui-modal-recommendations-section .awsui-modal-section-title {
+  margin-bottom: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .awsui-modal-recommendations-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 32px;
+  max-height: 32px;
+  overflow: hidden;
 }
 
 .awsui-recommendation-chip {
   display: inline-flex;
   align-items: center;
-  padding: 6px 12px;
-  font-size: 16px;
+  justify-content: center;
+  padding: 5px 12px;
+  font-size: 15px;
   font-weight: 500;
   color: #545b64;
   background-color: transparent;
@@ -1160,9 +1177,13 @@ a:focus {
   border-radius: var(--awsui-border-radius-tag, 4px);
   cursor: pointer;
   transition: all 0.15s ease-in-out;
-  line-height: 1.4;
+  line-height: 1;
+  height: 32px;
+  box-sizing: border-box;
+  white-space: nowrap;
   outline: none;
   font-family: inherit;
+  flex-shrink: 0;
 }
 
 .awsui-recommendation-chip:hover {
@@ -2012,11 +2033,24 @@ a:focus {
 
   .awsui-modal-recommendations-section {
     margin-top: 10px !important;
+    gap: 8px !important;
+  }
+
+  .awsui-modal-recommendations-section .awsui-modal-section-title {
+    font-size: 13px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .awsui-modal-recommendations-list {
+    gap: 6px !important;
+    height: 26px !important;
+    max-height: 26px !important;
   }
 
   .awsui-recommendation-chip {
     font-size: 13px !important;
-    padding: 4px 10px !important;
+    padding: 3px 8px !important;
+    height: 26px !important;
   }
 
   .awsui-modal-created-time {

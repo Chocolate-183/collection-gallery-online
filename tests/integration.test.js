@@ -355,3 +355,37 @@ test('Item Modal HTML Structure - Explore Section Positioned Below Divider Line'
   assert(exploreIdx !== -1, 'Should contain modal-recommendations-section');
   assert(exploreIdx > createdTimeIdx, 'Explore recommendations section should be placed below the divider line / metadata row');
 });
+
+test('Item Modal Explore Section - Display Flex for Same Row Layout', async () => {
+  const mockRecSection = createMockElement({ style: { display: 'none' } });
+  const mockRecList = createMockElement();
+  const mockModalBox = createMockElement();
+  const mockModal = createMockElement({
+    querySelector: () => mockModalBox
+  });
+  const mockTitle = createMockElement();
+
+  mockDOM({
+    'detail-modal': mockModal,
+    'modal-term-title': mockTitle,
+    'modal-recommendations-section': mockRecSection,
+    'modal-recommendations-list': mockRecList
+  });
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'china-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '985',
+      tw_translation: '測試',
+      recommendations: ['211', '一本', '二本']
+    }]
+  });
+
+  openMeaningModal(1, false);
+
+  assert.equal(mockRecSection.style.display, 'flex', 'Explore section should display as flex for same-row layout');
+});

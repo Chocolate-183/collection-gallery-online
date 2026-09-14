@@ -202,7 +202,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
           </button>
         `;
       }).join('');
-      recSectionElem.style.display = 'block';
+      recSectionElem.style.display = 'flex';
     } else {
       recListElem.innerHTML = '';
       recSectionElem.style.display = 'none';
