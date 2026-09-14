@@ -40,78 +40,87 @@ export function navigateToTerm(term) {
 }
 
 /**
- * Checks if the meaning-text content exceeds a given line threshold.
- * @param {string} text - Explanation / translation text
- * @param {number} threshold - Maximum line threshold
- * @param {HTMLElement} [meaningElem] - Optional DOM element for measuring scroll height
- * @returns {boolean} True if line count exceeds threshold
+ * Standard accessor for Item Modal Description element.
+ * Standardized on document.querySelector("#modal-meaning-text").
+ * @returns {HTMLElement|null}
  */
-function checkMeaningExceedsLineCount(text, threshold, meaningElem) {
-  if (!text) return false;
-
-  // 1. Explicit line breaks in raw string
-  const rawLines = text.split(/\r?\n/);
-  if (rawLines.length > threshold) return true;
-
-  // 2. DOM Range measurement when rendered in browser
-  if (meaningElem && typeof document !== 'undefined' && typeof document.createRange === 'function') {
-    try {
-      const range = document.createRange();
-      range.selectNodeContents(meaningElem);
-      const rects = range.getClientRects();
-      if (rects && rects.length > 0) {
-        return rects.length > threshold;
-      }
-    } catch (e) {
-      // Fallback
-    }
-  }
-
-  // 3. DOM measurement fallback
-  if (meaningElem && meaningElem.clientHeight > 0) {
-    const linePixelHeight = 18 * 1.65;
-    if (meaningElem.scrollHeight > (linePixelHeight * threshold + 1)) {
-      return true;
-    }
-  }
-
-  // 4. Estimated wrapped lines for long paragraphs (~25 CJK chars per line in modal)
-  let totalWrappedLines = 0;
-  for (const line of rawLines) {
-    totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
-  }
-  return totalWrappedLines > threshold;
-}
-
-/**
- * Checks if the Japanese meaning-text content exceeds 5 lines.
- */
-export function checkMeaningExceedsFiveLines(text, meaningElem) {
-  return checkMeaningExceedsLineCount(text, 5, meaningElem);
+export function getMeaningElement() {
+  if (typeof document === 'undefined') return null;
+  return document.querySelector ? document.querySelector('#modal-meaning-text') : (document.getElementById ? document.getElementById('modal-meaning-text') : null);
 }
 
 /**
  * Checks if the meaning-text content exceeds 2 lines.
+ * Standardized on document.querySelector('#modal-meaning-text').
+ * @param {string} [text] - Optional text (defaults to element innerText)
+ * @param {HTMLElement} [meaningElem] - Optional DOM element (defaults to document.querySelector("#modal-meaning-text"))
+ * @returns {boolean} True if line count exceeds 2 lines
  */
 export function checkMeaningExceedsTwoLines(text, meaningElem) {
-  return checkMeaningExceedsLineCount(text, 2, meaningElem);
+  const elem = meaningElem || getMeaningElement();
+  const content = (text !== undefined && text !== null) ? text : (elem ? elem.innerText : '');
+  if (!content) return false;
+
+  const rawLines = content.split(/\r?\n/);
+  if (rawLines.length > 2) return true;
+
+  if (elem && elem.clientHeight > 0) {
+    const twoLinesHeight = 18 * 1.65 * 2;
+    if (elem.scrollHeight > (twoLinesHeight + 1)) {
+      return true;
+    }
+  }
+
+  let wrappedLines = 0;
+  for (const line of rawLines) {
+    wrappedLines += Math.max(1, Math.ceil(line.length / 25));
+  }
+  return wrappedLines > 2;
+}
+
+/**
+ * Checks if the Japanese meaning-text content exceeds 5 lines.
+ * Standardized on document.querySelector('#modal-meaning-text').
+ */
+export function checkMeaningExceedsFiveLines(text, meaningElem) {
+  const elem = meaningElem || getMeaningElement();
+  const content = (text !== undefined && text !== null) ? text : (elem ? elem.innerText : '');
+  if (!content) return false;
+
+  const rawLines = content.split(/\r?\n/);
+  if (rawLines.length > 5) return true;
+
+  if (elem && elem.clientHeight > 0) {
+    const fiveLinesHeight = 18 * 1.65 * 5;
+    if (elem.scrollHeight > (fiveLinesHeight + 1)) {
+      return true;
+    }
+  }
+
+  let wrappedLines = 0;
+  for (const line of rawLines) {
+    wrappedLines += Math.max(1, Math.ceil(line.length / 25));
+  }
+  return wrappedLines > 5;
 }
 
 /**
  * Checks if the meaning element has vertical scrolling content.
- * @param {HTMLElement} meaningElem
+ * Standardized on document.querySelector("#modal-meaning-text").
+ * @param {HTMLElement} [meaningElem]
  * @returns {boolean}
  */
 export function checkMeaningHasScroll(meaningElem) {
-  if (!meaningElem) return false;
-  if (meaningElem.clientHeight > 0) {
-    return meaningElem.scrollHeight > (meaningElem.clientHeight + 1);
+  const elem = meaningElem || getMeaningElement();
+  if (!elem) return false;
+  if (elem.clientHeight > 0) {
+    return elem.scrollHeight > (elem.clientHeight + 1);
   }
   return false;
 }
 
 export function handleMeaningTextClick() {
-  const meaningElem = document.getElementById('modal-meaning-text');
+  const meaningElem = getMeaningElement();
   if (!meaningElem) return;
   const hasScroll = (meaningElem.classList && meaningElem.classList.contains('has-scroll')) || checkMeaningHasScroll(meaningElem);
   if (hasScroll) {
@@ -131,7 +140,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const titleElem = document.getElementById('modal-term-title');
   const readingSectionElem = document.getElementById('modal-reading-section');
   const readingElem = document.getElementById('modal-reading-row');
-  const meaningElem = document.getElementById('modal-meaning-text');
+  const meaningElem = document.querySelector('#modal-meaning-text');
   const createdAtElem = document.getElementById('modal-created-at');
   const idElem = document.getElementById('modal-id');
   const modal = document.getElementById('detail-modal');
@@ -159,6 +168,11 @@ export function openMeaningModal(rowIndex, updateHash = true) {
         meaningElem.classList.add('is-multiline');
       } else {
         meaningElem.classList.remove('is-multiline');
+      }
+      if (checkMeaningHasScroll(meaningElem)) {
+        meaningElem.classList.add('has-scroll');
+      } else {
+        meaningElem.classList.remove('has-scroll');
       }
     }
   }
@@ -201,27 +215,6 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       modalBox.classList.remove('awsui-modal-lg');
     }
     modal.classList.add('open');
-
-    if (modalBox && meaningElem && rec.tw_translation) {
-      const checkLines = () => {
-        if (meaningElem.classList) {
-          if (checkMeaningExceedsTwoLines(rec.tw_translation, meaningElem)) {
-            meaningElem.classList.add('is-multiline');
-          } else {
-            meaningElem.classList.remove('is-multiline');
-          }
-          if (checkMeaningHasScroll(meaningElem)) {
-            meaningElem.classList.add('has-scroll');
-          } else {
-            meaningElem.classList.remove('has-scroll');
-          }
-        }
-      };
-      checkLines();
-      if (typeof requestAnimationFrame === 'function') {
-        requestAnimationFrame(checkLines);
-      }
-    }
   }
 
   if (updateHash) {
@@ -291,7 +284,7 @@ export function closeDescriptionModal(updateHash = true) {
     const col = collectionsConfig[currentCollectionId];
     const colName = col ? col.name : currentCollectionId;
 
-    const meaningElem = document.getElementById('modal-meaning-text');
+    const meaningElem = getMeaningElement();
     const rowIndexStr = meaningElem ? meaningElem.getAttribute('data-row-index') : null;
     const rowIndex = rowIndexStr !== null ? parseInt(rowIndexStr, 10) : null;
     const rec = (rowIndex !== null && !isNaN(rowIndex)) ? allRecords.find(r => r.row_index === rowIndex) : null;

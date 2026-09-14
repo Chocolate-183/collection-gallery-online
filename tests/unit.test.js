@@ -246,3 +246,24 @@ test('Modal Meaning Text Multiline Detection', async () => {
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 100 }), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 150 }), true);
 });
+
+test('Item Modal Description Standard Accessor and Logic', async () => {
+  const { getMeaningElement, checkMeaningExceedsTwoLines, checkMeaningHasScroll } = await import('../js/components/modal.js');
+
+  const mockMeaning = {
+    innerText: '第一行\n第二行\n第三行',
+    clientHeight: 50,
+    scrollHeight: 100
+  };
+
+  const origDocument = global.document;
+  global.document = {
+    querySelector: (sel) => sel === '#modal-meaning-text' ? mockMeaning : null
+  };
+
+  assert.equal(getMeaningElement(), mockMeaning);
+  assert.equal(checkMeaningExceedsTwoLines(), true);
+  assert.equal(checkMeaningHasScroll(), true);
+
+  global.document = origDocument;
+});

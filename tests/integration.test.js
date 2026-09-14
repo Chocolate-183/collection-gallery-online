@@ -30,6 +30,17 @@ function mockDOM(elementsMap = {}) {
   const fallbackEl = createMockElement();
   global.document = global.document || {};
   global.document.getElementById = (id) => elementsMap[id] || fallbackEl;
+  global.document.querySelector = (sel) => {
+    if (typeof sel === 'string') {
+      if (sel.startsWith('#')) {
+        return elementsMap[sel.slice(1)] || fallbackEl;
+      }
+      if (sel === '.awsui-side-navigation') {
+        return elementsMap['side-navigation'] || fallbackEl;
+      }
+    }
+    return elementsMap[sel] || fallbackEl;
+  };
   global.document.querySelectorAll = () => [];
 }
 
