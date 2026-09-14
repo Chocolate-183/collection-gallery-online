@@ -335,9 +335,18 @@ test('Description Modal Component & Interaction Logic', async () => {
   closeDescriptionModal(false);
   assert(!mockDescModal.classes.has('open'));
 
-  // Test handleMeaningTextClick
+  // Test handleMeaningTextClick (with scroll)
   handleMeaningTextClick();
   assert(mockDescModal.classes.has('open'));
+
+  // Test handleMeaningTextClick without scroll (unconditional double-click)
+  closeDescriptionModal(false);
+  assert(!mockDescModal.classes.has('open'));
+  mockMeaning.classList.remove('has-scroll');
+  mockMeaning.clientHeight = 200;
+  mockMeaning.scrollHeight = 100;
+  handleMeaningTextClick();
+  assert(mockDescModal.classes.has('open'), 'handleMeaningTextClick should open Description modal even without scroll');
 });
 
 test('Description Modal HTML Structure', () => {

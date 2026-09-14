@@ -119,16 +119,18 @@ export function checkMeaningHasScroll(meaningElem) {
   return false;
 }
 
+/**
+ * Handles double-click event on modal meaning text to open Description modal.
+ * Standardized on document.querySelector('#modal-meaning-text').
+ * Opens Description modal unconditionally regardless of whether content has scroll.
+ */
 export function handleMeaningTextClick() {
   const meaningElem = getMeaningElement();
   if (!meaningElem) return;
-  const hasScroll = (meaningElem.classList && meaningElem.classList.contains('has-scroll')) || checkMeaningHasScroll(meaningElem);
-  if (hasScroll) {
-    const rowIndexStr = typeof meaningElem.getAttribute === 'function' ? meaningElem.getAttribute('data-row-index') : meaningElem['data-row-index'];
-    const rowIndex = rowIndexStr !== null && rowIndexStr !== undefined ? parseInt(rowIndexStr, 10) : null;
-    if (rowIndex !== null && !isNaN(rowIndex)) {
-      openDescriptionModal(rowIndex);
-    }
+  const rowIndexStr = typeof meaningElem.getAttribute === 'function' ? meaningElem.getAttribute('data-row-index') : meaningElem['data-row-index'];
+  const rowIndex = rowIndexStr !== null && rowIndexStr !== undefined ? parseInt(rowIndexStr, 10) : null;
+  if (rowIndex !== null && !isNaN(rowIndex)) {
+    openDescriptionModal(rowIndex);
   }
 }
 
