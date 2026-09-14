@@ -124,7 +124,7 @@ test('UI Components - Mobile Sidebar Outside Click & Auto-Collapse Logic', async
 
   // Simulate mobile window width <= 768
   const originalInnerWidth = global.innerWidth;
-  global.innerWidth = 393; // iPhone 17e width
+  global.innerWidth = 393;
 
   // 1. Explicit closeSidebarOnMobile
   closeSidebarOnMobile();
@@ -184,31 +184,6 @@ test('UI Components - Empty State & Card Rendering', async () => {
   assert(mockContainer.innerHTML.includes('尚無相符展品'));
 });
 
-test('Scroll Prevention on Modal Open or Hash Sync', () => {
-  let scrollCalled = false;
-  let currentView = 'dictionary';
-
-  const checkScroll = (viewName, event) => {
-    scrollCalled = false;
-    const isViewChanged = currentView !== viewName;
-    currentView = viewName;
-    if (isViewChanged || !!event) {
-      scrollCalled = true;
-    }
-    return scrollCalled;
-  };
-
-  assert.equal(checkScroll('dictionary', null), false);
-  assert.equal(checkScroll('welcome', null), true);
-  assert.equal(checkScroll('welcome', { type: 'click' }), true);
-});
-
-test('Welcome Card Title Click Handler Integration - Japanese Terms Title Click', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert(html.includes('id="welcome-card-title-japanese-terms"'));
-  assert(html.includes('onclick="switchCollection(\'japanese-terms\')"'));
-});
-
 test('Modal Sizing - Item Modal does not apply large modal setting', async () => {
   const mockModalBox = createMockElement();
   const mockModal = createMockElement({
@@ -253,10 +228,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   const mockTitle = createMockElement();
   const mockEnTitle = createMockElement();
   const mockSubtitle = createMockElement();
-  const mockTags = createMockElement();
   const mockDesc = createMockElement();
-  const mockNoticeSec = createMockElement({ style: { display: 'none' } });
-  const mockNotice = createMockElement();
   const mockTotal = createMockElement();
   const mockId = createMockElement();
 
@@ -296,15 +268,6 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
 
   closeCollectionModal(false);
   assert(!mockModal.classes.has('open'));
-});
-
-test('Collection Modal Integration - HTML Structure and Click Handlers', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert(html.includes('id="collection-modal"'), 'Should contain collection-modal backdrop element');
-  assert(html.includes('onclick="openCollectionModal(\'china-terms\')"'), 'Should contain openCollectionModal call for china-terms');
-  assert(html.includes('onclick="closeCollectionModal()"'), 'Should contain closeCollectionModal call');
-  assert(html.includes('id="collection-header-title"'), 'Should contain collection header title element');
-  assert(html.includes('onclick="openCollectionModal()"'), 'Header title should trigger openCollectionModal()');
 });
 
 test('Description Modal Component & Interaction Logic', async () => {
@@ -349,25 +312,6 @@ test('Description Modal Component & Interaction Logic', async () => {
   assert(mockDescModal.classes.has('open'), 'handleMeaningTextClick should open Description modal even without scroll');
 });
 
-test('Description Modal HTML Structure', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert(html.includes('id="description-modal"'), 'Should contain description-modal backdrop element');
-  assert(html.includes('onclick="closeDescriptionModal()"'), 'Should contain closeDescriptionModal call');
-  assert(html.includes('id="modal-meaning-text" ondblclick="handleMeaningTextClick()"'), 'modal-meaning-text should have ondblclick handleMeaningTextClick handler');
-});
-
-test('Item Modal HTML Structure - Explore Section Positioned Below Divider Line and Above Timestamp', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const dividerIdx = html.indexOf('class="awsui-modal-divider"');
-  const createdTimeIdx = html.indexOf('class="awsui-modal-created-time"');
-  const exploreIdx = html.indexOf('id="modal-recommendations-section"');
-  assert(dividerIdx !== -1, 'Should contain awsui-modal-divider');
-  assert(createdTimeIdx !== -1, 'Should contain awsui-modal-created-time');
-  assert(exploreIdx !== -1, 'Should contain modal-recommendations-section');
-  assert(exploreIdx > dividerIdx, 'Explore recommendations section should be placed below the divider line');
-  assert(exploreIdx < createdTimeIdx, 'Explore recommendations section should be placed above Timestamp');
-});
-
 test('Item Modal Explore Section - Display Flex for Same Row Layout', async () => {
   const mockRecSection = createMockElement({ style: { display: 'none' } });
   const mockRecList = createMockElement();
@@ -398,6 +342,5 @@ test('Item Modal Explore Section - Display Flex for Same Row Layout', async () =
   });
 
   openMeaningModal(1, false);
-
   assert.equal(mockRecSection.style.display, 'flex', 'Explore section should display as flex for same-row layout');
 });

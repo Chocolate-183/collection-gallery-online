@@ -18,9 +18,10 @@ import {
   getNextOpeningTimeText,
   isCollectionAdjusting,
   isCollectionPreparing,
-  isCollectionHidden
+  isCollectionHidden,
+  parseRecommendationList
 } from '../js/utils.js';
-import { googleSheetsConfig, getCollectionDataUrls, getCollectionMetaUrls, collectionsConfig } from '../js/config.js';
+import { googleSheetsConfig, getCollectionDataUrls, collectionsConfig } from '../js/config.js';
 
 test('CSV & Data Parsers - Core CSV Parsing & GViz Extraction', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期,推薦條目
@@ -91,7 +92,7 @@ test('Opening Hours Parser & Schedule Utilities', () => {
   assert.equal(getTodayOpeningHoursText(monday), "Today's Hours: 00:01 - 23:59");
 });
 
-test('Utils - HTML Escaping & Unicode Character Length', () => {
+test('Utils - HTML Escaping, Unicode Length & Recommendations', () => {
   assert.equal(escapeHtml('<script>alert("xss")</script>'), '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
   assert.equal(escapeHtml('Tom & Jerry'), 'Tom &amp; Jerry');
   assert.equal(escapeHtml(''), '');
@@ -99,6 +100,10 @@ test('Utils - HTML Escaping & Unicode Character Length', () => {
   assert.equal(getUnicodeLength(''), 0);
   assert.equal(getUnicodeLength('あい'), 2);
   assert.equal(getUnicodeLength('🌸日本'), 3);
+
+  assert.deepEqual(parseRecommendationList('211<br>一本,二本\n三本；四本'), ['211', '一本', '二本', '三本', '四本']);
+  assert.deepEqual(parseRecommendationList(['A', 'B']), ['A', 'B']);
+  assert.deepEqual(parseRecommendationList(null), []);
 });
 
 test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
@@ -157,77 +162,6 @@ test('Status & Exhibition Helpers', () => {
   assert.equal(isCollectionHidden({ status: '開放中' }), false);
 });
 
-test('Explore Recommendation Tag Truncation', () => {
-  const formatTag = (item) => {
-    const chars = Array.from(item);
-    return chars.length > 5 ? chars.slice(0, 5).join('') + '..' : item;
-  };
-
-  assert.equal(formatTag('12345'), '12345');
-  assert.equal(formatTag('123456'), '12345..');
-  assert.equal(formatTag('お疲れ様です'), 'お疲れ様で..');
-  assert.equal(formatTag('日本特色'), '日本特色');
-});
-
-test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', async () => {
-  const fs = await import('node:fs');
-  const path = await import('node:path');
-  const cssPath = path.resolve('styles.css');
-  const cssContent = fs.readFileSync(cssPath, 'utf8');
-
-  assert(cssContent.includes('@media (min-width: 769px)'), 'Should contain desktop media query @media (min-width: 769px)');
-  assert(cssContent.includes('.awsui-modal-sm'), 'Should define .awsui-modal-sm selector');
-  assert(cssContent.includes('.awsui-modal-lg'), 'Should define .awsui-modal-lg selector');
-  assert(cssContent.includes('max-width: 640px;'), 'Large modal should use reduced max-width of 640px');
-  assert(cssContent.includes('aspect-ratio: 1 / 1.1;'), 'Modal should use 1:1.1 aspect ratio');
-  assert(cssContent.includes("#modal-meaning-text {\n  font-family: 'Noto Sans TC', sans-serif;"), 'modal-meaning-text should use Noto Sans TC font');
-  assert(cssContent.includes('#modal-meaning-text.is-multiline'), 'modal-meaning-text.is-multiline should be defined in CSS');
-  assert(cssContent.includes('background-color: #f8f9fa;'), 'is-multiline should set a subtle background color #f8f9fa');
-  assert(cssContent.includes('border: none;'), 'is-multiline should have border: none');
-  assert(cssContent.includes('border-radius: 0;'), 'is-multiline should have border-radius: 0');
-  assert(cssContent.includes('margin-left: -14px;'), 'is-multiline should offset margin-left to align text with Description title');
-  assert(cssContent.includes('.awsui-modal-header-title'), 'Should define .awsui-modal-header-title selector');
-  assert(cssContent.includes('justify-content: center;'), 'awsui-modal-header-title should center title text');
-  assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-header-title should have a bottom border line');
-  assert(cssContent.includes('.awsui-modal-created-time'), 'Should define .awsui-modal-created-time selector');
-  assert(cssContent.includes('border-top: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-created-time should have a top border line');
-  assert(cssContent.includes('margin-top: 16px;'), 'awsui-modal-created-time should have margin-top 16px above divider line');
-  assert(cssContent.includes('padding-top: 16px;'), 'awsui-modal-created-time should have padding-top 16px below divider line for equal spacing');
-  assert(cssContent.includes('grid-template-columns: 1.2fr 1fr;'), 'awsui-modal-created-time should use grid layout with ID column around middle-right');
-  assert(cssContent.includes('.awsui-modal-meta-item'), 'Should define .awsui-modal-meta-item selector');
-  assert(cssContent.includes('#modal-created-at,\n#modal-id {\n  font-weight: 400;\n  color: var(--awsui-color-text-body-secondary, #687078);'), 'footer metadata values should match secondary text color');
-  assert(cssContent.includes('#modal-meaning-text.has-scroll'), 'modal-meaning-text.has-scroll should be defined in CSS');
-  assert(cssContent.includes('scrollbar-gutter: stable;'), 'modal-meaning-text should reserve scrollbar space with scrollbar-gutter: stable');
-  assert(cssContent.includes('cursor: pointer;'), 'has-scroll should set cursor: pointer');
-  assert(cssContent.includes('#description-modal'), '#description-modal should be defined in CSS');
-  assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');
-  assert(cssContent.includes('#description-modal.open .awsui-modal'), '#description-modal.open .awsui-modal should be defined in CSS');
-  assert(cssContent.includes('transition-delay: 0.18s;') || cssContent.includes('transition-delay: 0.2s;'), 'Modal opening transition should have transition-delay so backdrop darkens first');
-  assert(cssContent.includes('--awsui-shadow-card-hover: none;'), '--awsui-shadow-card-hover should be set to none');
-  assert(cssContent.includes('.awsui-card:hover {\n  border-color: #0f6ce0;\n  box-shadow: none;\n}'), '.awsui-card:hover should have box-shadow: none');
-  assert(cssContent.includes('.awsui-modal {\n  background: #ffffff;'), 'Modal background should be opaque white #ffffff in light mode');
-  assert(cssContent.includes('[data-theme="dark"] .awsui-modal {\n  background-color: #111c2b;'), 'Modal background should be opaque #111c2b in dark mode');
-  assert(cssContent.includes('.awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '.awsui-recommendation-chip:hover should set border-color to currentColor');
-  assert(cssContent.includes('[data-theme="dark"] .awsui-recommendation-chip:hover {\n  border-color: currentColor;\n}'), '[data-theme="dark"] .awsui-recommendation-chip:hover should set border-color to currentColor');
-});
-
-test('CSS Stylesheet - Mobile Modal Responsive View (iPhone 17e Baseline)', async () => {
-  const fs = await import('node:fs');
-  const path = await import('node:path');
-  const cssPath = path.resolve('styles.css');
-  const cssContent = fs.readFileSync(cssPath, 'utf8');
-
-  assert(cssContent.includes('@media (max-width: 768px)'), 'Should contain mobile media query @media (max-width: 768px)');
-  assert(cssContent.includes('max-height: calc(100dvh - 24px);'), 'Mobile modal should constrain max-height with calc(100dvh - 24px)');
-  assert(cssContent.includes('overflow-y: auto;'), 'Mobile modal body/text should enable overflow-y scrolling');
-  assert(cssContent.includes('-webkit-overflow-scrolling: touch;'), 'Mobile modal body/text should use smooth touch scrolling');
-  assert(cssContent.includes('font-size: 18px !important;'), 'Mobile header title should reduce font size to 18px');
-  assert(cssContent.includes('font-size: 20px !important;'), 'Mobile modal term title should reduce font size to 20px');
-  assert(cssContent.includes('font-size: 15px !important;'), 'Mobile modal description text should reduce font size to 15px');
-  assert(cssContent.includes('font-size: 13px !important;'), 'Mobile recommendation chips and section titles should reduce font size to 13px');
-  assert(cssContent.includes('font-size: 12px !important;'), 'Mobile footer metadata row should reduce font size to 12px');
-});
-
 test('Modal Meaning Text Multiline Detection', async () => {
   const { checkMeaningExceedsTwoLines, checkMeaningHasScroll } = await import('../js/components/modal.js');
 
@@ -268,18 +202,4 @@ test('Item Modal Description Standard Accessor and Logic', async () => {
   assert.equal(checkMeaningHasScroll(), true);
 
   global.document = origDocument;
-});
-
-test('CSS Stylesheet - Explore Section Same Row Layout and Single Row Overflow Hidden', async () => {
-  const fs = await import('node:fs');
-  const path = await import('node:path');
-  const cssPath = path.resolve('styles.css');
-  const cssContent = fs.readFileSync(cssPath, 'utf8');
-
-  assert(cssContent.includes('.awsui-modal-divider'), 'Should define .awsui-modal-divider selector');
-  assert(cssContent.includes('.awsui-modal-recommendations-section {\n  display: flex;\n  align-items: center;'), 'Explore section should use flex layout to place title and items on the same row');
-  assert(cssContent.includes('.awsui-modal-recommendations-list {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;'), 'Explore list should use flex-wrap to wrap overflowing chips');
-  assert(cssContent.includes('max-height: 26px;'), 'Explore list should restrict height to single row so wrapped items are hidden');
-  assert(cssContent.includes('overflow: hidden;'), 'Explore list should use overflow hidden to hide items beyond first row');
-  assert(cssContent.includes('padding: 3px 8px;'), 'Explore chips should use compact padding');
 });

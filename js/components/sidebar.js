@@ -7,20 +7,22 @@ import { store } from '../state.js';
 import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
 import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from '../utils.js';
 
+function isMobileView() {
+  const win = typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : null);
+  return win && typeof win.innerWidth === 'number' ? win.innerWidth <= 768 : true;
+}
+
 export function updateSidebarBadge(colId) {
   const badgeElem = document.getElementById(`side-nav-count-${colId}`);
   if (!badgeElem) return;
 
   const col = collectionsConfig[colId];
-  const meta = collectionsMetaCache[colId] || (col ? col.defaultMeta : null);
+  const meta = collectionsMetaCache[colId] || col?.defaultMeta;
   const isAdjusting = isCollectionAdjusting(meta);
   const isPreparing = isCollectionPreparing(meta);
 
-  if (isAdjusting) {
-    badgeElem.innerText = EXHIBITION_STATUS.ADJUSTING;
-    badgeElem.style.display = 'inline-block';
-  } else if (isPreparing) {
-    badgeElem.innerText = EXHIBITION_STATUS.PREPARING;
+  if (isAdjusting || isPreparing) {
+    badgeElem.innerText = isAdjusting ? EXHIBITION_STATUS.ADJUSTING : EXHIBITION_STATUS.PREPARING;
     badgeElem.style.display = 'inline-block';
   } else {
     badgeElem.innerText = '';
@@ -33,20 +35,15 @@ export function initSidebarState() {
   const collapsed = collapsedVal === 'true';
   const wrapper = document.getElementById('app-layout-wrapper');
   if (wrapper) {
-    if (collapsed) {
-      wrapper.classList.add('sidebar-collapsed');
-    } else {
-      wrapper.classList.remove('sidebar-collapsed');
-    }
+    wrapper.classList.toggle('sidebar-collapsed', collapsed);
   }
 }
 
 export function closeSidebarOnMobile() {
   const wrapper = document.getElementById('app-layout-wrapper');
   if (!wrapper) return;
-  const win = typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : null);
-  const isMobile = win && typeof win.innerWidth === 'number' ? win.innerWidth <= 768 : true;
-  if (isMobile) {
+
+  if (isMobileView()) {
     wrapper.classList.add('sidebar-collapsed');
     wrapper.classList.remove('sidebar-open');
     if (typeof localStorage !== 'undefined') {
@@ -61,16 +58,13 @@ export function initSidebarOutsideClick() {
     const wrapper = document.getElementById('app-layout-wrapper');
     if (!wrapper) return;
 
-    const win = typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : null);
-    const isMobile = win && typeof win.innerWidth === 'number' ? win.innerWidth <= 768 : true;
     const isSidebarOpen = wrapper.classList.contains('sidebar-open') || !wrapper.classList.contains('sidebar-collapsed');
-
-    if (isMobile && isSidebarOpen) {
+    if (isMobileView() && isSidebarOpen) {
       const sidebar = (typeof document.querySelector === 'function') ? document.querySelector('.awsui-side-navigation') : document.getElementById('side-navigation');
       const toggleBtn = document.getElementById('btn-toggle-sidebar');
 
-      const isOutsideSidebar = sidebar && typeof sidebar.contains === 'function' ? !sidebar.contains(e.target) : (sidebar !== e.target);
-      const isOutsideToggle = toggleBtn && typeof toggleBtn.contains === 'function' ? !toggleBtn.contains(e.target) : (toggleBtn !== e.target);
+      const isOutsideSidebar = sidebar?.contains ? !sidebar.contains(e.target) : (sidebar !== e.target);
+      const isOutsideToggle = toggleBtn?.contains ? !toggleBtn.contains(e.target) : (toggleBtn !== e.target);
 
       if (isOutsideSidebar && isOutsideToggle) {
         closeSidebarOnMobile();
@@ -90,9 +84,9 @@ export function toggleSidebar() {
 
 export function switchCollection(collectionId, updateHash = true) {
   closeSidebarOnMobile();
-  if (!collectionsConfig[collectionId]) return;
-
   const col = collectionsConfig[collectionId];
+  if (!col) return;
+
   const meta = collectionsMetaCache[collectionId] || col.defaultMeta;
 
   if (isCollectionHidden(meta)) {
@@ -116,28 +110,22 @@ export function switchCollection(collectionId, updateHash = true) {
 
   // Update Header Title & Subtitle & ID
   const headerTitle = document.getElementById('collection-header-title');
-  if (headerTitle) {
-    headerTitle.innerText = getCollectionEnTitle(collectionId, meta, col);
-  }
+  if (headerTitle) headerTitle.innerText = getCollectionEnTitle(collectionId, meta, col);
 
   const headerCnTitle = document.getElementById('collection-header-cn-title');
-  if (headerCnTitle) {
-    headerCnTitle.innerText = (meta && meta.title) ? meta.title : col.name;
-  }
+  if (headerCnTitle) headerCnTitle.innerText = meta?.title || col.name;
 
   const headerId = document.getElementById('collection-header-id');
-  if (headerId) headerId.innerText = (meta && meta.id) ? meta.id : '';
+  if (headerId) headerId.innerText = meta?.id || '';
 
   const headerSubtitle = document.getElementById('collection-header-subtitle');
-  if (headerSubtitle) headerSubtitle.innerText = (meta && meta.subtitle) ? meta.subtitle : '';
+  if (headerSubtitle) headerSubtitle.innerText = meta?.subtitle || '';
 
   // Update Search Input Placeholder
   const searchInput = document.getElementById('search-input');
   if (searchInput) {
     searchInput.value = '';
-    if (col.searchPlaceholder) {
-      searchInput.placeholder = col.searchPlaceholder;
-    }
+    if (col.searchPlaceholder) searchInput.placeholder = col.searchPlaceholder;
   }
 
   // Toggle Kana Tabs
@@ -145,16 +133,11 @@ export function switchCollection(collectionId, updateHash = true) {
   const quickTabsLabel = document.getElementById('quick-tabs-label');
   const kanaOnlyTabs = document.querySelectorAll('#kana-tabs .kana-only');
 
-  if (kanaTabsRow) {
-    kanaTabsRow.style.display = 'flex';
-  }
-
+  if (kanaTabsRow) kanaTabsRow.style.display = 'flex';
   if (quickTabsLabel) quickTabsLabel.innerText = '展品篩選：';
-  if (col.hasReading) {
-    kanaOnlyTabs.forEach(tab => tab.style.display = 'inline-flex');
-  } else {
-    kanaOnlyTabs.forEach(tab => tab.style.display = 'none');
-  }
+  kanaOnlyTabs.forEach(tab => {
+    tab.style.display = col.hasReading ? 'inline-flex' : 'none';
+  });
 
   // Update Select Dropdown
   const selectElem = document.getElementById('collection-select');
@@ -162,8 +145,7 @@ export function switchCollection(collectionId, updateHash = true) {
 
   // Update Side Navigation Active State
   document.querySelectorAll('.awsui-nav-link').forEach(btn => btn.classList.remove('active'));
-  const activeBtn = document.getElementById(`nav-col-${collectionId}`);
-  if (activeBtn) activeBtn.classList.add('active');
+  document.getElementById(`nav-col-${collectionId}`)?.classList.add('active');
 
   // Ensure view is set to dictionary/collection view
   if (window.switchView) {
@@ -178,13 +160,13 @@ export function switchCollection(collectionId, updateHash = true) {
     loadCollectionData(collectionId);
   }
 
-  if (isDifferent) {
+  if (isDifferent && typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
 export function onCollectionSelectChange(elem) {
-  if (elem && elem.value) {
+  if (elem?.value) {
     switchCollection(elem.value);
   }
 }

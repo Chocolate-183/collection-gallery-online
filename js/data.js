@@ -2,9 +2,9 @@
  * Data Fetching, Caching & Parallel Sync Handler
  */
 import { DEFAULT_TIMEOUT_MS } from './constants.js';
-import { collectionsConfig, getCollectionDataUrls, getCollectionMetaUrls, getMetadataUrls } from './config.js';
+import { collectionsConfig, getCollectionDataUrls, getMetadataUrls } from './config.js';
 import { store } from './state.js';
-import { parseCSVData, parseGvizResponse, parseMetaCSVData, parseMetaGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse } from './parser.js';
+import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
@@ -109,23 +109,18 @@ export function applyCollectionMetaToUI(colId, meta) {
   if (cardTagsElem) {
     const isAdjusting = isCollectionAdjusting(meta);
     const isPreparing = isCollectionPreparing(meta);
+    let tagsHtml = '';
     if (isAdjusting) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-adjusting">ADJUSTING</span>`;
-      if (meta.tags && meta.tags.length > 0) {
-        tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
-      }
-      cardTagsElem.innerHTML = tagsHtml;
+      tagsHtml += `<span class="awsui-welcome-card-tag awsui-tag-adjusting">ADJUSTING</span>`;
     } else if (isPreparing) {
-      let tagsHtml = `<span class="awsui-welcome-card-tag awsui-tag-preparing">COMING SOON</span>`;
-      if (meta.tags && meta.tags.length > 0) {
-        tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
-      }
-      cardTagsElem.innerHTML = tagsHtml;
-    } else if (meta.tags && meta.tags.length > 0) {
-      cardTagsElem.innerHTML = meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
-    } else if (meta.subtitle) {
-      cardTagsElem.innerHTML = `<span class="awsui-welcome-card-tag">${meta.subtitle}</span>`;
+      tagsHtml += `<span class="awsui-welcome-card-tag awsui-tag-preparing">COMING SOON</span>`;
     }
+    if (meta.tags?.length > 0) {
+      tagsHtml += meta.tags.map(tag => `<span class="awsui-welcome-card-tag">${tag}</span>`).join('');
+    } else if (meta.subtitle && !isAdjusting && !isPreparing) {
+      tagsHtml = `<span class="awsui-welcome-card-tag">${meta.subtitle}</span>`;
+    }
+    cardTagsElem.innerHTML = tagsHtml;
   }
 
   // 3. Update Welcome Card Description
@@ -184,9 +179,9 @@ export function renderCollectionNotice() {
 
   const { currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId];
-  const meta = collectionsMetaCache[currentCollectionId] || (col ? col.defaultMeta : null);
+  const meta = collectionsMetaCache[currentCollectionId] || col?.defaultMeta;
 
-  if (!meta || !meta.notice) {
+  if (!meta?.notice) {
     container.style.display = 'none';
     container.innerHTML = '';
     return;
@@ -224,7 +219,7 @@ export async function loadCollectionData(collectionId, forceRefresh = false) {
   const col = collectionsConfig[collectionId] || collectionsConfig['japanese-terms'];
   if (!col) return;
 
-  if (!forceRefresh && collectionsCache[col.id] && collectionsCache[col.id].length > 0) {
+  if (!forceRefresh && collectionsCache[col.id]?.length > 0) {
     store.set({ allRecords: collectionsCache[col.id], isLoading: false });
     processDataAndRender();
     return;
@@ -245,7 +240,6 @@ export async function loadCollectionData(collectionId, forceRefresh = false) {
 export async function fetchSingleCollection(col) {
   if (!col) return [];
 
-  // Fetch metadata concurrently
   fetchCollectionMeta(col);
 
   const sheetId = col.sheetId;
@@ -291,14 +285,11 @@ export async function fetchSingleCollection(col) {
     }
   }
 
-  if (fetchedData && fetchedData.length > 0) {
+  if (fetchedData?.length > 0) {
     collectionsCache[col.id] = fetchedData;
-
-    // Update sidebar badge for this collection
     updateSidebarBadge(col.id);
     updateStatsView();
 
-    // If this is currently active collection, update active view records
     const { currentCollectionId } = store.get();
     if (currentCollectionId === col.id) {
       store.set({ allRecords: fetchedData, isLoading: false });
@@ -314,35 +305,24 @@ export async function fetchSingleCollection(col) {
 export function processDataAndRender() {
   const { allRecords, currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId];
-  const meta = collectionsMetaCache[currentCollectionId] || (col ? col.defaultMeta : null);
+  const meta = collectionsMetaCache[currentCollectionId] || col?.defaultMeta;
 
   const titleElem = document.getElementById('collection-header-title');
-  if (titleElem) {
-    titleElem.innerText = getCollectionEnTitle(currentCollectionId, meta, col);
-  }
+  if (titleElem) titleElem.innerText = getCollectionEnTitle(currentCollectionId, meta, col);
 
   const cnTitleElem = document.getElementById('collection-header-cn-title');
-  if (cnTitleElem) {
-    cnTitleElem.innerText = meta && meta.title ? meta.title : (col ? col.name : '');
-  }
+  if (cnTitleElem) cnTitleElem.innerText = meta?.title || col?.name || '';
 
   const idHeaderElem = document.getElementById('collection-header-id');
-  if (idHeaderElem) {
-    idHeaderElem.innerText = meta && meta.id ? meta.id : '';
-  }
+  if (idHeaderElem) idHeaderElem.innerText = meta?.id || '';
 
   const subtitleElem = document.getElementById('collection-header-subtitle');
-  if (subtitleElem) {
-    subtitleElem.innerText = meta && meta.subtitle ? meta.subtitle : '';
-  }
+  if (subtitleElem) subtitleElem.innerText = meta?.subtitle || '';
 
   const totalElem = document.getElementById('kpi-total-count');
-  if (totalElem) {
-    totalElem.innerText = allRecords.length;
-  }
+  if (totalElem) totalElem.innerText = allRecords.length;
 
   updateSidebarBadge(currentCollectionId);
-
   applyFiltersAndSort();
   renderCollectionNotice();
   updateStatsView();
@@ -360,23 +340,18 @@ export function updateStatsView() {
 
   const visibleColIds = Object.keys(collectionsConfig).filter(id => {
     const col = collectionsConfig[id];
-    const meta = collectionsMetaCache[id] || (col ? col.defaultMeta : null);
+    const meta = collectionsMetaCache[id] || col?.defaultMeta;
     return !isCollectionHidden(meta);
   });
 
   const totalHalls = visibleColIds.length;
-
   let totalItems = 0;
   visibleColIds.forEach(id => {
-    if (collectionsCache[id] && Array.isArray(collectionsCache[id])) {
+    if (Array.isArray(collectionsCache[id])) {
       totalItems += collectionsCache[id].length;
     }
   });
 
-  if (totalHallsElem) {
-    totalHallsElem.innerText = totalHalls;
-  }
-  if (totalItemsElem) {
-    totalItemsElem.innerText = totalItems;
-  }
+  if (totalHallsElem) totalHallsElem.innerText = totalHalls;
+  if (totalItemsElem) totalItemsElem.innerText = totalItems;
 }

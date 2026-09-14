@@ -3,11 +3,10 @@
  */
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
-import { initTheme, toggleTheme, applyTheme } from './theme.js';
+import { initTheme, toggleTheme } from './theme.js';
 import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
 import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
-import { renderCards } from './components/cards.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick } from './components/modal.js';
 import { switchView, handleHashRoute } from './router.js';
