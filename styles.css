@@ -1094,21 +1094,26 @@ a:focus {
   transform: translateY(-50%);
 }
 
-#modal-meaning-text {
+#modal-meaning-text,
+#collection-modal-description {
   font-family: 'Noto Sans TC', sans-serif;
   font-size: 18px;
   color: var(--awsui-color-text-body-default, #16191f);
   line-height: 1.65;
   white-space: pre-wrap;
-  min-height: calc(18px * 1.65 * 5); /* at least 5 lines of text height */
   box-sizing: border-box;
   transition: background-color 0.2s ease, border-color 0.2s ease, padding 0.2s ease;
   overflow-y: auto;
   scrollbar-gutter: stable;
+}
+
+#modal-meaning-text {
+  min-height: calc(18px * 1.65 * 5); /* at least 5 lines of text height */
   cursor: pointer;
 }
 
-#modal-meaning-text.is-multiline {
+#modal-meaning-text.is-multiline,
+#collection-modal-description.is-multiline {
   background-color: #f8f9fa;
   border: none;
   border-radius: 0;
@@ -1779,7 +1784,8 @@ a:focus {
   border-color: var(--awsui-color-border-item-default);
 }
 
-[data-theme="dark"] #modal-meaning-text.is-multiline {
+[data-theme="dark"] #modal-meaning-text.is-multiline,
+[data-theme="dark"] #collection-modal-description.is-multiline {
   background-color: rgba(255, 255, 255, 0.04);
 }
 
@@ -1993,7 +1999,8 @@ a:focus {
     margin-top: 10px !important;
   }
 
-  #modal-meaning-text {
+  #modal-meaning-text,
+  #collection-modal-description {
     flex: 1 1 auto;
     overflow-y: auto;
     min-height: 0 !important;
@@ -2003,20 +2010,12 @@ a:focus {
     scrollbar-gutter: stable;
   }
 
-  #modal-meaning-text.is-multiline {
+  #modal-meaning-text.is-multiline,
+  #collection-modal-description.is-multiline {
     padding: 10px 12px !important;
     margin-left: -12px !important;
     margin-right: -12px !important;
     margin-top: 4px !important;
-  }
-
-  #collection-modal-description {
-    flex: 1 1 auto;
-    overflow-y: auto;
-    max-height: 240px;
-    -webkit-overflow-scrolling: touch;
-    font-size: 14px !important;
-    line-height: 1.6 !important;
   }
 
   #description-modal-text {

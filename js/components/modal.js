@@ -255,7 +255,14 @@ export function openCollectionModal(collectionId, updateHash = true) {
 
   if (titleElem) titleElem.innerText = meta?.title || col.name;
   if (enTitleElem) enTitleElem.innerText = meta?.enTitle || col.enTitle || targetColId;
-  if (descElem) descElem.innerText = meta?.description || '（無說明內容）';
+  if (descElem) {
+    const descText = meta?.description || '（無說明內容）';
+    descElem.innerText = descText;
+    if (descElem.classList) {
+      descElem.classList.toggle('is-multiline', checkMeaningExceedsTwoLines(descText, descElem));
+      descElem.classList.toggle('has-scroll', checkMeaningHasScroll(descElem));
+    }
+  }
   if (totalElem) {
     const items = collectionsCache[targetColId];
     if (Array.isArray(items) && items.length > 0) {

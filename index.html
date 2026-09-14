@@ -615,25 +615,27 @@
           <strong id="collection-modal-title">--</strong>
         </div>
 
-        <div id="collection-modal-entitle-section" class="awsui-modal-section" style="margin-top: 20px;">
-          <div class="awsui-modal-section-title">
-            <span>English Title</span>
+        <!-- English Title & Total Items in same row -->
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; align-items: start; margin-top: 20px;">
+          <div id="collection-modal-entitle-section" class="awsui-modal-section">
+            <div class="awsui-modal-section-title">
+              <span>English Title</span>
+            </div>
+            <div id="collection-modal-entitle" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
           </div>
-          <div id="collection-modal-entitle" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+          <div id="collection-modal-total-section" class="awsui-modal-section">
+            <div class="awsui-modal-section-title">
+              <span>Total Items</span>
+            </div>
+            <div id="collection-modal-total-items" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+          </div>
         </div>
 
         <div class="awsui-modal-section awsui-modal-description-section" style="margin-top: 20px;">
           <div class="awsui-modal-section-title">
             <span>Description</span>
           </div>
-          <div id="collection-modal-description" style="font-family: 'Noto Sans TC', sans-serif; font-size: 16px; color: var(--awsui-color-text-body-default, #16191f); line-height: 1.65; white-space: pre-wrap;"></div>
-        </div>
-
-        <div id="collection-modal-total-section" class="awsui-modal-section" style="margin-top: 20px;">
-          <div class="awsui-modal-section-title">
-            <span>Total Item</span>
-          </div>
-          <div id="collection-modal-total-items" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+          <div id="collection-modal-description"></div>
         </div>
 
         <div class="awsui-modal-divider"></div>

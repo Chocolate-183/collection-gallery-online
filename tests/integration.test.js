@@ -250,7 +250,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
     enTitle: 'China Terms',
     id: 'C102',
     tags: ['大陸', '語彙'],
-    description: '大陸特色詞彙說明內容',
+    description: '大陸特色詞彙說明內容\n第二行說明\n第三行說明',
     notice: '詞彙僅供參考',
     timestamp: '2026-09-04'
   };
@@ -261,7 +261,8 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   assert(mockModal.classes.has('open'));
   assert.equal(mockTitle.innerText, '大陸特色詞彙一覽');
   assert.equal(mockEnTitle.innerText, 'China Terms');
-  assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容');
+  assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容\n第二行說明\n第三行說明');
+  assert(mockDesc.classes.has('is-multiline'), 'Collection modal description should have is-multiline class for background color block');
   assert.equal(mockTotal.innerText, 2);
   assert.equal(mockCreatedAt.innerText, '2026-09-04');
   assert.equal(mockId.innerText, 'C102');
