@@ -603,12 +603,57 @@ a:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   position: relative;
 }
 .awsui-card:hover {
   border-color: #0f6ce0;
   box-shadow: none;
+}
+
+/* Card Active State: inverted background and text colors */
+.awsui-card.active,
+.awsui-card:active {
+  background: #0f6ce0 !important;
+  border-color: #0f6ce0 !important;
+  color: #ffffff !important;
+}
+
+.awsui-card.active .awsui-card-header-title,
+.awsui-card.active .awsui-reading-subtext,
+.awsui-card.active .awsui-meaning-value,
+.awsui-card.active .awsui-expand-hint,
+.awsui-card:active .awsui-card-header-title,
+.awsui-card:active .awsui-reading-subtext,
+.awsui-card:active .awsui-meaning-value,
+.awsui-card:active .awsui-expand-hint {
+  color: #ffffff !important;
+}
+
+.awsui-card.active .awsui-card-divider,
+.awsui-card:active .awsui-card-divider {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.awsui-card.active .awsui-expand-hint,
+.awsui-card:active .awsui-expand-hint {
+  background: linear-gradient(to right, transparent, #0f6ce0 60%) !important;
+}
+
+.awsui-welcome-card.active,
+.awsui-welcome-card:active {
+  background: #0f6ce0 !important;
+  border-color: #0f6ce0 !important;
+  color: #ffffff !important;
+}
+
+.awsui-welcome-card.active .awsui-welcome-card-title,
+.awsui-welcome-card.active .awsui-welcome-card-desc,
+.awsui-welcome-card.active .awsui-welcome-card-action,
+.awsui-welcome-card:active .awsui-welcome-card-title,
+.awsui-welcome-card:active .awsui-welcome-card-desc,
+.awsui-welcome-card:active .awsui-welcome-card-action {
+  color: #ffffff !important;
 }
 
 /* Empty State Card */
@@ -1703,6 +1748,50 @@ a:focus {
 
 [data-theme="dark"] .awsui-card-header-title {
   color: #4da2ff !important;
+}
+
+[data-theme="dark"] .awsui-card.active,
+[data-theme="dark"] .awsui-card:active {
+  background-color: #0f6ce0 !important;
+  border-color: #0f6ce0 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-card-header-title,
+[data-theme="dark"] .awsui-card.active .awsui-reading-subtext,
+[data-theme="dark"] .awsui-card.active .awsui-meaning-value,
+[data-theme="dark"] .awsui-card.active .awsui-expand-hint,
+[data-theme="dark"] .awsui-card:active .awsui-card-header-title,
+[data-theme="dark"] .awsui-card:active .awsui-reading-subtext,
+[data-theme="dark"] .awsui-card:active .awsui-meaning-value,
+[data-theme="dark"] .awsui-card:active .awsui-expand-hint {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-card-divider,
+[data-theme="dark"] .awsui-card:active .awsui-card-divider {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-expand-hint,
+[data-theme="dark"] .awsui-card:active .awsui-expand-hint {
+  background: linear-gradient(to right, transparent, #0f6ce0 60%) !important;
+}
+
+[data-theme="dark"] .awsui-welcome-card.active,
+[data-theme="dark"] .awsui-welcome-card:active {
+  background-color: #0f6ce0 !important;
+  border-color: #0f6ce0 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-welcome-card.active .awsui-welcome-card-title,
+[data-theme="dark"] .awsui-welcome-card.active .awsui-welcome-card-desc,
+[data-theme="dark"] .awsui-welcome-card.active .awsui-welcome-card-action,
+[data-theme="dark"] .awsui-welcome-card:active .awsui-welcome-card-title,
+[data-theme="dark"] .awsui-welcome-card:active .awsui-welcome-card-desc,
+[data-theme="dark"] .awsui-welcome-card:active .awsui-welcome-card-action {
+  color: #ffffff !important;
 }
 
 [data-theme="dark"] .awsui-meaning-value:hover,

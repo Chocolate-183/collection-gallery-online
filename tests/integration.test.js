@@ -22,6 +22,8 @@ function createMockElement(props = {}) {
     },
     setAttribute(k, v) { this[k] = v; },
     getAttribute(k) { return this[k]; },
+    querySelector: () => null,
+    querySelectorAll: () => [],
     ...props
   };
 }
@@ -366,3 +368,64 @@ test('Item Modal Explore Section - Display Flex for Same Row Layout', async () =
   openMeaningModal(1, false);
   assert.equal(mockRecSection.style.display, 'flex', 'Explore section should display as flex for same-row layout');
 });
+
+test('Card Active State - Toggle Active Class on Open/Close Modal and Rendering', async () => {
+  const card1 = createMockElement({ 'data-row-index': '1' });
+  const card2 = createMockElement({ 'data-row-index': '2' });
+  const mockContainer = createMockElement();
+  const mockModal = createMockElement();
+  const mockMeaning = createMockElement({ 'data-row-index': '1' });
+
+  mockDOM({
+    'card-grid': mockContainer,
+    'detail-modal': mockModal,
+    'modal-meaning-text': mockMeaning
+  });
+
+  global.document.querySelectorAll = (sel) => {
+    if (sel === '.awsui-card') return [card1, card2];
+    return [];
+  };
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal, closeDetailModal } = await import('../js/components/modal.js');
+  const { renderCards } = await import('../js/components/cards.js');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [
+      { row_index: 1, ja_term: '詞彙一', tw_translation: '說明一' },
+      { row_index: 2, ja_term: '詞彙二', tw_translation: '說明二' }
+    ],
+    filteredRecords: [
+      { row_index: 1, ja_term: '詞彙一', tw_translation: '說明一' },
+      { row_index: 2, ja_term: '詞彙二', tw_translation: '說明二' }
+    ],
+    currentPage: 1,
+    pageSize: 12,
+    invalidTerm: null
+  });
+
+  // Test 1: openMeaningModal activates matching card
+  openMeaningModal(1, false);
+  assert.equal(card1.classList.contains('active'), true, 'Card 1 should be active');
+  assert.equal(card2.classList.contains('active'), false, 'Card 2 should not be active');
+
+  // Test 2: openMeaningModal switches active card
+  openMeaningModal(2, false);
+  assert.equal(card1.classList.contains('active'), false, 'Card 1 should no longer be active');
+  assert.equal(card2.classList.contains('active'), true, 'Card 2 should now be active');
+
+  // Test 3: closeDetailModal removes active from all cards
+  closeDetailModal(false);
+  assert.equal(card1.classList.contains('active'), false, 'Card 1 should not be active after close');
+  assert.equal(card2.classList.contains('active'), false, 'Card 2 should not be active after close');
+
+  // Test 4: renderCards with open modal retains active state in HTML
+  mockModal.classList.add('open');
+  mockMeaning.setAttribute('data-row-index', '1');
+  renderCards();
+  assert(mockContainer.innerHTML.includes('class="awsui-card active" data-row-index="1"'), 'Card 1 should render with active class');
+  assert(mockContainer.innerHTML.includes('class="awsui-card" data-row-index="2"'), 'Card 2 should render without active class');
+});
+

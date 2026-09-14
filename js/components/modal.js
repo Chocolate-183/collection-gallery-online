@@ -126,6 +126,19 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec) return;
 
+  if (typeof document !== 'undefined') {
+    const cards = document.querySelectorAll('.awsui-card');
+    if (cards && typeof cards.forEach === 'function') {
+      cards.forEach(card => {
+        if (card.getAttribute && card.getAttribute('data-row-index') === String(rowIndex)) {
+          card.classList.add('active');
+        } else if (card.classList) {
+          card.classList.remove('active');
+        }
+      });
+    }
+  }
+
   const titleElem = document.getElementById('modal-term-title');
   const readingSectionElem = document.getElementById('modal-reading-section');
   const readingElem = document.getElementById('modal-reading-row');
@@ -202,6 +215,14 @@ export function closeDetailModal(updateHash = true) {
   closeDescriptionModal(false);
   const modal = document.getElementById('detail-modal');
   if (modal) modal.classList.remove('open');
+  if (typeof document !== 'undefined') {
+    const cards = document.querySelectorAll('.awsui-card');
+    if (cards && typeof cards.forEach === 'function') {
+      cards.forEach(card => {
+        if (card.classList) card.classList.remove('active');
+      });
+    }
+  }
 
   if (updateHash) {
     const { currentCollectionId } = store.get();

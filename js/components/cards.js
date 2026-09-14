@@ -67,12 +67,19 @@ export function renderCards() {
   const endIdx = Math.min(startIdx + pageSize, total);
   const pageRecords = filteredRecords.slice(startIdx, endIdx);
 
+  const meaningElem = typeof document !== 'undefined' ? document.getElementById('modal-meaning-text') : null;
+  const detailModal = typeof document !== 'undefined' ? document.getElementById('detail-modal') : null;
+  const activeRowIndex = (detailModal && detailModal.classList && detailModal.classList.contains('open') && meaningElem)
+    ? meaningElem.getAttribute('data-row-index')
+    : null;
+
   const cardsHtml = pageRecords.map(rec => {
     const meaning = rec.tw_translation || '（無說明內容）';
     const isLongText = meaning.length > 20;
+    const isActive = activeRowIndex !== null && activeRowIndex !== undefined && String(rec.row_index) === String(activeRowIndex);
 
     return `
-      <div class="awsui-card" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
+      <div class="awsui-card${isActive ? ' active' : ''}" data-row-index="${rec.row_index}" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
         <div class="awsui-card-top-content">
           <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${escapeHtml(rec.ja_term)}</div>
           ${rec.reading ? `<span class="awsui-reading-subtext" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>` : '<span class="awsui-reading-subtext">&nbsp;</span>'}
