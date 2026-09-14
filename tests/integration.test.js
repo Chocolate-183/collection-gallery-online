@@ -22,6 +22,8 @@ function createMockElement(props = {}) {
     },
     setAttribute(k, v) { this[k] = v; },
     getAttribute(k) { return this[k]; },
+    querySelector: () => null,
+    querySelectorAll: () => [],
     ...props
   };
 }
@@ -227,19 +229,21 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   const mockModal = createMockElement();
   const mockTitle = createMockElement();
   const mockEnTitle = createMockElement();
-  const mockSubtitle = createMockElement();
   const mockDesc = createMockElement();
   const mockTotal = createMockElement();
+  const mockCreatedAt = createMockElement();
   const mockId = createMockElement();
+  const mockHeaderTitle = createMockElement();
 
   mockDOM({
     'collection-modal': mockModal,
     'collection-modal-title': mockTitle,
     'collection-modal-entitle': mockEnTitle,
-    'collection-modal-subtitle': mockSubtitle,
     'collection-modal-description': mockDesc,
     'collection-modal-total-items': mockTotal,
-    'collection-modal-id': mockId
+    'collection-modal-created-at': mockCreatedAt,
+    'collection-modal-id': mockId,
+    'collection-header-title': mockHeaderTitle
   });
 
   const { collectionsMetaCache, collectionsCache } = await import('../js/data.js');
@@ -249,22 +253,37 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
     title: '大陸特色詞彙一覽',
     enTitle: 'China Terms',
     id: 'C102',
-    subtitle: '兩岸詞彙對照',
     tags: ['大陸', '語彙'],
-    description: '大陸特色詞彙說明內容',
-    notice: '詞彙僅供參考'
+    description: '大陸特色詞彙說明內容\n第二行說明\n第三行說明',
+    notice: '詞彙僅供參考',
+    timestamp: '2026-09-04'
   };
   collectionsCache['china-terms'] = [{ id: '1' }, { id: '2' }];
 
   openCollectionModal('china-terms', false);
 
   assert(mockModal.classes.has('open'));
+  assert(mockHeaderTitle.classes.has('active'), 'collection-header-title should have active class when collection modal opens');
   assert.equal(mockTitle.innerText, '大陸特色詞彙一覽');
   assert.equal(mockEnTitle.innerText, 'China Terms');
-  assert.equal(mockSubtitle.innerText, '兩岸詞彙對照');
-  assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容');
+  assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容\n第二行說明\n第三行說明');
+  assert(mockDesc.classes.has('is-multiline'), 'Collection modal description should have is-multiline class for background color block');
   assert.equal(mockTotal.innerText, 2);
+  assert.equal(mockCreatedAt.innerText, '2026-09-04');
   assert.equal(mockId.innerText, 'C102');
+
+  closeCollectionModal(false);
+  assert(!mockModal.classes.has('open'));
+  assert(!mockHeaderTitle.classes.has('active'), 'collection-header-title should remove active class when collection modal closes');
+
+  // Test fallback to defaultMeta for korean-terms
+  delete collectionsMetaCache['korean-terms'];
+  openCollectionModal('korean-terms', false);
+  assert(mockModal.classes.has('open'));
+  assert.equal(mockTitle.innerText, '韓文單字加漢字 記憶更輕鬆');
+  assert.equal(mockEnTitle.innerText, 'Korean Terms');
+  assert.equal(mockCreatedAt.innerText, '2026-09-04');
+  assert.equal(mockId.innerText, 'C103');
 
   closeCollectionModal(false);
   assert(!mockModal.classes.has('open'));
@@ -275,15 +294,17 @@ test('Description Modal Component & Interaction Logic', async () => {
   const mockDescText = createMockElement();
   const mockMeaning = createMockElement({ clientHeight: 100, scrollHeight: 200, 'data-row-index': '1' });
   mockMeaning.classList.add('has-scroll');
+  const mockColDesc = createMockElement({ innerText: '展廳詳細介紹說明內容' });
 
   mockDOM({
     'description-modal': mockDescModal,
     'description-modal-text': mockDescText,
-    'modal-meaning-text': mockMeaning
+    'modal-meaning-text': mockMeaning,
+    'collection-modal-description': mockColDesc
   });
 
   const { store } = await import('../js/state.js');
-  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick } = await import('../js/components/modal.js');
+  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick, handleCollectionDescriptionClick } = await import('../js/components/modal.js');
 
   store.set({
     currentCollectionId: 'japanese-terms',
@@ -310,6 +331,13 @@ test('Description Modal Component & Interaction Logic', async () => {
   mockMeaning.scrollHeight = 100;
   handleMeaningTextClick();
   assert(mockDescModal.classes.has('open'), 'handleMeaningTextClick should open Description modal even without scroll');
+
+  // Test Collection Modal double-click opens Description Modal
+  closeDescriptionModal(false);
+  assert(!mockDescModal.classes.has('open'));
+  handleCollectionDescriptionClick();
+  assert(mockDescModal.classes.has('open'), 'handleCollectionDescriptionClick should open Description modal');
+  assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
 });
 
 test('Item Modal Explore Section - Display Flex for Same Row Layout', async () => {
@@ -344,3 +372,64 @@ test('Item Modal Explore Section - Display Flex for Same Row Layout', async () =
   openMeaningModal(1, false);
   assert.equal(mockRecSection.style.display, 'flex', 'Explore section should display as flex for same-row layout');
 });
+
+test('Card Active State - Toggle Active Class on Open/Close Modal and Rendering', async () => {
+  const card1 = createMockElement({ 'data-row-index': '1' });
+  const card2 = createMockElement({ 'data-row-index': '2' });
+  const mockContainer = createMockElement();
+  const mockModal = createMockElement();
+  const mockMeaning = createMockElement({ 'data-row-index': '1' });
+
+  mockDOM({
+    'card-grid': mockContainer,
+    'detail-modal': mockModal,
+    'modal-meaning-text': mockMeaning
+  });
+
+  global.document.querySelectorAll = (sel) => {
+    if (sel === '.awsui-card') return [card1, card2];
+    return [];
+  };
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal, closeDetailModal } = await import('../js/components/modal.js');
+  const { renderCards } = await import('../js/components/cards.js');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [
+      { row_index: 1, ja_term: '詞彙一', tw_translation: '說明一' },
+      { row_index: 2, ja_term: '詞彙二', tw_translation: '說明二' }
+    ],
+    filteredRecords: [
+      { row_index: 1, ja_term: '詞彙一', tw_translation: '說明一' },
+      { row_index: 2, ja_term: '詞彙二', tw_translation: '說明二' }
+    ],
+    currentPage: 1,
+    pageSize: 12,
+    invalidTerm: null
+  });
+
+  // Test 1: openMeaningModal activates matching card
+  openMeaningModal(1, false);
+  assert.equal(card1.classList.contains('active'), true, 'Card 1 should be active');
+  assert.equal(card2.classList.contains('active'), false, 'Card 2 should not be active');
+
+  // Test 2: openMeaningModal switches active card
+  openMeaningModal(2, false);
+  assert.equal(card1.classList.contains('active'), false, 'Card 1 should no longer be active');
+  assert.equal(card2.classList.contains('active'), true, 'Card 2 should now be active');
+
+  // Test 3: closeDetailModal removes active from all cards
+  closeDetailModal(false);
+  assert.equal(card1.classList.contains('active'), false, 'Card 1 should not be active after close');
+  assert.equal(card2.classList.contains('active'), false, 'Card 2 should not be active after close');
+
+  // Test 4: renderCards with open modal retains active state in HTML
+  mockModal.classList.add('open');
+  mockMeaning.setAttribute('data-row-index', '1');
+  renderCards();
+  assert(mockContainer.innerHTML.includes('class="awsui-card active" data-row-index="1"'), 'Card 1 should render with active class');
+  assert(mockContainer.innerHTML.includes('class="awsui-card" data-row-index="2"'), 'Card 2 should render without active class');
+});
+

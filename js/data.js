@@ -11,8 +11,6 @@ import { showLoadingState } from './components/cards.js';
 import { updateSidebarBadge } from './components/sidebar.js';
 import { safeFetchText, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from './utils.js';
 
-export { isCollectionHidden };
-
 // Cache for storing fetched collection records & metadata
 export const collectionsCache = {};
 export const collectionsMetaCache = {};

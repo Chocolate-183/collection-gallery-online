@@ -14,7 +14,8 @@ const META_FIELD_DEFINITIONS = [
   { key: 'announcement', match: k => k.includes('公告') || k.includes('announcement') },
   { key: 'author', match: k => k.includes('作者') || k.includes('策劃') || k.includes('負責人') || k.includes('author') },
   { key: 'status', match: k => k.includes('狀態') || k.includes('status') },
-  { key: 'id', match: k => k.toUpperCase() === 'ID' || k.includes('編號') || k.includes('序號') || k.includes('展廳id') }
+  { key: 'id', match: k => k.toUpperCase() === 'ID' || k.includes('編號') || k.includes('序號') || k.includes('展廳id') },
+  { key: 'timestamp', match: k => k.includes('時間') || k.includes('日期') || k.includes('timestamp') || k.includes('created') }
 ];
 
 /**
@@ -33,7 +34,8 @@ function extractMetadataFromKeyValues(pairs) {
     announcement: '',
     author: '',
     status: '',
-    id: ''
+    id: '',
+    timestamp: ''
   };
 
   for (const [rawKey, rawVal] of pairs) {
@@ -347,29 +349,6 @@ export function parseMetaCSVData(csvText) {
   const rows = parseCSVRows(csvText);
   if (rows.length === 0) return null;
   return extractMetadataFromKeyValues(rows.filter(r => r.length >= 2).map(r => [r[0], r[1]]));
-}
-
-/**
- * Parses key-value pairs from metadata GViz responses.
- */
-export function parseMetaGvizResponse(gvizText) {
-  const allMeta = parseAllCollectionsMetaGvizResponse(gvizText);
-  const first = Object.values(allMeta)[0];
-  if (first) return first;
-
-  const table = extractGvizTable(gvizText);
-  if (!table?.rows) return null;
-
-  const pairs = [];
-  table.rows.forEach(r => {
-    if (r.c?.length >= 2) {
-      const k = (r.c[0]?.v ?? '').toString();
-      const v = (r.c[1]?.v ?? r.c[1]?.f ?? '').toString();
-      pairs.push([k, v]);
-    }
-  });
-
-  return extractMetadataFromKeyValues(pairs);
 }
 
 /**
