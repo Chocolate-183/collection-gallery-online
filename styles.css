@@ -352,7 +352,11 @@ a:focus {
   margin: 0;
   line-height: 1.25;
   cursor: pointer;
-  transition: color 0.15s ease;
+  display: inline-block;
+  padding: 2px 10px;
+  margin-left: -10px;
+  border-radius: var(--awsui-border-radius-tag, 4px);
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
 #collection-header-title:hover {
@@ -361,7 +365,9 @@ a:focus {
 
 #collection-header-title.active,
 #collection-header-title:active {
-  color: #0f6ce0 !important;
+  background: #0f6ce0 !important;
+  color: #ffffff !important;
+  border-color: #0f6ce0 !important;
 }
 
 .awsui-header-cn-title,
@@ -1763,7 +1769,9 @@ a:focus {
 
 [data-theme="dark"] #collection-header-title.active,
 [data-theme="dark"] #collection-header-title:active {
-  color: #4da2ff !important;
+  background-color: #0f6ce0 !important;
+  color: #ffffff !important;
+  border-color: #0f6ce0 !important;
 }
 
 [data-theme="dark"] .awsui-card-header-title {
