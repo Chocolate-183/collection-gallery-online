@@ -346,3 +346,12 @@ test('Description Modal HTML Structure', () => {
   assert(html.includes('onclick="closeDescriptionModal()"'), 'Should contain closeDescriptionModal call');
   assert(html.includes('id="modal-meaning-text" ondblclick="handleMeaningTextClick()"'), 'modal-meaning-text should have ondblclick handleMeaningTextClick handler');
 });
+
+test('Item Modal HTML Structure - Explore Section Positioned Below Divider Line', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const createdTimeIdx = html.indexOf('class="awsui-modal-created-time"');
+  const exploreIdx = html.indexOf('id="modal-recommendations-section"');
+  assert(createdTimeIdx !== -1, 'Should contain awsui-modal-created-time');
+  assert(exploreIdx !== -1, 'Should contain modal-recommendations-section');
+  assert(exploreIdx > createdTimeIdx, 'Explore recommendations section should be placed below the divider line / metadata row');
+});

@@ -191,6 +191,8 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('border-bottom: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-header-title should have a bottom border line');
   assert(cssContent.includes('.awsui-modal-created-time'), 'Should define .awsui-modal-created-time selector');
   assert(cssContent.includes('border-top: 1px solid var(--awsui-color-border-control-default'), 'awsui-modal-created-time should have a top border line');
+  assert(cssContent.includes('margin-top: 16px;'), 'awsui-modal-created-time should have margin-top 16px above divider line');
+  assert(cssContent.includes('padding-top: 16px;'), 'awsui-modal-created-time should have padding-top 16px below divider line for equal spacing');
   assert(cssContent.includes('grid-template-columns: 1.2fr 1fr;'), 'awsui-modal-created-time should use grid layout with ID column around middle-right');
   assert(cssContent.includes('.awsui-modal-meta-item'), 'Should define .awsui-modal-meta-item selector');
   assert(cssContent.includes('#modal-created-at,\n#modal-id {\n  font-weight: 400;\n  color: var(--awsui-color-text-body-secondary, #687078);'), 'footer metadata values should match secondary text color');

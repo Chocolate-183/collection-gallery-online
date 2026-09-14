@@ -1139,7 +1139,7 @@ a:focus {
 
 /* Recommended Items Section in Modal */
 .awsui-modal-recommendations-section {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .awsui-modal-recommendations-list {
@@ -1171,8 +1171,8 @@ a:focus {
 
 /* Bottom Creation Time & ID Row in Modal */
 .awsui-modal-created-time {
-  margin-top: 20px;
-  padding-top: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
   border-top: 1px solid var(--awsui-color-border-control-default, #aab7b8);
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -2021,8 +2021,8 @@ a:focus {
 
   .awsui-modal-created-time {
     font-size: 12px !important;
-    margin-top: 12px !important;
-    padding-top: 8px !important;
+    margin-top: 10px !important;
+    padding-top: 10px !important;
   }
 
   .awsui-modal-meta-item,
