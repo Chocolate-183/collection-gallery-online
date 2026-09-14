@@ -298,7 +298,7 @@ test('Description Modal Component & Interaction Logic', async () => {
   });
 
   const { store } = await import('../js/state.js');
-  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick, handleCollectionDescriptionClick, openCollectionDescriptionModal } = await import('../js/components/modal.js');
+  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick, handleCollectionDescriptionClick } = await import('../js/components/modal.js');
 
   store.set({
     currentCollectionId: 'japanese-terms',

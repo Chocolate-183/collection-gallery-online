@@ -6,13 +6,13 @@ import { store } from './state.js';
 import { initTheme, toggleTheme } from './theme.js';
 import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
 import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from './filter.js';
-import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
+import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, openCollectionDescriptionModal } from './components/modal.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
 
-export function renderScheduleGrid() {
+function renderScheduleGrid() {
   const scheduleGrid = document.getElementById('schedule-grid');
   if (!scheduleGrid) return;
   const displayOrder = [1, 2, 3, 4, 5, 6, 0];
@@ -32,7 +32,6 @@ Object.assign(window, {
   toggleTheme,
   switchView,
   switchCollection,
-  onCollectionSelectChange,
   loadCollectionData: (colId) => loadCollectionData(colId, true),
   preloadAllCollections,
   updateStatsView,

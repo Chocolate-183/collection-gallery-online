@@ -2,20 +2,18 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   parseCSVData,
-  parseGvizResponse,
   parseMetaCSVData,
   parseAllCollectionsMetaCSVData,
   parseCSVRows,
   extractGvizTable,
   parseOpeningHoursCSV
 } from '../js/parser.js';
-import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana, sortRecords } from '../js/filter.js';
+import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana } from '../js/filter.js';
 import { LENGTH_TABS } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
   getTodayOpeningHoursText,
-  getNextOpeningTimeText,
   isCollectionAdjusting,
   isCollectionPreparing,
   isCollectionHidden,

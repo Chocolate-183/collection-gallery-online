@@ -73,7 +73,7 @@ export const collectionsConfig = {
 /**
  * Shared Metadata Sheet Configuration (Central metadata spreadsheet for all exhibition halls)
  */
-export const metadataConfig = {
+const metadataConfig = {
   sheetId: '162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs',
   gid: '0'
 };
@@ -123,9 +123,3 @@ export function getMetadataUrls() {
   };
 }
 
-/**
- * Returns metadata CSV and GViz URLs for a collection configuration object
- */
-export function getCollectionMetaUrls(col) {
-  return getMetadataUrls();
-}

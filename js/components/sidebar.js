@@ -165,8 +165,3 @@ export function switchCollection(collectionId, updateHash = true) {
   }
 }
 
-export function onCollectionSelectChange(elem) {
-  if (elem?.value) {
-    switchCollection(elem.value);
-  }
-}

@@ -352,29 +352,6 @@ export function parseMetaCSVData(csvText) {
 }
 
 /**
- * Parses key-value pairs from metadata GViz responses.
- */
-export function parseMetaGvizResponse(gvizText) {
-  const allMeta = parseAllCollectionsMetaGvizResponse(gvizText);
-  const first = Object.values(allMeta)[0];
-  if (first) return first;
-
-  const table = extractGvizTable(gvizText);
-  if (!table?.rows) return null;
-
-  const pairs = [];
-  table.rows.forEach(r => {
-    if (r.c?.length >= 2) {
-      const k = (r.c[0]?.v ?? '').toString();
-      const v = (r.c[1]?.v ?? r.c[1]?.f ?? '').toString();
-      pairs.push([k, v]);
-    }
-  });
-
-  return extractMetadataFromKeyValues(pairs);
-}
-
-/**
  * Parses opening hours schedule from CSV content.
  * @param {string} csvText - Raw CSV content
  * @returns {Array<{day: string, hours: string}>|null} Array of 7 day schedule items
