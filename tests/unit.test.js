@@ -195,6 +195,7 @@ test('CSS Stylesheet - Desktop Small and Large Modal Sizes & Modal Typography', 
   assert(cssContent.includes('.awsui-modal-meta-item'), 'Should define .awsui-modal-meta-item selector');
   assert(cssContent.includes('#modal-created-at,\n#modal-id {\n  font-weight: 400;\n  color: var(--awsui-color-text-body-secondary, #687078);'), 'footer metadata values should match secondary text color');
   assert(cssContent.includes('#modal-meaning-text.has-scroll'), 'modal-meaning-text.has-scroll should be defined in CSS');
+  assert(cssContent.includes('scrollbar-gutter: stable;'), 'modal-meaning-text should reserve scrollbar space with scrollbar-gutter: stable');
   assert(cssContent.includes('cursor: pointer;'), 'has-scroll should set cursor: pointer');
   assert(cssContent.includes('#description-modal'), '#description-modal should be defined in CSS');
   assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');

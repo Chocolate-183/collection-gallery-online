@@ -1102,6 +1102,8 @@ a:focus {
   min-height: calc(18px * 1.65 * 5); /* at least 5 lines of text height */
   box-sizing: border-box;
   transition: background-color 0.2s ease, border-color 0.2s ease, padding 0.2s ease;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 #modal-meaning-text.is-multiline {
@@ -1844,6 +1846,7 @@ a:focus {
     overflow-y: auto;
     min-height: 0;
     padding-right: 6px;
+    scrollbar-gutter: stable;
   }
 }
 
@@ -1945,6 +1948,7 @@ a:focus {
     -webkit-overflow-scrolling: touch;
     font-size: 15px !important;
     line-height: 1.6 !important;
+    scrollbar-gutter: stable;
   }
 
   #modal-meaning-text.is-multiline {
