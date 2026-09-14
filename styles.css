@@ -351,6 +351,17 @@ a:focus {
   font-weight: 400;
   margin: 0;
   line-height: 1.25;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+#collection-header-title:hover {
+  color: #0f6ce0;
+}
+
+#collection-header-title.active,
+#collection-header-title:active {
+  color: #0f6ce0 !important;
 }
 
 .awsui-header-cn-title,
@@ -1744,6 +1755,15 @@ a:focus {
 
 [data-theme="dark"] .awsui-empty-card .awsui-icon {
   fill: #8b949e !important;
+}
+
+[data-theme="dark"] #collection-header-title:hover {
+  color: #4da2ff;
+}
+
+[data-theme="dark"] #collection-header-title.active,
+[data-theme="dark"] #collection-header-title:active {
+  color: #4da2ff !important;
 }
 
 [data-theme="dark"] .awsui-card-header-title {

@@ -233,6 +233,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   const mockTotal = createMockElement();
   const mockCreatedAt = createMockElement();
   const mockId = createMockElement();
+  const mockHeaderTitle = createMockElement();
 
   mockDOM({
     'collection-modal': mockModal,
@@ -241,7 +242,8 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
     'collection-modal-description': mockDesc,
     'collection-modal-total-items': mockTotal,
     'collection-modal-created-at': mockCreatedAt,
-    'collection-modal-id': mockId
+    'collection-modal-id': mockId,
+    'collection-header-title': mockHeaderTitle
   });
 
   const { collectionsMetaCache, collectionsCache } = await import('../js/data.js');
@@ -261,6 +263,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   openCollectionModal('china-terms', false);
 
   assert(mockModal.classes.has('open'));
+  assert(mockHeaderTitle.classes.has('active'), 'collection-header-title should have active class when collection modal opens');
   assert.equal(mockTitle.innerText, '大陸特色詞彙一覽');
   assert.equal(mockEnTitle.innerText, 'China Terms');
   assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容\n第二行說明\n第三行說明');
@@ -271,6 +274,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
 
   closeCollectionModal(false);
   assert(!mockModal.classes.has('open'));
+  assert(!mockHeaderTitle.classes.has('active'), 'collection-header-title should remove active class when collection modal closes');
 
   // Test fallback to defaultMeta for korean-terms
   delete collectionsMetaCache['korean-terms'];

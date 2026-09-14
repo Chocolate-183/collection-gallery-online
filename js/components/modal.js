@@ -353,6 +353,13 @@ export function openCollectionModal(collectionId, updateHash = true) {
   }
   if (idElem) idElem.innerText = meta?.id || 'N/A';
 
+  if (typeof document !== 'undefined') {
+    const headerTitle = document.getElementById('collection-header-title');
+    if (headerTitle && headerTitle.classList) {
+      headerTitle.classList.add('active');
+    }
+  }
+
   modal.classList.add('open');
 
   if (updateHash) {
@@ -363,6 +370,13 @@ export function openCollectionModal(collectionId, updateHash = true) {
 export function closeCollectionModal(updateHash = true) {
   const modal = document.getElementById('collection-modal');
   if (modal) modal.classList.remove('open');
+
+  if (typeof document !== 'undefined') {
+    const headerTitle = document.getElementById('collection-header-title');
+    if (headerTitle && headerTitle.classList) {
+      headerTitle.classList.remove('active');
+    }
+  }
 
   if (updateHash) {
     const { currentCollectionId } = store.get();
