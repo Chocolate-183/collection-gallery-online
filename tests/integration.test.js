@@ -227,18 +227,18 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   const mockModal = createMockElement();
   const mockTitle = createMockElement();
   const mockEnTitle = createMockElement();
-  const mockSubtitle = createMockElement();
   const mockDesc = createMockElement();
   const mockTotal = createMockElement();
+  const mockCreatedAt = createMockElement();
   const mockId = createMockElement();
 
   mockDOM({
     'collection-modal': mockModal,
     'collection-modal-title': mockTitle,
     'collection-modal-entitle': mockEnTitle,
-    'collection-modal-subtitle': mockSubtitle,
     'collection-modal-description': mockDesc,
     'collection-modal-total-items': mockTotal,
+    'collection-modal-created-at': mockCreatedAt,
     'collection-modal-id': mockId
   });
 
@@ -249,10 +249,10 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
     title: '大陸特色詞彙一覽',
     enTitle: 'China Terms',
     id: 'C102',
-    subtitle: '兩岸詞彙對照',
     tags: ['大陸', '語彙'],
     description: '大陸特色詞彙說明內容',
-    notice: '詞彙僅供參考'
+    notice: '詞彙僅供參考',
+    timestamp: '2026-09-04'
   };
   collectionsCache['china-terms'] = [{ id: '1' }, { id: '2' }];
 
@@ -261,10 +261,22 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   assert(mockModal.classes.has('open'));
   assert.equal(mockTitle.innerText, '大陸特色詞彙一覽');
   assert.equal(mockEnTitle.innerText, 'China Terms');
-  assert.equal(mockSubtitle.innerText, '兩岸詞彙對照');
   assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容');
   assert.equal(mockTotal.innerText, 2);
+  assert.equal(mockCreatedAt.innerText, '2026-09-04');
   assert.equal(mockId.innerText, 'C102');
+
+  closeCollectionModal(false);
+  assert(!mockModal.classes.has('open'));
+
+  // Test fallback to defaultMeta for korean-terms
+  delete collectionsMetaCache['korean-terms'];
+  openCollectionModal('korean-terms', false);
+  assert(mockModal.classes.has('open'));
+  assert.equal(mockTitle.innerText, '韓文單字加漢字 記憶更輕鬆');
+  assert.equal(mockEnTitle.innerText, 'Korean Terms');
+  assert.equal(mockCreatedAt.innerText, '2026-09-04');
+  assert.equal(mockId.innerText, 'C103');
 
   closeCollectionModal(false);
   assert(!mockModal.classes.has('open'));

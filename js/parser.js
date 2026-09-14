@@ -14,7 +14,8 @@ const META_FIELD_DEFINITIONS = [
   { key: 'announcement', match: k => k.includes('公告') || k.includes('announcement') },
   { key: 'author', match: k => k.includes('作者') || k.includes('策劃') || k.includes('負責人') || k.includes('author') },
   { key: 'status', match: k => k.includes('狀態') || k.includes('status') },
-  { key: 'id', match: k => k.toUpperCase() === 'ID' || k.includes('編號') || k.includes('序號') || k.includes('展廳id') }
+  { key: 'id', match: k => k.toUpperCase() === 'ID' || k.includes('編號') || k.includes('序號') || k.includes('展廳id') },
+  { key: 'timestamp', match: k => k.includes('時間') || k.includes('日期') || k.includes('timestamp') || k.includes('created') }
 ];
 
 /**
@@ -33,7 +34,8 @@ function extractMetadataFromKeyValues(pairs) {
     announcement: '',
     author: '',
     status: '',
-    id: ''
+    id: '',
+    timestamp: ''
   };
 
   for (const [rawKey, rawVal] of pairs) {

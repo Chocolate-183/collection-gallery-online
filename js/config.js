@@ -20,7 +20,8 @@ export const collectionsConfig = {
       tags: ['日本', '語彙'],
       subtitle: '本展區精選由漢字與數字組成的日語詞彙，帶你跨越中文字面的直覺迷思，一秒搞懂最真實的日語意思',
       description: '【同字不同義：日語漢字語彙展】\n\n看到「非常口」以為是非常時期用的出口？看到「手紙」以為是衛生紙？那些你以為看懂的日語漢字，背後含意往往出乎意料！本展區精選由漢字與數字組成的日語詞彙，帶你跨越中文字面的直覺迷思，一秒搞懂最真實的日語意思！',
-      notice: '收錄標準\n- 僅收錄與台灣中文用詞存在差異的日文詞彙\n- 僅收錄完全由漢字/英文/數字構成、不含假名的詞彙'
+      notice: '收錄標準\n- 僅收錄與台灣中文用詞存在差異的日文詞彙\n- 僅收錄完全由漢字/英文/數字構成、不含假名的詞彙',
+      timestamp: '2026-09-02'
     }
   },
   'china-terms': {
@@ -41,7 +42,8 @@ export const collectionsConfig = {
       tags: ['大陸', '語彙'],
       subtitle: '本展區精選大陸當代的網路熱詞與生活用語，幫你精準對照台灣熟悉的在地說法。',
       description: '【同字不同義：兩岸詞彙對照】\n\n同樣是中文，意思居然差這麼多？本展區精選大陸當代的網路熱詞與生活用語，幫你精準對照台灣熟悉的在地說法。從社群梗到日常表達，帶你快速看懂兩岸語境差異，掌握最道地的流行語脈絡！',
-      notice: '詞彙可能因地區或時間有所變化，僅供參考。'
+      notice: '詞彙可能因地區或時間有所變化，僅供參考。',
+      timestamp: '2026-09-04'
     }
   },
   'korean-terms': {
@@ -62,7 +64,8 @@ export const collectionsConfig = {
       tags: ['韓語學習'],
       subtitle: 'COMING SOON',
       description: 'COMING SOON',
-      notice: 'COMING SOON'
+      notice: 'COMING SOON',
+      timestamp: '2026-09-04'
     }
   }
 };

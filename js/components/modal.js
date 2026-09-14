@@ -237,7 +237,7 @@ export function closeDescriptionModal(updateHash = true) {
 }
 
 export function openCollectionModal(collectionId, updateHash = true) {
-  const { currentCollectionId } = store.get();
+  const { currentCollectionId, allRecords } = store.get();
   const targetColId = collectionId || currentCollectionId || 'china-terms';
   const col = collectionsConfig[targetColId];
   if (!col) return;
@@ -248,21 +248,26 @@ export function openCollectionModal(collectionId, updateHash = true) {
 
   const titleElem = document.getElementById('collection-modal-title');
   const enTitleElem = document.getElementById('collection-modal-entitle');
-  const subtitleElem = document.getElementById('collection-modal-subtitle');
   const descElem = document.getElementById('collection-modal-description');
   const totalElem = document.getElementById('collection-modal-total-items');
+  const timestampElem = document.getElementById('collection-modal-created-at');
   const idElem = document.getElementById('collection-modal-id');
 
   if (titleElem) titleElem.innerText = meta?.title || col.name;
   if (enTitleElem) enTitleElem.innerText = meta?.enTitle || col.enTitle || targetColId;
-  if (subtitleElem) {
-    subtitleElem.innerText = meta?.subtitle || '';
-    subtitleElem.style.display = meta?.subtitle ? 'block' : 'none';
-  }
   if (descElem) descElem.innerText = meta?.description || '（無說明內容）';
   if (totalElem) {
     const items = collectionsCache[targetColId];
-    totalElem.innerText = Array.isArray(items) ? items.length : '--';
+    if (Array.isArray(items) && items.length > 0) {
+      totalElem.innerText = items.length;
+    } else if (targetColId === currentCollectionId && Array.isArray(allRecords) && allRecords.length > 0) {
+      totalElem.innerText = allRecords.length;
+    } else {
+      totalElem.innerText = Array.isArray(items) ? items.length : '--';
+    }
+  }
+  if (timestampElem) {
+    timestampElem.innerText = meta?.timestamp || meta?.created_at || meta?.date || 'N/A';
   }
   if (idElem) idElem.innerText = meta?.id || 'N/A';
 
