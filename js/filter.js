@@ -35,12 +35,12 @@ export function filterByQuery(records, query) {
  */
 export function filterByLength(records, lengthTab) {
   if (!lengthTab || lengthTab === LENGTH_TABS.ALL) return records;
+  const isFivePlus = lengthTab === LENGTH_TABS.FIVE_PLUS || lengthTab === '5+' || lengthTab === '5字+' || lengthTab === '5字＋';
   const targetLen = parseInt(lengthTab, 10);
-  const isEightPlus = lengthTab === LENGTH_TABS.EIGHT_PLUS || lengthTab === '8+' || lengthTab === '8字＋';
 
   return records.filter(r => {
     const len = getUnicodeLength(r.ja_term || '');
-    if (isEightPlus) return len >= 8;
+    if (isFivePlus) return len >= 5;
     return !isNaN(targetLen) ? len === targetLen : true;
   });
 }

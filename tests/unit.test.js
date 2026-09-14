@@ -137,10 +137,11 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
 
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ALL).length, 9);
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ONE)[0].id, '1');
-  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE)[0].id, '5');
-  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SIX)[0].id, '6');
-  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.SEVEN)[0].id, '7');
-  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.EIGHT_PLUS).length, 2);
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FOUR)[0].id, '4');
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS).length, 5);
+  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS)[0].id, '5');
+  assert.equal(filterByLength(lengthRecords, '5+').length, 5);
+  assert.equal(filterByLength(lengthRecords, '5字＋').length, 5);
 });
 
 test('Config & Endpoint URL Builders', () => {
