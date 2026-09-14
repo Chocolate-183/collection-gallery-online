@@ -1159,8 +1159,8 @@ a:focus {
   gap: 8px;
   flex: 1 1 auto;
   min-width: 0;
-  height: 32px;
-  max-height: 32px;
+  height: 26px;
+  max-height: 26px;
   overflow: hidden;
 }
 
@@ -1168,8 +1168,8 @@ a:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 12px;
-  font-size: 15px;
+  padding: 3px 8px;
+  font-size: 14px;
   font-weight: 500;
   color: #545b64;
   background-color: transparent;
@@ -1178,7 +1178,7 @@ a:focus {
   cursor: pointer;
   transition: all 0.15s ease-in-out;
   line-height: 1;
-  height: 32px;
+  height: 26px;
   box-sizing: border-box;
   white-space: nowrap;
   outline: none;
@@ -2043,14 +2043,14 @@ a:focus {
 
   .awsui-modal-recommendations-list {
     gap: 6px !important;
-    height: 26px !important;
-    max-height: 26px !important;
+    height: 22px !important;
+    max-height: 22px !important;
   }
 
   .awsui-recommendation-chip {
-    font-size: 13px !important;
-    padding: 3px 8px !important;
-    height: 26px !important;
+    font-size: 12px !important;
+    padding: 2px 6px !important;
+    height: 22px !important;
   }
 
   .awsui-modal-created-time {
