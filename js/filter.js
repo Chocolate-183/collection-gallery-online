@@ -13,8 +13,7 @@ export function matchesKanaGroup(str, group) {
   if (!str) return false;
   const ch = str.charAt(0);
   const regex = KANA_RANGES[group];
-  if (regex) return regex.test(ch);
-  return true;
+  return regex ? regex.test(ch) : true;
 }
 
 /**
@@ -36,18 +35,13 @@ export function filterByQuery(records, query) {
  */
 export function filterByLength(records, lengthTab) {
   if (!lengthTab || lengthTab === LENGTH_TABS.ALL) return records;
+  const targetLen = parseInt(lengthTab, 10);
+  const isEightPlus = lengthTab === LENGTH_TABS.EIGHT_PLUS || lengthTab === '8+' || lengthTab === '8字＋';
+
   return records.filter(r => {
-    const term = r.ja_term || '';
-    const len = getUnicodeLength(term);
-    if (lengthTab === LENGTH_TABS.ONE) return len === 1;
-    if (lengthTab === LENGTH_TABS.TWO) return len === 2;
-    if (lengthTab === LENGTH_TABS.THREE) return len === 3;
-    if (lengthTab === LENGTH_TABS.FOUR) return len === 4;
-    if (lengthTab === LENGTH_TABS.FIVE) return len === 5;
-    if (lengthTab === LENGTH_TABS.SIX) return len === 6;
-    if (lengthTab === LENGTH_TABS.SEVEN) return len === 7;
-    if (lengthTab === LENGTH_TABS.EIGHT_PLUS || lengthTab === '8+' || lengthTab === '8字＋') return len >= 8;
-    return true;
+    const len = getUnicodeLength(r.ja_term || '');
+    if (isEightPlus) return len >= 8;
+    return !isNaN(targetLen) ? len === targetLen : true;
   });
 }
 
@@ -89,18 +83,22 @@ export function filterByKana(records, kanaTab, searchQuery) {
  */
 export function sortRecords(records, sortType) {
   const result = [...records];
-  if (sortType === SORT_TYPES.READING_ASC) {
-    result.sort((a, b) => (a.reading || a.ja_term).localeCompare(b.reading || b.ja_term, 'ja'));
-  } else if (sortType === SORT_TYPES.READING_DESC) {
-    result.sort((a, b) => (b.reading || b.ja_term).localeCompare(a.reading || a.ja_term, 'ja'));
-  } else if (sortType === SORT_TYPES.JA_ASC) {
-    result.sort((a, b) => a.ja_term.localeCompare(b.ja_term, 'ja'));
-  } else if (sortType === SORT_TYPES.JA_DESC) {
-    result.sort((a, b) => b.ja_term.localeCompare(a.ja_term, 'ja'));
-  } else if (sortType === SORT_TYPES.ID_ASC) {
-    result.sort((a, b) => a.row_index - b.row_index);
+  const compareText = (aStr, bStr) => (aStr || '').localeCompare(bStr || '', 'ja');
+
+  switch (sortType) {
+    case SORT_TYPES.READING_ASC:
+      return result.sort((a, b) => compareText(a.reading || a.ja_term, b.reading || b.ja_term));
+    case SORT_TYPES.READING_DESC:
+      return result.sort((a, b) => compareText(b.reading || b.ja_term, a.reading || a.ja_term));
+    case SORT_TYPES.JA_ASC:
+      return result.sort((a, b) => compareText(a.ja_term, b.ja_term));
+    case SORT_TYPES.JA_DESC:
+      return result.sort((a, b) => compareText(b.ja_term, a.ja_term));
+    case SORT_TYPES.ID_ASC:
+      return result.sort((a, b) => (a.row_index ?? 0) - (b.row_index ?? 0));
+    default:
+      return result;
   }
-  return result;
 }
 
 /**
@@ -144,8 +142,7 @@ export function applyFiltersAndSort() {
 
 export function onSearchInput() {
   const input = document.getElementById('search-input');
-  const query = input ? input.value.trim() : '';
-  store.set({ searchQuery: query, invalidTerm: null });
+  store.set({ searchQuery: input ? input.value.trim() : '', invalidTerm: null });
   applyFiltersAndSort();
 }
 
@@ -153,29 +150,25 @@ export function onFilterChange() {
   applyFiltersAndSort();
 }
 
+function updateTabPills(containerSelector, element) {
+  const pills = document.querySelectorAll(`${containerSelector} .awsui-tab`);
+  pills.forEach(p => p.classList.remove('active'));
+  if (element) {
+    element.classList.add('active');
+  }
+}
+
 export function selectKanaTab(tab, element) {
   if (tab === KANA_TABS.RANDOM10) {
     store.reshuffleRandom10();
   }
   store.set({ currentKanaTab: tab, invalidTerm: null });
-
-  const pills = document.querySelectorAll('#kana-tabs .awsui-tab');
-  pills.forEach(p => p.classList.remove('active'));
-  if (element) {
-    element.classList.add('active');
-  }
-
+  updateTabPills('#kana-tabs', element);
   applyFiltersAndSort();
 }
 
 export function selectLengthTab(tab, element) {
   store.set({ currentLengthTab: tab, invalidTerm: null });
-
-  const pills = document.querySelectorAll('#length-tabs .awsui-tab');
-  pills.forEach(p => p.classList.remove('active'));
-  if (element) {
-    element.classList.add('active');
-  }
-
+  updateTabPills('#length-tabs', element);
   applyFiltersAndSort();
 }

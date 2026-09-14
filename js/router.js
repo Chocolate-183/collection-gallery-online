@@ -30,19 +30,52 @@ function toggleViewElements(targetView) {
 
   Object.entries(views).forEach(([viewKey, elem]) => {
     if (!elem) return;
-    if (viewKey === targetView) {
-      elem.classList.add('active');
-      elem.style.display = 'block';
-    } else {
-      elem.classList.remove('active');
-      elem.style.display = 'none';
-    }
+    const isActive = viewKey === targetView;
+    elem.classList.toggle('active', isActive);
+    elem.style.display = isActive ? 'block' : 'none';
   });
+}
+
+function updateMaintenanceView(isClosed, isColPreparing, isColAdjusting, colMeta, currentCollectionId) {
+  const maintTitle = document.getElementById('maintenance-title');
+  const maintDesc1 = document.getElementById('maintenance-desc-1');
+  const maintDesc2 = document.getElementById('maintenance-desc-2');
+
+  let title = 'MAINTENANCE';
+  let desc1 = '';
+  let showDesc2 = false;
+
+  if (isClosed) {
+    title = 'CLOSED';
+    desc1 = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
+    showDesc2 = true;
+  } else if (isColPreparing) {
+    title = 'COMING SOON';
+    const rawAnnounce = colMeta?.announcement;
+    desc1 = (rawAnnounce && !['籌備中', 'IN PREPARATION', 'PREPARING', 'COMING SOON'].includes(rawAnnounce))
+      ? rawAnnounce
+      : '本展廳目前正在籌備中，暫不開放參觀，敬請期待。';
+  } else if (isColAdjusting) {
+    title = 'ADJUSTING';
+    const rawAnnounce = colMeta?.announcement;
+    desc1 = (rawAnnounce && !['調整中', '展廳調整中', 'UNDER ADJUSTMENT', 'ADJUSTING'].includes(rawAnnounce))
+      ? rawAnnounce
+      : '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
+  }
+
+  if (maintTitle) maintTitle.innerText = title;
+  if (maintDesc1) maintDesc1.innerText = desc1;
+  if (maintDesc2) maintDesc2.style.display = showDesc2 ? 'block' : 'none';
+
+  if (!isClosed && (isColAdjusting || isColPreparing)) {
+    const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
+    if (activeColBtn) activeColBtn.classList.add('active');
+  }
 }
 
 export function switchView(viewName, event, updateHash = true) {
   closeSidebarOnMobile();
-  if (event && event.preventDefault) event.preventDefault();
+  if (event?.preventDefault) event.preventDefault();
 
   const isClosed = !isGalleryOpen();
   if (isClosed && viewName !== VIEWS.MAINTENANCE && viewName !== VIEWS.ABOUT && viewName !== VIEWS.STATS) {
@@ -51,7 +84,7 @@ export function switchView(viewName, event, updateHash = true) {
 
   const { currentView, currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId];
-  const colMeta = collectionsMetaCache[currentCollectionId] || (col ? col.defaultMeta : null);
+  const colMeta = collectionsMetaCache[currentCollectionId] || col?.defaultMeta;
   const isColAdjusting = isCollectionAdjusting(colMeta);
   const isColPreparing = isCollectionPreparing(colMeta);
 
@@ -62,76 +95,32 @@ export function switchView(viewName, event, updateHash = true) {
   const isViewChanged = currentView !== viewName;
   store.set({ currentView: viewName });
 
-  const navWelcome = document.getElementById('nav-welcome');
-  const navAbout = document.getElementById('nav-about');
-  const navStats = document.getElementById('nav-stats');
-
-  const maintTitle = document.getElementById('maintenance-title');
-  const maintDesc1 = document.getElementById('maintenance-desc-1');
-  const maintDesc2 = document.getElementById('maintenance-desc-2');
-
   document.querySelectorAll('.awsui-nav-link').forEach(btn => btn.classList.remove('active'));
-
   toggleViewElements(viewName);
 
+  const colSlug = col ? col.name : currentCollectionId;
+
   if (viewName === VIEWS.MAINTENANCE) {
-    if (isClosed) {
-      if (maintTitle) maintTitle.innerText = 'CLOSED';
-      if (maintDesc1) maintDesc1.innerText = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
-      if (maintDesc2) maintDesc2.style.display = 'block';
-    } else if (isColPreparing) {
-      if (maintTitle) maintTitle.innerText = 'COMING SOON';
-      const prepareMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '籌備中' && colMeta.announcement !== 'IN PREPARATION' && colMeta.announcement !== 'PREPARING' && colMeta.announcement !== 'COMING SOON')
-        ? colMeta.announcement
-        : '本展廳目前正在籌備中，暫不開放參觀，敬請期待。';
-      if (maintDesc1) maintDesc1.innerText = prepareMsg;
-      if (maintDesc2) maintDesc2.style.display = 'none';
-
-      const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
-      if (activeColBtn) activeColBtn.classList.add('active');
-    } else if (isColAdjusting) {
-      if (maintTitle) maintTitle.innerText = 'ADJUSTING';
-      const adjustMsg = (colMeta && colMeta.announcement && colMeta.announcement !== '調整中' && colMeta.announcement !== '展廳調整中' && colMeta.announcement !== 'UNDER ADJUSTMENT' && colMeta.announcement !== 'ADJUSTING')
-        ? colMeta.announcement
-        : '本展廳目前正在進行內容調整，暫不開放參觀，敬請期待。';
-      if (maintDesc1) maintDesc1.innerText = adjustMsg;
-      if (maintDesc2) maintDesc2.style.display = 'none';
-
-      const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
-      if (activeColBtn) activeColBtn.classList.add('active');
-    }
-
-    if (isClosed) {
-      setHash('#/maintenance', updateHash);
-    } else if (isColAdjusting || isColPreparing) {
-      const colName = col ? col.name : currentCollectionId;
-      setHash(`#/${colName}`, updateHash);
-    }
+    updateMaintenanceView(isClosed, isColPreparing, isColAdjusting, colMeta, currentCollectionId);
+    setHash(isClosed ? '#/maintenance' : `#/${colSlug}`, updateHash);
   } else if (viewName === VIEWS.WELCOME) {
-    if (navWelcome) navWelcome.classList.add('active');
+    document.getElementById('nav-welcome')?.classList.add('active');
     setHash('#/welcome', updateHash);
   } else if (viewName === VIEWS.DICTIONARY) {
-    const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
-    if (activeColBtn) activeColBtn.classList.add('active');
-
+    document.getElementById(`nav-col-${currentCollectionId}`)?.classList.add('active');
     renderCollectionNotice();
-
-    const col = collectionsConfig[currentCollectionId];
-    const colName = col ? col.name : currentCollectionId;
-    setHash(`#/${colName}`, updateHash);
+    setHash(`#/${colSlug}`, updateHash);
   } else if (viewName === VIEWS.ABOUT) {
-    if (navAbout) navAbout.classList.add('active');
+    document.getElementById('nav-about')?.classList.add('active');
     setHash('#/about', updateHash);
   } else if (viewName === VIEWS.STATS) {
-    if (navStats) navStats.classList.add('active');
+    document.getElementById('nav-stats')?.classList.add('active');
     setHash('#/stats', updateHash);
     updateStatsView();
   }
 
-  if (isViewChanged || !!event) {
-    if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  if ((isViewChanged || !!event) && typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
@@ -153,9 +142,7 @@ export function handleHashRoute() {
     store.set({ invalidTerm: null });
     switchView(VIEWS.MAINTENANCE, null, false);
     closeDetailModal(false);
-    if (decodeURIComponent(location.hash) !== '#/maintenance') {
-      location.hash = '#/maintenance';
-    }
+    setHash('#/maintenance');
     return;
   }
 
@@ -163,22 +150,15 @@ export function handleHashRoute() {
     store.set({ invalidTerm: null });
     switchView(VIEWS.WELCOME, null, false);
     closeDetailModal(false);
-    if ((path === 'maintenance' || !decodedHash || decodedHash === '#' || decodedHash === '#/') && location.hash !== '#/welcome') {
-      location.hash = '#/welcome';
+    if (path === 'maintenance' || !decodedHash || decodedHash === '#' || decodedHash === '#/') {
+      setHash('#/welcome');
     }
     return;
   }
 
-  if (path === 'about') {
+  if (path === 'about' || path === 'stats') {
     store.set({ invalidTerm: null });
-    switchView(VIEWS.ABOUT, null, false);
-    closeDetailModal(false);
-    return;
-  }
-
-  if (path === 'stats') {
-    store.set({ invalidTerm: null });
-    switchView(VIEWS.STATS, null, false);
+    switchView(path === 'about' ? VIEWS.ABOUT : VIEWS.STATS, null, false);
     closeDetailModal(false);
     return;
   }
@@ -190,26 +170,21 @@ export function handleHashRoute() {
     return;
   }
 
-  let colKey = parts[0];
-  if (colKey === '中國特色詞彙') {
-    colKey = '大陸特色詞彙';
-  }
-  let termName = parts.length >= 2 ? parts[1] : null;
-  let subAction = parts.length >= 3 ? parts[2] : null;
+  let colKey = parts[0] === '中國特色詞彙' ? '大陸特色詞彙' : parts[0];
+  const termName = parts.length >= 2 ? parts[1] : null;
+  const subAction = parts.length >= 3 ? parts[2] : null;
 
   const targetColId = Object.keys(collectionsConfig).find(
     key => key === colKey || collectionsConfig[key].name === colKey
   );
 
   if (targetColId) {
-    const targetMeta = collectionsMetaCache[targetColId] || (collectionsConfig[targetColId] ? collectionsConfig[targetColId].defaultMeta : null);
+    const targetMeta = collectionsMetaCache[targetColId] || collectionsConfig[targetColId]?.defaultMeta;
     if (isCollectionHidden(targetMeta)) {
       store.set({ invalidTerm: null });
       switchView(VIEWS.WELCOME, null, false);
       closeDetailModal(false);
-      if (location.hash !== '#/welcome') {
-        location.hash = '#/welcome';
-      }
+      setHash('#/welcome');
       return;
     }
 
@@ -243,8 +218,7 @@ export function handleHashRoute() {
         }
       }
     } else {
-      const { invalidTerm } = store.get();
-      if (invalidTerm) {
+      if (store.get().invalidTerm) {
         store.set({ invalidTerm: null });
         applyFiltersAndSort();
       }

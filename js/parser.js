@@ -2,6 +2,20 @@
  * Generic Data Parsers (CSV & Google GViz Response)
  */
 import { collectionsConfig } from './config.js';
+import { parseRecommendationList } from './utils.js';
+
+const META_FIELD_DEFINITIONS = [
+  { key: 'enTitle', match: k => k.includes('英文標題') || k.includes('en_title') || k.includes('entitle') },
+  { key: 'title', match: k => k.includes('標題') || k.includes('展廳名') || k === 'name' },
+  { key: 'tags', match: k => k.includes('標籤') || k.includes('tags'), transform: v => v.split(/[\n\r,，]/).map(t => t.trim()).filter(Boolean) },
+  { key: 'subtitle', match: k => k.includes('副標') || k.includes('subtitle') },
+  { key: 'description', match: k => k.includes('說明') || k.includes('description') },
+  { key: 'notice', match: k => k.includes('注意事項') || k.includes('注意') || k.includes('notice') },
+  { key: 'announcement', match: k => k.includes('公告') || k.includes('announcement') },
+  { key: 'author', match: k => k.includes('作者') || k.includes('策劃') || k.includes('負責人') || k.includes('author') },
+  { key: 'status', match: k => k.includes('狀態') || k.includes('status') },
+  { key: 'id', match: k => k.toUpperCase() === 'ID' || k.includes('編號') || k.includes('序號') || k.includes('展廳id') }
+];
 
 /**
  * Helper to construct metadata object from key-value pairs
@@ -23,30 +37,15 @@ function extractMetadataFromKeyValues(pairs) {
   };
 
   for (const [rawKey, rawVal] of pairs) {
-    const key = (rawKey || '').trim();
+    const key = (rawKey || '').trim().toLowerCase();
     const val = (rawVal || '').trim();
     if (!key) continue;
 
-    if (key.includes('英文標題') || key.includes('en_title') || key.includes('enTitle')) {
-      meta.enTitle = val;
-    } else if (key.includes('標題') || key.includes('展廳名') || key === 'name') {
-      meta.title = val;
-    } else if (key.includes('標籤') || key.includes('tags')) {
-      meta.tags = val.split(/[\n\r,，]/).map(t => t.trim()).filter(Boolean);
-    } else if (key.includes('副標') || key.includes('subtitle')) {
-      meta.subtitle = val;
-    } else if (key.includes('說明') || key.includes('description')) {
-      meta.description = val;
-    } else if (key.includes('注意事項') || key.includes('注意') || key.includes('notice')) {
-      meta.notice = val;
-    } else if (key.includes('公告') || key.includes('announcement')) {
-      meta.announcement = val;
-    } else if (key.includes('作者') || key.includes('策劃') || key.includes('負責人') || key.includes('author')) {
-      meta.author = val;
-    } else if (key.includes('狀態') || key.includes('status')) {
-      meta.status = val;
-    } else if (key.toUpperCase() === 'ID' || key.includes('編號') || key.includes('序號') || key.includes('展廳ID')) {
-      meta.id = val;
+    for (const def of META_FIELD_DEFINITIONS) {
+      if (def.match(key)) {
+        meta[def.key] = def.transform ? def.transform(val) : val;
+        break;
+      }
     }
   }
 
@@ -137,22 +136,19 @@ export function extractGvizTable(gvizText) {
     const jsonMatch = gvizText.match(/google\.visualization\.Query\.setResponse\((.*?)\);/s);
     if (!jsonMatch) return null;
     const json = JSON.parse(jsonMatch[1]);
-    return (json && json.table && json.table.rows) ? json.table : null;
-  } catch (e) {
+    return (json?.table?.rows) ? json.table : null;
+  } catch {
     return null;
   }
 }
 
 /**
-> Helper to construct a standard record object if valid.
-> */
+ * Helper to construct a standard record object if valid.
+ */
 function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex }) {
   if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
     return null;
   }
-  const recommendations = rawRecommend
-    ? rawRecommend.replace(/<br\s*\/?>/gi, '\n').split(/[\n\r,，、;；]/).map(s => s.trim()).filter(Boolean)
-    : [];
 
   return {
     id: id || `ROW-${rowIndex}`,
@@ -160,7 +156,7 @@ function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex 
     tw_translation: tw,
     reading: reading || '',
     created_at: created_at || '',
-    recommendations,
+    recommendations: parseRecommendationList(rawRecommend),
     row_index: rowIndex
   };
 }
@@ -201,7 +197,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
 
   let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1;
   if (table.cols && table.cols.length > 0) {
-    const colsHeader = table.cols.map(col => (col && col.label) || '');
+    const colsHeader = table.cols.map(col => col?.label || '');
     const found = findDatasetColumnIndexes(colsHeader);
     idIdx = found.idIdx;
     termIdx = found.termIdx;
@@ -211,7 +207,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     recommendIdx = found.recommendIdx;
   } else {
     const colConfig = collectionsConfig[currentCollectionId];
-    if (colConfig && colConfig.hasReading) {
+    if (colConfig?.hasReading) {
       readingIdx = 3;
       dateIdx = 4;
       recommendIdx = 5;
@@ -250,11 +246,11 @@ export function matchCollectionIdForMeta(meta) {
 
   for (const [colId, col] of Object.entries(collectionsConfig)) {
     // 1. Match by ID (e.g. 'C101', 'C102', 'C103')
-    if (meta.id && (meta.id === col.id || (col.defaultMeta && meta.id === col.defaultMeta.id))) {
+    if (meta.id && (meta.id === col.id || meta.id === col.defaultMeta?.id)) {
       return colId;
     }
     // 2. Match by title or name (e.g. '日本特色詞彙', '大陸特色詞彙', '最強韓文漢字學習法')
-    if (meta.title && (meta.title === col.name || (col.defaultMeta && meta.title === col.defaultMeta.title))) {
+    if (meta.title && (meta.title === col.name || meta.title === col.defaultMeta?.title)) {
       return colId;
     }
   }
@@ -308,28 +304,22 @@ function parseMetadataMatrixRows(rows) {
 
 /**
  * Parses CSV text containing metadata for one or more exhibition halls.
- * Supports matrix format (rows = attribute keys, columns = exhibition halls)
- * as well as legacy 2-column key-value format.
- * @param {string} csvText - Raw CSV content
- * @returns {Object.<string, object>} Map of colId -> metadata object
+ * Supports matrix format and legacy 2-column key-value format.
  */
 export function parseAllCollectionsMetaCSVData(csvText) {
-  const rows = parseCSVRows(csvText);
-  return parseMetadataMatrixRows(rows);
+  return parseMetadataMatrixRows(parseCSVRows(csvText));
 }
 
 /**
  * Parses GViz response containing metadata for one or more exhibition halls.
- * @param {string} gvizText - Raw GViz endpoint response
- * @returns {Object.<string, object>} Map of colId -> metadata object
  */
 export function parseAllCollectionsMetaGvizResponse(gvizText) {
   const table = extractGvizTable(gvizText);
   if (!table) return {};
 
   const rows = [];
-  if (table.cols && table.cols.length > 0) {
-    const headerRow = table.cols.map(col => (col && col.label) || '');
+  if (table.cols?.length > 0) {
+    const headerRow = table.cols.map(col => col?.label || '');
     if (headerRow.some(Boolean)) {
       rows.push(headerRow);
     }
@@ -351,15 +341,12 @@ export function parseAllCollectionsMetaGvizResponse(gvizText) {
  */
 export function parseMetaCSVData(csvText) {
   const allMeta = parseAllCollectionsMetaCSVData(csvText);
-  const keys = Object.keys(allMeta);
-  if (keys.length > 0) {
-    return allMeta[keys[0]];
-  }
+  const first = Object.values(allMeta)[0];
+  if (first) return first;
 
   const rows = parseCSVRows(csvText);
   if (rows.length === 0) return null;
-  const pairs = rows.filter(r => r.length >= 2).map(r => [r[0], r[1]]);
-  return extractMetadataFromKeyValues(pairs);
+  return extractMetadataFromKeyValues(rows.filter(r => r.length >= 2).map(r => [r[0], r[1]]));
 }
 
 /**
@@ -367,19 +354,17 @@ export function parseMetaCSVData(csvText) {
  */
 export function parseMetaGvizResponse(gvizText) {
   const allMeta = parseAllCollectionsMetaGvizResponse(gvizText);
-  const keys = Object.keys(allMeta);
-  if (keys.length > 0) {
-    return allMeta[keys[0]];
-  }
+  const first = Object.values(allMeta)[0];
+  if (first) return first;
 
   const table = extractGvizTable(gvizText);
-  if (!table) return null;
+  if (!table?.rows) return null;
 
   const pairs = [];
   table.rows.forEach(r => {
-    if (r.c && r.c.length >= 2) {
-      const k = (r.c[0] && (r.c[0].v !== null && r.c[0].v !== undefined) ? r.c[0].v : '').toString();
-      const v = (r.c[1] && (r.c[1].v || r.c[1].f) ? (r.c[1].v || r.c[1].f) : '').toString();
+    if (r.c?.length >= 2) {
+      const k = (r.c[0]?.v ?? '').toString();
+      const v = (r.c[1]?.v ?? r.c[1]?.f ?? '').toString();
       pairs.push([k, v]);
     }
   });

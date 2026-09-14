@@ -35,8 +35,8 @@ export function isCollectionHidden(meta) {
  * Returns English Title for a collection with proper fallbacks.
  */
 export function getCollectionEnTitle(colId, meta, col) {
-  if (meta && meta.enTitle) return meta.enTitle;
-  if (col && col.enTitle) return col.enTitle;
+  if (meta?.enTitle) return meta.enTitle;
+  if (col?.enTitle) return col.enTitle;
   if (colId === 'china-terms') return 'China Terms';
   if (colId === 'korean-terms') return 'Korean Terms';
   return 'Japanese Terms';
@@ -67,6 +67,23 @@ export function getUnicodeLength(str) {
   return [...str].length;
 }
 
+/**
+ * Parses recommendation entries from array or string delimiter format.
+ * @param {string|string[]} val - Raw recommendation content
+ * @returns {string[]} Formatted recommendation tokens
+ */
+export function parseRecommendationList(val) {
+  if (Array.isArray(val)) return val;
+  if (typeof val === 'string' && val.trim()) {
+    return val
+      .replace(/<br\s*\/?>/gi, '\n')
+      .split(/[\n\r,，、;；]/)
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+  return [];
+}
+
 export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];
 
 export function setOpeningHoursSchedule(newSchedule) {
@@ -93,9 +110,10 @@ export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
  * @returns {string} Formatted opening hours string
  */
 export function getTodayOpeningHoursText(date = new Date()) {
-  const dayIndex = date.getDay();
-  const today = OPENING_HOURS_SCHEDULE[dayIndex];
-  return `Today's Hours: ${today ? (today.hours === '休館' || today.hours === 'CLOSED' ? 'CLOSED' : today.hours) : 'CLOSED'}`;
+  const today = OPENING_HOURS_SCHEDULE[date.getDay()];
+  const hours = today?.hours;
+  const isClosed = !hours || hours === '休館' || hours === 'CLOSED';
+  return `Today's Hours: ${isClosed ? 'CLOSED' : hours}`;
 }
 
 /**
@@ -106,25 +124,21 @@ export function getTodayOpeningHoursText(date = new Date()) {
 export function getNextOpeningTimeText(now = new Date()) {
   for (let offset = 0; offset < 7; offset++) {
     const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
-    const dayIndex = targetDate.getDay();
-    const sched = OPENING_HOURS_SCHEDULE[dayIndex];
+    const sched = OPENING_HOURS_SCHEDULE[targetDate.getDay()];
 
-    if (!sched || !sched.hours || sched.hours === '休館' || sched.hours === 'CLOSED') {
+    if (!sched?.hours || sched.hours === '休館' || sched.hours === 'CLOSED') {
       continue;
     }
 
     const parts = sched.hours.split('-').map(s => s.trim());
     if (parts.length !== 2) continue;
 
-    const [startStr] = parts;
-    const [startH, startM] = startStr.split(':').map(Number);
+    const [startH, startM] = parts[0].split(':').map(Number);
     if (isNaN(startH) || isNaN(startM)) continue;
-
-    const startTotalMinutes = startH * 60 + startM;
 
     if (offset === 0) {
       const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
-      if (currentTotalMinutes >= startTotalMinutes) {
+      if (currentTotalMinutes >= startH * 60 + startM) {
         continue;
       }
     }
@@ -144,28 +158,26 @@ export function getNextOpeningTimeText(now = new Date()) {
  * @returns {boolean} True if within opening hours, false otherwise
  */
 export function isGalleryOpen(date = new Date()) {
-  const dayIndex = date.getDay();
-  const today = OPENING_HOURS_SCHEDULE[dayIndex];
-  if (!today || !today.hours || today.hours === '休館' || today.hours === 'CLOSED') {
+  const today = OPENING_HOURS_SCHEDULE[date.getDay()];
+  if (!today?.hours || today.hours === '休館' || today.hours === 'CLOSED') {
     return false;
   }
 
   const parts = today.hours.split('-').map(s => s.trim());
   if (parts.length !== 2) return false;
 
-  const [startStr, endStr] = parts;
-  const [startH, startM] = startStr.split(':').map(Number);
-  const [endH, endM] = endStr.split(':').map(Number);
+  const [startH, startM] = parts[0].split(':').map(Number);
+  const [endH, endM] = parts[1].split(':').map(Number);
 
   if (isNaN(startH) || isNaN(startM) || isNaN(endH) || isNaN(endM)) {
     return false;
   }
 
-  const startTotalMinutes = startH * 60 + startM;
-  const endTotalMinutes = endH * 60 + endM;
-  const currentTotalMinutes = date.getHours() * 60 + date.getMinutes();
+  const startTotal = startH * 60 + startM;
+  const endTotal = endH * 60 + endM;
+  const currentTotal = date.getHours() * 60 + date.getMinutes();
 
-  return currentTotalMinutes >= startTotalMinutes && currentTotalMinutes <= endTotalMinutes;
+  return currentTotal >= startTotal && currentTotal <= endTotal;
 }
 
 /**
@@ -177,10 +189,8 @@ export function isGalleryOpen(date = new Date()) {
 export async function safeFetch(url, timeoutMs = DEFAULT_TIMEOUT_MS) {
   try {
     const response = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) });
-    if (response.ok) {
-      return response;
-    }
-  } catch (err) {
+    if (response.ok) return response;
+  } catch {
     // Network failure, CORS blockage, or timeout
   }
   return null;
@@ -197,7 +207,7 @@ export async function safeFetchText(url, timeoutMs = DEFAULT_TIMEOUT_MS) {
   if (!response) return null;
   try {
     return await response.text();
-  } catch (err) {
+  } catch {
     return null;
   }
 }

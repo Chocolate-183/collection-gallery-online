@@ -2,21 +2,16 @@
  * Cards Matrix Component
  */
 import { store } from '../state.js';
-import { collectionsConfig } from '../config.js';
 import { renderPagination } from './pagination.js';
 import { updateSidebarBadge } from './sidebar.js';
 import { escapeHtml } from '../utils.js';
-
-export { escapeHtml };
 
 export function showLoadingState() {
   const { currentCollectionId } = store.get();
   store.set({ allRecords: [], filteredRecords: [] });
 
   const totalElem = document.getElementById('kpi-total-count');
-  if (totalElem) {
-    totalElem.innerText = '--';
-  }
+  if (totalElem) totalElem.innerText = '--';
 
   const counter = document.getElementById('cards-counter');
   if (counter) counter.innerText = '(展廳載入中...)';
@@ -46,6 +41,7 @@ export function renderCards() {
   const container = document.getElementById('card-grid');
   const counter = document.getElementById('cards-counter');
   if (!container) return;
+
   container.innerHTML = '';
   container.setAttribute('data-collection', currentCollectionId || '');
 
@@ -71,19 +67,16 @@ export function renderCards() {
   const endIdx = Math.min(startIdx + pageSize, total);
   const pageRecords = filteredRecords.slice(startIdx, endIdx);
 
-  pageRecords.forEach(rec => {
+  const cardsHtml = pageRecords.map(rec => {
     const meaning = rec.tw_translation || '（無說明內容）';
     const isLongText = meaning.length > 20;
 
-    const cardHtml = `
+    return `
       <div class="awsui-card" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
         <div class="awsui-card-top-content">
           <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${escapeHtml(rec.ja_term)}</div>
-
           ${rec.reading ? `<span class="awsui-reading-subtext" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>` : '<span class="awsui-reading-subtext">&nbsp;</span>'}
-
           <div class="awsui-card-divider"></div>
-
           <div class="awsui-meaning-wrapper">
             <div class="awsui-meaning-value" title="點擊瀏覽完整展品導覽">
               ${escapeHtml(meaning)}
@@ -97,8 +90,8 @@ export function renderCards() {
         </div>
       </div>
     `;
-    container.insertAdjacentHTML('beforeend', cardHtml);
-  });
+  }).join('');
 
+  container.innerHTML = cardsHtml;
   renderPagination(total);
 }

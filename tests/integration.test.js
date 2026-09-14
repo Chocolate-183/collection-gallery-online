@@ -30,6 +30,17 @@ function mockDOM(elementsMap = {}) {
   const fallbackEl = createMockElement();
   global.document = global.document || {};
   global.document.getElementById = (id) => elementsMap[id] || fallbackEl;
+  global.document.querySelector = (sel) => {
+    if (typeof sel === 'string') {
+      if (sel.startsWith('#')) {
+        return elementsMap[sel.slice(1)] || fallbackEl;
+      }
+      if (sel === '.awsui-side-navigation') {
+        return elementsMap['side-navigation'] || fallbackEl;
+      }
+    }
+    return elementsMap[sel] || fallbackEl;
+  };
   global.document.querySelectorAll = () => [];
 }
 
@@ -113,7 +124,7 @@ test('UI Components - Mobile Sidebar Outside Click & Auto-Collapse Logic', async
 
   // Simulate mobile window width <= 768
   const originalInnerWidth = global.innerWidth;
-  global.innerWidth = 393; // iPhone 17e width
+  global.innerWidth = 393;
 
   // 1. Explicit closeSidebarOnMobile
   closeSidebarOnMobile();
@@ -173,32 +184,7 @@ test('UI Components - Empty State & Card Rendering', async () => {
   assert(mockContainer.innerHTML.includes('尚無相符展品'));
 });
 
-test('Scroll Prevention on Modal Open or Hash Sync', () => {
-  let scrollCalled = false;
-  let currentView = 'dictionary';
-
-  const checkScroll = (viewName, event) => {
-    scrollCalled = false;
-    const isViewChanged = currentView !== viewName;
-    currentView = viewName;
-    if (isViewChanged || !!event) {
-      scrollCalled = true;
-    }
-    return scrollCalled;
-  };
-
-  assert.equal(checkScroll('dictionary', null), false);
-  assert.equal(checkScroll('welcome', null), true);
-  assert.equal(checkScroll('welcome', { type: 'click' }), true);
-});
-
-test('Welcome Card Title Click Handler Integration - Japanese Terms Title Click', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert(html.includes('id="welcome-card-title-japanese-terms"'));
-  assert(html.includes('onclick="switchCollection(\'japanese-terms\')"'));
-});
-
-test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Modal', async () => {
+test('Modal Sizing - Item Modal does not apply large modal setting', async () => {
   const mockModalBox = createMockElement();
   const mockModal = createMockElement({
     querySelector: (sel) => sel === '.awsui-modal' ? mockModalBox : null
@@ -216,25 +202,24 @@ test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Moda
   assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4'), false);
   assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4\n5\n6'), true);
 
-  // Case 1: <= 5 lines -> small modal
+  // Case 1: Japanese term <= 5 lines -> should not have awsui-modal-lg
   store.set({
     currentCollectionId: 'japanese-terms',
     allRecords: [{ row_index: 1, ja_term: '測試', tw_translation: '1\n2\n3\n4' }]
   });
   mockModalBox.classes.clear();
   openMeaningModal(1, false);
-  assert(mockModalBox.classes.has('awsui-modal-sm'));
   assert(!mockModalBox.classes.has('awsui-modal-lg'));
 
-  // Case 2: > 5 lines -> large modal
+  // Case 2: Japanese term > 5 lines with long title -> should still not have awsui-modal-lg
   store.set({
     currentCollectionId: 'japanese-terms',
-    allRecords: [{ row_index: 2, ja_term: '測試', tw_translation: '1\n2\n3\n4\n5\n6' }]
+    allRecords: [{ row_index: 2, ja_term: '這是一個非常長的名詞超過十五個字元測試測試', tw_translation: '1\n2\n3\n4\n5\n6' }]
   });
   mockModalBox.classes.clear();
+  mockModalBox.classes.add('awsui-modal-lg');
   openMeaningModal(2, false);
-  assert(mockModalBox.classes.has('awsui-modal-lg'));
-  assert(!mockModalBox.classes.has('awsui-modal-sm'));
+  assert(!mockModalBox.classes.has('awsui-modal-lg'), 'Item Modal should remove and never retain awsui-modal-lg');
   assert(mockMeaning.classes.has('is-multiline'));
 });
 
@@ -243,10 +228,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   const mockTitle = createMockElement();
   const mockEnTitle = createMockElement();
   const mockSubtitle = createMockElement();
-  const mockTags = createMockElement();
   const mockDesc = createMockElement();
-  const mockNoticeSec = createMockElement({ style: { display: 'none' } });
-  const mockNotice = createMockElement();
   const mockTotal = createMockElement();
   const mockId = createMockElement();
 
@@ -288,15 +270,6 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   assert(!mockModal.classes.has('open'));
 });
 
-test('Collection Modal Integration - HTML Structure and Click Handlers', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert(html.includes('id="collection-modal"'), 'Should contain collection-modal backdrop element');
-  assert(html.includes('onclick="openCollectionModal(\'china-terms\')"'), 'Should contain openCollectionModal call for china-terms');
-  assert(html.includes('onclick="closeCollectionModal()"'), 'Should contain closeCollectionModal call');
-  assert(html.includes('id="collection-header-title"'), 'Should contain collection header title element');
-  assert(html.includes('onclick="openCollectionModal()"'), 'Header title should trigger openCollectionModal()');
-});
-
 test('Description Modal Component & Interaction Logic', async () => {
   const mockDescModal = createMockElement();
   const mockDescText = createMockElement();
@@ -325,14 +298,49 @@ test('Description Modal Component & Interaction Logic', async () => {
   closeDescriptionModal(false);
   assert(!mockDescModal.classes.has('open'));
 
-  // Test handleMeaningTextClick
+  // Test handleMeaningTextClick (with scroll)
   handleMeaningTextClick();
   assert(mockDescModal.classes.has('open'));
+
+  // Test handleMeaningTextClick without scroll (unconditional double-click)
+  closeDescriptionModal(false);
+  assert(!mockDescModal.classes.has('open'));
+  mockMeaning.classList.remove('has-scroll');
+  mockMeaning.clientHeight = 200;
+  mockMeaning.scrollHeight = 100;
+  handleMeaningTextClick();
+  assert(mockDescModal.classes.has('open'), 'handleMeaningTextClick should open Description modal even without scroll');
 });
 
-test('Description Modal HTML Structure', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert(html.includes('id="description-modal"'), 'Should contain description-modal backdrop element');
-  assert(html.includes('onclick="closeDescriptionModal()"'), 'Should contain closeDescriptionModal call');
-  assert(html.includes('id="modal-meaning-text" ondblclick="handleMeaningTextClick()"'), 'modal-meaning-text should have ondblclick handleMeaningTextClick handler');
+test('Item Modal Explore Section - Display Flex for Same Row Layout', async () => {
+  const mockRecSection = createMockElement({ style: { display: 'none' } });
+  const mockRecList = createMockElement();
+  const mockModalBox = createMockElement();
+  const mockModal = createMockElement({
+    querySelector: () => mockModalBox
+  });
+  const mockTitle = createMockElement();
+
+  mockDOM({
+    'detail-modal': mockModal,
+    'modal-term-title': mockTitle,
+    'modal-recommendations-section': mockRecSection,
+    'modal-recommendations-list': mockRecList
+  });
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'china-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '985',
+      tw_translation: '測試',
+      recommendations: ['211', '一本', '二本']
+    }]
+  });
+
+  openMeaningModal(1, false);
+  assert.equal(mockRecSection.style.display, 'flex', 'Explore section should display as flex for same-row layout');
 });

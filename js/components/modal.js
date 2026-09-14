@@ -4,7 +4,18 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache } from '../data.js';
-import { escapeHtml, getUnicodeLength } from '../utils.js';
+import { escapeHtml, parseRecommendationList } from '../utils.js';
+
+function syncHash(newHash) {
+  if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
+    location.hash = newHash;
+  }
+}
+
+function getCollectionSlug(colId) {
+  const col = collectionsConfig[colId];
+  return col ? col.name : colId;
+}
 
 /**
  * Navigates directly to a target recommended term's detail modal.
@@ -13,8 +24,7 @@ import { escapeHtml, getUnicodeLength } from '../utils.js';
 export function navigateToTerm(term) {
   if (!term) return;
   const { currentCollectionId, allRecords } = store.get();
-  const col = collectionsConfig[currentCollectionId];
-  const colName = col ? col.name : currentCollectionId;
+  const colSlug = getCollectionSlug(currentCollectionId);
 
   // 1. Try finding in current collection
   let targetRec = allRecords.find(r => r.ja_term === term || r.id === term);
@@ -28,98 +38,76 @@ export function navigateToTerm(term) {
     if (colId === currentCollectionId || !Array.isArray(records)) continue;
     targetRec = records.find(r => r.ja_term === term || r.id === term);
     if (targetRec) {
-      const otherCol = collectionsConfig[colId];
-      const otherColName = otherCol ? otherCol.name : colId;
-      location.hash = `#/${otherColName}/${targetRec.ja_term}`;
+      location.hash = `#/${getCollectionSlug(colId)}/${targetRec.ja_term}`;
       return;
     }
   }
 
   // 3. Fallback: navigate via hash in current collection
-  location.hash = `#/${colName}/${term}`;
+  location.hash = `#/${colSlug}/${term}`;
 }
 
 /**
- * Checks if the meaning-text content exceeds a given line threshold.
- * @param {string} text - Explanation / translation text
- * @param {number} threshold - Maximum line threshold
- * @param {HTMLElement} [meaningElem] - Optional DOM element for measuring scroll height
- * @returns {boolean} True if line count exceeds threshold
+ * Standard accessor for Item Modal Description element.
+ * @returns {HTMLElement|null}
  */
-function checkMeaningExceedsLineCount(text, threshold, meaningElem) {
-  if (!text) return false;
+export function getMeaningElement() {
+  return typeof document !== 'undefined'
+    ? (document.querySelector?.('#modal-meaning-text') || document.getElementById?.('modal-meaning-text') || null)
+    : null;
+}
 
-  // 1. Explicit line breaks in raw string
-  const rawLines = text.split(/\r?\n/);
-  if (rawLines.length > threshold) return true;
+/**
+ * Generic helper to check if content exceeds a specified number of lines.
+ */
+export function checkMeaningExceedsLines(maxLines, text, meaningElem) {
+  const elem = meaningElem || getMeaningElement();
+  const content = (text !== undefined && text !== null) ? text : (elem ? elem.innerText : '');
+  if (!content) return false;
 
-  // 2. DOM Range measurement when rendered in browser
-  if (meaningElem && typeof document !== 'undefined' && typeof document.createRange === 'function') {
-    try {
-      const range = document.createRange();
-      range.selectNodeContents(meaningElem);
-      const rects = range.getClientRects();
-      if (rects && rects.length > 0) {
-        return rects.length > threshold;
-      }
-    } catch (e) {
-      // Fallback
-    }
-  }
+  const rawLines = content.split(/\r?\n/);
+  if (rawLines.length > maxLines) return true;
 
-  // 3. DOM measurement fallback
-  if (meaningElem && meaningElem.clientHeight > 0) {
-    const linePixelHeight = 18 * 1.65;
-    if (meaningElem.scrollHeight > (linePixelHeight * threshold + 1)) {
+  if (elem && elem.clientHeight > 0) {
+    const thresholdHeight = 18 * 1.65 * maxLines;
+    if (elem.scrollHeight > (thresholdHeight + 1)) {
       return true;
     }
   }
 
-  // 4. Estimated wrapped lines for long paragraphs (~25 CJK chars per line in modal)
-  let totalWrappedLines = 0;
+  let wrappedLines = 0;
   for (const line of rawLines) {
-    totalWrappedLines += Math.max(1, Math.ceil(line.length / 25));
+    wrappedLines += Math.max(1, Math.ceil(line.length / 25));
   }
-  return totalWrappedLines > threshold;
+  return wrappedLines > maxLines;
 }
 
-/**
- * Checks if the Japanese meaning-text content exceeds 5 lines.
- */
-export function checkMeaningExceedsFiveLines(text, meaningElem) {
-  return checkMeaningExceedsLineCount(text, 5, meaningElem);
-}
-
-/**
- * Checks if the meaning-text content exceeds 2 lines.
- */
-export function checkMeaningExceedsTwoLines(text, meaningElem) {
-  return checkMeaningExceedsLineCount(text, 2, meaningElem);
-}
+export const checkMeaningExceedsTwoLines = (text, meaningElem) => checkMeaningExceedsLines(2, text, meaningElem);
+export const checkMeaningExceedsFiveLines = (text, meaningElem) => checkMeaningExceedsLines(5, text, meaningElem);
 
 /**
  * Checks if the meaning element has vertical scrolling content.
- * @param {HTMLElement} meaningElem
+ * @param {HTMLElement} [meaningElem]
  * @returns {boolean}
  */
 export function checkMeaningHasScroll(meaningElem) {
-  if (!meaningElem) return false;
-  if (meaningElem.clientHeight > 0) {
-    return meaningElem.scrollHeight > (meaningElem.clientHeight + 1);
-  }
-  return false;
+  const elem = meaningElem || getMeaningElement();
+  if (!elem || !(elem.clientHeight > 0)) return false;
+  return elem.scrollHeight > (elem.clientHeight + 1);
 }
 
+/**
+ * Handles double-click event on modal meaning text to open Description modal.
+ */
 export function handleMeaningTextClick() {
-  const meaningElem = document.getElementById('modal-meaning-text');
+  const meaningElem = getMeaningElement();
   if (!meaningElem) return;
-  const hasScroll = (meaningElem.classList && meaningElem.classList.contains('has-scroll')) || checkMeaningHasScroll(meaningElem);
-  if (hasScroll) {
-    const rowIndexStr = typeof meaningElem.getAttribute === 'function' ? meaningElem.getAttribute('data-row-index') : meaningElem['data-row-index'];
-    const rowIndex = rowIndexStr !== null && rowIndexStr !== undefined ? parseInt(rowIndexStr, 10) : null;
-    if (rowIndex !== null && !isNaN(rowIndex)) {
-      openDescriptionModal(rowIndex);
-    }
+  const rowIndexStr = typeof meaningElem.getAttribute === 'function'
+    ? meaningElem.getAttribute('data-row-index')
+    : meaningElem['data-row-index'];
+  const rowIndex = rowIndexStr !== null && rowIndexStr !== undefined ? parseInt(rowIndexStr, 10) : null;
+  if (rowIndex !== null && !isNaN(rowIndex)) {
+    openDescriptionModal(rowIndex);
   }
 }
 
@@ -131,7 +119,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const titleElem = document.getElementById('modal-term-title');
   const readingSectionElem = document.getElementById('modal-reading-section');
   const readingElem = document.getElementById('modal-reading-row');
-  const meaningElem = document.getElementById('modal-meaning-text');
+  const meaningElem = document.querySelector('#modal-meaning-text');
   const createdAtElem = document.getElementById('modal-created-at');
   const idElem = document.getElementById('modal-id');
   const modal = document.getElementById('detail-modal');
@@ -140,6 +128,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     titleElem.innerText = rec.ja_term;
     titleElem.setAttribute('data-collection', currentCollectionId || '');
   }
+
   if (readingElem) {
     readingElem.setAttribute('data-collection', currentCollectionId || '');
     if (rec.reading) {
@@ -150,18 +139,17 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       if (readingSectionElem) readingSectionElem.style.display = 'none';
     }
   }
+
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';
     const meaningText = rec.tw_translation || '';
     if (meaningElem.classList) {
-      if (checkMeaningExceedsTwoLines(meaningText, meaningElem)) {
-        meaningElem.classList.add('is-multiline');
-      } else {
-        meaningElem.classList.remove('is-multiline');
-      }
+      meaningElem.classList.toggle('is-multiline', checkMeaningExceedsTwoLines(meaningText, meaningElem));
+      meaningElem.classList.toggle('has-scroll', checkMeaningHasScroll(meaningElem));
     }
   }
+
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
 
@@ -170,13 +158,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const recListElem = document.getElementById('modal-recommendations-list');
   if (recSectionElem && recListElem) {
     recListElem.setAttribute('data-collection', currentCollectionId || '');
-    const rawRecs = rec.recommendations;
-    let recItems = [];
-    if (Array.isArray(rawRecs)) {
-      recItems = rawRecs;
-    } else if (typeof rawRecs === 'string' && rawRecs.trim()) {
-      recItems = rawRecs.replace(/<br\s*\/?>/gi, '\n').split(/[\n\r,，、;；]/).map(s => s.trim()).filter(Boolean);
-    }
+    const recItems = parseRecommendationList(rec.recommendations);
 
     if (recItems.length > 0) {
       recListElem.innerHTML = recItems.map(item => {
@@ -188,7 +170,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
           </button>
         `;
       }).join('');
-      recSectionElem.style.display = 'block';
+      recSectionElem.style.display = 'flex';
     } else {
       recListElem.innerHTML = '';
       recSectionElem.style.display = 'none';
@@ -197,57 +179,12 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
   if (modal) {
     const modalBox = modal.querySelector('.awsui-modal');
-    const isJapanese = (currentCollectionId === 'japanese-terms' || (titleElem && titleElem.getAttribute('data-collection') === 'japanese-terms'));
-    if (modalBox) {
-      const termTitle = rec.ja_term || '';
-      const meaningText = rec.tw_translation || '';
-
-      const titleExceedsLimit = getUnicodeLength(termTitle) > 15;
-      const meaningExceedsFiveLines = isJapanese && checkMeaningExceedsFiveLines(meaningText, meaningElem);
-
-      if (titleExceedsLimit || meaningExceedsFiveLines) {
-        modalBox.classList.add('awsui-modal-lg');
-        modalBox.classList.remove('awsui-modal-sm');
-      } else {
-        modalBox.classList.add('awsui-modal-sm');
-        modalBox.classList.remove('awsui-modal-lg');
-      }
-    }
+    if (modalBox) modalBox.classList.remove('awsui-modal-lg');
     modal.classList.add('open');
-
-    if (modalBox && meaningElem && rec.tw_translation) {
-      const checkLines = () => {
-        if (meaningElem.classList) {
-          if (checkMeaningExceedsTwoLines(rec.tw_translation, meaningElem)) {
-            meaningElem.classList.add('is-multiline');
-          } else {
-            meaningElem.classList.remove('is-multiline');
-          }
-          if (checkMeaningHasScroll(meaningElem)) {
-            meaningElem.classList.add('has-scroll');
-          } else {
-            meaningElem.classList.remove('has-scroll');
-          }
-        }
-        if (isJapanese && checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
-          modalBox.classList.add('awsui-modal-lg');
-          modalBox.classList.remove('awsui-modal-sm');
-        }
-      };
-      checkLines();
-      if (typeof requestAnimationFrame === 'function') {
-        requestAnimationFrame(checkLines);
-      }
-    }
   }
 
   if (updateHash) {
-    const col = collectionsConfig[currentCollectionId];
-    const colName = col ? col.name : currentCollectionId;
-    const targetHash = `#/${colName}/${rec.ja_term}`;
-    if (decodeURIComponent(window.location.hash) !== targetHash) {
-      location.hash = `#/${colName}/${rec.ja_term}`;
-    }
+    syncHash(`#/${getCollectionSlug(currentCollectionId)}/${rec.ja_term}`);
   }
 }
 
@@ -258,18 +195,7 @@ export function closeDetailModal(updateHash = true) {
 
   if (updateHash) {
     const { currentCollectionId } = store.get();
-    const col = collectionsConfig[currentCollectionId];
-    const colName = col ? col.name : currentCollectionId;
-    const targetHash = `#/${colName}`;
-    if (decodeURIComponent(window.location.hash) !== targetHash) {
-      location.hash = `#/${colName}`;
-    }
-  }
-}
-
-export function closeDetailModalOnBackdrop(e) {
-  if (e.target.id === 'detail-modal') {
-    closeDetailModal();
+    syncHash(`#/${getCollectionSlug(currentCollectionId)}`);
   }
 }
 
@@ -284,18 +210,12 @@ export function openDescriptionModal(rowIndex, updateHash = true) {
   if (descTextElem) {
     descTextElem.innerText = rec.tw_translation || '（無說明內容）';
   }
-
   if (modal) {
     modal.classList.add('open');
   }
 
   if (updateHash) {
-    const col = collectionsConfig[currentCollectionId];
-    const colName = col ? col.name : currentCollectionId;
-    const targetHash = `#/${colName}/${rec.ja_term}/description`;
-    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
-      location.hash = `#/${colName}/${rec.ja_term}/description`;
-    }
+    syncHash(`#/${getCollectionSlug(currentCollectionId)}/${rec.ja_term}/description`);
   }
 }
 
@@ -305,24 +225,14 @@ export function closeDescriptionModal(updateHash = true) {
 
   if (updateHash) {
     const { currentCollectionId, allRecords } = store.get();
-    const col = collectionsConfig[currentCollectionId];
-    const colName = col ? col.name : currentCollectionId;
+    const colSlug = getCollectionSlug(currentCollectionId);
 
-    const meaningElem = document.getElementById('modal-meaning-text');
+    const meaningElem = getMeaningElement();
     const rowIndexStr = meaningElem ? meaningElem.getAttribute('data-row-index') : null;
     const rowIndex = rowIndexStr !== null ? parseInt(rowIndexStr, 10) : null;
     const rec = (rowIndex !== null && !isNaN(rowIndex)) ? allRecords.find(r => r.row_index === rowIndex) : null;
 
-    const targetHash = rec ? `#/${colName}/${rec.ja_term}` : `#/${colName}`;
-    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
-      location.hash = targetHash;
-    }
-  }
-}
-
-export function closeDescriptionModalOnBackdrop(e) {
-  if (e.target.id === 'description-modal') {
-    closeDescriptionModal();
+    syncHash(rec ? `#/${colSlug}/${rec.ja_term}` : `#/${colSlug}`);
   }
 }
 
@@ -332,7 +242,7 @@ export function openCollectionModal(collectionId, updateHash = true) {
   const col = collectionsConfig[targetColId];
   if (!col) return;
 
-  const meta = collectionsMetaCache[targetColId] || (col ? col.defaultMeta : null);
+  const meta = collectionsMetaCache[targetColId] || col.defaultMeta;
   const modal = document.getElementById('collection-modal');
   if (!modal) return;
 
@@ -343,40 +253,23 @@ export function openCollectionModal(collectionId, updateHash = true) {
   const totalElem = document.getElementById('collection-modal-total-items');
   const idElem = document.getElementById('collection-modal-id');
 
-  if (titleElem) {
-    titleElem.innerText = (meta && meta.title) ? meta.title : col.name;
-  }
-  if (enTitleElem) {
-    enTitleElem.innerText = (meta && meta.enTitle) ? meta.enTitle : (col.enTitle || targetColId);
-  }
+  if (titleElem) titleElem.innerText = meta?.title || col.name;
+  if (enTitleElem) enTitleElem.innerText = meta?.enTitle || col.enTitle || targetColId;
   if (subtitleElem) {
-    if (meta && meta.subtitle) {
-      subtitleElem.innerText = meta.subtitle;
-      subtitleElem.style.display = 'block';
-    } else {
-      subtitleElem.innerText = '';
-      subtitleElem.style.display = 'none';
-    }
+    subtitleElem.innerText = meta?.subtitle || '';
+    subtitleElem.style.display = meta?.subtitle ? 'block' : 'none';
   }
-  if (descElem) {
-    descElem.innerText = (meta && meta.description) ? meta.description : '（無說明內容）';
-  }
+  if (descElem) descElem.innerText = meta?.description || '（無說明內容）';
   if (totalElem) {
     const items = collectionsCache[targetColId];
     totalElem.innerText = Array.isArray(items) ? items.length : '--';
   }
-  if (idElem) {
-    idElem.innerText = (meta && meta.id) ? meta.id : 'N/A';
-  }
+  if (idElem) idElem.innerText = meta?.id || 'N/A';
 
   modal.classList.add('open');
 
   if (updateHash) {
-    const colName = col ? col.name : targetColId;
-    const targetHash = `#/${colName}/info`;
-    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
-      location.hash = `#/${colName}/info`;
-    }
+    syncHash(`#/${col.name || targetColId}/info`);
   }
 }
 
@@ -386,17 +279,14 @@ export function closeCollectionModal(updateHash = true) {
 
   if (updateHash) {
     const { currentCollectionId } = store.get();
-    const col = collectionsConfig[currentCollectionId];
-    const colName = col ? col.name : currentCollectionId;
-    const targetHash = `#/${colName}`;
-    if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
-      location.hash = `#/${colName}`;
-    }
+    syncHash(`#/${getCollectionSlug(currentCollectionId)}`);
   }
 }
 
-export function closeCollectionModalOnBackdrop(e) {
-  if (e.target.id === 'collection-modal') {
-    closeCollectionModal();
-  }
-}
+const createBackdropHandler = (targetId, closeFn) => (e) => {
+  if (e?.target?.id === targetId) closeFn();
+};
+
+export const closeDetailModalOnBackdrop = createBackdropHandler('detail-modal', closeDetailModal);
+export const closeDescriptionModalOnBackdrop = createBackdropHandler('description-modal', closeDescriptionModal);
+export const closeCollectionModalOnBackdrop = createBackdropHandler('collection-modal', closeCollectionModal);

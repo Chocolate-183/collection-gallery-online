@@ -1021,7 +1021,7 @@ a:focus {
 }
 
 .awsui-modal {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
   border: 1px solid var(--awsui-color-border-item-default);
   border-radius: var(--awsui-border-radius-container);
   width: 90%;
@@ -1102,6 +1102,9 @@ a:focus {
   min-height: calc(18px * 1.65 * 5); /* at least 5 lines of text height */
   box-sizing: border-box;
   transition: background-color 0.2s ease, border-color 0.2s ease, padding 0.2s ease;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  cursor: pointer;
 }
 
 #modal-meaning-text.is-multiline {
@@ -1135,22 +1138,46 @@ a:focus {
   transform: scale(1);
 }
 
+/* Modal Divider Line */
+.awsui-modal-divider {
+  border-top: 1px solid var(--awsui-color-border-control-default, #aab7b8);
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
 /* Recommended Items Section in Modal */
 .awsui-modal-recommendations-section {
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+.awsui-modal-recommendations-section .awsui-modal-section-title {
+  margin-bottom: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .awsui-modal-recommendations-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 26px;
+  max-height: 26px;
+  overflow: hidden;
 }
 
 .awsui-recommendation-chip {
   display: inline-flex;
   align-items: center;
-  padding: 6px 12px;
-  font-size: 16px;
+  justify-content: center;
+  padding: 3px 8px;
+  font-size: 14px;
   font-weight: 500;
   color: #545b64;
   background-color: transparent;
@@ -1158,9 +1185,13 @@ a:focus {
   border-radius: var(--awsui-border-radius-tag, 4px);
   cursor: pointer;
   transition: all 0.15s ease-in-out;
-  line-height: 1.4;
+  line-height: 1;
+  height: 26px;
+  box-sizing: border-box;
+  white-space: nowrap;
   outline: none;
   font-family: inherit;
+  flex-shrink: 0;
 }
 
 .awsui-recommendation-chip:hover {
@@ -1169,13 +1200,19 @@ a:focus {
 
 /* Bottom Creation Time & ID Row in Modal */
 .awsui-modal-created-time {
-  margin-top: 20px;
-  padding-top: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
   border-top: 1px solid var(--awsui-color-border-control-default, #aab7b8);
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   align-items: center;
   font-size: 15px;
+}
+
+#detail-modal .awsui-modal-created-time {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 12px;
 }
 
 .awsui-modal-meta-item {
@@ -1628,9 +1665,13 @@ a:focus {
 
 [data-theme="dark"] .awsui-kpi-box,
 [data-theme="dark"] .awsui-cards-container,
-[data-theme="dark"] .awsui-card,
-[data-theme="dark"] .awsui-modal {
+[data-theme="dark"] .awsui-card {
   background-color: var(--awsui-color-background-container-content);
+  border-color: var(--awsui-color-border-item-default);
+}
+
+[data-theme="dark"] .awsui-modal {
+  background-color: #111c2b;
   border-color: var(--awsui-color-border-item-default);
 }
 
@@ -1840,6 +1881,19 @@ a:focus {
     overflow-y: auto;
     min-height: 0;
     padding-right: 6px;
+    scrollbar-gutter: stable;
+  }
+
+  /* Description Modal Desktop Position: Right Side & Overlapping on Item Modal */
+  #description-modal {
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  #description-modal .awsui-modal {
+    margin-left: 50vw;
+    max-width: min(640px, calc(50vw - 32px));
   }
 }
 
@@ -1941,6 +1995,7 @@ a:focus {
     -webkit-overflow-scrolling: touch;
     font-size: 15px !important;
     line-height: 1.6 !important;
+    scrollbar-gutter: stable;
   }
 
   #modal-meaning-text.is-multiline {
@@ -2002,19 +2057,43 @@ a:focus {
     font-size: 13px !important;
   }
 
-  .awsui-modal-recommendations-section {
+  .awsui-modal-divider {
     margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .awsui-modal-recommendations-section {
+    margin-top: 0 !important;
+    gap: 8px !important;
+  }
+
+  .awsui-modal-recommendations-section .awsui-modal-section-title {
+    font-size: 13px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .awsui-modal-recommendations-list {
+    gap: 6px !important;
+    height: 22px !important;
+    max-height: 22px !important;
   }
 
   .awsui-recommendation-chip {
-    font-size: 13px !important;
-    padding: 4px 10px !important;
+    font-size: 12px !important;
+    padding: 2px 6px !important;
+    height: 22px !important;
   }
 
   .awsui-modal-created-time {
     font-size: 12px !important;
-    margin-top: 12px !important;
-    padding-top: 8px !important;
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+  }
+
+  #detail-modal .awsui-modal-created-time {
+    border-top: none !important;
+    padding-top: 0 !important;
+    margin-top: 8px !important;
   }
 
   .awsui-modal-meta-item,
