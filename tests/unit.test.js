@@ -276,6 +276,7 @@ test('CSS Stylesheet - Explore Section Same Row Layout and Single Row Overflow H
   const cssPath = path.resolve('styles.css');
   const cssContent = fs.readFileSync(cssPath, 'utf8');
 
+  assert(cssContent.includes('.awsui-modal-divider'), 'Should define .awsui-modal-divider selector');
   assert(cssContent.includes('.awsui-modal-recommendations-section {\n  display: flex;\n  align-items: center;'), 'Explore section should use flex layout to place title and items on the same row');
   assert(cssContent.includes('.awsui-modal-recommendations-list {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;'), 'Explore list should use flex-wrap to wrap overflowing chips');
   assert(cssContent.includes('max-height: 26px;'), 'Explore list should restrict height to single row so wrapped items are hidden');
