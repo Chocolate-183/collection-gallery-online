@@ -5,7 +5,7 @@ import { VIEWS } from './constants.js';
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection, closeSidebarOnMobile } from './components/sidebar.js';
-import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal, openCollectionDescriptionModal } from './components/modal.js';
 import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
@@ -199,6 +199,11 @@ export function handleHashRoute() {
         store.set({ invalidTerm: null });
         closeDetailModal(false);
         openCollectionModal(targetColId, false);
+        if (subAction === 'description') {
+          openCollectionDescriptionModal(targetColId, null, false);
+        } else {
+          closeDescriptionModal(false);
+        }
       } else {
         const rec = allRecords.find(r => r.ja_term === termName || r.id === termName);
         if (rec) {

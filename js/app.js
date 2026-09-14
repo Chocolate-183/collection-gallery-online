@@ -8,7 +8,7 @@ import { loadCollectionData, preloadAllCollections, updateStatsView } from './da
 import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, onCollectionSelectChange, updateSidebarBadge } from './components/sidebar.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
-import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, openCollectionDescriptionModal } from './components/modal.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
 
@@ -51,6 +51,8 @@ Object.assign(window, {
   closeDescriptionModal,
   closeDescriptionModalOnBackdrop,
   handleMeaningTextClick,
+  handleCollectionDescriptionClick,
+  openCollectionDescriptionModal,
   navigateToTerm,
   goToPage
 });

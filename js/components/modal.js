@@ -111,6 +111,16 @@ export function handleMeaningTextClick() {
   }
 }
 
+/**
+ * Handles double-click event on collection modal description to open Description modal.
+ */
+export function handleCollectionDescriptionClick() {
+  const { currentCollectionId } = store.get();
+  const descElem = document.getElementById('collection-modal-description');
+  const descText = descElem ? descElem.innerText : '';
+  openCollectionDescriptionModal(currentCollectionId, descText);
+}
+
 export function openMeaningModal(rowIndex, updateHash = true) {
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
@@ -209,6 +219,9 @@ export function openDescriptionModal(rowIndex, updateHash = true) {
 
   if (descTextElem) {
     descTextElem.innerText = rec.tw_translation || '（無說明內容）';
+    if (typeof descTextElem.setAttribute === 'function') {
+      descTextElem.setAttribute('data-source', 'item');
+    }
   }
   if (modal) {
     modal.classList.add('open');
@@ -219,20 +232,61 @@ export function openDescriptionModal(rowIndex, updateHash = true) {
   }
 }
 
+export function openCollectionDescriptionModal(collectionId, customText, updateHash = true) {
+  const { currentCollectionId } = store.get();
+  const targetColId = collectionId || currentCollectionId || 'china-terms';
+  const col = collectionsConfig[targetColId];
+  const meta = collectionsMetaCache[targetColId] || (col ? col.defaultMeta : null);
+
+  const descTextElem = document.getElementById('description-modal-text');
+  const modal = document.getElementById('description-modal');
+
+  const textToDisplay = (customText !== undefined && customText !== null && customText !== '')
+    ? customText
+    : (meta?.description || '（無說明內容）');
+
+  if (descTextElem) {
+    descTextElem.innerText = textToDisplay;
+    if (typeof descTextElem.setAttribute === 'function') {
+      descTextElem.setAttribute('data-source', 'collection');
+      descTextElem.setAttribute('data-collection-id', targetColId);
+    }
+  }
+  if (modal) {
+    modal.classList.add('open');
+  }
+
+  if (updateHash) {
+    const colSlug = getCollectionSlug(targetColId);
+    syncHash(`#/${colSlug}/info/description`);
+  }
+}
+
 export function closeDescriptionModal(updateHash = true) {
   const modal = document.getElementById('description-modal');
   if (modal) modal.classList.remove('open');
 
   if (updateHash) {
+    const descTextElem = document.getElementById('description-modal-text');
+    const source = descTextElem && typeof descTextElem.getAttribute === 'function'
+      ? descTextElem.getAttribute('data-source')
+      : (descTextElem ? descTextElem['data-source'] : null);
     const { currentCollectionId, allRecords } = store.get();
     const colSlug = getCollectionSlug(currentCollectionId);
 
-    const meaningElem = getMeaningElement();
-    const rowIndexStr = meaningElem ? meaningElem.getAttribute('data-row-index') : null;
-    const rowIndex = rowIndexStr !== null ? parseInt(rowIndexStr, 10) : null;
-    const rec = (rowIndex !== null && !isNaN(rowIndex)) ? allRecords.find(r => r.row_index === rowIndex) : null;
+    const collectionModal = document.getElementById('collection-modal');
+    const isCollectionModalOpen = collectionModal && collectionModal.classList.contains('open');
 
-    syncHash(rec ? `#/${colSlug}/${rec.ja_term}` : `#/${colSlug}`);
+    if (source === 'collection' || isCollectionModalOpen) {
+      syncHash(`#/${colSlug}/info`);
+    } else {
+      const meaningElem = getMeaningElement();
+      const rowIndexStr = meaningElem ? meaningElem.getAttribute('data-row-index') : null;
+      const rowIndex = rowIndexStr !== null ? parseInt(rowIndexStr, 10) : null;
+      const rec = (rowIndex !== null && !isNaN(rowIndex)) ? allRecords.find(r => r.row_index === rowIndex) : null;
+
+      syncHash(rec ? `#/${colSlug}/${rec.ja_term}` : `#/${colSlug}`);
+    }
   }
 }
 

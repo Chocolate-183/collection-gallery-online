@@ -288,15 +288,17 @@ test('Description Modal Component & Interaction Logic', async () => {
   const mockDescText = createMockElement();
   const mockMeaning = createMockElement({ clientHeight: 100, scrollHeight: 200, 'data-row-index': '1' });
   mockMeaning.classList.add('has-scroll');
+  const mockColDesc = createMockElement({ innerText: '展廳詳細介紹說明內容' });
 
   mockDOM({
     'description-modal': mockDescModal,
     'description-modal-text': mockDescText,
-    'modal-meaning-text': mockMeaning
+    'modal-meaning-text': mockMeaning,
+    'collection-modal-description': mockColDesc
   });
 
   const { store } = await import('../js/state.js');
-  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick } = await import('../js/components/modal.js');
+  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick, handleCollectionDescriptionClick, openCollectionDescriptionModal } = await import('../js/components/modal.js');
 
   store.set({
     currentCollectionId: 'japanese-terms',
@@ -323,6 +325,13 @@ test('Description Modal Component & Interaction Logic', async () => {
   mockMeaning.scrollHeight = 100;
   handleMeaningTextClick();
   assert(mockDescModal.classes.has('open'), 'handleMeaningTextClick should open Description modal even without scroll');
+
+  // Test Collection Modal double-click opens Description Modal
+  closeDescriptionModal(false);
+  assert(!mockDescModal.classes.has('open'));
+  handleCollectionDescriptionClick();
+  assert(mockDescModal.classes.has('open'), 'handleCollectionDescriptionClick should open Description modal');
+  assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
 });
 
 test('Item Modal Explore Section - Display Flex for Same Row Layout', async () => {
