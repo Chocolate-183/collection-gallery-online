@@ -198,7 +198,7 @@ test('Welcome Card Title Click Handler Integration - Japanese Terms Title Click'
   assert(html.includes('onclick="switchCollection(\'japanese-terms\')"'));
 });
 
-test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Modal', async () => {
+test('Modal Sizing - Item Modal does not apply large modal setting', async () => {
   const mockModalBox = createMockElement();
   const mockModal = createMockElement({
     querySelector: (sel) => sel === '.awsui-modal' ? mockModalBox : null
@@ -216,25 +216,24 @@ test('Modal Sizing - Japanese Meaning Text Exceeding 5 Lines Triggers Large Moda
   assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4'), false);
   assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4\n5\n6'), true);
 
-  // Case 1: <= 5 lines -> small modal
+  // Case 1: Japanese term <= 5 lines -> should not have awsui-modal-lg
   store.set({
     currentCollectionId: 'japanese-terms',
     allRecords: [{ row_index: 1, ja_term: '測試', tw_translation: '1\n2\n3\n4' }]
   });
   mockModalBox.classes.clear();
   openMeaningModal(1, false);
-  assert(mockModalBox.classes.has('awsui-modal-sm'));
   assert(!mockModalBox.classes.has('awsui-modal-lg'));
 
-  // Case 2: > 5 lines -> large modal
+  // Case 2: Japanese term > 5 lines with long title -> should still not have awsui-modal-lg
   store.set({
     currentCollectionId: 'japanese-terms',
-    allRecords: [{ row_index: 2, ja_term: '測試', tw_translation: '1\n2\n3\n4\n5\n6' }]
+    allRecords: [{ row_index: 2, ja_term: '這是一個非常長的名詞超過十五個字元測試測試', tw_translation: '1\n2\n3\n4\n5\n6' }]
   });
   mockModalBox.classes.clear();
+  mockModalBox.classes.add('awsui-modal-lg');
   openMeaningModal(2, false);
-  assert(mockModalBox.classes.has('awsui-modal-lg'));
-  assert(!mockModalBox.classes.has('awsui-modal-sm'));
+  assert(!mockModalBox.classes.has('awsui-modal-lg'), 'Item Modal should remove and never retain awsui-modal-lg');
   assert(mockMeaning.classes.has('is-multiline'));
 });
 

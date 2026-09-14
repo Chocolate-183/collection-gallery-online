@@ -197,21 +197,8 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
   if (modal) {
     const modalBox = modal.querySelector('.awsui-modal');
-    const isJapanese = (currentCollectionId === 'japanese-terms' || (titleElem && titleElem.getAttribute('data-collection') === 'japanese-terms'));
     if (modalBox) {
-      const termTitle = rec.ja_term || '';
-      const meaningText = rec.tw_translation || '';
-
-      const titleExceedsLimit = getUnicodeLength(termTitle) > 15;
-      const meaningExceedsFiveLines = isJapanese && checkMeaningExceedsFiveLines(meaningText, meaningElem);
-
-      if (titleExceedsLimit || meaningExceedsFiveLines) {
-        modalBox.classList.add('awsui-modal-lg');
-        modalBox.classList.remove('awsui-modal-sm');
-      } else {
-        modalBox.classList.add('awsui-modal-sm');
-        modalBox.classList.remove('awsui-modal-lg');
-      }
+      modalBox.classList.remove('awsui-modal-lg');
     }
     modal.classList.add('open');
 
@@ -228,10 +215,6 @@ export function openMeaningModal(rowIndex, updateHash = true) {
           } else {
             meaningElem.classList.remove('has-scroll');
           }
-        }
-        if (isJapanese && checkMeaningExceedsFiveLines(rec.tw_translation, meaningElem)) {
-          modalBox.classList.add('awsui-modal-lg');
-          modalBox.classList.remove('awsui-modal-sm');
         }
       };
       checkLines();
