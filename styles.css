@@ -371,7 +371,7 @@ a:focus {
 #collection-header-title.active,
 #collection-header-title:active {
   background: #ECC94B !important;
-  color: #303748 !important;
+  color: #ffffff !important;
   border-color: #ECC94B !important;
 }
 
@@ -638,7 +638,7 @@ a:focus {
 .awsui-card:active {
   background: #ECC94B !important;
   border-color: #ECC94B !important;
-  color: #303748 !important;
+  color: #ffffff !important;
 }
 
 .awsui-card.active .awsui-card-header-title,
@@ -649,12 +649,12 @@ a:focus {
 .awsui-card:active .awsui-reading-subtext,
 .awsui-card:active .awsui-meaning-value,
 .awsui-card:active .awsui-expand-hint {
-  color: #303748 !important;
+  color: #ffffff !important;
 }
 
 .awsui-card.active .awsui-card-divider,
 .awsui-card:active .awsui-card-divider {
-  background-color: rgba(48, 55, 72, 0.25) !important;
+  background-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .awsui-card.active .awsui-expand-hint,
@@ -666,7 +666,7 @@ a:focus {
 .awsui-welcome-card:active {
   background: #ECC94B !important;
   border-color: #ECC94B !important;
-  color: #303748 !important;
+  color: #ffffff !important;
 }
 
 .awsui-welcome-card.active .awsui-welcome-card-title,
@@ -675,7 +675,7 @@ a:focus {
 .awsui-welcome-card:active .awsui-welcome-card-title,
 .awsui-welcome-card:active .awsui-welcome-card-desc,
 .awsui-welcome-card:active .awsui-welcome-card-action {
-  color: #303748 !important;
+  color: #ffffff !important;
 }
 
 /* Empty State Card */
@@ -1781,7 +1781,7 @@ a:focus {
 [data-theme="dark"] #collection-header-title.active,
 [data-theme="dark"] #collection-header-title:active {
   background-color: #ECC94B !important;
-  color: #303748 !important;
+  color: #ffffff !important;
   border-color: #ECC94B !important;
 }
 
@@ -1793,7 +1793,7 @@ a:focus {
 [data-theme="dark"] .awsui-card:active {
   background-color: #ECC94B !important;
   border-color: #ECC94B !important;
-  color: #303748 !important;
+  color: #ffffff !important;
 }
 
 [data-theme="dark"] .awsui-card.active .awsui-card-header-title,
@@ -1804,12 +1804,12 @@ a:focus {
 [data-theme="dark"] .awsui-card:active .awsui-reading-subtext,
 [data-theme="dark"] .awsui-card:active .awsui-meaning-value,
 [data-theme="dark"] .awsui-card:active .awsui-expand-hint {
-  color: #303748 !important;
+  color: #ffffff !important;
 }
 
 [data-theme="dark"] .awsui-card.active .awsui-card-divider,
 [data-theme="dark"] .awsui-card:active .awsui-card-divider {
-  background-color: rgba(48, 55, 72, 0.25) !important;
+  background-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 [data-theme="dark"] .awsui-card.active .awsui-expand-hint,
@@ -1821,7 +1821,7 @@ a:focus {
 [data-theme="dark"] .awsui-welcome-card:active {
   background-color: #ECC94B !important;
   border-color: #ECC94B !important;
-  color: #303748 !important;
+  color: #ffffff !important;
 }
 
 [data-theme="dark"] .awsui-welcome-card.active .awsui-welcome-card-title,
@@ -1830,7 +1830,7 @@ a:focus {
 [data-theme="dark"] .awsui-welcome-card:active .awsui-welcome-card-title,
 [data-theme="dark"] .awsui-welcome-card:active .awsui-welcome-card-desc,
 [data-theme="dark"] .awsui-welcome-card:active .awsui-welcome-card-action {
-  color: #303748 !important;
+  color: #ffffff !important;
 }
 
 [data-theme="dark"] .awsui-meaning-value:hover,
