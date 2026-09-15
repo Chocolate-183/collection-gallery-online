@@ -250,7 +250,6 @@ a:focus {
 .awsui-nav-link.active:hover {
   background-color: #ECC94B !important;
   color: #ffffff !important;
-  font-weight: 400;
   border-left: 3px solid #ECC94B !important;
 }
 
