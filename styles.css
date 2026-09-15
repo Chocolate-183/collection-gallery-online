@@ -364,10 +364,6 @@ a:focus {
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
-#collection-header-title:hover {
-  color: #ECC94B;
-}
-
 #collection-header-title.active,
 #collection-header-title:active {
   background: #ECC94B !important;
@@ -1772,10 +1768,6 @@ a:focus {
 
 [data-theme="dark"] .awsui-empty-card .awsui-icon {
   fill: #8b949e !important;
-}
-
-[data-theme="dark"] #collection-header-title:hover {
-  color: #ECC94B;
 }
 
 [data-theme="dark"] #collection-header-title.active,
