@@ -25,7 +25,7 @@
 ### 4. 雙色主題與沉浸式視覺體驗 (Light/Dark Mode)
 - **展廳燈光模式**: 支援 Light Mode 與 Dark Mode 一鍵切換，預設自動跟隨系統偏好 (`prefers-color-scheme`) 並儲存於 `localStorage`。
 - **純圖示化操作 (Icon-Only Actions)**: 採用原生 SVG Icon（燈光模式切換、展品同步、展廳切換、Modal 關閉等），搭配清晰 Tooltip 與 Accessibility `aria-label`。
-- **等高展品卡片矩陣 (Uniform Card Grid)**: 嚴格等高卡片設計，標題採用專屬藍色 (`#0f6ce0` / `#4da2ff`)，解說超過 2 行自動截斷並提示點擊開啟展品詳細導覽。
+- **等高展品卡片矩陣 (Uniform Card Grid)**: 嚴格等高卡片設計，標題採用專屬主題色 (`#303748` / 深色模式強調色 `#ECC94B`)，解說超過 2 行自動截斷並提示點擊開啟展品詳細導覽。
 - **Monospace 等寬字型適配**: 展品編號、建置日期與 KPI 數字採用 `Roboto Mono` 等寬字型提升視覺一致性。
 
 ### 5. 多維度檢索與展品篩選機制 (Filter, Search & Sorting)
