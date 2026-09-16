@@ -98,6 +98,7 @@ test('UI Components - Sidebar Badge Display Logic', async () => {
   const mockBadge = createMockElement({ style: { display: 'inline-block' } });
   mockDOM({
     'side-nav-count-japanese-terms': mockBadge,
+    'side-nav-count-china-terms': mockBadge,
     'side-nav-count-korean-terms': mockBadge
   });
 
@@ -114,6 +115,14 @@ test('UI Components - Sidebar Badge Display Logic', async () => {
   updateSidebarBadge('japanese-terms');
   assert.equal(mockBadge.innerText, 'ADJUSTING');
   assert.equal(mockBadge.style.display, 'inline-block');
+
+  // No live meta yet (even if defaultMeta is 調整中) -> treat as open
+  delete collectionsMetaCache['china-terms'];
+  mockBadge.innerText = 'ADJUSTING';
+  mockBadge.style.display = 'inline-block';
+  updateSidebarBadge('china-terms');
+  assert.equal(mockBadge.innerText, '');
+  assert.equal(mockBadge.style.display, 'none');
 });
 
 test('UI Components - Mobile Sidebar Outside Click & Auto-Collapse Logic', async () => {

@@ -16,8 +16,8 @@ export function updateSidebarBadge(colId) {
   const badgeElem = document.getElementById(`side-nav-count-${colId}`);
   if (!badgeElem) return;
 
-  const col = collectionsConfig[colId];
-  const meta = collectionsMetaCache[colId] || col?.defaultMeta;
+  // Before live metadata arrives, treat every hall as open (no status badge).
+  const meta = collectionsMetaCache[colId];
   const isAdjusting = isCollectionAdjusting(meta);
   const isPreparing = isCollectionPreparing(meta);
 
