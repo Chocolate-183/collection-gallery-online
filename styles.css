@@ -740,7 +740,7 @@ a:focus {
 }
 
 .awsui-title-separator {
-  color: var(--awsui-color-text-body-secondary, #5f6b7a);
+  color: #c5cad1;
   font-weight: 400;
 }
 
@@ -1820,7 +1820,7 @@ a:focus {
 
 [data-theme="dark"] .awsui-card-header-title .awsui-title-separator,
 [data-theme="dark"] #modal-term-title .awsui-title-separator {
-  color: #8b949e !important;
+  color: #4b5563 !important;
 }
 
 [data-theme="dark"] .awsui-card.active,
