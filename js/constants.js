@@ -60,16 +60,16 @@ export const KANA_RANGES = {
   'わ': /^[わ-んワ-ン]/
 };
 
-/** C103 가나다 index tabs (base 초성; ㄲ/ㄸ/ㅃ/ㅆ/ㅉ fold into 가/다/바/사/자). */
-export const HANGUL_INITIAL_TABS = ['가', '나', '다', '라', '마', '바', '사', '아', '자', '차', '카', '타', '파', '하'];
+/** C103 초성 tabs (ㄱ ㄴ … ㅎ; ㄲ/ㄸ/ㅃ/ㅆ/ㅉ fold into ㄱ/ㄷ/ㅂ/ㅅ/ㅈ). */
+export const HANGUL_INITIAL_TABS = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
 
 const HANGUL_SYLLABLE_BASE = 0xAC00;
 const HANGUL_VOWEL_COUNT = 21;
 const HANGUL_FINAL_COUNT = 28;
 
-/** Unicode 초성 index 0–18 → 가나다 tab. */
+/** Unicode 초성 index 0–18 → ㄱㄴㄷ tab. */
 export const HANGUL_INITIAL_INDEX_TO_TAB = [
-  '가', '가', '나', '다', '다', '라', '마', '바', '바', '사', '사', '아', '자', '자', '차', '카', '타', '파', '하'
+  'ㄱ', 'ㄱ', 'ㄴ', 'ㄷ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅂ', 'ㅅ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
 ];
 
 export const HANGUL_SYLLABLE = {

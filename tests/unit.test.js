@@ -119,13 +119,13 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   assert.equal(matchesKanaGroup('かさ', 'か'), true);
   assert.equal(matchesKanaGroup('さくら', 'あ'), false);
 
-  assert.equal(getHangulInitialTab('가능 | 可能'), '가');
-  assert.equal(getHangulInitialTab('강하다'), '가');
-  assert.equal(getHangulInitialTab('나다'), '나');
-  assert.equal(getHangulInitialTab('까다롭다'), '가');
-  assert.equal(matchesHangulInitial('가능 | 可能', '가'), true);
-  assert.equal(matchesHangulInitial('실수 | 失手', '가'), false);
-  assert.equal(matchesHangulInitial('실수 | 失手', '사'), true);
+  assert.equal(getHangulInitialTab('가능 | 可能'), 'ㄱ');
+  assert.equal(getHangulInitialTab('강하다'), 'ㄱ');
+  assert.equal(getHangulInitialTab('나다'), 'ㄴ');
+  assert.equal(getHangulInitialTab('까다롭다'), 'ㄱ');
+  assert.equal(matchesHangulInitial('가능 | 可能', 'ㄱ'), true);
+  assert.equal(matchesHangulInitial('실수 | 失手', 'ㄱ'), false);
+  assert.equal(matchesHangulInitial('실수 | 失手', 'ㅅ'), true);
 
   const mockRecords = [
     { id: '1', ja_term: 'A', tw_translation: '意思A', created_at: '2024-01-01', row_index: 1 },
@@ -176,10 +176,10 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
     { id: 'n', ja_term: '나다', reading: '나다' },
     { id: 's', ja_term: '실수 | 失手', reading: '실수' }
   ];
-  const gaOnly = filterByKana(hangulRecords, '가', '');
+  const gaOnly = filterByKana(hangulRecords, 'ㄱ', '');
   assert.equal(gaOnly.length, 1);
   assert.equal(gaOnly[0].id, 'g');
-  const saOnly = filterByKana(hangulRecords, '사', '');
+  const saOnly = filterByKana(hangulRecords, 'ㅅ', '');
   assert.equal(saOnly.length, 1);
   assert.equal(saOnly[0].id, 's');
 });

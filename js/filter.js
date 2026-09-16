@@ -17,7 +17,7 @@ export function matchesKanaGroup(str, group) {
 }
 
 /**
- * First 가나다 tab for a Hangul string (C103). Uses the first syllable's 초성.
+ * First 초성 tab for a Hangul string (C103), e.g. ㄱ.
  */
 export function getHangulInitialTab(str) {
   if (!str) return null;
@@ -34,7 +34,7 @@ export function getHangulInitialTab(str) {
 }
 
 /**
- * Checks if a string's first Hangul syllable belongs to a 가나다 tab (e.g. 가).
+ * Checks if a string's first Hangul syllable belongs to a 초성 tab (e.g. ㄱ).
  */
 export function matchesHangulInitial(str, group) {
   return getHangulInitialTab(str) === group;
