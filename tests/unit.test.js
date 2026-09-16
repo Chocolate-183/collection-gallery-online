@@ -19,7 +19,7 @@ import {
   isCollectionHidden,
   parseRecommendationList
 } from '../js/utils.js';
-import { googleSheetsConfig, getCollectionDataUrls, collectionsConfig } from '../js/config.js';
+import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, collectionsConfig } from '../js/config.js';
 
 test('CSV & Data Parsers - Core CSV Parsing & GViz Extraction', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期,推薦條目
@@ -151,9 +151,12 @@ test('Config & Endpoint URL Builders', () => {
   const jpCol = collectionsConfig['japanese-terms'];
   const dataUrls = getCollectionDataUrls(jpCol);
   assert(dataUrls.csvUrl.includes('1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI'));
-  assert.equal(collectionsConfig['japanese-terms'].defaultMeta.status, '調整中');
+  const metaUrls = getMetadataUrls();
+  assert(metaUrls.csvUrl.includes('162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs'));
+  assert(metaUrls.csvUrl.includes('gid=1574352890'));
+  assert.equal(collectionsConfig['japanese-terms'].defaultMeta.status, '開放中');
   assert.equal(collectionsConfig['china-terms'].defaultMeta.status, '調整中');
-  assert.equal(isCollectionAdjusting(collectionsConfig['japanese-terms'].defaultMeta), true);
+  assert.equal(isCollectionAdjusting(collectionsConfig['japanese-terms'].defaultMeta), false);
   assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), true);
 });
 

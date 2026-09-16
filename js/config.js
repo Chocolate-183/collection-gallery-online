@@ -15,7 +15,7 @@ export const collectionsConfig = {
       title: '日本特色詞彙一覽',
       enTitle: 'Japanese Terms',
       id: 'C101',
-      status: '調整中',
+      status: '開放中',
       announcement: '',
       tags: ['日本', '語彙'],
       subtitle: '本展區精選由漢字與數字組成的日語詞彙，帶你跨越中文字面的直覺迷思，一秒搞懂最真實的日語意思',
@@ -59,7 +59,7 @@ export const collectionsConfig = {
       title: '韓文單字加漢字 記憶更輕鬆',
       enTitle: 'Korean Terms',
       id: 'C103',
-      status: 'COMING SOON',
+      status: '開放中',
       announcement: 'COMING SOON',
       tags: ['韓語學習'],
       subtitle: 'COMING SOON',
@@ -75,7 +75,7 @@ export const collectionsConfig = {
  */
 const metadataConfig = {
   sheetId: '162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs',
-  gid: '0'
+  gid: '1574352890'
 };
 
 /**
