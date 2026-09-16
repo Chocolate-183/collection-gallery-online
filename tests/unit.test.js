@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   parseCSVData,
+  parseGvizResponse,
   parseMetaCSVData,
   parseAllCollectionsMetaCSVData,
   parseCSVRows,
@@ -184,6 +185,49 @@ test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C 
   assert.equal(parsed[1].tw_translation, '失誤');
   assert.notEqual(parsed[0].ja_term, '가능');
   assert.notEqual(parsed[0].ja_term, '可能');
+  assert.equal(parsed[0].created_at, '2026-09-15');
+});
+
+test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
+  const sampleGviz = `google.visualization.Query.setResponse(${JSON.stringify({
+    status: 'ok',
+    table: {
+      cols: [
+        { label: 'ID' }, { label: '顯示' }, { label: '諺文' }, { label: '漢字' },
+        { label: '發音' }, { label: '意思' }, { label: '新增日期' }, { label: '推薦條目' }
+      ],
+      rows: [{
+        c: [
+          { v: 2.0, f: '#C103-0002' },
+          { v: '가능 | 可能' },
+          { v: '가능' },
+          { v: '可能' },
+          { v: '가능' },
+          { v: '可能' },
+          { v: 'Date(2026,8,15)', f: '2026-09-15' },
+          { v: '' }
+        ]
+      }, {
+        c: [
+          { v: 1047 },
+          { v: '실수 | 失手' },
+          { v: '실수' },
+          { v: '失手' },
+          { v: '실수' },
+          { v: '失誤' },
+          { v: 'Date(2026,8,15)' },
+          { v: '' }
+        ]
+      }]
+    }
+  })});`;
+
+  const parsed = parseGvizResponse(sampleGviz, 'korean-terms');
+  assert.equal(parsed.length, 2);
+  assert.equal(parsed[0].id, '#C103-0002');
+  assert.equal(parsed[0].created_at, '2026-09-15');
+  assert.equal(parsed[1].id, '#C103-1047');
+  assert.equal(parsed[1].created_at, '2026-09-15');
 });
 
 test('Status & Exhibition Helpers', () => {

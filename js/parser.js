@@ -159,19 +159,69 @@ export function extractGvizTable(gvizText) {
 }
 
 /**
+ * Formats exhibit IDs to the C101 display pattern, e.g. #C101-1047.
+ * GViz numeric cells often expose v=1047 / f="#C101-1047"; prefer the formatted value.
+ */
+function formatExhibitId(rawId, currentCollectionId) {
+  const text = rawId == null ? '' : String(rawId).trim();
+  if (!text) return '';
+  if (text.startsWith('#')) return text;
+  const num = Number(text);
+  if (!Number.isFinite(num)) return text;
+  const hallId = collectionsConfig[currentCollectionId]?.defaultMeta?.id;
+  const padded = String(Math.trunc(num)).padStart(4, '0');
+  return hallId ? `#${hallId}-${padded}` : `#${padded}`;
+}
+
+/**
+ * Normalizes timestamps to YYYY-MM-DD (C101 modal Timestamp format).
+ * GViz date cells may be v="Date(2026,8,15)" with f="2026-09-15".
+ */
+function formatExhibitTimestamp(raw) {
+  if (raw == null || raw === '') return '';
+  if (typeof raw === 'object' && typeof raw.getFullYear === 'function') {
+    const year = raw.getFullYear();
+    const month = String(raw.getMonth() + 1).padStart(2, '0');
+    const day = String(raw.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  const text = String(raw).trim();
+  const iso = text.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (iso) return iso[1];
+
+  const gviz = text.match(/^Date\((\d+),\s*(\d+),\s*(\d+)/);
+  if (gviz) {
+    const year = gviz[1];
+    const month = String(Number(gviz[2]) + 1).padStart(2, '0');
+    const day = String(Number(gviz[3])).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  return text;
+}
+
+function readGvizCell(cell, { preferFormatted = false } = {}) {
+  if (!cell) return '';
+  if (preferFormatted && cell.f) return cell.f;
+  if (cell.v === undefined || cell.v === null || cell.v === '') return cell.f || '';
+  return cell.v;
+}
+
+/**
  * Helper to construct a standard record object if valid.
  */
-function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex }) {
+function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex, collectionId }) {
   if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja === '顯示' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
     return null;
   }
 
   return {
-    id: id || `ROW-${rowIndex}`,
+    id: formatExhibitId(id, collectionId) || `ROW-${rowIndex}`,
     ja_term: ja,
     tw_translation: tw,
     reading: reading || '',
-    created_at: created_at || '',
+    created_at: formatExhibitTimestamp(created_at) || '',
     recommendations: parseRecommendationList(rawRecommend),
     row_index: rowIndex
   };
@@ -200,7 +250,7 @@ export function parseCSVData(csvText, currentCollectionId) {
       const created_at = (dateIdx !== -1 && cols[dateIdx]) ? cols[dateIdx].trim() : '';
       const rawRecommend = (recommendIdx !== -1 && cols[recommendIdx]) ? cols[recommendIdx].trim() : '';
 
-      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex: i });
+      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex: i, collectionId: currentCollectionId });
       if (record) results.push(record);
     }
   }
@@ -244,14 +294,14 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     const c = r.c;
     if (!c) return;
     const rowIndex = idx + 1;
-    const id = (idIdx >= 0 && c[idIdx]) ? (c[idIdx].v || '').toString().trim() : `ROW-${rowIndex}`;
-    const ja = (termIdx >= 0 && c[termIdx]) ? (c[termIdx].v || '').toString().trim() : '';
-    const tw = (twIdx >= 0 && c[twIdx]) ? (c[twIdx].v || '').toString().trim() : '';
-    const reading = (readingIdx >= 0 && c[readingIdx]) ? (c[readingIdx].v || '').toString().trim() : '';
-    const created_at = (dateIdx >= 0 && c[dateIdx]) ? (c[dateIdx].v || c[dateIdx].f || '').toString().trim() : '';
-    const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? (c[recommendIdx].v || c[recommendIdx].f || '').toString().trim() : '';
+    const id = (idIdx >= 0 && c[idIdx]) ? String(readGvizCell(c[idIdx], { preferFormatted: true }) || '').trim() : `ROW-${rowIndex}`;
+    const ja = (termIdx >= 0 && c[termIdx]) ? String(readGvizCell(c[termIdx]) || '').trim() : '';
+    const tw = (twIdx >= 0 && c[twIdx]) ? String(readGvizCell(c[twIdx]) || '').trim() : '';
+    const reading = (readingIdx >= 0 && c[readingIdx]) ? String(readGvizCell(c[readingIdx]) || '').trim() : '';
+    const created_at = (dateIdx >= 0 && c[dateIdx]) ? String(readGvizCell(c[dateIdx], { preferFormatted: true }) || '').trim() : '';
+    const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? String(readGvizCell(c[recommendIdx]) || '').trim() : '';
 
-    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex });
+    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex, collectionId: currentCollectionId });
     if (record) results.push(record);
   });
   return results;
