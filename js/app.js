@@ -82,7 +82,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   Object.keys(collectionsConfig).forEach(updateSidebarBadge);
 
-  preloadAllCollections();
+  await preloadAllCollections();
+  Object.keys(collectionsConfig).forEach(updateSidebarBadge);
   updateStatsView();
   handleHashRoute();
 

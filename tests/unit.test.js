@@ -151,6 +151,10 @@ test('Config & Endpoint URL Builders', () => {
   const jpCol = collectionsConfig['japanese-terms'];
   const dataUrls = getCollectionDataUrls(jpCol);
   assert(dataUrls.csvUrl.includes('1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI'));
+  assert.equal(collectionsConfig['japanese-terms'].defaultMeta.status, '調整中');
+  assert.equal(collectionsConfig['china-terms'].defaultMeta.status, '調整中');
+  assert.equal(isCollectionAdjusting(collectionsConfig['japanese-terms'].defaultMeta), true);
+  assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), true);
 });
 
 test('Status & Exhibition Helpers', () => {
