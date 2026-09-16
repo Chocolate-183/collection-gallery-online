@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { renderPagination } from './pagination.js';
 import { updateSidebarBadge } from './sidebar.js';
-import { escapeHtml } from '../utils.js';
+import { escapeHtml, formatExhibitTitleHtml } from '../utils.js';
 
 export function showLoadingState() {
   const { currentCollectionId } = store.get();
@@ -81,7 +81,7 @@ export function renderCards() {
     return `
       <div class="awsui-card${isActive ? ' active' : ''}" data-row-index="${rec.row_index}" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
         <div class="awsui-card-top-content">
-          <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${escapeHtml(rec.ja_term)}</div>
+          <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${formatExhibitTitleHtml(rec.ja_term)}</div>
           ${rec.reading ? `<span class="awsui-reading-subtext" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>` : '<span class="awsui-reading-subtext">&nbsp;</span>'}
           <div class="awsui-card-divider"></div>
           <div class="awsui-meaning-wrapper">

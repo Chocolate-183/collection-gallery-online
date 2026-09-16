@@ -656,6 +656,11 @@ a:focus {
   color: #ffffff !important;
 }
 
+.awsui-card.active .awsui-card-header-title .awsui-title-separator,
+.awsui-card:active .awsui-card-header-title .awsui-title-separator {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
 .awsui-card.active .awsui-card-divider,
 .awsui-card:active .awsui-card-divider {
   background-color: rgba(255, 255, 255, 0.4) !important;
@@ -732,6 +737,11 @@ a:focus {
   text-overflow: ellipsis;
   margin-bottom: 2px;
   line-height: 1.25;
+}
+
+.awsui-title-separator {
+  color: var(--awsui-color-text-body-secondary, #5f6b7a);
+  font-weight: 400;
 }
 
 /* Font override for Mainland China terms */
@@ -1808,6 +1818,11 @@ a:focus {
   color: #ECC94B !important;
 }
 
+[data-theme="dark"] .awsui-card-header-title .awsui-title-separator,
+[data-theme="dark"] #modal-term-title .awsui-title-separator {
+  color: #8b949e !important;
+}
+
 [data-theme="dark"] .awsui-card.active,
 [data-theme="dark"] .awsui-card:active {
   background-color: #ECC94B !important;
@@ -1824,6 +1839,11 @@ a:focus {
 [data-theme="dark"] .awsui-card:active .awsui-meaning-value,
 [data-theme="dark"] .awsui-card:active .awsui-expand-hint {
   color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-card-header-title .awsui-title-separator,
+[data-theme="dark"] .awsui-card:active .awsui-card-header-title .awsui-title-separator {
+  color: rgba(255, 255, 255, 0.55) !important;
 }
 
 [data-theme="dark"] .awsui-card.active .awsui-card-divider,

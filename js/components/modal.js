@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache } from '../data.js';
-import { escapeHtml, parseRecommendationList } from '../utils.js';
+import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml } from '../utils.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -148,7 +148,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const modal = document.getElementById('detail-modal');
 
   if (titleElem) {
-    titleElem.innerText = rec.ja_term;
+    titleElem.innerHTML = formatExhibitTitleHtml(rec.ja_term);
     titleElem.setAttribute('data-collection', currentCollectionId || '');
   }
 

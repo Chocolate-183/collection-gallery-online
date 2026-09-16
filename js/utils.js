@@ -78,6 +78,14 @@ export function getExhibitFilterLength(str) {
 }
 
 /**
+ * Renders exhibit titles so C103 `|` separators stay muted (e.g. 가능 | 可能).
+ */
+export function formatExhibitTitleHtml(str) {
+  if (!str) return '';
+  return escapeHtml(String(str)).replace(/\|/g, '<span class="awsui-title-separator">|</span>');
+}
+
+/**
  * Parses recommendation entries from array or string delimiter format.
  * @param {string|string[]} val - Raw recommendation content
  * @returns {string[]} Formatted recommendation tokens
