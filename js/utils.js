@@ -68,6 +68,16 @@ export function getUnicodeLength(str) {
 }
 
 /**
+ * Character length used by Length tabs.
+ * C103 titles like "가능 | 可能" count only Hangul before `|` (2 chars).
+ */
+export function getExhibitFilterLength(str) {
+  if (!str) return 0;
+  const left = String(str).split('|')[0].trim();
+  return getUnicodeLength(left);
+}
+
+/**
  * Parses recommendation entries from array or string delimiter format.
  * @param {string|string[]} val - Raw recommendation content
  * @returns {string[]} Formatted recommendation tokens

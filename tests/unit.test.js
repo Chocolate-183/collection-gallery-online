@@ -14,6 +14,7 @@ import { LENGTH_TABS } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
+  getExhibitFilterLength,
   getTodayOpeningHoursText,
   isCollectionAdjusting,
   isCollectionPreparing,
@@ -99,6 +100,10 @@ test('Utils - HTML Escaping, Unicode Length & Recommendations', () => {
   assert.equal(getUnicodeLength(''), 0);
   assert.equal(getUnicodeLength('あい'), 2);
   assert.equal(getUnicodeLength('🌸日本'), 3);
+  assert.equal(getExhibitFilterLength('가능 | 可能'), 2);
+  assert.equal(getExhibitFilterLength('강하다 | 強하다'), 3);
+  assert.equal(getExhibitFilterLength('개인기 | 個人技'), 3);
+  assert.equal(getExhibitFilterLength('1LDK'), 4);
 
   assert.deepEqual(parseRecommendationList('211<br>一本,二本\n三本；四本'), ['211', '一本', '二本', '三本', '四本']);
   assert.deepEqual(parseRecommendationList(['A', 'B']), ['A', 'B']);
@@ -143,6 +148,16 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS)[0].id, '5');
   assert.equal(filterByLength(lengthRecords, '5+').length, 5);
   assert.equal(filterByLength(lengthRecords, '5字＋').length, 5);
+
+  const koreanLengthRecords = [
+    { id: 'k2', ja_term: '가능 | 可能' },
+    { id: 'k3', ja_term: '강하다 | 強하다' },
+    { id: 'k4', ja_term: '개인기요 | 個人技' }
+  ];
+  assert.equal(filterByLength(koreanLengthRecords, LENGTH_TABS.TWO)[0].id, 'k2');
+  assert.equal(filterByLength(koreanLengthRecords, LENGTH_TABS.THREE)[0].id, 'k3');
+  assert.equal(filterByLength(koreanLengthRecords, LENGTH_TABS.FOUR)[0].id, 'k4');
+  assert.equal(filterByLength(koreanLengthRecords, LENGTH_TABS.FIVE_PLUS).length, 0);
 });
 
 test('Config & Endpoint URL Builders', () => {

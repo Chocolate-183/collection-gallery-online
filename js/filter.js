@@ -4,7 +4,7 @@
 import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS } from './constants.js';
 import { store } from './state.js';
 import { renderCards } from './components/cards.js';
-import { getUnicodeLength } from './utils.js';
+import { getExhibitFilterLength } from './utils.js';
 
 /**
  * Checks if a string starts with a kana character in the specified kana group.
@@ -39,7 +39,7 @@ export function filterByLength(records, lengthTab) {
   const targetLen = parseInt(lengthTab, 10);
 
   return records.filter(r => {
-    const len = getUnicodeLength(r.ja_term || '');
+    const len = getExhibitFilterLength(r.ja_term || '');
     if (isFivePlus) return len >= 5;
     return !isNaN(targetLen) ? len === targetLen : true;
   });
