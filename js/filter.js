@@ -1,7 +1,7 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE } from './constants.js';
 import { store } from './state.js';
 import { renderCards } from './components/cards.js';
 import { getExhibitFilterLength } from './utils.js';
@@ -14,6 +14,30 @@ export function matchesKanaGroup(str, group) {
   const ch = str.charAt(0);
   const regex = KANA_RANGES[group];
   return regex ? regex.test(ch) : true;
+}
+
+/**
+ * First 가나다 tab for a Hangul string (C103). Uses the first syllable's 초성.
+ */
+export function getHangulInitialTab(str) {
+  if (!str) return null;
+  for (const ch of String(str)) {
+    const code = ch.codePointAt(0);
+    if (code >= HANGUL_SYLLABLE.BASE && code <= HANGUL_SYLLABLE.END) {
+      const initialIndex = Math.floor(
+        (code - HANGUL_SYLLABLE.BASE) / (HANGUL_SYLLABLE.VOWEL_COUNT * HANGUL_SYLLABLE.FINAL_COUNT)
+      );
+      return HANGUL_INITIAL_INDEX_TO_TAB[initialIndex] || null;
+    }
+  }
+  return null;
+}
+
+/**
+ * Checks if a string's first Hangul syllable belongs to a 가나다 tab (e.g. 가).
+ */
+export function matchesHangulInitial(str, group) {
+  return getHangulInitialTab(str) === group;
 }
 
 /**
@@ -71,6 +95,8 @@ export function filterByKana(records, kanaTab, searchQuery) {
       return (b.row_index ?? 0) - (a.row_index ?? 0);
     });
     result = result.slice(0, 10);
+  } else if (HANGUL_INITIAL_TABS.includes(kanaTab)) {
+    result = result.filter(r => matchesHangulInitial(r.reading || r.ja_term, kanaTab));
   } else {
     result = result.filter(r => matchesKanaGroup(r.reading || r.ja_term, kanaTab));
   }

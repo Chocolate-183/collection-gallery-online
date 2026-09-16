@@ -578,6 +578,13 @@ a:focus {
   padding-right: 8px;
 }
 
+.hangul-only {
+  display: none;
+  font-family: 'Noto Sans KR', var(--awsui-font-family-exhibit, sans-serif);
+  min-width: 36px;
+  justify-content: center;
+}
+
 .awsui-tabs {
   display: flex;
   align-items: center;

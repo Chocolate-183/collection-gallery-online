@@ -102,7 +102,8 @@ export function switchCollection(collectionId, updateHash = true) {
   store.set({
     currentCollectionId: collectionId,
     invalidTerm: null,
-    searchQuery: ''
+    searchQuery: '',
+    ...(isDifferent ? { currentKanaTab: 'ALL', currentLengthTab: 'ALL' } : {})
   });
 
   const cardGrid = document.getElementById('card-grid');
@@ -128,16 +129,29 @@ export function switchCollection(collectionId, updateHash = true) {
     if (col.searchPlaceholder) searchInput.placeholder = col.searchPlaceholder;
   }
 
-  // Toggle Kana Tabs
+  // Toggle Kana / Hangul initial tabs
   const kanaTabsRow = document.getElementById('kana-tabs-row');
   const quickTabsLabel = document.getElementById('quick-tabs-label');
   const kanaOnlyTabs = document.querySelectorAll('#kana-tabs .kana-only');
+  const hangulOnlyTabs = document.querySelectorAll('#kana-tabs .hangul-only');
 
   if (kanaTabsRow) kanaTabsRow.style.display = 'flex';
   if (quickTabsLabel) quickTabsLabel.innerText = '展品篩選：';
   kanaOnlyTabs.forEach(tab => {
     tab.style.display = (col.hasKanaTabs ?? col.hasReading) ? 'inline-flex' : 'none';
   });
+  hangulOnlyTabs.forEach(tab => {
+    tab.style.display = col.hasHangulTabs ? 'inline-flex' : 'none';
+  });
+
+  if (isDifferent) {
+    const kanaPills = document.querySelectorAll('#kana-tabs .awsui-tab');
+    kanaPills.forEach(p => p.classList.remove('active'));
+    document.querySelector('#kana-tabs .awsui-tab')?.classList.add('active');
+    const lengthPills = document.querySelectorAll('#length-tabs .awsui-tab');
+    lengthPills.forEach(p => p.classList.remove('active'));
+    document.querySelector('#length-tabs .awsui-tab')?.classList.add('active');
+  }
 
   // Update Select Dropdown
   const selectElem = document.getElementById('collection-select');

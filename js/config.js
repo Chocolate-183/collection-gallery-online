@@ -56,6 +56,7 @@ export const collectionsConfig = {
     localFallback: 'korean-data.json',
     hasReading: true,
     hasKanaTabs: false,
+    hasHangulTabs: true,
     hiddenColumnIndexes: [2, 3],
     searchPlaceholder: '尋找展品...',
     defaultMeta: {

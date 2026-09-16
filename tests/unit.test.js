@@ -9,7 +9,7 @@ import {
   extractGvizTable,
   parseOpeningHoursCSV
 } from '../js/parser.js';
-import { matchesKanaGroup, filterByQuery, filterByLength, filterByKana } from '../js/filter.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana } from '../js/filter.js';
 import { LENGTH_TABS } from '../js/constants.js';
 import {
   escapeHtml,
@@ -119,6 +119,14 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   assert.equal(matchesKanaGroup('かさ', 'か'), true);
   assert.equal(matchesKanaGroup('さくら', 'あ'), false);
 
+  assert.equal(getHangulInitialTab('가능 | 可能'), '가');
+  assert.equal(getHangulInitialTab('강하다'), '가');
+  assert.equal(getHangulInitialTab('나다'), '나');
+  assert.equal(getHangulInitialTab('까다롭다'), '가');
+  assert.equal(matchesHangulInitial('가능 | 可能', '가'), true);
+  assert.equal(matchesHangulInitial('실수 | 失手', '가'), false);
+  assert.equal(matchesHangulInitial('실수 | 失手', '사'), true);
+
   const mockRecords = [
     { id: '1', ja_term: 'A', tw_translation: '意思A', created_at: '2024-01-01', row_index: 1 },
     { id: '2', ja_term: 'B', tw_translation: '意思B', created_at: '2024-03-01', row_index: 2 },
@@ -162,6 +170,18 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   assert.equal(filterByLength(koreanLengthRecords, LENGTH_TABS.THREE)[0].id, 'k3');
   assert.equal(filterByLength(koreanLengthRecords, LENGTH_TABS.FOUR)[0].id, 'k4');
   assert.equal(filterByLength(koreanLengthRecords, LENGTH_TABS.FIVE_PLUS).length, 0);
+
+  const hangulRecords = [
+    { id: 'g', ja_term: '가능 | 可能', reading: '가능' },
+    { id: 'n', ja_term: '나다', reading: '나다' },
+    { id: 's', ja_term: '실수 | 失手', reading: '실수' }
+  ];
+  const gaOnly = filterByKana(hangulRecords, '가', '');
+  assert.equal(gaOnly.length, 1);
+  assert.equal(gaOnly[0].id, 'g');
+  const saOnly = filterByKana(hangulRecords, '사', '');
+  assert.equal(saOnly.length, 1);
+  assert.equal(saOnly[0].id, 's');
 });
 
 test('Config & Endpoint URL Builders', () => {
@@ -183,6 +203,7 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(krCol.defaultMeta.id, 'C103');
   assert.equal(krCol.hasReading, true);
   assert.equal(krCol.hasKanaTabs, false);
+  assert.equal(krCol.hasHangulTabs, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
   const krUrls = getCollectionDataUrls(krCol);
   assert(krUrls.csvUrl.includes('1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM'));
