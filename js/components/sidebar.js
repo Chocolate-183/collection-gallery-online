@@ -136,7 +136,7 @@ export function switchCollection(collectionId, updateHash = true) {
   if (kanaTabsRow) kanaTabsRow.style.display = 'flex';
   if (quickTabsLabel) quickTabsLabel.innerText = '展品篩選：';
   kanaOnlyTabs.forEach(tab => {
-    tab.style.display = col.hasReading ? 'inline-flex' : 'none';
+    tab.style.display = (col.hasKanaTabs ?? col.hasReading) ? 'inline-flex' : 'none';
   });
 
   // Update Select Dropdown

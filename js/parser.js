@@ -56,23 +56,37 @@ function extractMetadataFromKeyValues(pairs) {
 
 /**
  * Finds standard column indexes for datasets from a list of header string titles.
+ * hiddenColumnIndexes (0-based) are never used for title / reading / meaning.
  */
-function findDatasetColumnIndexes(headerTitles) {
+function findDatasetColumnIndexes(headerTitles, options = {}) {
+  const hidden = new Set((options.hiddenColumnIndexes || []).map(Number).filter(n => Number.isInteger(n) && n >= 0));
   const headers = headerTitles.map(h => (h || '').toLowerCase());
   const isRecommendHeader = (h) => h.includes('recommend') || h.includes('推薦') || h.includes('推荐');
+  const findIdx = (pred) => headers.findIndex((h, i) => !hidden.has(i) && pred(h));
+  const firstVisible = (start) => {
+    for (let i = start; i < headers.length; i++) {
+      if (!hidden.has(i)) return i;
+    }
+    return -1;
+  };
 
-  let idIdx = headers.findIndex(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
-  let termIdx = headers.findIndex(h => !isRecommendHeader(h) && (h.includes('title') || h.includes('term') || h.includes('name') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目')));
-  let twIdx = headers.findIndex(h => !isRecommendHeader(h) && (h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容')));
-  let readingIdx = headers.findIndex(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('読み') || h.includes('音素'));
-  let dateIdx = headers.findIndex(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
-  let recommendIdx = headers.findIndex(h => isRecommendHeader(h));
+  let idIdx = findIdx(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
+  let termIdx = findIdx(h => !isRecommendHeader(h) && (h.includes('title') || h.includes('term') || h.includes('name') || h.includes('顯示') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目')));
+  let twIdx = findIdx(h => !isRecommendHeader(h) && (h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容')));
+  let readingIdx = findIdx(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('発音') || h.includes('發音') || h.includes('読み') || h.includes('音素'));
+  let dateIdx = findIdx(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
+  let recommendIdx = findIdx(h => isRecommendHeader(h));
 
-  if (idIdx === -1) idIdx = 0;
-  if (termIdx === -1) termIdx = 1;
-  if (twIdx === -1) twIdx = 2;
+  if (idIdx === -1) idIdx = firstVisible(0);
+  if (termIdx === -1) termIdx = firstVisible(idIdx >= 0 ? idIdx + 1 : 0);
+  if (twIdx === -1) twIdx = firstVisible((termIdx >= 0 ? termIdx + 1 : 0));
 
   return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx };
+}
+
+function getHiddenColumnIndexes(currentCollectionId) {
+  const col = currentCollectionId ? collectionsConfig[currentCollectionId] : null;
+  return col?.hiddenColumnIndexes || [];
 }
 
 /**
@@ -148,7 +162,7 @@ export function extractGvizTable(gvizText) {
  * Helper to construct a standard record object if valid.
  */
 function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex }) {
-  if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
+  if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja === '顯示' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
     return null;
   }
 
@@ -166,11 +180,14 @@ function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex 
 /**
  * Parses CSV dataset into standard collection records.
  */
-export function parseCSVData(csvText) {
+export function parseCSVData(csvText, currentCollectionId) {
   const rows = parseCSVRows(csvText);
   if (rows.length <= 1) return null;
 
-  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx } = findDatasetColumnIndexes(rows[0]);
+  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx } = findDatasetColumnIndexes(
+    rows[0],
+    { hiddenColumnIndexes: getHiddenColumnIndexes(currentCollectionId) }
+  );
 
   const results = [];
   for (let i = 1; i < rows.length; i++) {
@@ -200,7 +217,9 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
   let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1;
   if (table.cols && table.cols.length > 0) {
     const colsHeader = table.cols.map(col => col?.label || '');
-    const found = findDatasetColumnIndexes(colsHeader);
+    const found = findDatasetColumnIndexes(colsHeader, {
+      hiddenColumnIndexes: getHiddenColumnIndexes(currentCollectionId)
+    });
     idIdx = found.idIdx;
     termIdx = found.termIdx;
     twIdx = found.twIdx;

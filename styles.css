@@ -756,6 +756,18 @@ a:focus {
   font-family: 'Noto Sans JP', var(--awsui-font-family);
 }
 
+/* Font override for Korean terms */
+[data-collection="korean-terms"] .awsui-card-header-title,
+.awsui-card-header-title[data-collection="korean-terms"],
+[data-collection="korean-terms"] .awsui-reading-subtext,
+.awsui-reading-subtext[data-collection="korean-terms"],
+#modal-term-title[data-collection="korean-terms"],
+#modal-reading-row[data-collection="korean-terms"],
+[data-collection="korean-terms"] .awsui-recommendation-chip,
+.awsui-recommendation-chip[data-collection="korean-terms"] {
+  font-family: 'Noto Sans KR', var(--awsui-font-family-exhibit);
+}
+
 .awsui-reading-subtext {
   font-size: 12px;
   color: var(--awsui-color-text-body-secondary);

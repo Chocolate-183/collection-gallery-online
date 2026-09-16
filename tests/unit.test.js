@@ -158,6 +158,32 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(collectionsConfig['china-terms'].defaultMeta.status, '調整中');
   assert.equal(isCollectionAdjusting(collectionsConfig['japanese-terms'].defaultMeta), false);
   assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), true);
+
+  const krCol = collectionsConfig['korean-terms'];
+  assert.equal(krCol.defaultMeta.id, 'C103');
+  assert.equal(krCol.hasReading, true);
+  assert.equal(krCol.hasKanaTabs, false);
+  assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
+  const krUrls = getCollectionDataUrls(krCol);
+  assert(krUrls.csvUrl.includes('1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM'));
+});
+
+test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C and D', () => {
+  const sampleCSV = `ID,顯示,諺文,漢字,發音,意思,新增日期,推薦條目
+#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,
+#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,`;
+
+  const parsed = parseCSVData(sampleCSV, 'korean-terms');
+  assert.equal(parsed.length, 2);
+  assert.equal(parsed[0].id, '#C103-0002');
+  assert.equal(parsed[0].ja_term, '가능 | 可能');
+  assert.equal(parsed[0].reading, '가능');
+  assert.equal(parsed[0].tw_translation, '可能');
+  assert.equal(parsed[1].ja_term, '실수 | 失手');
+  assert.equal(parsed[1].reading, '실수');
+  assert.equal(parsed[1].tw_translation, '失誤');
+  assert.notEqual(parsed[0].ja_term, '가능');
+  assert.notEqual(parsed[0].ja_term, '可能');
 });
 
 test('Status & Exhibition Helpers', () => {

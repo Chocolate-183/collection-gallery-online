@@ -254,7 +254,7 @@ export async function fetchSingleCollection(col) {
     if (csvUrl) {
       const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
       if (csvText) {
-        fetchedData = parseCSVData(csvText);
+        fetchedData = parseCSVData(csvText, col.id);
       }
     }
 

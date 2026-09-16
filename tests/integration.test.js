@@ -52,6 +52,15 @@ test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
 });
 
+test('Local Fallback Snapshot Integrity - Korean Terms', () => {
+  const koreanJson = JSON.parse(readFileSync(resolve('korean-data.json'), 'utf-8'));
+  assert(Array.isArray(koreanJson) && koreanJson.length > 0);
+  const sample = koreanJson[0];
+  assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
+  assert.match(sample.ja_term, /\|/);
+  assert.notEqual(sample.ja_term, sample.reading);
+});
+
 test('Router & View Switcher - View Routing & Maintenance Handling', async () => {
   const mockTitle = createMockElement();
   const mockViewMaint = createMockElement({ style: { display: 'none' } });
