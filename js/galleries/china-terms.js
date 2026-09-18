@@ -15,7 +15,7 @@ export default {
     title: '大陸特色詞彙一覽',
     enTitle: 'China Terms',
     id: 'C102',
-    status: '調整中',
+    status: '開放中',
     announcement: '',
     tags: ['大陸', '語彙'],
     subtitle: '本展區精選大陸當代的網路熱詞與生活用語，幫你精準對照台灣熟悉的在地說法。',

@@ -210,11 +210,14 @@ test('Config & Endpoint URL Builders', () => {
   assert(metaUrls.csvUrl.includes('162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs'));
   assert(metaUrls.csvUrl.includes('gid=1574352890'));
   assert.equal(collectionsConfig['japanese-terms'].defaultMeta.status, '開放中');
-  assert.equal(collectionsConfig['china-terms'].defaultMeta.status, '調整中');
+  assert.equal(collectionsConfig['china-terms'].defaultMeta.status, '開放中');
+  assert.equal(collectionsConfig['korean-terms'].defaultMeta.status, '開放中');
   assert.equal(isCollectionAdjusting(collectionsConfig['japanese-terms'].defaultMeta), false);
-  assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), true);
+  assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), false);
 
   const krCol = collectionsConfig['korean-terms'];
+  assert.equal(krCol.enTitle, 'Hanja Hacks for Korean');
+  assert.equal(krCol.defaultMeta.enTitle, 'Hanja Hacks for Korean');
   assert.equal(krCol.defaultMeta.id, 'C103');
   assert.equal(krCol.hasReading, true);
   assert.equal(krCol.hasKanaTabs, false);

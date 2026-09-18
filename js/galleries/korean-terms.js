@@ -1,11 +1,11 @@
 /**
- * C103 Korean Terms — gallery config (dataset wiring only).
+ * C103 Hanja Hacks for Korean — gallery config (dataset wiring only).
  * Live hall metadata and opening hours come from the central spreadsheet.
  */
 export default {
   id: 'korean-terms',
   name: '韓文單字加漢字 記憶更輕鬆',
-  enTitle: 'Korean Terms',
+  enTitle: 'Hanja Hacks for Korean',
   sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
   gid: '0',
   localFallback: 'korean-data.json',
@@ -16,7 +16,7 @@ export default {
   searchPlaceholder: '尋找展品...',
   defaultMeta: {
     title: '韓文單字加漢字 記憶更輕鬆',
-    enTitle: 'Korean Terms',
+    enTitle: 'Hanja Hacks for Korean',
     id: 'C103',
     status: '開放中',
     announcement: 'COMING SOON',

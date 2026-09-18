@@ -47,14 +47,21 @@ function mockDOM(elementsMap = {}) {
 }
 
 test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
-  assert(Array.isArray(dataJson) && dataJson.length > 0);
+  assert(Array.isArray(dataJson) && dataJson.length === 12);
   const sample = dataJson[0];
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
 });
 
-test('Local Fallback Snapshot Integrity - Korean Terms', () => {
+test('Local Fallback Snapshot Integrity - China Terms', () => {
+  const chinaJson = JSON.parse(readFileSync(resolve('china-data.json'), 'utf-8'));
+  assert(Array.isArray(chinaJson) && chinaJson.length === 12);
+  const sample = chinaJson[0];
+  assert('ja_term' in sample && 'tw_translation' in sample);
+});
+
+test('Local Fallback Snapshot Integrity - Hanja Hacks for Korean', () => {
   const koreanJson = JSON.parse(readFileSync(resolve('korean-data.json'), 'utf-8'));
-  assert(Array.isArray(koreanJson) && koreanJson.length > 0);
+  assert(Array.isArray(koreanJson) && koreanJson.length === 12);
   const sample = koreanJson[0];
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
   assert.match(sample.ja_term, /\|/);
@@ -260,7 +267,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   openCollectionModal('korean-terms', false);
   assert(mockModal.classes.has('open'));
   assert.equal(mockTitle.innerText, '韓文單字加漢字 記憶更輕鬆');
-  assert.equal(mockEnTitle.innerText, 'Korean Terms');
+  assert.equal(mockEnTitle.innerText, 'Hanja Hacks for Korean');
   assert.equal(mockCreatedAt.innerText, '2026-09-04');
   assert.equal(mockId.innerText, 'C103');
 

@@ -38,7 +38,7 @@ export function getCollectionEnTitle(colId, meta, col) {
   if (meta?.enTitle) return meta.enTitle;
   if (col?.enTitle) return col.enTitle;
   if (colId === 'china-terms') return 'China Terms';
-  if (colId === 'korean-terms') return 'Korean Terms';
+  if (colId === 'korean-terms') return 'Hanja Hacks for Korean';
   return 'Japanese Terms';
 }
 
