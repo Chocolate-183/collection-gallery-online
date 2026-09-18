@@ -2,6 +2,7 @@
  * Generic Data Parsers (CSV & Google GViz Response)
  */
 import { collectionsConfig } from './config.js';
+import { DEFAULT_OPENING_HOURS } from './constants.js';
 import { parseRecommendationList } from './utils.js';
 
 const META_FIELD_DEFINITIONS = [
@@ -173,6 +174,28 @@ export function extractGvizTable(gvizText) {
   } catch {
     return null;
   }
+}
+
+function gvizCellText(cell) {
+  if (!cell || cell.v === null || cell.v === undefined) return '';
+  return (cell.v || cell.f || '').toString();
+}
+
+/** Flattens a GViz table into string rows (optional header + cell values). */
+export function gvizTableToRows(table) {
+  if (!table) return [];
+  const rows = [];
+  if (table.cols?.length > 0) {
+    const headerRow = table.cols.map(col => col?.label || '');
+    if (headerRow.some(Boolean)) rows.push(headerRow);
+  }
+  if (table.rows) {
+    table.rows.forEach(r => {
+      if (!r.c) return;
+      rows.push(r.c.map(gvizCellText));
+    });
+  }
+  return rows;
 }
 
 /**
@@ -404,24 +427,7 @@ export function parseAllCollectionsMetaCSVData(csvText) {
 export function parseAllCollectionsMetaGvizResponse(gvizText) {
   const table = extractGvizTable(gvizText);
   if (!table) return {};
-
-  const rows = [];
-  if (table.cols?.length > 0) {
-    const headerRow = table.cols.map(col => col?.label || '');
-    if (headerRow.some(Boolean)) {
-      rows.push(headerRow);
-    }
-  }
-
-  if (table.rows) {
-    table.rows.forEach(r => {
-      if (!r.c) return;
-      const rowVals = r.c.map(cell => (cell && cell.v !== null && cell.v !== undefined) ? (cell.v || cell.f || '').toString() : '');
-      rows.push(rowVals);
-    });
-  }
-
-  return parseMetadataMatrixRows(rows);
+  return parseMetadataMatrixRows(gvizTableToRows(table));
 }
 
 /**
@@ -437,21 +443,8 @@ export function parseMetaCSVData(csvText) {
   return extractMetadataFromKeyValues(rows.filter(r => r.length >= 2).map(r => [r[0], r[1]]));
 }
 
-/**
- * Parses opening hours schedule from CSV content.
- * @param {string} csvText - Raw CSV content
- * @returns {Array<{day: string, hours: string}>|null} Array of 7 day schedule items
- */
 function emptyOpeningHoursSchedule() {
-  return [
-    { day: '週日', hours: '16:00 - 23:55' },
-    { day: '週一', hours: '01:00 - 23:55' },
-    { day: '週二', hours: '01:00 - 23:55' },
-    { day: '週三', hours: '01:00 - 23:55' },
-    { day: '週四', hours: '01:00 - 23:55' },
-    { day: '週五', hours: '06:00 - 23:55' },
-    { day: '週六', hours: '06:00 - 23:55' }
-  ];
+  return DEFAULT_OPENING_HOURS.map(item => ({ ...item }));
 }
 
 function applyOpeningHoursPair(schedule, dayRaw, hours) {
@@ -492,20 +485,5 @@ export function extractOpeningHoursFromMetaRows(rows) {
 export function parseOpeningHoursCSV(csvText) {
   const rows = parseCSVRows(csvText);
   if (!rows || rows.length < 2) return null;
-
-  const fromMeta = extractOpeningHoursFromMetaRows(rows);
-  if (fromMeta) return fromMeta;
-
-  const schedule = emptyOpeningHoursSchedule();
-  let hasValidRow = false;
-
-  for (let i = 1; i < rows.length; i++) {
-    const row = rows[i];
-    if (row.length < 2) continue;
-    if (applyOpeningHoursPair(schedule, row[0], (row[1] || '').trim())) {
-      hasValidRow = true;
-    }
-  }
-
-  return hasValidRow ? schedule : null;
+  return extractOpeningHoursFromMetaRows(rows);
 }

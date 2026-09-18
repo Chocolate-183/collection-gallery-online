@@ -51,16 +51,13 @@ export function navigateToTerm(term) {
  * Standard accessor for Item Modal Description element.
  * @returns {HTMLElement|null}
  */
-export function getMeaningElement() {
+function getMeaningElement() {
   return typeof document !== 'undefined'
     ? (document.querySelector?.('#modal-meaning-text') || document.getElementById?.('modal-meaning-text') || null)
     : null;
 }
 
-/**
- * Generic helper to check if content exceeds a specified number of lines.
- */
-export function checkMeaningExceedsLines(maxLines, text, meaningElem) {
+function checkMeaningExceedsLines(maxLines, text, meaningElem) {
   const elem = meaningElem || getMeaningElement();
   const content = (text !== undefined && text !== null) ? text : (elem ? elem.innerText : '');
   if (!content) return false;
@@ -83,7 +80,6 @@ export function checkMeaningExceedsLines(maxLines, text, meaningElem) {
 }
 
 export const checkMeaningExceedsTwoLines = (text, meaningElem) => checkMeaningExceedsLines(2, text, meaningElem);
-export const checkMeaningExceedsFiveLines = (text, meaningElem) => checkMeaningExceedsLines(5, text, meaningElem);
 
 /**
  * Checks if the meaning element has vertical scrolling content.

@@ -4,7 +4,7 @@
 import { DEFAULT_TIMEOUT_MS } from './constants.js';
 import { collectionsConfig, getCollectionDataUrls, getMetadataUrls } from './config.js';
 import { store } from './state.js';
-import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, extractOpeningHoursFromMetaRows } from './parser.js';
+import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, gvizTableToRows, extractOpeningHoursFromMetaRows } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
@@ -19,26 +19,9 @@ export const collectionsMetaCache = {};
  * Fetches metadata for all exhibition halls from the central metadata spreadsheet.
  */
 function applyOpeningHoursFromMetaSource(csvText, gvizText) {
-  let schedule = null;
-  if (csvText) {
-    schedule = extractOpeningHoursFromMetaRows(parseCSVRows(csvText));
-  }
+  let schedule = csvText ? extractOpeningHoursFromMetaRows(parseCSVRows(csvText)) : null;
   if (!schedule && gvizText) {
-    const table = extractGvizTable(gvizText);
-    if (table) {
-      const rows = [];
-      if (table.cols?.length > 0) {
-        const headerRow = table.cols.map(col => col?.label || '');
-        if (headerRow.some(Boolean)) rows.push(headerRow);
-      }
-      if (table.rows) {
-        table.rows.forEach(r => {
-          if (!r.c) return;
-          rows.push(r.c.map(cell => (cell && cell.v !== null && cell.v !== undefined) ? (cell.v || cell.f || '').toString() : ''));
-        });
-      }
-      schedule = extractOpeningHoursFromMetaRows(rows);
-    }
+    schedule = extractOpeningHoursFromMetaRows(gvizTableToRows(extractGvizTable(gvizText)));
   }
   if (schedule) setOpeningHoursSchedule(schedule, { fromMetadata: true });
   return schedule;

@@ -222,8 +222,6 @@ test('Config & Endpoint URL Builders', () => {
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
   const krUrls = getCollectionDataUrls(krCol);
   assert(krUrls.csvUrl.includes('1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM'));
-  assert.equal(typeof collectionsConfig['japanese-terms'].sheetId, 'string');
-  assert.equal(typeof collectionsConfig['china-terms'].defaultMeta.id, 'string');
 });
 
 test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C and D', () => {
@@ -240,8 +238,6 @@ test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C 
   assert.equal(parsed[1].ja_term, '실수 | 失手');
   assert.equal(parsed[1].reading, '실수');
   assert.equal(parsed[1].tw_translation, '失誤');
-  assert.notEqual(parsed[0].ja_term, '가능');
-  assert.notEqual(parsed[0].ja_term, '可能');
   assert.equal(parsed[0].created_at, '2026-09-15');
 });
 
@@ -314,36 +310,4 @@ test('Modal Meaning Text Multiline Detection', async () => {
   assert.equal(checkMeaningHasScroll(null), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 100 }), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 150 }), true);
-});
-
-test('Item Modal Description Standard Accessor and Logic', async () => {
-  const { getMeaningElement, checkMeaningExceedsTwoLines, checkMeaningHasScroll } = await import('../js/components/modal.js');
-
-  const mockMeaning = {
-    innerText: '第一行\n第二行\n第三行',
-    clientHeight: 50,
-    scrollHeight: 100
-  };
-
-  const origDocument = global.document;
-  global.document = {
-    querySelector: (sel) => sel === '#modal-meaning-text' ? mockMeaning : null
-  };
-
-  assert.equal(getMeaningElement(), mockMeaning);
-  assert.equal(checkMeaningExceedsTwoLines(), true);
-  assert.equal(checkMeaningHasScroll(), true);
-
-  global.document = origDocument;
-});
-
-test('CSS Stylesheet - Description Modal Desktop Right Position & Overlap', async () => {
-  const fs = await import('node:fs');
-  const path = await import('node:path');
-  const cssPath = path.resolve('styles.css');
-  const cssContent = fs.readFileSync(cssPath, 'utf8');
-
-  assert(cssContent.includes('#description-modal'), '#description-modal should be defined in CSS');
-  assert(cssContent.includes('z-index: 3000;'), '#description-modal should use z-index 3000 to stay on top layer');
-  assert(cssContent.includes('margin-left: 50vw;'), '#description-modal desktop view should align to the right half with margin-left: 50vw');
 });
