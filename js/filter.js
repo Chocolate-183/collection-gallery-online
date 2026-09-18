@@ -1,10 +1,10 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE } from './constants.js';
 import { store } from './state.js';
 import { renderCards } from './components/cards.js';
-import { getUnicodeLength } from './utils.js';
+import { getExhibitFilterLength } from './utils.js';
 
 /**
  * Checks if a string starts with a kana character in the specified kana group.
@@ -14,6 +14,30 @@ export function matchesKanaGroup(str, group) {
   const ch = str.charAt(0);
   const regex = KANA_RANGES[group];
   return regex ? regex.test(ch) : true;
+}
+
+/**
+ * First 초성 tab for a Hangul string (C103), e.g. ㄱ.
+ */
+export function getHangulInitialTab(str) {
+  if (!str) return null;
+  for (const ch of String(str)) {
+    const code = ch.codePointAt(0);
+    if (code >= HANGUL_SYLLABLE.BASE && code <= HANGUL_SYLLABLE.END) {
+      const initialIndex = Math.floor(
+        (code - HANGUL_SYLLABLE.BASE) / (HANGUL_SYLLABLE.VOWEL_COUNT * HANGUL_SYLLABLE.FINAL_COUNT)
+      );
+      return HANGUL_INITIAL_INDEX_TO_TAB[initialIndex] || null;
+    }
+  }
+  return null;
+}
+
+/**
+ * Checks if a string's first Hangul syllable belongs to a 초성 tab (e.g. ㄱ).
+ */
+export function matchesHangulInitial(str, group) {
+  return getHangulInitialTab(str) === group;
 }
 
 /**
@@ -39,7 +63,7 @@ export function filterByLength(records, lengthTab) {
   const targetLen = parseInt(lengthTab, 10);
 
   return records.filter(r => {
-    const len = getUnicodeLength(r.ja_term || '');
+    const len = getExhibitFilterLength(r.ja_term || '');
     if (isFivePlus) return len >= 5;
     return !isNaN(targetLen) ? len === targetLen : true;
   });
@@ -71,6 +95,8 @@ export function filterByKana(records, kanaTab, searchQuery) {
       return (b.row_index ?? 0) - (a.row_index ?? 0);
     });
     result = result.slice(0, 10);
+  } else if (HANGUL_INITIAL_TABS.includes(kanaTab)) {
+    result = result.filter(r => matchesHangulInitial(r.reading || r.ja_term, kanaTab));
   } else {
     result = result.filter(r => matchesKanaGroup(r.reading || r.ja_term, kanaTab));
   }

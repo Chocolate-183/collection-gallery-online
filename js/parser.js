@@ -2,6 +2,7 @@
  * Generic Data Parsers (CSV & Google GViz Response)
  */
 import { collectionsConfig } from './config.js';
+import { DEFAULT_OPENING_HOURS } from './constants.js';
 import { parseRecommendationList } from './utils.js';
 
 const META_FIELD_DEFINITIONS = [
@@ -15,8 +16,25 @@ const META_FIELD_DEFINITIONS = [
   { key: 'author', match: k => k.includes('作者') || k.includes('策劃') || k.includes('負責人') || k.includes('author') },
   { key: 'status', match: k => k.includes('狀態') || k.includes('status') },
   { key: 'id', match: k => k.toUpperCase() === 'ID' || k.includes('編號') || k.includes('序號') || k.includes('展廳id') },
-  { key: 'timestamp', match: k => k.includes('時間') || k.includes('日期') || k.includes('timestamp') || k.includes('created') }
+  { key: 'timestamp', match: k => !isOpeningHoursMetaKey(k) && (k.includes('新增日期') || k.includes('timestamp') || k.includes('created') || k.includes('日期') || k.includes('時間')) }
 ];
+
+const DAY_INDEX_MAP = {
+  '週日': 0, '星期日': 0, '禮拜日': 0, '0': 0, 'sun': 0, 'sunday': 0,
+  '週一': 1, '星期一': 1, '禮拜一': 1, '1': 1, 'mon': 1, 'monday': 1,
+  '週二': 2, '星期二': 2, '禮拜二': 2, '2': 2, 'tue': 2, 'tuesday': 2,
+  '週三': 3, '星期三': 3, '禮拜三': 3, '3': 3, 'wed': 3, 'wednesday': 3,
+  '週四': 4, '星期四': 4, '禮拜四': 4, '4': 4, 'thu': 4, 'thursday': 4,
+  '週五': 5, '星期五': 5, '禮拜五': 5, '5': 5, 'fri': 5, 'friday': 5,
+  '週六': 6, '星期六': 6, '禮拜六': 6, '6': 6, 'sat': 6, 'saturday': 6
+};
+
+function isOpeningHoursMetaKey(key) {
+  const k = String(key || '').trim().toLowerCase();
+  if (!k) return false;
+  if (DAY_INDEX_MAP[k] !== undefined) return true;
+  return k.includes('開館') || k.includes('開放時間') || k.includes('參觀時間') || k.includes('opening');
+}
 
 /**
  * Helper to construct metadata object from key-value pairs
@@ -56,23 +74,37 @@ function extractMetadataFromKeyValues(pairs) {
 
 /**
  * Finds standard column indexes for datasets from a list of header string titles.
+ * hiddenColumnIndexes (0-based) are never used for title / reading / meaning.
  */
-function findDatasetColumnIndexes(headerTitles) {
+function findDatasetColumnIndexes(headerTitles, options = {}) {
+  const hidden = new Set((options.hiddenColumnIndexes || []).map(Number).filter(n => Number.isInteger(n) && n >= 0));
   const headers = headerTitles.map(h => (h || '').toLowerCase());
   const isRecommendHeader = (h) => h.includes('recommend') || h.includes('推薦') || h.includes('推荐');
+  const findIdx = (pred) => headers.findIndex((h, i) => !hidden.has(i) && pred(h));
+  const firstVisible = (start) => {
+    for (let i = start; i < headers.length; i++) {
+      if (!hidden.has(i)) return i;
+    }
+    return -1;
+  };
 
-  let idIdx = headers.findIndex(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
-  let termIdx = headers.findIndex(h => !isRecommendHeader(h) && (h.includes('title') || h.includes('term') || h.includes('name') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目')));
-  let twIdx = headers.findIndex(h => !isRecommendHeader(h) && (h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容')));
-  let readingIdx = headers.findIndex(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('読み') || h.includes('音素'));
-  let dateIdx = headers.findIndex(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
-  let recommendIdx = headers.findIndex(h => isRecommendHeader(h));
+  let idIdx = findIdx(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
+  let termIdx = findIdx(h => !isRecommendHeader(h) && (h.includes('title') || h.includes('term') || h.includes('name') || h.includes('顯示') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目')));
+  let twIdx = findIdx(h => !isRecommendHeader(h) && (h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容')));
+  let readingIdx = findIdx(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('発音') || h.includes('發音') || h.includes('読み') || h.includes('音素'));
+  let dateIdx = findIdx(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
+  let recommendIdx = findIdx(h => isRecommendHeader(h));
 
-  if (idIdx === -1) idIdx = 0;
-  if (termIdx === -1) termIdx = 1;
-  if (twIdx === -1) twIdx = 2;
+  if (idIdx === -1) idIdx = firstVisible(0);
+  if (termIdx === -1) termIdx = firstVisible(idIdx >= 0 ? idIdx + 1 : 0);
+  if (twIdx === -1) twIdx = firstVisible((termIdx >= 0 ? termIdx + 1 : 0));
 
   return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx };
+}
+
+function getHiddenColumnIndexes(currentCollectionId) {
+  const col = currentCollectionId ? collectionsConfig[currentCollectionId] : null;
+  return col?.hiddenColumnIndexes || [];
 }
 
 /**
@@ -144,20 +176,92 @@ export function extractGvizTable(gvizText) {
   }
 }
 
+function gvizCellText(cell) {
+  if (!cell || cell.v === null || cell.v === undefined) return '';
+  return (cell.v || cell.f || '').toString();
+}
+
+/** Flattens a GViz table into string rows (optional header + cell values). */
+export function gvizTableToRows(table) {
+  if (!table) return [];
+  const rows = [];
+  if (table.cols?.length > 0) {
+    const headerRow = table.cols.map(col => col?.label || '');
+    if (headerRow.some(Boolean)) rows.push(headerRow);
+  }
+  if (table.rows) {
+    table.rows.forEach(r => {
+      if (!r.c) return;
+      rows.push(r.c.map(gvizCellText));
+    });
+  }
+  return rows;
+}
+
+/**
+ * Formats exhibit IDs to the C101 display pattern, e.g. #C101-1047.
+ * GViz numeric cells often expose v=1047 / f="#C101-1047"; prefer the formatted value.
+ */
+function formatExhibitId(rawId, currentCollectionId) {
+  const text = rawId == null ? '' : String(rawId).trim();
+  if (!text) return '';
+  if (text.startsWith('#')) return text;
+  const num = Number(text);
+  if (!Number.isFinite(num)) return text;
+  const hallId = collectionsConfig[currentCollectionId]?.defaultMeta?.id;
+  const padded = String(Math.trunc(num)).padStart(4, '0');
+  return hallId ? `#${hallId}-${padded}` : `#${padded}`;
+}
+
+/**
+ * Normalizes timestamps to YYYY-MM-DD (C101 modal Timestamp format).
+ * GViz date cells may be v="Date(2026,8,15)" with f="2026-09-15".
+ */
+function formatExhibitTimestamp(raw) {
+  if (raw == null || raw === '') return '';
+  if (typeof raw === 'object' && typeof raw.getFullYear === 'function') {
+    const year = raw.getFullYear();
+    const month = String(raw.getMonth() + 1).padStart(2, '0');
+    const day = String(raw.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  const text = String(raw).trim();
+  const iso = text.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (iso) return iso[1];
+
+  const gviz = text.match(/^Date\((\d+),\s*(\d+),\s*(\d+)/);
+  if (gviz) {
+    const year = gviz[1];
+    const month = String(Number(gviz[2]) + 1).padStart(2, '0');
+    const day = String(Number(gviz[3])).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  return text;
+}
+
+function readGvizCell(cell, { preferFormatted = false } = {}) {
+  if (!cell) return '';
+  if (preferFormatted && cell.f) return cell.f;
+  if (cell.v === undefined || cell.v === null || cell.v === '') return cell.f || '';
+  return cell.v;
+}
+
 /**
  * Helper to construct a standard record object if valid.
  */
-function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex }) {
-  if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
+function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex, collectionId }) {
+  if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja === '顯示' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
     return null;
   }
 
   return {
-    id: id || `ROW-${rowIndex}`,
+    id: formatExhibitId(id, collectionId) || `ROW-${rowIndex}`,
     ja_term: ja,
     tw_translation: tw,
     reading: reading || '',
-    created_at: created_at || '',
+    created_at: formatExhibitTimestamp(created_at) || '',
     recommendations: parseRecommendationList(rawRecommend),
     row_index: rowIndex
   };
@@ -166,11 +270,14 @@ function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex 
 /**
  * Parses CSV dataset into standard collection records.
  */
-export function parseCSVData(csvText) {
+export function parseCSVData(csvText, currentCollectionId) {
   const rows = parseCSVRows(csvText);
   if (rows.length <= 1) return null;
 
-  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx } = findDatasetColumnIndexes(rows[0]);
+  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx } = findDatasetColumnIndexes(
+    rows[0],
+    { hiddenColumnIndexes: getHiddenColumnIndexes(currentCollectionId) }
+  );
 
   const results = [];
   for (let i = 1; i < rows.length; i++) {
@@ -183,7 +290,7 @@ export function parseCSVData(csvText) {
       const created_at = (dateIdx !== -1 && cols[dateIdx]) ? cols[dateIdx].trim() : '';
       const rawRecommend = (recommendIdx !== -1 && cols[recommendIdx]) ? cols[recommendIdx].trim() : '';
 
-      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex: i });
+      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex: i, collectionId: currentCollectionId });
       if (record) results.push(record);
     }
   }
@@ -200,7 +307,9 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
   let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1;
   if (table.cols && table.cols.length > 0) {
     const colsHeader = table.cols.map(col => col?.label || '');
-    const found = findDatasetColumnIndexes(colsHeader);
+    const found = findDatasetColumnIndexes(colsHeader, {
+      hiddenColumnIndexes: getHiddenColumnIndexes(currentCollectionId)
+    });
     idIdx = found.idIdx;
     termIdx = found.termIdx;
     twIdx = found.twIdx;
@@ -225,14 +334,14 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     const c = r.c;
     if (!c) return;
     const rowIndex = idx + 1;
-    const id = (idIdx >= 0 && c[idIdx]) ? (c[idIdx].v || '').toString().trim() : `ROW-${rowIndex}`;
-    const ja = (termIdx >= 0 && c[termIdx]) ? (c[termIdx].v || '').toString().trim() : '';
-    const tw = (twIdx >= 0 && c[twIdx]) ? (c[twIdx].v || '').toString().trim() : '';
-    const reading = (readingIdx >= 0 && c[readingIdx]) ? (c[readingIdx].v || '').toString().trim() : '';
-    const created_at = (dateIdx >= 0 && c[dateIdx]) ? (c[dateIdx].v || c[dateIdx].f || '').toString().trim() : '';
-    const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? (c[recommendIdx].v || c[recommendIdx].f || '').toString().trim() : '';
+    const id = (idIdx >= 0 && c[idIdx]) ? String(readGvizCell(c[idIdx], { preferFormatted: true }) || '').trim() : `ROW-${rowIndex}`;
+    const ja = (termIdx >= 0 && c[termIdx]) ? String(readGvizCell(c[termIdx]) || '').trim() : '';
+    const tw = (twIdx >= 0 && c[twIdx]) ? String(readGvizCell(c[twIdx]) || '').trim() : '';
+    const reading = (readingIdx >= 0 && c[readingIdx]) ? String(readGvizCell(c[readingIdx]) || '').trim() : '';
+    const created_at = (dateIdx >= 0 && c[dateIdx]) ? String(readGvizCell(c[dateIdx], { preferFormatted: true }) || '').trim() : '';
+    const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? String(readGvizCell(c[recommendIdx]) || '').trim() : '';
 
-    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex });
+    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex, collectionId: currentCollectionId });
     if (record) results.push(record);
   });
   return results;
@@ -318,24 +427,7 @@ export function parseAllCollectionsMetaCSVData(csvText) {
 export function parseAllCollectionsMetaGvizResponse(gvizText) {
   const table = extractGvizTable(gvizText);
   if (!table) return {};
-
-  const rows = [];
-  if (table.cols?.length > 0) {
-    const headerRow = table.cols.map(col => col?.label || '');
-    if (headerRow.some(Boolean)) {
-      rows.push(headerRow);
-    }
-  }
-
-  if (table.rows) {
-    table.rows.forEach(r => {
-      if (!r.c) return;
-      const rowVals = r.c.map(cell => (cell && cell.v !== null && cell.v !== undefined) ? (cell.v || cell.f || '').toString() : '');
-      rows.push(rowVals);
-    });
-  }
-
-  return parseMetadataMatrixRows(rows);
+  return parseMetadataMatrixRows(gvizTableToRows(table));
 }
 
 /**
@@ -351,6 +443,40 @@ export function parseMetaCSVData(csvText) {
   return extractMetadataFromKeyValues(rows.filter(r => r.length >= 2).map(r => [r[0], r[1]]));
 }
 
+function emptyOpeningHoursSchedule() {
+  return DEFAULT_OPENING_HOURS.map(item => ({ ...item }));
+}
+
+function applyOpeningHoursPair(schedule, dayRaw, hours) {
+  const idx = DAY_INDEX_MAP[(dayRaw || '').trim().toLowerCase()];
+  if (idx === undefined || !hours) return false;
+  schedule[idx].hours = hours;
+  return true;
+}
+
+/**
+ * Parses opening hours from the central metadata matrix (intro + hours).
+ * Uses weekday rows (週日…週六) in column 0; hours come from column 1
+ * (first hall / platform column). Returns null when the sheet has no hours rows.
+ */
+export function extractOpeningHoursFromMetaRows(rows) {
+  if (!rows || rows.length === 0) return null;
+
+  const schedule = emptyOpeningHoursSchedule();
+  let hasValidRow = false;
+
+  for (const row of rows) {
+    if (!row || row.length < 2) continue;
+    const key = (row[0] || '').trim();
+    const hours = (row[1] || '').trim();
+    if (applyOpeningHoursPair(schedule, key, hours)) {
+      hasValidRow = true;
+    }
+  }
+
+  return hasValidRow ? schedule : null;
+}
+
 /**
  * Parses opening hours schedule from CSV content.
  * @param {string} csvText - Raw CSV content
@@ -359,41 +485,5 @@ export function parseMetaCSVData(csvText) {
 export function parseOpeningHoursCSV(csvText) {
   const rows = parseCSVRows(csvText);
   if (!rows || rows.length < 2) return null;
-
-  const dayMap = {
-    '週日': 0, '星期日': 0, '禮拜日': 0, '0': 0, 'sun': 0, 'sunday': 0,
-    '週一': 1, '星期一': 1, '禮拜一': 1, '1': 1, 'mon': 1, 'monday': 1,
-    '週二': 2, '星期二': 2, '禮拜二': 2, '2': 2, 'tue': 2, 'tuesday': 2,
-    '週三': 3, '星期三': 3, '禮拜三': 3, '3': 3, 'wed': 3, 'wednesday': 3,
-    '週四': 4, '星期四': 4, '禮拜四': 4, '4': 4, 'thu': 4, 'thursday': 4,
-    '週五': 5, '星期五': 5, '禮拜五': 5, '5': 5, 'fri': 5, 'friday': 5,
-    '週六': 6, '星期六': 6, '禮拜六': 6, '6': 6, 'sat': 6, 'saturday': 6
-  };
-
-  const schedule = [
-    { day: '週日', hours: '16:00 - 23:55' },
-    { day: '週一', hours: '01:00 - 23:55' },
-    { day: '週二', hours: '01:00 - 23:55' },
-    { day: '週三', hours: '01:00 - 23:55' },
-    { day: '週四', hours: '01:00 - 23:55' },
-    { day: '週五', hours: '06:00 - 23:55' },
-    { day: '週六', hours: '06:00 - 23:55' }
-  ];
-
-  let hasValidRow = false;
-
-  for (let i = 1; i < rows.length; i++) {
-    const row = rows[i];
-    if (row.length < 2) continue;
-    const dayRaw = (row[0] || '').trim().toLowerCase();
-    const hours = (row[1] || '').trim();
-
-    const idx = dayMap[dayRaw];
-    if (idx !== undefined && hours) {
-      schedule[idx].hours = hours;
-      hasValidRow = true;
-    }
-  }
-
-  return hasValidRow ? schedule : null;
+  return extractOpeningHoursFromMetaRows(rows);
 }

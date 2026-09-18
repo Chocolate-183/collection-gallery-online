@@ -11,7 +11,7 @@
   <!-- Cloudscape Typography & Global Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@cloudscape-design/global-styles/index.css">
 
   <!-- Custom Styles -->
@@ -208,6 +208,7 @@
                 <div>
                   <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms" onclick="switchCollection('china-terms')" style="cursor: pointer;">大陸特色詞彙一覽</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-china-terms">
+                    <span class="awsui-welcome-card-tag awsui-tag-adjusting">ADJUSTING</span>
                     <span class="awsui-welcome-card-tag">大陸</span>
                     <span class="awsui-welcome-card-tag">語彙</span>
                   </div>
@@ -220,6 +221,24 @@
               </p>
               <div class="awsui-welcome-card-footer" style="display: flex; gap: 8px; align-items: center;">
                 <button class="awsui-welcome-card-action" type="button" onclick="switchCollection('china-terms')">Enter Gallery &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Collection Card 3 -->
+            <div class="awsui-welcome-card" id="welcome-card-korean-terms">
+              <div class="awsui-welcome-card-header">
+                <div>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-korean-terms" onclick="switchCollection('korean-terms')" style="cursor: pointer;">韓文單字加漢字 記憶更輕鬆</h3>
+                  <div class="awsui-welcome-card-tags" id="welcome-card-tags-korean-terms">
+                    <span class="awsui-welcome-card-tag">韓語學習</span>
+                  </div>
+                </div>
+              </div>
+              <p class="awsui-welcome-card-desc" id="welcome-card-desc-korean-terms">
+                COMING SOON
+              </p>
+              <div class="awsui-welcome-card-footer" style="display: flex; gap: 8px; align-items: center;">
+                <button class="awsui-welcome-card-action" type="button" onclick="switchCollection('korean-terms')">Enter Gallery &rarr;</button>
               </div>
             </div>
           </div>
@@ -296,6 +315,20 @@
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('や', this)">や行</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('ら', this)">ら行</button>
                 <button class="awsui-tab kana-only" onclick="selectKanaTab('わ', this)">わ行</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㄱ', this)">ㄱ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㄴ', this)">ㄴ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㄷ', this)">ㄷ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㄹ', this)">ㄹ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅁ', this)">ㅁ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅂ', this)">ㅂ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅅ', this)">ㅅ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅇ', this)">ㅇ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅈ', this)">ㅈ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅊ', this)">ㅊ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅋ', this)">ㅋ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅌ', this)">ㅌ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅍ', this)">ㅍ</button>
+                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅎ', this)">ㅎ</button>
               </div>
             </div>
 

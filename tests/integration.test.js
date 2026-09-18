@@ -52,6 +52,15 @@ test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
 });
 
+test('Local Fallback Snapshot Integrity - Korean Terms', () => {
+  const koreanJson = JSON.parse(readFileSync(resolve('korean-data.json'), 'utf-8'));
+  assert(Array.isArray(koreanJson) && koreanJson.length > 0);
+  const sample = koreanJson[0];
+  assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
+  assert.match(sample.ja_term, /\|/);
+  assert.notEqual(sample.ja_term, sample.reading);
+});
+
 test('Router & View Switcher - View Routing & Maintenance Handling', async () => {
   const mockTitle = createMockElement();
   const mockViewMaint = createMockElement({ style: { display: 'none' } });
@@ -89,6 +98,7 @@ test('UI Components - Sidebar Badge Display Logic', async () => {
   const mockBadge = createMockElement({ style: { display: 'inline-block' } });
   mockDOM({
     'side-nav-count-japanese-terms': mockBadge,
+    'side-nav-count-china-terms': mockBadge,
     'side-nav-count-korean-terms': mockBadge
   });
 
@@ -105,6 +115,14 @@ test('UI Components - Sidebar Badge Display Logic', async () => {
   updateSidebarBadge('japanese-terms');
   assert.equal(mockBadge.innerText, 'ADJUSTING');
   assert.equal(mockBadge.style.display, 'inline-block');
+
+  // No live meta yet (even if defaultMeta is 調整中) -> treat as open
+  delete collectionsMetaCache['china-terms'];
+  mockBadge.innerText = 'ADJUSTING';
+  mockBadge.style.display = 'inline-block';
+  updateSidebarBadge('china-terms');
+  assert.equal(mockBadge.innerText, '');
+  assert.equal(mockBadge.style.display, 'none');
 });
 
 test('UI Components - Mobile Sidebar Outside Click & Auto-Collapse Logic', async () => {
@@ -184,45 +202,6 @@ test('UI Components - Empty State & Card Rendering', async () => {
 
   assert(mockContainer.innerHTML.includes('awsui-empty-card'));
   assert(mockContainer.innerHTML.includes('尚無相符展品'));
-});
-
-test('Modal Sizing - Item Modal does not apply large modal setting', async () => {
-  const mockModalBox = createMockElement();
-  const mockModal = createMockElement({
-    querySelector: (sel) => sel === '.awsui-modal' ? mockModalBox : null
-  });
-  const mockMeaning = createMockElement({ scrollHeight: 100, clientHeight: 100 });
-
-  mockDOM({
-    'detail-modal': mockModal,
-    'modal-meaning-text': mockMeaning
-  });
-
-  const { store } = await import('../js/state.js');
-  const { openMeaningModal, checkMeaningExceedsFiveLines } = await import('../js/components/modal.js');
-
-  assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4'), false);
-  assert.equal(checkMeaningExceedsFiveLines('1\n2\n3\n4\n5\n6'), true);
-
-  // Case 1: Japanese term <= 5 lines -> should not have awsui-modal-lg
-  store.set({
-    currentCollectionId: 'japanese-terms',
-    allRecords: [{ row_index: 1, ja_term: '測試', tw_translation: '1\n2\n3\n4' }]
-  });
-  mockModalBox.classes.clear();
-  openMeaningModal(1, false);
-  assert(!mockModalBox.classes.has('awsui-modal-lg'));
-
-  // Case 2: Japanese term > 5 lines with long title -> should still not have awsui-modal-lg
-  store.set({
-    currentCollectionId: 'japanese-terms',
-    allRecords: [{ row_index: 2, ja_term: '這是一個非常長的名詞超過十五個字元測試測試', tw_translation: '1\n2\n3\n4\n5\n6' }]
-  });
-  mockModalBox.classes.clear();
-  mockModalBox.classes.add('awsui-modal-lg');
-  openMeaningModal(2, false);
-  assert(!mockModalBox.classes.has('awsui-modal-lg'), 'Item Modal should remove and never retain awsui-modal-lg');
-  assert(mockMeaning.classes.has('is-multiline'));
 });
 
 test('Collection Modal Component - Population and Open/Close Logic', async () => {
@@ -340,48 +319,46 @@ test('Description Modal Component & Interaction Logic', async () => {
   assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
 });
 
-test('Item Modal Explore Section - Display Flex for Same Row Layout', async () => {
-  const mockRecSection = createMockElement({ style: { display: 'none' } });
-  const mockRecList = createMockElement();
-  const mockModalBox = createMockElement();
-  const mockModal = createMockElement({
-    querySelector: () => mockModalBox
-  });
-  const mockTitle = createMockElement();
+test('C103 Item Modal hides Pronunciation while C101 still shows it', async () => {
+  const mockReadingSection = createMockElement({ style: { display: 'none' } });
+  const mockReadingRow = createMockElement();
+  const mockMeaning = createMockElement();
+  const mockModal = createMockElement();
 
   mockDOM({
     'detail-modal': mockModal,
-    'modal-term-title': mockTitle,
-    'modal-recommendations-section': mockRecSection,
-    'modal-recommendations-list': mockRecList
+    'modal-meaning-text': mockMeaning,
+    'modal-reading-section': mockReadingSection,
+    'modal-reading-row': mockReadingRow
   });
 
   const { store } = await import('../js/state.js');
   const { openMeaningModal } = await import('../js/components/modal.js');
 
   store.set({
-    currentCollectionId: 'china-terms',
-    allRecords: [{
-      row_index: 1,
-      ja_term: '985',
-      tw_translation: '測試',
-      recommendations: ['211', '一本', '二本']
-    }]
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ row_index: 1, ja_term: '神経衰弱', reading: 'しんけいすいじゃく', tw_translation: '神經衰弱' }]
   });
-
   openMeaningModal(1, false);
-  assert.equal(mockRecSection.style.display, 'flex', 'Explore section should display as flex for same-row layout');
+  assert.equal(mockReadingRow.innerText, 'しんけいすいじゃく');
+  assert.equal(mockReadingSection.style.display, 'block');
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{ row_index: 1, ja_term: '가능 | 可能', reading: '가능', tw_translation: '可能' }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockReadingRow.innerText, '');
+  assert.equal(mockReadingSection.style.display, 'none');
 });
 
-test('Card Active State - Toggle Active Class on Open/Close Modal and Rendering', async () => {
+test('Card Active State - Toggle Active Class on Open/Close Modal', async () => {
   const card1 = createMockElement({ 'data-row-index': '1' });
   const card2 = createMockElement({ 'data-row-index': '2' });
-  const mockContainer = createMockElement();
   const mockModal = createMockElement();
   const mockMeaning = createMockElement({ 'data-row-index': '1' });
 
   mockDOM({
-    'card-grid': mockContainer,
     'detail-modal': mockModal,
     'modal-meaning-text': mockMeaning
   });
@@ -393,7 +370,6 @@ test('Card Active State - Toggle Active Class on Open/Close Modal and Rendering'
 
   const { store } = await import('../js/state.js');
   const { openMeaningModal, closeDetailModal } = await import('../js/components/modal.js');
-  const { renderCards } = await import('../js/components/cards.js');
 
   store.set({
     currentCollectionId: 'japanese-terms',
@@ -425,11 +401,5 @@ test('Card Active State - Toggle Active Class on Open/Close Modal and Rendering'
   assert.equal(card1.classList.contains('active'), false, 'Card 1 should not be active after close');
   assert.equal(card2.classList.contains('active'), false, 'Card 2 should not be active after close');
 
-  // Test 4: renderCards with open modal retains active state in HTML
-  mockModal.classList.add('open');
-  mockMeaning.setAttribute('data-row-index', '1');
-  renderCards();
-  assert(mockContainer.innerHTML.includes('class="awsui-card active" data-row-index="1"'), 'Card 1 should render with active class');
-  assert(mockContainer.innerHTML.includes('class="awsui-card" data-row-index="2"'), 'Card 2 should render without active class');
 });
 

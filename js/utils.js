@@ -68,6 +68,24 @@ export function getUnicodeLength(str) {
 }
 
 /**
+ * Character length used by Length tabs.
+ * C103 titles like "가능 | 可能" count only Hangul before `|` (2 chars).
+ */
+export function getExhibitFilterLength(str) {
+  if (!str) return 0;
+  const left = String(str).split('|')[0].trim();
+  return getUnicodeLength(left);
+}
+
+/**
+ * Renders exhibit titles so C103 `|` separators stay muted (e.g. 가능 | 可能).
+ */
+export function formatExhibitTitleHtml(str) {
+  if (!str) return '';
+  return escapeHtml(String(str)).replace(/\|/g, '<span class="awsui-title-separator">|</span>');
+}
+
+/**
  * Parses recommendation entries from array or string delimiter format.
  * @param {string|string[]} val - Raw recommendation content
  * @returns {string[]} Formatted recommendation tokens
@@ -85,14 +103,17 @@ export function parseRecommendationList(val) {
 }
 
 export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];
+let openingHoursFromMetadata = false;
 
-export function setOpeningHoursSchedule(newSchedule) {
+export function setOpeningHoursSchedule(newSchedule, { fromMetadata = false } = {}) {
   if (Array.isArray(newSchedule) && newSchedule.length === 7) {
     OPENING_HOURS_SCHEDULE = newSchedule;
+    if (fromMetadata) openingHoursFromMetadata = true;
   }
 }
 
 export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
+  if (openingHoursFromMetadata) return OPENING_HOURS_SCHEDULE;
   const csvText = await safeFetchText(csvUrl);
   if (csvText) {
     const parsed = parseOpeningHoursCSV(csvText);
@@ -109,11 +130,25 @@ export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
  * @param {Date} [date] - Optional date object for testing
  * @returns {string} Formatted opening hours string
  */
+function isClosedHours(hours) {
+  return !hours || hours === '休館' || hours === 'CLOSED';
+}
+
+function parseHoursRange(hours) {
+  const parts = String(hours).split('-').map(s => s.trim());
+  if (parts.length !== 2) return null;
+  const [startH, startM] = parts[0].split(':').map(Number);
+  const [endH, endM] = parts[1].split(':').map(Number);
+  if ([startH, startM, endH, endM].some(Number.isNaN)) return null;
+  return {
+    startTotal: startH * 60 + startM,
+    endTotal: endH * 60 + endM
+  };
+}
+
 export function getTodayOpeningHoursText(date = new Date()) {
-  const today = OPENING_HOURS_SCHEDULE[date.getDay()];
-  const hours = today?.hours;
-  const isClosed = !hours || hours === '休館' || hours === 'CLOSED';
-  return `Today's Hours: ${isClosed ? 'CLOSED' : hours}`;
+  const hours = OPENING_HOURS_SCHEDULE[date.getDay()]?.hours;
+  return `Today's Hours: ${isClosedHours(hours) ? 'CLOSED' : hours}`;
 }
 
 /**
@@ -125,22 +160,14 @@ export function getNextOpeningTimeText(now = new Date()) {
   for (let offset = 0; offset < 7; offset++) {
     const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
     const sched = OPENING_HOURS_SCHEDULE[targetDate.getDay()];
+    if (isClosedHours(sched?.hours)) continue;
 
-    if (!sched?.hours || sched.hours === '休館' || sched.hours === 'CLOSED') {
-      continue;
-    }
-
-    const parts = sched.hours.split('-').map(s => s.trim());
-    if (parts.length !== 2) continue;
-
-    const [startH, startM] = parts[0].split(':').map(Number);
-    if (isNaN(startH) || isNaN(startM)) continue;
+    const range = parseHoursRange(sched.hours);
+    if (!range) continue;
 
     if (offset === 0) {
       const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
-      if (currentTotalMinutes >= startH * 60 + startM) {
-        continue;
-      }
+      if (currentTotalMinutes >= range.startTotal) continue;
     }
 
     const year = targetDate.getFullYear();
@@ -158,26 +185,14 @@ export function getNextOpeningTimeText(now = new Date()) {
  * @returns {boolean} True if within opening hours, false otherwise
  */
 export function isGalleryOpen(date = new Date()) {
-  const today = OPENING_HOURS_SCHEDULE[date.getDay()];
-  if (!today?.hours || today.hours === '休館' || today.hours === 'CLOSED') {
-    return false;
-  }
+  const hours = OPENING_HOURS_SCHEDULE[date.getDay()]?.hours;
+  if (isClosedHours(hours)) return false;
 
-  const parts = today.hours.split('-').map(s => s.trim());
-  if (parts.length !== 2) return false;
+  const range = parseHoursRange(hours);
+  if (!range) return false;
 
-  const [startH, startM] = parts[0].split(':').map(Number);
-  const [endH, endM] = parts[1].split(':').map(Number);
-
-  if (isNaN(startH) || isNaN(startM) || isNaN(endH) || isNaN(endM)) {
-    return false;
-  }
-
-  const startTotal = startH * 60 + startM;
-  const endTotal = endH * 60 + endM;
   const currentTotal = date.getHours() * 60 + date.getMinutes();
-
-  return currentTotal >= startTotal && currentTotal <= endTotal;
+  return currentTotal >= range.startTotal && currentTotal <= range.endTotal;
 }
 
 /**

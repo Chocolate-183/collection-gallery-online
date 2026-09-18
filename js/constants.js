@@ -60,6 +60,25 @@ export const KANA_RANGES = {
   'わ': /^[わ-んワ-ン]/
 };
 
+/** C103 초성 tabs (ㄱ ㄴ … ㅎ; ㄲ/ㄸ/ㅃ/ㅆ/ㅉ fold into ㄱ/ㄷ/ㅂ/ㅅ/ㅈ). */
+export const HANGUL_INITIAL_TABS = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+const HANGUL_SYLLABLE_BASE = 0xAC00;
+const HANGUL_VOWEL_COUNT = 21;
+const HANGUL_FINAL_COUNT = 28;
+
+/** Unicode 초성 index 0–18 → ㄱㄴㄷ tab. */
+export const HANGUL_INITIAL_INDEX_TO_TAB = [
+  'ㄱ', 'ㄱ', 'ㄴ', 'ㄷ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅂ', 'ㅅ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
+];
+
+export const HANGUL_SYLLABLE = {
+  BASE: HANGUL_SYLLABLE_BASE,
+  END: 0xD7A3,
+  VOWEL_COUNT: HANGUL_VOWEL_COUNT,
+  FINAL_COUNT: HANGUL_FINAL_COUNT
+};
+
 export const DEFAULT_OPENING_HOURS = [
   { day: '週日', hours: '00:01 - 23:59' },
   { day: '週一', hours: '00:01 - 23:59' },

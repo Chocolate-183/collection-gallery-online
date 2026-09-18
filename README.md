@@ -7,20 +7,20 @@
 ## 🌟 核心功能特色
 
 ### 1. 側邊導覽與展廳版面佈局 (App Layout & Side Navigation Panel)
-- **多展廳動態切換**: 支援「日本特色詞彙展廳」與「大陸特色詞彙展廳」等多主題展區動態切換，以及「服務台資訊頁 (INFO)」。
+- **多展廳動態切換**: 支援「日本特色詞彙展廳」、「大陸特色詞彙展廳」與「韓文單字加漢字」等多主題展區動態切換，以及「服務台資訊頁 (INFO)」。
 - **可收折側欄**: 支援展廳導覽面板收折/展開與狀態記憶（`localStorage`），側欄收折時主內容區域保持全寬響應式居中。
 - **展廳狀態徽章 (Status Badge)**: 展廳維護或調整時，側欄自動呈現「調整中」專屬標籤，隱藏項目數量。
 - **頁面頂欄與展品 KPI 儀表板**: 整合頂部導覽列（品牌標籤、展廳切換、同步展品按鈕），並於卡片標題區域整合展廳編號（如 `C101`）與展品總數 KPI 數據（如 `520 件`）。
 
 ### 2. 展館開放時間與維護模式管理 (Opening Hours & Maintenance Mode)
-- **開放時間排程解析 (`opening-hours.csv`)**: 支援每日參觀時間解析與實時開館狀態判斷 (`isGalleryOpen`)。
+- **開放時間排程解析**: 展廳介紹與開館時間一律從中央 Google Spreadsheet (`CGO展廳資訊`) 讀取；本地 `opening-hours.csv` 僅作離線備援。
 - **閉館與調整中視圖 (`view-maintenance`)**: 當非開放時間或特定展廳狀態為「調整中」時，自動切換至專屬維護頁面，提示開館時間與下次開館資訊。
 - **大廳與服務台時間告示**: 大廳頂欄及服務台 (Info) 頁面呈現每週參觀時間排程網格與開館狀態告示。
 
 ### 3. 動態數據同步與容錯備援 (Data Fetching & Timeout Failover)
 - **多管道 API 讀取**: 支援 Google Sheets GViz Query JSON API 與 CSV 格式動態匯入展品與策展詮釋資料。
 - **引號內多行 CSV 解析器**: 內建狀態機 CSV 解析器，完美保留展品詳細解說中的換行格式，避免引號內換行導致欄位錯位。
-- **逾時自動降級 (Timeout Failover)**: 採用 `AbortSignal.timeout(2500)` 請求，於網路異常或跨域受阻時自動降級使用本地 JSON 快照 (`data.json` / `china-data.json`) 確保展覽系統穩定運作。
+- **逾時自動降級 (Timeout Failover)**: 採用 `AbortSignal.timeout(2500)` 請求，於網路異常或跨域受阻時自動降級使用本地 JSON 快照 (`data.json` / `china-data.json` / `korean-data.json`) 確保展覽系統穩定運作。
 
 ### 4. 雙色主題與沉浸式視覺體驗 (Light/Dark Mode)
 - **展廳燈光模式**: 支援 Light Mode 與 Dark Mode 一鍵切換，預設自動跟隨系統偏好 (`prefers-color-scheme`) 並儲存於 `localStorage`。
@@ -47,11 +47,12 @@
 .
 ├── index.html        # 主網頁應用程式 (Cloudscape Layout & Root Shell)
 ├── styles.css        # Cloudscape Design System 樣式表 (含 Layout, Cards Grid, Modal & Dark Mode)
-├── opening-hours.csv # 展館開放時間排程設定檔
+├── opening-hours.csv # 展館開放時間離線備援（正式來源為中央 metadata spreadsheet）
 ├── js/
 │   ├── app.js        # 進入點、全域事件監聽與 Downward Compatibility Bridge
 │   ├── constants.js  # 集中式應用程式常數 (Views, Sort Types, Storage Keys, Default Schedules)
-│   ├── config.js     # Multi-Collection 展館組態與 Google Sheets API 網址建構器
+│   ├── config.js     # Multi-Collection 登錄與 Google Sheets API 網址建構器
+│   ├── galleries/    # 各展廳獨立 config（C101 / C102 / C103）
 │   ├── state.js      # 集中式 Application State (Store) & 訂閱機制
 │   ├── theme.js      # 深色 / 淺色展廳燈光模式控制 logic
 │   ├── parser.js     # 狀態機 CSV、GViz API 通用數據與 Meta 詮釋資料解析器
@@ -67,6 +68,7 @@
 │       └── toast.js      # 浮動訊息 (Toast) 提醒組件
 ├── data.json         # 日本特色詞彙展區資料快照備份 (離線降級備援)
 ├── china-data.json   # 大陸特色詞彙展區資料快照備份 (離線降級備援)
+├── korean-data.json  # 韓文單字展區資料快照備份 (離線降級備援)
 ├── tests/
 │   ├── unit.test.js        # 核心解析器、篩選邏輯與 UI 結構單元測試
 │   └── integration.test.js # 本地快照資料與參觀時間整合測試

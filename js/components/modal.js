@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache } from '../data.js';
-import { escapeHtml, parseRecommendationList } from '../utils.js';
+import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml } from '../utils.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -51,16 +51,13 @@ export function navigateToTerm(term) {
  * Standard accessor for Item Modal Description element.
  * @returns {HTMLElement|null}
  */
-export function getMeaningElement() {
+function getMeaningElement() {
   return typeof document !== 'undefined'
     ? (document.querySelector?.('#modal-meaning-text') || document.getElementById?.('modal-meaning-text') || null)
     : null;
 }
 
-/**
- * Generic helper to check if content exceeds a specified number of lines.
- */
-export function checkMeaningExceedsLines(maxLines, text, meaningElem) {
+function checkMeaningExceedsLines(maxLines, text, meaningElem) {
   const elem = meaningElem || getMeaningElement();
   const content = (text !== undefined && text !== null) ? text : (elem ? elem.innerText : '');
   if (!content) return false;
@@ -83,7 +80,6 @@ export function checkMeaningExceedsLines(maxLines, text, meaningElem) {
 }
 
 export const checkMeaningExceedsTwoLines = (text, meaningElem) => checkMeaningExceedsLines(2, text, meaningElem);
-export const checkMeaningExceedsFiveLines = (text, meaningElem) => checkMeaningExceedsLines(5, text, meaningElem);
 
 /**
  * Checks if the meaning element has vertical scrolling content.
@@ -148,13 +144,14 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const modal = document.getElementById('detail-modal');
 
   if (titleElem) {
-    titleElem.innerText = rec.ja_term;
+    titleElem.innerHTML = formatExhibitTitleHtml(rec.ja_term);
     titleElem.setAttribute('data-collection', currentCollectionId || '');
   }
 
   if (readingElem) {
     readingElem.setAttribute('data-collection', currentCollectionId || '');
-    if (rec.reading) {
+    const showReading = Boolean(rec.reading) && currentCollectionId !== 'korean-terms';
+    if (showReading) {
       readingElem.innerText = rec.reading;
       if (readingSectionElem) readingSectionElem.style.display = 'block';
     } else {
@@ -186,7 +183,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     if (recItems.length > 0) {
       recListElem.innerHTML = recItems.map(item => {
         const chars = Array.from(item);
-        const displayText = chars.length > 5 ? chars.slice(0, 5).join('') + '..' : item;
+        const displayText = chars.length > 8 ? chars.slice(0, 8).join('') + '..' : item;
         return `
           <button type="button" class="awsui-recommendation-chip" data-collection="${escapeHtml(currentCollectionId || '')}" data-term="${escapeHtml(item)}" title="${escapeHtml(item)}">
             ${escapeHtml(displayText)}

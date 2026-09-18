@@ -288,8 +288,9 @@ a:focus {
   flex-shrink: 0;
   font-size: 11px;
   font-weight: 400;
-  background-color: #eaedd1;
+  background-color: #f2f3f5;
   color: #5f6b7a;
+  border: 1px solid #d1d5db;
   padding: 2px 8px;
   border-radius: var(--awsui-border-radius-badge, 4px);
   white-space: nowrap;
@@ -577,6 +578,13 @@ a:focus {
   padding-right: 8px;
 }
 
+.hangul-only {
+  display: none;
+  font-family: 'Noto Sans KR', var(--awsui-font-family-exhibit, sans-serif);
+  min-width: 36px;
+  justify-content: center;
+}
+
 .awsui-tabs {
   display: flex;
   align-items: center;
@@ -653,6 +661,11 @@ a:focus {
 .awsui-card:active .awsui-meaning-value,
 .awsui-card:active .awsui-expand-hint {
   color: #ffffff !important;
+}
+
+.awsui-card.active .awsui-card-header-title .awsui-title-separator,
+.awsui-card:active .awsui-card-header-title .awsui-title-separator {
+  color: rgba(255, 255, 255, 0.55) !important;
 }
 
 .awsui-card.active .awsui-card-divider,
@@ -733,6 +746,11 @@ a:focus {
   line-height: 1.25;
 }
 
+.awsui-title-separator {
+  color: #c5cad1;
+  font-weight: 400;
+}
+
 /* Font override for Mainland China terms */
 [data-collection="china-terms"] .awsui-card-header-title,
 .awsui-card-header-title[data-collection="china-terms"],
@@ -755,6 +773,18 @@ a:focus {
   font-family: 'Noto Sans JP', var(--awsui-font-family);
 }
 
+/* Font override for Korean terms */
+[data-collection="korean-terms"] .awsui-card-header-title,
+.awsui-card-header-title[data-collection="korean-terms"],
+[data-collection="korean-terms"] .awsui-reading-subtext,
+.awsui-reading-subtext[data-collection="korean-terms"],
+#modal-term-title[data-collection="korean-terms"],
+#modal-reading-row[data-collection="korean-terms"],
+[data-collection="korean-terms"] .awsui-recommendation-chip,
+.awsui-recommendation-chip[data-collection="korean-terms"] {
+  font-family: 'Noto Sans KR', var(--awsui-font-family-exhibit);
+}
+
 .awsui-reading-subtext {
   font-size: 12px;
   color: var(--awsui-color-text-body-secondary);
@@ -765,11 +795,13 @@ a:focus {
   height: 18px;
 }
 
-[data-collection="china-terms"] .awsui-reading-subtext {
+[data-collection="china-terms"] .awsui-reading-subtext,
+[data-collection="korean-terms"] .awsui-reading-subtext {
   display: none;
 }
 
-[data-collection="china-terms"] .awsui-card {
+[data-collection="china-terms"] .awsui-card,
+[data-collection="korean-terms"] .awsui-card {
   height: 130px;
 }
 
@@ -1795,6 +1827,11 @@ a:focus {
   color: #ECC94B !important;
 }
 
+[data-theme="dark"] .awsui-card-header-title .awsui-title-separator,
+[data-theme="dark"] #modal-term-title .awsui-title-separator {
+  color: #4b5563 !important;
+}
+
 [data-theme="dark"] .awsui-card.active,
 [data-theme="dark"] .awsui-card:active {
   background-color: #ECC94B !important;
@@ -1811,6 +1848,11 @@ a:focus {
 [data-theme="dark"] .awsui-card:active .awsui-meaning-value,
 [data-theme="dark"] .awsui-card:active .awsui-expand-hint {
   color: #ffffff !important;
+}
+
+[data-theme="dark"] .awsui-card.active .awsui-card-header-title .awsui-title-separator,
+[data-theme="dark"] .awsui-card:active .awsui-card-header-title .awsui-title-separator {
+  color: rgba(255, 255, 255, 0.55) !important;
 }
 
 [data-theme="dark"] .awsui-card.active .awsui-card-divider,
