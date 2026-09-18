@@ -319,6 +319,39 @@ test('Description Modal Component & Interaction Logic', async () => {
   assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
 });
 
+test('C103 Item Modal hides Pronunciation while C101 still shows it', async () => {
+  const mockReadingSection = createMockElement({ style: { display: 'none' } });
+  const mockReadingRow = createMockElement();
+  const mockMeaning = createMockElement();
+  const mockModal = createMockElement();
+
+  mockDOM({
+    'detail-modal': mockModal,
+    'modal-meaning-text': mockMeaning,
+    'modal-reading-section': mockReadingSection,
+    'modal-reading-row': mockReadingRow
+  });
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ row_index: 1, ja_term: '神経衰弱', reading: 'しんけいすいじゃく', tw_translation: '神經衰弱' }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockReadingRow.innerText, 'しんけいすいじゃく');
+  assert.equal(mockReadingSection.style.display, 'block');
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{ row_index: 1, ja_term: '가능 | 可能', reading: '가능', tw_translation: '可能' }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockReadingRow.innerText, '');
+  assert.equal(mockReadingSection.style.display, 'none');
+});
+
 test('Card Active State - Toggle Active Class on Open/Close Modal', async () => {
   const card1 = createMockElement({ 'data-row-index': '1' });
   const card2 = createMockElement({ 'data-row-index': '2' });

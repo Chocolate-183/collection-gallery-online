@@ -150,7 +150,8 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
   if (readingElem) {
     readingElem.setAttribute('data-collection', currentCollectionId || '');
-    if (rec.reading) {
+    const showReading = Boolean(rec.reading) && currentCollectionId !== 'korean-terms';
+    if (showReading) {
       readingElem.innerText = rec.reading;
       if (readingSectionElem) readingSectionElem.style.display = 'block';
     } else {

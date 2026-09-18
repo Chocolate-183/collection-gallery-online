@@ -795,11 +795,13 @@ a:focus {
   height: 18px;
 }
 
-[data-collection="china-terms"] .awsui-reading-subtext {
+[data-collection="china-terms"] .awsui-reading-subtext,
+[data-collection="korean-terms"] .awsui-reading-subtext {
   display: none;
 }
 
-[data-collection="china-terms"] .awsui-card {
+[data-collection="china-terms"] .awsui-card,
+[data-collection="korean-terms"] .awsui-card {
   height: 130px;
 }
 
