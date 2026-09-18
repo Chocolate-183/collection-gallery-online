@@ -4,12 +4,12 @@
 import { DEFAULT_TIMEOUT_MS } from './constants.js';
 import { collectionsConfig, getCollectionDataUrls, getMetadataUrls } from './config.js';
 import { store } from './state.js';
-import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse } from './parser.js';
+import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, extractOpeningHoursFromMetaRows } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
 import { updateSidebarBadge } from './components/sidebar.js';
-import { safeFetchText, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from './utils.js';
+import { safeFetchText, setOpeningHoursSchedule, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from './utils.js';
 
 // Cache for storing fetched collection records & metadata
 export const collectionsCache = {};
@@ -18,23 +18,53 @@ export const collectionsMetaCache = {};
 /**
  * Fetches metadata for all exhibition halls from the central metadata spreadsheet.
  */
+function applyOpeningHoursFromMetaSource(csvText, gvizText) {
+  let schedule = null;
+  if (csvText) {
+    schedule = extractOpeningHoursFromMetaRows(parseCSVRows(csvText));
+  }
+  if (!schedule && gvizText) {
+    const table = extractGvizTable(gvizText);
+    if (table) {
+      const rows = [];
+      if (table.cols?.length > 0) {
+        const headerRow = table.cols.map(col => col?.label || '');
+        if (headerRow.some(Boolean)) rows.push(headerRow);
+      }
+      if (table.rows) {
+        table.rows.forEach(r => {
+          if (!r.c) return;
+          rows.push(r.c.map(cell => (cell && cell.v !== null && cell.v !== undefined) ? (cell.v || cell.f || '').toString() : ''));
+        });
+      }
+      schedule = extractOpeningHoursFromMetaRows(rows);
+    }
+  }
+  if (schedule) setOpeningHoursSchedule(schedule, { fromMetadata: true });
+  return schedule;
+}
+
 export async function fetchAllMetadata() {
   const { csvUrl, gvizUrl } = getMetadataUrls();
   let fetchedMetaMap = {};
+  let csvText = null;
+  let gvizText = null;
 
   if (csvUrl) {
-    const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
+    csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
     if (csvText) {
       fetchedMetaMap = parseAllCollectionsMetaCSVData(csvText);
     }
   }
 
   if ((!fetchedMetaMap || Object.keys(fetchedMetaMap).length === 0) && gvizUrl) {
-    const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
+    gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
     if (gvizText) {
       fetchedMetaMap = parseAllCollectionsMetaGvizResponse(gvizText);
     }
   }
+
+  applyOpeningHoursFromMetaSource(csvText, gvizText);
 
   for (const [fetchedColId, meta] of Object.entries(fetchedMetaMap)) {
     if (!collectionsConfig[fetchedColId]) {

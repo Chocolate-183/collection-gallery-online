@@ -13,7 +13,7 @@
 - **頁面頂欄與展品 KPI 儀表板**: 整合頂部導覽列（品牌標籤、展廳切換、同步展品按鈕），並於卡片標題區域整合展廳編號（如 `C101`）與展品總數 KPI 數據（如 `520 件`）。
 
 ### 2. 展館開放時間與維護模式管理 (Opening Hours & Maintenance Mode)
-- **開放時間排程解析 (`opening-hours.csv`)**: 支援每日參觀時間解析與實時開館狀態判斷 (`isGalleryOpen`)。
+- **開放時間排程解析**: 展廳介紹與開館時間一律從中央 Google Spreadsheet (`CGO展廳資訊`) 讀取；本地 `opening-hours.csv` 僅作離線備援。
 - **閉館與調整中視圖 (`view-maintenance`)**: 當非開放時間或特定展廳狀態為「調整中」時，自動切換至專屬維護頁面，提示開館時間與下次開館資訊。
 - **大廳與服務台時間告示**: 大廳頂欄及服務台 (Info) 頁面呈現每週參觀時間排程網格與開館狀態告示。
 
@@ -47,11 +47,12 @@
 .
 ├── index.html        # 主網頁應用程式 (Cloudscape Layout & Root Shell)
 ├── styles.css        # Cloudscape Design System 樣式表 (含 Layout, Cards Grid, Modal & Dark Mode)
-├── opening-hours.csv # 展館開放時間排程設定檔
+├── opening-hours.csv # 展館開放時間離線備援（正式來源為中央 metadata spreadsheet）
 ├── js/
 │   ├── app.js        # 進入點、全域事件監聽與 Downward Compatibility Bridge
 │   ├── constants.js  # 集中式應用程式常數 (Views, Sort Types, Storage Keys, Default Schedules)
-│   ├── config.js     # Multi-Collection 展館組態與 Google Sheets API 網址建構器
+│   ├── config.js     # Multi-Collection 登錄與 Google Sheets API 網址建構器
+│   ├── galleries/    # 各展廳獨立 config（C101 / C102 / C103）
 │   ├── state.js      # 集中式 Application State (Store) & 訂閱機制
 │   ├── theme.js      # 深色 / 淺色展廳燈光模式控制 logic
 │   ├── parser.js     # 狀態機 CSV、GViz API 通用數據與 Meta 詮釋資料解析器

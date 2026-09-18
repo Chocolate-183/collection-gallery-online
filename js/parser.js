@@ -15,8 +15,25 @@ const META_FIELD_DEFINITIONS = [
   { key: 'author', match: k => k.includes('作者') || k.includes('策劃') || k.includes('負責人') || k.includes('author') },
   { key: 'status', match: k => k.includes('狀態') || k.includes('status') },
   { key: 'id', match: k => k.toUpperCase() === 'ID' || k.includes('編號') || k.includes('序號') || k.includes('展廳id') },
-  { key: 'timestamp', match: k => k.includes('時間') || k.includes('日期') || k.includes('timestamp') || k.includes('created') }
+  { key: 'timestamp', match: k => !isOpeningHoursMetaKey(k) && (k.includes('新增日期') || k.includes('timestamp') || k.includes('created') || k.includes('日期') || k.includes('時間')) }
 ];
+
+const DAY_INDEX_MAP = {
+  '週日': 0, '星期日': 0, '禮拜日': 0, '0': 0, 'sun': 0, 'sunday': 0,
+  '週一': 1, '星期一': 1, '禮拜一': 1, '1': 1, 'mon': 1, 'monday': 1,
+  '週二': 2, '星期二': 2, '禮拜二': 2, '2': 2, 'tue': 2, 'tuesday': 2,
+  '週三': 3, '星期三': 3, '禮拜三': 3, '3': 3, 'wed': 3, 'wednesday': 3,
+  '週四': 4, '星期四': 4, '禮拜四': 4, '4': 4, 'thu': 4, 'thursday': 4,
+  '週五': 5, '星期五': 5, '禮拜五': 5, '5': 5, 'fri': 5, 'friday': 5,
+  '週六': 6, '星期六': 6, '禮拜六': 6, '6': 6, 'sat': 6, 'saturday': 6
+};
+
+function isOpeningHoursMetaKey(key) {
+  const k = String(key || '').trim().toLowerCase();
+  if (!k) return false;
+  if (DAY_INDEX_MAP[k] !== undefined) return true;
+  return k.includes('開館') || k.includes('開放時間') || k.includes('參觀時間') || k.includes('opening');
+}
 
 /**
  * Helper to construct metadata object from key-value pairs
@@ -425,21 +442,8 @@ export function parseMetaCSVData(csvText) {
  * @param {string} csvText - Raw CSV content
  * @returns {Array<{day: string, hours: string}>|null} Array of 7 day schedule items
  */
-export function parseOpeningHoursCSV(csvText) {
-  const rows = parseCSVRows(csvText);
-  if (!rows || rows.length < 2) return null;
-
-  const dayMap = {
-    '週日': 0, '星期日': 0, '禮拜日': 0, '0': 0, 'sun': 0, 'sunday': 0,
-    '週一': 1, '星期一': 1, '禮拜一': 1, '1': 1, 'mon': 1, 'monday': 1,
-    '週二': 2, '星期二': 2, '禮拜二': 2, '2': 2, 'tue': 2, 'tuesday': 2,
-    '週三': 3, '星期三': 3, '禮拜三': 3, '3': 3, 'wed': 3, 'wednesday': 3,
-    '週四': 4, '星期四': 4, '禮拜四': 4, '4': 4, 'thu': 4, 'thursday': 4,
-    '週五': 5, '星期五': 5, '禮拜五': 5, '5': 5, 'fri': 5, 'friday': 5,
-    '週六': 6, '星期六': 6, '禮拜六': 6, '6': 6, 'sat': 6, 'saturday': 6
-  };
-
-  const schedule = [
+function emptyOpeningHoursSchedule() {
+  return [
     { day: '週日', hours: '16:00 - 23:55' },
     { day: '週一', hours: '01:00 - 23:55' },
     { day: '週二', hours: '01:00 - 23:55' },
@@ -448,18 +452,57 @@ export function parseOpeningHoursCSV(csvText) {
     { day: '週五', hours: '06:00 - 23:55' },
     { day: '週六', hours: '06:00 - 23:55' }
   ];
+}
 
+function applyOpeningHoursPair(schedule, dayRaw, hours) {
+  const idx = DAY_INDEX_MAP[(dayRaw || '').trim().toLowerCase()];
+  if (idx === undefined || !hours) return false;
+  schedule[idx].hours = hours;
+  return true;
+}
+
+/**
+ * Parses opening hours from the central metadata matrix (intro + hours).
+ * Uses weekday rows (週日…週六) in column 0; hours come from column 1
+ * (first hall / platform column). Returns null when the sheet has no hours rows.
+ */
+export function extractOpeningHoursFromMetaRows(rows) {
+  if (!rows || rows.length === 0) return null;
+
+  const schedule = emptyOpeningHoursSchedule();
+  let hasValidRow = false;
+
+  for (const row of rows) {
+    if (!row || row.length < 2) continue;
+    const key = (row[0] || '').trim();
+    const hours = (row[1] || '').trim();
+    if (applyOpeningHoursPair(schedule, key, hours)) {
+      hasValidRow = true;
+    }
+  }
+
+  return hasValidRow ? schedule : null;
+}
+
+/**
+ * Parses opening hours schedule from CSV content.
+ * @param {string} csvText - Raw CSV content
+ * @returns {Array<{day: string, hours: string}>|null} Array of 7 day schedule items
+ */
+export function parseOpeningHoursCSV(csvText) {
+  const rows = parseCSVRows(csvText);
+  if (!rows || rows.length < 2) return null;
+
+  const fromMeta = extractOpeningHoursFromMetaRows(rows);
+  if (fromMeta) return fromMeta;
+
+  const schedule = emptyOpeningHoursSchedule();
   let hasValidRow = false;
 
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
     if (row.length < 2) continue;
-    const dayRaw = (row[0] || '').trim().toLowerCase();
-    const hours = (row[1] || '').trim();
-
-    const idx = dayMap[dayRaw];
-    if (idx !== undefined && hours) {
-      schedule[idx].hours = hours;
+    if (applyOpeningHoursPair(schedule, row[0], (row[1] || '').trim())) {
       hasValidRow = true;
     }
   }

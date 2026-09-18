@@ -7,7 +7,8 @@ import {
   parseAllCollectionsMetaCSVData,
   parseCSVRows,
   extractGvizTable,
-  parseOpeningHoursCSV
+  parseOpeningHoursCSV,
+  extractOpeningHoursFromMetaRows
 } from '../js/parser.js';
 import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana } from '../js/filter.js';
 import { LENGTH_TABS } from '../js/constants.js';
@@ -79,6 +80,20 @@ ID,C101
   assert.equal(parsedMap['japanese-terms'].status, '調整中');
   assert.equal(parsedMap['china-terms'].status, '開放中');
   assert.equal(parsedMap['korean-terms'].status, '籌備中');
+
+  const hoursMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙
+展廳ID,C101,C102
+週日,00:01 - 23:59,09:00 - 18:00
+週一,01:00 - 22:00,09:00 - 18:00
+週二,01:00 - 22:00,09:00 - 18:00
+週三,01:00 - 22:00,09:00 - 18:00
+週四,01:00 - 22:00,09:00 - 18:00
+週五,06:00 - 23:55,09:00 - 18:00
+週六,06:00 - 23:55,09:00 - 18:00`;
+  const hoursFromMeta = extractOpeningHoursFromMetaRows(parseCSVRows(hoursMatrixCSV));
+  assert.equal(hoursFromMeta[0].hours, '00:01 - 23:59');
+  assert.equal(hoursFromMeta[1].hours, '01:00 - 22:00');
+  assert.equal(hoursFromMeta[5].hours, '06:00 - 23:55');
 });
 
 test('Opening Hours Parser & Schedule Utilities', () => {
@@ -207,6 +222,8 @@ test('Config & Endpoint URL Builders', () => {
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
   const krUrls = getCollectionDataUrls(krCol);
   assert(krUrls.csvUrl.includes('1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM'));
+  assert.equal(typeof collectionsConfig['japanese-terms'].sheetId, 'string');
+  assert.equal(typeof collectionsConfig['china-terms'].defaultMeta.id, 'string');
 });
 
 test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C and D', () => {

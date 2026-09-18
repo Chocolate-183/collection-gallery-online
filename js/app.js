@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   initSidebarState();
   initSidebarOutsideClick();
 
+  Object.keys(collectionsConfig).forEach(updateSidebarBadge);
+
+  await preloadAllCollections();
   await loadOpeningHours();
   renderScheduleGrid();
 
@@ -80,9 +83,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     maintHoursEl.textContent = getNextOpeningTimeText();
   }
 
-  Object.keys(collectionsConfig).forEach(updateSidebarBadge);
-
-  await preloadAllCollections();
   Object.keys(collectionsConfig).forEach(updateSidebarBadge);
   updateStatsView();
   handleHashRoute();

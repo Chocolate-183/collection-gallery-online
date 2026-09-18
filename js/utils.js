@@ -103,14 +103,17 @@ export function parseRecommendationList(val) {
 }
 
 export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];
+let openingHoursFromMetadata = false;
 
-export function setOpeningHoursSchedule(newSchedule) {
+export function setOpeningHoursSchedule(newSchedule, { fromMetadata = false } = {}) {
   if (Array.isArray(newSchedule) && newSchedule.length === 7) {
     OPENING_HOURS_SCHEDULE = newSchedule;
+    if (fromMetadata) openingHoursFromMetadata = true;
   }
 }
 
 export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
+  if (openingHoursFromMetadata) return OPENING_HOURS_SCHEDULE;
   const csvText = await safeFetchText(csvUrl);
   if (csvText) {
     const parsed = parseOpeningHoursCSV(csvText);
