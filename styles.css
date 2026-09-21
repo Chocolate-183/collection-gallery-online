@@ -664,10 +664,12 @@ a:focus {
 }
 
 .awsui-card.active .awsui-card-header-title .awsui-title-separator,
-.awsui-card.active .awsui-card-header-title .awsui-title-suffix,
-.awsui-card:active .awsui-card-header-title .awsui-title-separator,
-.awsui-card:active .awsui-card-header-title .awsui-title-suffix {
+.awsui-card:active .awsui-card-header-title .awsui-title-separator {
   color: rgba(255, 255, 255, 0.55) !important;
+}
+.awsui-card.active .awsui-card-header-title .awsui-title-suffix,
+.awsui-card:active .awsui-card-header-title .awsui-title-suffix {
+  color: rgba(255, 255, 255, 0.72) !important;
 }
 
 .awsui-card.active .awsui-card-divider,
@@ -748,12 +750,12 @@ a:focus {
   line-height: 1.25;
 }
 
-.awsui-title-separator,
-.awsui-title-suffix {
-  color: #c5cad1;
-}
 .awsui-title-separator {
+  color: #c5cad1;
   font-weight: 400;
+}
+.awsui-title-suffix {
+  color: #9aa3ad;
 }
 
 /* Font override for Mainland China terms */
@@ -1833,10 +1835,12 @@ a:focus {
 }
 
 [data-theme="dark"] .awsui-card-header-title .awsui-title-separator,
-[data-theme="dark"] .awsui-card-header-title .awsui-title-suffix,
-[data-theme="dark"] #modal-term-title .awsui-title-separator,
-[data-theme="dark"] #modal-term-title .awsui-title-suffix {
+[data-theme="dark"] #modal-term-title .awsui-title-separator {
   color: #4b5563 !important;
+}
+[data-theme="dark"] .awsui-card-header-title .awsui-title-suffix,
+[data-theme="dark"] #modal-term-title .awsui-title-suffix {
+  color: #6b7280 !important;
 }
 
 [data-theme="dark"] .awsui-card.active,
@@ -1858,10 +1862,12 @@ a:focus {
 }
 
 [data-theme="dark"] .awsui-card.active .awsui-card-header-title .awsui-title-separator,
-[data-theme="dark"] .awsui-card.active .awsui-card-header-title .awsui-title-suffix,
-[data-theme="dark"] .awsui-card:active .awsui-card-header-title .awsui-title-separator,
-[data-theme="dark"] .awsui-card:active .awsui-card-header-title .awsui-title-suffix {
+[data-theme="dark"] .awsui-card:active .awsui-card-header-title .awsui-title-separator {
   color: rgba(255, 255, 255, 0.55) !important;
+}
+[data-theme="dark"] .awsui-card.active .awsui-card-header-title .awsui-title-suffix,
+[data-theme="dark"] .awsui-card:active .awsui-card-header-title .awsui-title-suffix {
+  color: rgba(255, 255, 255, 0.72) !important;
 }
 
 [data-theme="dark"] .awsui-card.active .awsui-card-divider,
