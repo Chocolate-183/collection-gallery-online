@@ -1,7 +1,7 @@
 /**
  * Global Application State Store
  */
-import { STORAGE_KEYS, VIEWS } from './constants.js';
+import { STORAGE_KEYS, VIEWS, SORT_FIELDS, SORT_ORDERS } from './constants.js';
 
 const safeLocalStorage = {
   getItem: (key) => typeof localStorage !== 'undefined' ? localStorage.getItem(key) : null,
@@ -26,6 +26,10 @@ class Store {
       pageSize: 12,
       currentKanaTab: 'ALL',
       currentLengthTab: 'ALL',
+      currentInitialTab: 'ALL',
+      loanwordOnly: false,
+      currentSortField: SORT_FIELDS.STANDARD,
+      currentSortOrder: SORT_ORDERS.ASC,
       searchQuery: '',
       invalidTerm: null,
       currentView: VIEWS.DICTIONARY,

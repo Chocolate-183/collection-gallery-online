@@ -30,8 +30,8 @@
 
 ### 5. 多維度檢索與展品篩選機制 (Filter, Search & Sorting)
 - **實時關鍵字搜尋**: 支援展品名稱、標音 (Reading)、策展解說與展品編號跨欄位即時模糊搜尋。
-- **字數篩選 (`字數篩選`)**: 提供 `不限`、`1字`、`2字`、`3字`、`4字`、`5字+` 多字數頁籤，準確處理多位元 Unicode 字數計算。
-- **快速分類與「隨機探索」導覽**: 支援 `全部展品`、`隨機探索` (隨機抽卡觀展模式)、`新進展品` (依建置時間排序) 及 50 音分區頁籤。
+- **精細篩選 Modal (`Filter`)**: 展廳篩選列只保留 `ALL` / `RANDOM 10` / `LATEST 10`。子音、字數、種類（外來語）與排序（正序／倒序 × ID／Title／Reading／Gloss）改由 `Filter` 按鈕開啟的設定 Modal 處理。C103 顯示 Starts with / Length / Kind / Title / Gloss；C101 顯示 Kana / Length / Reading。
+- **快速分類與「隨機探索」導覽**: 主畫面保留 `ALL`、`RANDOM 10`、`LATEST 10`；五十音與韓語子音改放在 Filter Modal。
 - **多重排序與分頁控制**: 提供標音正倒序、漢字正倒序、序號排序，以及每頁 `12` / `24` / `48` 件筆數選擇。
 
 ### 6. 展品詳細導覽彈窗與 Hash 路由 (Detail Modal & Hash Routing)

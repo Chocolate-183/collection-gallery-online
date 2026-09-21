@@ -326,6 +326,71 @@ test('Description Modal Component & Interaction Logic', async () => {
   assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
 });
 
+test('Filter Modal - Open, apply, reset and gallery-specific sections', async () => {
+  const mockFilterModal = createMockElement();
+  const mockHangul = createMockElement({ style: { display: 'none' } });
+  const mockKana = createMockElement({ style: { display: 'none' } });
+  const mockKind = createMockElement({ style: { display: 'none' } });
+  const mockReading = createMockElement({ style: {} });
+  const mockGloss = createMockElement({ style: { display: 'none' } });
+  const mockBadge = createMockElement({ style: { display: 'none' } });
+  const mockSummary = createMockElement();
+  const mockTrigger = createMockElement();
+  const mockKanaTabsRow = createMockElement({ style: {} });
+  const mockQuickLabel = createMockElement();
+
+  mockDOM({
+    'filter-modal': mockFilterModal,
+    'filter-hangul-section': mockHangul,
+    'filter-kana-section': mockKana,
+    'filter-kind-section': mockKind,
+    'sort-field-reading': mockReading,
+    'sort-field-subtitle': mockGloss,
+    'filter-modal-badge': mockBadge,
+    'filter-summary': mockSummary,
+    'btn-open-filter-modal': mockTrigger,
+    'kana-tabs-row': mockKanaTabsRow,
+    'quick-tabs-label': mockQuickLabel
+  });
+
+  const originalWindow = global.window;
+  global.window = {
+    switchView: () => {},
+    scrollTo: () => {},
+    syncFilterUi: undefined
+  };
+
+  const { store } = await import('../js/state.js');
+  const { switchCollection } = await import('../js/components/sidebar.js');
+  const { openFilterModal, closeFilterModal, applyFilterModal, resetFineFilters, countActiveFineFilters } = await import('../js/filter.js');
+
+  store.set({ currentCollectionId: 'japanese-terms', allRecords: [], filteredRecords: [] });
+  switchCollection('korean-terms', false);
+  assert.equal(mockHangul.style.display, '');
+  assert.equal(mockKind.style.display, '');
+  assert.equal(mockKana.style.display, 'none');
+  assert.equal(mockGloss.style.display, '');
+  assert.equal(mockReading.style.display, 'none');
+
+  openFilterModal();
+  assert(mockFilterModal.classes.has('open'));
+  applyFilterModal();
+  assert(!mockFilterModal.classes.has('open'));
+
+  store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', loanwordOnly: true, currentCollectionId: 'korean-terms' });
+  assert.equal(countActiveFineFilters() >= 3, true);
+  resetFineFilters();
+  const afterReset = store.get();
+  assert.equal(afterReset.currentLengthTab, 'ALL');
+  assert.equal(afterReset.currentInitialTab, 'ALL');
+  assert.equal(afterReset.loanwordOnly, false);
+  assert.equal(afterReset.currentSortField, 'title');
+
+  closeFilterModal();
+  assert(!mockFilterModal.classes.has('open'));
+  global.window = originalWindow;
+});
+
 test('C103 Item Modal hides Pronunciation while C101 still shows it', async () => {
   const mockReadingSection = createMockElement({ style: { display: 'none' } });
   const mockReadingRow = createMockElement();

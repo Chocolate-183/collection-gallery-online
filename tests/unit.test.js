@@ -10,8 +10,8 @@ import {
   parseOpeningHoursCSV,
   extractOpeningHoursFromMetaRows
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, sortBySubtitle } from '../js/filter.js';
-import { LENGTH_TABS, KANA_TABS } from '../js/constants.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType } from '../js/filter.js';
+import { LENGTH_TABS, KANA_TABS, SORT_FIELDS, SORT_ORDERS } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
@@ -226,6 +226,43 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
     { id: 'email', ja_term: '이메일 | e-mail' }
   ];
   assert.deepEqual(sortBySubtitle(unsortedLoanwords).map(r => r.id), ['computer', 'email', 'wifi']);
+});
+
+test('Filter Modal - Initial, Length, Kind and Sort combine independently', () => {
+  const records = [
+    { id: '#C103-0003', ja_term: '가능 | 可能', reading: '가능', subtitle: '可能', row_index: 3 },
+    { id: '#C103-0001', ja_term: '컴퓨터 | computer', reading: '컴퓨터', subtitle: 'computer', row_index: 1 },
+    { id: '#C103-0002', ja_term: '강하다 | 強하다', reading: '강하다', subtitle: '強하다', row_index: 2 },
+    { id: '#C103-0010', ja_term: '개인기 | 個人技', reading: '개인기', subtitle: '個人技', row_index: 10 }
+  ];
+
+  const loanOnly = filterByLoanword(records, true);
+  assert.deepEqual(loanOnly.map(r => r.id), ['#C103-0001']);
+
+  const gaOnly = filterByInitial(records, 'ㄱ');
+  assert.equal(gaOnly.length, 3);
+  assert.equal(filterByInitial(gaOnly, 'ALL').length, 3);
+
+  const twoChars = filterByLength(gaOnly, LENGTH_TABS.TWO);
+  assert.deepEqual(twoChars.map(r => r.id), ['#C103-0003']);
+
+  const combined = filterByLength(filterByLoanword(filterByInitial(records, 'ㄱ'), true), LENGTH_TABS.TWO);
+  assert.equal(combined.length, 0);
+
+  const byIdAsc = sortRecords(records, null, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.ASC });
+  assert.deepEqual(byIdAsc.map(r => r.id), ['#C103-0001', '#C103-0002', '#C103-0003', '#C103-0010']);
+
+  const byIdDesc = sortRecords(records, null, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.DESC });
+  assert.deepEqual(byIdDesc.map(r => r.id), ['#C103-0010', '#C103-0003', '#C103-0002', '#C103-0001']);
+
+  const byTitle = sortRecords(records, null, { sortField: SORT_FIELDS.TITLE, sortOrder: SORT_ORDERS.ASC });
+  assert.equal(byTitle[0].ja_term, '가능 | 可能');
+
+  const byGloss = sortRecords(records, null, { sortField: SORT_FIELDS.SUBTITLE, sortOrder: SORT_ORDERS.ASC });
+  assert.deepEqual(byGloss.map(r => r.subtitle), ['computer', '個人技', '可能', '強하다']);
+
+  assert.equal(resolveSortType(SORT_FIELDS.ID, SORT_ORDERS.ASC), 'id-asc');
+  assert.equal(resolveSortType(SORT_FIELDS.TITLE, SORT_ORDERS.DESC), 'ja-desc');
 });
 
 test('Config & Endpoint URL Builders', () => {
