@@ -78,6 +78,40 @@ export function getExhibitFilterLength(str) {
 }
 
 /**
+ * Text after the first `|` in a C103 exhibit title (the on-card 副標).
+ */
+export function getExhibitTitleSuffix(str) {
+  if (!str) return '';
+  const idx = String(str).indexOf('|');
+  if (idx === -1) return '';
+  return String(str).slice(idx + 1).trim();
+}
+
+/**
+ * C103 副標 used for loanword filtering: sheet column D, else title suffix after `|`.
+ */
+export function getExhibitSubtitle(record) {
+  if (!record) return '';
+  if (typeof record === 'string') return getExhibitTitleSuffix(record);
+  const fromColumn = String(record.subtitle || '').trim();
+  if (fromColumn) return fromColumn;
+  return getExhibitTitleSuffix(record.ja_term);
+}
+
+/**
+ * True when a 副標 is English (Latin letters, no CJK / Hangul / Kana).
+ */
+export function isEnglishSubtitle(str) {
+  const s = String(str || '').trim();
+  if (!s || !/[A-Za-z]/.test(s)) return false;
+  return !/[\u1100-\u11FF\u3040-\u30FF\u3400-\u9FFF\uAC00-\uD7A3\uF900-\uFAFF]/.test(s);
+}
+
+export function isEnglishLoanword(record) {
+  return isEnglishSubtitle(getExhibitSubtitle(record));
+}
+
+/**
  * Renders exhibit titles so C103 `|` and the text after it stay muted (e.g. 가능 | 可能).
  */
 export function formatExhibitTitleHtml(str) {

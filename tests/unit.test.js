@@ -11,12 +11,14 @@ import {
   extractOpeningHoursFromMetaRows
 } from '../js/parser.js';
 import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana } from '../js/filter.js';
-import { LENGTH_TABS } from '../js/constants.js';
+import { LENGTH_TABS, KANA_TABS } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
   getExhibitFilterLength,
   formatExhibitTitleHtml,
+  isEnglishSubtitle,
+  isEnglishLoanword,
   getTodayOpeningHoursText,
   isCollectionAdjusting,
   isCollectionPreparing,
@@ -124,6 +126,17 @@ test('Utils - HTML Escaping, Unicode Length & Recommendations', () => {
   assert.equal(formatExhibitTitleHtml('1LDK'), '1LDK');
   assert.equal(formatExhibitTitleHtml('<script>|x'), '&lt;script&gt;<span class="awsui-title-separator">|</span><span class="awsui-title-suffix">x</span>');
 
+  assert.equal(isEnglishSubtitle('computer'), true);
+  assert.equal(isEnglishSubtitle('Wi-Fi'), true);
+  assert.equal(isEnglishSubtitle('e-mail'), true);
+  assert.equal(isEnglishSubtitle('可能'), false);
+  assert.equal(isEnglishSubtitle('失手'), false);
+  assert.equal(isEnglishSubtitle('가능'), false);
+  assert.equal(isEnglishSubtitle(''), false);
+  assert.equal(isEnglishLoanword({ ja_term: '컴퓨터 | computer' }), true);
+  assert.equal(isEnglishLoanword({ ja_term: '가능 | 可能' }), false);
+  assert.equal(isEnglishLoanword({ ja_term: '가능 | 可能', subtitle: 'computer' }), true);
+
   assert.deepEqual(parseRecommendationList('211<br>一本,二本\n三本；四本'), ['211', '一本', '二本', '三本', '四本']);
   assert.deepEqual(parseRecommendationList(['A', 'B']), ['A', 'B']);
   assert.deepEqual(parseRecommendationList(null), []);
@@ -197,6 +210,15 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   const saOnly = filterByKana(hangulRecords, 'ㅅ', '');
   assert.equal(saOnly.length, 1);
   assert.equal(saOnly[0].id, 's');
+
+  const loanwordRecords = [
+    { id: 'hanja', ja_term: '가능 | 可能', subtitle: '可能' },
+    { id: 'eng-col', ja_term: '컴퓨터 | computer', subtitle: 'computer' },
+    { id: 'eng-title', ja_term: '이메일 | e-mail' }
+  ];
+  const loanwords = filterByKana(loanwordRecords, KANA_TABS.LOANWORD, '');
+  assert.equal(loanwords.length, 2);
+  assert.deepEqual(loanwords.map(r => r.id), ['eng-col', 'eng-title']);
 });
 
 test('Config & Endpoint URL Builders', () => {
@@ -225,6 +247,7 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(krCol.hasReading, true);
   assert.equal(krCol.hasKanaTabs, false);
   assert.equal(krCol.hasHangulTabs, true);
+  assert.equal(krCol.hasLoanwordFilter, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
   const krUrls = getCollectionDataUrls(krCol);
   assert(krUrls.csvUrl.includes('1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM'));
@@ -242,6 +265,7 @@ test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C 
   assert.equal(parsed[0].ja_term, '가능 | 可能');
   assert.equal(parsed[0].reading, '가능');
   assert.equal(parsed[0].tw_translation, '可能');
+  assert.equal(parsed[0].subtitle, '可能');
   assert.equal(parsed[1].ja_term, '실수 | 失手');
   assert.equal(parsed[1].reading, '실수');
   assert.equal(parsed[1].tw_translation, '失誤');

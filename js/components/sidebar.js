@@ -134,6 +134,7 @@ export function switchCollection(collectionId, updateHash = true) {
   const quickTabsLabel = document.getElementById('quick-tabs-label');
   const kanaOnlyTabs = document.querySelectorAll('#kana-tabs .kana-only');
   const hangulOnlyTabs = document.querySelectorAll('#kana-tabs .hangul-only');
+  const loanwordOnlyTabs = document.querySelectorAll('#kana-tabs .loanword-only');
 
   if (kanaTabsRow) kanaTabsRow.style.display = 'flex';
   if (quickTabsLabel) quickTabsLabel.innerText = '展品篩選：';
@@ -142,6 +143,9 @@ export function switchCollection(collectionId, updateHash = true) {
   });
   hangulOnlyTabs.forEach(tab => {
     tab.style.display = col.hasHangulTabs ? 'inline-flex' : 'none';
+  });
+  loanwordOnlyTabs.forEach(tab => {
+    tab.style.display = col.hasLoanwordFilter ? 'inline-flex' : 'none';
   });
 
   if (isDifferent) {

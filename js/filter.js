@@ -4,7 +4,7 @@
 import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE } from './constants.js';
 import { store } from './state.js';
 import { renderCards } from './components/cards.js';
-import { getExhibitFilterLength } from './utils.js';
+import { getExhibitFilterLength, isEnglishLoanword } from './utils.js';
 
 /**
  * Checks if a string starts with a kana character in the specified kana group.
@@ -95,6 +95,8 @@ export function filterByKana(records, kanaTab, searchQuery) {
       return (b.row_index ?? 0) - (a.row_index ?? 0);
     });
     result = result.slice(0, 10);
+  } else if (kanaTab === KANA_TABS.LOANWORD) {
+    result = result.filter(r => isEnglishLoanword(r));
   } else if (HANGUL_INITIAL_TABS.includes(kanaTab)) {
     result = result.filter(r => matchesHangulInitial(r.reading || r.ja_term, kanaTab));
   } else {

@@ -12,6 +12,7 @@ export default {
   hasReading: true,
   hasKanaTabs: false,
   hasHangulTabs: true,
+  hasLoanwordFilter: true,
   hiddenColumnIndexes: [2, 3],
   searchPlaceholder: '尋找展品...',
   defaultMeta: {

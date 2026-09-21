@@ -585,6 +585,10 @@ a:focus {
   justify-content: center;
 }
 
+.loanword-only {
+  display: none;
+}
+
 .awsui-tabs {
   display: flex;
   align-items: center;

@@ -21,7 +21,8 @@ export const SORT_TYPES = {
 export const KANA_TABS = {
   ALL: 'ALL',
   RANDOM10: 'RANDOM10',
-  LATEST10: 'LATEST10'
+  LATEST10: 'LATEST10',
+  LOANWORD: 'LOANWORD'
 };
 
 export const LENGTH_TABS = {
