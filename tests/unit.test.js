@@ -120,9 +120,9 @@ test('Utils - HTML Escaping, Unicode Length & Recommendations', () => {
   assert.equal(getExhibitFilterLength('강하다 | 強하다'), 3);
   assert.equal(getExhibitFilterLength('개인기 | 個人技'), 3);
   assert.equal(getExhibitFilterLength('1LDK'), 4);
-  assert.equal(formatExhibitTitleHtml('가능 | 可能'), '가능 <span class="awsui-title-separator">|</span> 可能');
+  assert.equal(formatExhibitTitleHtml('가능 | 可能'), '가능 <span class="awsui-title-separator">|</span><span class="awsui-title-suffix"> 可能</span>');
   assert.equal(formatExhibitTitleHtml('1LDK'), '1LDK');
-  assert.equal(formatExhibitTitleHtml('<script>|x'), '&lt;script&gt;<span class="awsui-title-separator">|</span>x');
+  assert.equal(formatExhibitTitleHtml('<script>|x'), '&lt;script&gt;<span class="awsui-title-separator">|</span><span class="awsui-title-suffix">x</span>');
 
   assert.deepEqual(parseRecommendationList('211<br>一本,二本\n三本；四本'), ['211', '一本', '二本', '三本', '四本']);
   assert.deepEqual(parseRecommendationList(['A', 'B']), ['A', 'B']);

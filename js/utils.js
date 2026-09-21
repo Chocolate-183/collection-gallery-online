@@ -78,11 +78,16 @@ export function getExhibitFilterLength(str) {
 }
 
 /**
- * Renders exhibit titles so C103 `|` separators stay muted (e.g. 가능 | 可能).
+ * Renders exhibit titles so C103 `|` and the text after it stay muted (e.g. 가능 | 可能).
  */
 export function formatExhibitTitleHtml(str) {
   if (!str) return '';
-  return escapeHtml(String(str)).replace(/\|/g, '<span class="awsui-title-separator">|</span>');
+  const escaped = escapeHtml(String(str));
+  const idx = escaped.indexOf('|');
+  if (idx === -1) return escaped;
+  const left = escaped.slice(0, idx);
+  const right = escaped.slice(idx + 1);
+  return `${left}<span class="awsui-title-separator">|</span><span class="awsui-title-suffix">${right}</span>`;
 }
 
 /**
