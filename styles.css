@@ -634,6 +634,24 @@ a:focus {
   border-color: #ECC94B;
 }
 
+#btn-open-filter-modal.active,
+#btn-open-filter-modal:active {
+  background: #ECC94B !important;
+  color: #ffffff !important;
+  border-color: #ECC94B !important;
+}
+
+#btn-open-filter-modal.active .awsui-icon,
+#btn-open-filter-modal:active .awsui-icon {
+  fill: #ffffff;
+}
+
+#btn-open-filter-modal.active .awsui-filter-badge,
+#btn-open-filter-modal:active .awsui-filter-badge {
+  background: #ffffff;
+  color: #303748;
+}
+
 .awsui-filter-badge {
   min-width: 16px;
   height: 16px;
@@ -1936,7 +1954,9 @@ a:focus {
 }
 
 [data-theme="dark"] #collection-header-title.active,
-[data-theme="dark"] #collection-header-title:active {
+[data-theme="dark"] #collection-header-title:active,
+[data-theme="dark"] #btn-open-filter-modal.active,
+[data-theme="dark"] #btn-open-filter-modal:active {
   background-color: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;

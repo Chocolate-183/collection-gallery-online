@@ -374,8 +374,10 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   openFilterModal();
   assert(mockFilterModal.classes.has('open'));
+  assert(mockTrigger.classes.has('active'));
   applyFilterModal();
   assert(!mockFilterModal.classes.has('open'));
+  assert(!mockTrigger.classes.has('active'));
 
   store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', loanwordOnly: true, currentCollectionId: 'korean-terms' });
   assert.equal(countActiveFineFilters() >= 3, true);

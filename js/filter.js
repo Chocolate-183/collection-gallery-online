@@ -400,11 +400,13 @@ export function openFilterModal() {
   if (!modal) return;
   syncFilterUi();
   modal.classList.add('open');
+  document.getElementById('btn-open-filter-modal')?.classList.add('active');
 }
 
 export function closeFilterModal() {
   const modal = document.getElementById('filter-modal');
   if (modal) modal.classList.remove('open');
+  document.getElementById('btn-open-filter-modal')?.classList.remove('active');
 }
 
 export function closeFilterModalOnBackdrop(e) {
