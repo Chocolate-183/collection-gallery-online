@@ -5,7 +5,7 @@ import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { initTheme, toggleTheme } from './theme.js';
 import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
-import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab } from './filter.js';
+import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab, selectInitialTab, selectKindTab, selectSortField, selectSortOrder, resetFineFilters, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, applyFilterModal, syncFilterUi } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
 import { onPageSizeChange, goToPage } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, openCollectionDescriptionModal } from './components/modal.js';
@@ -40,6 +40,16 @@ Object.assign(window, {
   onPageSizeChange,
   selectKanaTab,
   selectLengthTab,
+  selectInitialTab,
+  selectKindTab,
+  selectSortField,
+  selectSortOrder,
+  resetFineFilters,
+  openFilterModal,
+  closeFilterModal,
+  closeFilterModalOnBackdrop,
+  applyFilterModal,
+  syncFilterUi,
   openMeaningModal,
   closeDetailModal,
   closeDetailModalOnBackdrop,
@@ -94,8 +104,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       const descModal = document.getElementById('description-modal');
+      const filterModal = document.getElementById('filter-modal');
       if (descModal && descModal.classList.contains('open')) {
         closeDescriptionModal();
+      } else if (filterModal && filterModal.classList.contains('open')) {
+        closeFilterModal();
       } else {
         closeDetailModal();
         closeCollectionModal();

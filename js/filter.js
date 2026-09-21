@@ -1,10 +1,11 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS } from './constants.js';
 import { store } from './state.js';
+import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
-import { getExhibitFilterLength } from './utils.js';
+import { getExhibitFilterLength, getExhibitSubtitle, isEnglishLoanword } from './utils.js';
 
 /**
  * Checks if a string starts with a kana character in the specified kana group.
@@ -95,6 +96,8 @@ export function filterByKana(records, kanaTab, searchQuery) {
       return (b.row_index ?? 0) - (a.row_index ?? 0);
     });
     result = result.slice(0, 10);
+  } else if (kanaTab === KANA_TABS.LOANWORD) {
+    result = result.filter(r => isEnglishLoanword(r));
   } else if (HANGUL_INITIAL_TABS.includes(kanaTab)) {
     result = result.filter(r => matchesHangulInitial(r.reading || r.ja_term, kanaTab));
   } else {
@@ -104,11 +107,56 @@ export function filterByKana(records, kanaTab, searchQuery) {
   return result;
 }
 
+export function filterByInitial(records, initialTab) {
+  if (!initialTab || initialTab === KANA_TABS.ALL) return records;
+  if (HANGUL_INITIAL_TABS.includes(initialTab)) {
+    return records.filter(r => matchesHangulInitial(r.reading || r.ja_term, initialTab));
+  }
+  if (KANA_RANGES[initialTab]) {
+    return records.filter(r => matchesKanaGroup(r.reading || r.ja_term, initialTab));
+  }
+  return records;
+}
+
+export function filterByLoanword(records, loanwordOnly) {
+  if (!loanwordOnly) return records;
+  return records.filter(r => isEnglishLoanword(r));
+}
+
+export function resolveSortType(sortField, sortOrder) {
+  const desc = sortOrder === SORT_ORDERS.DESC;
+  if (sortField === SORT_FIELDS.ID) return desc ? SORT_TYPES.JA_DESC : SORT_TYPES.ID_ASC;
+  if (sortField === SORT_FIELDS.TITLE || sortField === SORT_FIELDS.SUBTITLE) {
+    return desc ? SORT_TYPES.JA_DESC : SORT_TYPES.JA_ASC;
+  }
+  return desc ? SORT_TYPES.READING_DESC : SORT_TYPES.READING_ASC;
+}
+
 /**
  * Sorts records based on chosen sort option dropdown.
  */
-export function sortRecords(records, sortType) {
+export function sortRecords(records, sortType, options = {}) {
   const result = [...records];
+  const field = options.sortField;
+  const order = options.sortOrder;
+  if (field) {
+    const direction = order === SORT_ORDERS.DESC ? -1 : 1;
+    return result.sort((a, b) => {
+      let cmp = 0;
+      if (field === SORT_FIELDS.ID) {
+        cmp = String(a.id || '').localeCompare(String(b.id || ''), 'en', { numeric: true });
+      } else if (field === SORT_FIELDS.SUBTITLE) {
+        cmp = getExhibitSubtitle(a).localeCompare(getExhibitSubtitle(b), 'en', { sensitivity: 'base' });
+      } else if (field === SORT_FIELDS.TITLE) {
+        cmp = (a.ja_term || '').localeCompare(b.ja_term || '');
+      } else {
+        cmp = (a.reading || a.ja_term || '').localeCompare(b.reading || b.ja_term || '', 'ja');
+      }
+      if (cmp !== 0) return direction * cmp;
+      return (a.row_index ?? 0) - (b.row_index ?? 0);
+    });
+  }
+
   const compareText = (aStr, bStr) => (aStr || '').localeCompare(bStr || '', 'ja');
 
   switch (sortType) {
@@ -128,6 +176,22 @@ export function sortRecords(records, sortType) {
 }
 
 /**
+ * C103 外來語 tab: sort by English 副標 (A–Z), not Hangul reading.
+ */
+export function sortBySubtitle(records) {
+  const result = [...records];
+  return result.sort((a, b) => {
+    const cmp = getExhibitSubtitle(a).localeCompare(getExhibitSubtitle(b), 'en', { sensitivity: 'base' });
+    if (cmp !== 0) return cmp;
+    return (a.row_index ?? 0) - (b.row_index ?? 0);
+  });
+}
+
+function isQuickPresetTab(tab) {
+  return tab === KANA_TABS.RANDOM10 || tab === KANA_TABS.LATEST10;
+}
+
+/**
  * Main filter pipeline entry point.
  */
 export function applyFiltersAndSort() {
@@ -136,6 +200,10 @@ export function applyFiltersAndSort() {
     searchQuery,
     currentLengthTab,
     currentKanaTab,
+    currentInitialTab,
+    loanwordOnly,
+    currentSortField,
+    currentSortOrder,
     invalidTerm
   } = store.get();
 
@@ -150,12 +218,18 @@ export function applyFiltersAndSort() {
 
   let result = filterByQuery(allRecords, searchQuery);
   result = filterByLength(result, currentLengthTab);
-  result = filterByKana(result, currentKanaTab, searchQuery);
+  result = filterByLoanword(result, loanwordOnly);
+  result = filterByInitial(result, currentInitialTab);
+
+  if (isQuickPresetTab(currentKanaTab)) {
+    result = filterByKana(result, currentKanaTab, searchQuery);
+  }
 
   if (currentKanaTab !== KANA_TABS.LATEST10) {
-    const sortSelect = document.getElementById('sort-select');
-    const sortType = sortSelect ? sortSelect.value : SORT_TYPES.READING_ASC;
-    result = sortRecords(result, sortType);
+    result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
+      sortField: currentSortField,
+      sortOrder: currentSortOrder
+    });
   }
 
   store.set({
@@ -164,6 +238,7 @@ export function applyFiltersAndSort() {
   });
 
   renderCards();
+  syncFilterUi();
 }
 
 export function onSearchInput() {
@@ -184,6 +259,14 @@ function updateTabPills(containerSelector, element) {
   }
 }
 
+function activateTabByValue(containerSelector, value) {
+  const pills = document.querySelectorAll(`${containerSelector} .awsui-tab`);
+  pills.forEach(p => {
+    const tabValue = p.getAttribute('data-tab');
+    p.classList.toggle('active', tabValue === value);
+  });
+}
+
 export function selectKanaTab(tab, element) {
   if (tab === KANA_TABS.RANDOM10) {
     store.reshuffleRandom10();
@@ -195,6 +278,142 @@ export function selectKanaTab(tab, element) {
 
 export function selectLengthTab(tab, element) {
   store.set({ currentLengthTab: tab, invalidTerm: null });
-  updateTabPills('#length-tabs', element);
+  if (element) updateTabPills('#length-tabs', element);
   applyFiltersAndSort();
+}
+
+export function selectInitialTab(tab, element) {
+  store.set({ currentInitialTab: tab, invalidTerm: null });
+  if (element) {
+    const parent = element.closest('.awsui-tabs');
+    if (parent && parent.id) updateTabPills(`#${parent.id}`, element);
+  }
+  applyFiltersAndSort();
+}
+
+export function selectKindTab(tab, element) {
+  store.set({ loanwordOnly: tab === KANA_TABS.LOANWORD, invalidTerm: null });
+  if (element) updateTabPills('#kind-tabs', element);
+  applyFiltersAndSort();
+}
+
+export function selectSortField(field, element) {
+  store.set({ currentSortField: field, invalidTerm: null });
+  if (element) updateTabPills('#sort-field-tabs', element);
+  applyFiltersAndSort();
+}
+
+export function selectSortOrder(order, element) {
+  store.set({ currentSortOrder: order, invalidTerm: null });
+  if (element) updateTabPills('#sort-order-tabs', element);
+  applyFiltersAndSort();
+}
+
+function getDefaultSortField(col) {
+  if (col?.hasHangulTabs) return SORT_FIELDS.TITLE;
+  if (col?.hasKanaTabs ?? col?.hasReading) return SORT_FIELDS.STANDARD;
+  return SORT_FIELDS.TITLE;
+}
+
+export function resetFineFilters() {
+  const { currentCollectionId } = store.get();
+  const col = collectionsConfig[currentCollectionId] || {};
+  store.set({
+    currentLengthTab: LENGTH_TABS.ALL,
+    currentInitialTab: KANA_TABS.ALL,
+    loanwordOnly: false,
+    currentSortField: getDefaultSortField(col),
+    currentSortOrder: SORT_ORDERS.ASC,
+    invalidTerm: null
+  });
+  applyFiltersAndSort();
+}
+
+export function countActiveFineFilters() {
+  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, currentCollectionId } = store.get();
+  const col = collectionsConfig[currentCollectionId] || {};
+  let count = 0;
+  if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) count += 1;
+  if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) count += 1;
+  if (loanwordOnly) count += 1;
+  if (currentSortField !== getDefaultSortField(col) || currentSortOrder !== SORT_ORDERS.ASC) count += 1;
+  return count;
+}
+
+export function getFilterSummary() {
+  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, currentCollectionId } = store.get();
+  const col = collectionsConfig[currentCollectionId] || {};
+  const parts = [];
+
+  if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
+    parts.push(`Starts with ${KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab}`);
+  }
+  if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) {
+    parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5+' : `${currentLengthTab} Char`);
+  }
+  if (loanwordOnly) parts.push('Loanword');
+
+  const fieldLabel = currentSortField === SORT_FIELDS.ID
+    ? 'ID'
+    : currentSortField === SORT_FIELDS.TITLE
+      ? 'Title'
+      : currentSortField === SORT_FIELDS.SUBTITLE
+        ? 'Gloss'
+        : 'Reading';
+  const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? 'Desc' : 'Asc';
+  parts.push(`${fieldLabel} ${orderLabel}`);
+
+  return parts.join(' · ');
+}
+
+export function syncFilterUi() {
+  if (typeof document === 'undefined') return;
+
+  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder } = store.get();
+  activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
+  activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
+  activateTabByValue('#kana-initial-tabs', currentInitialTab || KANA_TABS.ALL);
+  activateTabByValue('#kind-tabs', loanwordOnly ? KANA_TABS.LOANWORD : 'ALL');
+  activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
+  activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
+
+  const count = countActiveFineFilters();
+  const badge = document.getElementById('filter-modal-badge');
+  if (badge) {
+    badge.innerText = String(count);
+    badge.style.display = count > 0 ? 'inline-flex' : 'none';
+  }
+
+  const summary = document.getElementById('filter-summary');
+  if (summary) {
+    summary.innerText = getFilterSummary();
+  }
+
+  const trigger = document.getElementById('btn-open-filter-modal');
+  if (trigger) {
+    trigger.classList.toggle('has-active-filters', count > 0);
+  }
+}
+
+export function openFilterModal() {
+  const modal = document.getElementById('filter-modal');
+  if (!modal) return;
+  syncFilterUi();
+  modal.classList.add('open');
+  document.getElementById('btn-open-filter-modal')?.classList.add('active');
+}
+
+export function closeFilterModal() {
+  const modal = document.getElementById('filter-modal');
+  if (modal) modal.classList.remove('open');
+  document.getElementById('btn-open-filter-modal')?.classList.remove('active');
+}
+
+export function closeFilterModalOnBackdrop(e) {
+  if (e?.target?.id === 'filter-modal') closeFilterModal();
+}
+
+export function applyFilterModal() {
+  applyFiltersAndSort();
+  closeFilterModal();
 }

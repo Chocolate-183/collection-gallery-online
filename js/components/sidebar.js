@@ -1,7 +1,7 @@
 /**
  * Side Navigation & Collection Switcher Component
  */
-import { EXHIBITION_STATUS, STORAGE_KEYS } from '../constants.js';
+import { EXHIBITION_STATUS, STORAGE_KEYS, SORT_FIELDS, SORT_ORDERS } from '../constants.js';
 import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
 import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
@@ -103,7 +103,16 @@ export function switchCollection(collectionId, updateHash = true) {
     currentCollectionId: collectionId,
     invalidTerm: null,
     searchQuery: '',
-    ...(isDifferent ? { currentKanaTab: 'ALL', currentLengthTab: 'ALL' } : {})
+    ...(isDifferent ? {
+      currentKanaTab: 'ALL',
+      currentLengthTab: 'ALL',
+      currentInitialTab: 'ALL',
+      loanwordOnly: false,
+      currentSortField: col.hasHangulTabs
+        ? SORT_FIELDS.TITLE
+        : ((col.hasKanaTabs ?? col.hasReading) ? SORT_FIELDS.STANDARD : SORT_FIELDS.TITLE),
+      currentSortOrder: SORT_ORDERS.ASC
+    } : {})
   });
 
   const cardGrid = document.getElementById('card-grid');
@@ -129,28 +138,38 @@ export function switchCollection(collectionId, updateHash = true) {
     if (col.searchPlaceholder) searchInput.placeholder = col.searchPlaceholder;
   }
 
-  // Toggle Kana / Hangul initial tabs
   const kanaTabsRow = document.getElementById('kana-tabs-row');
   const quickTabsLabel = document.getElementById('quick-tabs-label');
-  const kanaOnlyTabs = document.querySelectorAll('#kana-tabs .kana-only');
-  const hangulOnlyTabs = document.querySelectorAll('#kana-tabs .hangul-only');
-
   if (kanaTabsRow) kanaTabsRow.style.display = 'flex';
-  if (quickTabsLabel) quickTabsLabel.innerText = '展品篩選：';
-  kanaOnlyTabs.forEach(tab => {
-    tab.style.display = (col.hasKanaTabs ?? col.hasReading) ? 'inline-flex' : 'none';
-  });
-  hangulOnlyTabs.forEach(tab => {
-    tab.style.display = col.hasHangulTabs ? 'inline-flex' : 'none';
-  });
+  if (quickTabsLabel) quickTabsLabel.innerText = 'Filter:';
+
+  const hangulSection = document.getElementById('filter-hangul-section');
+  const kanaSection = document.getElementById('filter-kana-section');
+  const kindSection = document.getElementById('filter-kind-section');
+  const readingSortTab = document.getElementById('sort-field-reading');
+  const glossSortTab = document.getElementById('sort-field-subtitle');
+  if (hangulSection) hangulSection.style.display = col.hasHangulTabs ? '' : 'none';
+  if (kanaSection) kanaSection.style.display = (col.hasKanaTabs ?? col.hasReading) ? '' : 'none';
+  if (kindSection) kindSection.style.display = col.hasLoanwordFilter ? '' : 'none';
+  if (readingSortTab) readingSortTab.style.display = (col.hasKanaTabs ?? col.hasReading) && !col.hasHangulTabs ? '' : 'none';
+  if (glossSortTab) glossSortTab.style.display = col.hasHangulTabs ? '' : 'none';
+  const titleSortTab = document.querySelector('#sort-field-tabs [data-tab="title"]');
+  if (titleSortTab && titleSortTab.classList) {
+    const defaultField = col.hasHangulTabs || !(col.hasKanaTabs ?? col.hasReading) ? 'title' : 'standard';
+    if (isDifferent) {
+      document.querySelectorAll('#sort-field-tabs .awsui-tab').forEach(p => p.classList.remove('active'));
+      document.querySelector(`#sort-field-tabs [data-tab="${defaultField}"]`)?.classList.add('active');
+    }
+  }
 
   if (isDifferent) {
     const kanaPills = document.querySelectorAll('#kana-tabs .awsui-tab');
     kanaPills.forEach(p => p.classList.remove('active'));
     document.querySelector('#kana-tabs .awsui-tab')?.classList.add('active');
-    const lengthPills = document.querySelectorAll('#length-tabs .awsui-tab');
-    lengthPills.forEach(p => p.classList.remove('active'));
-    document.querySelector('#length-tabs .awsui-tab')?.classList.add('active');
+  }
+
+  if (typeof window.syncFilterUi === 'function') {
+    window.syncFilterUi();
   }
 
   // Update Select Dropdown

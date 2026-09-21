@@ -18,10 +18,23 @@ export const SORT_TYPES = {
   ID_ASC: 'id-asc'
 };
 
+export const SORT_FIELDS = {
+  ID: 'id',
+  TITLE: 'title',
+  STANDARD: 'standard',
+  SUBTITLE: 'subtitle'
+};
+
+export const SORT_ORDERS = {
+  ASC: 'asc',
+  DESC: 'desc'
+};
+
 export const KANA_TABS = {
   ALL: 'ALL',
   RANDOM10: 'RANDOM10',
-  LATEST10: 'LATEST10'
+  LATEST10: 'LATEST10',
+  LOANWORD: 'LOANWORD'
 };
 
 export const LENGTH_TABS = {

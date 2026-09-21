@@ -94,12 +94,13 @@ function findDatasetColumnIndexes(headerTitles, options = {}) {
   let readingIdx = findIdx(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('発音') || h.includes('發音') || h.includes('読み') || h.includes('音素'));
   let dateIdx = findIdx(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
   let recommendIdx = findIdx(h => isRecommendHeader(h));
+  const subtitleIdx = headers.findIndex(h => h.includes('副標') || h === 'subtitle' || h.includes('gloss'));
 
   if (idIdx === -1) idIdx = firstVisible(0);
   if (termIdx === -1) termIdx = firstVisible(idIdx >= 0 ? idIdx + 1 : 0);
   if (twIdx === -1) twIdx = firstVisible((termIdx >= 0 ? termIdx + 1 : 0));
 
-  return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx };
+  return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx };
 }
 
 function getHiddenColumnIndexes(currentCollectionId) {
@@ -251,7 +252,7 @@ function readGvizCell(cell, { preferFormatted = false } = {}) {
 /**
  * Helper to construct a standard record object if valid.
  */
-function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex, collectionId }) {
+function createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rowIndex, collectionId }) {
   if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja === '顯示' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
     return null;
   }
@@ -263,6 +264,7 @@ function createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex,
     reading: reading || '',
     created_at: formatExhibitTimestamp(created_at) || '',
     recommendations: parseRecommendationList(rawRecommend),
+    subtitle: subtitle || '',
     row_index: rowIndex
   };
 }
@@ -274,7 +276,7 @@ export function parseCSVData(csvText, currentCollectionId) {
   const rows = parseCSVRows(csvText);
   if (rows.length <= 1) return null;
 
-  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx } = findDatasetColumnIndexes(
+  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx } = findDatasetColumnIndexes(
     rows[0],
     { hiddenColumnIndexes: getHiddenColumnIndexes(currentCollectionId) }
   );
@@ -289,8 +291,9 @@ export function parseCSVData(csvText, currentCollectionId) {
       const reading = (readingIdx !== -1 && cols[readingIdx]) ? cols[readingIdx].trim() : '';
       const created_at = (dateIdx !== -1 && cols[dateIdx]) ? cols[dateIdx].trim() : '';
       const rawRecommend = (recommendIdx !== -1 && cols[recommendIdx]) ? cols[recommendIdx].trim() : '';
+      const subtitle = (subtitleIdx !== -1 && cols[subtitleIdx]) ? cols[subtitleIdx].trim() : '';
 
-      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex: i, collectionId: currentCollectionId });
+      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rowIndex: i, collectionId: currentCollectionId });
       if (record) results.push(record);
     }
   }
@@ -304,7 +307,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
   const table = extractGvizTable(gvizText);
   if (!table) return null;
 
-  let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1;
+  let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1, subtitleIdx = -1;
   if (table.cols && table.cols.length > 0) {
     const colsHeader = table.cols.map(col => col?.label || '');
     const found = findDatasetColumnIndexes(colsHeader, {
@@ -316,6 +319,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     readingIdx = found.readingIdx;
     dateIdx = found.dateIdx;
     recommendIdx = found.recommendIdx;
+    subtitleIdx = found.subtitleIdx;
   } else {
     const colConfig = collectionsConfig[currentCollectionId];
     if (colConfig?.hasReading) {
@@ -327,6 +331,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
       dateIdx = 3;
       recommendIdx = 4;
     }
+    if (currentCollectionId === 'korean-terms') subtitleIdx = 3;
   }
 
   const results = [];
@@ -340,8 +345,9 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     const reading = (readingIdx >= 0 && c[readingIdx]) ? String(readGvizCell(c[readingIdx]) || '').trim() : '';
     const created_at = (dateIdx >= 0 && c[dateIdx]) ? String(readGvizCell(c[dateIdx], { preferFormatted: true }) || '').trim() : '';
     const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? String(readGvizCell(c[recommendIdx]) || '').trim() : '';
+    const subtitle = (subtitleIdx >= 0 && c[subtitleIdx]) ? String(readGvizCell(c[subtitleIdx]) || '').trim() : '';
 
-    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, rowIndex, collectionId: currentCollectionId });
+    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rowIndex, collectionId: currentCollectionId });
     if (record) results.push(record);
   });
   return results;

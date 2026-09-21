@@ -106,7 +106,7 @@
               <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
               <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
             </svg>
-            <span class="awsui-nav-text" id="nav-text-korean-terms">韓文單字加漢字 記憶更輕鬆</span>
+            <span class="awsui-nav-text" id="nav-text-korean-terms">中文母語者韓語單字集</span>
             <span class="awsui-nav-badge" id="side-nav-count-korean-terms" style="display: none;"></span>
           </button>
         </nav>
@@ -228,14 +228,18 @@
             <div class="awsui-welcome-card" id="welcome-card-korean-terms">
               <div class="awsui-welcome-card-header">
                 <div>
-                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-korean-terms" onclick="switchCollection('korean-terms')" style="cursor: pointer;">韓文單字加漢字 記憶更輕鬆</h3>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-korean-terms" onclick="switchCollection('korean-terms')" style="cursor: pointer;">中文母語者韓語單字集</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-korean-terms">
-                    <span class="awsui-welcome-card-tag">韓語學習</span>
+                    <span class="awsui-welcome-card-tag">韓語</span>
+                    <span class="awsui-welcome-card-tag">語彙</span>
                   </div>
                 </div>
               </div>
               <p class="awsui-welcome-card-desc" id="welcome-card-desc-korean-terms">
-                COMING SOON
+                你知道韓語以前也使用過漢字嗎？
+如果你懂漢字，背韓語單字會輕鬆很多！
+本單字集會依單字來源加上輔助標註：若是漢字詞，會標註對應漢字；若是源自英文的外來詞，則會標註英文。
+相信會對你很有幫助！
               </p>
               <div class="awsui-welcome-card-footer" style="display: flex; gap: 8px; align-items: center;">
                 <button class="awsui-welcome-card-action" type="button" onclick="switchCollection('korean-terms')">Enter Gallery &rarr;</button>
@@ -278,71 +282,37 @@
               <input type="text" id="search-input" class="awsui-input" placeholder="尋找展品..." oninput="onSearchInput()">
             </div>
 
-            <div>
-              <select id="sort-select" class="awsui-select" onchange="onFilterChange()">
-                <option value="reading-asc" selected>觀看順序（正序）</option>
-                <option value="reading-desc">觀看順序（倒序）</option>
-              </select>
-            </div>
+            <button type="button" id="btn-open-filter-modal" class="awsui-btn awsui-btn-normal awsui-filter-trigger" onclick="openFilterModal()" title="Filter" aria-label="Filter">
+              <svg class="awsui-icon" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
+                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .4.8L10 7.5V13a.5.5 0 0 1-.76.429l-3-1.8A.5.5 0 0 1 6 11.2V7.5L1.6 1.8A.5.5 0 0 1 1.5 1.5z"/>
+              </svg>
+              <span>Filter</span>
+              <span id="filter-modal-badge" class="awsui-filter-badge" style="display: none;">0</span>
+            </button>
 
             <div>
               <select id="pagesize-select" class="awsui-select" onchange="onPageSizeChange()">
-                <option value="12" selected>每頁 12 件</option>
-                <option value="24">每頁 24 件</option>
-                <option value="48">每頁 48 件</option>
-                <option value="96">每頁 96 件</option>
-                <option value="9999">展示全部</option>
+                <option value="12" selected>12 per page</option>
+                <option value="24">24 per page</option>
+                <option value="48">48 per page</option>
+                <option value="96">96 per page</option>
+                <option value="9999">Show All</option>
               </select>
             </div>
           </div>
 
-          <!-- Tabs & Filter Bar Group -->
           <div class="awsui-filter-tabs-container">
-            <!-- Kana / Quick Filter Tabs -->
             <div class="awsui-filter-tabs-row" id="kana-tabs-row">
-              <span class="awsui-filter-label" id="quick-tabs-label">展品篩選：</span>
+              <span class="awsui-filter-label" id="quick-tabs-label">Filter:</span>
               <div class="awsui-tabs" id="kana-tabs">
-                <button class="awsui-tab active" onclick="selectKanaTab('ALL', this)">全部展品</button>
-                <button class="awsui-tab" onclick="selectKanaTab('RANDOM10', this)">隨機探索</button>
-                <button class="awsui-tab" onclick="selectKanaTab('LATEST10', this)">新進展品</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('あ', this)">あ行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('か', this)">か行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('さ', this)">さ行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('た', this)">た行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('な', this)">な行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('は', this)">は行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('ま', this)">ま行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('や', this)">や行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('ら', this)">ら行</button>
-                <button class="awsui-tab kana-only" onclick="selectKanaTab('わ', this)">わ行</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㄱ', this)">ㄱ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㄴ', this)">ㄴ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㄷ', this)">ㄷ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㄹ', this)">ㄹ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅁ', this)">ㅁ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅂ', this)">ㅂ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅅ', this)">ㅅ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅇ', this)">ㅇ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅈ', this)">ㅈ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅊ', this)">ㅊ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅋ', this)">ㅋ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅌ', this)">ㅌ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅍ', this)">ㅍ</button>
-                <button class="awsui-tab hangul-only" onclick="selectKanaTab('ㅎ', this)">ㅎ</button>
+                <button class="awsui-tab active" data-tab="ALL" onclick="selectKanaTab('ALL', this)">ALL</button>
+                <button class="awsui-tab" data-tab="RANDOM10" onclick="selectKanaTab('RANDOM10', this)">RANDOM 10</button>
+                <button class="awsui-tab" data-tab="LATEST10" onclick="selectKanaTab('LATEST10', this)">LATEST 10</button>
               </div>
             </div>
-
-            <!-- Length Filter Tabs -->
-            <div class="awsui-filter-tabs-row">
-              <span class="awsui-filter-label">字數篩選：</span>
-              <div class="awsui-tabs" id="length-tabs">
-                <button class="awsui-tab active" onclick="selectLengthTab('ALL', this)">不限</button>
-                <button class="awsui-tab" onclick="selectLengthTab('1', this)">1字</button>
-                <button class="awsui-tab" onclick="selectLengthTab('2', this)">2字</button>
-                <button class="awsui-tab" onclick="selectLengthTab('3', this)">3字</button>
-                <button class="awsui-tab" onclick="selectLengthTab('4', this)">4字</button>
-                <button class="awsui-tab" onclick="selectLengthTab('5+', this)">5字＋</button>
-              </div>
+            <div class="awsui-filter-summary-row" id="filter-summary-row">
+              <span class="awsui-filter-label">Active:</span>
+              <span id="filter-summary">Reading Asc</span>
             </div>
           </div>
 
@@ -678,6 +648,107 @@
             <span class="awsui-modal-meta-label">ID</span>
             <span id="collection-modal-id">--</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter & Sort Modal -->
+  <div class="awsui-modal-backdrop" id="filter-modal" onclick="closeFilterModalOnBackdrop(event)">
+    <div class="awsui-modal awsui-filter-modal">
+      <div class="awsui-modal-body">
+        <div class="awsui-modal-section-title awsui-modal-header-title">
+          <span>Filter</span>
+          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="Close" aria-label="Close" onclick="closeFilterModal()">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="awsui-filter-modal-scroll">
+          <div class="awsui-filter-modal-section" id="filter-hangul-section" style="display: none;">
+            <div class="awsui-modal-section-title"><span>Starts with</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs hangul-tabs" id="hangul-tabs">
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectInitialTab('ALL', this)">ALL</button>
+              <button class="awsui-tab hangul-only" data-tab="ㄱ" onclick="selectInitialTab('ㄱ', this)">ㄱ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㄴ" onclick="selectInitialTab('ㄴ', this)">ㄴ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㄷ" onclick="selectInitialTab('ㄷ', this)">ㄷ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㄹ" onclick="selectInitialTab('ㄹ', this)">ㄹ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅁ" onclick="selectInitialTab('ㅁ', this)">ㅁ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅂ" onclick="selectInitialTab('ㅂ', this)">ㅂ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅅ" onclick="selectInitialTab('ㅅ', this)">ㅅ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅇ" onclick="selectInitialTab('ㅇ', this)">ㅇ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅈ" onclick="selectInitialTab('ㅈ', this)">ㅈ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅊ" onclick="selectInitialTab('ㅊ', this)">ㅊ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅋ" onclick="selectInitialTab('ㅋ', this)">ㅋ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅌ" onclick="selectInitialTab('ㅌ', this)">ㅌ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅍ" onclick="selectInitialTab('ㅍ', this)">ㅍ</button>
+              <button class="awsui-tab hangul-only" data-tab="ㅎ" onclick="selectInitialTab('ㅎ', this)">ㅎ</button>
+            </div>
+          </div>
+
+          <div class="awsui-filter-modal-section" id="filter-kana-section" style="display: none;">
+            <div class="awsui-modal-section-title"><span>Starts with</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="kana-initial-tabs">
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectInitialTab('ALL', this)">ALL</button>
+              <button class="awsui-tab" data-tab="あ" onclick="selectInitialTab('あ', this)">あ行</button>
+              <button class="awsui-tab" data-tab="か" onclick="selectInitialTab('か', this)">か行</button>
+              <button class="awsui-tab" data-tab="さ" onclick="selectInitialTab('さ', this)">さ行</button>
+              <button class="awsui-tab" data-tab="た" onclick="selectInitialTab('た', this)">た行</button>
+              <button class="awsui-tab" data-tab="な" onclick="selectInitialTab('な', this)">な行</button>
+              <button class="awsui-tab" data-tab="は" onclick="selectInitialTab('は', this)">は行</button>
+              <button class="awsui-tab" data-tab="ま" onclick="selectInitialTab('ま', this)">ま行</button>
+              <button class="awsui-tab" data-tab="や" onclick="selectInitialTab('や', this)">や行</button>
+              <button class="awsui-tab" data-tab="ら" onclick="selectInitialTab('ら', this)">ら行</button>
+              <button class="awsui-tab" data-tab="わ" onclick="selectInitialTab('わ', this)">わ行</button>
+            </div>
+          </div>
+
+          <div class="awsui-filter-modal-section">
+            <div class="awsui-modal-section-title"><span>Length</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="length-tabs">
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectLengthTab('ALL', this)">ALL</button>
+              <button class="awsui-tab" data-tab="1" onclick="selectLengthTab('1', this)">1</button>
+              <button class="awsui-tab" data-tab="2" onclick="selectLengthTab('2', this)">2</button>
+              <button class="awsui-tab" data-tab="3" onclick="selectLengthTab('3', this)">3</button>
+              <button class="awsui-tab" data-tab="4" onclick="selectLengthTab('4', this)">4</button>
+              <button class="awsui-tab" data-tab="5+" onclick="selectLengthTab('5+', this)">5+</button>
+            </div>
+          </div>
+
+          <div class="awsui-filter-modal-section" id="filter-kind-section" style="display: none;">
+            <div class="awsui-modal-section-title"><span>Category</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="kind-tabs">
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectKindTab('ALL', this)">ALL</button>
+              <button class="awsui-tab" data-tab="LOANWORD" onclick="selectKindTab('LOANWORD', this)">Loanword</button>
+            </div>
+          </div>
+
+          <div class="awsui-modal-divider"></div>
+
+          <div class="awsui-filter-modal-section">
+            <div class="awsui-modal-section-title"><span>Sort by</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-field-tabs">
+              <button class="awsui-tab" data-tab="id" onclick="selectSortField('id', this)">ID</button>
+              <button class="awsui-tab" data-tab="title" onclick="selectSortField('title', this)">Title</button>
+              <button class="awsui-tab active" id="sort-field-reading" data-tab="standard" onclick="selectSortField('standard', this)">Reading</button>
+              <button class="awsui-tab" id="sort-field-subtitle" data-tab="subtitle" onclick="selectSortField('subtitle', this)" style="display: none;">Gloss</button>
+            </div>
+          </div>
+
+          <div class="awsui-filter-modal-section">
+            <div class="awsui-modal-section-title"><span>Order</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
+              <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">Asc</button>
+              <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">Desc</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="awsui-filter-modal-actions">
+          <button type="button" class="awsui-btn awsui-btn-tertiary" onclick="resetFineFilters()">Reset</button>
+          <button type="button" class="awsui-btn awsui-btn-primary" onclick="applyFilterModal()">Done</button>
         </div>
       </div>
     </div>
