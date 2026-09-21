@@ -218,17 +218,21 @@ test('Config & Endpoint URL Builders', () => {
   const krCol = collectionsConfig['korean-terms'];
   assert.equal(krCol.enTitle, 'Hanja Hacks for Korean');
   assert.equal(krCol.defaultMeta.enTitle, 'Hanja Hacks for Korean');
+  assert.equal(krCol.name, '中文母語者韓語單字集');
+  assert.equal(krCol.defaultMeta.title, '中文母語者韓語單字集');
   assert.equal(krCol.defaultMeta.id, 'C103');
+  assert.equal(krCol.gid, '168524304');
   assert.equal(krCol.hasReading, true);
   assert.equal(krCol.hasKanaTabs, false);
   assert.equal(krCol.hasHangulTabs, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
   const krUrls = getCollectionDataUrls(krCol);
   assert(krUrls.csvUrl.includes('1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM'));
+  assert(krUrls.csvUrl.includes('gid=168524304'));
 });
 
 test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C and D', () => {
-  const sampleCSV = `ID,顯示,諺文,漢字,發音,意思,新增日期,推薦條目
+  const sampleCSV = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目
 #C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,
 #C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,`;
 
@@ -249,7 +253,7 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
     status: 'ok',
     table: {
       cols: [
-        { label: 'ID' }, { label: '顯示' }, { label: '諺文' }, { label: '漢字' },
+        { label: 'ID' }, { label: '顯示' }, { label: '諺文' }, { label: '副標' },
         { label: '發音' }, { label: '意思' }, { label: '新增日期' }, { label: '推薦條目' }
       ],
       rows: [{

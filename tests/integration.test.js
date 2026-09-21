@@ -266,9 +266,9 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   delete collectionsMetaCache['korean-terms'];
   openCollectionModal('korean-terms', false);
   assert(mockModal.classes.has('open'));
-  assert.equal(mockTitle.innerText, '韓文單字加漢字 記憶更輕鬆');
+  assert.equal(mockTitle.innerText, '中文母語者韓語單字集');
   assert.equal(mockEnTitle.innerText, 'Hanja Hacks for Korean');
-  assert.equal(mockCreatedAt.innerText, '2026-09-04');
+  assert.equal(mockCreatedAt.innerText, '2026-09-18');
   assert.equal(mockId.innerText, 'C103');
 
   closeCollectionModal(false);
