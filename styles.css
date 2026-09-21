@@ -581,6 +581,7 @@ a:focus {
 .hangul-only {
   display: none;
   font-family: 'Noto Sans KR', var(--awsui-font-family-exhibit, sans-serif);
+  font-size: 16px;
   min-width: 36px;
   justify-content: center;
 }
