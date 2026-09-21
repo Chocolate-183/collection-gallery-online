@@ -746,6 +746,12 @@ a:focus {
   flex-shrink: 0;
 }
 
+.awsui-filter-modal-actions .awsui-btn:active {
+  background: #ECC94B !important;
+  color: #ffffff !important;
+  border-color: #ECC94B !important;
+}
+
 /* Uniform Height Cards Grid Matrix */
 .awsui-cards-grid {
   display: grid;
@@ -1956,7 +1962,8 @@ a:focus {
 [data-theme="dark"] #collection-header-title.active,
 [data-theme="dark"] #collection-header-title:active,
 [data-theme="dark"] #btn-open-filter-modal.active,
-[data-theme="dark"] #btn-open-filter-modal:active {
+[data-theme="dark"] #btn-open-filter-modal:active,
+[data-theme="dark"] .awsui-filter-modal-actions .awsui-btn:active {
   background-color: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;
