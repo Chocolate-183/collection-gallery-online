@@ -10,7 +10,7 @@ import {
   parseOpeningHoursCSV,
   extractOpeningHoursFromMetaRows
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana } from '../js/filter.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, sortBySubtitle } from '../js/filter.js';
 import { LENGTH_TABS, KANA_TABS } from '../js/constants.js';
 import {
   escapeHtml,
@@ -219,6 +219,13 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   const loanwords = filterByKana(loanwordRecords, KANA_TABS.LOANWORD, '');
   assert.equal(loanwords.length, 2);
   assert.deepEqual(loanwords.map(r => r.id), ['eng-col', 'eng-title']);
+
+  const unsortedLoanwords = [
+    { id: 'wifi', ja_term: '와이파이 | Wi-Fi', subtitle: 'Wi-Fi' },
+    { id: 'computer', ja_term: '컴퓨터 | computer', subtitle: 'computer' },
+    { id: 'email', ja_term: '이메일 | e-mail' }
+  ];
+  assert.deepEqual(sortBySubtitle(unsortedLoanwords).map(r => r.id), ['computer', 'email', 'wifi']);
 });
 
 test('Config & Endpoint URL Builders', () => {

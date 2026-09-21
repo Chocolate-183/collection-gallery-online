@@ -4,7 +4,7 @@
 import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE } from './constants.js';
 import { store } from './state.js';
 import { renderCards } from './components/cards.js';
-import { getExhibitFilterLength, isEnglishLoanword } from './utils.js';
+import { getExhibitFilterLength, getExhibitSubtitle, isEnglishLoanword } from './utils.js';
 
 /**
  * Checks if a string starts with a kana character in the specified kana group.
@@ -130,6 +130,18 @@ export function sortRecords(records, sortType) {
 }
 
 /**
+ * C103 外來語 tab: sort by English 副標 (A–Z), not Hangul reading.
+ */
+export function sortBySubtitle(records) {
+  const result = [...records];
+  return result.sort((a, b) => {
+    const cmp = getExhibitSubtitle(a).localeCompare(getExhibitSubtitle(b), 'en', { sensitivity: 'base' });
+    if (cmp !== 0) return cmp;
+    return (a.row_index ?? 0) - (b.row_index ?? 0);
+  });
+}
+
+/**
  * Main filter pipeline entry point.
  */
 export function applyFiltersAndSort() {
@@ -154,7 +166,9 @@ export function applyFiltersAndSort() {
   result = filterByLength(result, currentLengthTab);
   result = filterByKana(result, currentKanaTab, searchQuery);
 
-  if (currentKanaTab !== KANA_TABS.LATEST10) {
+  if (currentKanaTab === KANA_TABS.LOANWORD) {
+    result = sortBySubtitle(result);
+  } else if (currentKanaTab !== KANA_TABS.LATEST10) {
     const sortSelect = document.getElementById('sort-select');
     const sortType = sortSelect ? sortSelect.value : SORT_TYPES.READING_ASC;
     result = sortRecords(result, sortType);
