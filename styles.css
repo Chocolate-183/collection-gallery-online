@@ -1468,6 +1468,14 @@ a:focus {
   margin-top: 12px;
 }
 
+#collection-modal .awsui-modal-divider {
+  margin-bottom: 4px;
+}
+
+#collection-modal .awsui-modal-divider + .awsui-modal-created-time {
+  margin-top: 4px;
+}
+
 .awsui-modal-meta-item {
   display: flex;
   align-items: center;
@@ -2435,6 +2443,14 @@ a:focus {
     border-top: none !important;
     padding-top: 0 !important;
     margin-top: 8px !important;
+  }
+
+  #collection-modal .awsui-modal-divider {
+    margin-bottom: 4px !important;
+  }
+
+  #collection-modal .awsui-modal-divider + .awsui-modal-created-time {
+    margin-top: 4px !important;
   }
 
   .awsui-modal-meta-item,
