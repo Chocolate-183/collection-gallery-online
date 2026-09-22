@@ -659,7 +659,7 @@
       <div class="awsui-modal-body">
         <div class="awsui-modal-section-title awsui-modal-header-title">
           <span>Filter</span>
-          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="Close" aria-label="Close" onclick="closeFilterModal()">
+          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeFilterModal()">
             <svg class="awsui-icon" viewBox="0 0 16 16">
               <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
             </svg>
@@ -670,7 +670,7 @@
           <div class="awsui-filter-modal-section" id="filter-hangul-section" style="display: none;">
             <div class="awsui-modal-section-title"><span>Starts with</span></div>
             <div class="awsui-tabs awsui-filter-modal-tabs hangul-tabs" id="hangul-tabs">
-              <button class="awsui-tab active" data-tab="ALL" onclick="selectInitialTab('ALL', this)">ALL</button>
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectInitialTab('ALL', this)">全部</button>
               <button class="awsui-tab hangul-only" data-tab="ㄱ" onclick="selectInitialTab('ㄱ', this)">ㄱ</button>
               <button class="awsui-tab hangul-only" data-tab="ㄴ" onclick="selectInitialTab('ㄴ', this)">ㄴ</button>
               <button class="awsui-tab hangul-only" data-tab="ㄷ" onclick="selectInitialTab('ㄷ', this)">ㄷ</button>
@@ -691,7 +691,7 @@
           <div class="awsui-filter-modal-section" id="filter-kana-section" style="display: none;">
             <div class="awsui-modal-section-title"><span>Starts with</span></div>
             <div class="awsui-tabs awsui-filter-modal-tabs" id="kana-initial-tabs">
-              <button class="awsui-tab active" data-tab="ALL" onclick="selectInitialTab('ALL', this)">ALL</button>
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectInitialTab('ALL', this)">全部</button>
               <button class="awsui-tab" data-tab="あ" onclick="selectInitialTab('あ', this)">あ行</button>
               <button class="awsui-tab" data-tab="か" onclick="selectInitialTab('か', this)">か行</button>
               <button class="awsui-tab" data-tab="さ" onclick="selectInitialTab('さ', this)">さ行</button>
@@ -708,7 +708,7 @@
           <div class="awsui-filter-modal-section">
             <div class="awsui-modal-section-title"><span>Length</span></div>
             <div class="awsui-tabs awsui-filter-modal-tabs" id="length-tabs">
-              <button class="awsui-tab active" data-tab="ALL" onclick="selectLengthTab('ALL', this)">ALL</button>
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectLengthTab('ALL', this)">全部</button>
               <button class="awsui-tab" data-tab="1" onclick="selectLengthTab('1', this)">1</button>
               <button class="awsui-tab" data-tab="2" onclick="selectLengthTab('2', this)">2</button>
               <button class="awsui-tab" data-tab="3" onclick="selectLengthTab('3', this)">3</button>
@@ -720,8 +720,8 @@
           <div class="awsui-filter-modal-section" id="filter-kind-section" style="display: none;">
             <div class="awsui-modal-section-title"><span>Category</span></div>
             <div class="awsui-tabs awsui-filter-modal-tabs" id="kind-tabs">
-              <button class="awsui-tab active" data-tab="ALL" onclick="selectKindTab('ALL', this)">ALL</button>
-              <button class="awsui-tab" data-tab="LOANWORD" onclick="selectKindTab('LOANWORD', this)">Loanword</button>
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectKindTab('ALL', this)">全部</button>
+              <button class="awsui-tab" data-tab="LOANWORD" onclick="selectKindTab('LOANWORD', this)">外來語</button>
             </div>
           </div>
 
@@ -730,25 +730,25 @@
           <div class="awsui-filter-modal-section">
             <div class="awsui-modal-section-title"><span>Sort by</span></div>
             <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-field-tabs">
-              <button class="awsui-tab" data-tab="id" onclick="selectSortField('id', this)">ID</button>
-              <button class="awsui-tab" data-tab="title" onclick="selectSortField('title', this)">Title</button>
-              <button class="awsui-tab active" id="sort-field-reading" data-tab="standard" onclick="selectSortField('standard', this)">Reading</button>
-              <button class="awsui-tab" id="sort-field-subtitle" data-tab="subtitle" onclick="selectSortField('subtitle', this)" style="display: none;">Gloss</button>
+              <button class="awsui-tab" data-tab="id" onclick="selectSortField('id', this)">編號</button>
+              <button class="awsui-tab" data-tab="title" onclick="selectSortField('title', this)">標題</button>
+              <button class="awsui-tab active" id="sort-field-reading" data-tab="standard" onclick="selectSortField('standard', this)">標音</button>
+              <button class="awsui-tab" id="sort-field-subtitle" data-tab="subtitle" onclick="selectSortField('subtitle', this)" style="display: none;">正標</button>
             </div>
           </div>
 
           <div class="awsui-filter-modal-section">
             <div class="awsui-modal-section-title"><span>Order</span></div>
             <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
-              <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">Asc</button>
-              <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">Desc</button>
+              <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">正序</button>
+              <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">倒序</button>
             </div>
           </div>
         </div>
 
         <div class="awsui-filter-modal-actions">
-          <button type="button" class="awsui-btn awsui-btn-tertiary" onclick="resetFineFilters()">Reset</button>
-          <button type="button" class="awsui-btn awsui-btn-primary" onclick="applyFilterModal()">Done</button>
+          <button type="button" class="awsui-btn awsui-btn-tertiary" onclick="resetFineFilters()">重設</button>
+          <button type="button" class="awsui-btn awsui-btn-primary" onclick="applyFilterModal()">完成</button>
         </div>
       </div>
     </div>
