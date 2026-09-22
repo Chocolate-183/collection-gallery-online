@@ -1483,7 +1483,8 @@ a:focus {
 #modal-created-at,
 #modal-id,
 #collection-modal-created-at,
-#collection-modal-id {
+#collection-modal-id,
+#collection-modal-total-items {
   font-weight: 400;
   color: var(--awsui-color-text-body-secondary, #687078);
 }
@@ -2380,16 +2381,14 @@ a:focus {
   }
 
   #modal-reading-row,
-  #collection-modal-entitle,
-  #collection-modal-total-items {
+  #collection-modal-entitle {
     font-size: 14px !important;
     line-height: 1.5 !important;
     min-height: auto !important;
   }
 
   #modal-reading-section,
-  #collection-modal-entitle-section,
-  #collection-modal-total-section {
+  #collection-modal-entitle-section {
     margin-top: 10px !important;
   }
 
@@ -2443,7 +2442,8 @@ a:focus {
   #modal-created-at,
   #modal-id,
   #collection-modal-created-at,
-  #collection-modal-id {
+  #collection-modal-id,
+  #collection-modal-total-items {
     font-size: 12px !important;
   }
 }
