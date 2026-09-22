@@ -346,21 +346,21 @@ export function getFilterSummary() {
   const parts = [];
 
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
-    parts.push(`Starts with ${KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab}`);
+    parts.push(`開頭 ${KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab}`);
   }
   if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) {
     parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5字+' : `${currentLengthTab}字`);
   }
-  if (loanwordOnly) parts.push('Loanword');
+  if (loanwordOnly) parts.push('外來語');
 
   const fieldLabel = currentSortField === SORT_FIELDS.ID
-    ? 'ID'
+    ? '編號'
     : currentSortField === SORT_FIELDS.TITLE
-      ? 'Title'
+      ? '標題'
       : currentSortField === SORT_FIELDS.SUBTITLE
-        ? 'Gloss'
-        : 'Reading';
-  const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? 'Desc' : 'Asc';
+        ? '副標'
+        : '読み方';
+  const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? '倒序' : '正序';
   parts.push(`${fieldLabel} ${orderLabel}`);
 
   return parts.join(' · ');
