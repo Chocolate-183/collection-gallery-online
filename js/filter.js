@@ -346,7 +346,7 @@ export function getFilterSummary() {
   const parts = [];
 
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
-    parts.push(`開頭 ${KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab}`);
+    parts.push(KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab);
   }
   if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) {
     parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5字+' : `${currentLengthTab}字`);
