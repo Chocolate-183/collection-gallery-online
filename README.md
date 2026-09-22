@@ -30,7 +30,7 @@
 
 ### 5. 多維度檢索與展品篩選機制 (Filter, Search & Sorting)
 - **實時關鍵字搜尋**: 支援展品名稱、標音 (Reading)、策展解說與展品編號跨欄位即時模糊搜尋。
-- **精細篩選 Modal (`Filter`)**: 展廳篩選列只保留 `ALL` / `RANDOM 10` / `LATEST 10`。子音、字數、種類（外來語）與排序改由 `Filter` 按鈕開啟的設定 Modal 處理。區塊標題維持英文（Starts with / Length / Category / Sort by / Order）；選項改中文（全部／外來語／編號／標題／読み方／副標／正序／倒序）；動作按鈕維持 `Reset` / `Done`。C103 顯示 Starts with / Length / Category / 標題 / 副標；C101 顯示 Starts with（あ行…わ行）/ Length / 読み方。
+- **精細篩選 Modal (`Filter`)**: 展廳篩選列只保留 `ALL` / `RANDOM 10` / `LATEST 10`。子音、字數、種類（外來語）與排序改由 `Filter` 按鈕開啟的設定 Modal 處理。區塊標題維持英文（Starts with / Length / Category / Sort by / Order）；選項改中文（全部／外來語／1字–4字／5字+／編號／標題／読み方／副標／正序／倒序）；動作按鈕維持 `Reset` / `Done`。C103 顯示 Starts with / Length / Category / 標題 / 副標；C101 顯示 Starts with（あ行…わ行）/ Length / 読み方。
 - **快速分類與「隨機探索」導覽**: 主畫面保留 `ALL`、`RANDOM 10`、`LATEST 10`；五十音與韓語子音改放在 Filter Modal。
 - **多重排序與分頁控制**: 提供標音正倒序、漢字正倒序、序號排序，以及每頁 `12` / `24` / `48` 件筆數選擇。
 

@@ -349,7 +349,7 @@ export function getFilterSummary() {
     parts.push(`Starts with ${KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab}`);
   }
   if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) {
-    parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5+' : `${currentLengthTab} Char`);
+    parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5字+' : `${currentLengthTab}字`);
   }
   if (loanwordOnly) parts.push('Loanword');
 
