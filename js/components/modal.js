@@ -118,13 +118,21 @@ export function handleCollectionDescriptionClick() {
 }
 
 /**
- * Handles double-click on Collection Curator to open Profile panel.
+ * Handles click on Collection Curator to open Profile panel.
  */
 export function handleCuratorClick() {
   const curatorElem = document.getElementById('collection-modal-curator');
   const name = curatorElem ? String(curatorElem.innerText || '').trim() : '';
   if (!name || name === '--') return;
   openProfileModal(name);
+}
+
+function setCuratorActive(isActive) {
+  if (typeof document === 'undefined') return;
+  const curatorElem = document.getElementById('collection-modal-curator');
+  if (curatorElem && curatorElem.classList) {
+    curatorElem.classList.toggle('active', !!isActive);
+  }
 }
 
 function setProfileField(sectionId, valueId, value) {
@@ -176,6 +184,7 @@ export function openProfileModal(curatorName, updateHash = true) {
   if (idElem) idElem.innerText = profile.id || '--';
 
   closeDescriptionModal(false);
+  setCuratorActive(true);
   if (modal) modal.classList.add('open');
 
   if (updateHash) {
@@ -185,6 +194,7 @@ export function openProfileModal(curatorName, updateHash = true) {
 }
 
 export function closeProfileModal(updateHash = true) {
+  setCuratorActive(false);
   const modal = document.getElementById('profile-modal');
   if (modal) modal.classList.remove('open');
 

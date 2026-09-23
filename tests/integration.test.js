@@ -333,7 +333,7 @@ test('Description Modal Component & Interaction Logic', async () => {
   assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
 });
 
-test('Profile Panel - Open from Curator double-click and populate sheet fields', async () => {
+test('Profile Panel - Open from Curator click and populate sheet fields', async () => {
   const mockProfileModal = createMockElement();
   const mockName = createMockElement();
   const mockEnSection = createMockElement();
@@ -385,7 +385,8 @@ test('Profile Panel - Open from Curator double-click and populate sheet fields',
   });
 
   handleCuratorClick();
-  assert(mockProfileModal.classes.has('open'), 'double-click Curator should open Profile panel');
+  assert(mockProfileModal.classes.has('open'), 'click Curator should open Profile panel');
+  assert(mockCurator.classes.has('active'), 'Curator should use collection-header-title active invert while Profile is open');
   assert.equal(mockName.innerText, '巧克力');
   assert.equal(mockEn.innerText, 'Chocolate');
   assert.equal(mockIg.innerText, '不公開');
@@ -397,6 +398,7 @@ test('Profile Panel - Open from Curator double-click and populate sheet fields',
 
   closeProfileModal(false);
   assert(!mockProfileModal.classes.has('open'));
+  assert(!mockCurator.classes.has('active'), 'Curator should drop active invert when Profile closes');
 });
 
 test('Local Fallback Snapshot Integrity - Profiles', () => {

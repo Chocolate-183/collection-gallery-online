@@ -1486,6 +1486,22 @@ a:focus {
 
 #collection-modal-curator {
   cursor: pointer;
+  display: inline-block;
+  padding: 2px 10px;
+  margin-left: -10px;
+  border-radius: var(--awsui-border-radius-tag, 4px);
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+#collection-modal-curator:hover {
+  color: #ECC94B !important;
+}
+
+#collection-modal-curator.active,
+#collection-modal-curator:active {
+  background: #ECC94B !important;
+  color: #ffffff !important;
+  border-color: #ECC94B !important;
 }
 
 .awsui-modal-meta-item {
@@ -1984,6 +2000,8 @@ a:focus {
 
 [data-theme="dark"] #collection-header-title.active,
 [data-theme="dark"] #collection-header-title:active,
+[data-theme="dark"] #collection-modal-curator.active,
+[data-theme="dark"] #collection-modal-curator:active,
 [data-theme="dark"] #btn-open-filter-modal.active,
 [data-theme="dark"] #btn-open-filter-modal:active,
 [data-theme="dark"] .awsui-filter-modal-actions .awsui-btn:active {
