@@ -333,6 +333,82 @@ test('Description Modal Component & Interaction Logic', async () => {
   assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
 });
 
+test('Profile Panel - Open from Curator double-click and populate sheet fields', async () => {
+  const mockProfileModal = createMockElement();
+  const mockName = createMockElement();
+  const mockEnSection = createMockElement();
+  const mockEn = createMockElement();
+  const mockIgSection = createMockElement();
+  const mockIg = createMockElement();
+  const mockYtSection = createMockElement();
+  const mockYt = createMockElement();
+  const mockGmSection = createMockElement();
+  const mockGm = createMockElement();
+  const mockDescSection = createMockElement();
+  const mockDesc = createMockElement();
+  const mockId = createMockElement();
+  const mockCurator = createMockElement({ innerText: '巧克力' });
+  const mockCollectionModal = createMockElement();
+  mockCollectionModal.classes.add('open');
+
+  mockDOM({
+    'profile-modal': mockProfileModal,
+    'profile-modal-name': mockName,
+    'profile-modal-en-section': mockEnSection,
+    'profile-modal-en': mockEn,
+    'profile-modal-ig-section': mockIgSection,
+    'profile-modal-ig': mockIg,
+    'profile-modal-youtube-section': mockYtSection,
+    'profile-modal-youtube': mockYt,
+    'profile-modal-gmail-section': mockGmSection,
+    'profile-modal-gmail': mockGm,
+    'profile-modal-description-section': mockDescSection,
+    'profile-modal-description': mockDesc,
+    'profile-modal-id': mockId,
+    'collection-modal-curator': mockCurator,
+    'collection-modal': mockCollectionModal,
+    'description-modal': createMockElement()
+  });
+
+  const { profilesCache } = await import('../js/data.js');
+  const { handleCuratorClick, closeProfileModal } = await import('../js/components/modal.js');
+
+  profilesCache.length = 0;
+  profilesCache.push({
+    id: '#P-0002',
+    enName: 'Chocolate',
+    zhName: '巧克力',
+    ig: '不公開',
+    youtube: '不公開',
+    gmail: '不公開',
+    description: 'CGO Master\n歡迎大家來玩'
+  });
+
+  handleCuratorClick();
+  assert(mockProfileModal.classes.has('open'), 'double-click Curator should open Profile panel');
+  assert.equal(mockName.innerText, '巧克力');
+  assert.equal(mockEn.innerText, 'Chocolate');
+  assert.equal(mockIg.innerText, '不公開');
+  assert.equal(mockYt.innerText, '不公開');
+  assert.equal(mockGm.innerText, '不公開');
+  assert.equal(mockDesc.innerText, 'CGO Master\n歡迎大家來玩');
+  assert.equal(mockId.innerText, '#P-0002');
+  assert.notEqual(mockEnSection.style.display, 'none');
+
+  closeProfileModal(false);
+  assert(!mockProfileModal.classes.has('open'));
+});
+
+test('Local Fallback Snapshot Integrity - Profiles', () => {
+  const profilesJson = JSON.parse(readFileSync(resolve('profiles.json'), 'utf-8'));
+  assert(Array.isArray(profilesJson) && profilesJson.length >= 1);
+  const chocolate = profilesJson.find(p => p.zhName === '巧克力');
+  assert(chocolate);
+  assert.equal(chocolate.id, '#P-0002');
+  assert.equal(chocolate.enName, 'Chocolate');
+  assert('ig' in chocolate && 'youtube' in chocolate && 'gmail' in chocolate && 'description' in chocolate);
+});
+
 test('Filter Modal - Open, apply, reset and gallery-specific sections', async () => {
   const mockFilterModal = createMockElement();
   const mockHangul = createMockElement({ style: { display: 'none' } });

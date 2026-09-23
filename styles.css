@@ -1294,7 +1294,8 @@ a:focus {
 }
 
 #modal-term-title,
-#collection-modal-title {
+#collection-modal-title,
+#profile-modal-name {
   font-size: 30px;
   font-weight: 700;
   color: var(--awsui-color-text-body-default, #16191f);
@@ -1341,7 +1342,8 @@ a:focus {
 }
 
 #modal-meaning-text,
-#collection-modal-description {
+#collection-modal-description,
+#profile-modal-description {
   font-family: 'Noto Sans TC', sans-serif;
   font-size: 18px;
   color: var(--awsui-color-text-body-default, #16191f);
@@ -1359,7 +1361,8 @@ a:focus {
 }
 
 #modal-meaning-text.is-multiline,
-#collection-modal-description.is-multiline {
+#collection-modal-description.is-multiline,
+#profile-modal-description.is-multiline {
   background-color: #f8f9fa;
   border: none;
   border-radius: 0;
@@ -1373,19 +1376,22 @@ a:focus {
   cursor: pointer;
 }
 
-#description-modal {
+#description-modal,
+#profile-modal {
   z-index: 3000;
   background: transparent;
   transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
-#description-modal .awsui-modal {
+#description-modal .awsui-modal,
+#profile-modal .awsui-modal {
   opacity: 0;
   transform: scale(0.95);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#description-modal.open .awsui-modal {
+#description-modal.open .awsui-modal,
+#profile-modal.open .awsui-modal {
   opacity: 1;
   transform: scale(1);
 }
@@ -1462,7 +1468,8 @@ a:focus {
 }
 
 #detail-modal .awsui-modal-created-time,
-#collection-modal .awsui-modal-created-time {
+#collection-modal .awsui-modal-created-time,
+#profile-modal .awsui-modal-created-time {
   border-top: none;
   padding-top: 0;
   margin-top: 12px;
@@ -1472,8 +1479,13 @@ a:focus {
   margin-bottom: 4px;
 }
 
-#collection-modal .awsui-modal-divider + .awsui-modal-created-time {
+#collection-modal .awsui-modal-divider + .awsui-modal-created-time,
+#profile-modal .awsui-modal-divider + .awsui-modal-created-time {
   margin-top: 4px;
+}
+
+#collection-modal-curator {
+  cursor: pointer;
 }
 
 .awsui-modal-meta-item {
@@ -1492,7 +1504,8 @@ a:focus {
 #modal-id,
 #collection-modal-created-at,
 #collection-modal-id,
-#collection-modal-total-items {
+#collection-modal-total-items,
+#profile-modal-id {
   font-weight: 400;
   color: var(--awsui-color-text-body-secondary, #687078);
 }
@@ -2126,7 +2139,8 @@ a:focus {
 }
 
 [data-theme="dark"] #modal-meaning-text.is-multiline,
-[data-theme="dark"] #collection-modal-description.is-multiline {
+[data-theme="dark"] #collection-modal-description.is-multiline,
+[data-theme="dark"] #profile-modal-description.is-multiline {
   background-color: rgba(255, 255, 255, 0.04);
 }
 
@@ -2234,7 +2248,8 @@ a:focus {
   }
 
   #modal-meaning-text,
-  #collection-modal-description {
+  #collection-modal-description,
+  #profile-modal-description {
     flex: 1;
     overflow-y: auto;
     min-height: 0;
@@ -2242,14 +2257,16 @@ a:focus {
     scrollbar-gutter: stable;
   }
 
-  /* Description Modal Desktop Position: Right Side & Overlapping on Item Modal */
-  #description-modal {
+  /* Description / Profile Modal Desktop Position: Right Side & Overlapping */
+  #description-modal,
+  #profile-modal {
     justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
   }
 
-  #description-modal .awsui-modal {
+  #description-modal .awsui-modal,
+  #profile-modal .awsui-modal {
     margin-left: 50vw;
     max-width: min(640px, calc(50vw - 32px));
   }
@@ -2347,7 +2364,8 @@ a:focus {
   }
 
   #modal-meaning-text,
-  #collection-modal-description {
+  #collection-modal-description,
+  #profile-modal-description {
     flex: 1 1 auto;
     overflow-y: auto;
     min-height: 0 !important;
@@ -2358,7 +2376,8 @@ a:focus {
   }
 
   #modal-meaning-text.is-multiline,
-  #collection-modal-description.is-multiline {
+  #collection-modal-description.is-multiline,
+  #profile-modal-description.is-multiline {
     padding: 10px 12px !important;
     margin-left: -12px !important;
     margin-right: -12px !important;
@@ -2383,14 +2402,19 @@ a:focus {
   }
 
   #modal-term-title,
-  #collection-modal-title {
+  #collection-modal-title,
+  #profile-modal-name {
     font-size: 20px !important;
     line-height: 1.3 !important;
   }
 
   #modal-reading-row,
   #collection-modal-entitle,
-  #collection-modal-curator {
+  #collection-modal-curator,
+  #profile-modal-en,
+  #profile-modal-ig,
+  #profile-modal-youtube,
+  #profile-modal-gmail {
     font-size: 14px !important;
     line-height: 1.5 !important;
     min-height: auto !important;
@@ -2398,7 +2422,11 @@ a:focus {
 
   #modal-reading-section,
   #collection-modal-entitle-section,
-  #collection-modal-curator-section {
+  #collection-modal-curator-section,
+  #profile-modal-en-section,
+  #profile-modal-ig-section,
+  #profile-modal-youtube-section,
+  #profile-modal-gmail-section {
     margin-top: 10px !important;
   }
 
@@ -2441,7 +2469,8 @@ a:focus {
   }
 
   #detail-modal .awsui-modal-created-time,
-  #collection-modal .awsui-modal-created-time {
+  #collection-modal .awsui-modal-created-time,
+  #profile-modal .awsui-modal-created-time {
     border-top: none !important;
     padding-top: 0 !important;
     margin-top: 8px !important;
@@ -2451,7 +2480,8 @@ a:focus {
     margin-bottom: 4px !important;
   }
 
-  #collection-modal .awsui-modal-divider + .awsui-modal-created-time {
+  #collection-modal .awsui-modal-divider + .awsui-modal-created-time,
+  #profile-modal .awsui-modal-divider + .awsui-modal-created-time {
     margin-top: 4px !important;
   }
 
@@ -2461,7 +2491,8 @@ a:focus {
   #modal-id,
   #collection-modal-created-at,
   #collection-modal-id,
-  #collection-modal-total-items {
+  #collection-modal-total-items,
+  #profile-modal-id {
     font-size: 12px !important;
   }
 }

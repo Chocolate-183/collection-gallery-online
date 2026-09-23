@@ -2,9 +2,9 @@
  * Data Fetching, Caching & Parallel Sync Handler
  */
 import { DEFAULT_TIMEOUT_MS } from './constants.js';
-import { collectionsConfig, getCollectionDataUrls, getMetadataUrls } from './config.js';
+import { collectionsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls } from './config.js';
 import { store } from './state.js';
-import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, gvizTableToRows, extractOpeningHoursFromMetaRows } from './parser.js';
+import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, gvizTableToRows, extractOpeningHoursFromMetaRows, parseProfilesCSVData, parseProfilesGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
@@ -14,6 +14,62 @@ import { safeFetchText, setOpeningHoursSchedule, isCollectionAdjusting, isCollec
 // Cache for storing fetched collection records & metadata
 export const collectionsCache = {};
 export const collectionsMetaCache = {};
+export const profilesCache = [];
+
+function normalizeProfileName(name) {
+  return String(name || '').trim();
+}
+
+/**
+ * Looks up a curator profile by Chinese or English name.
+ */
+export function findProfileByName(name) {
+  const key = normalizeProfileName(name);
+  if (!key) return null;
+  return profilesCache.find(p =>
+    normalizeProfileName(p.zhName) === key || normalizeProfileName(p.enName) === key
+  ) || null;
+}
+
+/**
+ * Fetches curator profiles from the central spreadsheet (CSV → GViz → local JSON).
+ */
+export async function fetchProfiles() {
+  const { csvUrl, gvizUrl, localFallback } = getProfileUrls();
+  let profiles = [];
+
+  if (csvUrl) {
+    const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
+    if (csvText) {
+      profiles = parseProfilesCSVData(csvText);
+    }
+  }
+
+  if ((!profiles || profiles.length === 0) && gvizUrl) {
+    const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
+    if (gvizText) {
+      profiles = parseProfilesGvizResponse(gvizText);
+    }
+  }
+
+  if ((!profiles || profiles.length === 0) && localFallback) {
+    const fallbackText = await safeFetchText(localFallback, DEFAULT_TIMEOUT_MS);
+    if (fallbackText) {
+      try {
+        const parsed = JSON.parse(fallbackText);
+        if (Array.isArray(parsed)) profiles = parsed;
+      } catch (err) {
+        console.warn('Failed to parse local profiles fallback JSON:', err);
+      }
+    }
+  }
+
+  profilesCache.length = 0;
+  if (Array.isArray(profiles) && profiles.length > 0) {
+    profilesCache.push(...profiles);
+  }
+  return profilesCache;
+}
 
 /**
  * Fetches metadata for all exhibition halls from the central metadata spreadsheet.
@@ -81,7 +137,7 @@ export async function fetchAllMetadata() {
  * Preload and synchronize all collections and metadata in parallel at app initialization.
  */
 export async function preloadAllCollections() {
-  await fetchAllMetadata();
+  await Promise.all([fetchAllMetadata(), fetchProfiles()]);
   const colIds = Object.keys(collectionsConfig);
   await Promise.all(colIds.map(id => fetchSingleCollection(collectionsConfig[id])));
 }

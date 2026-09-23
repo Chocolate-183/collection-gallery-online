@@ -493,3 +493,90 @@ export function parseOpeningHoursCSV(csvText) {
   if (!rows || rows.length < 2) return null;
   return extractOpeningHoursFromMetaRows(rows);
 }
+
+/**
+ * Formats curator profile IDs to #P-0002.
+ * GViz numeric cells often expose v=2 / f="#P-0002"; prefer the formatted value.
+ */
+export function formatProfileId(raw) {
+  const text = raw == null ? '' : String(raw).trim();
+  if (!text) return '';
+  if (/^#P-/i.test(text)) return text.startsWith('#') ? text : `#${text.slice(1)}`;
+  const num = Number(text);
+  if (!Number.isFinite(num)) return text;
+  return `#P-${String(Math.trunc(num)).padStart(4, '0')}`;
+}
+
+function headerIndex(headers, predicates) {
+  return headers.findIndex(h => predicates.some(pred => pred(h)));
+}
+
+/**
+ * Parses curator profile rows (header + records) into profile objects.
+ */
+export function parseProfileRows(rows) {
+  if (!rows || rows.length <= 1) return [];
+
+  const headers = rows[0].map(h => (h || '').trim().toLowerCase());
+  const idIdx = headerIndex(headers, [h => h === 'id' || h.includes('編號')]);
+  const enIdx = headerIndex(headers, [h => h.includes('english')]);
+  const zhIdx = headerIndex(headers, [h => h.includes('chinese') || h.includes('中文') || h.includes('chinese name')]);
+  const igIdx = headerIndex(headers, [h => h === 'ig' || h.includes('instagram')]);
+  const ytIdx = headerIndex(headers, [h => h.includes('youtube') || h === 'yt']);
+  const gmIdx = headerIndex(headers, [h => h.includes('gmail') || h.includes('email') || h.includes('mail')]);
+  const descIdx = headerIndex(headers, [h => h.includes('description') || h.includes('說明')]);
+
+  const cell = (row, idx) => (idx >= 0 && row[idx] != null) ? String(row[idx]).trim() : '';
+  const profiles = [];
+
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    if (!row) continue;
+    const zhName = cell(row, zhIdx);
+    const enName = cell(row, enIdx);
+    if (!zhName && !enName) continue;
+    profiles.push({
+      id: formatProfileId(cell(row, idIdx)),
+      enName,
+      zhName,
+      ig: cell(row, igIdx),
+      youtube: cell(row, ytIdx),
+      gmail: cell(row, gmIdx),
+      description: cell(row, descIdx)
+    });
+  }
+
+  return profiles;
+}
+
+/**
+ * Parses curator profiles CSV (ID, English Name, Chinese Name, IG, Youtube, Gmail, Description).
+ */
+export function parseProfilesCSVData(csvText) {
+  return parseProfileRows(parseCSVRows(csvText));
+}
+
+/**
+ * Parses curator profiles from a GViz JSON response.
+ */
+export function parseProfilesGvizResponse(gvizText) {
+  const table = extractGvizTable(gvizText);
+  if (!table) return [];
+
+  const rows = [];
+  if (table.cols?.length > 0) {
+    const headerRow = table.cols.map(col => col?.label || '');
+    if (headerRow.some(Boolean)) rows.push(headerRow);
+  }
+  if (table.rows) {
+    table.rows.forEach(r => {
+      if (!r.c) return;
+      rows.push(r.c.map((cell, i) => {
+        const preferFormatted = i === 0;
+        const value = readGvizCell(cell, { preferFormatted });
+        return value == null ? '' : String(value);
+      }));
+    });
+  }
+  return parseProfileRows(rows);
+}

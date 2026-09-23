@@ -5,7 +5,7 @@ import { VIEWS } from './constants.js';
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection, closeSidebarOnMobile } from './components/sidebar.js';
-import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal, openCollectionDescriptionModal } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal, openCollectionDescriptionModal, openProfileModal, closeProfileModal } from './components/modal.js';
 import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
@@ -201,8 +201,14 @@ export function handleHashRoute() {
         openCollectionModal(targetColId, false);
         if (subAction === 'description') {
           openCollectionDescriptionModal(targetColId, null, false);
+        } else if (subAction === 'profile') {
+          closeDescriptionModal(false);
+          const curatorName = collectionsConfig[targetColId]?.curator;
+          if (curatorName) openProfileModal(curatorName, false);
+          else closeProfileModal(false);
         } else {
           closeDescriptionModal(false);
+          closeProfileModal(false);
         }
       } else {
         const rec = allRecords.find(r => r.ja_term === termName || r.id === termName);
@@ -214,6 +220,7 @@ export function handleHashRoute() {
             openDescriptionModal(rec.row_index, false);
           } else {
             closeDescriptionModal(false);
+            closeProfileModal(false);
           }
         } else {
           closeDetailModal(false);
@@ -229,6 +236,7 @@ export function handleHashRoute() {
       }
       closeDetailModal(false);
       closeCollectionModal(false);
+      closeProfileModal(false);
     }
   } else {
     switchView(VIEWS.DICTIONARY, null, false);
@@ -240,6 +248,7 @@ export function handleHashRoute() {
         openDescriptionModal(rec.row_index, false);
       } else {
         closeDescriptionModal(false);
+        closeProfileModal(false);
       }
     } else {
       closeDetailModal(false);

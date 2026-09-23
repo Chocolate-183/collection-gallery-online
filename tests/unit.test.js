@@ -8,7 +8,10 @@ import {
   parseCSVRows,
   extractGvizTable,
   parseOpeningHoursCSV,
-  extractOpeningHoursFromMetaRows
+  extractOpeningHoursFromMetaRows,
+  parseProfilesCSVData,
+  parseProfilesGvizResponse,
+  formatProfileId
 } from '../js/parser.js';
 import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType } from '../js/filter.js';
 import { LENGTH_TABS, KANA_TABS, SORT_FIELDS, SORT_ORDERS } from '../js/constants.js';
@@ -25,7 +28,7 @@ import {
   isCollectionHidden,
   parseRecommendationList
 } from '../js/utils.js';
-import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, collectionsConfig } from '../js/config.js';
+import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, collectionsConfig } from '../js/config.js';
 
 test('CSV & Data Parsers - Core CSV Parsing & GViz Extraction', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期,推薦條目
@@ -275,6 +278,10 @@ test('Config & Endpoint URL Builders', () => {
   const metaUrls = getMetadataUrls();
   assert(metaUrls.csvUrl.includes('162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs'));
   assert(metaUrls.csvUrl.includes('gid=1574352890'));
+  const profileUrls = getProfileUrls();
+  assert(profileUrls.csvUrl.includes('162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs'));
+  assert(profileUrls.csvUrl.includes('gid=1665955868'));
+  assert.equal(profileUrls.localFallback, 'profiles.json');
   assert.equal(collectionsConfig['japanese-terms'].defaultMeta.status, '開放中');
   assert.equal(collectionsConfig['china-terms'].defaultMeta.status, '開放中');
   assert.equal(collectionsConfig['korean-terms'].defaultMeta.status, '開放中');
@@ -364,6 +371,32 @@ test('Gallery curator lives on config, not metadata', () => {
     assert.equal(col.defaultMeta.author, undefined);
     assert.equal(col.defaultMeta.curator, undefined);
   }
+});
+
+test('Profile parsers - CSV, GViz formatted ID, name lookup keys', () => {
+  assert.equal(formatProfileId(2), '#P-0002');
+  assert.equal(formatProfileId('#P-0003'), '#P-0003');
+  assert.equal(formatProfileId(''), '');
+
+  const csv = `ID,English Name,Chinese Name,IG,Youtube,Gmail,Description
+#P-0002,Chocolate,巧克力,不公開,不公開,不公開,"CGO Master
+歡迎大家來玩"
+#P-0003,Hikari,光,不公開,不公開,不公開,光追`;
+  const parsed = parseProfilesCSVData(csv);
+  assert.equal(parsed.length, 2);
+  assert.equal(parsed[0].id, '#P-0002');
+  assert.equal(parsed[0].enName, 'Chocolate');
+  assert.equal(parsed[0].zhName, '巧克力');
+  assert.equal(parsed[0].ig, '不公開');
+  assert.equal(parsed[0].description, 'CGO Master\n歡迎大家來玩');
+  assert.equal(parsed[1].zhName, '光');
+
+  const gviz = `google.visualization.Query.setResponse({"status":"ok","table":{"cols":[{"label":"ID"},{"label":"English Name"},{"label":"Chinese Name"},{"label":"IG"},{"label":"Youtube"},{"label":"Gmail"},{"label":"Description"}],"rows":[{"c":[{"v":2.0,"f":"#P-0002"},{"v":"Chocolate"},{"v":"巧克力"},{"v":"不公開"},{"v":"不公開"},{"v":"不公開"},{"v":"CGO Master\\n歡迎大家來玩"}]}]}});`;
+  const fromGviz = parseProfilesGvizResponse(gviz);
+  assert.equal(fromGviz.length, 1);
+  assert.equal(fromGviz[0].id, '#P-0002');
+  assert.equal(fromGviz[0].zhName, '巧克力');
+  assert.equal(fromGviz[0].description, 'CGO Master\n歡迎大家來玩');
 });
 
 test('Status & Exhibition Helpers', () => {
