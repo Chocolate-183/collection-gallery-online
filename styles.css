@@ -1468,6 +1468,14 @@ a:focus {
   margin-top: 12px;
 }
 
+#collection-modal .awsui-modal-divider {
+  margin-bottom: 4px;
+}
+
+#collection-modal .awsui-modal-divider + .awsui-modal-created-time {
+  margin-top: 4px;
+}
+
 .awsui-modal-meta-item {
   display: flex;
   align-items: center;
@@ -1483,7 +1491,8 @@ a:focus {
 #modal-created-at,
 #modal-id,
 #collection-modal-created-at,
-#collection-modal-id {
+#collection-modal-id,
+#collection-modal-total-items {
   font-weight: 400;
   color: var(--awsui-color-text-body-secondary, #687078);
 }
@@ -2380,16 +2389,14 @@ a:focus {
   }
 
   #modal-reading-row,
-  #collection-modal-entitle,
-  #collection-modal-total-items {
+  #collection-modal-entitle {
     font-size: 14px !important;
     line-height: 1.5 !important;
     min-height: auto !important;
   }
 
   #modal-reading-section,
-  #collection-modal-entitle-section,
-  #collection-modal-total-section {
+  #collection-modal-entitle-section {
     margin-top: 10px !important;
   }
 
@@ -2438,12 +2445,21 @@ a:focus {
     margin-top: 8px !important;
   }
 
+  #collection-modal .awsui-modal-divider {
+    margin-bottom: 4px !important;
+  }
+
+  #collection-modal .awsui-modal-divider + .awsui-modal-created-time {
+    margin-top: 4px !important;
+  }
+
   .awsui-modal-meta-item,
   .awsui-modal-meta-label,
   #modal-created-at,
   #modal-id,
   #collection-modal-created-at,
-  #collection-modal-id {
+  #collection-modal-id,
+  #collection-modal-total-items {
     font-size: 12px !important;
   }
 }
