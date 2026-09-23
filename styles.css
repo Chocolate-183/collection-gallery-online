@@ -1484,6 +1484,19 @@ a:focus {
   margin-top: 4px;
 }
 
+.profile-modal-social-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+  min-width: 0;
+}
+
+.profile-modal-social-row > .awsui-modal-section {
+  margin-top: 0;
+  min-width: 0;
+}
+
 #collection-modal-curator {
   cursor: pointer;
   display: inline-block;
@@ -2442,10 +2455,14 @@ a:focus {
   #collection-modal-entitle-section,
   #collection-modal-curator-section,
   #profile-modal-en-section,
-  #profile-modal-ig-section,
-  #profile-modal-youtube-section,
-  #profile-modal-gmail-section {
+  #profile-modal-gmail-section,
+  #profile-modal-description-section {
     margin-top: 10px !important;
+  }
+
+  .profile-modal-social-row {
+    margin-top: 10px !important;
+    gap: 12px;
   }
 
   .awsui-modal-section-title,

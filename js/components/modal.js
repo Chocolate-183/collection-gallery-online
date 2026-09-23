@@ -172,6 +172,13 @@ export function openProfileModal(curatorName, updateHash = true) {
   setProfileField('profile-modal-youtube-section', 'profile-modal-youtube', profile.youtube);
   setProfileField('profile-modal-gmail-section', 'profile-modal-gmail', profile.gmail);
 
+  const socialRow = document.getElementById('profile-modal-social-row');
+  if (socialRow) {
+    const igText = profile.ig == null ? '' : String(profile.ig).trim();
+    const ytText = profile.youtube == null ? '' : String(profile.youtube).trim();
+    socialRow.style.display = (igText || ytText) ? '' : 'none';
+  }
+
   const descText = profile.description ? String(profile.description).trim() : '';
   if (descElem) {
     descElem.innerText = descText || '--';

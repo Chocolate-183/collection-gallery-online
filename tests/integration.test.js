@@ -346,6 +346,7 @@ test('Profile Panel - Open from Curator click and populate sheet fields', async 
   const mockGm = createMockElement();
   const mockDescSection = createMockElement();
   const mockDesc = createMockElement();
+  const mockSocialRow = createMockElement();
   const mockId = createMockElement();
   const mockCurator = createMockElement({ innerText: '巧克力' });
   const mockCollectionModal = createMockElement();
@@ -364,6 +365,7 @@ test('Profile Panel - Open from Curator click and populate sheet fields', async 
     'profile-modal-gmail': mockGm,
     'profile-modal-description-section': mockDescSection,
     'profile-modal-description': mockDesc,
+    'profile-modal-social-row': mockSocialRow,
     'profile-modal-id': mockId,
     'collection-modal-curator': mockCurator,
     'collection-modal': mockCollectionModal,
@@ -395,6 +397,8 @@ test('Profile Panel - Open from Curator click and populate sheet fields', async 
   assert.equal(mockDesc.innerText, 'CGO Master\n歡迎大家來玩');
   assert.equal(mockId.innerText, '#P-0002');
   assert.notEqual(mockEnSection.style.display, 'none');
+  assert.notEqual(mockSocialRow.style.display, 'none');
+  assert.notEqual(mockDescSection.style.display, 'none');
 
   closeProfileModal(false);
   assert(!mockProfileModal.classes.has('open'));
