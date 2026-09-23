@@ -320,6 +320,8 @@ export function openCollectionModal(collectionId, updateHash = true) {
 
   const titleElem = document.getElementById('collection-modal-title');
   const enTitleElem = document.getElementById('collection-modal-entitle');
+  const curatorSection = document.getElementById('collection-modal-curator-section');
+  const curatorElem = document.getElementById('collection-modal-curator');
   const descElem = document.getElementById('collection-modal-description');
   const totalElem = document.getElementById('collection-modal-total-items');
   const timestampElem = document.getElementById('collection-modal-created-at');
@@ -327,6 +329,9 @@ export function openCollectionModal(collectionId, updateHash = true) {
 
   if (titleElem) titleElem.innerText = meta?.title || col.name;
   if (enTitleElem) enTitleElem.innerText = meta?.enTitle || col.enTitle || targetColId;
+  const curator = typeof col.curator === 'string' ? col.curator.trim() : '';
+  if (curatorElem) curatorElem.innerText = curator || '--';
+  if (curatorSection) curatorSection.style.display = curator ? '' : 'none';
   if (descElem) {
     const descText = meta?.description || '（無說明內容）';
     descElem.innerText = descText;

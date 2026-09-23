@@ -11,6 +11,7 @@ export default {
   localFallback: 'china-data.json',
   hasReading: false,
   searchPlaceholder: '尋找展品...',
+  curator: '巧克力',
   defaultMeta: {
     title: '大陸特色詞彙一覽',
     enTitle: 'China Terms',

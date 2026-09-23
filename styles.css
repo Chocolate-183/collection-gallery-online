@@ -2389,14 +2389,16 @@ a:focus {
   }
 
   #modal-reading-row,
-  #collection-modal-entitle {
+  #collection-modal-entitle,
+  #collection-modal-curator {
     font-size: 14px !important;
     line-height: 1.5 !important;
     min-height: auto !important;
   }
 
   #modal-reading-section,
-  #collection-modal-entitle-section {
+  #collection-modal-entitle-section,
+  #collection-modal-curator-section {
     margin-top: 10px !important;
   }
 

@@ -15,6 +15,7 @@ export default {
   hasLoanwordFilter: true,
   hiddenColumnIndexes: [2, 3],
   searchPlaceholder: '尋找展品...',
+  curator: '巧克力',
   defaultMeta: {
     title: '中文母語者韓語單字集',
     enTitle: 'Korean Vocabulary for Chinese Speakers',

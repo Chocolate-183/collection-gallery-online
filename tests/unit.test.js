@@ -358,6 +358,14 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
   assert.equal(parsed[1].created_at, '2026-09-15');
 });
 
+test('Gallery curator lives on config, not metadata', () => {
+  for (const col of Object.values(collectionsConfig)) {
+    assert.equal(col.curator, '巧克力');
+    assert.equal(col.defaultMeta.author, undefined);
+    assert.equal(col.defaultMeta.curator, undefined);
+  }
+});
+
 test('Status & Exhibition Helpers', () => {
   assert.equal(isCollectionAdjusting({ status: '調整中' }), true);
   assert.equal(isCollectionPreparing({ status: '籌備中' }), true);

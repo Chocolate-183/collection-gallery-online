@@ -12,6 +12,7 @@ export default {
   hasReading: true,
   hasKanaTabs: true,
   searchPlaceholder: '尋找展品...',
+  curator: '巧克力',
   defaultMeta: {
     title: '日本特色詞彙一覽',
     enTitle: 'Japanese Terms',

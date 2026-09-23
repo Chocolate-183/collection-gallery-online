@@ -215,6 +215,8 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   const mockModal = createMockElement();
   const mockTitle = createMockElement();
   const mockEnTitle = createMockElement();
+  const mockCuratorSection = createMockElement();
+  const mockCurator = createMockElement();
   const mockDesc = createMockElement();
   const mockTotal = createMockElement();
   const mockCreatedAt = createMockElement();
@@ -225,6 +227,8 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
     'collection-modal': mockModal,
     'collection-modal-title': mockTitle,
     'collection-modal-entitle': mockEnTitle,
+    'collection-modal-curator-section': mockCuratorSection,
+    'collection-modal-curator': mockCurator,
     'collection-modal-description': mockDesc,
     'collection-modal-total-items': mockTotal,
     'collection-modal-created-at': mockCreatedAt,
@@ -252,6 +256,8 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   assert(mockHeaderTitle.classes.has('active'), 'collection-header-title should have active class when collection modal opens');
   assert.equal(mockTitle.innerText, '大陸特色詞彙一覽');
   assert.equal(mockEnTitle.innerText, 'China Terms');
+  assert.equal(mockCurator.innerText, '巧克力');
+  assert.notEqual(mockCuratorSection.style.display, 'none');
   assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容\n第二行說明\n第三行說明');
   assert(mockDesc.classes.has('is-multiline'), 'Collection modal description should have is-multiline class for background color block');
   assert.equal(mockTotal.innerText, 2);
@@ -268,6 +274,7 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   assert(mockModal.classes.has('open'));
   assert.equal(mockTitle.innerText, '中文母語者韓語單字集');
   assert.equal(mockEnTitle.innerText, 'Hanja Hacks for Korean');
+  assert.equal(mockCurator.innerText, '巧克力');
   assert.equal(mockCreatedAt.innerText, '2026-09-18');
   assert.equal(mockId.innerText, 'C103');
 
