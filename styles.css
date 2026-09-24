@@ -546,23 +546,20 @@ a:focus {
 /* Kana Tabs & Filter Group */
 .awsui-filter-tabs-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
   margin-bottom: 16px;
 }
 
-.awsui-filter-tabs-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.awsui-filter-tabs-row .awsui-tabs {
+.awsui-filter-tabs-container .awsui-tabs {
   margin-bottom: 0;
   flex: 1 1 auto;
   min-width: 0;
+}
+
+.awsui-filter-tabs-container .awsui-filter-summary-row {
+  flex: 1 1 100%;
 }
 
 .awsui-cards-controls .awsui-pagination-controls {

@@ -138,11 +138,6 @@ export function switchCollection(collectionId, updateHash = true) {
     if (col.searchPlaceholder) searchInput.placeholder = col.searchPlaceholder;
   }
 
-  const kanaTabsRow = document.getElementById('kana-tabs-row');
-  const quickTabsLabel = document.getElementById('quick-tabs-label');
-  if (kanaTabsRow) kanaTabsRow.style.display = 'flex';
-  if (quickTabsLabel) quickTabsLabel.innerText = 'Filter:';
-
   const hangulSection = document.getElementById('filter-hangul-section');
   const kanaSection = document.getElementById('filter-kana-section');
   const kindSection = document.getElementById('filter-kind-section');

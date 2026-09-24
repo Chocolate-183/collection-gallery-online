@@ -425,8 +425,6 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   const mockBadge = createMockElement({ style: { display: 'none' } });
   const mockSummary = createMockElement();
   const mockTrigger = createMockElement();
-  const mockKanaTabsRow = createMockElement({ style: {} });
-  const mockQuickLabel = createMockElement();
 
   mockDOM({
     'filter-modal': mockFilterModal,
@@ -437,9 +435,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
     'sort-field-subtitle': mockGloss,
     'filter-modal-badge': mockBadge,
     'filter-summary': mockSummary,
-    'btn-open-filter-modal': mockTrigger,
-    'kana-tabs-row': mockKanaTabsRow,
-    'quick-tabs-label': mockQuickLabel
+    'btn-open-filter-modal': mockTrigger
   });
 
   const originalWindow = global.window;
