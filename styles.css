@@ -1705,16 +1705,26 @@ a:focus {
   color: #ECC94B;
 }
 
-#btn-open-filter-modal.awsui-btn,
+#btn-open-filter-modal.awsui-btn {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--awsui-color-text-form-label);
+}
+
+#btn-open-filter-modal.awsui-btn .awsui-icon {
+  fill: currentColor;
+}
+
 #btn-open-filter-modal.awsui-btn:hover {
   background: transparent;
   border: none;
   box-shadow: none;
-  color: var(--awsui-color-text-body-default);
+  color: #303748;
 }
 
-#btn-open-filter-modal.awsui-btn:hover {
-  color: #303748;
+[data-theme="dark"] #btn-open-filter-modal.awsui-btn:hover {
+  color: #ECC94B;
 }
 
 /* Welcome Section */
@@ -2025,6 +2035,14 @@ a:focus {
   background-color: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;
+}
+
+[data-theme="dark"] #btn-open-filter-modal.awsui-btn:not(.active) {
+  color: var(--awsui-color-text-form-label);
+}
+
+[data-theme="dark"] #btn-open-filter-modal.awsui-btn:not(.active):hover {
+  color: #ECC94B;
 }
 
 [data-theme="dark"] .awsui-card-header-title {
