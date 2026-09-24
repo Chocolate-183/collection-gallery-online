@@ -558,8 +558,9 @@ a:focus {
   min-width: 0;
 }
 
-.awsui-filter-tabs-container .awsui-filter-summary-row {
-  flex: 1 1 100%;
+.awsui-filter-tabs-container #filter-summary {
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .awsui-cards-controls .awsui-pagination-controls {
@@ -628,23 +629,25 @@ a:focus {
 
 .awsui-filter-trigger {
   height: 36px;
-  padding: 0 12px;
+  width: 36px;
+  min-width: 36px;
+  padding: 0;
   font-size: 13px;
   font-weight: 400;
-  gap: 6px;
+  gap: 0;
   white-space: nowrap;
   position: relative;
 }
 
 .awsui-filter-trigger.has-active-filters {
-  border-color: #ECC94B;
+  color: #ECC94B;
 }
 
 #btn-open-filter-modal.active,
 #btn-open-filter-modal:active {
   background: #ECC94B !important;
   color: #ffffff !important;
-  border-color: #ECC94B !important;
+  border: none !important;
 }
 
 #btn-open-filter-modal.active .awsui-icon,
@@ -659,25 +662,21 @@ a:focus {
 }
 
 .awsui-filter-badge {
-  min-width: 16px;
-  height: 16px;
-  padding: 0 5px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 3px;
   border-radius: 8px;
   background: #ECC94B;
   color: #ffffff;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 400;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
-}
-
-.awsui-filter-summary-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 18px;
 }
 
 #filter-summary {
@@ -1710,6 +1709,18 @@ a:focus {
 }
 .awsui-btn-tertiary:hover {
   color: #ECC94B;
+}
+
+#btn-open-filter-modal.awsui-btn,
+#btn-open-filter-modal.awsui-btn:hover {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--awsui-color-text-body-default);
+}
+
+#btn-open-filter-modal.awsui-btn:hover {
+  color: #303748;
 }
 
 /* Welcome Section */

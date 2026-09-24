@@ -288,21 +288,17 @@
           </div>
 
           <div class="awsui-filter-tabs-container">
-            <button type="button" id="btn-open-filter-modal" class="awsui-btn awsui-btn-normal awsui-filter-trigger" onclick="openFilterModal()" title="Filter" aria-label="Filter">
+            <button type="button" id="btn-open-filter-modal" class="awsui-btn awsui-filter-trigger" onclick="openFilterModal()" title="Filter" aria-label="Filter">
               <svg class="awsui-icon" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
                 <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .4.8L10 7.5V13a.5.5 0 0 1-.76.429l-3-1.8A.5.5 0 0 1 6 11.2V7.5L1.6 1.8A.5.5 0 0 1 1.5 1.5z"/>
               </svg>
-              <span>Filter</span>
               <span id="filter-modal-badge" class="awsui-filter-badge" style="display: none;">0</span>
             </button>
+            <span id="filter-summary">読み方 正序</span>
             <div class="awsui-tabs" id="kana-tabs">
               <button class="awsui-tab active" data-tab="ALL" onclick="selectKanaTab('ALL', this)">ALL</button>
               <button class="awsui-tab" data-tab="RANDOM10" onclick="selectKanaTab('RANDOM10', this)">RANDOM 10</button>
               <button class="awsui-tab" data-tab="LATEST10" onclick="selectKanaTab('LATEST10', this)">LATEST 10</button>
-            </div>
-            <div class="awsui-filter-summary-row" id="filter-summary-row">
-              <span class="awsui-filter-label">Active:</span>
-              <span id="filter-summary">読み方 正序</span>
             </div>
           </div>
 
