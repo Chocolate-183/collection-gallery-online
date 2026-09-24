@@ -722,6 +722,17 @@ a:focus {
   gap: 16px;
 }
 
+.awsui-filter-modal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-width: 0;
+}
+
+.awsui-filter-modal-row > .awsui-filter-modal-section {
+  min-width: 0;
+}
+
 .awsui-filter-modal-section .awsui-modal-section-title {
   margin-bottom: 8px;
 }
