@@ -76,6 +76,11 @@ export function renderPagination(total) {
 export function goToPage(p) {
   store.set({ currentPage: p });
   renderCards();
+  const bar = document.querySelector('.awsui-cards-pagination-bar');
+  if (bar && typeof bar.scrollIntoView === 'function') {
+    bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
   window.scrollTo({ top: 300, behavior: 'smooth' });
 }
 
