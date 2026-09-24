@@ -7,22 +7,13 @@ import { applyFiltersAndSort } from '../filter.js';
 
 export function renderPagination(total) {
   const { currentPage, pageSize } = store.get();
-  const info = document.getElementById('pagination-info');
   const controls = document.getElementById('pagination-controls');
   if (!controls) return;
   controls.innerHTML = '';
 
-  if (total === 0) {
-    if (info) info.innerText = '0 - 0 / 0';
-    return;
-  }
+  if (total === 0) return;
 
   const totalPages = Math.ceil(total / pageSize);
-  const startIdx = (currentPage - 1) * pageSize + 1;
-  const endIdx = Math.min(currentPage * pageSize, total);
-
-  if (info) info.innerHTML = `<strong>${startIdx} - ${endIdx}</strong> / <strong>${total}</strong>`;
-
   if (totalPages <= 1) return;
 
   const prevBtn = document.createElement('button');
@@ -76,9 +67,9 @@ export function renderPagination(total) {
 export function goToPage(p) {
   store.set({ currentPage: p });
   renderCards();
-  const bar = document.querySelector('.awsui-cards-pagination-bar');
-  if (bar && typeof bar.scrollIntoView === 'function') {
-    bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const row = document.getElementById('kana-tabs-row');
+  if (row && typeof row.scrollIntoView === 'function') {
+    row.scrollIntoView({ behavior: 'smooth', block: 'start' });
     return;
   }
   window.scrollTo({ top: 300, behavior: 'smooth' });

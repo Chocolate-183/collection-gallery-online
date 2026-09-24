@@ -546,7 +546,7 @@ a:focus {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .awsui-filter-tabs-row {
@@ -559,6 +559,13 @@ a:focus {
 
 .awsui-filter-tabs-row .awsui-tabs {
   margin-bottom: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.awsui-filter-tabs-row .awsui-pagination-controls {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .awsui-filter-label {
@@ -985,23 +992,6 @@ a:focus {
   align-items: center;
   cursor: pointer;
   color: #303748;
-}
-
-/* Pagination bar (under Filter, above cards) */
-.awsui-cards-pagination-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0 14px 0;
-  margin-bottom: 16px;
-  border-bottom: 1px solid var(--awsui-color-border-divider-default);
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.awsui-pagination-info {
-  font-size: 13px;
-  color: var(--awsui-color-text-body-secondary);
 }
 
 .awsui-pagination-controls {
