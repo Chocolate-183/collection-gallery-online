@@ -631,6 +631,16 @@ a:focus {
   gap: 0;
   white-space: nowrap;
   position: relative;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.awsui-filter-trigger .awsui-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
 }
 
 .awsui-filter-trigger.has-active-filters {
@@ -646,7 +656,8 @@ a:focus {
 
 #btn-open-filter-modal.active .awsui-icon,
 #btn-open-filter-modal:active .awsui-icon {
-  fill: #ffffff;
+  fill: none;
+  stroke: #ffffff;
 }
 
 #btn-open-filter-modal.active .awsui-filter-badge,
@@ -1709,11 +1720,12 @@ a:focus {
   background: transparent;
   border: none;
   box-shadow: none;
-  color: var(--awsui-color-text-form-label);
+  color: #687078;
 }
 
 #btn-open-filter-modal.awsui-btn .awsui-icon {
-  fill: currentColor;
+  fill: none;
+  stroke: currentColor;
 }
 
 #btn-open-filter-modal.awsui-btn:hover {
@@ -1721,6 +1733,10 @@ a:focus {
   border: none;
   box-shadow: none;
   color: #303748;
+}
+
+[data-theme="dark"] #btn-open-filter-modal.awsui-btn {
+  color: #8b949e;
 }
 
 [data-theme="dark"] #btn-open-filter-modal.awsui-btn:hover {
@@ -2038,7 +2054,7 @@ a:focus {
 }
 
 [data-theme="dark"] #btn-open-filter-modal.awsui-btn:not(.active) {
-  color: var(--awsui-color-text-form-label);
+  color: #8b949e;
 }
 
 [data-theme="dark"] #btn-open-filter-modal.awsui-btn:not(.active):hover {
