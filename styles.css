@@ -997,13 +997,13 @@ a:focus {
 .awsui-pagination-controls {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0;
 }
 
 .awsui-page-btn {
   height: 32px;
-  min-width: 32px;
-  padding: 0 8px;
+  min-width: 20px;
+  padding: 0 2px;
   font-size: 12px;
   font-weight: 400;
   border: none;

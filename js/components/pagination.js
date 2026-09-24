@@ -41,7 +41,7 @@ export function renderPagination(total) {
   pagesToDisplay.forEach(p => {
     if (p === '...') {
       const span = document.createElement('span');
-      span.style.padding = '0 6px';
+      span.style.padding = '0 2px';
       span.style.color = '#888';
       span.innerText = '...';
       controls.appendChild(span);
