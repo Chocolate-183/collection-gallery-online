@@ -1003,7 +1003,7 @@ a:focus {
 .awsui-page-btn {
   height: 32px;
   min-width: 20px;
-  padding: 0 2px;
+  padding: 0 4px;
   font-size: 12px;
   font-weight: 400;
   border: none;
