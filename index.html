@@ -716,14 +716,22 @@
 
           <div class="awsui-modal-divider"></div>
 
+          <div class="awsui-filter-modal-section">
+            <div class="awsui-modal-section-title"><span>Sort by</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-field-tabs">
+              <button class="awsui-tab" data-tab="id" onclick="selectSortField('id', this)">編號</button>
+              <button class="awsui-tab" data-tab="title" onclick="selectSortField('title', this)">標題</button>
+              <button class="awsui-tab active" id="sort-field-reading" data-tab="standard" onclick="selectSortField('standard', this)">読み方</button>
+              <button class="awsui-tab" id="sort-field-subtitle" data-tab="subtitle" onclick="selectSortField('subtitle', this)" style="display: none;">副標</button>
+            </div>
+          </div>
+
           <div class="awsui-filter-modal-row">
             <div class="awsui-filter-modal-section">
-              <div class="awsui-modal-section-title"><span>Sort by</span></div>
-              <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-field-tabs">
-                <button class="awsui-tab" data-tab="id" onclick="selectSortField('id', this)">編號</button>
-                <button class="awsui-tab" data-tab="title" onclick="selectSortField('title', this)">標題</button>
-                <button class="awsui-tab active" id="sort-field-reading" data-tab="standard" onclick="selectSortField('standard', this)">読み方</button>
-                <button class="awsui-tab" id="sort-field-subtitle" data-tab="subtitle" onclick="selectSortField('subtitle', this)" style="display: none;">副標</button>
+              <div class="awsui-modal-section-title"><span>Order</span></div>
+              <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
+                <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">正序</button>
+                <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">倒序</button>
               </div>
             </div>
 
@@ -736,14 +744,6 @@
                 <button class="awsui-tab" data-tab="100" onclick="selectPageSize('100', this)">100</button>
                 <button class="awsui-tab" data-tab="all" onclick="selectPageSize('all', this)">All</button>
               </div>
-            </div>
-          </div>
-
-          <div class="awsui-filter-modal-section">
-            <div class="awsui-modal-section-title"><span>Order</span></div>
-            <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
-              <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">正序</button>
-              <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">倒序</button>
             </div>
           </div>
         </div>
