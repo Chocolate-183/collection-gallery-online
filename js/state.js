@@ -24,7 +24,6 @@ class Store {
       filteredRecords: [],
       currentPage: 1,
       pageSize: DEFAULT_PAGE_SIZE,
-      currentKanaTab: 'ALL',
       currentLengthTab: 'ALL',
       currentInitialTab: 'ALL',
       loanwordOnly: false,
@@ -60,12 +59,6 @@ class Store {
         console.error('Error in state listener:', err);
       }
     }
-  }
-
-  reshuffleRandom10() {
-    this.state.allRecords.forEach(r => {
-      r._rand10 = Math.random();
-    });
   }
 
   reshuffleRandomSort() {

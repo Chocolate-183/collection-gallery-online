@@ -104,7 +104,6 @@ export function switchCollection(collectionId, updateHash = true) {
     invalidTerm: null,
     searchQuery: '',
     ...(isDifferent ? {
-      currentKanaTab: 'ALL',
       currentLengthTab: 'ALL',
       currentInitialTab: 'ALL',
       loanwordOnly: false,
@@ -155,12 +154,6 @@ export function switchCollection(collectionId, updateHash = true) {
       document.querySelectorAll('#sort-field-tabs .awsui-tab').forEach(p => p.classList.remove('active'));
       document.querySelector(`#sort-field-tabs [data-tab="${defaultField}"]`)?.classList.add('active');
     }
-  }
-
-  if (isDifferent) {
-    const kanaPills = document.querySelectorAll('#kana-tabs .awsui-tab');
-    kanaPills.forEach(p => p.classList.remove('active'));
-    document.querySelector('#kana-tabs .awsui-tab')?.classList.add('active');
   }
 
   if (typeof window.syncFilterUi === 'function') {

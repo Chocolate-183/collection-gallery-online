@@ -145,7 +145,7 @@ test('Utils - HTML Escaping, Unicode Length & Recommendations', () => {
   assert.deepEqual(parseRecommendationList(null), []);
 });
 
-test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
+test('Filter Engine - Kana Matching, Query and Length', () => {
   assert.equal(matchesKanaGroup('ありがとう', 'あ'), true);
   assert.equal(matchesKanaGroup('かさ', 'か'), true);
   assert.equal(matchesKanaGroup('さくら', 'あ'), false);
@@ -167,10 +167,6 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   const queryResult = filterByQuery(mockRecords, '意思A');
   assert.equal(queryResult.length, 1);
   assert.equal(queryResult[0].id, '1');
-
-  const latestResult = filterByKana(mockRecords, 'LATEST10', '');
-  assert.equal(latestResult[0].id, '3', 'Highest row index on same newest date should be first');
-  assert.equal(latestResult[1].id, '2');
 
   const lengthRecords = [
     { id: '1', ja_term: '一' },
@@ -207,10 +203,10 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
     { id: 'n', ja_term: '나다', reading: '나다' },
     { id: 's', ja_term: '실수 | 失手', reading: '실수' }
   ];
-  const gaOnly = filterByKana(hangulRecords, 'ㄱ', '');
+  const gaOnly = filterByKana(hangulRecords, 'ㄱ');
   assert.equal(gaOnly.length, 1);
   assert.equal(gaOnly[0].id, 'g');
-  const saOnly = filterByKana(hangulRecords, 'ㅅ', '');
+  const saOnly = filterByKana(hangulRecords, 'ㅅ');
   assert.equal(saOnly.length, 1);
   assert.equal(saOnly[0].id, 's');
 
@@ -219,7 +215,7 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
     { id: 'eng-col', ja_term: '컴퓨터 | computer', subtitle: 'computer' },
     { id: 'eng-title', ja_term: '이메일 | e-mail' }
   ];
-  const loanwords = filterByKana(loanwordRecords, KANA_TABS.LOANWORD, '');
+  const loanwords = filterByKana(loanwordRecords, KANA_TABS.LOANWORD);
   assert.equal(loanwords.length, 2);
   assert.deepEqual(loanwords.map(r => r.id), ['eng-col', 'eng-title']);
 

@@ -71,32 +71,14 @@ export function filterByLength(records, lengthTab) {
 }
 
 /**
- * Filters records by Kana tab or special modes (RANDOM10, LATEST10).
+ * Filters records by Kana / Hangul initial tab or loanword kind.
  */
-export function filterByKana(records, kanaTab, searchQuery) {
+export function filterByKana(records, kanaTab) {
   if (!kanaTab || kanaTab === KANA_TABS.ALL) return records;
 
   let result = [...records];
 
-  if (kanaTab === KANA_TABS.RANDOM10) {
-    if (!searchQuery) {
-      if (result.some(r => r._rand10 === undefined)) {
-        store.reshuffleRandom10();
-      }
-      result.sort((a, b) => (a._rand10 ?? 0) - (b._rand10 ?? 0));
-      result = result.slice(0, 10);
-    }
-  } else if (kanaTab === KANA_TABS.LATEST10) {
-    result.sort((a, b) => {
-      const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
-      const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
-      if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) {
-        return dateB - dateA;
-      }
-      return (b.row_index ?? 0) - (a.row_index ?? 0);
-    });
-    result = result.slice(0, 10);
-  } else if (kanaTab === KANA_TABS.LOANWORD) {
+  if (kanaTab === KANA_TABS.LOANWORD) {
     result = result.filter(r => isEnglishLoanword(r));
   } else if (HANGUL_INITIAL_TABS.includes(kanaTab)) {
     result = result.filter(r => matchesHangulInitial(r.reading || r.ja_term, kanaTab));
@@ -203,10 +185,6 @@ export function sortBySubtitle(records) {
   });
 }
 
-function isQuickPresetTab(tab) {
-  return tab === KANA_TABS.RANDOM10 || tab === KANA_TABS.LATEST10;
-}
-
 /**
  * Main filter pipeline entry point.
  */
@@ -215,7 +193,6 @@ export function applyFiltersAndSort() {
     allRecords,
     searchQuery,
     currentLengthTab,
-    currentKanaTab,
     currentInitialTab,
     loanwordOnly,
     currentSortField,
@@ -237,16 +214,10 @@ export function applyFiltersAndSort() {
   result = filterByLoanword(result, loanwordOnly);
   result = filterByInitial(result, currentInitialTab);
 
-  if (isQuickPresetTab(currentKanaTab)) {
-    result = filterByKana(result, currentKanaTab, searchQuery);
-  }
-
-  if (currentKanaTab !== KANA_TABS.LATEST10) {
-    result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
-      sortField: currentSortField,
-      sortOrder: currentSortOrder
-    });
-  }
+  result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
+    sortField: currentSortField,
+    sortOrder: currentSortOrder
+  });
 
   store.set({
     filteredRecords: result,
@@ -281,15 +252,6 @@ function activateTabByValue(containerSelector, value) {
     const tabValue = p.getAttribute('data-tab');
     p.classList.toggle('active', tabValue === value);
   });
-}
-
-export function selectKanaTab(tab, element) {
-  if (tab === KANA_TABS.RANDOM10) {
-    store.reshuffleRandom10();
-  }
-  store.set({ currentKanaTab: tab, invalidTerm: null });
-  updateTabPills('#kana-tabs', element);
-  applyFiltersAndSort();
 }
 
 export function selectLengthTab(tab, element) {

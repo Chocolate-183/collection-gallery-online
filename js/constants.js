@@ -34,8 +34,6 @@ export const SORT_ORDERS = {
 
 export const KANA_TABS = {
   ALL: 'ALL',
-  RANDOM10: 'RANDOM10',
-  LATEST10: 'LATEST10',
   LOANWORD: 'LOANWORD'
 };
 
