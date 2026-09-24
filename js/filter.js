@@ -123,6 +123,15 @@ export function filterByLoanword(records, loanwordOnly) {
   return records.filter(r => isEnglishLoanword(r));
 }
 
+export function compareCreatedAt(a, b) {
+  const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
+  const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
+  if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) return dateA - dateB;
+  if (!isNaN(dateA) && isNaN(dateB)) return -1;
+  if (isNaN(dateA) && !isNaN(dateB)) return 1;
+  return (a.row_index ?? 0) - (b.row_index ?? 0);
+}
+
 export function resolveSortType(sortField, sortOrder) {
   const desc = sortOrder === SORT_ORDERS.DESC;
   if (sortField === SORT_FIELDS.ID) return desc ? SORT_TYPES.JA_DESC : SORT_TYPES.ID_ASC;
@@ -140,6 +149,9 @@ export function sortRecords(records, sortType, options = {}) {
   const field = options.sortField;
   const order = options.sortOrder;
   if (field) {
+    if (field === SORT_FIELDS.RANDOM && result.some(r => r._randSort === undefined)) {
+      store.reshuffleRandomSort();
+    }
     const direction = order === SORT_ORDERS.DESC ? -1 : 1;
     return result.sort((a, b) => {
       let cmp = 0;
@@ -149,6 +161,10 @@ export function sortRecords(records, sortType, options = {}) {
         cmp = getExhibitSubtitle(a).localeCompare(getExhibitSubtitle(b), 'en', { sensitivity: 'base' });
       } else if (field === SORT_FIELDS.TITLE) {
         cmp = (a.ja_term || '').localeCompare(b.ja_term || '');
+      } else if (field === SORT_FIELDS.RANDOM) {
+        cmp = (a._randSort ?? 0) - (b._randSort ?? 0);
+      } else if (field === SORT_FIELDS.CREATED_AT) {
+        cmp = compareCreatedAt(a, b);
       } else {
         cmp = (a.reading || a.ja_term || '').localeCompare(b.reading || b.ja_term || '', 'ja');
       }
@@ -298,6 +314,9 @@ export function selectKindTab(tab, element) {
 }
 
 export function selectSortField(field, element) {
+  if (field === SORT_FIELDS.RANDOM) {
+    store.reshuffleRandomSort();
+  }
   store.set({ currentSortField: field, invalidTerm: null });
   if (element) updateTabPills('#sort-field-tabs', element);
   applyFiltersAndSort();
@@ -359,7 +378,11 @@ export function getFilterSummary() {
       ? '標題'
       : currentSortField === SORT_FIELDS.SUBTITLE
         ? '副標'
-        : '読み方';
+        : currentSortField === SORT_FIELDS.RANDOM
+          ? '隨機'
+          : currentSortField === SORT_FIELDS.CREATED_AT
+            ? '新增日期'
+            : '読み方';
   const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? '倒序' : '正序';
   parts.push(`${fieldLabel} ${orderLabel}`);
 

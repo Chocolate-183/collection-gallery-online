@@ -22,7 +22,9 @@ export const SORT_FIELDS = {
   ID: 'id',
   TITLE: 'title',
   STANDARD: 'standard',
-  SUBTITLE: 'subtitle'
+  SUBTITLE: 'subtitle',
+  RANDOM: 'random',
+  CREATED_AT: 'created_at'
 };
 
 export const SORT_ORDERS = {

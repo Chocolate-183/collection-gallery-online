@@ -67,6 +67,12 @@ class Store {
       r._rand10 = Math.random();
     });
   }
+
+  reshuffleRandomSort() {
+    this.state.allRecords.forEach(r => {
+      r._randSort = Math.random();
+    });
+  }
 }
 
 export const store = new Store();

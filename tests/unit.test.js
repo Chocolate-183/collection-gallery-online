@@ -13,7 +13,7 @@ import {
   parseProfilesGvizResponse,
   formatProfileId
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType } from '../js/filter.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt } from '../js/filter.js';
 import { LENGTH_TABS, KANA_TABS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
 import {
   escapeHtml,
@@ -266,6 +266,26 @@ test('Filter Modal - Initial, Length, Kind and Sort combine independently', () =
 
   assert.equal(resolveSortType(SORT_FIELDS.ID, SORT_ORDERS.ASC), 'id-asc');
   assert.equal(resolveSortType(SORT_FIELDS.TITLE, SORT_ORDERS.DESC), 'ja-desc');
+
+  const dated = [
+    { id: 'a', created_at: '2024-01-02', row_index: 1 },
+    { id: 'b', created_at: '2024-01-01', row_index: 2 },
+    { id: 'c', created_at: '2024-01-03', row_index: 3 },
+    { id: 'd', created_at: '2024-01-02', row_index: 4 }
+  ];
+  const byDateAsc = sortRecords(dated, null, { sortField: SORT_FIELDS.CREATED_AT, sortOrder: SORT_ORDERS.ASC });
+  assert.deepEqual(byDateAsc.map(r => r.id), ['b', 'a', 'd', 'c']);
+  const byDateDesc = sortRecords(dated, null, { sortField: SORT_FIELDS.CREATED_AT, sortOrder: SORT_ORDERS.DESC });
+  assert.deepEqual(byDateDesc.map(r => r.id), ['c', 'd', 'a', 'b']);
+  assert.ok(compareCreatedAt(dated[1], dated[0]) < 0);
+
+  const shuffled = [
+    { id: 'x', _randSort: 0.9, row_index: 1 },
+    { id: 'y', _randSort: 0.1, row_index: 2 },
+    { id: 'z', _randSort: 0.5, row_index: 3 }
+  ];
+  const byRandom = sortRecords(shuffled, null, { sortField: SORT_FIELDS.RANDOM, sortOrder: SORT_ORDERS.ASC });
+  assert.deepEqual(byRandom.map(r => r.id), ['y', 'z', 'x']);
 });
 
 test('Config & Endpoint URL Builders', () => {
