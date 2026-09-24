@@ -378,9 +378,6 @@ export function syncFilterUi() {
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
   activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));
 
-  const pageSizeSelect = document.getElementById('pagesize-select');
-  if (pageSizeSelect) pageSizeSelect.value = pageSizeTabValue(pageSize);
-
   const count = countActiveFineFilters();
   const badge = document.getElementById('filter-modal-badge');
   if (badge) {

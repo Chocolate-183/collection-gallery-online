@@ -482,8 +482,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   global.window = originalWindow;
 });
 
-test('Page size - Catalog select and Filter modal stay in sync', async () => {
-  const mockSelect = createMockElement({ value: '10' });
+test('Page size - Filter modal pills set store and stay in sync', async () => {
   const tab10 = createMockElement({ 'data-tab': '10' });
   const tab25 = createMockElement({ 'data-tab': '25' });
   const tabAll = createMockElement({ 'data-tab': 'all' });
@@ -493,7 +492,6 @@ test('Page size - Catalog select and Filter modal stay in sync', async () => {
   tabAll.getAttribute = (k) => (k === 'data-tab' ? 'all' : tabAll[k]);
 
   mockDOM({
-    'pagesize-select': mockSelect,
     'card-grid': createMockElement(),
     'cards-counter': createMockElement(),
     'pagination-controls': createMockElement(),
@@ -512,13 +510,11 @@ test('Page size - Catalog select and Filter modal stay in sync', async () => {
   store.set({ allRecords: [], filteredRecords: [], pageSize: 10 });
   selectPageSize('25', tab25);
   assert.equal(store.get().pageSize, 25);
-  assert.equal(mockSelect.value, '25');
   assert(tab25.classes.has('active'));
   assert(!tab10.classes.has('active'));
 
   setPageSize('all');
   assert.equal(store.get().pageSize, 9999);
-  assert.equal(mockSelect.value, 'all');
   syncFilterUi();
   assert(tabAll.classes.has('active'));
   assert(!tab25.classes.has('active'));

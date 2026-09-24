@@ -1,7 +1,7 @@
 /**
  * Pagination Controls Component
  */
-import { DEFAULT_PAGE_SIZE, pageSizeTabValue, resolvePageSize } from '../constants.js';
+import { resolvePageSize } from '../constants.js';
 import { store } from '../state.js';
 import { renderCards } from './cards.js';
 import { applyFiltersAndSort } from '../filter.js';
@@ -73,16 +73,8 @@ export function goToPage(p) {
 }
 
 export function setPageSize(value) {
-  const pageSize = resolvePageSize(value);
-  store.set({ pageSize });
-  const select = document.getElementById('pagesize-select');
-  if (select) select.value = pageSizeTabValue(pageSize);
+  store.set({ pageSize: resolvePageSize(value) });
   applyFiltersAndSort();
-}
-
-export function onPageSizeChange() {
-  const select = document.getElementById('pagesize-select');
-  setPageSize(select ? select.value : DEFAULT_PAGE_SIZE);
 }
 
 export function selectPageSize(tab, element) {

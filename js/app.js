@@ -7,7 +7,7 @@ import { initTheme, toggleTheme } from './theme.js';
 import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
 import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab, selectInitialTab, selectKindTab, selectSortField, selectSortOrder, resetFineFilters, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, applyFilterModal, syncFilterUi } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
-import { onPageSizeChange, goToPage, selectPageSize } from './components/pagination.js';
+import { goToPage, selectPageSize } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop } from './components/modal.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
@@ -37,7 +37,6 @@ Object.assign(window, {
   updateStatsView,
   onSearchInput,
   onFilterChange,
-  onPageSizeChange,
   selectPageSize,
   selectKanaTab,
   selectLengthTab,

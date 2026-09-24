@@ -32,7 +32,7 @@
 - **實時關鍵字搜尋**: 支援展品名稱、標音 (Reading)、策展解說與展品編號跨欄位即時模糊搜尋。
 - **精細篩選 Modal (`Filter`)**: 展廳篩選列只保留 `ALL` / `RANDOM 10` / `LATEST 10`。子音、字數、種類（外來語）、排序與每頁筆數改由 `Filter` 按鈕開啟的設定 Modal 處理。區塊標題維持英文（Starts with / Length / Category / Sort by / Order / Page size）；選項改中文（不限／外來語／1字–4字／5字+／編號／標題／読み方／副標／正序／倒序），Page size 為 `10` / `25` / `50` / `100` / `All`；動作按鈕維持 `Reset` / `Done`。C103 顯示 Starts with / Length / Category / 標題 / 副標；C101 顯示 Starts with（あ行…わ行）/ Length / 読み方。
 - **快速分類與「隨機探索」導覽**: 主畫面保留 `ALL`、`RANDOM 10`、`LATEST 10`；五十音與韓語子音改放在 Filter Modal。
-- **多重排序與分頁控制**: 提供標音正倒序、漢字正倒序、序號排序，以及每頁 `10` / `25` / `50` / `100` / `All` 筆數選擇（Catalog 下拉與 Filter modal 同步）。
+- **多重排序與分頁控制**: 提供標音正倒序、漢字正倒序、序號排序，以及每頁 `10` / `25` / `50` / `100` / `All` 筆數選擇（Filter modal `Page size`）。
 
 ### 6. 展品詳細導覽彈窗與 Hash 路由 (Detail Modal & Hash Routing)
 - **舒適無眩光 Modal**: 採用 Soft Gray (`#f2f3f3`) 展品導覽內容背景框，舒適不眩光。
