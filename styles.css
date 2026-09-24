@@ -552,6 +552,10 @@ a:focus {
   margin-bottom: 2px;
 }
 
+#btn-open-filter-modal {
+  margin-left: 6px;
+}
+
 .awsui-filter-tabs-container #filter-summary {
   flex: 0 1 auto;
   min-width: 0;
