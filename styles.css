@@ -495,8 +495,10 @@ a:focus {
 }
 
 .awsui-text-filter {
-  flex: 1;
-  min-width: 240px;
+  flex: 0 0 33.333%;
+  width: 33.333%;
+  max-width: 33.333%;
+  min-width: 0;
   position: relative;
 }
 
