@@ -366,7 +366,7 @@ export function matchCollectionIdForMeta(meta) {
     if (meta.id && (meta.id === col.id || meta.id === col.defaultMeta?.id)) {
       return colId;
     }
-    // 2. Match by title or name (e.g. '日本特色詞彙', '大陸特色詞彙', '韓語單字速成攻略')
+    // 2. Match by title or name (e.g. '日本特色詞彙', '簡中語境破解攻略', '韓語單字速成攻略')
     if (meta.title && (meta.title === col.name || meta.title === col.defaultMeta?.title)) {
       return colId;
     }

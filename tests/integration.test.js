@@ -52,7 +52,7 @@ test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
 });
 
-test('Local Fallback Snapshot Integrity - China Terms', () => {
+test('Local Fallback Snapshot Integrity - Decoding Simplified Chinese: The Ultimate Guide', () => {
   const chinaJson = JSON.parse(readFileSync(resolve('china-data.json'), 'utf-8'));
   assert(Array.isArray(chinaJson) && chinaJson.length === 12);
   const sample = chinaJson[0];
@@ -240,11 +240,11 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   const { openCollectionModal, closeCollectionModal } = await import('../js/components/modal.js');
 
   collectionsMetaCache['china-terms'] = {
-    title: '大陸特色詞彙一覽',
-    enTitle: 'China Terms',
+    title: '簡中語境破解攻略',
+    enTitle: 'Decoding Simplified Chinese: The Ultimate Guide',
     id: 'C102',
     tags: ['大陸', '語彙'],
-    description: '大陸特色詞彙說明內容\n第二行說明\n第三行說明',
+    description: '簡中語境破解攻略說明內容\n第二行說明\n第三行說明',
     notice: '詞彙僅供參考',
     timestamp: '2026-09-04'
   };
@@ -254,11 +254,11 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
 
   assert(mockModal.classes.has('open'));
   assert(mockHeaderTitle.classes.has('active'), 'collection-header-title should have active class when collection modal opens');
-  assert.equal(mockTitle.innerText, '大陸特色詞彙一覽');
-  assert.equal(mockEnTitle.innerText, 'China Terms');
+  assert.equal(mockTitle.innerText, '簡中語境破解攻略');
+  assert.equal(mockEnTitle.innerText, 'Decoding Simplified Chinese: The Ultimate Guide');
   assert.equal(mockCurator.innerText, '巧克力');
   assert.notEqual(mockCuratorSection.style.display, 'none');
-  assert.equal(mockDesc.innerText, '大陸特色詞彙說明內容\n第二行說明\n第三行說明');
+  assert.equal(mockDesc.innerText, '簡中語境破解攻略說明內容\n第二行說明\n第三行說明');
   assert(mockDesc.classes.has('is-multiline'), 'Collection modal description should have is-multiline class for background color block');
   assert.equal(mockTotal.innerText, 2);
   assert.equal(mockCreatedAt.innerText, '2026-09-04');

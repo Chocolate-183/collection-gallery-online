@@ -170,7 +170,10 @@ export function handleHashRoute() {
     return;
   }
 
-  let colKey = parts[0] === '中國特色詞彙' ? '大陸特色詞彙' : parts[0];
+  let colKey = parts[0];
+  if (colKey === '中國特色詞彙' || colKey === '大陸特色詞彙' || colKey === '大陸特色詞彙一覽') {
+    colKey = '簡中語境破解攻略';
+  }
   const termName = parts.length >= 2 ? parts[1] : null;
   const subAction = parts.length >= 3 ? parts[2] : null;
 

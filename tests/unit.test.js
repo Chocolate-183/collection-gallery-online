@@ -73,7 +73,7 @@ ID,C101
   assert.deepEqual(meta.tags, ['日本文化', '流行新詞']);
   assert.equal(meta.author, '巧克力');
 
-  const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙,韓語單字速成攻略
+  const sampleMatrixCSV = `展廳名,日本特色詞彙,簡中語境破解攻略,韓語單字速成攻略
 展廳ID,C101,C102,C103
 展廳狀態,調整中,開放中,籌備中
 展廳副標,日語副標測試,大陸副標測試,籌備中`;
@@ -86,7 +86,7 @@ ID,C101
   assert.equal(parsedMap['china-terms'].status, '開放中');
   assert.equal(parsedMap['korean-terms'].status, '籌備中');
 
-  const hoursMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙
+  const hoursMatrixCSV = `展廳名,日本特色詞彙,簡中語境破解攻略
 展廳ID,C101,C102
 週日,00:01 - 23:59,09:00 - 18:00
 週一,01:00 - 22:00,09:00 - 18:00
@@ -287,6 +287,13 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(collectionsConfig['korean-terms'].defaultMeta.status, '開放中');
   assert.equal(isCollectionAdjusting(collectionsConfig['japanese-terms'].defaultMeta), false);
   assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), false);
+
+  const cnCol = collectionsConfig['china-terms'];
+  assert.equal(cnCol.enTitle, 'Decoding Simplified Chinese: The Ultimate Guide');
+  assert.equal(cnCol.defaultMeta.enTitle, 'Decoding Simplified Chinese: The Ultimate Guide');
+  assert.equal(cnCol.name, '簡中語境破解攻略');
+  assert.equal(cnCol.defaultMeta.title, '簡中語境破解攻略');
+  assert.equal(cnCol.defaultMeta.id, 'C102');
 
   const krCol = collectionsConfig['korean-terms'];
   assert.equal(krCol.enTitle, 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet');
