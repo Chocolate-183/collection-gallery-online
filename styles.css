@@ -565,7 +565,7 @@ a:focus {
   min-width: 0;
 }
 
-.awsui-filter-tabs-row .awsui-pagination-controls {
+.awsui-cards-controls .awsui-pagination-controls {
   margin-left: auto;
   flex-shrink: 0;
 }
