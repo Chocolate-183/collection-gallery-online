@@ -1,6 +1,7 @@
 /**
  * Pagination Controls Component
  */
+import { DEFAULT_PAGE_SIZE, pageSizeTabValue, resolvePageSize } from '../constants.js';
 import { store } from '../state.js';
 import { renderCards } from './cards.js';
 import { applyFiltersAndSort } from '../filter.js';
@@ -71,9 +72,24 @@ export function goToPage(p) {
   if (typeof window !== 'undefined') window.scrollTo(0, y);
 }
 
+export function setPageSize(value) {
+  const pageSize = resolvePageSize(value);
+  store.set({ pageSize });
+  const select = document.getElementById('pagesize-select');
+  if (select) select.value = pageSizeTabValue(pageSize);
+  applyFiltersAndSort();
+}
+
 export function onPageSizeChange() {
   const select = document.getElementById('pagesize-select');
-  const pageSize = select ? parseInt(select.value, 10) : 12;
-  store.set({ pageSize });
-  applyFiltersAndSort();
+  setPageSize(select ? select.value : DEFAULT_PAGE_SIZE);
+}
+
+export function selectPageSize(tab, element) {
+  if (element) {
+    const pills = document.querySelectorAll('#page-size-tabs .awsui-tab');
+    pills.forEach(p => p.classList.remove('active'));
+    element.classList.add('active');
+  }
+  setPageSize(tab);
 }

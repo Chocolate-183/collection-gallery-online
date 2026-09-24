@@ -14,7 +14,7 @@ import {
   formatProfileId
 } from '../js/parser.js';
 import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType } from '../js/filter.js';
-import { LENGTH_TABS, KANA_TABS, SORT_FIELDS, SORT_ORDERS } from '../js/constants.js';
+import { LENGTH_TABS, KANA_TABS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
@@ -433,4 +433,20 @@ test('Modal Meaning Text Multiline Detection', async () => {
   assert.equal(checkMeaningHasScroll(null), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 100 }), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 150 }), true);
+});
+
+test('Page size options resolve 10 25 50 100 All', () => {
+  assert.deepEqual(PAGE_SIZE_OPTIONS, [10, 25, 50, 100, PAGE_SIZE_ALL]);
+  assert.equal(DEFAULT_PAGE_SIZE, 10);
+  assert.equal(resolvePageSize('10'), 10);
+  assert.equal(resolvePageSize('25'), 25);
+  assert.equal(resolvePageSize('50'), 50);
+  assert.equal(resolvePageSize('100'), 100);
+  assert.equal(resolvePageSize('all'), PAGE_SIZE_ALL);
+  assert.equal(resolvePageSize('ALL'), PAGE_SIZE_ALL);
+  assert.equal(resolvePageSize(String(PAGE_SIZE_ALL)), PAGE_SIZE_ALL);
+  assert.equal(resolvePageSize('12'), DEFAULT_PAGE_SIZE);
+  assert.equal(pageSizeTabValue(10), '10');
+  assert.equal(pageSizeTabValue(PAGE_SIZE_ALL), 'all');
+  assert.equal(pageSizeTabValue('all'), 'all');
 });

@@ -482,6 +482,48 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   global.window = originalWindow;
 });
 
+test('Page size - Catalog select and Filter modal stay in sync', async () => {
+  const mockSelect = createMockElement({ value: '10' });
+  const tab10 = createMockElement({ 'data-tab': '10' });
+  const tab25 = createMockElement({ 'data-tab': '25' });
+  const tabAll = createMockElement({ 'data-tab': 'all' });
+  tab10.classList.add('active');
+  tab10.getAttribute = (k) => (k === 'data-tab' ? '10' : tab10[k]);
+  tab25.getAttribute = (k) => (k === 'data-tab' ? '25' : tab25[k]);
+  tabAll.getAttribute = (k) => (k === 'data-tab' ? 'all' : tabAll[k]);
+
+  mockDOM({
+    'pagesize-select': mockSelect,
+    'card-grid': createMockElement(),
+    'cards-counter': createMockElement(),
+    'pagination-controls': createMockElement(),
+    'filter-modal-badge': createMockElement({ style: { display: 'none' } }),
+    'filter-summary': createMockElement()
+  });
+  global.document.querySelectorAll = (sel) => {
+    if (sel === '#page-size-tabs .awsui-tab') return [tab10, tab25, tabAll];
+    return [];
+  };
+
+  const { store } = await import('../js/state.js');
+  const { setPageSize, selectPageSize } = await import('../js/components/pagination.js');
+  const { syncFilterUi } = await import('../js/filter.js');
+
+  store.set({ allRecords: [], filteredRecords: [], pageSize: 10 });
+  selectPageSize('25', tab25);
+  assert.equal(store.get().pageSize, 25);
+  assert.equal(mockSelect.value, '25');
+  assert(tab25.classes.has('active'));
+  assert(!tab10.classes.has('active'));
+
+  setPageSize('all');
+  assert.equal(store.get().pageSize, 9999);
+  assert.equal(mockSelect.value, 'all');
+  syncFilterUi();
+  assert(tabAll.classes.has('active'));
+  assert(!tab25.classes.has('active'));
+});
+
 test('C103 Item Modal hides Pronunciation while C101 still shows it', async () => {
   const mockReadingSection = createMockElement({ style: { display: 'none' } });
   const mockReadingRow = createMockElement();
@@ -545,7 +587,7 @@ test('Card Active State - Toggle Active Class on Open/Close Modal', async () => 
       { row_index: 2, ja_term: '詞彙二', tw_translation: '說明二' }
     ],
     currentPage: 1,
-    pageSize: 12,
+    pageSize: 10,
     invalidTerm: null
   });
 

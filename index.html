@@ -292,11 +292,11 @@
 
             <div>
               <select id="pagesize-select" class="awsui-select" onchange="onPageSizeChange()">
-                <option value="12" selected>12 per page</option>
-                <option value="24">24 per page</option>
-                <option value="48">48 per page</option>
-                <option value="96">96 per page</option>
-                <option value="9999">Show All</option>
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="all">All</option>
               </select>
             </div>
           </div>
@@ -741,6 +741,17 @@
             <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
               <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">正序</button>
               <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">倒序</button>
+            </div>
+          </div>
+
+          <div class="awsui-filter-modal-section">
+            <div class="awsui-modal-section-title"><span>Page size</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="page-size-tabs">
+              <button class="awsui-tab active" data-tab="10" onclick="selectPageSize('10', this)">10</button>
+              <button class="awsui-tab" data-tab="25" onclick="selectPageSize('25', this)">25</button>
+              <button class="awsui-tab" data-tab="50" onclick="selectPageSize('50', this)">50</button>
+              <button class="awsui-tab" data-tab="100" onclick="selectPageSize('100', this)">100</button>
+              <button class="awsui-tab" data-tab="all" onclick="selectPageSize('all', this)">All</button>
             </div>
           </div>
         </div>
