@@ -422,7 +422,6 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   const mockKind = createMockElement({ style: { display: 'none' } });
   const mockReading = createMockElement({ style: {} });
   const mockGloss = createMockElement({ style: { display: 'none' } });
-  const mockBadge = createMockElement({ style: { display: 'none' } });
   const mockSummary = createMockElement();
   const mockTrigger = createMockElement();
 
@@ -433,7 +432,6 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
     'filter-kind-section': mockKind,
     'sort-field-reading': mockReading,
     'sort-field-subtitle': mockGloss,
-    'filter-modal-badge': mockBadge,
     'filter-summary': mockSummary,
     'btn-open-filter-modal': mockTrigger
   });
@@ -491,7 +489,6 @@ test('Page size - Filter modal pills set store and stay in sync', async () => {
     'card-grid': createMockElement(),
     'cards-counter': createMockElement(),
     'pagination-controls': createMockElement(),
-    'filter-modal-badge': createMockElement({ style: { display: 'none' } }),
     'filter-summary': createMockElement()
   });
   global.document.querySelectorAll = (sel) => {

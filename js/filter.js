@@ -364,11 +364,6 @@ export function syncFilterUi() {
   activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));
 
   const count = countActiveFineFilters();
-  const badge = document.getElementById('filter-modal-badge');
-  if (badge) {
-    badge.innerText = String(count);
-    badge.style.display = count > 0 ? 'inline-flex' : 'none';
-  }
 
   const summary = document.getElementById('filter-summary');
   if (summary) {
