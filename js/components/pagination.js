@@ -65,14 +65,10 @@ export function renderPagination(total) {
 }
 
 export function goToPage(p) {
+  const y = typeof window !== 'undefined' ? window.scrollY : 0;
   store.set({ currentPage: p });
   renderCards();
-  const row = document.getElementById('kana-tabs-row');
-  if (row && typeof row.scrollIntoView === 'function') {
-    row.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    return;
-  }
-  window.scrollTo({ top: 300, behavior: 'smooth' });
+  if (typeof window !== 'undefined') window.scrollTo(0, y);
 }
 
 export function onPageSizeChange() {
