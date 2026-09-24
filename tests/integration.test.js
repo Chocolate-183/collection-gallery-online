@@ -59,7 +59,7 @@ test('Local Fallback Snapshot Integrity - China Terms', () => {
   assert('ja_term' in sample && 'tw_translation' in sample);
 });
 
-test('Local Fallback Snapshot Integrity - Hanja Hacks for Korean', () => {
+test('Local Fallback Snapshot Integrity - Master Korean Vocabulary Fast: The Ultimate Cheat Sheet', () => {
   const koreanJson = JSON.parse(readFileSync(resolve('korean-data.json'), 'utf-8'));
   assert(Array.isArray(koreanJson) && koreanJson.length === 12);
   const sample = koreanJson[0];
@@ -93,7 +93,7 @@ test('Router & View Switcher - View Routing & Maintenance Handling', async () =>
   assert.equal(mockViewMaint.style.display, 'block');
 
   // Test "籌備中" status routing
-  collectionsMetaCache['korean-terms'] = { title: '最強韓文漢字學習法', status: '籌備中' };
+  collectionsMetaCache['korean-terms'] = { title: '韓語單字速成攻略', status: '籌備中' };
   store.set({ currentCollectionId: 'korean-terms' });
   switchView('dictionary', null, false);
   assert.equal(mockTitle.innerText, 'COMING SOON');
@@ -272,8 +272,8 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   delete collectionsMetaCache['korean-terms'];
   openCollectionModal('korean-terms', false);
   assert(mockModal.classes.has('open'));
-  assert.equal(mockTitle.innerText, '中文母語者韓語單字集');
-  assert.equal(mockEnTitle.innerText, 'Hanja Hacks for Korean');
+  assert.equal(mockTitle.innerText, '韓語單字速成攻略');
+  assert.equal(mockEnTitle.innerText, 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet');
   assert.equal(mockCurator.innerText, '巧克力');
   assert.equal(mockCreatedAt.innerText, '2026-09-18');
   assert.equal(mockId.innerText, 'C103');

@@ -73,7 +73,7 @@ ID,C101
   assert.deepEqual(meta.tags, ['日本文化', '流行新詞']);
   assert.equal(meta.author, '巧克力');
 
-  const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙,最強韓文漢字學習法
+  const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙,韓語單字速成攻略
 展廳ID,C101,C102,C103
 展廳狀態,調整中,開放中,籌備中
 展廳副標,日語副標測試,大陸副標測試,籌備中`;
@@ -289,10 +289,10 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), false);
 
   const krCol = collectionsConfig['korean-terms'];
-  assert.equal(krCol.enTitle, 'Hanja Hacks for Korean');
-  assert.equal(krCol.defaultMeta.enTitle, 'Hanja Hacks for Korean');
-  assert.equal(krCol.name, '中文母語者韓語單字集');
-  assert.equal(krCol.defaultMeta.title, '中文母語者韓語單字集');
+  assert.equal(krCol.enTitle, 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet');
+  assert.equal(krCol.defaultMeta.enTitle, 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet');
+  assert.equal(krCol.name, '韓語單字速成攻略');
+  assert.equal(krCol.defaultMeta.title, '韓語單字速成攻略');
   assert.equal(krCol.defaultMeta.id, 'C103');
   assert.equal(krCol.gid, '168524304');
   assert.equal(krCol.hasReading, true);
