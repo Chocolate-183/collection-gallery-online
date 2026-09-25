@@ -118,6 +118,7 @@ test('Header refresh button is the second nav action and calls refreshGalleryDat
 test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   assert.match(html, /id="notice-modal"/);
+  assert.match(html, /id="notice-modal"[\s\S]*class="awsui-modal awsui-modal-lg awsui-notice-modal"/);
   assert.match(html, /id="notice-modal-title">Notice</);
   assert.match(html, /id="notice-modal-message">展廳同步中</);
   assert.doesNotMatch(html, /id="notice-modal"[\s\S]*onclick="close/);
