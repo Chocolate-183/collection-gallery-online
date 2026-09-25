@@ -99,7 +99,7 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
 
   fetched.length = 0;
   const originalSetTimeout = global.setTimeout;
-  global.setTimeout = (fn, ms, ...args) => originalSetTimeout(fn, ms === 3000 ? 0 : ms, ...args);
+  global.setTimeout = (fn, ms, ...args) => originalSetTimeout(fn, ms === 5000 ? 0 : ms, ...args);
   await refreshGalleryData('japanese-terms');
   global.setTimeout = originalSetTimeout;
   assert.ok(fetched.some(url => url.includes('docs.google.com')), 'header refresh must request Google Sheets');
@@ -122,11 +122,11 @@ test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () 
   assert.doesNotMatch(html, /id="notice-modal"[\s\S]*awsui-modal-lg/);
   assert.match(html, /id="notice-modal-title">Notice</);
   assert.match(html, /id="notice-modal-message">展廳同步中</);
-  assert.match(html, /id="notice-modal-countdown"[^>]*>3</);
+  assert.match(html, /id="notice-modal-countdown"[^>]*>5</);
   assert.doesNotMatch(html, /id="notice-modal"[\s\S]*onclick="close/);
 });
 
-test('Notice Panel holds at least 3 seconds even if work finishes immediately', async () => {
+test('Notice Panel holds at least 5 seconds even if work finishes immediately', async () => {
   const mockModal = createMockElement();
   const mockMsg = createMockElement();
   const mockCountdown = createMockElement({ style: {} });
@@ -153,8 +153,8 @@ test('Notice Panel holds at least 3 seconds even if work finishes immediately', 
   await showNoticeUntil(Promise.resolve(), { message: NOTICE_SYNC_MESSAGE, minVisibleMs: NOTICE_MIN_VISIBLE_MS });
 
   assert.equal(mockMsg.innerText, '展廳同步中');
-  assert.equal(NOTICE_MIN_VISIBLE_MS, 3000);
-  assert.equal(timeouts.includes(3000), true);
+  assert.equal(NOTICE_MIN_VISIBLE_MS, 5000);
+  assert.equal(timeouts.includes(5000), true);
   assert(!mockModal.classes.has('open'));
   assert(!mockBtn.classes.has('active'));
   global.setTimeout = originalSetTimeout;
@@ -183,7 +183,7 @@ test('Notice Panel countdown shows remaining seconds', async () => {
   const originalSetInterval = global.setInterval;
   const originalClearInterval = global.clearInterval;
   global.setTimeout = (fn, ms) => {
-    if (ms === 3000) return 1;
+    if (ms === 5000) return 1;
     return originalSetTimeout(fn, ms);
   };
   global.setInterval = (fn) => {
@@ -193,17 +193,17 @@ test('Notice Panel countdown shows remaining seconds', async () => {
   global.clearInterval = () => {};
 
   const { showNoticeUntil, remainingHoldSeconds } = await import('../js/components/notice.js');
-  const done = showNoticeUntil(Promise.resolve(), { message: '展廳同步中', minVisibleMs: 3000 });
+  const done = showNoticeUntil(Promise.resolve(), { message: '展廳同步中', minVisibleMs: 5000 });
 
   assert.equal(mockMsg.innerText, '展廳同步中');
-  assert.equal(mockCountdown.innerText, 3);
-  assert.equal(remainingHoldSeconds(now + 3000, now), 3);
+  assert.equal(mockCountdown.innerText, 5);
+  assert.equal(remainingHoldSeconds(now + 5000, now), 5);
 
   now += 1000;
   tickFn();
-  assert.equal(mockCountdown.innerText, 2);
+  assert.equal(mockCountdown.innerText, 4);
 
-  now += 1000;
+  now += 3000;
   tickFn();
   assert.equal(mockCountdown.innerText, 1);
 
@@ -220,7 +220,7 @@ test('Notice Panel countdown shows remaining seconds', async () => {
   void done;
 });
 
-test('Notice Panel stays open until both work and 3s hold finish', async () => {
+test('Notice Panel stays open until both work and 5s hold finish', async () => {
   const mockModal = createMockElement();
   const mockMsg = createMockElement();
   const mockCountdown = createMockElement({ style: {} });

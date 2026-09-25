@@ -1,7 +1,7 @@
 /**
  * Notice Panel — blocking status overlay (e.g. hall sync).
  */
-export const NOTICE_MIN_VISIBLE_MS = 3000;
+export const NOTICE_MIN_VISIBLE_MS = 5000;
 export const NOTICE_TICK_MS = 1000;
 export const NOTICE_SYNC_MESSAGE = '展廳同步中';
 
