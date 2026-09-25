@@ -8,6 +8,7 @@ import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseA
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
+import { showNoticeUntil, NOTICE_SYNC_MESSAGE, NOTICE_MIN_VISIBLE_MS } from './components/notice.js';
 import { updateSidebarBadge } from './components/sidebar.js';
 import { safeFetchText, setOpeningHoursSchedule, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionEnTitle } from './utils.js';
 
@@ -307,13 +308,21 @@ export async function loadCollectionData(collectionId, forceRefresh = false) {
 
 /**
  * Fetch live Sheets data for the current hall. Only the header refresh button should call this.
+ * Shows Notice Panel ("展廳同步中") for at least 2 seconds, even if the fetch finishes sooner.
  */
 export async function refreshGalleryData(collectionId) {
-  await Promise.all([
-    fetchAllMetadata({ live: true }),
-    fetchProfiles({ live: true })
-  ]);
-  await loadCollectionData(collectionId, true);
+  const sync = (async () => {
+    await Promise.all([
+      fetchAllMetadata({ live: true }),
+      fetchProfiles({ live: true })
+    ]);
+    await loadCollectionData(collectionId, true);
+  })();
+
+  await showNoticeUntil(sync, {
+    message: NOTICE_SYNC_MESSAGE,
+    minVisibleMs: NOTICE_MIN_VISIBLE_MS
+  });
 }
 
 async function loadLocalCollectionSnapshot(col) {

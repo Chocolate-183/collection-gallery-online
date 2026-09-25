@@ -98,7 +98,10 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
   assert.ok(fetched.some(url => url === 'profiles.json'));
 
   fetched.length = 0;
+  const originalSetTimeout = global.setTimeout;
+  global.setTimeout = (fn, ms, ...args) => originalSetTimeout(fn, ms === 2000 ? 0 : ms, ...args);
   await refreshGalleryData('japanese-terms');
+  global.setTimeout = originalSetTimeout;
   assert.ok(fetched.some(url => url.includes('docs.google.com')), 'header refresh must request Google Sheets');
 
   Object.keys(collectionsCache).forEach(k => { delete collectionsCache[k]; });
@@ -110,6 +113,81 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
 test('Header refresh button is the second nav action and calls refreshGalleryData', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   assert.match(html, /<div class="awsui-nav-actions">[\s\S]*id="btn-toggle-theme"[\s\S]*id="btn-refresh-data"[\s\S]*onclick="refreshGalleryData\(window\.currentCollectionId\)"/);
+});
+
+test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  assert.match(html, /id="notice-modal"/);
+  assert.match(html, /id="notice-modal-title">Notice</);
+  assert.match(html, /id="notice-modal-message">展廳同步中</);
+  assert.doesNotMatch(html, /id="notice-modal"[\s\S]*onclick="close/);
+});
+
+test('Notice Panel holds at least 2 seconds even if work finishes immediately', async () => {
+  const mockModal = createMockElement();
+  const mockMsg = createMockElement();
+  const mockBtn = createMockElement();
+  mockDOM({
+    'notice-modal': mockModal,
+    'notice-modal-message': mockMsg,
+    'btn-refresh-data': mockBtn
+  });
+
+  const timeouts = [];
+  const originalSetTimeout = global.setTimeout;
+  global.setTimeout = (fn, ms, ...args) => {
+    timeouts.push(ms);
+    return originalSetTimeout(fn, 0, ...args);
+  };
+
+  const { showNoticeUntil, NOTICE_SYNC_MESSAGE, NOTICE_MIN_VISIBLE_MS } = await import('../js/components/notice.js');
+  await showNoticeUntil(Promise.resolve(), { message: NOTICE_SYNC_MESSAGE, minVisibleMs: NOTICE_MIN_VISIBLE_MS });
+
+  assert.equal(mockMsg.innerText, '展廳同步中');
+  assert.deepEqual(timeouts, [2000]);
+  assert(!mockModal.classes.has('open'));
+  assert(!mockBtn.classes.has('active'));
+  global.setTimeout = originalSetTimeout;
+});
+
+test('Notice Panel stays open until both work and 2s hold finish', async () => {
+  const mockModal = createMockElement();
+  const mockMsg = createMockElement();
+  const mockBtn = createMockElement();
+  mockDOM({
+    'notice-modal': mockModal,
+    'notice-modal-message': mockMsg,
+    'btn-refresh-data': mockBtn
+  });
+
+  let holdFn;
+  const originalSetTimeout = global.setTimeout;
+  global.setTimeout = (fn, ms) => {
+    if (ms === 80) {
+      holdFn = fn;
+      return 1;
+    }
+    return originalSetTimeout(fn, ms);
+  };
+
+  const { isNoticeOpen, showNoticeUntil } = await import('../js/components/notice.js');
+  let resolveWork;
+  const work = new Promise((resolve) => { resolveWork = resolve; });
+  const done = showNoticeUntil(work, { message: '展廳同步中', minVisibleMs: 80 });
+
+  assert(mockModal.classes.has('open'));
+  assert.equal(mockMsg.innerText, '展廳同步中');
+  assert(mockBtn.classes.has('active'));
+  assert.equal(isNoticeOpen(), true);
+
+  resolveWork();
+  await Promise.resolve();
+  assert(mockModal.classes.has('open'), 'must stay open after fast work until hold elapses');
+
+  holdFn();
+  await done;
+  assert(!mockModal.classes.has('open'));
+  global.setTimeout = originalSetTimeout;
 });
 
 test('Router & View Switcher - View Routing & Maintenance Handling', async () => {

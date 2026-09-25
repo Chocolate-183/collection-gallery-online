@@ -65,6 +65,7 @@
 │       ├── cards.js      # 動態展品卡片矩陣組件
 │       ├── pagination.js # 響應式展品分頁與每頁筆數控制組件
 │       ├── modal.js      # 展品詳細導覽彈窗 (Modal) 組件
+│       ├── notice.js     # Notice Panel（同步狀態強制顯示）
 │       └── toast.js      # 浮動訊息 (Toast) 提醒組件
 ├── data.json         # 日本特色詞彙展區資料快照備份 (離線降級備援)
 ├── china-data.json   # 簡中語境破解攻略展區資料快照備份 (離線降級備援)

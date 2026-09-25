@@ -1522,6 +1522,47 @@ a:focus {
   color: var(--awsui-color-text-body-secondary, #687078);
 }
 
+#notice-modal {
+  z-index: 2600;
+}
+
+#notice-modal .awsui-notice-modal {
+  max-width: 360px;
+  width: min(90%, 360px);
+  aspect-ratio: auto;
+}
+
+.awsui-notice-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 8px 8px;
+  text-align: center;
+}
+
+#notice-modal-message {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: var(--awsui-color-text-body-default, #16191f);
+  line-height: 1.5;
+}
+
+#btn-refresh-data.active,
+#btn-refresh-data:active {
+  background: #ECC94B !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+#btn-refresh-data.active .awsui-icon,
+#btn-refresh-data:active .awsui-icon {
+  fill: #ffffff;
+}
+
 /* Toast Message */
 .awsui-toast {
   position: fixed;
@@ -2031,6 +2072,8 @@ a:focus {
 [data-theme="dark"] #collection-modal-curator:active,
 [data-theme="dark"] #btn-open-filter-modal.active,
 [data-theme="dark"] #btn-open-filter-modal:active,
+[data-theme="dark"] #btn-refresh-data.active,
+[data-theme="dark"] #btn-refresh-data:active,
 [data-theme="dark"] .awsui-filter-modal-actions .awsui-btn:active {
   background-color: #ECC94B !important;
   color: #ffffff !important;
@@ -2282,6 +2325,12 @@ a:focus {
     max-height: 85vh;
   }
 
+  #notice-modal .awsui-notice-modal {
+    max-width: 360px;
+    aspect-ratio: auto;
+    max-height: none;
+  }
+
   .awsui-modal-body {
     height: 100%;
     display: flex;
@@ -2393,6 +2442,13 @@ a:focus {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+  }
+
+  #notice-modal .awsui-notice-modal {
+    width: min(88dvw, 360px);
+    max-width: 360px;
+    max-height: none;
+    height: auto;
   }
 
   .awsui-modal-body {

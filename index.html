@@ -827,6 +827,21 @@
     </div>
   </div>
 
+  <!-- Notice Panel (blocking status, e.g. hall sync) -->
+  <div class="awsui-modal-backdrop" id="notice-modal" role="alertdialog" aria-modal="true" aria-labelledby="notice-modal-title" aria-describedby="notice-modal-message">
+    <div class="awsui-modal awsui-notice-modal">
+      <div class="awsui-modal-body">
+        <div class="awsui-modal-section-title awsui-modal-header-title">
+          <span id="notice-modal-title">Notice</span>
+        </div>
+        <div class="awsui-notice-modal-content">
+          <div class="awsui-spinner" aria-hidden="true"></div>
+          <p id="notice-modal-message">展廳同步中</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="awsui-toast" id="toast">
     <span id="toast-msg">展間內容已更新</span>
   </div>
