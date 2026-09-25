@@ -308,7 +308,7 @@ export async function loadCollectionData(collectionId, forceRefresh = false) {
 
 /**
  * Fetch live Sheets data for the current hall. Only the header refresh button should call this.
- * Shows Notice Panel ("展廳同步中") for at least 2 seconds, even if the fetch finishes sooner.
+ * Shows Notice Panel ("展廳同步中") for at least 3 seconds, even if the fetch finishes sooner.
  */
 export async function refreshGalleryData(collectionId) {
   const sync = (async () => {

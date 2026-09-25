@@ -99,7 +99,7 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
 
   fetched.length = 0;
   const originalSetTimeout = global.setTimeout;
-  global.setTimeout = (fn, ms, ...args) => originalSetTimeout(fn, ms === 2000 ? 0 : ms, ...args);
+  global.setTimeout = (fn, ms, ...args) => originalSetTimeout(fn, ms === 3000 ? 0 : ms, ...args);
   await refreshGalleryData('japanese-terms');
   global.setTimeout = originalSetTimeout;
   assert.ok(fetched.some(url => url.includes('docs.google.com')), 'header refresh must request Google Sheets');
@@ -122,48 +122,120 @@ test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () 
   assert.doesNotMatch(html, /id="notice-modal"[\s\S]*awsui-modal-lg/);
   assert.match(html, /id="notice-modal-title">Notice</);
   assert.match(html, /id="notice-modal-message">展廳同步中</);
+  assert.match(html, /id="notice-modal-countdown"[^>]*>3</);
   assert.doesNotMatch(html, /id="notice-modal"[\s\S]*onclick="close/);
 });
 
-test('Notice Panel holds at least 2 seconds even if work finishes immediately', async () => {
+test('Notice Panel holds at least 3 seconds even if work finishes immediately', async () => {
   const mockModal = createMockElement();
   const mockMsg = createMockElement();
+  const mockCountdown = createMockElement({ style: {} });
   const mockBtn = createMockElement();
   mockDOM({
     'notice-modal': mockModal,
     'notice-modal-message': mockMsg,
+    'notice-modal-countdown': mockCountdown,
     'btn-refresh-data': mockBtn
   });
 
   const timeouts = [];
   const originalSetTimeout = global.setTimeout;
+  const originalSetInterval = global.setInterval;
+  const originalClearInterval = global.clearInterval;
   global.setTimeout = (fn, ms, ...args) => {
     timeouts.push(ms);
     return originalSetTimeout(fn, 0, ...args);
   };
+  global.setInterval = () => 99;
+  global.clearInterval = () => {};
 
   const { showNoticeUntil, NOTICE_SYNC_MESSAGE, NOTICE_MIN_VISIBLE_MS } = await import('../js/components/notice.js');
   await showNoticeUntil(Promise.resolve(), { message: NOTICE_SYNC_MESSAGE, minVisibleMs: NOTICE_MIN_VISIBLE_MS });
 
   assert.equal(mockMsg.innerText, '展廳同步中');
-  assert.deepEqual(timeouts, [2000]);
+  assert.equal(NOTICE_MIN_VISIBLE_MS, 3000);
+  assert.equal(timeouts.includes(3000), true);
   assert(!mockModal.classes.has('open'));
   assert(!mockBtn.classes.has('active'));
   global.setTimeout = originalSetTimeout;
+  global.setInterval = originalSetInterval;
+  global.clearInterval = originalClearInterval;
 });
 
-test('Notice Panel stays open until both work and 2s hold finish', async () => {
+test('Notice Panel countdown shows remaining seconds', async () => {
   const mockModal = createMockElement();
   const mockMsg = createMockElement();
+  const mockCountdown = createMockElement({ style: {} });
   const mockBtn = createMockElement();
   mockDOM({
     'notice-modal': mockModal,
     'notice-modal-message': mockMsg,
+    'notice-modal-countdown': mockCountdown,
+    'btn-refresh-data': mockBtn
+  });
+
+  let now = 1_000_000;
+  const originalNow = Date.now;
+  Date.now = () => now;
+
+  let tickFn;
+  const originalSetTimeout = global.setTimeout;
+  const originalSetInterval = global.setInterval;
+  const originalClearInterval = global.clearInterval;
+  global.setTimeout = (fn, ms) => {
+    if (ms === 3000) return 1;
+    return originalSetTimeout(fn, ms);
+  };
+  global.setInterval = (fn) => {
+    tickFn = fn;
+    return 7;
+  };
+  global.clearInterval = () => {};
+
+  const { showNoticeUntil, remainingHoldSeconds } = await import('../js/components/notice.js');
+  const done = showNoticeUntil(Promise.resolve(), { message: '展廳同步中', minVisibleMs: 3000 });
+
+  assert.equal(mockMsg.innerText, '展廳同步中');
+  assert.equal(mockCountdown.innerText, 3);
+  assert.equal(remainingHoldSeconds(now + 3000, now), 3);
+
+  now += 1000;
+  tickFn();
+  assert.equal(mockCountdown.innerText, 2);
+
+  now += 1000;
+  tickFn();
+  assert.equal(mockCountdown.innerText, 1);
+
+  now += 1000;
+  tickFn();
+  assert.equal(mockCountdown.innerText, 0);
+  assert.equal(mockCountdown.style.display, 'none');
+
+  Date.now = originalNow;
+  global.setTimeout = originalSetTimeout;
+  global.setInterval = originalSetInterval;
+  global.clearInterval = originalClearInterval;
+  await Promise.resolve();
+  void done;
+});
+
+test('Notice Panel stays open until both work and 3s hold finish', async () => {
+  const mockModal = createMockElement();
+  const mockMsg = createMockElement();
+  const mockCountdown = createMockElement({ style: {} });
+  const mockBtn = createMockElement();
+  mockDOM({
+    'notice-modal': mockModal,
+    'notice-modal-message': mockMsg,
+    'notice-modal-countdown': mockCountdown,
     'btn-refresh-data': mockBtn
   });
 
   let holdFn;
   const originalSetTimeout = global.setTimeout;
+  const originalSetInterval = global.setInterval;
+  const originalClearInterval = global.clearInterval;
   global.setTimeout = (fn, ms) => {
     if (ms === 80) {
       holdFn = fn;
@@ -171,6 +243,8 @@ test('Notice Panel stays open until both work and 2s hold finish', async () => {
     }
     return originalSetTimeout(fn, ms);
   };
+  global.setInterval = () => 99;
+  global.clearInterval = () => {};
 
   const { isNoticeOpen, showNoticeUntil } = await import('../js/components/notice.js');
   let resolveWork;
@@ -190,6 +264,8 @@ test('Notice Panel stays open until both work and 2s hold finish', async () => {
   await done;
   assert(!mockModal.classes.has('open'));
   global.setTimeout = originalSetTimeout;
+  global.setInterval = originalSetInterval;
+  global.clearInterval = originalClearInterval;
 });
 
 test('Router & View Switcher - View Routing & Maintenance Handling', async () => {

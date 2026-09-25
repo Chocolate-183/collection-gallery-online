@@ -1,8 +1,13 @@
 /**
  * Notice Panel — blocking status overlay (e.g. hall sync).
  */
-export const NOTICE_MIN_VISIBLE_MS = 2000;
+export const NOTICE_MIN_VISIBLE_MS = 3000;
+export const NOTICE_TICK_MS = 1000;
 export const NOTICE_SYNC_MESSAGE = '展廳同步中';
+
+let holdTimer = null;
+let tickTimer = null;
+let holdUntil = 0;
 
 function getNoticeModal() {
   return typeof document !== 'undefined' ? document.getElementById('notice-modal') : null;
@@ -12,8 +17,38 @@ function getNoticeMessageEl() {
   return typeof document !== 'undefined' ? document.getElementById('notice-modal-message') : null;
 }
 
+function getNoticeCountdownEl() {
+  return typeof document !== 'undefined' ? document.getElementById('notice-modal-countdown') : null;
+}
+
 function getRefreshButton() {
   return typeof document !== 'undefined' ? document.getElementById('btn-refresh-data') : null;
+}
+
+function clearNoticeTimers() {
+  if (holdTimer) {
+    clearTimeout(holdTimer);
+    holdTimer = null;
+  }
+  if (tickTimer) {
+    clearInterval(tickTimer);
+    tickTimer = null;
+  }
+}
+
+export function remainingHoldSeconds(holdUntilMs, now = Date.now()) {
+  if (!holdUntilMs) return 0;
+  return Math.max(0, Math.ceil((holdUntilMs - now) / 1000));
+}
+
+export function renderNoticeCountdown(now = Date.now()) {
+  const el = getNoticeCountdownEl();
+  if (!el) return 0;
+
+  const remaining = remainingHoldSeconds(holdUntil, now);
+  el.innerText = remaining;
+  if (el.style) el.style.display = remaining > 0 ? '' : 'none';
+  return remaining;
 }
 
 export function isNoticeOpen() {
@@ -37,6 +72,8 @@ export function openNoticePanel(message = NOTICE_SYNC_MESSAGE) {
 }
 
 export function closeNoticePanel() {
+  clearNoticeTimers();
+  holdUntil = 0;
   const modal = getNoticeModal();
   if (modal) modal.classList.remove('open');
   getRefreshButton()?.classList.remove('active');
@@ -51,10 +88,13 @@ export async function showNoticeUntil(workPromise, options = {}) {
   const message = options.message ?? NOTICE_SYNC_MESSAGE;
   const minVisibleMs = Number.isFinite(options.minVisibleMs) ? options.minVisibleMs : NOTICE_MIN_VISIBLE_MS;
 
+  holdUntil = Date.now() + minVisibleMs;
   openNoticePanel(message);
+  renderNoticeCountdown();
+  tickTimer = setInterval(() => renderNoticeCountdown(), NOTICE_TICK_MS);
 
   const hold = new Promise((resolve) => {
-    setTimeout(resolve, minVisibleMs);
+    holdTimer = setTimeout(resolve, minVisibleMs);
   });
 
   let workError;

@@ -1562,6 +1562,16 @@ a:focus {
   line-height: 1.5;
 }
 
+#notice-modal-countdown {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 400;
+  font-family: var(--awsui-font-family);
+  color: var(--awsui-color-text-body-default, #16191f);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
 #btn-refresh-data.active,
 #btn-refresh-data:active {
   background: #ECC94B !important;
