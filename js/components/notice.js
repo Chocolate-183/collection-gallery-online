@@ -47,7 +47,6 @@ export function renderNoticeCountdown(now = Date.now()) {
 
   const remaining = remainingHoldSeconds(holdUntil, now);
   el.innerText = remaining;
-  if (el.style) el.style.display = remaining > 0 ? '' : 'none';
   return remaining;
 }
 

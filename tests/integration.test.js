@@ -122,7 +122,7 @@ test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () 
   assert.doesNotMatch(html, /id="notice-modal"[\s\S]*awsui-modal-lg/);
   assert.match(html, /id="notice-modal-title">Notice</);
   assert.match(html, /id="notice-modal-message">展廳同步中</);
-  assert.match(html, /id="notice-modal-countdown"[^>]*>5</);
+  assert.match(html, /class="awsui-spinner" id="notice-modal-spinner"[\s\S]*id="notice-modal-countdown"[^>]*>5</);
   assert.doesNotMatch(html, /id="notice-modal"[\s\S]*onclick="close/);
 });
 
@@ -210,7 +210,6 @@ test('Notice Panel countdown shows remaining seconds', async () => {
   now += 1000;
   tickFn();
   assert.equal(mockCountdown.innerText, 0);
-  assert.equal(mockCountdown.style.display, 'none');
 
   Date.now = originalNow;
   global.setTimeout = originalSetTimeout;

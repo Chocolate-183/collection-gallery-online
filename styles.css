@@ -1543,19 +1543,37 @@ a:focus {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 28px;
   padding: 32px 16px 24px;
   text-align: center;
 }
 
 #notice-modal .awsui-spinner {
-  width: 36px;
-  height: 36px;
+  position: relative;
+  width: 128px;
+  height: 128px;
+  border: none;
+  animation: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#notice-modal .awsui-spinner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 6px solid var(--awsui-color-border-item-default, #e9ebed);
+  border-top-color: var(--awsui-color-text-accent, #ECC94B);
+  border-radius: 50%;
+  animation: awsui-spin 0.8s linear infinite;
+  box-sizing: border-box;
 }
 
 #notice-modal-message {
   margin: 0;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 400;
   font-family: 'Noto Sans TC', sans-serif;
   color: var(--awsui-color-text-body-default, #16191f);
@@ -1563,12 +1581,14 @@ a:focus {
 }
 
 #notice-modal-countdown {
+  position: relative;
+  z-index: 1;
   margin: 0;
-  font-size: 32px;
+  font-size: 48px;
   font-weight: 400;
   font-family: var(--awsui-font-family);
   color: var(--awsui-color-text-body-default, #16191f);
-  line-height: 1.2;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 
