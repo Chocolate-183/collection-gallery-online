@@ -1,7 +1,7 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
@@ -71,32 +71,14 @@ export function filterByLength(records, lengthTab) {
 }
 
 /**
- * Filters records by Kana tab or special modes (RANDOM10, LATEST10).
+ * Filters records by Kana / Hangul initial tab or loanword kind.
  */
-export function filterByKana(records, kanaTab, searchQuery) {
+export function filterByKana(records, kanaTab) {
   if (!kanaTab || kanaTab === KANA_TABS.ALL) return records;
 
   let result = [...records];
 
-  if (kanaTab === KANA_TABS.RANDOM10) {
-    if (!searchQuery) {
-      if (result.some(r => r._rand10 === undefined)) {
-        store.reshuffleRandom10();
-      }
-      result.sort((a, b) => (a._rand10 ?? 0) - (b._rand10 ?? 0));
-      result = result.slice(0, 10);
-    }
-  } else if (kanaTab === KANA_TABS.LATEST10) {
-    result.sort((a, b) => {
-      const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
-      const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
-      if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) {
-        return dateB - dateA;
-      }
-      return (b.row_index ?? 0) - (a.row_index ?? 0);
-    });
-    result = result.slice(0, 10);
-  } else if (kanaTab === KANA_TABS.LOANWORD) {
+  if (kanaTab === KANA_TABS.LOANWORD) {
     result = result.filter(r => isEnglishLoanword(r));
   } else if (HANGUL_INITIAL_TABS.includes(kanaTab)) {
     result = result.filter(r => matchesHangulInitial(r.reading || r.ja_term, kanaTab));
@@ -123,6 +105,15 @@ export function filterByLoanword(records, loanwordOnly) {
   return records.filter(r => isEnglishLoanword(r));
 }
 
+export function compareCreatedAt(a, b) {
+  const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
+  const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
+  if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) return dateA - dateB;
+  if (!isNaN(dateA) && isNaN(dateB)) return -1;
+  if (isNaN(dateA) && !isNaN(dateB)) return 1;
+  return (a.row_index ?? 0) - (b.row_index ?? 0);
+}
+
 export function resolveSortType(sortField, sortOrder) {
   const desc = sortOrder === SORT_ORDERS.DESC;
   if (sortField === SORT_FIELDS.ID) return desc ? SORT_TYPES.JA_DESC : SORT_TYPES.ID_ASC;
@@ -140,6 +131,9 @@ export function sortRecords(records, sortType, options = {}) {
   const field = options.sortField;
   const order = options.sortOrder;
   if (field) {
+    if (field === SORT_FIELDS.RANDOM && result.some(r => r._randSort === undefined)) {
+      store.reshuffleRandomSort();
+    }
     const direction = order === SORT_ORDERS.DESC ? -1 : 1;
     return result.sort((a, b) => {
       let cmp = 0;
@@ -149,6 +143,10 @@ export function sortRecords(records, sortType, options = {}) {
         cmp = getExhibitSubtitle(a).localeCompare(getExhibitSubtitle(b), 'en', { sensitivity: 'base' });
       } else if (field === SORT_FIELDS.TITLE) {
         cmp = (a.ja_term || '').localeCompare(b.ja_term || '');
+      } else if (field === SORT_FIELDS.RANDOM) {
+        cmp = (a._randSort ?? 0) - (b._randSort ?? 0);
+      } else if (field === SORT_FIELDS.CREATED_AT) {
+        cmp = compareCreatedAt(a, b);
       } else {
         cmp = (a.reading || a.ja_term || '').localeCompare(b.reading || b.ja_term || '', 'ja');
       }
@@ -187,10 +185,6 @@ export function sortBySubtitle(records) {
   });
 }
 
-function isQuickPresetTab(tab) {
-  return tab === KANA_TABS.RANDOM10 || tab === KANA_TABS.LATEST10;
-}
-
 /**
  * Main filter pipeline entry point.
  */
@@ -199,7 +193,6 @@ export function applyFiltersAndSort() {
     allRecords,
     searchQuery,
     currentLengthTab,
-    currentKanaTab,
     currentInitialTab,
     loanwordOnly,
     currentSortField,
@@ -221,16 +214,10 @@ export function applyFiltersAndSort() {
   result = filterByLoanword(result, loanwordOnly);
   result = filterByInitial(result, currentInitialTab);
 
-  if (isQuickPresetTab(currentKanaTab)) {
-    result = filterByKana(result, currentKanaTab, searchQuery);
-  }
-
-  if (currentKanaTab !== KANA_TABS.LATEST10) {
-    result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
-      sortField: currentSortField,
-      sortOrder: currentSortOrder
-    });
-  }
+  result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
+    sortField: currentSortField,
+    sortOrder: currentSortOrder
+  });
 
   store.set({
     filteredRecords: result,
@@ -267,15 +254,6 @@ function activateTabByValue(containerSelector, value) {
   });
 }
 
-export function selectKanaTab(tab, element) {
-  if (tab === KANA_TABS.RANDOM10) {
-    store.reshuffleRandom10();
-  }
-  store.set({ currentKanaTab: tab, invalidTerm: null });
-  updateTabPills('#kana-tabs', element);
-  applyFiltersAndSort();
-}
-
 export function selectLengthTab(tab, element) {
   store.set({ currentLengthTab: tab, invalidTerm: null });
   if (element) updateTabPills('#length-tabs', element);
@@ -298,6 +276,9 @@ export function selectKindTab(tab, element) {
 }
 
 export function selectSortField(field, element) {
+  if (field === SORT_FIELDS.RANDOM) {
+    store.reshuffleRandomSort();
+  }
   store.set({ currentSortField: field, invalidTerm: null });
   if (element) updateTabPills('#sort-field-tabs', element);
   applyFiltersAndSort();
@@ -359,7 +340,11 @@ export function getFilterSummary() {
       ? '標題'
       : currentSortField === SORT_FIELDS.SUBTITLE
         ? '副標'
-        : '読み方';
+        : currentSortField === SORT_FIELDS.RANDOM
+          ? '隨機'
+          : currentSortField === SORT_FIELDS.CREATED_AT
+            ? '新增日期'
+            : '読み方';
   const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? '倒序' : '正序';
   parts.push(`${fieldLabel} ${orderLabel}`);
 
@@ -369,20 +354,16 @@ export function getFilterSummary() {
 export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
-  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, pageSize } = store.get();
   activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
   activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
   activateTabByValue('#kana-initial-tabs', currentInitialTab || KANA_TABS.ALL);
   activateTabByValue('#kind-tabs', loanwordOnly ? KANA_TABS.LOANWORD : 'ALL');
   activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
+  activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));
 
   const count = countActiveFineFilters();
-  const badge = document.getElementById('filter-modal-badge');
-  if (badge) {
-    badge.innerText = String(count);
-    badge.style.display = count > 0 ? 'inline-flex' : 'none';
-  }
 
   const summary = document.getElementById('filter-summary');
   if (summary) {

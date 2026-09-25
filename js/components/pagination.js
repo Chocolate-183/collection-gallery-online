@@ -1,28 +1,20 @@
 /**
  * Pagination Controls Component
  */
+import { resolvePageSize } from '../constants.js';
 import { store } from '../state.js';
 import { renderCards } from './cards.js';
 import { applyFiltersAndSort } from '../filter.js';
 
 export function renderPagination(total) {
   const { currentPage, pageSize } = store.get();
-  const info = document.getElementById('pagination-info');
   const controls = document.getElementById('pagination-controls');
   if (!controls) return;
   controls.innerHTML = '';
 
-  if (total === 0) {
-    if (info) info.innerText = '0 - 0 / 0';
-    return;
-  }
+  if (total === 0) return;
 
   const totalPages = Math.ceil(total / pageSize);
-  const startIdx = (currentPage - 1) * pageSize + 1;
-  const endIdx = Math.min(currentPage * pageSize, total);
-
-  if (info) info.innerHTML = `<strong>${startIdx} - ${endIdx}</strong> / <strong>${total}</strong>`;
-
   if (totalPages <= 1) return;
 
   const prevBtn = document.createElement('button');
@@ -50,7 +42,7 @@ export function renderPagination(total) {
   pagesToDisplay.forEach(p => {
     if (p === '...') {
       const span = document.createElement('span');
-      span.style.padding = '0 6px';
+      span.style.padding = '0 2px';
       span.style.color = '#888';
       span.innerText = '...';
       controls.appendChild(span);
@@ -74,14 +66,22 @@ export function renderPagination(total) {
 }
 
 export function goToPage(p) {
+  const y = typeof window !== 'undefined' ? window.scrollY : 0;
   store.set({ currentPage: p });
   renderCards();
-  window.scrollTo({ top: 300, behavior: 'smooth' });
+  if (typeof window !== 'undefined') window.scrollTo(0, y);
 }
 
-export function onPageSizeChange() {
-  const select = document.getElementById('pagesize-select');
-  const pageSize = select ? parseInt(select.value, 10) : 12;
-  store.set({ pageSize });
+export function setPageSize(value) {
+  store.set({ pageSize: resolvePageSize(value) });
   applyFiltersAndSort();
+}
+
+export function selectPageSize(tab, element) {
+  if (element) {
+    const pills = document.querySelectorAll('#page-size-tabs .awsui-tab');
+    pills.forEach(p => p.classList.remove('active'));
+    element.classList.add('active');
+  }
+  setPageSize(tab);
 }

@@ -7,7 +7,7 @@
 ## 🌟 核心功能特色
 
 ### 1. 側邊導覽與展廳版面佈局 (App Layout & Side Navigation Panel)
-- **多展廳動態切換**: 支援「日本特色詞彙展廳」、「大陸特色詞彙展廳」與「中文母語者韓語單字集」等多主題展區動態切換，以及「服務台資訊頁 (INFO)」。
+- **多展廳動態切換**: 支援「日本特色詞彙展廳」、「簡中語境破解攻略」與「韓語單字速成攻略」等多主題展區動態切換，以及「服務台資訊頁 (INFO)」。
 - **可收折側欄**: 支援展廳導覽面板收折/展開與狀態記憶（`localStorage`），側欄收折時主內容區域保持全寬響應式居中。
 - **展廳狀態徽章 (Status Badge)**: 展廳維護或調整時，側欄自動呈現「調整中」專屬標籤，隱藏項目數量。
 - **頁面頂欄與展品 KPI 儀表板**: 整合頂部導覽列（品牌標籤、展廳切換、同步展品按鈕），並於卡片標題區域整合展廳編號（如 `C101`）與展品總數 KPI 數據（如 `520 件`）。
@@ -20,7 +20,7 @@
 ### 3. 動態數據同步與容錯備援 (Data Fetching & Timeout Failover)
 - **多管道 API 讀取**: 支援 Google Sheets GViz Query JSON API 與 CSV 格式動態匯入展品與策展詮釋資料。
 - **引號內多行 CSV 解析器**: 內建狀態機 CSV 解析器，完美保留展品詳細解說中的換行格式，避免引號內換行導致欄位錯位。
-- **逾時自動降級 (Timeout Failover)**: 採用 `AbortSignal.timeout(2500)` 請求，於網路異常或跨域受阻時自動降級使用本地 JSON 快照 (`data.json` / `china-data.json` / `korean-data.json`) 確保展覽系統穩定運作。
+- **離線備援優先、手動同步**: 啟動與切換展廳預設只讀本地 JSON 快照 (`data.json` / `china-data.json` / `korean-data.json` / `profiles.json`)。除非使用者主動點選頂欄「同步最新展品」按鈕 (`#btn-refresh-data`)，否則不向 Google Sheets 更新資料。手動同步逾時 (`AbortSignal.timeout(2500)`) 後仍降級回本地快照。
 
 ### 4. 雙色主題與沉浸式視覺體驗 (Light/Dark Mode)
 - **展廳燈光模式**: 支援 Light Mode 與 Dark Mode 一鍵切換，預設自動跟隨系統偏好 (`prefers-color-scheme`) 並儲存於 `localStorage`。
@@ -30,9 +30,9 @@
 
 ### 5. 多維度檢索與展品篩選機制 (Filter, Search & Sorting)
 - **實時關鍵字搜尋**: 支援展品名稱、標音 (Reading)、策展解說與展品編號跨欄位即時模糊搜尋。
-- **精細篩選 Modal (`Filter`)**: 展廳篩選列只保留 `ALL` / `RANDOM 10` / `LATEST 10`。子音、字數、種類（外來語）與排序改由 `Filter` 按鈕開啟的設定 Modal 處理。區塊標題維持英文（Starts with / Length / Category / Sort by / Order）；選項改中文（不限／外來語／1字–4字／5字+／編號／標題／読み方／副標／正序／倒序）；動作按鈕維持 `Reset` / `Done`。C103 顯示 Starts with / Length / Category / 標題 / 副標；C101 顯示 Starts with（あ行…わ行）/ Length / 読み方。
-- **快速分類與「隨機探索」導覽**: 主畫面保留 `ALL`、`RANDOM 10`、`LATEST 10`；五十音與韓語子音改放在 Filter Modal。
-- **多重排序與分頁控制**: 提供標音正倒序、漢字正倒序、序號排序，以及每頁 `12` / `24` / `48` 件筆數選擇。
+- **精細篩選 Modal (`Filter`)**: 展廳篩選列只保留無邊框漏斗圖示與 `#filter-summary`。子音、字數、種類（外來語）、排序與每頁筆數改由 `Filter` 按鈕開啟的設定 Modal 處理。區塊標題維持英文（Starts with / Length / Category / Sort by / Order / Page size）；選項改中文（不限／外來語／1字–4字／5字+／編號／標題／読み方／副標／隨機／新增日期／正序／倒序），Page size 為 `10` / `25` / `50` / `100` / `All`；動作按鈕維持 `Reset` / `Done`。C103 顯示 Starts with / Length / Category / 標題 / 副標；C101 顯示 Starts with（あ行…わ行）/ Length / 読み方。所有展廳 Sort by 皆含 `隨機` / `新增日期`。
+- **分類導覽**: 五十音與韓語子音放在 Filter Modal，不在 Catalog 列顯示 `ALL` / `RANDOM 10` / `LATEST 10`。
+- **多重排序與分頁控制**: 提供標音正倒序、漢字正倒序、序號排序，以及每頁 `10` / `25` / `50` / `100` / `All` 筆數選擇（Filter modal `Page size`）。
 
 ### 6. 展品詳細導覽彈窗與 Hash 路由 (Detail Modal & Hash Routing)
 - **舒適無眩光 Modal**: 採用 Soft Gray (`#f2f3f3`) 展品導覽內容背景框，舒適不眩光。
@@ -65,9 +65,10 @@
 │       ├── cards.js      # 動態展品卡片矩陣組件
 │       ├── pagination.js # 響應式展品分頁與每頁筆數控制組件
 │       ├── modal.js      # 展品詳細導覽彈窗 (Modal) 組件
+│       ├── notice.js     # Notice Panel（同步狀態強制顯示）
 │       └── toast.js      # 浮動訊息 (Toast) 提醒組件
 ├── data.json         # 日本特色詞彙展區資料快照備份 (離線降級備援)
-├── china-data.json   # 大陸特色詞彙展區資料快照備份 (離線降級備援)
+├── china-data.json   # 簡中語境破解攻略展區資料快照備份 (離線降級備援)
 ├── korean-data.json  # 韓文單字展區資料快照備份 (離線降級備援)
 ├── tests/
 │   ├── unit.test.js        # 核心解析器、篩選邏輯與 UI 結構單元測試

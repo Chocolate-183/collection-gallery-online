@@ -8,10 +8,13 @@ import {
   parseCSVRows,
   extractGvizTable,
   parseOpeningHoursCSV,
-  extractOpeningHoursFromMetaRows
+  extractOpeningHoursFromMetaRows,
+  parseProfilesCSVData,
+  parseProfilesGvizResponse,
+  formatProfileId
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType } from '../js/filter.js';
-import { LENGTH_TABS, KANA_TABS, SORT_FIELDS, SORT_ORDERS } from '../js/constants.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt } from '../js/filter.js';
+import { LENGTH_TABS, KANA_TABS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
@@ -25,7 +28,7 @@ import {
   isCollectionHidden,
   parseRecommendationList
 } from '../js/utils.js';
-import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, collectionsConfig } from '../js/config.js';
+import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, collectionsConfig } from '../js/config.js';
 
 test('CSV & Data Parsers - Core CSV Parsing & GViz Extraction', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期,推薦條目
@@ -70,7 +73,7 @@ ID,C101
   assert.deepEqual(meta.tags, ['日本文化', '流行新詞']);
   assert.equal(meta.author, '巧克力');
 
-  const sampleMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙,最強韓文漢字學習法
+  const sampleMatrixCSV = `展廳名,日本特色詞彙,簡中語境破解攻略,韓語單字速成攻略
 展廳ID,C101,C102,C103
 展廳狀態,調整中,開放中,籌備中
 展廳副標,日語副標測試,大陸副標測試,籌備中`;
@@ -83,7 +86,7 @@ ID,C101
   assert.equal(parsedMap['china-terms'].status, '開放中');
   assert.equal(parsedMap['korean-terms'].status, '籌備中');
 
-  const hoursMatrixCSV = `展廳名,日本特色詞彙,大陸特色詞彙
+  const hoursMatrixCSV = `展廳名,日本特色詞彙,簡中語境破解攻略
 展廳ID,C101,C102
 週日,00:01 - 23:59,09:00 - 18:00
 週一,01:00 - 22:00,09:00 - 18:00
@@ -142,7 +145,7 @@ test('Utils - HTML Escaping, Unicode Length & Recommendations', () => {
   assert.deepEqual(parseRecommendationList(null), []);
 });
 
-test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
+test('Filter Engine - Kana Matching, Query and Length', () => {
   assert.equal(matchesKanaGroup('ありがとう', 'あ'), true);
   assert.equal(matchesKanaGroup('かさ', 'か'), true);
   assert.equal(matchesKanaGroup('さくら', 'あ'), false);
@@ -164,10 +167,6 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
   const queryResult = filterByQuery(mockRecords, '意思A');
   assert.equal(queryResult.length, 1);
   assert.equal(queryResult[0].id, '1');
-
-  const latestResult = filterByKana(mockRecords, 'LATEST10', '');
-  assert.equal(latestResult[0].id, '3', 'Highest row index on same newest date should be first');
-  assert.equal(latestResult[1].id, '2');
 
   const lengthRecords = [
     { id: '1', ja_term: '一' },
@@ -204,10 +203,10 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
     { id: 'n', ja_term: '나다', reading: '나다' },
     { id: 's', ja_term: '실수 | 失手', reading: '실수' }
   ];
-  const gaOnly = filterByKana(hangulRecords, 'ㄱ', '');
+  const gaOnly = filterByKana(hangulRecords, 'ㄱ');
   assert.equal(gaOnly.length, 1);
   assert.equal(gaOnly[0].id, 'g');
-  const saOnly = filterByKana(hangulRecords, 'ㅅ', '');
+  const saOnly = filterByKana(hangulRecords, 'ㅅ');
   assert.equal(saOnly.length, 1);
   assert.equal(saOnly[0].id, 's');
 
@@ -216,7 +215,7 @@ test('Filter Engine - Kana Matching, Query, Length & Latest10 Sorting', () => {
     { id: 'eng-col', ja_term: '컴퓨터 | computer', subtitle: 'computer' },
     { id: 'eng-title', ja_term: '이메일 | e-mail' }
   ];
-  const loanwords = filterByKana(loanwordRecords, KANA_TABS.LOANWORD, '');
+  const loanwords = filterByKana(loanwordRecords, KANA_TABS.LOANWORD);
   assert.equal(loanwords.length, 2);
   assert.deepEqual(loanwords.map(r => r.id), ['eng-col', 'eng-title']);
 
@@ -263,6 +262,26 @@ test('Filter Modal - Initial, Length, Kind and Sort combine independently', () =
 
   assert.equal(resolveSortType(SORT_FIELDS.ID, SORT_ORDERS.ASC), 'id-asc');
   assert.equal(resolveSortType(SORT_FIELDS.TITLE, SORT_ORDERS.DESC), 'ja-desc');
+
+  const dated = [
+    { id: 'a', created_at: '2024-01-02', row_index: 1 },
+    { id: 'b', created_at: '2024-01-01', row_index: 2 },
+    { id: 'c', created_at: '2024-01-03', row_index: 3 },
+    { id: 'd', created_at: '2024-01-02', row_index: 4 }
+  ];
+  const byDateAsc = sortRecords(dated, null, { sortField: SORT_FIELDS.CREATED_AT, sortOrder: SORT_ORDERS.ASC });
+  assert.deepEqual(byDateAsc.map(r => r.id), ['b', 'a', 'd', 'c']);
+  const byDateDesc = sortRecords(dated, null, { sortField: SORT_FIELDS.CREATED_AT, sortOrder: SORT_ORDERS.DESC });
+  assert.deepEqual(byDateDesc.map(r => r.id), ['c', 'd', 'a', 'b']);
+  assert.ok(compareCreatedAt(dated[1], dated[0]) < 0);
+
+  const shuffled = [
+    { id: 'x', _randSort: 0.9, row_index: 1 },
+    { id: 'y', _randSort: 0.1, row_index: 2 },
+    { id: 'z', _randSort: 0.5, row_index: 3 }
+  ];
+  const byRandom = sortRecords(shuffled, null, { sortField: SORT_FIELDS.RANDOM, sortOrder: SORT_ORDERS.ASC });
+  assert.deepEqual(byRandom.map(r => r.id), ['y', 'z', 'x']);
 });
 
 test('Config & Endpoint URL Builders', () => {
@@ -275,17 +294,28 @@ test('Config & Endpoint URL Builders', () => {
   const metaUrls = getMetadataUrls();
   assert(metaUrls.csvUrl.includes('162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs'));
   assert(metaUrls.csvUrl.includes('gid=1574352890'));
+  const profileUrls = getProfileUrls();
+  assert(profileUrls.csvUrl.includes('162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs'));
+  assert(profileUrls.csvUrl.includes('gid=1665955868'));
+  assert.equal(profileUrls.localFallback, 'profiles.json');
   assert.equal(collectionsConfig['japanese-terms'].defaultMeta.status, '開放中');
   assert.equal(collectionsConfig['china-terms'].defaultMeta.status, '開放中');
   assert.equal(collectionsConfig['korean-terms'].defaultMeta.status, '開放中');
   assert.equal(isCollectionAdjusting(collectionsConfig['japanese-terms'].defaultMeta), false);
   assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), false);
 
+  const cnCol = collectionsConfig['china-terms'];
+  assert.equal(cnCol.enTitle, 'Decoding Simplified Chinese: The Ultimate Guide');
+  assert.equal(cnCol.defaultMeta.enTitle, 'Decoding Simplified Chinese: The Ultimate Guide');
+  assert.equal(cnCol.name, '簡中語境破解攻略');
+  assert.equal(cnCol.defaultMeta.title, '簡中語境破解攻略');
+  assert.equal(cnCol.defaultMeta.id, 'C102');
+
   const krCol = collectionsConfig['korean-terms'];
-  assert.equal(krCol.enTitle, 'Hanja Hacks for Korean');
-  assert.equal(krCol.defaultMeta.enTitle, 'Hanja Hacks for Korean');
-  assert.equal(krCol.name, '中文母語者韓語單字集');
-  assert.equal(krCol.defaultMeta.title, '中文母語者韓語單字集');
+  assert.equal(krCol.enTitle, 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet');
+  assert.equal(krCol.defaultMeta.enTitle, 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet');
+  assert.equal(krCol.name, '韓語單字速成攻略');
+  assert.equal(krCol.defaultMeta.title, '韓語單字速成攻略');
   assert.equal(krCol.defaultMeta.id, 'C103');
   assert.equal(krCol.gid, '168524304');
   assert.equal(krCol.hasReading, true);
@@ -358,6 +388,40 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
   assert.equal(parsed[1].created_at, '2026-09-15');
 });
 
+test('Gallery curator lives on config, not metadata', () => {
+  for (const col of Object.values(collectionsConfig)) {
+    assert.equal(col.curator, '巧克力');
+    assert.equal(col.defaultMeta.author, undefined);
+    assert.equal(col.defaultMeta.curator, undefined);
+  }
+});
+
+test('Profile parsers - CSV, GViz formatted ID, name lookup keys', () => {
+  assert.equal(formatProfileId(2), '#P-0002');
+  assert.equal(formatProfileId('#P-0003'), '#P-0003');
+  assert.equal(formatProfileId(''), '');
+
+  const csv = `ID,English Name,Chinese Name,IG,Youtube,Gmail,Description
+#P-0002,Chocolate,巧克力,不公開,不公開,不公開,"CGO Master
+歡迎大家來玩"
+#P-0003,Hikari,光,不公開,不公開,不公開,光追`;
+  const parsed = parseProfilesCSVData(csv);
+  assert.equal(parsed.length, 2);
+  assert.equal(parsed[0].id, '#P-0002');
+  assert.equal(parsed[0].enName, 'Chocolate');
+  assert.equal(parsed[0].zhName, '巧克力');
+  assert.equal(parsed[0].ig, '不公開');
+  assert.equal(parsed[0].description, 'CGO Master\n歡迎大家來玩');
+  assert.equal(parsed[1].zhName, '光');
+
+  const gviz = `google.visualization.Query.setResponse({"status":"ok","table":{"cols":[{"label":"ID"},{"label":"English Name"},{"label":"Chinese Name"},{"label":"IG"},{"label":"Youtube"},{"label":"Gmail"},{"label":"Description"}],"rows":[{"c":[{"v":2.0,"f":"#P-0002"},{"v":"Chocolate"},{"v":"巧克力"},{"v":"不公開"},{"v":"不公開"},{"v":"不公開"},{"v":"CGO Master\\n歡迎大家來玩"}]}]}});`;
+  const fromGviz = parseProfilesGvizResponse(gviz);
+  assert.equal(fromGviz.length, 1);
+  assert.equal(fromGviz[0].id, '#P-0002');
+  assert.equal(fromGviz[0].zhName, '巧克力');
+  assert.equal(fromGviz[0].description, 'CGO Master\n歡迎大家來玩');
+});
+
 test('Status & Exhibition Helpers', () => {
   assert.equal(isCollectionAdjusting({ status: '調整中' }), true);
   assert.equal(isCollectionPreparing({ status: '籌備中' }), true);
@@ -385,4 +449,20 @@ test('Modal Meaning Text Multiline Detection', async () => {
   assert.equal(checkMeaningHasScroll(null), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 100 }), false);
   assert.equal(checkMeaningHasScroll({ clientHeight: 100, scrollHeight: 150 }), true);
+});
+
+test('Page size options resolve 10 25 50 100 All', () => {
+  assert.deepEqual(PAGE_SIZE_OPTIONS, [10, 25, 50, 100, PAGE_SIZE_ALL]);
+  assert.equal(DEFAULT_PAGE_SIZE, 10);
+  assert.equal(resolvePageSize('10'), 10);
+  assert.equal(resolvePageSize('25'), 25);
+  assert.equal(resolvePageSize('50'), 50);
+  assert.equal(resolvePageSize('100'), 100);
+  assert.equal(resolvePageSize('all'), PAGE_SIZE_ALL);
+  assert.equal(resolvePageSize('ALL'), PAGE_SIZE_ALL);
+  assert.equal(resolvePageSize(String(PAGE_SIZE_ALL)), PAGE_SIZE_ALL);
+  assert.equal(resolvePageSize('12'), DEFAULT_PAGE_SIZE);
+  assert.equal(pageSizeTabValue(10), '10');
+  assert.equal(pageSizeTabValue(PAGE_SIZE_ALL), 'all');
+  assert.equal(pageSizeTabValue('all'), 'all');
 });

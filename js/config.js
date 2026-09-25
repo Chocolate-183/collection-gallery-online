@@ -2,8 +2,8 @@
  * Multi-Collection Configuration
  *
  * Each gallery is declared in its own file under js/galleries/.
- * Hall intro metadata and opening hours are always loaded from the
- * central spreadsheet (metadataConfig) — defaultMeta is offline failover only.
+ * Hall intro metadata and opening hours live in defaultMeta until the user
+ * clicks header refresh (`#btn-refresh-data`); then metadataConfig is fetched.
  */
 import japaneseTerms from './galleries/japanese-terms.js';
 import chinaTerms from './galleries/china-terms.js';
@@ -66,5 +66,29 @@ export function getMetadataUrls() {
   return {
     csvUrl: googleSheetsConfig.getCsvUrl(metadataConfig.sheetId, metadataConfig.gid || '0'),
     gvizUrl: googleSheetsConfig.getGvizUrl(metadataConfig.sheetId, metadataConfig.gid || '0')
+  };
+}
+
+/**
+ * Curator profiles sheet (same workbook as hall metadata).
+ * https://docs.google.com/spreadsheets/d/162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs?gid=1665955868
+ */
+const profilesConfig = {
+  sheetId: '162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs',
+  gid: '1665955868',
+  localFallback: 'profiles.json'
+};
+
+/**
+ * Returns CSV, GViz, and local fallback URLs for curator profiles
+ */
+export function getProfileUrls() {
+  if (!profilesConfig.sheetId) {
+    return { csvUrl: null, gvizUrl: null, localFallback: profilesConfig.localFallback };
+  }
+  return {
+    csvUrl: googleSheetsConfig.getCsvUrl(profilesConfig.sheetId, profilesConfig.gid || '0'),
+    gvizUrl: googleSheetsConfig.getGvizUrl(profilesConfig.sheetId, profilesConfig.gid || '0'),
+    localFallback: profilesConfig.localFallback
   };
 }

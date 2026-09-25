@@ -54,7 +54,7 @@
       </button>
 
       <!-- Icon-Only Refresh Action -->
-      <button class="awsui-icon-button" title="同步最新展品" aria-label="同步最新展品" onclick="loadCollectionData(window.currentCollectionId)">
+      <button class="awsui-icon-button" id="btn-refresh-data" title="同步最新展品" aria-label="同步最新展品" onclick="refreshGalleryData(window.currentCollectionId)">
         <svg class="awsui-icon" viewBox="0 0 16 16">
           <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.418A6 6 0 1 1 8 2v1z"/>
           <path d="M8 1v3.5l3-2L8 1z"/>
@@ -98,7 +98,7 @@
               <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
               <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
             </svg>
-            <span class="awsui-nav-text" id="nav-text-china-terms">大陸特色詞彙一覽</span>
+            <span class="awsui-nav-text" id="nav-text-china-terms">簡中語境破解攻略</span>
             <span class="awsui-nav-badge" id="side-nav-count-china-terms" style="display: none;"></span>
           </button>
           <button class="awsui-nav-link" id="nav-col-korean-terms" type="button" onclick="switchCollection('korean-terms')">
@@ -106,7 +106,7 @@
               <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 0 5.5 12h-3A1.5 1.5 0 0 1 1 10.5v-8zM2.5 2a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 .5.5V2.5a.5.5 0 0 0-.5-.5h-3z"/>
               <path d="M15 2.5A1.5 1.5 0 0 0 13.5 1h-3A1.5 1.5 0 0 0 9 2.5v11a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 0 1.5-1.5v-8zM13.5 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 .5-.5V2.5a.5.5 0 0 1 .5-.5h3z"/>
             </svg>
-            <span class="awsui-nav-text" id="nav-text-korean-terms">中文母語者韓語單字集</span>
+            <span class="awsui-nav-text" id="nav-text-korean-terms">韓語單字速成攻略</span>
             <span class="awsui-nav-badge" id="side-nav-count-korean-terms" style="display: none;"></span>
           </button>
         </nav>
@@ -156,7 +156,7 @@
               </svg>
             </button>
             <button class="awsui-btn awsui-btn-normal" type="button" onclick="switchCollection('china-terms')">
-              <span>進入「大陸特色詞彙一覽」展廳</span>
+              <span>進入「簡中語境破解攻略」展廳</span>
               <svg class="awsui-icon" viewBox="0 0 16 16">
                 <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
               </svg>
@@ -206,7 +206,7 @@
             <div class="awsui-welcome-card" id="welcome-card-china-terms">
               <div class="awsui-welcome-card-header">
                 <div>
-                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms" onclick="switchCollection('china-terms')" style="cursor: pointer;">大陸特色詞彙一覽</h3>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-china-terms" onclick="switchCollection('china-terms')" style="cursor: pointer;">簡中語境破解攻略</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-china-terms">
                     <span class="awsui-welcome-card-tag awsui-tag-adjusting">ADJUSTING</span>
                     <span class="awsui-welcome-card-tag">大陸</span>
@@ -228,7 +228,7 @@
             <div class="awsui-welcome-card" id="welcome-card-korean-terms">
               <div class="awsui-welcome-card-header">
                 <div>
-                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-korean-terms" onclick="switchCollection('korean-terms')" style="cursor: pointer;">中文母語者韓語單字集</h3>
+                  <h3 class="awsui-welcome-card-title" id="welcome-card-title-korean-terms" onclick="switchCollection('korean-terms')" style="cursor: pointer;">韓語單字速成攻略</h3>
                   <div class="awsui-welcome-card-tags" id="welcome-card-tags-korean-terms">
                     <span class="awsui-welcome-card-tag">韓語</span>
                     <span class="awsui-welcome-card-tag">語彙</span>
@@ -282,53 +282,23 @@
               <input type="text" id="search-input" class="awsui-input" placeholder="尋找展品..." oninput="onSearchInput()">
             </div>
 
-            <button type="button" id="btn-open-filter-modal" class="awsui-btn awsui-btn-normal awsui-filter-trigger" onclick="openFilterModal()" title="Filter" aria-label="Filter">
-              <svg class="awsui-icon" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
-                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .4.8L10 7.5V13a.5.5 0 0 1-.76.429l-3-1.8A.5.5 0 0 1 6 11.2V7.5L1.6 1.8A.5.5 0 0 1 1.5 1.5z"/>
-              </svg>
-              <span>Filter</span>
-              <span id="filter-modal-badge" class="awsui-filter-badge" style="display: none;">0</span>
-            </button>
-
-            <div>
-              <select id="pagesize-select" class="awsui-select" onchange="onPageSizeChange()">
-                <option value="12" selected>12 per page</option>
-                <option value="24">24 per page</option>
-                <option value="48">48 per page</option>
-                <option value="96">96 per page</option>
-                <option value="9999">Show All</option>
-              </select>
+            <div class="awsui-pagination-controls" id="pagination-controls">
+              <!-- Page controls -->
             </div>
           </div>
 
           <div class="awsui-filter-tabs-container">
-            <div class="awsui-filter-tabs-row" id="kana-tabs-row">
-              <span class="awsui-filter-label" id="quick-tabs-label">Filter:</span>
-              <div class="awsui-tabs" id="kana-tabs">
-                <button class="awsui-tab active" data-tab="ALL" onclick="selectKanaTab('ALL', this)">ALL</button>
-                <button class="awsui-tab" data-tab="RANDOM10" onclick="selectKanaTab('RANDOM10', this)">RANDOM 10</button>
-                <button class="awsui-tab" data-tab="LATEST10" onclick="selectKanaTab('LATEST10', this)">LATEST 10</button>
-              </div>
-            </div>
-            <div class="awsui-filter-summary-row" id="filter-summary-row">
-              <span class="awsui-filter-label">Active:</span>
-              <span id="filter-summary">読み方 正序</span>
-            </div>
+            <button type="button" id="btn-open-filter-modal" class="awsui-btn awsui-filter-trigger" onclick="openFilterModal()" title="Filter" aria-label="Filter">
+              <svg class="awsui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                <polygon points="1.5,2 14.5,2 9.5,8.5 9.5,13.5 6.5,12 6.5,8.5"/>
+              </svg>
+            </button>
+            <span id="filter-summary">読み方 正序</span>
           </div>
 
           <!-- Uniform Height & Width Cards Grid -->
           <div class="awsui-cards-grid" id="card-grid">
             <!-- Rendered Uniform Cards -->
-          </div>
-
-          <!-- Cards Component Pagination Footer -->
-          <div class="awsui-cards-pagination-bar">
-            <div class="awsui-pagination-info" id="pagination-info">
-              展廳載入中...
-            </div>
-            <div class="awsui-pagination-controls" id="pagination-controls">
-              <!-- Page controls -->
-            </div>
           </div>
 
         </section>
@@ -599,7 +569,7 @@
 
   <!-- Collection Detail Modal -->
   <div class="awsui-modal-backdrop" id="collection-modal" onclick="closeCollectionModalOnBackdrop(event)">
-    <div class="awsui-modal">
+    <div class="awsui-modal awsui-modal-lg">
       <div class="awsui-modal-body">
         <div class="awsui-modal-section-title awsui-modal-header-title">
           <span>Collection</span>
@@ -618,6 +588,13 @@
             <span>English Title</span>
           </div>
           <div id="collection-modal-entitle" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+        </div>
+
+        <div id="collection-modal-curator-section" class="awsui-modal-section" style="margin-top: 20px;">
+          <div class="awsui-modal-section-title">
+            <span>Curator</span>
+          </div>
+          <div id="collection-modal-curator" onclick="handleCuratorClick()" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
         </div>
 
         <div class="awsui-modal-section awsui-modal-description-section" style="margin-top: 20px;">
@@ -733,14 +710,29 @@
               <button class="awsui-tab" data-tab="title" onclick="selectSortField('title', this)">標題</button>
               <button class="awsui-tab active" id="sort-field-reading" data-tab="standard" onclick="selectSortField('standard', this)">読み方</button>
               <button class="awsui-tab" id="sort-field-subtitle" data-tab="subtitle" onclick="selectSortField('subtitle', this)" style="display: none;">副標</button>
+              <button class="awsui-tab" data-tab="random" onclick="selectSortField('random', this)">隨機</button>
+              <button class="awsui-tab" data-tab="created_at" onclick="selectSortField('created_at', this)">新增日期</button>
             </div>
           </div>
 
-          <div class="awsui-filter-modal-section">
-            <div class="awsui-modal-section-title"><span>Order</span></div>
-            <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
-              <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">正序</button>
-              <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">倒序</button>
+          <div class="awsui-filter-modal-row">
+            <div class="awsui-filter-modal-section">
+              <div class="awsui-modal-section-title"><span>Order</span></div>
+              <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
+                <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">正序</button>
+                <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">倒序</button>
+              </div>
+            </div>
+
+            <div class="awsui-filter-modal-section">
+              <div class="awsui-modal-section-title"><span>Page size</span></div>
+              <div class="awsui-tabs awsui-filter-modal-tabs" id="page-size-tabs">
+                <button class="awsui-tab active" data-tab="10" onclick="selectPageSize('10', this)">10</button>
+                <button class="awsui-tab" data-tab="25" onclick="selectPageSize('25', this)">25</button>
+                <button class="awsui-tab" data-tab="50" onclick="selectPageSize('50', this)">50</button>
+                <button class="awsui-tab" data-tab="100" onclick="selectPageSize('100', this)">100</button>
+                <button class="awsui-tab" data-tab="all" onclick="selectPageSize('all', this)">All</button>
+              </div>
             </div>
           </div>
         </div>
@@ -748,6 +740,70 @@
         <div class="awsui-filter-modal-actions">
           <button type="button" class="awsui-btn awsui-btn-tertiary" onclick="resetFineFilters()">Reset</button>
           <button type="button" class="awsui-btn awsui-btn-primary" onclick="applyFilterModal()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Panel -->
+  <div class="awsui-modal-backdrop" id="profile-modal" onclick="closeProfileModalOnBackdrop(event)">
+    <div class="awsui-modal">
+      <div class="awsui-modal-body">
+        <div class="awsui-modal-section-title awsui-modal-header-title">
+          <span>Profile</span>
+          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeProfileModal()">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="awsui-modal-title-row">
+          <strong id="profile-modal-name">--</strong>
+        </div>
+
+        <div id="profile-modal-en-section" class="awsui-modal-section" style="margin-top: 20px;">
+          <div class="awsui-modal-section-title">
+            <span>English</span>
+          </div>
+          <div id="profile-modal-en" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+        </div>
+
+        <div id="profile-modal-description-section" class="awsui-modal-section awsui-modal-description-section" style="margin-top: 20px;">
+          <div class="awsui-modal-section-title">
+            <span>Description</span>
+          </div>
+          <div id="profile-modal-description"></div>
+        </div>
+
+        <div id="profile-modal-social-row" class="awsui-modal-section profile-modal-social-row">
+          <div id="profile-modal-ig-section" class="awsui-modal-section">
+            <div class="awsui-modal-section-title">
+              <span>IG</span>
+            </div>
+            <div id="profile-modal-ig" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+          </div>
+          <div id="profile-modal-youtube-section" class="awsui-modal-section">
+            <div class="awsui-modal-section-title">
+              <span>Youtube</span>
+            </div>
+            <div id="profile-modal-youtube" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+          </div>
+        </div>
+
+        <div id="profile-modal-gmail-section" class="awsui-modal-section" style="margin-top: 20px;">
+          <div class="awsui-modal-section-title">
+            <span>Gmail</span>
+          </div>
+          <div id="profile-modal-gmail" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+        </div>
+
+        <div class="awsui-modal-divider"></div>
+
+        <div class="awsui-modal-created-time">
+          <div class="awsui-modal-meta-item">
+            <span class="awsui-modal-meta-label">ID</span>
+            <span id="profile-modal-id">--</span>
+          </div>
         </div>
       </div>
     </div>
@@ -767,6 +823,23 @@
         </div>
 
         <div id="description-modal-text" style="font-family: 'Noto Sans TC', sans-serif; font-size: 18px; color: var(--awsui-color-text-body-default, #16191f); line-height: 1.65; white-space: pre-wrap; flex: 1; overflow-y: auto; margin-top: 16px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notice Panel (blocking status, e.g. hall sync) -->
+  <div class="awsui-modal-backdrop" id="notice-modal" role="alertdialog" aria-modal="true" aria-labelledby="notice-modal-title" aria-describedby="notice-modal-message">
+    <div class="awsui-modal awsui-notice-modal">
+      <div class="awsui-modal-body">
+        <div class="awsui-modal-section-title awsui-modal-header-title">
+          <span id="notice-modal-title">Notice</span>
+        </div>
+        <div class="awsui-notice-modal-content">
+          <div class="awsui-spinner" id="notice-modal-spinner">
+            <span id="notice-modal-countdown" aria-live="polite">5</span>
+          </div>
+          <p id="notice-modal-message">展廳同步中</p>
+        </div>
       </div>
     </div>
   </div>

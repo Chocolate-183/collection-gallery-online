@@ -18,9 +18,6 @@ export function showLoadingState() {
 
   updateSidebarBadge(currentCollectionId);
 
-  const info = document.getElementById('pagination-info');
-  if (info) info.innerText = '展廳載入中...';
-
   const controls = document.getElementById('pagination-controls');
   if (controls) controls.innerHTML = '';
 

@@ -1,7 +1,7 @@
 /**
  * Global Application State Store
  */
-import { STORAGE_KEYS, VIEWS, SORT_FIELDS, SORT_ORDERS } from './constants.js';
+import { STORAGE_KEYS, VIEWS, SORT_FIELDS, SORT_ORDERS, DEFAULT_PAGE_SIZE } from './constants.js';
 
 const safeLocalStorage = {
   getItem: (key) => typeof localStorage !== 'undefined' ? localStorage.getItem(key) : null,
@@ -23,8 +23,7 @@ class Store {
       allRecords: [],
       filteredRecords: [],
       currentPage: 1,
-      pageSize: 12,
-      currentKanaTab: 'ALL',
+      pageSize: DEFAULT_PAGE_SIZE,
       currentLengthTab: 'ALL',
       currentInitialTab: 'ALL',
       loanwordOnly: false,
@@ -62,9 +61,9 @@ class Store {
     }
   }
 
-  reshuffleRandom10() {
+  reshuffleRandomSort() {
     this.state.allRecords.forEach(r => {
-      r._rand10 = Math.random();
+      r._randSort = Math.random();
     });
   }
 }

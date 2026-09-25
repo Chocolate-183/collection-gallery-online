@@ -4,11 +4,12 @@
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { initTheme, toggleTheme } from './theme.js';
-import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
-import { onSearchInput, onFilterChange, selectKanaTab, selectLengthTab, selectInitialTab, selectKindTab, selectSortField, selectSortOrder, resetFineFilters, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, applyFilterModal, syncFilterUi } from './filter.js';
+import { preloadAllCollections, refreshGalleryData, updateStatsView } from './data.js';
+import { onSearchInput, onFilterChange, selectLengthTab, selectInitialTab, selectKindTab, selectSortField, selectSortOrder, resetFineFilters, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, applyFilterModal, syncFilterUi } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
-import { onPageSizeChange, goToPage } from './components/pagination.js';
-import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, openCollectionDescriptionModal } from './components/modal.js';
+import { goToPage, selectPageSize } from './components/pagination.js';
+import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop } from './components/modal.js';
+import { openNoticePanel, closeNoticePanel, showNoticeUntil } from './components/notice.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
 
@@ -32,13 +33,13 @@ Object.assign(window, {
   toggleTheme,
   switchView,
   switchCollection,
-  loadCollectionData: (colId) => loadCollectionData(colId, true),
+  loadCollectionData: (colId) => refreshGalleryData(colId),
+  refreshGalleryData,
   preloadAllCollections,
   updateStatsView,
   onSearchInput,
   onFilterChange,
-  onPageSizeChange,
-  selectKanaTab,
+  selectPageSize,
   selectLengthTab,
   selectInitialTab,
   selectKindTab,
@@ -61,7 +62,14 @@ Object.assign(window, {
   closeDescriptionModalOnBackdrop,
   handleMeaningTextClick,
   handleCollectionDescriptionClick,
+  handleCuratorClick,
   openCollectionDescriptionModal,
+  openProfileModal,
+  closeProfileModal,
+  closeProfileModalOnBackdrop,
+  openNoticePanel,
+  closeNoticePanel,
+  showNoticeUntil,
   navigateToTerm,
   goToPage
 });
@@ -103,10 +111,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      const noticeModal = document.getElementById('notice-modal');
+      if (noticeModal && noticeModal.classList.contains('open')) {
+        return;
+      }
       const descModal = document.getElementById('description-modal');
+      const profileModal = document.getElementById('profile-modal');
       const filterModal = document.getElementById('filter-modal');
       if (descModal && descModal.classList.contains('open')) {
         closeDescriptionModal();
+      } else if (profileModal && profileModal.classList.contains('open')) {
+        closeProfileModal();
       } else if (filterModal && filterModal.classList.contains('open')) {
         closeFilterModal();
       } else {

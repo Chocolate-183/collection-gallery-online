@@ -1,11 +1,11 @@
 /**
- * C103 中文母語者韓語單字集 — gallery config (dataset wiring only).
+ * C103 韓語單字速成攻略 — gallery config (dataset wiring only).
  * Live hall metadata and opening hours come from the central spreadsheet.
  */
 export default {
   id: 'korean-terms',
-  name: '中文母語者韓語單字集',
-  enTitle: 'Korean Vocabulary for Chinese Speakers',
+  name: '韓語單字速成攻略',
+  enTitle: 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet',
   sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
   gid: '168524304',
   localFallback: 'korean-data.json',
@@ -15,9 +15,10 @@ export default {
   hasLoanwordFilter: true,
   hiddenColumnIndexes: [2, 3],
   searchPlaceholder: '尋找展品...',
+  curator: '巧克力',
   defaultMeta: {
-    title: '中文母語者韓語單字集',
-    enTitle: 'Korean Vocabulary for Chinese Speakers',
+    title: '韓語單字速成攻略',
+    enTitle: 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet',
     id: 'C103',
     status: '開放中',
     announcement: '',

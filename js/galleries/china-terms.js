@@ -1,19 +1,20 @@
 /**
- * C102 China Terms — gallery config (dataset wiring only).
+ * C102 簡中語境破解攻略 — gallery config (dataset wiring only).
  * Live hall metadata and opening hours come from the central spreadsheet.
  */
 export default {
   id: 'china-terms',
-  name: '大陸特色詞彙一覽',
-  enTitle: 'China Terms',
+  name: '簡中語境破解攻略',
+  enTitle: 'Decoding Simplified Chinese: The Ultimate Guide',
   sheetId: '16q_oTeadINeCErFrnokO4iiTS2BUwo2umT3wAHH53J8',
   gid: '826763333',
   localFallback: 'china-data.json',
   hasReading: false,
   searchPlaceholder: '尋找展品...',
+  curator: '巧克力',
   defaultMeta: {
-    title: '大陸特色詞彙一覽',
-    enTitle: 'China Terms',
+    title: '簡中語境破解攻略',
+    enTitle: 'Decoding Simplified Chinese: The Ultimate Guide',
     id: 'C102',
     status: '開放中',
     announcement: '',

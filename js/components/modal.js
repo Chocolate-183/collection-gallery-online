@@ -3,7 +3,7 @@
  */
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
-import { collectionsCache, collectionsMetaCache } from '../data.js';
+import { collectionsCache, collectionsMetaCache, findProfileByName } from '../data.js';
 import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml } from '../utils.js';
 
 function syncHash(newHash) {
@@ -117,6 +117,103 @@ export function handleCollectionDescriptionClick() {
   openCollectionDescriptionModal(currentCollectionId, descText);
 }
 
+/**
+ * Handles click on Collection Curator to open Profile panel.
+ */
+export function handleCuratorClick() {
+  const curatorElem = document.getElementById('collection-modal-curator');
+  const name = curatorElem ? String(curatorElem.innerText || '').trim() : '';
+  if (!name || name === '--') return;
+  openProfileModal(name);
+}
+
+function setCuratorActive(isActive) {
+  if (typeof document === 'undefined') return;
+  const curatorElem = document.getElementById('collection-modal-curator');
+  if (curatorElem && curatorElem.classList) {
+    curatorElem.classList.toggle('active', !!isActive);
+  }
+}
+
+function setProfileField(sectionId, valueId, value) {
+  const text = value == null ? '' : String(value).trim();
+  const section = document.getElementById(sectionId);
+  const elem = document.getElementById(valueId);
+  if (elem) elem.innerText = text || '--';
+  if (section) section.style.display = text ? '' : 'none';
+}
+
+/**
+ * Opens Profile panel for a curator name (matched against profiles sheet).
+ */
+export function openProfileModal(curatorName, updateHash = true) {
+  const name = curatorName == null ? '' : String(curatorName).trim();
+  if (!name || name === '--') return;
+
+  const profile = findProfileByName(name) || {
+    id: '',
+    enName: '',
+    zhName: name,
+    ig: '',
+    youtube: '',
+    gmail: '',
+    description: ''
+  };
+
+  const modal = document.getElementById('profile-modal');
+  const nameElem = document.getElementById('profile-modal-name');
+  const descElem = document.getElementById('profile-modal-description');
+  const descSection = document.getElementById('profile-modal-description-section');
+  const idElem = document.getElementById('profile-modal-id');
+
+  if (nameElem) nameElem.innerText = profile.zhName || profile.enName || name;
+  setProfileField('profile-modal-en-section', 'profile-modal-en', profile.enName);
+  setProfileField('profile-modal-ig-section', 'profile-modal-ig', profile.ig);
+  setProfileField('profile-modal-youtube-section', 'profile-modal-youtube', profile.youtube);
+  setProfileField('profile-modal-gmail-section', 'profile-modal-gmail', profile.gmail);
+
+  const socialRow = document.getElementById('profile-modal-social-row');
+  if (socialRow) {
+    const igText = profile.ig == null ? '' : String(profile.ig).trim();
+    const ytText = profile.youtube == null ? '' : String(profile.youtube).trim();
+    socialRow.style.display = (igText || ytText) ? '' : 'none';
+  }
+
+  const descText = profile.description ? String(profile.description).trim() : '';
+  if (descElem) {
+    descElem.innerText = descText || '--';
+    if (descElem.classList) {
+      descElem.classList.toggle('is-multiline', checkMeaningExceedsTwoLines(descText, descElem));
+      descElem.classList.toggle('has-scroll', checkMeaningHasScroll(descElem));
+    }
+  }
+  if (descSection) descSection.style.display = descText ? '' : 'none';
+  if (idElem) idElem.innerText = profile.id || '--';
+
+  closeDescriptionModal(false);
+  setCuratorActive(true);
+  if (modal) modal.classList.add('open');
+
+  if (updateHash) {
+    const { currentCollectionId } = store.get();
+    syncHash(`#/${getCollectionSlug(currentCollectionId)}/info/profile`);
+  }
+}
+
+export function closeProfileModal(updateHash = true) {
+  setCuratorActive(false);
+  const modal = document.getElementById('profile-modal');
+  if (modal) modal.classList.remove('open');
+
+  if (updateHash) {
+    const collectionModal = document.getElementById('collection-modal');
+    const isCollectionModalOpen = collectionModal && collectionModal.classList.contains('open');
+    const { currentCollectionId } = store.get();
+    const colSlug = getCollectionSlug(currentCollectionId);
+    syncHash(isCollectionModalOpen ? `#/${colSlug}/info` : `#/${colSlug}`);
+  }
+}
+
 export function openMeaningModal(rowIndex, updateHash = true) {
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
@@ -228,6 +325,7 @@ export function closeDetailModal(updateHash = true) {
 }
 
 export function openDescriptionModal(rowIndex, updateHash = true) {
+  closeProfileModal(false);
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec) return;
@@ -251,6 +349,7 @@ export function openDescriptionModal(rowIndex, updateHash = true) {
 }
 
 export function openCollectionDescriptionModal(collectionId, customText, updateHash = true) {
+  closeProfileModal(false);
   const { currentCollectionId } = store.get();
   const targetColId = collectionId || currentCollectionId || 'china-terms';
   const col = collectionsConfig[targetColId];
@@ -320,6 +419,8 @@ export function openCollectionModal(collectionId, updateHash = true) {
 
   const titleElem = document.getElementById('collection-modal-title');
   const enTitleElem = document.getElementById('collection-modal-entitle');
+  const curatorSection = document.getElementById('collection-modal-curator-section');
+  const curatorElem = document.getElementById('collection-modal-curator');
   const descElem = document.getElementById('collection-modal-description');
   const totalElem = document.getElementById('collection-modal-total-items');
   const timestampElem = document.getElementById('collection-modal-created-at');
@@ -327,6 +428,9 @@ export function openCollectionModal(collectionId, updateHash = true) {
 
   if (titleElem) titleElem.innerText = meta?.title || col.name;
   if (enTitleElem) enTitleElem.innerText = meta?.enTitle || col.enTitle || targetColId;
+  const curator = typeof col.curator === 'string' ? col.curator.trim() : '';
+  if (curatorElem) curatorElem.innerText = curator || '--';
+  if (curatorSection) curatorSection.style.display = curator ? '' : 'none';
   if (descElem) {
     const descText = meta?.description || '（無說明內容）';
     descElem.innerText = descText;
@@ -365,6 +469,7 @@ export function openCollectionModal(collectionId, updateHash = true) {
 }
 
 export function closeCollectionModal(updateHash = true) {
+  closeProfileModal(false);
   const modal = document.getElementById('collection-modal');
   if (modal) modal.classList.remove('open');
 
@@ -388,3 +493,4 @@ const createBackdropHandler = (targetId, closeFn) => (e) => {
 export const closeDetailModalOnBackdrop = createBackdropHandler('detail-modal', closeDetailModal);
 export const closeDescriptionModalOnBackdrop = createBackdropHandler('description-modal', closeDescriptionModal);
 export const closeCollectionModalOnBackdrop = createBackdropHandler('collection-modal', closeCollectionModal);
+export const closeProfileModalOnBackdrop = createBackdropHandler('profile-modal', closeProfileModal);

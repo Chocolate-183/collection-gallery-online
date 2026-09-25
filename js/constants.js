@@ -22,7 +22,9 @@ export const SORT_FIELDS = {
   ID: 'id',
   TITLE: 'title',
   STANDARD: 'standard',
-  SUBTITLE: 'subtitle'
+  SUBTITLE: 'subtitle',
+  RANDOM: 'random',
+  CREATED_AT: 'created_at'
 };
 
 export const SORT_ORDERS = {
@@ -32,8 +34,6 @@ export const SORT_ORDERS = {
 
 export const KANA_TABS = {
   ALL: 'ALL',
-  RANDOM10: 'RANDOM10',
-  LATEST10: 'LATEST10',
   LOANWORD: 'LOANWORD'
 };
 
@@ -45,6 +45,22 @@ export const LENGTH_TABS = {
   FOUR: '4',
   FIVE_PLUS: '5+'
 };
+
+export const PAGE_SIZE_ALL = 9999;
+export const PAGE_SIZE_OPTIONS = [10, 25, 50, 100, PAGE_SIZE_ALL];
+export const DEFAULT_PAGE_SIZE = 10;
+
+export function resolvePageSize(value) {
+  if (value === 'all' || value === 'ALL' || value === String(PAGE_SIZE_ALL)) return PAGE_SIZE_ALL;
+  const n = parseInt(value, 10);
+  if (PAGE_SIZE_OPTIONS.includes(n)) return n;
+  return DEFAULT_PAGE_SIZE;
+}
+
+export function pageSizeTabValue(pageSize) {
+  const n = resolvePageSize(pageSize);
+  return n >= PAGE_SIZE_ALL ? 'all' : String(n);
+}
 
 export const STORAGE_KEYS = {
   THEME: 'aws_theme',

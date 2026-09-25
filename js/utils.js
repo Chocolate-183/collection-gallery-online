@@ -37,8 +37,8 @@ export function isCollectionHidden(meta) {
 export function getCollectionEnTitle(colId, meta, col) {
   if (meta?.enTitle) return meta.enTitle;
   if (col?.enTitle) return col.enTitle;
-  if (colId === 'china-terms') return 'China Terms';
-  if (colId === 'korean-terms') return 'Hanja Hacks for Korean';
+  if (colId === 'china-terms') return 'Decoding Simplified Chinese: The Ultimate Guide';
+  if (colId === 'korean-terms') return 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet';
   return 'Japanese Terms';
 }
 
