@@ -32,20 +32,21 @@ export function findProfileByName(name) {
 }
 
 /**
- * Fetches curator profiles from the central spreadsheet (CSV → GViz → local JSON).
+ * Fetches curator profiles.
+ * Live Sheets (CSV → GViz) only when `{ live: true }`; otherwise local JSON.
  */
-export async function fetchProfiles() {
+export async function fetchProfiles({ live = false } = {}) {
   const { csvUrl, gvizUrl, localFallback } = getProfileUrls();
   let profiles = [];
 
-  if (csvUrl) {
+  if (live && csvUrl) {
     const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
     if (csvText) {
       profiles = parseProfilesCSVData(csvText);
     }
   }
 
-  if ((!profiles || profiles.length === 0) && gvizUrl) {
+  if (live && (!profiles || profiles.length === 0) && gvizUrl) {
     const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
     if (gvizText) {
       profiles = parseProfilesGvizResponse(gvizText);
@@ -83,27 +84,27 @@ function applyOpeningHoursFromMetaSource(csvText, gvizText) {
   return schedule;
 }
 
-export async function fetchAllMetadata() {
+export async function fetchAllMetadata({ live = false } = {}) {
   const { csvUrl, gvizUrl } = getMetadataUrls();
   let fetchedMetaMap = {};
   let csvText = null;
   let gvizText = null;
 
-  if (csvUrl) {
+  if (live && csvUrl) {
     csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
     if (csvText) {
       fetchedMetaMap = parseAllCollectionsMetaCSVData(csvText);
     }
   }
 
-  if ((!fetchedMetaMap || Object.keys(fetchedMetaMap).length === 0) && gvizUrl) {
+  if (live && (!fetchedMetaMap || Object.keys(fetchedMetaMap).length === 0) && gvizUrl) {
     gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
     if (gvizText) {
       fetchedMetaMap = parseAllCollectionsMetaGvizResponse(gvizText);
     }
   }
 
-  applyOpeningHoursFromMetaSource(csvText, gvizText);
+  if (live) applyOpeningHoursFromMetaSource(csvText, gvizText);
 
   for (const [fetchedColId, meta] of Object.entries(fetchedMetaMap)) {
     if (!collectionsConfig[fetchedColId]) {
@@ -134,12 +135,13 @@ export async function fetchAllMetadata() {
 }
 
 /**
- * Preload and synchronize all collections and metadata in parallel at app initialization.
+ * Preload collections from local offline snapshots only.
+ * Live Google Sheets sync happens when the user clicks the header refresh button.
  */
 export async function preloadAllCollections() {
-  await Promise.all([fetchAllMetadata(), fetchProfiles()]);
+  await Promise.all([fetchAllMetadata({ live: false }), fetchProfiles({ live: false })]);
   const colIds = Object.keys(collectionsConfig);
-  await Promise.all(colIds.map(id => fetchSingleCollection(collectionsConfig[id])));
+  await Promise.all(colIds.map(id => fetchSingleCollection(collectionsConfig[id], { live: false })));
 }
 
 /**
@@ -264,12 +266,14 @@ export function renderCollectionNotice() {
 }
 
 /**
- * Fetch metadata sheet for a collection or trigger central metadata sync.
+ * Fetch metadata sheet for a collection or apply offline defaultMeta.
  */
-export async function fetchCollectionMeta(col) {
+export async function fetchCollectionMeta(col, { live = false } = {}) {
   if (!col) return null;
 
-  await fetchAllMetadata();
+  if (live) {
+    await fetchAllMetadata({ live: true });
+  }
 
   const meta = collectionsMetaCache[col.id] || (col.defaultMeta ? { ...col.defaultMeta } : null);
   if (meta) {
@@ -298,16 +302,41 @@ export async function loadCollectionData(collectionId, forceRefresh = false) {
     showLoadingState();
   }
 
-  await fetchSingleCollection(col);
+  await fetchSingleCollection(col, { live: forceRefresh });
 }
 
 /**
- * Fetch live data and metadata for a single collection.
+ * Fetch live Sheets data for the current hall. Only the header refresh button should call this.
  */
-export async function fetchSingleCollection(col) {
+export async function refreshGalleryData(collectionId) {
+  await Promise.all([
+    fetchAllMetadata({ live: true }),
+    fetchProfiles({ live: true })
+  ]);
+  await loadCollectionData(collectionId, true);
+}
+
+async function loadLocalCollectionSnapshot(col) {
+  const fallbackPath = col?.localFallback || 'data.json';
+  const fallbackText = await safeFetchText(fallbackPath, DEFAULT_TIMEOUT_MS);
+  if (!fallbackText) return null;
+  try {
+    return JSON.parse(fallbackText);
+  } catch (err) {
+    console.warn(`Failed to parse local fallback JSON at ${fallbackPath}:`, err);
+    return null;
+  }
+}
+
+/**
+ * Fetch data for a single collection.
+ * `{ live: false }` (default) uses the offline JSON snapshot only.
+ * `{ live: true }` hits Google Sheets, then falls back to the local snapshot.
+ */
+export async function fetchSingleCollection(col, { live = false } = {}) {
   if (!col) return [];
 
-  fetchCollectionMeta(col);
+  await fetchCollectionMeta(col, { live });
 
   const sheetId = col.sheetId;
   const gid = col.gid;
@@ -316,7 +345,7 @@ export async function fetchSingleCollection(col) {
 
   if (col.mockData) {
     fetchedData = col.mockData;
-  } else if (sheetId && gid) {
+  } else if (live && sheetId && gid) {
     const { csvUrl, gvizUrl } = getCollectionDataUrls(col);
 
     // Method 1: Try CSV export endpoint
@@ -337,19 +366,10 @@ export async function fetchSingleCollection(col) {
         }
       }
     }
+  }
 
-    // Method 3: Fallback to local dataset snapshot if offline or blocked
-    if (!fetchedData || fetchedData.length === 0) {
-      const fallbackPath = col.localFallback || 'data.json';
-      const fallbackText = await safeFetchText(fallbackPath, DEFAULT_TIMEOUT_MS);
-      if (fallbackText) {
-        try {
-          fetchedData = JSON.parse(fallbackText);
-        } catch (err) {
-          console.warn(`Failed to parse local fallback JSON at ${fallbackPath}:`, err);
-        }
-      }
-    }
+  if (!fetchedData || fetchedData.length === 0) {
+    fetchedData = await loadLocalCollectionSnapshot(col);
   }
 
   if (fetchedData?.length > 0) {

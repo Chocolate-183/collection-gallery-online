@@ -4,7 +4,7 @@
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { initTheme, toggleTheme } from './theme.js';
-import { loadCollectionData, preloadAllCollections, updateStatsView } from './data.js';
+import { preloadAllCollections, refreshGalleryData, updateStatsView } from './data.js';
 import { onSearchInput, onFilterChange, selectLengthTab, selectInitialTab, selectKindTab, selectSortField, selectSortOrder, resetFineFilters, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, applyFilterModal, syncFilterUi } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
 import { goToPage, selectPageSize } from './components/pagination.js';
@@ -32,7 +32,8 @@ Object.assign(window, {
   toggleTheme,
   switchView,
   switchCollection,
-  loadCollectionData: (colId) => loadCollectionData(colId, true),
+  loadCollectionData: (colId) => refreshGalleryData(colId),
+  refreshGalleryData,
   preloadAllCollections,
   updateStatsView,
   onSearchInput,

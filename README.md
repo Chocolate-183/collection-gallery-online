@@ -20,7 +20,7 @@
 ### 3. 動態數據同步與容錯備援 (Data Fetching & Timeout Failover)
 - **多管道 API 讀取**: 支援 Google Sheets GViz Query JSON API 與 CSV 格式動態匯入展品與策展詮釋資料。
 - **引號內多行 CSV 解析器**: 內建狀態機 CSV 解析器，完美保留展品詳細解說中的換行格式，避免引號內換行導致欄位錯位。
-- **逾時自動降級 (Timeout Failover)**: 採用 `AbortSignal.timeout(2500)` 請求，於網路異常或跨域受阻時自動降級使用本地 JSON 快照 (`data.json` / `china-data.json` / `korean-data.json`) 確保展覽系統穩定運作。
+- **離線備援優先、手動同步**: 啟動與切換展廳預設只讀本地 JSON 快照 (`data.json` / `china-data.json` / `korean-data.json` / `profiles.json`)。除非使用者主動點選頂欄「同步最新展品」按鈕 (`#btn-refresh-data`)，否則不向 Google Sheets 更新資料。手動同步逾時 (`AbortSignal.timeout(2500)`) 後仍降級回本地快照。
 
 ### 4. 雙色主題與沉浸式視覺體驗 (Light/Dark Mode)
 - **展廳燈光模式**: 支援 Light Mode 與 Dark Mode 一鍵切換，預設自動跟隨系統偏好 (`prefers-color-scheme`) 並儲存於 `localStorage`。

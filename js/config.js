@@ -2,8 +2,8 @@
  * Multi-Collection Configuration
  *
  * Each gallery is declared in its own file under js/galleries/.
- * Hall intro metadata and opening hours are always loaded from the
- * central spreadsheet (metadataConfig) — defaultMeta is offline failover only.
+ * Hall intro metadata and opening hours live in defaultMeta until the user
+ * clicks header refresh (`#btn-refresh-data`); then metadataConfig is fetched.
  */
 import japaneseTerms from './galleries/japanese-terms.js';
 import chinaTerms from './galleries/china-terms.js';

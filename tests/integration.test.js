@@ -8,7 +8,7 @@ const dataJson = JSON.parse(readFileSync(resolve('data.json'), 'utf-8'));
 
 function createMockElement(props = {}) {
   const classes = new Set();
-  return {
+  const el = {
     innerText: '',
     innerHTML: '',
     style: {},
@@ -24,13 +24,16 @@ function createMockElement(props = {}) {
     getAttribute(k) { return this[k]; },
     querySelector: () => null,
     querySelectorAll: () => [],
+    appendChild() { return this; },
     ...props
   };
+  return el;
 }
 
 function mockDOM(elementsMap = {}) {
   const fallbackEl = createMockElement();
   global.document = global.document || {};
+  global.document.createElement = () => createMockElement();
   global.document.getElementById = (id) => elementsMap[id] || fallbackEl;
   global.document.querySelector = (sel) => {
     if (typeof sel === 'string') {
@@ -66,6 +69,47 @@ test('Local Fallback Snapshot Integrity - Master Korean Vocabulary Fast: The Ult
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
   assert.match(sample.ja_term, /\|/);
   assert.notEqual(sample.ja_term, sample.reading);
+});
+
+test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
+  mockDOM({});
+  const fetched = [];
+  const originalFetch = global.fetch;
+  global.fetch = async (url) => {
+    fetched.push(String(url));
+    const path = String(url);
+    const body = path.endsWith('.json') ? readFileSync(resolve(path), 'utf-8') : '[]';
+    return {
+      ok: true,
+      text: async () => body
+    };
+  };
+
+  const { preloadAllCollections, refreshGalleryData, collectionsCache, collectionsMetaCache, profilesCache } = await import('../js/data.js');
+  await preloadAllCollections();
+
+  assert.equal(collectionsCache['japanese-terms']?.length, 12);
+  assert.equal(collectionsCache['china-terms']?.length, 12);
+  assert.equal(collectionsCache['korean-terms']?.length, 12);
+  assert.ok(fetched.every(url => !url.includes('docs.google.com')), 'boot must not hit Google Sheets');
+  assert.ok(fetched.some(url => url === 'data.json'));
+  assert.ok(fetched.some(url => url === 'china-data.json'));
+  assert.ok(fetched.some(url => url === 'korean-data.json'));
+  assert.ok(fetched.some(url => url === 'profiles.json'));
+
+  fetched.length = 0;
+  await refreshGalleryData('japanese-terms');
+  assert.ok(fetched.some(url => url.includes('docs.google.com')), 'header refresh must request Google Sheets');
+
+  Object.keys(collectionsCache).forEach(k => { delete collectionsCache[k]; });
+  Object.keys(collectionsMetaCache).forEach(k => { delete collectionsMetaCache[k]; });
+  profilesCache.length = 0;
+  global.fetch = originalFetch;
+});
+
+test('Header refresh button is the second nav action and calls refreshGalleryData', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  assert.match(html, /<div class="awsui-nav-actions">[\s\S]*id="btn-toggle-theme"[\s\S]*id="btn-refresh-data"[\s\S]*onclick="refreshGalleryData\(window\.currentCollectionId\)"/);
 });
 
 test('Router & View Switcher - View Routing & Maintenance Handling', async () => {
@@ -437,10 +481,21 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   });
 
   const originalWindow = global.window;
+  const originalLocation = global.location;
+  const originalFetch = global.fetch;
+  global.location = { hash: '' };
   global.window = {
     switchView: () => {},
     scrollTo: () => {},
-    syncFilterUi: undefined
+    syncFilterUi: undefined,
+    location: global.location
+  };
+  global.fetch = async (url) => {
+    const path = String(url);
+    if (path.endsWith('.json')) {
+      return { ok: true, text: async () => readFileSync(resolve(path), 'utf-8') };
+    }
+    return { ok: false, text: async () => '' };
   };
 
   const { store } = await import('../js/state.js');
@@ -449,6 +504,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   store.set({ currentCollectionId: 'japanese-terms', allRecords: [], filteredRecords: [] });
   switchCollection('korean-terms', false);
+  await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockHangul.style.display, '');
   assert.equal(mockKind.style.display, '');
   assert.equal(mockKana.style.display, 'none');
@@ -474,6 +530,8 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   closeFilterModal();
   assert(!mockFilterModal.classes.has('open'));
   global.window = originalWindow;
+  global.location = originalLocation;
+  global.fetch = originalFetch;
 });
 
 test('Page size - Filter modal pills set store and stay in sync', async () => {

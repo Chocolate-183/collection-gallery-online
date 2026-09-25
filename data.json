@@ -1,98 +1,194 @@
 [
   {
-    "id": "#0002",
+    "id": "#C101-0002",
     "ja_term": "1LDK",
     "tw_translation": "一房一廳一廚（格局）",
     "reading": "ワンエルディーケー",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "物件",
+      "賃貸",
+      "台所",
+      "洗面台",
+      "風呂"
+    ],
+    "subtitle": "",
     "row_index": 1
   },
   {
-    "id": "#0003",
+    "id": "#C101-0003",
     "ja_term": "3連単",
     "tw_translation": "前三單式（賽馬等投注，預測前三名且順序完全正確）",
     "reading": "さんれんたん",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "3連複",
+      "単勝",
+      "複勝",
+      "枠連",
+      "競馬"
+    ],
+    "subtitle": "",
     "row_index": 2
   },
   {
-    "id": "#0004",
+    "id": "#C101-0004",
     "ja_term": "3連複",
     "tw_translation": "前三複式（賽馬等投注，預測前三名不限順序）",
     "reading": "さんれんふく",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "3連単",
+      "複勝",
+      "単勝",
+      "枠連",
+      "競馬"
+    ],
+    "subtitle": "",
     "row_index": 3
   },
   {
-    "id": "#0005",
+    "id": "#C101-0005",
     "ja_term": "一人尺八",
-    "tw_translation": "自慰（自我口交）",
+    "tw_translation": "⑱ 成人用語\n自慰（自我口交）",
     "reading": "ひとりしゃくはち",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "本番行為",
+      "青姦",
+      "童貞",
+      "痴情",
+      "浮気"
+    ],
+    "subtitle": "",
     "row_index": 4
   },
   {
-    "id": "#0006",
+    "id": "#C101-0006",
     "ja_term": "一切",
     "tw_translation": "一切、完全（後接否定表絕不）",
     "reading": "いっさい",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "全然",
+      "金輪際",
+      "断固拒否",
+      "何",
+      "多分"
+    ],
+    "subtitle": "",
     "row_index": 5
   },
   {
-    "id": "#0007",
+    "id": "#C101-0007",
     "ja_term": "一方",
     "tw_translation": "一方面 / 另一方 / 不斷（～逐漸）",
     "reading": "いっぽう",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "方面",
+      "経由",
+      "経緯",
+      "途絕",
+      "次第"
+    ],
+    "subtitle": "",
     "row_index": 6
   },
   {
-    "id": "#0008",
+    "id": "#C101-0008",
     "ja_term": "一方通行",
     "tw_translation": "單行道",
     "reading": "いっぽうつうこう",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "横断歩道",
+      "交差点",
+      "直通",
+      "通路側",
+      "窓側"
+    ],
+    "subtitle": "",
     "row_index": 7
   },
   {
-    "id": "#0009",
+    "id": "#C101-0009",
     "ja_term": "一生懸命",
-    "tw_translation": "拼命、努力",
+    "tw_translation": "拼命",
     "reading": "いっしょうけんめい",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "全身全霊",
+      "真剣勝負",
+      "完全燃焼",
+      "気合",
+      "根性"
+    ],
+    "subtitle": "",
     "row_index": 8
   },
   {
-    "id": "#0010",
+    "id": "#C101-0010",
     "ja_term": "一件落着",
     "tw_translation": "事件圓滿落幕、告一段落",
     "reading": "いっけんらくちゃく",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "万事解決",
+      "一段落",
+      "決着",
+      "完遂",
+      "終了"
+    ],
+    "subtitle": "",
     "row_index": 9
   },
   {
-    "id": "#0011",
+    "id": "#C101-0011",
     "ja_term": "一存",
     "tw_translation": "獨斷、個人決定 / 自己的裁量",
     "reading": "いっそん",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "独断専行",
+      "勝手",
+      "本音",
+      "次第",
+      "理屈"
+    ],
+    "subtitle": "",
     "row_index": 10
   },
   {
-    "id": "#0012",
+    "id": "#C101-0012",
     "ja_term": "一見",
     "tw_translation": "乍看之下 / 第一次見面",
     "reading": "いっけん",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "初耳",
+      "見本",
+      "見事",
+      "見栄",
+      "格好"
+    ],
+    "subtitle": "",
     "row_index": 11
   },
   {
-    "id": "#0013",
+    "id": "#C101-0013",
     "ja_term": "一服",
     "tw_translation": "休息片刻、抽根菸 / 一劑（藥）",
     "reading": "いっぷく",
     "created_at": "2026-09-02",
+    "recommendations": [
+      "休憩",
+      "休憩所",
+      "休憩室",
+      "喫煙",
+      "喫煙所"
+    ],
+    "subtitle": "",
     "row_index": 12
   }
 ]
