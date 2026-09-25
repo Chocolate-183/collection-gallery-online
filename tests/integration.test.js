@@ -50,21 +50,21 @@ function mockDOM(elementsMap = {}) {
 }
 
 test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
-  assert(Array.isArray(dataJson) && dataJson.length === 12);
+  assert(Array.isArray(dataJson) && dataJson.length > 12);
   const sample = dataJson[0];
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
 });
 
 test('Local Fallback Snapshot Integrity - Decoding Simplified Chinese: The Ultimate Guide', () => {
   const chinaJson = JSON.parse(readFileSync(resolve('china-data.json'), 'utf-8'));
-  assert(Array.isArray(chinaJson) && chinaJson.length === 12);
+  assert(Array.isArray(chinaJson) && chinaJson.length > 12);
   const sample = chinaJson[0];
   assert('ja_term' in sample && 'tw_translation' in sample);
 });
 
 test('Local Fallback Snapshot Integrity - Master Korean Vocabulary Fast: The Ultimate Cheat Sheet', () => {
   const koreanJson = JSON.parse(readFileSync(resolve('korean-data.json'), 'utf-8'));
-  assert(Array.isArray(koreanJson) && koreanJson.length === 12);
+  assert(Array.isArray(koreanJson) && koreanJson.length > 12);
   const sample = koreanJson[0];
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
   assert.match(sample.ja_term, /\|/);
@@ -88,9 +88,9 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
   const { preloadAllCollections, refreshGalleryData, collectionsCache, collectionsMetaCache, profilesCache } = await import('../js/data.js');
   await preloadAllCollections();
 
-  assert.equal(collectionsCache['japanese-terms']?.length, 12);
-  assert.equal(collectionsCache['china-terms']?.length, 12);
-  assert.equal(collectionsCache['korean-terms']?.length, 12);
+  assert.ok(collectionsCache['japanese-terms']?.length > 12);
+  assert.ok(collectionsCache['china-terms']?.length > 12);
+  assert.ok(collectionsCache['korean-terms']?.length > 12);
   assert.ok(fetched.every(url => !url.includes('docs.google.com')), 'boot must not hit Google Sheets');
   assert.ok(fetched.some(url => url === 'data.json'));
   assert.ok(fetched.some(url => url === 'china-data.json'));
