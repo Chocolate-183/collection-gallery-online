@@ -2337,7 +2337,7 @@ a:focus {
   }
 
   #notice-modal .awsui-notice-modal {
-    max-width: 640px;
+    max-width: 520px;
     aspect-ratio: 1 / 1.1;
     max-height: 85vh;
   }
@@ -2453,11 +2453,6 @@ a:focus {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-  }
-
-  #notice-modal .awsui-notice-modal {
-    width: min(88dvw, 387px);
-    max-width: min(88dvw, 387px);
   }
 
   .awsui-modal-body {
