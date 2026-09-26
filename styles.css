@@ -540,6 +540,10 @@ a:focus {
   border-color: #303748;
   box-shadow: 0 0 0 1px #303748;
 }
+#search-input:focus {
+  border-color: #ECC94B;
+  box-shadow: none;
+}
 
 .awsui-input-icon {
   position: absolute;
@@ -2256,6 +2260,10 @@ a:focus {
 [data-theme="dark"] .awsui-input:focus {
   border-color: #ECC94B;
   box-shadow: 0 0 0 1px #ECC94B;
+}
+[data-theme="dark"] #search-input:focus {
+  border-color: #ECC94B;
+  box-shadow: none;
 }
 
 [data-theme="dark"] .awsui-tab {
