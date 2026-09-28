@@ -66,7 +66,7 @@
   {
     "id": "#C102-0006",
     "ja_term": "一键三连",
-    "tw_translation": "B站上的點讚、投幣、收藏功能",
+    "tw_translation": "長按點贊鍵同時對作品進行點贊、投幣、收藏，用以表示對作者的贊賞",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -258,7 +258,7 @@
   {
     "id": "#C102-0018",
     "ja_term": "大厂",
-    "tw_translation": "科技巨頭 / 知名大企業",
+    "tw_translation": "大公司",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -370,7 +370,7 @@
   {
     "id": "#C102-0025",
     "ja_term": "工资",
-    "tw_translation": "薪資",
+    "tw_translation": "薪水",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -562,7 +562,7 @@
   {
     "id": "#C102-0037",
     "ja_term": "内涵",
-    "tw_translation": "內涵 / 隱喻",
+    "tw_translation": "內涵 / 隱喻 / 用隱晦的方式指桑罵槐",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -770,7 +770,7 @@
   {
     "id": "#C102-0050",
     "ja_term": "车间",
-    "tw_translation": "廠房 / 生產線",
+    "tw_translation": "廠房",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -1298,7 +1298,7 @@
   {
     "id": "#C102-0083",
     "ja_term": "同志",
-    "tw_translation": "同志 (在大陸多為政治或同事稱呼)",
+    "tw_translation": "同志 (在大陸指在政治志同道合、為共同政治理想奮鬥的成員之間的稱呼",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -1346,7 +1346,7 @@
   {
     "id": "#C102-0086",
     "ja_term": "团建",
-    "tw_translation": "團隊建立",
+    "tw_translation": "團隊建立(Team Building)",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -1938,7 +1938,7 @@
   {
     "id": "#C102-0123",
     "ja_term": "杠精",
-    "tw_translation": "正義魔人 / 愛抬槓的人 (酸民)",
+    "tw_translation": "愛抬槓的人 (酸民)",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -2178,7 +2178,7 @@
   {
     "id": "#C102-0138",
     "ja_term": "审批",
-    "tw_translation": "簽核",
+    "tw_translation": "簽核/審查",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -2738,7 +2738,7 @@
   {
     "id": "#C102-0173",
     "ja_term": "响应",
-    "tw_translation": "響應",
+    "tw_translation": "回應",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -3266,7 +3266,7 @@
   {
     "id": "#C102-0206",
     "ja_term": "退网",
-    "tw_translation": "退出網路 / 停止更新",
+    "tw_translation": "暫時或永久停止使用社群媒體、通訊軟體或網路遊戲",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -4130,7 +4130,7 @@
   {
     "id": "#C102-0260",
     "ja_term": "整改",
-    "tw_translation": "整頓改革 / 限期改善",
+    "tw_translation": "整頓改革",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -4178,7 +4178,7 @@
   {
     "id": "#C102-0263",
     "ja_term": "爆款",
-    "tw_translation": "熱銷商品 / 夯品",
+    "tw_translation": "熱銷商品",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -4418,7 +4418,7 @@
   {
     "id": "#C102-0278",
     "ja_term": "精神小伙",
-    "tw_translation": "瞎妹瞎弟 / 屁孩 (網路用語)",
+    "tw_translation": "「精神小伙」原本是指做事俐落、充滿活力與精神的年輕人，但在中文網路流行語中，現在多半用來戲謔、調侃或帶有貶義地指代一類土味次文化的年輕男性群體",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
@@ -4466,7 +4466,7 @@
   {
     "id": "#C102-0281",
     "ja_term": "蹦迪",
-    "tw_translation": "去夜店 / 蹦迪",
+    "tw_translation": "去夜店、舞廳或派對跳舞、狂歡",
     "reading": "",
     "created_at": "2026-09-04",
     "recommendations": [
