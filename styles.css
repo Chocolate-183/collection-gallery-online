@@ -731,6 +731,11 @@ a:focus {
   gap: 16px;
 }
 
+#filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
 .awsui-filter-modal-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2724,6 +2729,11 @@ a:focus {
   .awsui-modal-divider {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
+  }
+
+  #filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
   }
 
   .awsui-modal-recommendations-section {
