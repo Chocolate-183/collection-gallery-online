@@ -485,18 +485,22 @@ test('Catalog quick filters map to Sort by 隨機 and 新增日期', async () =>
     currentSortOrder: SORT_ORDERS.ASC,
     currentCollectionId: 'japanese-terms',
     allRecords: [],
-    filteredRecords: []
+    filteredRecords: [],
+    pageSize: 50
   });
   assert.equal(getFilterSummary(), '読み方 正序');
 
   selectQuickFilter(QUICK_FILTERS.LATEST10);
   assert.equal(store.get().currentSortField, SORT_FIELDS.CREATED_AT);
   assert.equal(store.get().currentSortOrder, SORT_ORDERS.DESC);
+  assert.equal(store.get().pageSize, 10);
   assert.equal(getFilterSummary(), '新增日期 倒序');
 
+  store.set({ pageSize: 100 });
   selectQuickFilter(QUICK_FILTERS.RANDOM10);
   assert.equal(store.get().currentSortField, SORT_FIELDS.RANDOM);
   assert.equal(store.get().currentSortOrder, SORT_ORDERS.ASC);
+  assert.equal(store.get().pageSize, 10);
   assert.equal(getFilterSummary(), '隨機 正序');
 
   selectQuickFilter(QUICK_FILTERS.RANDOM10);

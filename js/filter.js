@@ -1,7 +1,7 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
@@ -274,12 +274,14 @@ export function selectQuickFilter(tab) {
     store.set({
       currentSortField: SORT_FIELDS.RANDOM,
       currentSortOrder: SORT_ORDERS.ASC,
+      pageSize: DEFAULT_PAGE_SIZE,
       invalidTerm: null
     });
   } else if (tab === QUICK_FILTERS.LATEST10) {
     store.set({
       currentSortField: SORT_FIELDS.CREATED_AT,
       currentSortOrder: SORT_ORDERS.DESC,
+      pageSize: DEFAULT_PAGE_SIZE,
       invalidTerm: null
     });
   }
