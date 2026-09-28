@@ -13,8 +13,8 @@ import {
   parseProfilesGvizResponse,
   formatProfileId
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt } from '../js/filter.js';
-import { LENGTH_TABS, KANA_TABS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
+import { LENGTH_TABS, KANA_TABS, QUICK_FILTERS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
@@ -465,4 +465,46 @@ test('Page size options resolve 10 25 50 100 All', () => {
   assert.equal(pageSizeTabValue(10), '10');
   assert.equal(pageSizeTabValue(PAGE_SIZE_ALL), 'all');
   assert.equal(pageSizeTabValue('all'), 'all');
+});
+
+test('Catalog quick filters map to Sort by 隨機 and 新增日期', async () => {
+  global.document = {
+    getElementById: () => null,
+    querySelectorAll: () => [],
+    querySelector: () => null
+  };
+
+  const { store } = await import('../js/state.js');
+  const { selectQuickFilter } = await import('../js/filter.js');
+
+  store.set({
+    currentLengthTab: LENGTH_TABS.ALL,
+    currentInitialTab: KANA_TABS.ALL,
+    loanwordOnly: false,
+    currentSortField: SORT_FIELDS.STANDARD,
+    currentSortOrder: SORT_ORDERS.ASC,
+    currentCollectionId: 'japanese-terms',
+    allRecords: [],
+    filteredRecords: [],
+    pageSize: 50
+  });
+  assert.equal(getFilterSummary(), '読み方 正序');
+
+  selectQuickFilter(QUICK_FILTERS.LATEST10);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.CREATED_AT);
+  assert.equal(store.get().currentSortOrder, SORT_ORDERS.DESC);
+  assert.equal(store.get().pageSize, 10);
+  assert.equal(getFilterSummary(), '新增日期 倒序');
+
+  store.set({ pageSize: 100 });
+  selectQuickFilter(QUICK_FILTERS.RANDOM10);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.RANDOM);
+  assert.equal(store.get().currentSortOrder, SORT_ORDERS.ASC);
+  assert.equal(store.get().pageSize, 10);
+  assert.equal(getFilterSummary(), '隨機 正序');
+
+  selectQuickFilter(QUICK_FILTERS.RANDOM10);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.STANDARD);
+  assert.equal(store.get().currentSortOrder, SORT_ORDERS.ASC);
+  assert.equal(getFilterSummary(), '読み方 正序');
 });

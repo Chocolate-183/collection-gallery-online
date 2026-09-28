@@ -1,7 +1,7 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
@@ -254,6 +254,41 @@ function activateTabByValue(containerSelector, value) {
   });
 }
 
+export function selectQuickFilter(tab) {
+  const { currentSortField, currentSortOrder, currentCollectionId } = store.get();
+  const col = collectionsConfig[currentCollectionId] || {};
+  const active = getActiveQuickFilter(currentSortField, currentSortOrder);
+
+  if (active === tab) {
+    store.set({
+      currentSortField: getDefaultSortField(col),
+      currentSortOrder: SORT_ORDERS.ASC,
+      invalidTerm: null
+    });
+    applyFiltersAndSort();
+    return;
+  }
+
+  if (tab === QUICK_FILTERS.RANDOM10) {
+    store.reshuffleRandomSort();
+    store.set({
+      currentSortField: SORT_FIELDS.RANDOM,
+      currentSortOrder: SORT_ORDERS.ASC,
+      pageSize: DEFAULT_PAGE_SIZE,
+      invalidTerm: null
+    });
+  } else if (tab === QUICK_FILTERS.LATEST10) {
+    store.set({
+      currentSortField: SORT_FIELDS.CREATED_AT,
+      currentSortOrder: SORT_ORDERS.DESC,
+      pageSize: DEFAULT_PAGE_SIZE,
+      invalidTerm: null
+    });
+  }
+
+  applyFiltersAndSort();
+}
+
 export function selectLengthTab(tab, element) {
   store.set({ currentLengthTab: tab, invalidTerm: null });
   if (element) updateTabPills('#length-tabs', element);
@@ -296,6 +331,12 @@ function getDefaultSortField(col) {
   return SORT_FIELDS.TITLE;
 }
 
+function getActiveQuickFilter(sortField, sortOrder) {
+  if (sortField === SORT_FIELDS.RANDOM) return QUICK_FILTERS.RANDOM10;
+  if (sortField === SORT_FIELDS.CREATED_AT && sortOrder === SORT_ORDERS.DESC) return QUICK_FILTERS.LATEST10;
+  return QUICK_FILTERS.ALL;
+}
+
 export function resetFineFilters() {
   const { currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId] || {};
@@ -322,8 +363,7 @@ export function countActiveFineFilters() {
 }
 
 export function getFilterSummary() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, currentCollectionId } = store.get();
-  const col = collectionsConfig[currentCollectionId] || {};
+  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder } = store.get();
   const parts = [];
 
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
@@ -355,6 +395,7 @@ export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
   const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, pageSize } = store.get();
+  activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder));
   activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
   activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
   activateTabByValue('#kana-initial-tabs', currentInitialTab || KANA_TABS.ALL);

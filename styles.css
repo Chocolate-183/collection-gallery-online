@@ -35,6 +35,11 @@
 
   --awsui-shadow-container: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --awsui-shadow-card-hover: none;
+  --cgo-modal-pad-y: max(env(safe-area-inset-top, 0px), env(safe-area-inset-bottom, 0px));
+}
+
+html {
+  overflow-x: hidden;
 }
 
 * {
@@ -51,7 +56,7 @@ body {
   color: var(--awsui-color-text-body-default);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  padding-bottom: 60px;
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
 }
 
 a {
@@ -86,11 +91,13 @@ a:focus {
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
   color: #ffffff;
-  padding: 0 24px;
-  height: 56px;
+  padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+  min-height: calc(56px + env(safe-area-inset-top, 0px));
+  height: calc(56px + env(safe-area-inset-top, 0px));
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   position: sticky;
   top: 0;
@@ -101,6 +108,8 @@ a:focus {
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .awsui-brand-title {
@@ -111,6 +120,13 @@ a:focus {
   font-size: 17px;
   cursor: pointer;
   transition: color 0.15s ease;
+  min-width: 0;
+}
+
+.awsui-brand-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .awsui-brand-title:hover {
@@ -133,6 +149,7 @@ a:focus {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 /* Icon-Only Action Button */
@@ -158,7 +175,8 @@ a:focus {
 /* App Layout Wrapper (Sidebar + Main) */
 .awsui-app-layout-wrapper {
   display: flex;
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - 56px - env(safe-area-inset-top, 0px));
+  min-height: calc(100dvh - 56px - env(safe-area-inset-top, 0px));
   position: relative;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -317,6 +335,7 @@ a:focus {
 .awsui-app-layout {
   flex: 1;
   width: 100%;
+  min-width: 0;
   max-width: 1400px;
   margin: 0 auto;
   padding: 24px 28px;
@@ -366,10 +385,12 @@ a:focus {
   line-height: 1.25;
   cursor: pointer;
   display: inline-block;
+  max-width: 100%;
   padding: 2px 10px;
   margin-left: -10px;
   border-radius: var(--awsui-border-radius-tag, 4px);
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
 }
 
 #collection-header-title.active,
@@ -460,6 +481,7 @@ a:focus {
   border-radius: var(--awsui-border-radius-container);
   box-shadow: var(--awsui-shadow-container);
   padding: 20px;
+  min-width: 0;
 }
 
 .awsui-cards-collection-header {
@@ -502,6 +524,21 @@ a:focus {
   position: relative;
 }
 
+.awsui-quick-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.awsui-quick-filters .awsui-tab {
+  height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
 .awsui-input {
   width: 100%;
   height: 36px;
@@ -517,6 +554,10 @@ a:focus {
 .awsui-input:focus {
   border-color: #303748;
   box-shadow: 0 0 0 1px #303748;
+}
+#search-input:focus {
+  border-color: #ECC94B;
+  box-shadow: none;
 }
 
 .awsui-input-icon {
@@ -705,6 +746,11 @@ a:focus {
   gap: 16px;
 }
 
+#filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
 .awsui-filter-modal-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -756,7 +802,7 @@ a:focus {
 /* Uniform Height Cards Grid Matrix */
 .awsui-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
   gap: 16px;
   margin-bottom: 20px;
 }
@@ -1025,7 +1071,7 @@ a:focus {
 /* About Page / 說明頁 Styles */
 .awsui-about-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
   gap: 20px;
 }
 
@@ -1234,6 +1280,7 @@ a:focus {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: rgba(15, 27, 42, 0.4);
   display: flex;
   align-items: center;
@@ -1607,8 +1654,8 @@ a:focus {
 /* Toast Message */
 .awsui-toast {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  right: max(24px, env(safe-area-inset-right, 0px));
   background: #0f1b2a;
   color: #ffffff;
   padding: 10px 18px;
@@ -1621,6 +1668,7 @@ a:focus {
   transition: all 0.2s ease;
   z-index: 4000;
   pointer-events: none;
+  max-width: min(360px, calc(100vw - 32px));
 }
 
 .awsui-toast.show {
@@ -1708,12 +1756,13 @@ a:focus {
 
 .awsui-hero-title,
 #maintenance-title {
-  font-size: 56px;
+  font-size: clamp(28px, 6vw, 56px);
   font-weight: 400;
   color: var(--awsui-color-text-body-default);
   margin-bottom: 10px;
   line-height: 1.2;
   letter-spacing: normal;
+  overflow-wrap: anywhere;
 }
 
 .awsui-hero-description {
@@ -1819,7 +1868,7 @@ a:focus {
 }
 
 .awsui-welcome-section-title {
-  font-size: 36px;
+  font-size: clamp(24px, 4.5vw, 36px);
   font-weight: 400;
   color: var(--awsui-color-text-body-default);
   margin-bottom: 4px;
@@ -1962,6 +2011,23 @@ a:focus {
 @media (max-width: 1024px) {
   .awsui-features-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .awsui-app-layout {
+    padding: 20px 16px;
+  }
+
+  .awsui-header-title,
+  #collection-header-title,
+  #view-about .awsui-header-title,
+  #view-stats .awsui-header-title {
+    font-size: 26px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .awsui-welcome-hero {
+    padding: 28px 24px 28px 28px;
   }
 }
 @media (max-width: 600px) {
@@ -2215,6 +2281,10 @@ a:focus {
   border-color: #ECC94B;
   box-shadow: 0 0 0 1px #ECC94B;
 }
+[data-theme="dark"] #search-input:focus {
+  border-color: #ECC94B;
+  box-shadow: none;
+}
 
 [data-theme="dark"] .awsui-tab {
   background-color: #111c2b;
@@ -2342,7 +2412,7 @@ a:focus {
     width: 90%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.2s ease, aspect-ratio 0.2s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* Small Modal (default for term title <= 15 chars): 1:1.1 ratio */
@@ -2422,7 +2492,7 @@ a:focus {
   .awsui-sidebar-overlay {
     display: block;
     position: fixed;
-    top: 56px;
+    top: calc(56px + env(safe-area-inset-top, 0px));
     bottom: 0;
     left: 0;
     right: 0;
@@ -2442,12 +2512,13 @@ a:focus {
 
   .awsui-side-navigation {
     position: fixed;
-    top: 56px;
+    top: calc(56px + env(safe-area-inset-top, 0px));
     bottom: 0;
     left: 0;
     margin-left: -240px;
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
     z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   .awsui-app-layout-wrapper.sidebar-open .awsui-side-navigation {
@@ -2459,30 +2530,123 @@ a:focus {
   }
 
   .awsui-app-layout {
-    padding: 16px;
+    padding: 16px max(12px, env(safe-area-inset-right, 0px)) 16px max(12px, env(safe-area-inset-left, 0px));
   }
 
   .awsui-about-grid {
     grid-template-columns: 1fr;
   }
 
-  /* Mobile Modal Sizing, Scrollbar & Typography Adjustments (iPhone 17e Baseline) */
-  .awsui-modal-backdrop {
-    padding: 12px;
+  .awsui-brand-title {
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  .awsui-header {
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+
+  .awsui-header-title,
+  #collection-header-title,
+  #view-about .awsui-header-title,
+  #view-stats .awsui-header-title {
+    font-size: 22px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .awsui-welcome-hero {
+    padding: 22px 16px 22px 22px;
+  }
+
+  .awsui-cards-container {
+    padding: 14px;
+  }
+
+  .awsui-cards-controls {
+    gap: 8px;
+  }
+
+  .awsui-text-filter {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .awsui-quick-filters {
+    flex: 0 0 auto;
+  }
+
+  .awsui-cards-controls .awsui-pagination-controls {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+    overflow-x: auto;
+  }
+
+  .awsui-filter-tabs-container {
+    width: 100%;
+  }
+
+  #filter-summary {
+    white-space: normal;
+  }
+
+  .awsui-filter-modal-row {
+    grid-template-columns: 1fr;
+  }
+
+  .awsui-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .awsui-recommendation-chip:nth-child(n+4) {
+    display: none !important;
+  }
+
+  /* Mobile Modal Sizing (iPhone 16 Pro Max Baseline) */
+  .awsui-modal-backdrop,
+  #filter-modal,
+  #description-modal,
+  #profile-modal,
+  #notice-modal,
+  #detail-modal,
+  #collection-modal {
+    inset: 0;
+    width: auto;
+    height: 100dvh;
+    padding: var(--cgo-modal-pad-y) max(16px, env(safe-area-inset-right, 0px)) var(--cgo-modal-pad-y) max(16px, env(safe-area-inset-left, 0px));
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .awsui-modal,
   .awsui-modal.awsui-modal-sm,
-  .awsui-modal.awsui-modal-lg {
-    width: 100%;
-    max-width: 100%;
-    max-height: calc(100dvh - 24px);
-    max-height: calc(100vh - 24px);
+  .awsui-modal.awsui-modal-lg,
+  #filter-modal .awsui-filter-modal,
+  #notice-modal .awsui-notice-modal,
+  #description-modal .awsui-modal,
+  #profile-modal .awsui-modal {
+    width: min(88dvw, 387px);
+    max-width: min(88dvw, 387px);
+    height: min(62dvh, 593px, calc(100dvh - 2 * var(--cgo-modal-pad-y) - 24px));
+    min-height: min(62dvh, 593px, calc(100dvh - 2 * var(--cgo-modal-pad-y) - 24px));
+    max-height: min(62dvh, 593px, calc(100dvh - 2 * var(--cgo-modal-pad-y) - 24px));
     aspect-ratio: auto !important;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0;
+    align-self: center;
+    overflow: hidden;
+  }
+
+  #description-modal .awsui-modal,
+  #profile-modal .awsui-modal {
+    margin-left: 0 !important;
   }
 
   .awsui-modal-body {
@@ -2528,7 +2692,8 @@ a:focus {
   #description-modal-text {
     flex: 1 1 auto;
     overflow-y: auto;
-    max-height: calc(100dvh - 120px);
+    min-height: 0 !important;
+    max-height: none;
     -webkit-overflow-scrolling: touch;
     margin-top: 10px !important;
     font-size: 15px !important;
@@ -2583,6 +2748,11 @@ a:focus {
   .awsui-modal-divider {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
+  }
+
+  #filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
   }
 
   .awsui-modal-recommendations-section {

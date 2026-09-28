@@ -115,6 +115,26 @@ test('Header refresh button is the second nav action and calls refreshGalleryDat
   assert.match(html, /<div class="awsui-nav-actions">[\s\S]*id="btn-toggle-theme"[\s\S]*id="btn-refresh-data"[\s\S]*onclick="refreshGalleryData\(window\.currentCollectionId\)"/);
 });
 
+test('Catalog search row has 最新10 and 隨機10 to the right of search', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*id="pagination-controls"/);
+  assert.match(html, /onclick="selectQuickFilter\('LATEST10'/);
+  assert.match(html, /onclick="selectQuickFilter\('RANDOM10'/);
+  assert.doesNotMatch(html, /id="kana-tabs"/);
+});
+
+test('RWD layout uses viewport-fit cover and iPhone 16 Pro Max modal box', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  assert.match(html, /viewport-fit=cover/);
+  assert.match(html, /class="awsui-brand-text"/);
+  assert.match(css, /--cgo-modal-pad-y:\s*max\(env\(safe-area-inset-top/);
+  assert.match(css, /width:\s*min\(88dvw,\s*387px\)/);
+  assert.match(css, /min\(62dvh,\s*593px/);
+  assert.match(css, /minmax\(min\(260px,\s*100%\),\s*1fr\)/);
+  assert.match(css, /@media \(max-width: 768px\)[\s\S]*\.awsui-text-filter \{[\s\S]*flex:\s*1 1 100%/);
+});
+
 test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   assert.match(html, /id="notice-modal"/);

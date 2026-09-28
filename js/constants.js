@@ -37,6 +37,12 @@ export const KANA_TABS = {
   LOANWORD: 'LOANWORD'
 };
 
+export const QUICK_FILTERS = {
+  ALL: 'ALL',
+  LATEST10: 'LATEST10',
+  RANDOM10: 'RANDOM10'
+};
+
 export const LENGTH_TABS = {
   ALL: 'ALL',
   ONE: '1',
