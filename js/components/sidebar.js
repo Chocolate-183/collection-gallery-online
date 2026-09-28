@@ -104,6 +104,7 @@ export function switchCollection(collectionId, updateHash = true) {
     invalidTerm: null,
     searchQuery: '',
     ...(isDifferent ? {
+      currentQuickFilter: 'ALL',
       currentLengthTab: 'ALL',
       currentInitialTab: 'ALL',
       loanwordOnly: false,

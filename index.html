@@ -282,6 +282,11 @@
               <input type="text" id="search-input" class="awsui-input" placeholder="尋找展品..." oninput="onSearchInput()">
             </div>
 
+            <div class="awsui-quick-filters" id="quick-filter-tabs">
+              <button type="button" class="awsui-tab" data-tab="LATEST10" onclick="selectQuickFilter('LATEST10', this)">最新10</button>
+              <button type="button" class="awsui-tab" data-tab="RANDOM10" onclick="selectQuickFilter('RANDOM10', this)">隨機10</button>
+            </div>
+
             <div class="awsui-pagination-controls" id="pagination-controls">
               <!-- Page controls -->
             </div>

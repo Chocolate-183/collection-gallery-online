@@ -524,6 +524,21 @@ a:focus {
   position: relative;
 }
 
+.awsui-quick-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.awsui-quick-filters .awsui-tab {
+  height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
 .awsui-input {
   width: 100%;
   height: 36px;
@@ -2557,6 +2572,10 @@ a:focus {
     flex: 1 1 100%;
     width: 100%;
     max-width: 100%;
+  }
+
+  .awsui-quick-filters {
+    flex: 0 0 auto;
   }
 
   .awsui-cards-controls .awsui-pagination-controls {
