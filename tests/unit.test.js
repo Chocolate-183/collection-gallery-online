@@ -13,7 +13,7 @@ import {
   parseProfilesGvizResponse,
   formatProfileId
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, applyQuickFilter, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
 import { LENGTH_TABS, KANA_TABS, QUICK_FILTERS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
 import {
   escapeHtml,
@@ -167,17 +167,6 @@ test('Filter Engine - Kana Matching, Query and Length', () => {
   const queryResult = filterByQuery(mockRecords, '意思A');
   assert.equal(queryResult.length, 1);
   assert.equal(queryResult[0].id, '1');
-
-  const latestResult = applyQuickFilter(mockRecords, QUICK_FILTERS.LATEST10, '');
-  assert.equal(latestResult.length, 3);
-  assert.equal(latestResult[0].id, '3', 'Highest row index on same newest date should be first');
-  assert.equal(latestResult[1].id, '2');
-
-  const randomPool = Array.from({ length: 12 }, (_, i) => ({ id: String(i + 1), _rand10: 1 - i / 12, row_index: i + 1 }));
-  const randomResult = applyQuickFilter(randomPool, QUICK_FILTERS.RANDOM10, '');
-  assert.equal(randomResult.length, 10);
-  assert.equal(randomResult[0].id, '12');
-  assert.equal(applyQuickFilter(randomPool, QUICK_FILTERS.RANDOM10, 'keep-search').length, 12);
 
   const lengthRecords = [
     { id: '1', ja_term: '一' },
@@ -478,25 +467,40 @@ test('Page size options resolve 10 25 50 100 All', () => {
   assert.equal(pageSizeTabValue('all'), 'all');
 });
 
-test('Catalog quick filters update summary text', async () => {
+test('Catalog quick filters map to Sort by 隨機 and 新增日期', async () => {
+  global.document = {
+    getElementById: () => null,
+    querySelectorAll: () => [],
+    querySelector: () => null
+  };
+
   const { store } = await import('../js/state.js');
+  const { selectQuickFilter } = await import('../js/filter.js');
+
   store.set({
-    currentQuickFilter: QUICK_FILTERS.ALL,
     currentLengthTab: LENGTH_TABS.ALL,
     currentInitialTab: KANA_TABS.ALL,
     loanwordOnly: false,
     currentSortField: SORT_FIELDS.STANDARD,
     currentSortOrder: SORT_ORDERS.ASC,
-    currentCollectionId: 'japanese-terms'
+    currentCollectionId: 'japanese-terms',
+    allRecords: [],
+    filteredRecords: []
   });
   assert.equal(getFilterSummary(), '読み方 正序');
 
-  store.set({ currentQuickFilter: QUICK_FILTERS.LATEST10 });
-  assert.equal(getFilterSummary(), '最新10');
+  selectQuickFilter(QUICK_FILTERS.LATEST10);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.CREATED_AT);
+  assert.equal(store.get().currentSortOrder, SORT_ORDERS.DESC);
+  assert.equal(getFilterSummary(), '新增日期 倒序');
 
-  store.set({ currentQuickFilter: QUICK_FILTERS.RANDOM10 });
-  assert.equal(getFilterSummary(), '隨機10 · 読み方 正序');
+  selectQuickFilter(QUICK_FILTERS.RANDOM10);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.RANDOM);
+  assert.equal(store.get().currentSortOrder, SORT_ORDERS.ASC);
+  assert.equal(getFilterSummary(), '隨機 正序');
 
-  store.set({ currentQuickFilter: QUICK_FILTERS.LATEST10, currentLengthTab: '2' });
-  assert.equal(getFilterSummary(), '最新10 · 2字');
+  selectQuickFilter(QUICK_FILTERS.RANDOM10);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.STANDARD);
+  assert.equal(store.get().currentSortOrder, SORT_ORDERS.ASC);
+  assert.equal(getFilterSummary(), '読み方 正序');
 });

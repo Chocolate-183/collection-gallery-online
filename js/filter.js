@@ -105,40 +105,6 @@ export function filterByLoanword(records, loanwordOnly) {
   return records.filter(r => isEnglishLoanword(r));
 }
 
-export function isQuickPreset(tab) {
-  return tab === QUICK_FILTERS.RANDOM10 || tab === QUICK_FILTERS.LATEST10;
-}
-
-/**
- * Catalog quick presets: 最新10 / 隨機10. Search query skips RANDOM10 so typing still works.
- */
-export function applyQuickFilter(records, quickFilter, searchQuery) {
-  if (!isQuickPreset(quickFilter)) return records;
-
-  let result = [...records];
-
-  if (quickFilter === QUICK_FILTERS.RANDOM10) {
-    if (!searchQuery) {
-      if (result.some(r => r._rand10 === undefined)) {
-        store.reshuffleRandom10();
-      }
-      result.sort((a, b) => (a._rand10 ?? 0) - (b._rand10 ?? 0));
-      result = result.slice(0, 10);
-    }
-    return result;
-  }
-
-  result.sort((a, b) => {
-    const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
-    const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
-    if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) {
-      return dateB - dateA;
-    }
-    return (b.row_index ?? 0) - (a.row_index ?? 0);
-  });
-  return result.slice(0, 10);
-}
-
 export function compareCreatedAt(a, b) {
   const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
   const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
@@ -226,7 +192,6 @@ export function applyFiltersAndSort() {
   const {
     allRecords,
     searchQuery,
-    currentQuickFilter,
     currentLengthTab,
     currentInitialTab,
     loanwordOnly,
@@ -249,16 +214,10 @@ export function applyFiltersAndSort() {
   result = filterByLoanword(result, loanwordOnly);
   result = filterByInitial(result, currentInitialTab);
 
-  if (isQuickPreset(currentQuickFilter)) {
-    result = applyQuickFilter(result, currentQuickFilter, searchQuery);
-  }
-
-  if (currentQuickFilter !== QUICK_FILTERS.LATEST10) {
-    result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
-      sortField: currentSortField,
-      sortOrder: currentSortOrder
-    });
-  }
+  result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
+    sortField: currentSortField,
+    sortOrder: currentSortOrder
+  });
 
   store.set({
     filteredRecords: result,
@@ -295,13 +254,36 @@ function activateTabByValue(containerSelector, value) {
   });
 }
 
-export function selectQuickFilter(tab, element) {
-  const { currentQuickFilter } = store.get();
-  const next = currentQuickFilter === tab ? QUICK_FILTERS.ALL : tab;
-  if (next === QUICK_FILTERS.RANDOM10) {
-    store.reshuffleRandom10();
+export function selectQuickFilter(tab) {
+  const { currentSortField, currentSortOrder, currentCollectionId } = store.get();
+  const col = collectionsConfig[currentCollectionId] || {};
+  const active = getActiveQuickFilter(currentSortField, currentSortOrder);
+
+  if (active === tab) {
+    store.set({
+      currentSortField: getDefaultSortField(col),
+      currentSortOrder: SORT_ORDERS.ASC,
+      invalidTerm: null
+    });
+    applyFiltersAndSort();
+    return;
   }
-  store.set({ currentQuickFilter: next, invalidTerm: null });
+
+  if (tab === QUICK_FILTERS.RANDOM10) {
+    store.reshuffleRandomSort();
+    store.set({
+      currentSortField: SORT_FIELDS.RANDOM,
+      currentSortOrder: SORT_ORDERS.ASC,
+      invalidTerm: null
+    });
+  } else if (tab === QUICK_FILTERS.LATEST10) {
+    store.set({
+      currentSortField: SORT_FIELDS.CREATED_AT,
+      currentSortOrder: SORT_ORDERS.DESC,
+      invalidTerm: null
+    });
+  }
+
   applyFiltersAndSort();
 }
 
@@ -347,6 +329,12 @@ function getDefaultSortField(col) {
   return SORT_FIELDS.TITLE;
 }
 
+function getActiveQuickFilter(sortField, sortOrder) {
+  if (sortField === SORT_FIELDS.RANDOM) return QUICK_FILTERS.RANDOM10;
+  if (sortField === SORT_FIELDS.CREATED_AT && sortOrder === SORT_ORDERS.DESC) return QUICK_FILTERS.LATEST10;
+  return QUICK_FILTERS.ALL;
+}
+
 export function resetFineFilters() {
   const { currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId] || {};
@@ -373,12 +361,8 @@ export function countActiveFineFilters() {
 }
 
 export function getFilterSummary() {
-  const { currentQuickFilter, currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, currentCollectionId } = store.get();
-  const col = collectionsConfig[currentCollectionId] || {};
+  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder } = store.get();
   const parts = [];
-
-  if (currentQuickFilter === QUICK_FILTERS.LATEST10) parts.push('最新10');
-  if (currentQuickFilter === QUICK_FILTERS.RANDOM10) parts.push('隨機10');
 
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
     parts.push(KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab);
@@ -388,21 +372,19 @@ export function getFilterSummary() {
   }
   if (loanwordOnly) parts.push('外來語');
 
-  if (currentQuickFilter !== QUICK_FILTERS.LATEST10) {
-    const fieldLabel = currentSortField === SORT_FIELDS.ID
-      ? '編號'
-      : currentSortField === SORT_FIELDS.TITLE
-        ? '標題'
-        : currentSortField === SORT_FIELDS.SUBTITLE
-          ? '副標'
-          : currentSortField === SORT_FIELDS.RANDOM
-            ? '隨機'
-            : currentSortField === SORT_FIELDS.CREATED_AT
-              ? '新增日期'
-              : '読み方';
-    const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? '倒序' : '正序';
-    parts.push(`${fieldLabel} ${orderLabel}`);
-  }
+  const fieldLabel = currentSortField === SORT_FIELDS.ID
+    ? '編號'
+    : currentSortField === SORT_FIELDS.TITLE
+      ? '標題'
+      : currentSortField === SORT_FIELDS.SUBTITLE
+        ? '副標'
+        : currentSortField === SORT_FIELDS.RANDOM
+          ? '隨機'
+          : currentSortField === SORT_FIELDS.CREATED_AT
+            ? '新增日期'
+            : '読み方';
+  const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? '倒序' : '正序';
+  parts.push(`${fieldLabel} ${orderLabel}`);
 
   return parts.join(' · ');
 }
@@ -410,8 +392,8 @@ export function getFilterSummary() {
 export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
-  const { currentQuickFilter, currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, pageSize } = store.get();
-  activateTabByValue('#quick-filter-tabs', currentQuickFilter || QUICK_FILTERS.ALL);
+  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, pageSize } = store.get();
+  activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder));
   activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
   activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
   activateTabByValue('#kana-initial-tabs', currentInitialTab || KANA_TABS.ALL);
