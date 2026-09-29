@@ -714,11 +714,28 @@ a:focus {
   text-overflow: ellipsis;
 }
 
-#filter-modal {
+#filter-modal,
+#display-modal {
   z-index: 2500;
 }
 
-#filter-modal .awsui-filter-modal {
+#display-modal {
+  z-index: 2510;
+  background: transparent;
+  pointer-events: none;
+}
+
+#display-modal.solo {
+  background: rgba(15, 27, 42, 0.4);
+  pointer-events: auto;
+}
+
+#display-modal .awsui-modal {
+  pointer-events: auto;
+}
+
+#filter-modal .awsui-filter-modal,
+#display-modal .awsui-display-modal {
   max-width: 560px;
   width: 92%;
   aspect-ratio: auto;
@@ -727,7 +744,8 @@ a:focus {
   flex-direction: column;
 }
 
-#filter-modal .awsui-modal-body {
+#filter-modal .awsui-modal-body,
+#display-modal .awsui-modal-body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -746,7 +764,8 @@ a:focus {
   gap: 16px;
 }
 
-#filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider {
+#filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider,
+#display-modal .awsui-filter-modal-scroll > .awsui-modal-divider {
   margin-top: 8px;
   margin-bottom: 8px;
 }
@@ -2359,6 +2378,10 @@ a:focus {
   background: rgba(0, 0, 0, 0.70);
 }
 
+[data-theme="dark"] #display-modal.solo {
+  background: rgba(0, 0, 0, 0.70);
+}
+
 [data-theme="dark"] .awsui-recommendation-chip {
   color: #aab7b8;
   background-color: transparent;
@@ -2432,10 +2455,31 @@ a:focus {
     max-height: 85vh;
   }
 
-  #filter-modal .awsui-filter-modal {
-    max-width: 560px;
+  #filter-modal .awsui-filter-modal,
+  #display-modal .awsui-display-modal {
+    max-width: min(560px, calc(50vw - 32px));
     aspect-ratio: auto;
     max-height: 85vh;
+  }
+
+  #filter-modal {
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  #display-modal {
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  #filter-modal .awsui-filter-modal {
+    margin-left: calc(50vw + 12px);
+  }
+
+  #display-modal .awsui-display-modal {
+    margin-right: calc(50vw + 12px);
   }
 
   #notice-modal .awsui-notice-modal {
@@ -2611,6 +2655,7 @@ a:focus {
   /* Mobile Modal Sizing (iPhone 16 Pro Max Baseline) */
   .awsui-modal-backdrop,
   #filter-modal,
+  #display-modal,
   #description-modal,
   #profile-modal,
   #notice-modal,
@@ -2630,6 +2675,7 @@ a:focus {
   .awsui-modal.awsui-modal-sm,
   .awsui-modal.awsui-modal-lg,
   #filter-modal .awsui-filter-modal,
+  #display-modal .awsui-display-modal,
   #notice-modal .awsui-notice-modal,
   #description-modal .awsui-modal,
   #profile-modal .awsui-modal {
@@ -2647,8 +2693,28 @@ a:focus {
   }
 
   #description-modal .awsui-modal,
-  #profile-modal .awsui-modal {
+  #profile-modal .awsui-modal,
+  #filter-modal .awsui-filter-modal,
+  #display-modal .awsui-display-modal {
     margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #display-modal {
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  #filter-modal {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  #display-modal .awsui-display-modal,
+  #filter-modal .awsui-filter-modal {
+    height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
+    min-height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
+    max-height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
   }
 
   .awsui-modal-body {
@@ -2756,7 +2822,8 @@ a:focus {
     margin-bottom: 10px !important;
   }
 
-  #filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider {
+  #filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider,
+  #display-modal .awsui-filter-modal-scroll > .awsui-modal-divider {
     margin-top: 4px !important;
     margin-bottom: 4px !important;
   }

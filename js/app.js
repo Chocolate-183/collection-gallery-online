@@ -5,7 +5,7 @@ import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { initTheme, toggleTheme } from './theme.js';
 import { preloadAllCollections, refreshGalleryData, updateStatsView } from './data.js';
-import { onSearchInput, onFilterChange, selectQuickFilter, selectLengthTab, selectInitialTab, selectKindTab, selectEtymologyTab, selectPosTab, selectSortField, selectSortOrder, resetFineFilters, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, applyFilterModal, syncFilterUi } from './filter.js';
+import { onSearchInput, onFilterChange, selectQuickFilter, selectLengthTab, selectInitialTab, selectKindTab, selectEtymologyTab, selectPosTab, selectSortField, selectSortOrder, resetFineFilters, resetDisplaySettings, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, applyFilterModal, openDisplayModal, closeDisplayModal, closeDisplayModalOnBackdrop, applyDisplayModal, closeCatalogPanels, syncFilterUi } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
 import { goToPage, selectPageSize } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop } from './components/modal.js';
@@ -49,10 +49,16 @@ Object.assign(window, {
   selectSortField,
   selectSortOrder,
   resetFineFilters,
+  resetDisplaySettings,
   openFilterModal,
   closeFilterModal,
   closeFilterModalOnBackdrop,
   applyFilterModal,
+  openDisplayModal,
+  closeDisplayModal,
+  closeDisplayModalOnBackdrop,
+  applyDisplayModal,
+  closeCatalogPanels,
   syncFilterUi,
   openMeaningModal,
   closeDetailModal,
@@ -121,12 +127,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       const descModal = document.getElementById('description-modal');
       const profileModal = document.getElementById('profile-modal');
       const filterModal = document.getElementById('filter-modal');
+      const displayModal = document.getElementById('display-modal');
       if (descModal && descModal.classList.contains('open')) {
         closeDescriptionModal();
       } else if (profileModal && profileModal.classList.contains('open')) {
         closeProfileModal();
-      } else if (filterModal && filterModal.classList.contains('open')) {
-        closeFilterModal();
+      } else if ((filterModal && filterModal.classList.contains('open')) || (displayModal && displayModal.classList.contains('open'))) {
+        closeCatalogPanels();
       } else {
         closeDetailModal();
         closeCollectionModal();

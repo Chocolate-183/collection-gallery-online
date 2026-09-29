@@ -393,8 +393,6 @@ function getActiveQuickFilter(sortField, sortOrder) {
 }
 
 export function resetFineFilters() {
-  const { currentCollectionId } = store.get();
-  const col = collectionsConfig[currentCollectionId] || {};
   store.set({
     currentLengthTab: LENGTH_TABS.ALL,
     currentInitialTab: KANA_TABS.ALL,
@@ -402,16 +400,25 @@ export function resetFineFilters() {
     etymologyTab: ETYMOLOGY_TABS.ALL,
     posTab: POS_TABS.ALL,
     basic100Only: false,
+    invalidTerm: null
+  });
+  applyFiltersAndSort();
+}
+
+export function resetDisplaySettings() {
+  const { currentCollectionId } = store.get();
+  const col = collectionsConfig[currentCollectionId] || {};
+  store.set({
     currentSortField: getDefaultSortField(col),
     currentSortOrder: SORT_ORDERS.ASC,
+    pageSize: DEFAULT_PAGE_SIZE,
     invalidTerm: null
   });
   applyFiltersAndSort();
 }
 
 export function countActiveFineFilters() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, basic100Only, currentSortField, currentSortOrder, currentCollectionId } = store.get();
-  const col = collectionsConfig[currentCollectionId] || {};
+  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, basic100Only } = store.get();
   let count = 0;
   if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) count += 1;
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) count += 1;
@@ -419,7 +426,15 @@ export function countActiveFineFilters() {
   if (etymologyTab && etymologyTab !== ETYMOLOGY_TABS.ALL) count += 1;
   if (posTab && posTab !== POS_TABS.ALL) count += 1;
   if (basic100Only) count += 1;
+  return count;
+}
+
+export function countActiveDisplaySettings() {
+  const { currentSortField, currentSortOrder, pageSize, currentCollectionId } = store.get();
+  const col = collectionsConfig[currentCollectionId] || {};
+  let count = 0;
   if (currentSortField !== getDefaultSortField(col) || currentSortOrder !== SORT_ORDERS.ASC) count += 1;
+  if (pageSize !== DEFAULT_PAGE_SIZE) count += 1;
   return count;
 }
 
@@ -473,7 +488,7 @@ export function syncFilterUi() {
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
   activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));
 
-  const count = countActiveFineFilters();
+  const count = countActiveFineFilters() + countActiveDisplaySettings();
 
   const summary = document.getElementById('filter-summary');
   if (summary) {
@@ -486,25 +501,68 @@ export function syncFilterUi() {
   }
 }
 
+function isCatalogPanelOpen(id) {
+  return document.getElementById(id)?.classList.contains('open');
+}
+
+function syncFilterTriggerActive() {
+  const trigger = document.getElementById('btn-open-filter-modal');
+  const filterOpen = isCatalogPanelOpen('filter-modal');
+  const displayOpen = isCatalogPanelOpen('display-modal');
+  if (trigger) {
+    trigger.classList.toggle('active', filterOpen || displayOpen);
+  }
+  document.getElementById('display-modal')?.classList.toggle('solo', displayOpen && !filterOpen);
+}
+
+export function openDisplayModal() {
+  const modal = document.getElementById('display-modal');
+  if (!modal) return;
+  syncFilterUi();
+  modal.classList.add('open');
+  syncFilterTriggerActive();
+}
+
+export function closeDisplayModal() {
+  const modal = document.getElementById('display-modal');
+  if (modal) modal.classList.remove('open');
+  syncFilterTriggerActive();
+}
+
+export function closeDisplayModalOnBackdrop(e) {
+  if (e?.target?.id === 'display-modal') closeCatalogPanels();
+}
+
+export function applyDisplayModal() {
+  applyFiltersAndSort();
+  closeCatalogPanels();
+}
+
 export function openFilterModal() {
   const modal = document.getElementById('filter-modal');
   if (!modal) return;
   syncFilterUi();
   modal.classList.add('open');
-  document.getElementById('btn-open-filter-modal')?.classList.add('active');
+  openDisplayModal();
+  syncFilterTriggerActive();
 }
 
 export function closeFilterModal() {
   const modal = document.getElementById('filter-modal');
   if (modal) modal.classList.remove('open');
-  document.getElementById('btn-open-filter-modal')?.classList.remove('active');
+  syncFilterTriggerActive();
 }
 
 export function closeFilterModalOnBackdrop(e) {
-  if (e?.target?.id === 'filter-modal') closeFilterModal();
+  if (e?.target?.id === 'filter-modal') closeCatalogPanels();
+}
+
+export function closeCatalogPanels() {
+  closeFilterModal();
+  closeDisplayModal();
 }
 
 export function applyFilterModal() {
   applyFiltersAndSort();
-  closeFilterModal();
+  closeCatalogPanels();
 }

@@ -651,13 +651,69 @@
     </div>
   </div>
 
-  <!-- Filter & Sort Modal -->
+  <!-- Display Panel -->
+  <div class="awsui-modal-backdrop" id="display-modal" onclick="closeDisplayModalOnBackdrop(event)">
+    <div class="awsui-modal awsui-display-modal">
+      <div class="awsui-modal-body">
+        <div class="awsui-modal-section-title awsui-modal-header-title">
+          <span>Display</span>
+          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeCatalogPanels()">
+            <svg class="awsui-icon" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="awsui-filter-modal-scroll">
+          <div class="awsui-filter-modal-section">
+            <div class="awsui-modal-section-title"><span>Sort by</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-field-tabs">
+              <button class="awsui-tab" data-tab="id" onclick="selectSortField('id', this)">編號</button>
+              <button class="awsui-tab" data-tab="title" onclick="selectSortField('title', this)">標題</button>
+              <button class="awsui-tab active" id="sort-field-reading" data-tab="standard" onclick="selectSortField('standard', this)">読み方</button>
+              <button class="awsui-tab" id="sort-field-subtitle" data-tab="subtitle" onclick="selectSortField('subtitle', this)" style="display: none;">副標</button>
+              <button class="awsui-tab" data-tab="random" onclick="selectSortField('random', this)">隨機</button>
+              <button class="awsui-tab" data-tab="created_at" onclick="selectSortField('created_at', this)">新增日期</button>
+            </div>
+          </div>
+
+          <div class="awsui-filter-modal-row">
+            <div class="awsui-filter-modal-section">
+              <div class="awsui-modal-section-title"><span>Order</span></div>
+              <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
+                <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">正序</button>
+                <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">倒序</button>
+              </div>
+            </div>
+
+            <div class="awsui-filter-modal-section">
+              <div class="awsui-modal-section-title"><span>Page size</span></div>
+              <div class="awsui-tabs awsui-filter-modal-tabs" id="page-size-tabs">
+                <button class="awsui-tab active" data-tab="10" onclick="selectPageSize('10', this)">10</button>
+                <button class="awsui-tab" data-tab="25" onclick="selectPageSize('25', this)">25</button>
+                <button class="awsui-tab" data-tab="50" onclick="selectPageSize('50', this)">50</button>
+                <button class="awsui-tab" data-tab="100" onclick="selectPageSize('100', this)">100</button>
+                <button class="awsui-tab" data-tab="all" onclick="selectPageSize('all', this)">All</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="awsui-filter-modal-actions">
+          <button type="button" class="awsui-btn awsui-btn-tertiary" onclick="resetDisplaySettings()">Reset</button>
+          <button type="button" class="awsui-btn awsui-btn-primary" onclick="applyDisplayModal()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Panel -->
   <div class="awsui-modal-backdrop" id="filter-modal" onclick="closeFilterModalOnBackdrop(event)">
     <div class="awsui-modal awsui-filter-modal">
       <div class="awsui-modal-body">
         <div class="awsui-modal-section-title awsui-modal-header-title">
           <span>Filter</span>
-          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeFilterModal()">
+          <button class="awsui-icon-button" style="background:none; border:none; color:#16191f;" title="關閉" aria-label="關閉" onclick="closeCatalogPanels()">
             <svg class="awsui-icon" viewBox="0 0 16 16">
               <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
             </svg>
@@ -747,41 +803,6 @@
             <div class="awsui-tabs awsui-filter-modal-tabs" id="kind-tabs">
               <button class="awsui-tab active" data-tab="ALL" onclick="selectKindTab('ALL', this)">不限</button>
               <button class="awsui-tab" data-tab="BASIC100" id="kind-basic100" onclick="selectKindTab('BASIC100', this)">基礎100</button>
-            </div>
-          </div>
-
-          <div class="awsui-modal-divider"></div>
-
-          <div class="awsui-filter-modal-section">
-            <div class="awsui-modal-section-title"><span>Sort by</span></div>
-            <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-field-tabs">
-              <button class="awsui-tab" data-tab="id" onclick="selectSortField('id', this)">編號</button>
-              <button class="awsui-tab" data-tab="title" onclick="selectSortField('title', this)">標題</button>
-              <button class="awsui-tab active" id="sort-field-reading" data-tab="standard" onclick="selectSortField('standard', this)">読み方</button>
-              <button class="awsui-tab" id="sort-field-subtitle" data-tab="subtitle" onclick="selectSortField('subtitle', this)" style="display: none;">副標</button>
-              <button class="awsui-tab" data-tab="random" onclick="selectSortField('random', this)">隨機</button>
-              <button class="awsui-tab" data-tab="created_at" onclick="selectSortField('created_at', this)">新增日期</button>
-            </div>
-          </div>
-
-          <div class="awsui-filter-modal-row">
-            <div class="awsui-filter-modal-section">
-              <div class="awsui-modal-section-title"><span>Order</span></div>
-              <div class="awsui-tabs awsui-filter-modal-tabs" id="sort-order-tabs">
-                <button class="awsui-tab active" data-tab="asc" onclick="selectSortOrder('asc', this)">正序</button>
-                <button class="awsui-tab" data-tab="desc" onclick="selectSortOrder('desc', this)">倒序</button>
-              </div>
-            </div>
-
-            <div class="awsui-filter-modal-section">
-              <div class="awsui-modal-section-title"><span>Page size</span></div>
-              <div class="awsui-tabs awsui-filter-modal-tabs" id="page-size-tabs">
-                <button class="awsui-tab active" data-tab="10" onclick="selectPageSize('10', this)">10</button>
-                <button class="awsui-tab" data-tab="25" onclick="selectPageSize('25', this)">25</button>
-                <button class="awsui-tab" data-tab="50" onclick="selectPageSize('50', this)">50</button>
-                <button class="awsui-tab" data-tab="100" onclick="selectPageSize('100', this)">100</button>
-                <button class="awsui-tab" data-tab="all" onclick="selectPageSize('all', this)">All</button>
-              </div>
             </div>
           </div>
         </div>

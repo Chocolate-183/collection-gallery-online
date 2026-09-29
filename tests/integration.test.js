@@ -93,6 +93,27 @@ test('Filter modal Category sits after Etymology', () => {
   assert.ok(posIdx > 0 && etymologyIdx > posIdx && kindIdx > etymologyIdx);
 });
 
+test('Display panel holds Sort by / Order / Page size and sits left of Filter', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const displayIdx = html.indexOf('id="display-modal"');
+  const filterIdx = html.indexOf('id="filter-modal"');
+  const profileIdx = html.indexOf('id="profile-modal"');
+  assert.ok(displayIdx > 0 && displayIdx < filterIdx);
+  const displayChunk = html.slice(displayIdx, filterIdx);
+  const filterChunk = html.slice(filterIdx, profileIdx);
+  assert.match(displayChunk, /<span>Display<\/span>/);
+  assert.match(displayChunk, /id="sort-field-tabs"/);
+  assert.match(displayChunk, /id="sort-order-tabs"/);
+  assert.match(displayChunk, /id="page-size-tabs"/);
+  assert.match(displayChunk, /onclick="resetDisplaySettings\(\)"/);
+  assert.doesNotMatch(filterChunk, /id="sort-field-tabs"/);
+  assert.doesNotMatch(filterChunk, /id="page-size-tabs"/);
+  assert.match(filterChunk, /<span>Filter<\/span>/);
+  assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-right:\s*calc\(50vw \+ 12px\)/);
+  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 12px\)/);
+});
+
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
   mockDOM({});
   const fetched = [];
@@ -668,6 +689,7 @@ test('Local Fallback Snapshot Integrity - Profiles', () => {
 
 test('Filter Modal - Open, apply, reset and gallery-specific sections', async () => {
   const mockFilterModal = createMockElement();
+  const mockDisplayModal = createMockElement();
   const mockHangul = createMockElement({ style: { display: 'none' } });
   const mockKana = createMockElement({ style: { display: 'none' } });
   const mockKind = createMockElement({ style: { display: 'none' } });
@@ -682,6 +704,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   mockDOM({
     'filter-modal': mockFilterModal,
+    'display-modal': mockDisplayModal,
     'filter-hangul-section': mockHangul,
     'filter-kana-section': mockKana,
     'filter-kind-section': mockKind,
@@ -715,7 +738,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   const { store } = await import('../js/state.js');
   const { switchCollection } = await import('../js/components/sidebar.js');
-  const { openFilterModal, closeFilterModal, applyFilterModal, resetFineFilters, countActiveFineFilters } = await import('../js/filter.js');
+  const { openFilterModal, closeFilterModal, applyFilterModal, resetFineFilters, resetDisplaySettings, countActiveFineFilters } = await import('../js/filter.js');
 
   store.set({ currentCollectionId: 'japanese-terms', allRecords: [], filteredRecords: [] });
   switchCollection('korean-terms', false);
@@ -732,9 +755,11 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   openFilterModal();
   assert(mockFilterModal.classes.has('open'));
+  assert(mockDisplayModal.classes.has('open'), 'funnel opens Display panel with Filter');
   assert(mockTrigger.classes.has('active'));
   applyFilterModal();
   assert(!mockFilterModal.classes.has('open'));
+  assert(!mockDisplayModal.classes.has('open'));
   assert(!mockTrigger.classes.has('active'));
 
   store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', etymologyTab: '外來語', posTab: '名詞', currentCollectionId: 'korean-terms' });
@@ -748,6 +773,13 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   assert.equal(afterReset.posTab, 'ALL');
   assert.equal(afterReset.basic100Only, false);
   assert.equal(afterReset.currentSortField, 'title');
+
+  store.set({ currentSortField: 'id', currentSortOrder: 'desc', pageSize: 50, currentCollectionId: 'korean-terms' });
+  resetDisplaySettings();
+  const afterDisplayReset = store.get();
+  assert.equal(afterDisplayReset.currentSortField, 'title');
+  assert.equal(afterDisplayReset.currentSortOrder, 'asc');
+  assert.equal(afterDisplayReset.pageSize, 10);
 
   switchCollection('japanese-terms', false);
   await new Promise(resolve => setTimeout(resolve, 30));
@@ -776,7 +808,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   global.fetch = originalFetch;
 });
 
-test('Page size - Filter modal pills set store and stay in sync', async () => {
+test('Page size - Display panel pills set store and stay in sync', async () => {
   const tab10 = createMockElement({ 'data-tab': '10' });
   const tab25 = createMockElement({ 'data-tab': '25' });
   const tabAll = createMockElement({ 'data-tab': 'all' });
