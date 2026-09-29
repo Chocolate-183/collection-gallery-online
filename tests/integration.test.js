@@ -111,9 +111,11 @@ test('Display panel holds Sort by / Order / Page size and sits right of Filter',
   assert.ok(orderIdx > 0 && pageSizeIdx > orderIdx);
   assert.doesNotMatch(displayChunk, /awsui-filter-modal-row/);
   assert.match(displayChunk, /onclick="resetDisplaySettings\(\)"/);
+  assert.doesNotMatch(displayChunk, />Done</);
   assert.doesNotMatch(filterChunk, /id="sort-field-tabs"/);
   assert.doesNotMatch(filterChunk, /id="page-size-tabs"/);
   assert.match(filterChunk, /<span>Filter<\/span>/);
+  assert.doesNotMatch(filterChunk, />Done</);
   assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-right:\s*calc\(50vw \+ 12px\)/);
   assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 12px\)/);
 });
@@ -742,7 +744,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   const { store } = await import('../js/state.js');
   const { switchCollection } = await import('../js/components/sidebar.js');
-  const { openFilterModal, closeFilterModal, applyFilterModal, resetFineFilters, resetDisplaySettings, countActiveFineFilters } = await import('../js/filter.js');
+  const { openFilterModal, closeFilterModal, closeCatalogPanels, resetFineFilters, resetDisplaySettings, countActiveFineFilters } = await import('../js/filter.js');
 
   store.set({ currentCollectionId: 'japanese-terms', allRecords: [], filteredRecords: [] });
   switchCollection('korean-terms', false);
@@ -761,7 +763,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   assert(mockFilterModal.classes.has('open'));
   assert(mockDisplayModal.classes.has('open'), 'funnel opens Display panel with Filter');
   assert(mockTrigger.classes.has('active'));
-  applyFilterModal();
+  closeCatalogPanels();
   assert(!mockFilterModal.classes.has('open'));
   assert(!mockDisplayModal.classes.has('open'));
   assert(!mockTrigger.classes.has('active'));

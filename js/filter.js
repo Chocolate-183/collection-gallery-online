@@ -533,11 +533,6 @@ export function closeDisplayModalOnBackdrop(e) {
   if (e?.target?.id === 'display-modal') closeCatalogPanels();
 }
 
-export function applyDisplayModal() {
-  applyFiltersAndSort();
-  closeCatalogPanels();
-}
-
 export function openFilterModal() {
   const modal = document.getElementById('filter-modal');
   if (!modal) return;
@@ -560,9 +555,4 @@ export function closeFilterModalOnBackdrop(e) {
 export function closeCatalogPanels() {
   closeFilterModal();
   closeDisplayModal();
-}
-
-export function applyFilterModal() {
-  applyFiltersAndSort();
-  closeCatalogPanels();
 }
