@@ -257,6 +257,20 @@ export function openMeaningModal(rowIndex, updateHash = true) {
     }
   }
 
+  const etymPosRow = document.getElementById('modal-etymology-pos-row');
+  const etymSection = document.getElementById('modal-etymology-section');
+  const etymElem = document.getElementById('modal-etymology');
+  const posSection = document.getElementById('modal-pos-section');
+  const posElem = document.getElementById('modal-pos');
+  const showEtymPos = Boolean(collectionsConfig[currentCollectionId]?.hasEtymologyPosFilter);
+  const etymology = rec.etymology ? String(rec.etymology).trim() : '';
+  const pos = rec.pos ? String(rec.pos).trim() : '';
+  if (etymElem) etymElem.innerText = etymology || '--';
+  if (posElem) posElem.innerText = pos || '--';
+  if (etymSection) etymSection.style.display = (showEtymPos && etymology) ? '' : 'none';
+  if (posSection) posSection.style.display = (showEtymPos && pos) ? '' : 'none';
+  if (etymPosRow) etymPosRow.style.display = (showEtymPos && (etymology || pos)) ? '' : 'none';
+
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';

@@ -824,6 +824,61 @@ test('C103 Item Modal hides Pronunciation while C101 still shows it', async () =
   assert.equal(mockReadingSection.style.display, 'none');
 });
 
+test('C103 Item Modal shows Etymology and POS on one row before Description', async () => {
+  const mockMeaning = createMockElement();
+  const mockModal = createMockElement();
+  const mockEtymPosRow = createMockElement({ style: { display: 'none' } });
+  const mockEtymSection = createMockElement({ style: { display: 'none' } });
+  const mockEtym = createMockElement();
+  const mockPosSection = createMockElement({ style: { display: 'none' } });
+  const mockPos = createMockElement();
+
+  mockDOM({
+    'detail-modal': mockModal,
+    'modal-meaning-text': mockMeaning,
+    'modal-etymology-pos-row': mockEtymPosRow,
+    'modal-etymology-section': mockEtymSection,
+    'modal-etymology': mockEtym,
+    'modal-pos-section': mockPosSection,
+    'modal-pos': mockPos
+  });
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '가능 | 可能',
+      tw_translation: '可能',
+      etymology: '漢字語',
+      pos: '名詞'
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockEtym.innerText, '漢字語');
+  assert.equal(mockPos.innerText, '名詞');
+  assert.equal(mockEtymPosRow.style.display, '');
+  assert.equal(mockEtymSection.style.display, '');
+  assert.equal(mockPosSection.style.display, '');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '神経衰弱',
+      tw_translation: '神經衰弱',
+      etymology: '漢字語',
+      pos: '名詞'
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockEtymPosRow.style.display, 'none');
+  assert.equal(mockEtymSection.style.display, 'none');
+  assert.equal(mockPosSection.style.display, 'none');
+});
+
 test('Card Active State - Toggle Active Class on Open/Close Modal', async () => {
   const card1 = createMockElement({ 'data-row-index': '1' });
   const card2 = createMockElement({ 'data-row-index': '2' });
