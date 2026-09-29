@@ -537,12 +537,15 @@ test('Catalog quick filters map to Sort by 隨機 and 新增日期', async () =>
   assert.equal(store.get().currentSortOrder, SORT_ORDERS.ASC);
   assert.equal(getFilterSummary(), '読み方 正序');
 
+  store.set({ pageSize: 50 });
   selectQuickFilter(QUICK_FILTERS.BASIC100);
   assert.equal(store.get().basic100Only, true);
   assert.equal(store.get().currentSortField, SORT_FIELDS.STANDARD);
+  assert.equal(store.get().pageSize, 100);
   assert.equal(getFilterSummary(), '基礎100 · 読み方 正序');
 
   selectQuickFilter(QUICK_FILTERS.BASIC100);
   assert.equal(store.get().basic100Only, false);
+  assert.equal(store.get().pageSize, 100);
   assert.equal(getFilterSummary(), '読み方 正序');
 });

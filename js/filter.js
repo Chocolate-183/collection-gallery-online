@@ -272,7 +272,12 @@ export function selectQuickFilter(tab) {
   const col = collectionsConfig[currentCollectionId] || {};
 
   if (tab === QUICK_FILTERS.BASIC100) {
-    store.set({ basic100Only: !basic100Only, invalidTerm: null });
+    const next = !basic100Only;
+    store.set({
+      basic100Only: next,
+      ...(next ? { pageSize: 100 } : {}),
+      invalidTerm: null
+    });
     applyFiltersAndSort();
     return;
   }
