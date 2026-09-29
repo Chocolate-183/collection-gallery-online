@@ -93,7 +93,7 @@ test('Filter modal Category sits after Etymology', () => {
   assert.ok(posIdx > 0 && etymologyIdx > posIdx && kindIdx > etymologyIdx);
 });
 
-test('Display panel holds Sort by / Order / Page size and sits left of Filter', () => {
+test('Display panel holds Sort by / Order / Page size and sits right of Filter', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   const css = readFileSync(resolve('styles.css'), 'utf-8');
   const displayIdx = html.indexOf('id="display-modal"');
@@ -110,8 +110,8 @@ test('Display panel holds Sort by / Order / Page size and sits left of Filter', 
   assert.doesNotMatch(filterChunk, /id="sort-field-tabs"/);
   assert.doesNotMatch(filterChunk, /id="page-size-tabs"/);
   assert.match(filterChunk, /<span>Filter<\/span>/);
-  assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-right:\s*calc\(50vw \+ 12px\)/);
-  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 12px\)/);
+  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-right:\s*calc\(50vw \+ 12px\)/);
+  assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 12px\)/);
 });
 
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
