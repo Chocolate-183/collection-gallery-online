@@ -143,6 +143,7 @@ export function switchCollection(collectionId, updateHash = true) {
   const kindSection = document.getElementById('filter-kind-section');
   const loanwordKind = document.getElementById('kind-loanword');
   const basic100Kind = document.getElementById('kind-basic100');
+  const quickBasic100 = document.getElementById('quick-basic100');
   const readingSortTab = document.getElementById('sort-field-reading');
   const glossSortTab = document.getElementById('sort-field-subtitle');
   if (hangulSection) hangulSection.style.display = col.hasHangulTabs ? '' : 'none';
@@ -150,6 +151,7 @@ export function switchCollection(collectionId, updateHash = true) {
   if (kindSection) kindSection.style.display = (col.hasLoanwordFilter || col.hasBasic100Filter) ? '' : 'none';
   if (loanwordKind) loanwordKind.style.display = col.hasLoanwordFilter ? '' : 'none';
   if (basic100Kind) basic100Kind.style.display = col.hasBasic100Filter ? '' : 'none';
+  if (quickBasic100) quickBasic100.style.display = col.hasBasic100Filter ? '' : 'none';
   if (readingSortTab) readingSortTab.style.display = (col.hasKanaTabs ?? col.hasReading) && !col.hasHangulTabs ? '' : 'none';
   if (glossSortTab) glossSortTab.style.display = col.hasHangulTabs ? '' : 'none';
   const titleSortTab = document.querySelector('#sort-field-tabs [data-tab="title"]');

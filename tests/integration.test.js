@@ -126,9 +126,10 @@ test('index.html loads the esbuild bundle, not raw js/app.js', () => {
 
 test('Catalog search row has 最新10 and 隨機10 to the right of search', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*id="pagination-controls"/);
+  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100[\s\S]*id="pagination-controls"/);
   assert.match(html, /onclick="selectQuickFilter\('LATEST10'/);
   assert.match(html, /onclick="selectQuickFilter\('RANDOM10'/);
+  assert.match(html, /id="quick-basic100"[\s\S]*onclick="selectQuickFilter\('BASIC100'/);
   assert.doesNotMatch(html, /id="kana-tabs"/);
 });
 
@@ -650,6 +651,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   const mockKind = createMockElement({ style: { display: 'none' } });
   const mockLoanword = createMockElement({ style: { display: 'none' } });
   const mockBasic100 = createMockElement({ style: { display: 'none' } });
+  const mockQuickBasic100 = createMockElement({ style: { display: 'none' } });
   const mockReading = createMockElement({ style: {} });
   const mockGloss = createMockElement({ style: { display: 'none' } });
   const mockSummary = createMockElement();
@@ -662,6 +664,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
     'filter-kind-section': mockKind,
     'kind-loanword': mockLoanword,
     'kind-basic100': mockBasic100,
+    'quick-basic100': mockQuickBasic100,
     'sort-field-reading': mockReading,
     'sort-field-subtitle': mockGloss,
     'filter-summary': mockSummary,
@@ -697,6 +700,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   assert.equal(mockKind.style.display, '');
   assert.equal(mockLoanword.style.display, '');
   assert.equal(mockBasic100.style.display, 'none');
+  assert.equal(mockQuickBasic100.style.display, 'none');
   assert.equal(mockKana.style.display, 'none');
   assert.equal(mockGloss.style.display, '');
   assert.equal(mockReading.style.display, 'none');
@@ -723,6 +727,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   assert.equal(mockKind.style.display, '');
   assert.equal(mockLoanword.style.display, 'none');
   assert.equal(mockBasic100.style.display, '');
+  assert.equal(mockQuickBasic100.style.display, '');
   assert.equal(mockKana.style.display, '');
   assert.equal(mockHangul.style.display, 'none');
 
@@ -731,6 +736,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   assert.equal(mockKind.style.display, '');
   assert.equal(mockLoanword.style.display, 'none');
   assert.equal(mockBasic100.style.display, '');
+  assert.equal(mockQuickBasic100.style.display, '');
   assert.equal(mockKana.style.display, 'none');
   assert.equal(mockHangul.style.display, 'none');
 

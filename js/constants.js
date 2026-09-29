@@ -48,7 +48,8 @@ export const BASIC100_TAG = '基礎100';
 export const QUICK_FILTERS = {
   ALL: 'ALL',
   LATEST10: 'LATEST10',
-  RANDOM10: 'RANDOM10'
+  RANDOM10: 'RANDOM10',
+  BASIC100: 'BASIC100'
 };
 
 export const LENGTH_TABS = {

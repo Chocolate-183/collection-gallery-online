@@ -268,8 +268,15 @@ function activateTabByValue(containerSelector, value) {
 }
 
 export function selectQuickFilter(tab) {
-  const { currentSortField, currentSortOrder, currentCollectionId } = store.get();
+  const { currentSortField, currentSortOrder, currentCollectionId, basic100Only } = store.get();
   const col = collectionsConfig[currentCollectionId] || {};
+
+  if (tab === QUICK_FILTERS.BASIC100) {
+    store.set({ basic100Only: !basic100Only, invalidTerm: null });
+    applyFiltersAndSort();
+    return;
+  }
+
   const active = getActiveQuickFilter(currentSortField, currentSortOrder);
 
   if (active === tab) {
@@ -423,6 +430,8 @@ export function syncFilterUi() {
     ? CATEGORY_TABS.LOANWORD
     : (basic100Only ? CATEGORY_TABS.BASIC100 : CATEGORY_TABS.ALL);
   activateTabByValue('#kind-tabs', kindTab);
+  document.querySelector('#quick-filter-tabs [data-tab="BASIC100"]')
+    ?.classList.toggle('active', !!basic100Only);
   activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
   activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));
