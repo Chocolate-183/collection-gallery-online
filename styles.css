@@ -2485,9 +2485,9 @@ a:focus {
   #filter-modal .awsui-filter-modal {
     margin-right: calc(50vw - 68px);
     width: min(560px, calc(50vw - 32px));
-    height: min(580px, 85vh);
-    min-height: min(580px, 85vh);
-    max-height: min(580px, 85vh);
+    height: min(620px, 85vh);
+    min-height: min(620px, 85vh);
+    max-height: min(620px, 85vh);
     aspect-ratio: unset;
     flex: 0 0 auto;
   }
