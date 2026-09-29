@@ -505,7 +505,7 @@ function isCatalogPanelOpen(id) {
   return document.getElementById(id)?.classList.contains('open');
 }
 
-export const DISPLAY_FOLLOW_DELAY_MS = 240;
+export const DISPLAY_FOLLOW_DELAY_MS = 160;
 let displayFollowTimer = null;
 
 function cancelDisplayFollow() {
