@@ -13,7 +13,7 @@ import {
   parseProfilesGvizResponse,
   formatProfileId
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, filterByBasic100, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
 import { LENGTH_TABS, KANA_TABS, QUICK_FILTERS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
 import {
   escapeHtml,
@@ -291,6 +291,9 @@ test('Config & Endpoint URL Builders', () => {
   const jpCol = collectionsConfig['japanese-terms'];
   const dataUrls = getCollectionDataUrls(jpCol);
   assert(dataUrls.csvUrl.includes('1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI'));
+  assert(dataUrls.csvUrl.includes('gid=978348869'));
+  assert.equal(jpCol.gid, '978348869');
+  assert.equal(jpCol.hasBasic100Filter, true);
   const metaUrls = getMetadataUrls();
   assert(metaUrls.csvUrl.includes('162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs'));
   assert(metaUrls.csvUrl.includes('gid=1574352890'));
@@ -305,6 +308,10 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), false);
 
   const cnCol = collectionsConfig['china-terms'];
+  assert.equal(cnCol.gid, '286132690');
+  assert.equal(cnCol.hasBasic100Filter, true);
+  const cnUrls = getCollectionDataUrls(cnCol);
+  assert(cnUrls.csvUrl.includes('gid=286132690'));
   assert.equal(cnCol.enTitle, 'Decoding Simplified Chinese: The Ultimate Guide');
   assert.equal(cnCol.defaultMeta.enTitle, 'Decoding Simplified Chinese: The Ultimate Guide');
   assert.equal(cnCol.name, '簡中語境破解攻略');
@@ -344,6 +351,27 @@ test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C 
   assert.equal(parsed[1].reading, '실수');
   assert.equal(parsed[1].tw_translation, '失誤');
   assert.equal(parsed[0].created_at, '2026-09-15');
+});
+
+test('C101/C102 CSV parse 標籤 and Category 基礎100', () => {
+  const jpCsv = `ID,日語用詞,台灣用詞,読み方,新增日期,推薦條目,標籤
+#C101-0002,1LDK,一房一廳一廚（格局）,ワンエルディーケー,2026-09-02,物件,基礎100
+#C101-0005,一人尺八,成人用語,ひとりしゃくはち,2026-09-02,本番行為,成人用語`;
+  const jp = parseCSVData(jpCsv, 'japanese-terms');
+  assert.equal(jp.length, 2);
+  assert.deepEqual(jp[0].tags, ['基礎100']);
+  assert.deepEqual(jp[1].tags, ['成人用語']);
+  assert.deepEqual(filterByBasic100(jp, true).map(r => r.id), ['#C101-0002']);
+  assert.equal(filterByBasic100(jp, false).length, 2);
+
+  const cnCsv = `ID,大陆,台灣用詞,新增日期,推薦條目,標籤
+#C102-0007,二维码,QR Code,2026-09-04,扫码支付,基礎100
+#C102-0002,985,中國大陸的985工程,2026-09-04,211,`;
+  const cn = parseCSVData(cnCsv, 'china-terms');
+  assert.equal(cn.length, 2);
+  assert.deepEqual(cn[0].tags, ['基礎100']);
+  assert.deepEqual(cn[1].tags, []);
+  assert.deepEqual(filterByBasic100(cn, true).map(r => r.id), ['#C102-0007']);
 });
 
 test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
@@ -481,6 +509,7 @@ test('Catalog quick filters map to Sort by 隨機 and 新增日期', async () =>
     currentLengthTab: LENGTH_TABS.ALL,
     currentInitialTab: KANA_TABS.ALL,
     loanwordOnly: false,
+    basic100Only: false,
     currentSortField: SORT_FIELDS.STANDARD,
     currentSortOrder: SORT_ORDERS.ASC,
     currentCollectionId: 'japanese-terms',

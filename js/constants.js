@@ -37,6 +37,14 @@ export const KANA_TABS = {
   LOANWORD: 'LOANWORD'
 };
 
+export const CATEGORY_TABS = {
+  ALL: 'ALL',
+  LOANWORD: 'LOANWORD',
+  BASIC100: 'BASIC100'
+};
+
+export const BASIC100_TAG = '基礎100';
+
 export const QUICK_FILTERS = {
   ALL: 'ALL',
   LATEST10: 'LATEST10',

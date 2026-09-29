@@ -1,7 +1,7 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, BASIC100_TAG, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
@@ -105,6 +105,17 @@ export function filterByLoanword(records, loanwordOnly) {
   return records.filter(r => isEnglishLoanword(r));
 }
 
+export function hasBasic100Tag(record) {
+  const tags = record?.tags;
+  if (!Array.isArray(tags)) return false;
+  return tags.some(tag => String(tag).trim() === BASIC100_TAG);
+}
+
+export function filterByBasic100(records, basic100Only) {
+  if (!basic100Only) return records;
+  return records.filter(r => hasBasic100Tag(r));
+}
+
 export function compareCreatedAt(a, b) {
   const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
   const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
@@ -195,6 +206,7 @@ export function applyFiltersAndSort() {
     currentLengthTab,
     currentInitialTab,
     loanwordOnly,
+    basic100Only,
     currentSortField,
     currentSortOrder,
     invalidTerm
@@ -212,6 +224,7 @@ export function applyFiltersAndSort() {
   let result = filterByQuery(allRecords, searchQuery);
   result = filterByLength(result, currentLengthTab);
   result = filterByLoanword(result, loanwordOnly);
+  result = filterByBasic100(result, basic100Only);
   result = filterByInitial(result, currentInitialTab);
 
   result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
@@ -305,7 +318,11 @@ export function selectInitialTab(tab, element) {
 }
 
 export function selectKindTab(tab, element) {
-  store.set({ loanwordOnly: tab === KANA_TABS.LOANWORD, invalidTerm: null });
+  store.set({
+    loanwordOnly: tab === CATEGORY_TABS.LOANWORD,
+    basic100Only: tab === CATEGORY_TABS.BASIC100,
+    invalidTerm: null
+  });
   if (element) updateTabPills('#kind-tabs', element);
   applyFiltersAndSort();
 }
@@ -344,6 +361,7 @@ export function resetFineFilters() {
     currentLengthTab: LENGTH_TABS.ALL,
     currentInitialTab: KANA_TABS.ALL,
     loanwordOnly: false,
+    basic100Only: false,
     currentSortField: getDefaultSortField(col),
     currentSortOrder: SORT_ORDERS.ASC,
     invalidTerm: null
@@ -352,18 +370,19 @@ export function resetFineFilters() {
 }
 
 export function countActiveFineFilters() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, currentCollectionId } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, basic100Only, currentSortField, currentSortOrder, currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId] || {};
   let count = 0;
   if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) count += 1;
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) count += 1;
   if (loanwordOnly) count += 1;
+  if (basic100Only) count += 1;
   if (currentSortField !== getDefaultSortField(col) || currentSortOrder !== SORT_ORDERS.ASC) count += 1;
   return count;
 }
 
 export function getFilterSummary() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, basic100Only, currentSortField, currentSortOrder } = store.get();
   const parts = [];
 
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
@@ -373,6 +392,7 @@ export function getFilterSummary() {
     parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5字+' : `${currentLengthTab}字`);
   }
   if (loanwordOnly) parts.push('外來語');
+  if (basic100Only) parts.push(BASIC100_TAG);
 
   const fieldLabel = currentSortField === SORT_FIELDS.ID
     ? '編號'
@@ -394,12 +414,15 @@ export function getFilterSummary() {
 export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
-  const { currentLengthTab, currentInitialTab, loanwordOnly, currentSortField, currentSortOrder, pageSize } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, basic100Only, currentSortField, currentSortOrder, pageSize } = store.get();
   activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder));
   activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
   activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
   activateTabByValue('#kana-initial-tabs', currentInitialTab || KANA_TABS.ALL);
-  activateTabByValue('#kind-tabs', loanwordOnly ? KANA_TABS.LOANWORD : 'ALL');
+  const kindTab = loanwordOnly
+    ? CATEGORY_TABS.LOANWORD
+    : (basic100Only ? CATEGORY_TABS.BASIC100 : CATEGORY_TABS.ALL);
+  activateTabByValue('#kind-tabs', kindTab);
   activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
   activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));

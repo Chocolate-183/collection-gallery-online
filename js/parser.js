@@ -3,7 +3,7 @@
  */
 import { collectionsConfig } from './config.js';
 import { DEFAULT_OPENING_HOURS } from './constants.js';
-import { parseRecommendationList } from './utils.js';
+import { parseRecommendationList, parseExhibitTagList } from './utils.js';
 
 const META_FIELD_DEFINITIONS = [
   { key: 'enTitle', match: k => k.includes('英文標題') || k.includes('en_title') || k.includes('entitle') },
@@ -95,12 +95,13 @@ function findDatasetColumnIndexes(headerTitles, options = {}) {
   let dateIdx = findIdx(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
   let recommendIdx = findIdx(h => isRecommendHeader(h));
   const subtitleIdx = headers.findIndex(h => h.includes('副標') || h === 'subtitle' || h.includes('gloss'));
+  const tagsIdx = headers.findIndex((h, i) => !hidden.has(i) && (h.includes('標籤') || h.includes('标签') || h === 'tags' || h === 'tag'));
 
   if (idIdx === -1) idIdx = firstVisible(0);
   if (termIdx === -1) termIdx = firstVisible(idIdx >= 0 ? idIdx + 1 : 0);
   if (twIdx === -1) twIdx = firstVisible((termIdx >= 0 ? termIdx + 1 : 0));
 
-  return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx };
+  return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx, tagsIdx };
 }
 
 function getHiddenColumnIndexes(currentCollectionId) {
@@ -252,7 +253,7 @@ function readGvizCell(cell, { preferFormatted = false } = {}) {
 /**
  * Helper to construct a standard record object if valid.
  */
-function createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rowIndex, collectionId }) {
+function createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rawTags, rowIndex, collectionId }) {
   if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja === '顯示' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
     return null;
   }
@@ -265,6 +266,7 @@ function createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle,
     created_at: formatExhibitTimestamp(created_at) || '',
     recommendations: parseRecommendationList(rawRecommend),
     subtitle: subtitle || '',
+    tags: parseExhibitTagList(rawTags),
     row_index: rowIndex
   };
 }
@@ -276,7 +278,7 @@ export function parseCSVData(csvText, currentCollectionId) {
   const rows = parseCSVRows(csvText);
   if (rows.length <= 1) return null;
 
-  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx } = findDatasetColumnIndexes(
+  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx, tagsIdx } = findDatasetColumnIndexes(
     rows[0],
     { hiddenColumnIndexes: getHiddenColumnIndexes(currentCollectionId) }
   );
@@ -292,8 +294,9 @@ export function parseCSVData(csvText, currentCollectionId) {
       const created_at = (dateIdx !== -1 && cols[dateIdx]) ? cols[dateIdx].trim() : '';
       const rawRecommend = (recommendIdx !== -1 && cols[recommendIdx]) ? cols[recommendIdx].trim() : '';
       const subtitle = (subtitleIdx !== -1 && cols[subtitleIdx]) ? cols[subtitleIdx].trim() : '';
+      const rawTags = (tagsIdx !== -1 && cols[tagsIdx]) ? cols[tagsIdx].trim() : '';
 
-      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rowIndex: i, collectionId: currentCollectionId });
+      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rawTags, rowIndex: i, collectionId: currentCollectionId });
       if (record) results.push(record);
     }
   }
@@ -307,7 +310,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
   const table = extractGvizTable(gvizText);
   if (!table) return null;
 
-  let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1, subtitleIdx = -1;
+  let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1, subtitleIdx = -1, tagsIdx = -1;
   if (table.cols && table.cols.length > 0) {
     const colsHeader = table.cols.map(col => col?.label || '');
     const found = findDatasetColumnIndexes(colsHeader, {
@@ -320,6 +323,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     dateIdx = found.dateIdx;
     recommendIdx = found.recommendIdx;
     subtitleIdx = found.subtitleIdx;
+    tagsIdx = found.tagsIdx;
   } else {
     const colConfig = collectionsConfig[currentCollectionId];
     if (colConfig?.hasReading) {
@@ -346,8 +350,9 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     const created_at = (dateIdx >= 0 && c[dateIdx]) ? String(readGvizCell(c[dateIdx], { preferFormatted: true }) || '').trim() : '';
     const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? String(readGvizCell(c[recommendIdx]) || '').trim() : '';
     const subtitle = (subtitleIdx >= 0 && c[subtitleIdx]) ? String(readGvizCell(c[subtitleIdx]) || '').trim() : '';
+    const rawTags = (tagsIdx >= 0 && c[tagsIdx]) ? String(readGvizCell(c[tagsIdx]) || '').trim() : '';
 
-    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rowIndex, collectionId: currentCollectionId });
+    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rawTags, rowIndex, collectionId: currentCollectionId });
     if (record) results.push(record);
   });
   return results;

@@ -648,6 +648,8 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   const mockHangul = createMockElement({ style: { display: 'none' } });
   const mockKana = createMockElement({ style: { display: 'none' } });
   const mockKind = createMockElement({ style: { display: 'none' } });
+  const mockLoanword = createMockElement({ style: { display: 'none' } });
+  const mockBasic100 = createMockElement({ style: { display: 'none' } });
   const mockReading = createMockElement({ style: {} });
   const mockGloss = createMockElement({ style: { display: 'none' } });
   const mockSummary = createMockElement();
@@ -658,6 +660,8 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
     'filter-hangul-section': mockHangul,
     'filter-kana-section': mockKana,
     'filter-kind-section': mockKind,
+    'kind-loanword': mockLoanword,
+    'kind-basic100': mockBasic100,
     'sort-field-reading': mockReading,
     'sort-field-subtitle': mockGloss,
     'filter-summary': mockSummary,
@@ -691,6 +695,8 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockHangul.style.display, '');
   assert.equal(mockKind.style.display, '');
+  assert.equal(mockLoanword.style.display, '');
+  assert.equal(mockBasic100.style.display, 'none');
   assert.equal(mockKana.style.display, 'none');
   assert.equal(mockGloss.style.display, '');
   assert.equal(mockReading.style.display, 'none');
@@ -709,7 +715,24 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   assert.equal(afterReset.currentLengthTab, 'ALL');
   assert.equal(afterReset.currentInitialTab, 'ALL');
   assert.equal(afterReset.loanwordOnly, false);
+  assert.equal(afterReset.basic100Only, false);
   assert.equal(afterReset.currentSortField, 'title');
+
+  switchCollection('japanese-terms', false);
+  await new Promise(resolve => setTimeout(resolve, 30));
+  assert.equal(mockKind.style.display, '');
+  assert.equal(mockLoanword.style.display, 'none');
+  assert.equal(mockBasic100.style.display, '');
+  assert.equal(mockKana.style.display, '');
+  assert.equal(mockHangul.style.display, 'none');
+
+  switchCollection('china-terms', false);
+  await new Promise(resolve => setTimeout(resolve, 30));
+  assert.equal(mockKind.style.display, '');
+  assert.equal(mockLoanword.style.display, 'none');
+  assert.equal(mockBasic100.style.display, '');
+  assert.equal(mockKana.style.display, 'none');
+  assert.equal(mockHangul.style.display, 'none');
 
   closeFilterModal();
   assert(!mockFilterModal.classes.has('open'));

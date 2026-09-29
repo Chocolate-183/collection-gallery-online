@@ -141,6 +141,10 @@ export function parseRecommendationList(val) {
   return [];
 }
 
+export function parseExhibitTagList(val) {
+  return parseRecommendationList(val);
+}
+
 export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];
 let openingHoursFromMetadata = false;
 

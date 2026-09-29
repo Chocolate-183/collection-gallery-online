@@ -107,6 +107,7 @@ export function switchCollection(collectionId, updateHash = true) {
       currentLengthTab: 'ALL',
       currentInitialTab: 'ALL',
       loanwordOnly: false,
+      basic100Only: false,
       currentSortField: col.hasHangulTabs
         ? SORT_FIELDS.TITLE
         : ((col.hasKanaTabs ?? col.hasReading) ? SORT_FIELDS.STANDARD : SORT_FIELDS.TITLE),
@@ -140,11 +141,15 @@ export function switchCollection(collectionId, updateHash = true) {
   const hangulSection = document.getElementById('filter-hangul-section');
   const kanaSection = document.getElementById('filter-kana-section');
   const kindSection = document.getElementById('filter-kind-section');
+  const loanwordKind = document.getElementById('kind-loanword');
+  const basic100Kind = document.getElementById('kind-basic100');
   const readingSortTab = document.getElementById('sort-field-reading');
   const glossSortTab = document.getElementById('sort-field-subtitle');
   if (hangulSection) hangulSection.style.display = col.hasHangulTabs ? '' : 'none';
   if (kanaSection) kanaSection.style.display = (col.hasKanaTabs ?? col.hasReading) ? '' : 'none';
-  if (kindSection) kindSection.style.display = col.hasLoanwordFilter ? '' : 'none';
+  if (kindSection) kindSection.style.display = (col.hasLoanwordFilter || col.hasBasic100Filter) ? '' : 'none';
+  if (loanwordKind) loanwordKind.style.display = col.hasLoanwordFilter ? '' : 'none';
+  if (basic100Kind) basic100Kind.style.display = col.hasBasic100Filter ? '' : 'none';
   if (readingSortTab) readingSortTab.style.display = (col.hasKanaTabs ?? col.hasReading) && !col.hasHangulTabs ? '' : 'none';
   if (glossSortTab) glossSortTab.style.display = col.hasHangulTabs ? '' : 'none';
   const titleSortTab = document.querySelector('#sort-field-tabs [data-tab="title"]');
