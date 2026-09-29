@@ -48,8 +48,8 @@ coverage/
 .nyc_output
 
 # Build output
-dist/
 build/Release
+dist/*.map
 
 # TypeScript cache
 *.tsbuildinfo

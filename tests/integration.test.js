@@ -69,6 +69,58 @@ test('Local Fallback Snapshot Integrity - Master Korean Vocabulary Fast: The Ult
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
   assert.match(sample.ja_term, /\|/);
   assert.notEqual(sample.ja_term, sample.reading);
+  const posValues = [...new Set(koreanJson.map(r => String(r.pos || '').trim()).filter(Boolean))];
+  for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
+    assert.ok(posValues.includes(pos), `C103 dump missing POS ${pos}`);
+  }
+  const basic100 = koreanJson.filter(r => Array.isArray(r.tags) && r.tags.includes('基礎100'));
+  assert.equal(basic100.length, 100);
+});
+
+test('C103 Filter POS pills include all sheet 詞性 values', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const posSection = html.match(/id="pos-tabs"[\s\S]*?<\/div>/)[0];
+  for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
+    assert.match(posSection, new RegExp(`data-tab="${pos}"`));
+  }
+});
+
+test('Filter modal Category sits after Etymology', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const posIdx = html.indexOf('id="filter-pos-section"');
+  const etymologyIdx = html.indexOf('id="filter-etymology-section"');
+  const kindIdx = html.indexOf('id="filter-kind-section"');
+  assert.ok(posIdx > 0 && etymologyIdx > posIdx && kindIdx > etymologyIdx);
+});
+
+test('Display panel holds Sort by / Order / Page size and sits right of Filter', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const displayIdx = html.indexOf('id="display-modal"');
+  const filterIdx = html.indexOf('id="filter-modal"');
+  const profileIdx = html.indexOf('id="profile-modal"');
+  assert.ok(displayIdx > 0 && displayIdx < filterIdx);
+  const displayChunk = html.slice(displayIdx, filterIdx);
+  const filterChunk = html.slice(filterIdx, profileIdx);
+  assert.match(displayChunk, /<span>Display<\/span>/);
+  assert.match(displayChunk, /id="sort-field-tabs"/);
+  assert.match(displayChunk, /id="sort-order-tabs"/);
+  assert.match(displayChunk, /id="page-size-tabs"/);
+  const orderIdx = displayChunk.indexOf('id="sort-order-tabs"');
+  const pageSizeIdx = displayChunk.indexOf('id="page-size-tabs"');
+  assert.ok(orderIdx > 0 && pageSizeIdx > orderIdx);
+  assert.doesNotMatch(displayChunk, /awsui-filter-modal-row/);
+  assert.match(displayChunk, /onclick="resetDisplaySettings\(\)"/);
+  assert.doesNotMatch(displayChunk, />Done</);
+  assert.doesNotMatch(filterChunk, /id="sort-field-tabs"/);
+  assert.doesNotMatch(filterChunk, /id="page-size-tabs"/);
+  assert.match(filterChunk, /<span>Filter<\/span>/);
+  assert.doesNotMatch(filterChunk, />Done</);
+  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-right:\s*calc\(50vw - 68px\)/);
+  assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 92px\)/);
+  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*min-height:\s*min\(620px,\s*85vh\)/);
+  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*aspect-ratio:\s*unset/);
+  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*height:\s*min\(620px,\s*85vh\)/);
 });
 
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
@@ -115,11 +167,21 @@ test('Header refresh button is the second nav action and calls refreshGalleryDat
   assert.match(html, /<div class="awsui-nav-actions">[\s\S]*id="btn-toggle-theme"[\s\S]*id="btn-refresh-data"[\s\S]*onclick="refreshGalleryData\(window\.currentCollectionId\)"/);
 });
 
+test('index.html loads the esbuild bundle, not raw js/app.js', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const bundle = readFileSync(resolve('dist/app.js'), 'utf-8');
+  assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
+  assert.doesNotMatch(html, /src="js\/app\.js"/);
+  assert.match(bundle, /preloadAllCollections/);
+  assert.doesNotMatch(bundle, /data\.json[\s\S]{0,40}china-data\.json/);
+});
+
 test('Catalog search row has 最新10 and 隨機10 to the right of search', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*id="pagination-controls"/);
+  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100[\s\S]*id="pagination-controls"/);
   assert.match(html, /onclick="selectQuickFilter\('LATEST10'/);
   assert.match(html, /onclick="selectQuickFilter\('RANDOM10'/);
+  assert.match(html, /id="quick-basic100"[\s\S]*onclick="selectQuickFilter\('BASIC100'/);
   assert.doesNotMatch(html, /id="kana-tabs"/);
 });
 
@@ -636,9 +698,14 @@ test('Local Fallback Snapshot Integrity - Profiles', () => {
 
 test('Filter Modal - Open, apply, reset and gallery-specific sections', async () => {
   const mockFilterModal = createMockElement();
+  const mockDisplayModal = createMockElement();
   const mockHangul = createMockElement({ style: { display: 'none' } });
   const mockKana = createMockElement({ style: { display: 'none' } });
   const mockKind = createMockElement({ style: { display: 'none' } });
+  const mockEtymology = createMockElement({ style: { display: 'none' } });
+  const mockPos = createMockElement({ style: { display: 'none' } });
+  const mockBasic100 = createMockElement({ style: { display: 'none' } });
+  const mockQuickBasic100 = createMockElement({ style: { display: 'none' } });
   const mockReading = createMockElement({ style: {} });
   const mockGloss = createMockElement({ style: { display: 'none' } });
   const mockSummary = createMockElement();
@@ -646,9 +713,14 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   mockDOM({
     'filter-modal': mockFilterModal,
+    'display-modal': mockDisplayModal,
     'filter-hangul-section': mockHangul,
     'filter-kana-section': mockKana,
     'filter-kind-section': mockKind,
+    'filter-etymology-section': mockEtymology,
+    'filter-pos-section': mockPos,
+    'kind-basic100': mockBasic100,
+    'quick-basic100': mockQuickBasic100,
     'sort-field-reading': mockReading,
     'sort-field-subtitle': mockGloss,
     'filter-summary': mockSummary,
@@ -658,10 +730,26 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   const originalWindow = global.window;
   const originalLocation = global.location;
   const originalFetch = global.fetch;
+  const pendingTimers = [];
+  const fakeSetTimeout = (fn, ms) => {
+    const id = pendingTimers.length + 1;
+    pendingTimers.push({ id, fn, ms });
+    return id;
+  };
+  const fakeClearTimeout = (id) => {
+    const idx = pendingTimers.findIndex(t => t.id === id);
+    if (idx >= 0) pendingTimers.splice(idx, 1);
+  };
+  const flushTimers = () => {
+    const due = pendingTimers.splice(0);
+    due.forEach(t => t.fn());
+  };
   global.location = { hash: '' };
   global.window = {
     switchView: () => {},
     scrollTo: () => {},
+    setTimeout: fakeSetTimeout,
+    clearTimeout: fakeClearTimeout,
     syncFilterUi: undefined,
     location: global.location
   };
@@ -675,32 +763,77 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   const { store } = await import('../js/state.js');
   const { switchCollection } = await import('../js/components/sidebar.js');
-  const { openFilterModal, closeFilterModal, applyFilterModal, resetFineFilters, countActiveFineFilters } = await import('../js/filter.js');
+  const { openFilterModal, closeFilterModal, closeCatalogPanels, resetFineFilters, resetDisplaySettings, countActiveFineFilters, DISPLAY_FOLLOW_DELAY_MS } = await import('../js/filter.js');
 
   store.set({ currentCollectionId: 'japanese-terms', allRecords: [], filteredRecords: [] });
   switchCollection('korean-terms', false);
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockHangul.style.display, '');
   assert.equal(mockKind.style.display, '');
+  assert.equal(mockEtymology.style.display, '');
+  assert.equal(mockPos.style.display, '');
+  assert.equal(mockBasic100.style.display, '');
+  assert.equal(mockQuickBasic100.style.display, '');
   assert.equal(mockKana.style.display, 'none');
   assert.equal(mockGloss.style.display, '');
   assert.equal(mockReading.style.display, 'none');
 
   openFilterModal();
   assert(mockFilterModal.classes.has('open'));
+  assert(!mockDisplayModal.classes.has('open'), 'Display waits until Filter has opened');
+  assert.equal(pendingTimers.length, 1);
+  assert.equal(pendingTimers[0].ms, DISPLAY_FOLLOW_DELAY_MS);
   assert(mockTrigger.classes.has('active'));
-  applyFilterModal();
+  flushTimers();
+  assert(mockDisplayModal.classes.has('open'), 'funnel opens Display after Filter');
+  closeCatalogPanels();
   assert(!mockFilterModal.classes.has('open'));
+  assert(!mockDisplayModal.classes.has('open'));
   assert(!mockTrigger.classes.has('active'));
 
-  store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', loanwordOnly: true, currentCollectionId: 'korean-terms' });
-  assert.equal(countActiveFineFilters() >= 3, true);
+  openFilterModal();
+  closeCatalogPanels();
+  flushTimers();
+  assert(!mockDisplayModal.classes.has('open'), 'closing Filter cancels a pending Display follow');
+
+  store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', etymologyTab: '外來語', posTab: '名詞', currentCollectionId: 'korean-terms' });
+  assert.equal(countActiveFineFilters() >= 4, true);
   resetFineFilters();
   const afterReset = store.get();
   assert.equal(afterReset.currentLengthTab, 'ALL');
   assert.equal(afterReset.currentInitialTab, 'ALL');
   assert.equal(afterReset.loanwordOnly, false);
+  assert.equal(afterReset.etymologyTab, 'ALL');
+  assert.equal(afterReset.posTab, 'ALL');
+  assert.equal(afterReset.basic100Only, false);
   assert.equal(afterReset.currentSortField, 'title');
+
+  store.set({ currentSortField: 'id', currentSortOrder: 'desc', pageSize: 50, currentCollectionId: 'korean-terms' });
+  resetDisplaySettings();
+  const afterDisplayReset = store.get();
+  assert.equal(afterDisplayReset.currentSortField, 'title');
+  assert.equal(afterDisplayReset.currentSortOrder, 'asc');
+  assert.equal(afterDisplayReset.pageSize, 10);
+
+  switchCollection('japanese-terms', false);
+  await new Promise(resolve => setTimeout(resolve, 30));
+  assert.equal(mockKind.style.display, '');
+  assert.equal(mockEtymology.style.display, 'none');
+  assert.equal(mockPos.style.display, 'none');
+  assert.equal(mockBasic100.style.display, '');
+  assert.equal(mockQuickBasic100.style.display, '');
+  assert.equal(mockKana.style.display, '');
+  assert.equal(mockHangul.style.display, 'none');
+
+  switchCollection('china-terms', false);
+  await new Promise(resolve => setTimeout(resolve, 30));
+  assert.equal(mockKind.style.display, '');
+  assert.equal(mockEtymology.style.display, 'none');
+  assert.equal(mockPos.style.display, 'none');
+  assert.equal(mockBasic100.style.display, '');
+  assert.equal(mockQuickBasic100.style.display, '');
+  assert.equal(mockKana.style.display, 'none');
+  assert.equal(mockHangul.style.display, 'none');
 
   closeFilterModal();
   assert(!mockFilterModal.classes.has('open'));
@@ -709,7 +842,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   global.fetch = originalFetch;
 });
 
-test('Page size - Filter modal pills set store and stay in sync', async () => {
+test('Page size - Display panel pills set store and stay in sync', async () => {
   const tab10 = createMockElement({ 'data-tab': '10' });
   const tab25 = createMockElement({ 'data-tab': '25' });
   const tabAll = createMockElement({ 'data-tab': 'all' });
@@ -777,6 +910,61 @@ test('C103 Item Modal hides Pronunciation while C101 still shows it', async () =
   openMeaningModal(1, false);
   assert.equal(mockReadingRow.innerText, '');
   assert.equal(mockReadingSection.style.display, 'none');
+});
+
+test('C103 Item Modal shows Etymology and POS on one row before Description', async () => {
+  const mockMeaning = createMockElement();
+  const mockModal = createMockElement();
+  const mockEtymPosRow = createMockElement({ style: { display: 'none' } });
+  const mockEtymSection = createMockElement({ style: { display: 'none' } });
+  const mockEtym = createMockElement();
+  const mockPosSection = createMockElement({ style: { display: 'none' } });
+  const mockPos = createMockElement();
+
+  mockDOM({
+    'detail-modal': mockModal,
+    'modal-meaning-text': mockMeaning,
+    'modal-etymology-pos-row': mockEtymPosRow,
+    'modal-etymology-section': mockEtymSection,
+    'modal-etymology': mockEtym,
+    'modal-pos-section': mockPosSection,
+    'modal-pos': mockPos
+  });
+
+  const { store } = await import('../js/state.js');
+  const { openMeaningModal } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '가능 | 可能',
+      tw_translation: '可能',
+      etymology: '漢字語',
+      pos: '名詞'
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockEtym.innerText, '漢字語');
+  assert.equal(mockPos.innerText, '名詞');
+  assert.equal(mockEtymPosRow.style.display, '');
+  assert.equal(mockEtymSection.style.display, '');
+  assert.equal(mockPosSection.style.display, '');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '神経衰弱',
+      tw_translation: '神經衰弱',
+      etymology: '漢字語',
+      pos: '名詞'
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockEtymPosRow.style.display, 'none');
+  assert.equal(mockEtymSection.style.display, 'none');
+  assert.equal(mockPosSection.style.display, 'none');
 });
 
 test('Card Active State - Toggle Active Class on Open/Close Modal', async () => {

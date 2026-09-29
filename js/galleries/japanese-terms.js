@@ -7,10 +7,11 @@ export default {
   name: '日本特色詞彙一覽',
   enTitle: 'Japanese Terms',
   sheetId: '1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI',
-  gid: '1857942500',
+  gid: '978348869',
   localFallback: 'data.json',
   hasReading: true,
   hasKanaTabs: true,
+  hasBasic100Filter: true,
   searchPlaceholder: '尋找展品...',
   curator: '巧克力',
   defaultMeta: {

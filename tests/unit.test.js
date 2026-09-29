@@ -13,8 +13,8 @@ import {
   parseProfilesGvizResponse,
   formatProfileId
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
-import { LENGTH_TABS, KANA_TABS, QUICK_FILTERS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, filterByEtymology, filterByPos, filterByBasic100, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
+import { LENGTH_TABS, KANA_TABS, QUICK_FILTERS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue, ETYMOLOGY_TABS, POS_TABS } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
@@ -248,6 +248,34 @@ test('Filter Modal - Initial, Length, Kind and Sort combine independently', () =
   const combined = filterByLength(filterByLoanword(filterByInitial(records, 'ㄱ'), true), LENGTH_TABS.TWO);
   assert.equal(combined.length, 0);
 
+  const etymologyRecords = [
+    { id: 'hanja', etymology: '漢字語', pos: '名詞' },
+    { id: 'loan', etymology: '外來語', pos: '名詞' },
+    { id: 'native', etymology: '固有詞', pos: '動詞' },
+    { id: 'adj', etymology: '漢字語', pos: '形容詞' },
+    { id: 'interjection', etymology: '固有詞', pos: '感嘆詞' },
+    { id: 'determiner', etymology: '漢字語', pos: '冠形詞' },
+    { id: 'pronoun', etymology: '固有詞', pos: '代名詞' },
+    { id: 'counter', etymology: '固有詞', pos: '量詞' },
+    { id: 'numeral', etymology: '漢字語', pos: '數詞' },
+    { id: 'bound', etymology: '固有詞', pos: '依存名詞' }
+  ];
+  assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.LOANWORD).map(r => r.id), ['loan']);
+  assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA).map(r => r.id), ['hanja', 'adj', 'determiner', 'numeral']);
+  assert.equal(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.ALL).length, 10);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.NOUN).map(r => r.id), ['hanja', 'loan']);
+  assert.deepEqual(
+    filterByPos(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA), POS_TABS.ADJECTIVE).map(r => r.id),
+    ['adj']
+  );
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.INTERJECTION).map(r => r.id), ['interjection']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.DETERMINER).map(r => r.id), ['determiner']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.PRONOUN).map(r => r.id), ['pronoun']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.COUNTER).map(r => r.id), ['counter']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.NUMERAL).map(r => r.id), ['numeral']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.BOUND_NOUN).map(r => r.id), ['bound']);
+
   const byIdAsc = sortRecords(records, null, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.ASC });
   assert.deepEqual(byIdAsc.map(r => r.id), ['#C103-0001', '#C103-0002', '#C103-0003', '#C103-0010']);
 
@@ -291,6 +319,9 @@ test('Config & Endpoint URL Builders', () => {
   const jpCol = collectionsConfig['japanese-terms'];
   const dataUrls = getCollectionDataUrls(jpCol);
   assert(dataUrls.csvUrl.includes('1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI'));
+  assert(dataUrls.csvUrl.includes('gid=978348869'));
+  assert.equal(jpCol.gid, '978348869');
+  assert.equal(jpCol.hasBasic100Filter, true);
   const metaUrls = getMetadataUrls();
   assert(metaUrls.csvUrl.includes('162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs'));
   assert(metaUrls.csvUrl.includes('gid=1574352890'));
@@ -305,6 +336,10 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(isCollectionAdjusting(collectionsConfig['china-terms'].defaultMeta), false);
 
   const cnCol = collectionsConfig['china-terms'];
+  assert.equal(cnCol.gid, '286132690');
+  assert.equal(cnCol.hasBasic100Filter, true);
+  const cnUrls = getCollectionDataUrls(cnCol);
+  assert(cnUrls.csvUrl.includes('gid=286132690'));
   assert.equal(cnCol.enTitle, 'Decoding Simplified Chinese: The Ultimate Guide');
   assert.equal(cnCol.defaultMeta.enTitle, 'Decoding Simplified Chinese: The Ultimate Guide');
   assert.equal(cnCol.name, '簡中語境破解攻略');
@@ -317,21 +352,23 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(krCol.name, '韓語單字速成攻略');
   assert.equal(krCol.defaultMeta.title, '韓語單字速成攻略');
   assert.equal(krCol.defaultMeta.id, 'C103');
-  assert.equal(krCol.gid, '168524304');
+  assert.equal(krCol.gid, '1153058362');
   assert.equal(krCol.hasReading, true);
   assert.equal(krCol.hasKanaTabs, false);
   assert.equal(krCol.hasHangulTabs, true);
-  assert.equal(krCol.hasLoanwordFilter, true);
+  assert.equal(krCol.hasBasic100Filter, true);
+  assert.equal(krCol.hasEtymologyPosFilter, true);
+  assert.equal(krCol.hasLoanwordFilter, undefined);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
   const krUrls = getCollectionDataUrls(krCol);
   assert(krUrls.csvUrl.includes('1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM'));
-  assert(krUrls.csvUrl.includes('gid=168524304'));
+  assert(krUrls.csvUrl.includes('gid=1153058362'));
 });
 
 test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C and D', () => {
-  const sampleCSV = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目
-#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,
-#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,`;
+  const sampleCSV = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目,詞源,詞性
+#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,,漢字語,名詞
+#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,,漢字語,名詞`;
 
   const parsed = parseCSVData(sampleCSV, 'korean-terms');
   assert.equal(parsed.length, 2);
@@ -340,10 +377,42 @@ test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C 
   assert.equal(parsed[0].reading, '가능');
   assert.equal(parsed[0].tw_translation, '可能');
   assert.equal(parsed[0].subtitle, '可能');
+  assert.equal(parsed[0].etymology, '漢字語');
+  assert.equal(parsed[0].pos, '名詞');
   assert.equal(parsed[1].ja_term, '실수 | 失手');
   assert.equal(parsed[1].reading, '실수');
   assert.equal(parsed[1].tw_translation, '失誤');
   assert.equal(parsed[0].created_at, '2026-09-15');
+});
+
+test('C101/C102/C103 CSV parse 標籤 and Category 基礎100', () => {
+  const jpCsv = `ID,日語用詞,台灣用詞,読み方,新增日期,推薦條目,標籤
+#C101-0002,1LDK,一房一廳一廚（格局）,ワンエルディーケー,2026-09-02,物件,基礎100
+#C101-0005,一人尺八,成人用語,ひとりしゃくはち,2026-09-02,本番行為,成人用語`;
+  const jp = parseCSVData(jpCsv, 'japanese-terms');
+  assert.equal(jp.length, 2);
+  assert.deepEqual(jp[0].tags, ['基礎100']);
+  assert.deepEqual(jp[1].tags, ['成人用語']);
+  assert.deepEqual(filterByBasic100(jp, true).map(r => r.id), ['#C101-0002']);
+  assert.equal(filterByBasic100(jp, false).length, 2);
+
+  const cnCsv = `ID,大陆,台灣用詞,新增日期,推薦條目,標籤
+#C102-0007,二维码,QR Code,2026-09-04,扫码支付,基礎100
+#C102-0002,985,中國大陸的985工程,2026-09-04,211,`;
+  const cn = parseCSVData(cnCsv, 'china-terms');
+  assert.equal(cn.length, 2);
+  assert.deepEqual(cn[0].tags, ['基礎100']);
+  assert.deepEqual(cn[1].tags, []);
+  assert.deepEqual(filterByBasic100(cn, true).map(r => r.id), ['#C102-0007']);
+
+  const krCsv = `ID,顯示,諺文,副標,意思,新增日期,推薦條目,詞源,詞性,標籤
+#C103-0002,가능 | 可能,가능,可能,可能,2026-09-15,,漢字語,名詞,基礎100
+#C103-0005,실수 | 失手,실수,失手,失誤,2026-09-15,,漢字語,名詞,`;
+  const kr = parseCSVData(krCsv, 'korean-terms');
+  assert.equal(kr.length, 2);
+  assert.deepEqual(kr[0].tags, ['基礎100']);
+  assert.deepEqual(kr[1].tags, []);
+  assert.deepEqual(filterByBasic100(kr, true).map(r => r.id), ['#C103-0002']);
 });
 
 test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
@@ -352,7 +421,8 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
     table: {
       cols: [
         { label: 'ID' }, { label: '顯示' }, { label: '諺文' }, { label: '副標' },
-        { label: '發音' }, { label: '意思' }, { label: '新增日期' }, { label: '推薦條目' }
+        { label: '發音' }, { label: '意思' }, { label: '新增日期' }, { label: '推薦條目' },
+        { label: '詞源' }, { label: '詞性' }
       ],
       rows: [{
         c: [
@@ -363,7 +433,9 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
           { v: '가능' },
           { v: '可能' },
           { v: 'Date(2026,8,15)', f: '2026-09-15' },
-          { v: '' }
+          { v: '' },
+          { v: '漢字語' },
+          { v: '名詞' }
         ]
       }, {
         c: [
@@ -374,7 +446,9 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
           { v: '실수' },
           { v: '失誤' },
           { v: 'Date(2026,8,15)' },
-          { v: '' }
+          { v: '' },
+          { v: '漢字語' },
+          { v: '名詞' }
         ]
       }]
     }
@@ -384,6 +458,8 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
   assert.equal(parsed.length, 2);
   assert.equal(parsed[0].id, '#C103-0002');
   assert.equal(parsed[0].created_at, '2026-09-15');
+  assert.equal(parsed[0].etymology, '漢字語');
+  assert.equal(parsed[0].pos, '名詞');
   assert.equal(parsed[1].id, '#C103-1047');
   assert.equal(parsed[1].created_at, '2026-09-15');
 });
@@ -481,6 +557,7 @@ test('Catalog quick filters map to Sort by 隨機 and 新增日期', async () =>
     currentLengthTab: LENGTH_TABS.ALL,
     currentInitialTab: KANA_TABS.ALL,
     loanwordOnly: false,
+    basic100Only: false,
     currentSortField: SORT_FIELDS.STANDARD,
     currentSortOrder: SORT_ORDERS.ASC,
     currentCollectionId: 'japanese-terms',
@@ -506,5 +583,17 @@ test('Catalog quick filters map to Sort by 隨機 and 新增日期', async () =>
   selectQuickFilter(QUICK_FILTERS.RANDOM10);
   assert.equal(store.get().currentSortField, SORT_FIELDS.STANDARD);
   assert.equal(store.get().currentSortOrder, SORT_ORDERS.ASC);
+  assert.equal(getFilterSummary(), '読み方 正序');
+
+  store.set({ pageSize: 50 });
+  selectQuickFilter(QUICK_FILTERS.BASIC100);
+  assert.equal(store.get().basic100Only, true);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.STANDARD);
+  assert.equal(store.get().pageSize, 100);
+  assert.equal(getFilterSummary(), '基礎100 · 読み方 正序');
+
+  selectQuickFilter(QUICK_FILTERS.BASIC100);
+  assert.equal(store.get().basic100Only, false);
+  assert.equal(store.get().pageSize, 100);
   assert.equal(getFilterSummary(), '読み方 正序');
 });

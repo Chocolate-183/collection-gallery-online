@@ -30,8 +30,8 @@
 
 ### 5. 多維度檢索與展品篩選機制 (Filter, Search & Sorting)
 - **實時關鍵字搜尋**: 支援展品名稱、標音 (Reading)、策展解說與展品編號跨欄位即時模糊搜尋。
-- **精細篩選 Modal (`Filter`)**: 展廳篩選列保留無邊框漏斗圖示與 `#filter-summary`。子音、字數、種類（外來語）、排序與每頁筆數改由 `Filter` 按鈕開啟的設定 Modal 處理。區塊標題維持英文（Starts with / Length / Category / Sort by / Order / Page size）；選項改中文（不限／外來語／1字–4字／5字+／編號／標題／読み方／副標／隨機／新增日期／正序／倒序），Page size 為 `10` / `25` / `50` / `100` / `All`；動作按鈕維持 `Reset` / `Done`。C103 顯示 Starts with / Length / Category / 標題 / 副標；C101 顯示 Starts with（あ行…わ行）/ Length / 読み方。所有展廳 Sort by 皆含 `隨機` / `新增日期`。
-- **快捷篩選**: 搜尋列右側提供 `最新10` / `隨機10`（`#quick-filter-tabs`）。`最新10` 套用 Sort by `新增日期` 倒序；`隨機10` 套用 Sort by `隨機`；兩者都會把 Page size 調成 `10`。`#filter-summary` 顯示目前 Filter 選項（如 `新增日期 倒序` / `隨機 正序`）。五十音與韓語子音仍放在 Filter Modal。
+- **精細篩選 Modal (`Filter`)**: 展廳篩選列保留無邊框漏斗圖示與 `#filter-summary`。子音、字數、種類、排序與每頁筆數改由 `Filter` 按鈕開啟的設定 Modal 處理。區塊標題維持英文（Starts with / Length / Category / POS / Etymology / Sort by / Order / Page size）；選項改中文（不限／基礎100／名詞／動詞／形容詞／副詞／漢字語／外來語／固有詞／1字–4字／5字+／編號／標題／読み方／副標／隨機／新增日期／正序／倒序），Page size 為 `10` / `25` / `50` / `100` / `All`；動作按鈕維持 `Reset`。關閉用 X / Esc / 點 backdrop。C103 顯示 Starts with / Length / POS / Etymology / Category（基礎100）/ 標題 / 副標；C101 顯示 Starts with（あ行…わ行）/ Length / Category（基礎100）/ 読み方。所有展廳 Sort by 皆含 `隨機` / `新增日期`。
+- **快捷篩選**: 搜尋列右側提供 `最新10` / `隨機10` / `基礎100`（`#quick-filter-tabs`）。`最新10` 套用 Sort by `新增日期` 倒序；`隨機10` 套用 Sort by `隨機`；兩者都會把 Page size 調成 `10`。`基礎100` 在 C101/C102/C103 顯示，篩選標籤為 `基礎100` 的展品（與 Filter Category 同步，再按一次取消），並把 Page size 調成 `100`。`#filter-summary` 顯示目前 Filter 選項（如 `新增日期 倒序` / `隨機 正序` / `基礎100`）。五十音與韓語子音仍放在 Filter Modal。
 - **多重排序與分頁控制**: 提供標音正倒序、漢字正倒序、序號排序，以及每頁 `10` / `25` / `50` / `100` / `All` 筆數選擇（Filter modal `Page size`）。
 
 ### 6. 展品詳細導覽彈窗與 Hash 路由 (Detail Modal & Hash Routing)
@@ -47,6 +47,8 @@
 .
 ├── index.html        # 主網頁應用程式 (Cloudscape Layout & Root Shell)
 ├── styles.css        # Cloudscape Design System 樣式表 (含 Layout, Cards Grid, Modal & Dark Mode)
+├── dist/app.js       # esbuild 打包後的瀏覽器進入點（index.html 載入此檔）
+├── package.json      # 建置腳本（esbuild）
 ├── opening-hours.csv # 展館開放時間離線備援（正式來源為中央 metadata spreadsheet）
 ├── js/
 │   ├── app.js        # 進入點、全域事件監聽與 Downward Compatibility Bridge
@@ -80,11 +82,16 @@
 
 ## 🚀 本地啟動與預覽方式
 
-1. 於本專案目錄啟動 HTTP 靜態伺服器：
-   ```bash
-   python3 -m http.server 8899
-   ```
-2. 於瀏覽器開啟 `http://localhost:8899` 即可預覽線上展覽應用程式。
+瀏覽器載入 `dist/app.js`（由 `js/` 以 esbuild 打包）。倉庫已提交此檔，靜態伺服器可直接開。改 `js/` 後需重建：
+
+```bash
+npm install
+npm run build          # 產出 dist/app.js
+npm run watch          # 開發時監看並重建
+python3 -m http.server 8899
+```
+
+於瀏覽器開啟 `http://localhost:8899` 即可預覽。離線 JSON 快照（`data.json` 等）不打進 bundle，仍獨立 fetch。
 
 ---
 
@@ -93,5 +100,9 @@
 本專案採用 Node.js 內建測試執行器（Zero-dependency）：
 
 ```bash
+npm test
+# 或
 node --test tests/*.test.js
 ```
+
+測試仍直接 import `js/` 原始模組，不經過 bundle。
