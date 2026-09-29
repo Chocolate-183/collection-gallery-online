@@ -505,6 +505,26 @@ function isCatalogPanelOpen(id) {
   return document.getElementById(id)?.classList.contains('open');
 }
 
+export const DISPLAY_FOLLOW_DELAY_MS = 240;
+let displayFollowTimer = null;
+
+function cancelDisplayFollow() {
+  if (displayFollowTimer == null) return;
+  const clearTimer = (typeof window !== 'undefined' && window.clearTimeout) || clearTimeout;
+  clearTimer(displayFollowTimer);
+  displayFollowTimer = null;
+}
+
+function scheduleDisplayFollow() {
+  cancelDisplayFollow();
+  const schedule = (typeof window !== 'undefined' && window.setTimeout) || setTimeout;
+  displayFollowTimer = schedule(() => {
+    displayFollowTimer = null;
+    if (!isCatalogPanelOpen('filter-modal')) return;
+    openDisplayModal();
+  }, DISPLAY_FOLLOW_DELAY_MS);
+}
+
 function syncFilterTriggerActive() {
   const trigger = document.getElementById('btn-open-filter-modal');
   const filterOpen = isCatalogPanelOpen('filter-modal');
@@ -524,6 +544,7 @@ export function openDisplayModal() {
 }
 
 export function closeDisplayModal() {
+  cancelDisplayFollow();
   const modal = document.getElementById('display-modal');
   if (modal) modal.classList.remove('open');
   syncFilterTriggerActive();
@@ -538,11 +559,12 @@ export function openFilterModal() {
   if (!modal) return;
   syncFilterUi();
   modal.classList.add('open');
-  openDisplayModal();
   syncFilterTriggerActive();
+  scheduleDisplayFollow();
 }
 
 export function closeFilterModal() {
+  cancelDisplayFollow();
   const modal = document.getElementById('filter-modal');
   if (modal) modal.classList.remove('open');
   syncFilterTriggerActive();
@@ -553,6 +575,7 @@ export function closeFilterModalOnBackdrop(e) {
 }
 
 export function closeCatalogPanels() {
+  cancelDisplayFollow();
   closeFilterModal();
   closeDisplayModal();
 }

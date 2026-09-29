@@ -730,10 +730,26 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   const originalWindow = global.window;
   const originalLocation = global.location;
   const originalFetch = global.fetch;
+  const pendingTimers = [];
+  const fakeSetTimeout = (fn, ms) => {
+    const id = pendingTimers.length + 1;
+    pendingTimers.push({ id, fn, ms });
+    return id;
+  };
+  const fakeClearTimeout = (id) => {
+    const idx = pendingTimers.findIndex(t => t.id === id);
+    if (idx >= 0) pendingTimers.splice(idx, 1);
+  };
+  const flushTimers = () => {
+    const due = pendingTimers.splice(0);
+    due.forEach(t => t.fn());
+  };
   global.location = { hash: '' };
   global.window = {
     switchView: () => {},
     scrollTo: () => {},
+    setTimeout: fakeSetTimeout,
+    clearTimeout: fakeClearTimeout,
     syncFilterUi: undefined,
     location: global.location
   };
@@ -747,7 +763,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   const { store } = await import('../js/state.js');
   const { switchCollection } = await import('../js/components/sidebar.js');
-  const { openFilterModal, closeFilterModal, closeCatalogPanels, resetFineFilters, resetDisplaySettings, countActiveFineFilters } = await import('../js/filter.js');
+  const { openFilterModal, closeFilterModal, closeCatalogPanels, resetFineFilters, resetDisplaySettings, countActiveFineFilters, DISPLAY_FOLLOW_DELAY_MS } = await import('../js/filter.js');
 
   store.set({ currentCollectionId: 'japanese-terms', allRecords: [], filteredRecords: [] });
   switchCollection('korean-terms', false);
@@ -764,12 +780,21 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   openFilterModal();
   assert(mockFilterModal.classes.has('open'));
-  assert(mockDisplayModal.classes.has('open'), 'funnel opens Display panel with Filter');
+  assert(!mockDisplayModal.classes.has('open'), 'Display waits until Filter has opened');
+  assert.equal(pendingTimers.length, 1);
+  assert.equal(pendingTimers[0].ms, DISPLAY_FOLLOW_DELAY_MS);
   assert(mockTrigger.classes.has('active'));
+  flushTimers();
+  assert(mockDisplayModal.classes.has('open'), 'funnel opens Display after Filter');
   closeCatalogPanels();
   assert(!mockFilterModal.classes.has('open'));
   assert(!mockDisplayModal.classes.has('open'));
   assert(!mockTrigger.classes.has('active'));
+
+  openFilterModal();
+  closeCatalogPanels();
+  flushTimers();
+  assert(!mockDisplayModal.classes.has('open'), 'closing Filter cancels a pending Display follow');
 
   store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', etymologyTab: '外來語', posTab: '名詞', currentCollectionId: 'korean-terms' });
   assert.equal(countActiveFineFilters() >= 4, true);
