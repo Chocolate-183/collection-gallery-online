@@ -252,17 +252,29 @@ test('Filter Modal - Initial, Length, Kind and Sort combine independently', () =
     { id: 'hanja', etymology: '漢字語', pos: '名詞' },
     { id: 'loan', etymology: '外來語', pos: '名詞' },
     { id: 'native', etymology: '固有詞', pos: '動詞' },
-    { id: 'adj', etymology: '漢字語', pos: '形容詞' }
+    { id: 'adj', etymology: '漢字語', pos: '形容詞' },
+    { id: 'interjection', etymology: '固有詞', pos: '感嘆詞' },
+    { id: 'determiner', etymology: '漢字語', pos: '冠形詞' },
+    { id: 'pronoun', etymology: '固有詞', pos: '代名詞' },
+    { id: 'counter', etymology: '固有詞', pos: '量詞' },
+    { id: 'numeral', etymology: '漢字語', pos: '數詞' },
+    { id: 'bound', etymology: '固有詞', pos: '依存名詞' }
   ];
   assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.LOANWORD).map(r => r.id), ['loan']);
-  assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA).map(r => r.id), ['hanja', 'adj']);
-  assert.equal(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.ALL).length, 4);
+  assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA).map(r => r.id), ['hanja', 'adj', 'determiner', 'numeral']);
+  assert.equal(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.ALL).length, 10);
   assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
   assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.NOUN).map(r => r.id), ['hanja', 'loan']);
   assert.deepEqual(
     filterByPos(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA), POS_TABS.ADJECTIVE).map(r => r.id),
     ['adj']
   );
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.INTERJECTION).map(r => r.id), ['interjection']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.DETERMINER).map(r => r.id), ['determiner']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.PRONOUN).map(r => r.id), ['pronoun']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.COUNTER).map(r => r.id), ['counter']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.NUMERAL).map(r => r.id), ['numeral']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.BOUND_NOUN).map(r => r.id), ['bound']);
 
   const byIdAsc = sortRecords(records, null, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.ASC });
   assert.deepEqual(byIdAsc.map(r => r.id), ['#C103-0001', '#C103-0002', '#C103-0003', '#C103-0010']);

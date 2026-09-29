@@ -69,6 +69,18 @@ test('Local Fallback Snapshot Integrity - Master Korean Vocabulary Fast: The Ult
   assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
   assert.match(sample.ja_term, /\|/);
   assert.notEqual(sample.ja_term, sample.reading);
+  const posValues = [...new Set(koreanJson.map(r => String(r.pos || '').trim()).filter(Boolean))];
+  for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
+    assert.ok(posValues.includes(pos), `C103 dump missing POS ${pos}`);
+  }
+});
+
+test('C103 Filter POS pills include all sheet 詞性 values', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const posSection = html.match(/id="pos-tabs"[\s\S]*?<\/div>/)[0];
+  for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
+    assert.match(posSection, new RegExp(`data-tab="${pos}"`));
+  }
 });
 
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {

@@ -56,7 +56,13 @@ export const POS_TABS = {
   NOUN: '名詞',
   VERB: '動詞',
   ADJECTIVE: '形容詞',
-  ADVERB: '副詞'
+  ADVERB: '副詞',
+  INTERJECTION: '感嘆詞',
+  DETERMINER: '冠形詞',
+  PRONOUN: '代名詞',
+  COUNTER: '量詞',
+  NUMERAL: '數詞',
+  BOUND_NOUN: '依存名詞'
 };
 
 export const BASIC100_TAG = '基礎100';
