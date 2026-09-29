@@ -85,6 +85,14 @@ test('C103 Filter POS pills include all sheet 詞性 values', () => {
   }
 });
 
+test('Filter modal Category sits after Etymology', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const posIdx = html.indexOf('id="filter-pos-section"');
+  const etymologyIdx = html.indexOf('id="filter-etymology-section"');
+  const kindIdx = html.indexOf('id="filter-kind-section"');
+  assert.ok(posIdx > 0 && etymologyIdx > posIdx && kindIdx > etymologyIdx);
+});
+
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
   mockDOM({});
   const fetched = [];
