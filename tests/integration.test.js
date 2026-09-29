@@ -649,7 +649,8 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   const mockHangul = createMockElement({ style: { display: 'none' } });
   const mockKana = createMockElement({ style: { display: 'none' } });
   const mockKind = createMockElement({ style: { display: 'none' } });
-  const mockLoanword = createMockElement({ style: { display: 'none' } });
+  const mockEtymology = createMockElement({ style: { display: 'none' } });
+  const mockPos = createMockElement({ style: { display: 'none' } });
   const mockBasic100 = createMockElement({ style: { display: 'none' } });
   const mockQuickBasic100 = createMockElement({ style: { display: 'none' } });
   const mockReading = createMockElement({ style: {} });
@@ -662,7 +663,8 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
     'filter-hangul-section': mockHangul,
     'filter-kana-section': mockKana,
     'filter-kind-section': mockKind,
-    'kind-loanword': mockLoanword,
+    'filter-etymology-section': mockEtymology,
+    'filter-pos-section': mockPos,
     'kind-basic100': mockBasic100,
     'quick-basic100': mockQuickBasic100,
     'sort-field-reading': mockReading,
@@ -697,8 +699,9 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   switchCollection('korean-terms', false);
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockHangul.style.display, '');
-  assert.equal(mockKind.style.display, '');
-  assert.equal(mockLoanword.style.display, '');
+  assert.equal(mockKind.style.display, 'none');
+  assert.equal(mockEtymology.style.display, '');
+  assert.equal(mockPos.style.display, '');
   assert.equal(mockBasic100.style.display, 'none');
   assert.equal(mockQuickBasic100.style.display, 'none');
   assert.equal(mockKana.style.display, 'none');
@@ -712,20 +715,23 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   assert(!mockFilterModal.classes.has('open'));
   assert(!mockTrigger.classes.has('active'));
 
-  store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', loanwordOnly: true, currentCollectionId: 'korean-terms' });
-  assert.equal(countActiveFineFilters() >= 3, true);
+  store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', etymologyTab: '外來語', posTab: '名詞', currentCollectionId: 'korean-terms' });
+  assert.equal(countActiveFineFilters() >= 4, true);
   resetFineFilters();
   const afterReset = store.get();
   assert.equal(afterReset.currentLengthTab, 'ALL');
   assert.equal(afterReset.currentInitialTab, 'ALL');
   assert.equal(afterReset.loanwordOnly, false);
+  assert.equal(afterReset.etymologyTab, 'ALL');
+  assert.equal(afterReset.posTab, 'ALL');
   assert.equal(afterReset.basic100Only, false);
   assert.equal(afterReset.currentSortField, 'title');
 
   switchCollection('japanese-terms', false);
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockKind.style.display, '');
-  assert.equal(mockLoanword.style.display, 'none');
+  assert.equal(mockEtymology.style.display, 'none');
+  assert.equal(mockPos.style.display, 'none');
   assert.equal(mockBasic100.style.display, '');
   assert.equal(mockQuickBasic100.style.display, '');
   assert.equal(mockKana.style.display, '');
@@ -734,7 +740,8 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   switchCollection('china-terms', false);
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockKind.style.display, '');
-  assert.equal(mockLoanword.style.display, 'none');
+  assert.equal(mockEtymology.style.display, 'none');
+  assert.equal(mockPos.style.display, 'none');
   assert.equal(mockBasic100.style.display, '');
   assert.equal(mockQuickBasic100.style.display, '');
   assert.equal(mockKana.style.display, 'none');

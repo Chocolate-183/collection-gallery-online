@@ -703,8 +703,28 @@
             <div class="awsui-modal-section-title"><span>Category</span></div>
             <div class="awsui-tabs awsui-filter-modal-tabs" id="kind-tabs">
               <button class="awsui-tab active" data-tab="ALL" onclick="selectKindTab('ALL', this)">不限</button>
-              <button class="awsui-tab" data-tab="LOANWORD" id="kind-loanword" onclick="selectKindTab('LOANWORD', this)">外來語</button>
               <button class="awsui-tab" data-tab="BASIC100" id="kind-basic100" onclick="selectKindTab('BASIC100', this)">基礎100</button>
+            </div>
+          </div>
+
+          <div class="awsui-filter-modal-section" id="filter-etymology-section" style="display: none;">
+            <div class="awsui-modal-section-title"><span>Etymology</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="etymology-tabs">
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectEtymologyTab('ALL', this)">不限</button>
+              <button class="awsui-tab" data-tab="漢字語" onclick="selectEtymologyTab('漢字語', this)">漢字語</button>
+              <button class="awsui-tab" data-tab="外來語" onclick="selectEtymologyTab('外來語', this)">外來語</button>
+              <button class="awsui-tab" data-tab="固有詞" onclick="selectEtymologyTab('固有詞', this)">固有詞</button>
+            </div>
+          </div>
+
+          <div class="awsui-filter-modal-section" id="filter-pos-section" style="display: none;">
+            <div class="awsui-modal-section-title"><span>POS</span></div>
+            <div class="awsui-tabs awsui-filter-modal-tabs" id="pos-tabs">
+              <button class="awsui-tab active" data-tab="ALL" onclick="selectPosTab('ALL', this)">不限</button>
+              <button class="awsui-tab" data-tab="名詞" onclick="selectPosTab('名詞', this)">名詞</button>
+              <button class="awsui-tab" data-tab="動詞" onclick="selectPosTab('動詞', this)">動詞</button>
+              <button class="awsui-tab" data-tab="形容詞" onclick="selectPosTab('形容詞', this)">形容詞</button>
+              <button class="awsui-tab" data-tab="副詞" onclick="selectPosTab('副詞', this)">副詞</button>
             </div>
           </div>
 

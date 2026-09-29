@@ -13,6 +13,9 @@
       "가수 | 歌手"
     ],
     "subtitle": "可能",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 1
   },
   {
@@ -29,6 +32,9 @@
       "가요 | 歌謠"
     ],
     "subtitle": "假髮",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 2
   },
   {
@@ -45,6 +51,9 @@
       "사고 | 事故"
     ],
     "subtitle": "家事",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 3
   },
   {
@@ -61,6 +70,9 @@
       "가사 | 家事"
     ],
     "subtitle": "歌詞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 4
   },
   {
@@ -77,6 +89,9 @@
       "수건 | 手巾"
     ],
     "subtitle": "歌手",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 5
   },
   {
@@ -93,6 +108,9 @@
       "가사 | 家事"
     ],
     "subtitle": "歌謠",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 6
   },
   {
@@ -109,6 +127,9 @@
       "가요 | 歌謠"
     ],
     "subtitle": "加入",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 7
   },
   {
@@ -125,6 +146,9 @@
       "간단 | 簡單"
     ],
     "subtitle": "家族",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 8
   },
   {
@@ -141,6 +165,9 @@
       "감독 | 監督"
     ],
     "subtitle": "簡單",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 9
   },
   {
@@ -157,6 +184,9 @@
       "감동적 | 感動的"
     ],
     "subtitle": "感氣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 10
   },
   {
@@ -173,6 +203,9 @@
       "가족 | 家族"
     ],
     "subtitle": "監督",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 11
   },
   {
@@ -189,6 +222,9 @@
       "감동적 | 感動的"
     ],
     "subtitle": "感動",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 12
   },
   {
@@ -205,6 +241,9 @@
       "소감 | 所感"
     ],
     "subtitle": "感動的",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "形容詞",
     "row_index": 13
   },
   {
@@ -221,6 +260,9 @@
       "감동적 | 感動的"
     ],
     "subtitle": "感謝",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 14
   },
   {
@@ -237,6 +279,9 @@
       "감동 | 感動"
     ],
     "subtitle": "鑑賞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 15
   },
   {
@@ -253,6 +298,9 @@
       "감동적 | 感動的"
     ],
     "subtitle": "感情",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 16
   },
   {
@@ -269,6 +317,9 @@
       "왕자 | 王子"
     ],
     "subtitle": "甲子",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 17
   },
   {
@@ -285,6 +336,9 @@
       "감상 | 鑑賞"
     ],
     "subtitle": "強하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "形容詞",
     "row_index": 18
   },
   {
@@ -301,6 +355,9 @@
       "갑자 | 甲子"
     ],
     "subtitle": "開講",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 19
   },
   {
@@ -317,6 +374,9 @@
       "개인기 | 個人技"
     ],
     "subtitle": "槪要",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 20
   },
   {
@@ -333,6 +393,9 @@
       "본인 | 本人"
     ],
     "subtitle": "個人技",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 21
   },
   {
@@ -349,6 +412,9 @@
       "애인 | 愛人"
     ],
     "subtitle": "個人的",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "形容詞",
     "row_index": 22
   },
   {
@@ -365,6 +431,9 @@
       "거실 | 居室"
     ],
     "subtitle": "距離",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 23
   },
   {
@@ -381,6 +450,9 @@
       "건강 | 健康"
     ],
     "subtitle": "居室",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 24
   },
   {
@@ -397,6 +469,9 @@
       "개인적 | 個人的"
     ],
     "subtitle": "健康",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 25
   },
   {
@@ -413,6 +488,9 @@
       "거리 | 距離"
     ],
     "subtitle": "乾杯",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 26
   },
   {
@@ -429,6 +507,9 @@
       "열심히 | 熱心히"
     ],
     "subtitle": "決心",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 27
   },
   {
@@ -445,6 +526,9 @@
       "경고 | 警告"
     ],
     "subtitle": "結婚",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 28
   },
   {
@@ -461,6 +545,9 @@
       "경고 | 警告"
     ],
     "subtitle": "結婚式",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 29
   },
   {
@@ -477,6 +564,9 @@
       "경기 | 競技"
     ],
     "subtitle": "警告",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 30
   },
   {
@@ -493,6 +583,9 @@
       "경고 | 警告"
     ],
     "subtitle": "競技",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 31
   },
   {
@@ -509,6 +602,9 @@
       "경영 | 經營"
     ],
     "subtitle": "景福宮",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 32
   },
   {
@@ -525,6 +621,9 @@
       "경영 | 經營"
     ],
     "subtitle": "警備",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 33
   },
   {
@@ -541,6 +640,9 @@
       "경복궁 | 景福宮"
     ],
     "subtitle": "經營",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 34
   },
   {
@@ -557,6 +659,9 @@
       "계단 | 階段"
     ],
     "subtitle": "慶州",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 35
   },
   {
@@ -573,6 +678,9 @@
       "경영 | 經營"
     ],
     "subtitle": "警察",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 36
   },
   {
@@ -589,6 +697,9 @@
       "경영 | 經營"
     ],
     "subtitle": "階段",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 37
   },
   {
@@ -605,6 +716,9 @@
       "계약 | 契約"
     ],
     "subtitle": "鷄卵",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 38
   },
   {
@@ -621,6 +735,9 @@
       "경찰 | 警察"
     ],
     "subtitle": "繼續",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 39
   },
   {
@@ -637,6 +754,9 @@
       "계란 | 鷄卵"
     ],
     "subtitle": "契約",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 40
   },
   {
@@ -653,6 +773,9 @@
       "계속 | 繼續"
     ],
     "subtitle": "高麗",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 41
   },
   {
@@ -669,6 +792,9 @@
       "계속 | 繼續"
     ],
     "subtitle": "苦悶",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 42
   },
   {
@@ -685,6 +811,9 @@
       "고속 | 高速"
     ],
     "subtitle": "告白",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 43
   },
   {
@@ -701,6 +830,9 @@
       "선생 | 先生"
     ],
     "subtitle": "苦生",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 44
   },
   {
@@ -717,6 +849,9 @@
       "고백 | 告白"
     ],
     "subtitle": "高速",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 45
   },
   {
@@ -733,6 +868,9 @@
       "고생 | 苦生"
     ],
     "subtitle": "故障",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 46
   },
   {
@@ -749,6 +887,9 @@
       "공기 | 空氣"
     ],
     "subtitle": "故鄕",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 47
   },
   {
@@ -765,6 +906,9 @@
       "고향 | 故鄕"
     ],
     "subtitle": "公開",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 48
   },
   {
@@ -781,6 +925,9 @@
       "용기 | 勇氣"
     ],
     "subtitle": "空氣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 49
   },
   {
@@ -797,6 +944,9 @@
       "공부 | 工夫"
     ],
     "subtitle": "公募",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 50
   },
   {
@@ -813,6 +963,9 @@
       "공개 | 公開"
     ],
     "subtitle": "工夫",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 51
   },
   {
@@ -829,6 +982,9 @@
       "식사 | 食事"
     ],
     "subtitle": "工事",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 52
   },
   {
@@ -845,6 +1001,9 @@
       "공부 | 工夫"
     ],
     "subtitle": "公園",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 53
   },
   {
@@ -861,6 +1020,9 @@
       "주제 | 主題"
     ],
     "subtitle": "公主",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 54
   },
   {
@@ -877,6 +1039,9 @@
       "공원 | 公園"
     ],
     "subtitle": "空冊",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 55
   },
   {
@@ -893,6 +1058,9 @@
       "관계 | 關係"
     ],
     "subtitle": "空港",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 56
   },
   {
@@ -909,6 +1077,9 @@
       "관계 | 關係"
     ],
     "subtitle": "課題",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 57
   },
   {
@@ -925,6 +1096,9 @@
       "공항 | 空港"
     ],
     "subtitle": "關係",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 58
   },
   {
@@ -941,6 +1115,9 @@
       "이유 | 理由"
     ],
     "subtitle": "管理",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 59
   },
   {
@@ -957,6 +1134,9 @@
       "양심 | 良心"
     ],
     "subtitle": "關心",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 60
   },
   {
@@ -973,6 +1153,9 @@
       "관리 | 管理"
     ],
     "subtitle": "光彩",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 61
   },
   {
@@ -989,6 +1172,9 @@
       "성숙 | 成熟"
     ],
     "subtitle": "光合成",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 62
   },
   {
@@ -1005,6 +1191,9 @@
       "소화 | 消化"
     ],
     "subtitle": "光化門",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 63
   },
   {
@@ -1021,6 +1210,9 @@
       "광채 | 光彩"
     ],
     "subtitle": "宏壯",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 64
   },
   {
@@ -1037,6 +1229,9 @@
       "굉장 | 宏壯"
     ],
     "subtitle": "敎授",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 65
   },
   {
@@ -1053,6 +1248,9 @@
       "교통 | 交通"
     ],
     "subtitle": "敎養",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 66
   },
   {
@@ -1069,6 +1267,9 @@
       "교환 | 交換"
     ],
     "subtitle": "敎育",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 67
   },
   {
@@ -1085,6 +1286,9 @@
       "융통성 | 融通性"
     ],
     "subtitle": "交通",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 68
   },
   {
@@ -1101,6 +1305,9 @@
       "교양 | 敎養"
     ],
     "subtitle": "交換",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 69
   },
   {
@@ -1117,6 +1324,9 @@
       "교통 | 交通"
     ],
     "subtitle": "口徑",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 70
   },
   {
@@ -1133,6 +1343,9 @@
       "교통 | 交通"
     ],
     "subtitle": "救援",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 71
   },
   {
@@ -1149,6 +1362,9 @@
       "이월 | 二月"
     ],
     "subtitle": "九月",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 72
   },
   {
@@ -1165,6 +1381,9 @@
       "구경 | 口徑"
     ],
     "subtitle": "極細絲",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 73
   },
   {
@@ -1181,6 +1400,9 @@
       "극세사 | 極細絲"
     ],
     "subtitle": "劇場",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 74
   },
   {
@@ -1197,6 +1419,9 @@
       "구월 | 九月"
     ],
     "subtitle": "近處",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 75
   },
   {
@@ -1213,6 +1438,9 @@
       "현금 | 現金"
     ],
     "subtitle": "金曜日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 76
   },
   {
@@ -1229,6 +1457,9 @@
       "극장 | 劇場"
     ],
     "subtitle": "禁止",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 77
   },
   {
@@ -1245,6 +1476,9 @@
       "근처 | 近處"
     ],
     "subtitle": "紀念",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 78
   },
   {
@@ -1261,6 +1495,9 @@
       "기록 | 記錄"
     ],
     "subtitle": "紀念品",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 79
   },
   {
@@ -1277,6 +1514,9 @@
       "기념품 | 紀念品"
     ],
     "subtitle": "記錄",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 80
   },
   {
@@ -1293,6 +1533,9 @@
       "일기 | 日氣"
     ],
     "subtitle": "氣分",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 81
   },
   {
@@ -1309,6 +1552,9 @@
       "여사 | 女士"
     ],
     "subtitle": "技士",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 82
   },
   {
@@ -1325,6 +1571,9 @@
       "기적 | 奇跡"
     ],
     "subtitle": "記憶",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 83
   },
   {
@@ -1341,6 +1590,9 @@
       "기사 | 技士"
     ],
     "subtitle": "奇跡",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 84
   },
   {
@@ -1357,6 +1609,9 @@
       "기사 | 技士"
     ],
     "subtitle": "汽車",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 85
   },
   {
@@ -1373,6 +1628,9 @@
       "기억 | 記憶"
     ],
     "subtitle": "其他",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 86
   },
   {
@@ -1389,6 +1647,9 @@
       "회의 | 會議"
     ],
     "subtitle": "機會",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 87
   },
   {
@@ -1405,6 +1666,9 @@
       "난리 | 亂離"
     ],
     "subtitle": "緊張",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 88
   },
   {
@@ -1421,6 +1685,9 @@
       "현금 | 現金"
     ],
     "subtitle": "金濟東",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 89
   },
   {
@@ -1437,6 +1704,9 @@
       "남자 | 男子"
     ],
     "subtitle": "亂離",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 90
   },
   {
@@ -1453,6 +1723,9 @@
       "왕자 | 王子"
     ],
     "subtitle": "男子",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 91
   },
   {
@@ -1469,6 +1742,9 @@
       "내일 | 來日"
     ],
     "subtitle": "男便",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 92
   },
   {
@@ -1485,6 +1761,9 @@
       "일기 | 日氣"
     ],
     "subtitle": "來日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 93
   },
   {
@@ -1501,6 +1780,9 @@
       "남자 | 男子"
     ],
     "subtitle": "冷麵",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 94
   },
   {
@@ -1517,6 +1799,9 @@
       "농구 | 籠球"
     ],
     "subtitle": "冷藏",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 95
   },
   {
@@ -1533,6 +1818,9 @@
       "냉면 | 冷麵"
     ],
     "subtitle": "努力",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 96
   },
   {
@@ -1549,6 +1837,9 @@
       "노력 | 努力"
     ],
     "subtitle": "籠球",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 97
   },
   {
@@ -1565,6 +1856,9 @@
       "다도 | 茶道"
     ],
     "subtitle": "能力",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 98
   },
   {
@@ -1581,6 +1875,9 @@
       "다행 | 多幸"
     ],
     "subtitle": "茶道",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 99
   },
   {
@@ -1597,6 +1894,9 @@
       "능력 | 能力"
     ],
     "subtitle": "多幸",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 100
   },
   {
@@ -1613,6 +1913,9 @@
       "일본어 | 日本語"
     ],
     "subtitle": "單語",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 101
   },
   {
@@ -1629,6 +1932,9 @@
       "당당 | 堂堂"
     ],
     "subtitle": "鷄-",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 102
   },
   {
@@ -1645,6 +1951,9 @@
       "적당 | 適當"
     ],
     "subtitle": "擔當",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 103
   },
   {
@@ -1661,6 +1970,9 @@
       "당신 | 當身"
     ],
     "subtitle": "堂堂",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 104
   },
   {
@@ -1677,6 +1989,9 @@
       "대신 | 代身"
     ],
     "subtitle": "當身",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 105
   },
   {
@@ -1693,6 +2008,9 @@
       "우연 | 偶然"
     ],
     "subtitle": "當然",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 106
   },
   {
@@ -1709,6 +2027,9 @@
       "극장 | 劇場"
     ],
     "subtitle": "當場",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 107
   },
   {
@@ -1725,6 +2046,9 @@
       "대만 | 臺灣"
     ],
     "subtitle": "唐慌",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 108
   },
   {
@@ -1741,6 +2065,9 @@
       "상대방 | 相對方"
     ],
     "subtitle": "對答",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 109
   },
   {
@@ -1757,6 +2084,9 @@
       "대신 | 代身"
     ],
     "subtitle": "臺灣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 110
   },
   {
@@ -1773,6 +2103,9 @@
       "출신 | 出身"
     ],
     "subtitle": "代身",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 111
   },
   {
@@ -1789,6 +2122,9 @@
       "자체 | 自體"
     ],
     "subtitle": "大體",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 112
   },
   {
@@ -1805,6 +2141,9 @@
       "전통 | 傳統"
     ],
     "subtitle": "大統領",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 113
   },
   {
@@ -1821,6 +2160,9 @@
       "표정 | 表情"
     ],
     "subtitle": "代表",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 114
   },
   {
@@ -1837,6 +2179,9 @@
       "방학 | 放學"
     ],
     "subtitle": "大學",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 115
   },
   {
@@ -1853,6 +2198,9 @@
       "방학 | 放學"
     ],
     "subtitle": "大學校",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 116
   },
   {
@@ -1869,6 +2217,9 @@
       "한국 | 韓國"
     ],
     "subtitle": "大韓",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 117
   },
   {
@@ -1885,6 +2236,9 @@
       "상대방 | 相對方"
     ],
     "subtitle": "對話",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 118
   },
   {
@@ -1901,6 +2255,9 @@
       "동갑 | 同甲"
     ],
     "subtitle": "德談",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 119
   },
   {
@@ -1917,6 +2274,9 @@
       "미술관 | 美術館"
     ],
     "subtitle": "圖書館",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 120
   },
   {
@@ -1933,6 +2293,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "同甲",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 121
   },
   {
@@ -1949,6 +2312,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "同居",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 122
   },
   {
@@ -1965,6 +2331,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "同期",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 123
   },
   {
@@ -1981,6 +2350,9 @@
       "동영상 | 動映像"
     ],
     "subtitle": "動詞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 124
   },
   {
@@ -1997,6 +2369,9 @@
       "동안 | 童顏"
     ],
     "subtitle": "銅像",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 125
   },
   {
@@ -2013,6 +2388,9 @@
       "동기 | 同期"
     ],
     "subtitle": "童顏",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 126
   },
   {
@@ -2029,6 +2407,9 @@
       "감동적 | 感動的"
     ],
     "subtitle": "動映像",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 127
   },
   {
@@ -2045,6 +2426,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "同志",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 128
   },
   {
@@ -2061,6 +2445,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "同窓",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 129
   },
   {
@@ -2077,6 +2464,9 @@
       "동창 | 同窓"
     ],
     "subtitle": "同好會",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 130
   },
   {
@@ -2093,6 +2483,9 @@
       "동지 | 同志"
     ],
     "subtitle": "頭腦",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 131
   },
   {
@@ -2109,6 +2502,9 @@
       "동창 | 同窓"
     ],
     "subtitle": "豆腐",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 132
   },
   {
@@ -2125,6 +2521,9 @@
       "두뇌 | 頭腦"
     ],
     "subtitle": "登錄",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 133
   },
   {
@@ -2141,6 +2540,9 @@
       "요금 | 料金"
     ],
     "subtitle": "登錄金",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 134
   },
   {
@@ -2157,6 +2559,9 @@
       "만세 | 萬歲"
     ],
     "subtitle": "登山",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 135
   },
   {
@@ -2173,6 +2578,9 @@
       "등록 | 登錄"
     ],
     "subtitle": "萬歲",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 136
   },
   {
@@ -2189,6 +2597,9 @@
       "매년 | 每年"
     ],
     "subtitle": "萬若",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 137
   },
   {
@@ -2205,6 +2616,9 @@
       "등산 | 登山"
     ],
     "subtitle": "亡하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "動詞",
     "row_index": 138
   },
   {
@@ -2221,6 +2635,9 @@
       "학년 | 學年"
     ],
     "subtitle": "每年",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 139
   },
   {
@@ -2237,6 +2654,9 @@
       "만약 | 萬若"
     ],
     "subtitle": "埋沒",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 140
   },
   {
@@ -2253,6 +2673,9 @@
       "매몰 | 埋沒"
     ],
     "subtitle": "每番",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 141
   },
   {
@@ -2269,6 +2692,9 @@
       "일기 | 日氣"
     ],
     "subtitle": "每日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 142
   },
   {
@@ -2285,6 +2711,9 @@
       "매번 | 每番"
     ],
     "subtitle": "賣店",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 143
   },
   {
@@ -2301,6 +2730,9 @@
       "매번 | 每番"
     ],
     "subtitle": "賣盡",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 144
   },
   {
@@ -2317,6 +2749,9 @@
       "명동 | 明洞"
     ],
     "subtitle": "麥酒",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 145
   },
   {
@@ -2333,6 +2768,9 @@
       "매점 | 賣店"
     ],
     "subtitle": "面接",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 146
   },
   {
@@ -2349,6 +2787,9 @@
       "맥주 | 麥酒"
     ],
     "subtitle": "明洞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 147
   },
   {
@@ -2365,6 +2806,9 @@
       "맥주 | 麥酒"
     ],
     "subtitle": "毛孔",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 148
   },
   {
@@ -2381,6 +2825,9 @@
       "모공 | 毛孔"
     ],
     "subtitle": "帽子",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 149
   },
   {
@@ -2397,6 +2844,9 @@
       "일기 | 日記"
     ],
     "subtitle": "木曜日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 150
   },
   {
@@ -2413,6 +2863,9 @@
       "모자 | 帽子"
     ],
     "subtitle": "目標",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 151
   },
   {
@@ -2429,6 +2882,9 @@
       "목표 | 目標"
     ],
     "subtitle": "舞臺",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 152
   },
   {
@@ -2445,6 +2901,9 @@
       "음료수 | 飮料水"
     ],
     "subtitle": "無料",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 153
   },
   {
@@ -2461,6 +2920,9 @@
       "무대 | 舞臺"
     ],
     "subtitle": "無視",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 154
   },
   {
@@ -2477,6 +2939,9 @@
       "무시 | 無視"
     ],
     "subtitle": "文法",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 155
   },
   {
@@ -2493,6 +2958,9 @@
       "문제 | 問題"
     ],
     "subtitle": "文字",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 156
   },
   {
@@ -2509,6 +2977,9 @@
       "문자 | 文字"
     ],
     "subtitle": "問題",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 157
   },
   {
@@ -2525,6 +2996,9 @@
       "광화문 | 光化門"
     ],
     "subtitle": "文化",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 158
   },
   {
@@ -2541,6 +3015,9 @@
       "박물관 | 博物館"
     ],
     "subtitle": "物件",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 159
   },
   {
@@ -2557,6 +3034,9 @@
       "외국 | 外國"
     ],
     "subtitle": "美國",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 160
   },
   {
@@ -2573,6 +3053,9 @@
       "미모 | 美貌"
     ],
     "subtitle": "未來",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 161
   },
   {
@@ -2589,6 +3072,9 @@
       "미래 | 未來"
     ],
     "subtitle": "美貌",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 162
   },
   {
@@ -2605,6 +3091,9 @@
       "미안 | 未安"
     ],
     "subtitle": "微笑",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 163
   },
   {
@@ -2621,6 +3110,9 @@
       "수술 | 手術"
     ],
     "subtitle": "美術館",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 164
   },
   {
@@ -2637,6 +3129,9 @@
       "미인 | 美人"
     ],
     "subtitle": "未安",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 165
   },
   {
@@ -2653,6 +3148,9 @@
       "성인 | 成人"
     ],
     "subtitle": "美人",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 166
   },
   {
@@ -2669,6 +3167,9 @@
       "한국 | 韓國"
     ],
     "subtitle": "民國",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 167
   },
   {
@@ -2685,6 +3186,9 @@
       "미인 | 美人"
     ],
     "subtitle": "迫力",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 168
   },
   {
@@ -2701,6 +3205,9 @@
       "실물 | 實物"
     ],
     "subtitle": "博物館",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 169
   },
   {
@@ -2717,6 +3224,9 @@
       "실수 | 失手"
     ],
     "subtitle": "拍手",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 170
   },
   {
@@ -2733,6 +3243,9 @@
       "상대 | 相對"
     ],
     "subtitle": "反對",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 171
   },
   {
@@ -2749,6 +3262,9 @@
       "반지 | 斑指"
     ],
     "subtitle": "反復",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 172
   },
   {
@@ -2765,6 +3281,9 @@
       "박수 | 拍手"
     ],
     "subtitle": "反應",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 173
   },
   {
@@ -2781,6 +3300,9 @@
       "반대 | 反對"
     ],
     "subtitle": "斑指",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 174
   },
   {
@@ -2797,6 +3319,9 @@
       "발급 | 發給"
     ],
     "subtitle": "返品",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 175
   },
   {
@@ -2813,6 +3338,9 @@
       "반지 | 斑指"
     ],
     "subtitle": "發給",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 176
   },
   {
@@ -2829,6 +3357,9 @@
       "반품 | 返品"
     ],
     "subtitle": "發音",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 177
   },
   {
@@ -2845,6 +3376,9 @@
       "표정 | 表情"
     ],
     "subtitle": "發表",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 178
   },
   {
@@ -2861,6 +3395,9 @@
       "발표 | 發表"
     ],
     "subtitle": "方今",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 179
   },
   {
@@ -2877,6 +3414,9 @@
       "방송 | 放送"
     ],
     "subtitle": "方法",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 180
   },
   {
@@ -2893,6 +3433,9 @@
       "방법 | 方法"
     ],
     "subtitle": "放送",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 181
   },
   {
@@ -2909,6 +3452,9 @@
       "우체국 | 郵遞局"
     ],
     "subtitle": "放送局",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 182
   },
   {
@@ -2925,6 +3471,9 @@
       "결혼식 | 結婚式"
     ],
     "subtitle": "方式",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 183
   },
   {
@@ -2941,6 +3490,9 @@
       "수학 | 數學"
     ],
     "subtitle": "放學",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 184
   },
   {
@@ -2957,6 +3509,9 @@
       "방송국 | 放送局"
     ],
     "subtitle": "背囊",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 185
   },
   {
@@ -2973,6 +3528,9 @@
       "방식 | 方式"
     ],
     "subtitle": "配達",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 186
   },
   {
@@ -2989,6 +3547,9 @@
       "백화점 | 百貨店"
     ],
     "subtitle": "俳優",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 187
   },
   {
@@ -3005,6 +3566,9 @@
       "번호 | 番號"
     ],
     "subtitle": "配定",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 188
   },
   {
@@ -3021,6 +3585,9 @@
       "배우 | 俳優"
     ],
     "subtitle": "百貨店",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 189
   },
   {
@@ -3037,6 +3604,9 @@
       "변태 | 變態"
     ],
     "subtitle": "番號",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 190
   },
   {
@@ -3053,6 +3623,9 @@
       "별로 | 別로"
     ],
     "subtitle": "變態",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 191
   },
   {
@@ -3069,6 +3642,9 @@
       "백화점 | 百貨店"
     ],
     "subtitle": "變하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "動詞",
     "row_index": 192
   },
   {
@@ -3085,6 +3661,9 @@
       "별일 | 別일"
     ],
     "subtitle": "別로",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 193
   },
   {
@@ -3101,6 +3680,9 @@
       "별일 | 別일"
     ],
     "subtitle": "別名",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 194
   },
   {
@@ -3117,6 +3699,9 @@
       "별로 | 別로"
     ],
     "subtitle": "別일",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 195
   },
   {
@@ -3133,6 +3718,9 @@
       "별명 | 別名"
     ],
     "subtitle": "病院",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 196
   },
   {
@@ -3149,6 +3737,9 @@
       "보복 | 報復"
     ],
     "subtitle": "步道",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 197
   },
   {
@@ -3165,6 +3756,9 @@
       "보통 | 普通"
     ],
     "subtitle": "報復",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 198
   },
   {
@@ -3181,6 +3775,9 @@
       "보복 | 報復"
     ],
     "subtitle": "普通",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 199
   },
   {
@@ -3197,6 +3794,9 @@
       "미술관 | 美術館"
     ],
     "subtitle": "本館",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 200
   },
   {
@@ -3213,6 +3813,9 @@
       "성인 | 成人"
     ],
     "subtitle": "本人",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 201
   },
   {
@@ -3229,6 +3832,9 @@
       "보통 | 普通"
     ],
     "subtitle": "封套",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 202
   },
   {
@@ -3245,6 +3851,9 @@
       "부모 | 父母"
     ],
     "subtitle": "負擔",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 203
   },
   {
@@ -3261,6 +3870,9 @@
       "부산 | 釜山"
     ],
     "subtitle": "部隊",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 204
   },
   {
@@ -3277,6 +3889,9 @@
       "부작용 | 副作用"
     ],
     "subtitle": "父母",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 205
   },
   {
@@ -3293,6 +3908,9 @@
       "부대 | 部隊"
     ],
     "subtitle": "釜山",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 206
   },
   {
@@ -3309,6 +3927,9 @@
       "작업 | 作業"
     ],
     "subtitle": "副作用",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 207
   },
   {
@@ -3325,6 +3946,9 @@
       "부탁 | 付託"
     ],
     "subtitle": "否定",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 208
   },
   {
@@ -3341,6 +3965,9 @@
       "부정 | 否定"
     ],
     "subtitle": "不足",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 209
   },
   {
@@ -3357,6 +3984,9 @@
       "부작용 | 副作用"
     ],
     "subtitle": "付託",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 210
   },
   {
@@ -3373,6 +4003,9 @@
       "불안 | 不安"
     ],
     "subtitle": "分娩",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 211
   },
   {
@@ -3389,6 +4022,9 @@
       "미안 | 未安"
     ],
     "subtitle": "不安",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 212
   },
   {
@@ -3405,6 +4041,9 @@
       "분만 | 分娩"
     ],
     "subtitle": "不快",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 213
   },
   {
@@ -3421,6 +4060,9 @@
       "남편 | 男便"
     ],
     "subtitle": "不便",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 214
   },
   {
@@ -3437,6 +4079,9 @@
       "다행 | 多幸"
     ],
     "subtitle": "不幸",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 215
   },
   {
@@ -3453,6 +4098,9 @@
       "비행기 | 飛行機"
     ],
     "subtitle": "祕密",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 216
   },
   {
@@ -3469,6 +4117,9 @@
       "비행기 | 飛行機"
     ],
     "subtitle": "祕書",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 217
   },
   {
@@ -3485,6 +4136,9 @@
       "일행 | 一行"
     ],
     "subtitle": "飛行機",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 218
   },
   {
@@ -3501,6 +4155,9 @@
       "이사 | 理事"
     ],
     "subtitle": "事故",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 219
   },
   {
@@ -3517,6 +4174,9 @@
       "비서 | 祕書"
     ],
     "subtitle": "沙果",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 220
   },
   {
@@ -3533,6 +4193,9 @@
       "사물놀이 | 四物--"
     ],
     "subtitle": "謝過",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 221
   },
   {
@@ -3549,6 +4212,9 @@
       "식사 | 食事"
     ],
     "subtitle": "事務室",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 222
   },
   {
@@ -3565,6 +4231,9 @@
       "인물 | 人物"
     ],
     "subtitle": "四物--",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 223
   },
   {
@@ -3581,6 +4250,9 @@
       "이사 | 理事"
     ],
     "subtitle": "事實",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 224
   },
   {
@@ -3597,6 +4269,9 @@
       "사실 | 事實"
     ],
     "subtitle": "使用",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 225
   },
   {
@@ -3613,6 +4288,9 @@
       "유월 | 六月"
     ],
     "subtitle": "四月",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 226
   },
   {
@@ -3629,6 +4307,9 @@
       "사장 | 社長"
     ],
     "subtitle": "使者",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 227
   },
   {
@@ -3645,6 +4326,9 @@
       "회사원 | 會社員"
     ],
     "subtitle": "社長",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 228
   },
   {
@@ -3661,6 +4345,9 @@
       "삼성 | 三星"
     ],
     "subtitle": "寫真",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 229
   },
   {
@@ -3677,6 +4364,9 @@
       "성인 | 成人"
     ],
     "subtitle": "山岳人",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 230
   },
   {
@@ -3693,6 +4383,9 @@
       "사장 | 社長"
     ],
     "subtitle": "三星",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 231
   },
   {
@@ -3709,6 +4402,9 @@
       "오월 | 五月"
     ],
     "subtitle": "三月",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 232
   },
   {
@@ -3725,6 +4421,9 @@
       "산악인 | 山岳人"
     ],
     "subtitle": "三寸",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 233
   },
   {
@@ -3741,6 +4440,9 @@
       "관심 | 關心"
     ],
     "subtitle": "相關",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 234
   },
   {
@@ -3757,6 +4459,9 @@
       "삼촌 | 三寸"
     ],
     "subtitle": "相談",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 235
   },
   {
@@ -3773,6 +4478,9 @@
       "대화 | 對話"
     ],
     "subtitle": "相對",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 236
   },
   {
@@ -3789,6 +4497,9 @@
       "대화 | 對話"
     ],
     "subtitle": "相對方",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 237
   },
   {
@@ -3805,6 +4516,9 @@
       "동영상 | 動映像"
     ],
     "subtitle": "想像",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 238
   },
   {
@@ -3821,6 +4535,9 @@
       "동영상 | 動映像"
     ],
     "subtitle": "上映",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 239
   },
   {
@@ -3837,6 +4554,9 @@
       "생산 | 生產"
     ],
     "subtitle": "狀態",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 240
   },
   {
@@ -3853,6 +4573,9 @@
       "선생 | 先生"
     ],
     "subtitle": "生放送",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 241
   },
   {
@@ -3869,6 +4592,9 @@
       "인생 | 人生"
     ],
     "subtitle": "生產",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 242
   },
   {
@@ -3885,6 +4611,9 @@
       "인생 | 人生"
     ],
     "subtitle": "生鮮",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 243
   },
   {
@@ -3901,6 +4630,9 @@
       "인생 | 人生"
     ],
     "subtitle": "生日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 244
   },
   {
@@ -3917,6 +4649,9 @@
       "백화점 | 百貨店"
     ],
     "subtitle": "書店",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 245
   },
   {
@@ -3933,6 +4668,9 @@
       "박물관 | 博物館"
     ],
     "subtitle": "膳物",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 246
   },
   {
@@ -3949,6 +4687,9 @@
       "선수 | 選手"
     ],
     "subtitle": "先輩",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 247
   },
   {
@@ -3965,6 +4706,9 @@
       "생일 | 生日"
     ],
     "subtitle": "先生",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 248
   },
   {
@@ -3981,6 +4725,9 @@
       "수술 | 手術"
     ],
     "subtitle": "選手",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 249
   },
   {
@@ -3997,6 +4744,9 @@
       "선배 | 先輩"
     ],
     "subtitle": "選擇",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 250
   },
   {
@@ -4013,6 +4763,9 @@
       "찬성 | 贊成"
     ],
     "subtitle": "成功",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 251
   },
   {
@@ -4029,6 +4782,9 @@
       "성숙 | 成熟"
     ],
     "subtitle": "聖堂",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 252
   },
   {
@@ -4045,6 +4801,9 @@
       "찬성 | 贊成"
     ],
     "subtitle": "成熟",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 253
   },
   {
@@ -4061,6 +4820,9 @@
       "찬성 | 贊成"
     ],
     "subtitle": "成人",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 254
   },
   {
@@ -4077,6 +4839,9 @@
       "찬성 | 贊成"
     ],
     "subtitle": "成形",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 255
   },
   {
@@ -4093,6 +4858,9 @@
       "성형 | 成形"
     ],
     "subtitle": "世界",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 256
   },
   {
@@ -4109,6 +4877,9 @@
       "대표 | 代表"
     ],
     "subtitle": "世代",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 257
   },
   {
@@ -4125,6 +4896,9 @@
       "이상 | 以上"
     ],
     "subtitle": "世上",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 258
   },
   {
@@ -4141,6 +4915,9 @@
       "소감 | 所感"
     ],
     "subtitle": "世宗",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 259
   },
   {
@@ -4157,6 +4934,9 @@
       "숙소 | 宿所"
     ],
     "subtitle": "所感",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 260
   },
   {
@@ -4173,6 +4953,9 @@
       "세상 | 世上"
     ],
     "subtitle": "介紹",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 261
   },
   {
@@ -4189,6 +4972,9 @@
       "여신 | 女神"
     ],
     "subtitle": "小女",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 262
   },
   {
@@ -4205,6 +4991,9 @@
       "숙소 | 宿所"
     ],
     "subtitle": "所屬",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 263
   },
   {
@@ -4221,6 +5010,9 @@
       "소중 | 所重"
     ],
     "subtitle": "所屬社",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 264
   },
   {
@@ -4237,6 +5029,9 @@
       "숙소 | 宿所"
     ],
     "subtitle": "所用",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 265
   },
   {
@@ -4253,6 +5048,9 @@
       "숙소 | 宿所"
     ],
     "subtitle": "所願",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 266
   },
   {
@@ -4269,6 +5067,9 @@
       "소포 | 小包"
     ],
     "subtitle": "燒酒",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 267
   },
   {
@@ -4285,6 +5086,9 @@
       "숙소 | 宿所"
     ],
     "subtitle": "所重",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 268
   },
   {
@@ -4301,6 +5105,9 @@
       "소화 | 消化"
     ],
     "subtitle": "小包",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 269
   },
   {
@@ -4317,6 +5124,9 @@
       "기념품 | 紀念品"
     ],
     "subtitle": "小品",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 270
   },
   {
@@ -4333,6 +5143,9 @@
       "솔직 | 率直"
     ],
     "subtitle": "消化",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 271
   },
   {
@@ -4349,6 +5162,9 @@
       "소포 | 小包"
     ],
     "subtitle": "率直",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 272
   },
   {
@@ -4365,6 +5181,9 @@
       "입금 | 入金"
     ],
     "subtitle": "送金",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 273
   },
   {
@@ -4381,6 +5200,9 @@
       "실수 | 失手"
     ],
     "subtitle": "手巾",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 274
   },
   {
@@ -4397,6 +5219,9 @@
       "이상 | 理想"
     ],
     "subtitle": "修理",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 275
   },
   {
@@ -4413,6 +5238,9 @@
       "실수 | 失手"
     ],
     "subtitle": "手術",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 276
   },
   {
@@ -4429,6 +5257,9 @@
       "직업 | 職業"
     ],
     "subtitle": "授業",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 277
   },
   {
@@ -4445,6 +5276,9 @@
       "음료수 | 飮料水"
     ],
     "subtitle": "水泳",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 278
   },
   {
@@ -4461,6 +5295,9 @@
       "음료수 | 飮料水"
     ],
     "subtitle": "水泳場",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 279
   },
   {
@@ -4477,6 +5314,9 @@
       "음료수 | 飮料水"
     ],
     "subtitle": "水曜日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 280
   },
   {
@@ -4493,6 +5333,9 @@
       "수요일 | 水曜日"
     ],
     "subtitle": "修正",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 281
   },
   {
@@ -4509,6 +5352,9 @@
       "음료수 | 飮料水"
     ],
     "subtitle": "水準",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 282
   },
   {
@@ -4525,6 +5371,9 @@
       "의학 | 醫學"
     ],
     "subtitle": "數學",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 283
   },
   {
@@ -4541,6 +5390,9 @@
       "수정 | 修正"
     ],
     "subtitle": "宿舍",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 284
   },
   {
@@ -4557,6 +5409,9 @@
       "소용 | 所用"
     ],
     "subtitle": "宿所",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 285
   },
   {
@@ -4573,6 +5428,9 @@
       "주제 | 主題"
     ],
     "subtitle": "宿題",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 286
   },
   {
@@ -4589,6 +5447,9 @@
       "순수 | 純粹"
     ],
     "subtitle": "瞬間",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 287
   },
   {
@@ -4605,6 +5466,9 @@
       "숙소 | 宿所"
     ],
     "subtitle": "純粹",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 288
   },
   {
@@ -4621,6 +5485,9 @@
       "시간 | 時間"
     ],
     "subtitle": "順位",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 289
   },
   {
@@ -4637,6 +5504,9 @@
       "순간 | 瞬間"
     ],
     "subtitle": "勝利",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 290
   },
   {
@@ -4653,6 +5523,9 @@
       "인간 | 人間"
     ],
     "subtitle": "時間",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 291
   },
   {
@@ -4669,6 +5542,9 @@
       "시민 | 市民"
     ],
     "subtitle": "時計",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 292
   },
   {
@@ -4685,6 +5561,9 @@
       "대표 | 代表"
     ],
     "subtitle": "時代",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 293
   },
   {
@@ -4701,6 +5580,9 @@
       "시대 | 時代"
     ],
     "subtitle": "市民",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 294
   },
   {
@@ -4717,6 +5599,9 @@
       "시대 | 時代"
     ],
     "subtitle": "視線",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 295
   },
   {
@@ -4733,6 +5618,9 @@
       "시선 | 視線"
     ],
     "subtitle": "始作",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 296
   },
   {
@@ -4749,6 +5637,9 @@
       "회장 | 會長"
     ],
     "subtitle": "市長",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 297
   },
   {
@@ -4765,6 +5656,9 @@
       "당장 | 當場"
     ],
     "subtitle": "市場",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 298
   },
   {
@@ -4781,6 +5675,9 @@
       "시험 | 試驗"
     ],
     "subtitle": "市廳",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 299
   },
   {
@@ -4797,6 +5694,9 @@
       "시험 | 試驗"
     ],
     "subtitle": "視聽者",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 300
   },
   {
@@ -4813,6 +5713,9 @@
       "시장 | 市長"
     ],
     "subtitle": "試驗",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 301
   },
   {
@@ -4829,6 +5732,9 @@
       "성당 | 聖堂"
     ],
     "subtitle": "食堂",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 302
   },
   {
@@ -4845,6 +5751,9 @@
       "공사 | 工事"
     ],
     "subtitle": "食事",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 303
   },
   {
@@ -4861,6 +5770,9 @@
       "표지판 | 標示板"
     ],
     "subtitle": "食板",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 304
   },
   {
@@ -4877,6 +5789,9 @@
       "식판 | 食板"
     ],
     "subtitle": "神經",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 305
   },
   {
@@ -4893,6 +5808,9 @@
       "신기 | 新奇"
     ],
     "subtitle": "神奇",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 306
   },
   {
@@ -4909,6 +5827,9 @@
       "신입생 | 新入生"
     ],
     "subtitle": "新奇",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 307
   },
   {
@@ -4925,6 +5846,9 @@
       "신입생 | 新入生"
     ],
     "subtitle": "新聞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 308
   },
   {
@@ -4941,6 +5865,9 @@
       "신입생 | 新入生"
     ],
     "subtitle": "新聞紙",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 309
   },
   {
@@ -4957,6 +5884,9 @@
       "신입생 | 新入生"
     ],
     "subtitle": "新婦",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 310
   },
   {
@@ -4973,6 +5903,9 @@
       "분만 | 分娩"
     ],
     "subtitle": "身分證",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 311
   },
   {
@@ -4989,6 +5922,9 @@
       "신문지 | 新聞紙"
     ],
     "subtitle": "新入生",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 312
   },
   {
@@ -5005,6 +5941,9 @@
       "신분증 | 身分證"
     ],
     "subtitle": "愼重",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 313
   },
   {
@@ -5021,6 +5960,9 @@
       "신분증 | 身分證"
     ],
     "subtitle": "申請",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 314
   },
   {
@@ -5037,6 +5979,9 @@
       "신입생 | 新入生"
     ],
     "subtitle": "新村",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 315
   },
   {
@@ -5053,6 +5998,9 @@
       "신청 | 申請"
     ],
     "subtitle": "信號燈",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 316
   },
   {
@@ -5069,6 +6017,9 @@
       "기사 | 技士"
     ],
     "subtitle": "實技",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 317
   },
   {
@@ -5085,6 +6036,9 @@
       "신촌 | 新村"
     ],
     "subtitle": "失禮",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 318
   },
   {
@@ -5101,6 +6055,9 @@
       "사물놀이 | 四物--"
     ],
     "subtitle": "實物",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 319
   },
   {
@@ -5117,6 +6074,9 @@
       "수건 | 手巾"
     ],
     "subtitle": "失手",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 320
   },
   {
@@ -5133,6 +6093,9 @@
       "심각 | 深刻"
     ],
     "subtitle": "實際",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 321
   },
   {
@@ -5149,6 +6112,9 @@
       "실수 | 失手"
     ],
     "subtitle": "深刻",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 322
   },
   {
@@ -5165,6 +6131,9 @@
       "심하다 | 甚하다"
     ],
     "subtitle": "深夜",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 323
   },
   {
@@ -5181,6 +6150,9 @@
       "의심 | 疑心"
     ],
     "subtitle": "心臟",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 324
   },
   {
@@ -5197,6 +6169,9 @@
       "심각 | 深刻"
     ],
     "subtitle": "甚하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "形容詞",
     "row_index": 325
   },
   {
@@ -5213,6 +6188,9 @@
       "유월 | 六月"
     ],
     "subtitle": "十二月",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 326
   },
   {
@@ -5229,6 +6207,9 @@
       "심장 | 心臟"
     ],
     "subtitle": "惡魔",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 327
   },
   {
@@ -5245,6 +6226,9 @@
       "안녕 | 安寧"
     ],
     "subtitle": "鰐魚",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 328
   },
   {
@@ -5261,6 +6245,9 @@
       "십이월 | 十二月"
     ],
     "subtitle": "眼鏡",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 329
   },
   {
@@ -5277,6 +6264,9 @@
       "악어 | 鰐魚"
     ],
     "subtitle": "安寧",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 330
   },
   {
@@ -5293,6 +6283,9 @@
       "애인 | 愛人"
     ],
     "subtitle": "按舞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 331
   },
   {
@@ -5309,6 +6302,9 @@
       "야구 | 野球"
     ],
     "subtitle": "愛嬌",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 332
   },
   {
@@ -5325,6 +6321,9 @@
       "성인 | 成人"
     ],
     "subtitle": "愛人",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 333
   },
   {
@@ -5341,6 +6340,9 @@
       "피구 | 避球"
     ],
     "subtitle": "野球",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 334
   },
   {
@@ -5357,6 +6359,9 @@
       "애교 | 愛嬌"
     ],
     "subtitle": "野望",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 335
   },
   {
@@ -5373,6 +6378,9 @@
       "약하다 | 弱하다"
     ],
     "subtitle": "若干",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 336
   },
   {
@@ -5389,6 +6397,9 @@
       "야망 | 野望"
     ],
     "subtitle": "約束",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 337
   },
   {
@@ -5405,6 +6416,9 @@
       "야망 | 野望"
     ],
     "subtitle": "弱하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "形容詞",
     "row_index": 338
   },
   {
@@ -5421,6 +6435,9 @@
       "약간 | 若干"
     ],
     "subtitle": "洋襪",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 339
   },
   {
@@ -5437,6 +6454,9 @@
       "어색 | 語塞"
     ],
     "subtitle": "洋服",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 340
   },
   {
@@ -5453,6 +6473,9 @@
       "의심 | 疑心"
     ],
     "subtitle": "良心",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 341
   },
   {
@@ -5469,6 +6492,9 @@
       "양심 | 良心"
     ],
     "subtitle": "語塞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 342
   },
   {
@@ -5485,6 +6511,9 @@
       "양복 | 洋服"
     ],
     "subtitle": "於此彼",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 343
   },
   {
@@ -5501,6 +6530,9 @@
       "어차피 | 於此彼"
     ],
     "subtitle": "言語",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 344
   },
   {
@@ -5517,6 +6549,9 @@
       "어차피 | 於此彼"
     ],
     "subtitle": "旅券",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 345
   },
   {
@@ -5533,6 +6568,9 @@
       "여왕 | 女王"
     ],
     "subtitle": "女俳優",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 346
   },
   {
@@ -5549,6 +6587,9 @@
       "여자 | 女子"
     ],
     "subtitle": "女士",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 347
   },
   {
@@ -5565,6 +6606,9 @@
       "여자 | 女子"
     ],
     "subtitle": "女性",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 348
   },
   {
@@ -5581,6 +6625,9 @@
       "여자 | 女子"
     ],
     "subtitle": "女神",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 349
   },
   {
@@ -5597,6 +6644,9 @@
       "여자 | 女子"
     ],
     "subtitle": "女王",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 350
   },
   {
@@ -5613,6 +6663,9 @@
       "여왕 | 女王"
     ],
     "subtitle": "女子",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 351
   },
   {
@@ -5629,6 +6682,9 @@
       "여신 | 女神"
     ],
     "subtitle": "如前",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 352
   },
   {
@@ -5645,6 +6701,9 @@
       "일행 | 一行"
     ],
     "subtitle": "旅行",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 353
   },
   {
@@ -5661,6 +6720,9 @@
       "은행 | 銀行"
     ],
     "subtitle": "旅行社",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 354
   },
   {
@@ -5677,6 +6739,9 @@
       "연락 | 連絡"
     ],
     "subtitle": "亦是",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 355
   },
   {
@@ -5693,6 +6758,9 @@
       "실기 | 實技"
     ],
     "subtitle": "演技",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 356
   },
   {
@@ -5709,6 +6777,9 @@
       "연습 | 練習"
     ],
     "subtitle": "連絡",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 357
   },
   {
@@ -5725,6 +6796,9 @@
       "연락 | 連絡"
     ],
     "subtitle": "年末",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 358
   },
   {
@@ -5741,6 +6815,9 @@
       "연기 | 演技"
     ],
     "subtitle": "練習",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 359
   },
   {
@@ -5757,6 +6834,9 @@
       "연예 | 演藝"
     ],
     "subtitle": "戀愛",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 360
   },
   {
@@ -5773,6 +6853,9 @@
       "연애 | 戀愛"
     ],
     "subtitle": "演藝",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 361
   },
   {
@@ -5789,6 +6872,9 @@
       "성인 | 成人"
     ],
     "subtitle": "演藝人",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 362
   },
   {
@@ -5805,6 +6891,9 @@
       "애인 | 愛人"
     ],
     "subtitle": "戀人",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 363
   },
   {
@@ -5821,6 +6910,9 @@
       "열대야 | 熱帶夜"
     ],
     "subtitle": "鉛筆",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 364
   },
   {
@@ -5837,6 +6929,9 @@
       "열대야 | 熱帶夜"
     ],
     "subtitle": "連休",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 365
   },
   {
@@ -5853,6 +6948,9 @@
       "연필 | 鉛筆"
     ],
     "subtitle": "熱帶夜",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 366
   },
   {
@@ -5869,6 +6967,9 @@
       "양심 | 良心"
     ],
     "subtitle": "熱心히",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "副詞",
     "row_index": 367
   },
   {
@@ -5885,6 +6986,9 @@
       "영광 | 榮光"
     ],
     "subtitle": "葉書",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 368
   },
   {
@@ -5901,6 +7005,9 @@
       "영상 | 映像"
     ],
     "subtitle": "榮光",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 369
   },
   {
@@ -5917,6 +7024,9 @@
       "동상 | 銅像"
     ],
     "subtitle": "映像",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 370
   },
   {
@@ -5933,6 +7043,9 @@
       "영상 | 映像"
     ],
     "subtitle": "英語",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 371
   },
   {
@@ -5949,6 +7062,9 @@
       "직업 | 職業"
     ],
     "subtitle": "營業",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 372
   },
   {
@@ -5965,6 +7081,9 @@
       "영상 | 映像"
     ],
     "subtitle": "永遠",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 373
   },
   {
@@ -5981,6 +7100,9 @@
       "영원 | 永遠"
     ],
     "subtitle": "映畫",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 374
   },
   {
@@ -5997,6 +7119,9 @@
       "본관 | 本館"
     ],
     "subtitle": "映畫館",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 375
   },
   {
@@ -6013,6 +7138,9 @@
       "영화 | 映畫"
     ],
     "subtitle": "豫買",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 376
   },
   {
@@ -6029,6 +7157,9 @@
       "정보 | 情報"
     ],
     "subtitle": "豫報",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 377
   },
   {
@@ -6045,6 +7176,9 @@
       "이상 | 理想"
     ],
     "subtitle": "豫想",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 378
   },
   {
@@ -6061,6 +7195,9 @@
       "미술관 | 美術館"
     ],
     "subtitle": "藝術",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 379
   },
   {
@@ -6077,6 +7214,9 @@
       "약속 | 約束"
     ],
     "subtitle": "豫約",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 380
   },
   {
@@ -6093,6 +7233,9 @@
       "본인 | 本人"
     ],
     "subtitle": "藝人",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 381
   },
   {
@@ -6109,6 +7252,9 @@
       "이월 | 二月"
     ],
     "subtitle": "五月",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 382
   },
   {
@@ -6125,6 +7271,9 @@
       "오후 | 午後"
     ],
     "subtitle": "誤解",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 383
   },
   {
@@ -6141,6 +7290,9 @@
       "오월 | 五月"
     ],
     "subtitle": "午後",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 384
   },
   {
@@ -6157,6 +7309,9 @@
       "오월 | 五月"
     ],
     "subtitle": "完璧",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 385
   },
   {
@@ -6173,6 +7328,9 @@
       "성인 | 成人"
     ],
     "subtitle": "完成",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 386
   },
   {
@@ -6189,6 +7347,9 @@
       "외계 | 外界"
     ],
     "subtitle": "完全",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 387
   },
   {
@@ -6205,6 +7366,9 @@
       "여자 | 女子"
     ],
     "subtitle": "王子",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 388
   },
   {
@@ -6221,6 +7385,9 @@
       "해외 | 海外"
     ],
     "subtitle": "外界",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 389
   },
   {
@@ -6237,6 +7404,9 @@
       "해외 | 海外"
     ],
     "subtitle": "外國",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 390
   },
   {
@@ -6253,6 +7423,9 @@
       "해외 | 海外"
     ],
     "subtitle": "外貌",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 391
   },
   {
@@ -6269,6 +7442,9 @@
       "해외 | 海外"
     ],
     "subtitle": "外字",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 392
   },
   {
@@ -6285,6 +7461,9 @@
       "해외 | 海外"
     ],
     "subtitle": "外出",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 393
   },
   {
@@ -6301,6 +7480,9 @@
       "송금 | 送金"
     ],
     "subtitle": "料金",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 394
   },
   {
@@ -6317,6 +7499,9 @@
       "관리 | 管理"
     ],
     "subtitle": "料理",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 395
   },
   {
@@ -6333,6 +7518,9 @@
       "요금 | 料金"
     ],
     "subtitle": "妖精",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 396
   },
   {
@@ -6349,6 +7537,9 @@
       "요금 | 料金"
     ],
     "subtitle": "辱하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "動詞",
     "row_index": 397
   },
   {
@@ -6365,6 +7556,9 @@
       "일기 | 日氣"
     ],
     "subtitle": "勇氣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 398
   },
   {
@@ -6381,6 +7575,9 @@
       "요정 | 妖精"
     ],
     "subtitle": "雨傘",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 399
   },
   {
@@ -6397,6 +7594,9 @@
       "용기 | 勇氣"
     ],
     "subtitle": "偶然",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 400
   },
   {
@@ -6413,6 +7613,9 @@
       "우정 | 友情"
     ],
     "subtitle": "憂鬱",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 401
   },
   {
@@ -6429,6 +7632,9 @@
       "우산 | 雨傘"
     ],
     "subtitle": "牛乳",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 402
   },
   {
@@ -6445,6 +7651,9 @@
       "우체국 | 郵遞局"
     ],
     "subtitle": "友情",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 403
   },
   {
@@ -6461,6 +7670,9 @@
       "운동 | 運動"
     ],
     "subtitle": "郵遞局",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 404
   },
   {
@@ -6477,6 +7689,9 @@
       "운동장 | 運動場"
     ],
     "subtitle": "郵票",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 405
   },
   {
@@ -6493,6 +7708,9 @@
       "동사 | 動詞"
     ],
     "subtitle": "運動",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 406
   },
   {
@@ -6509,6 +7727,9 @@
       "극장 | 劇場"
     ],
     "subtitle": "運動場",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 407
   },
   {
@@ -6525,6 +7746,9 @@
       "우표 | 郵票"
     ],
     "subtitle": "運命",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 408
   },
   {
@@ -6541,6 +7765,9 @@
       "울적 | 鬱寂"
     ],
     "subtitle": "運轉",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 409
   },
   {
@@ -6557,6 +7784,9 @@
       "원하다 | 願하다"
     ],
     "subtitle": "鬱寂",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 410
   },
   {
@@ -6573,6 +7803,9 @@
       "운전 | 運轉"
     ],
     "subtitle": "原來",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 411
   },
   {
@@ -6589,6 +7822,9 @@
       "위로 | 慰勞"
     ],
     "subtitle": "願하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "動詞",
     "row_index": 412
   },
   {
@@ -6605,6 +7841,9 @@
       "유월 | 六月"
     ],
     "subtitle": "月曜日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 413
   },
   {
@@ -6621,6 +7860,9 @@
       "원래 | 原來"
     ],
     "subtitle": "慰勞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 414
   },
   {
@@ -6637,6 +7879,9 @@
       "원하다 | 願하다"
     ],
     "subtitle": "爲하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "動詞",
     "row_index": 415
   },
   {
@@ -6653,6 +7898,9 @@
       "월요일 | 月曜日"
     ],
     "subtitle": "危險",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 416
   },
   {
@@ -6669,6 +7917,9 @@
       "위로 | 慰勞"
     ],
     "subtitle": "琉璃",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 417
   },
   {
@@ -6685,6 +7936,9 @@
       "이월 | 二月"
     ],
     "subtitle": "六月",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 418
   },
   {
@@ -6701,6 +7955,9 @@
       "위험 | 危險"
     ],
     "subtitle": "劉在錫",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 419
   },
   {
@@ -6717,6 +7974,9 @@
       "유리 | 琉璃"
     ],
     "subtitle": "幼稚",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 420
   },
   {
@@ -6733,6 +7993,9 @@
       "행사 | 行事"
     ],
     "subtitle": "流行",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 421
   },
   {
@@ -6749,6 +8012,9 @@
       "유재석 | 劉在錫"
     ],
     "subtitle": "誘惑",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 422
   },
   {
@@ -6765,6 +8031,9 @@
       "유치 | 幼稚"
     ],
     "subtitle": "陸橋",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 423
   },
   {
@@ -6781,6 +8050,9 @@
       "통화 | 通話"
     ],
     "subtitle": "融通性",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 424
   },
   {
@@ -6797,6 +8069,9 @@
       "유혹 | 誘惑"
     ],
     "subtitle": "銀河",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 425
   },
   {
@@ -6813,6 +8088,9 @@
       "수영장 | 水泳場"
     ],
     "subtitle": "銀河水",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 426
   },
   {
@@ -6829,6 +8107,9 @@
       "일행 | 一行"
     ],
     "subtitle": "銀行",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 427
   },
   {
@@ -6845,6 +8126,9 @@
       "요금 | 料金"
     ],
     "subtitle": "飮料水",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 428
   },
   {
@@ -6861,6 +8145,9 @@
       "음악 | 音樂"
     ],
     "subtitle": "飮食",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 429
   },
   {
@@ -6877,6 +8164,9 @@
       "의사 | 醫師"
     ],
     "subtitle": "音樂",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 430
   },
   {
@@ -6893,6 +8183,9 @@
       "의심 | 疑心"
     ],
     "subtitle": "意味",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 431
   },
   {
@@ -6909,6 +8202,9 @@
       "음식 | 飮食"
     ],
     "subtitle": "醫師",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 432
   },
   {
@@ -6925,6 +8221,9 @@
       "열심히 | 熱心히"
     ],
     "subtitle": "疑心",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 433
   },
   {
@@ -6941,6 +8240,9 @@
       "학과 | 學科"
     ],
     "subtitle": "醫學",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 434
   },
   {
@@ -6957,6 +8259,9 @@
       "이사 | 理事"
     ],
     "subtitle": "姨母",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 435
   },
   {
@@ -6973,6 +8278,9 @@
       "조별 | 組別"
     ],
     "subtitle": "離別",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 436
   },
   {
@@ -6989,6 +8297,9 @@
       "이유 | 理由"
     ],
     "subtitle": "理事",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 437
   },
   {
@@ -7005,6 +8316,9 @@
       "이모 | 姨母"
     ],
     "subtitle": "移徙",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 438
   },
   {
@@ -7021,6 +8335,9 @@
       "이사 | 理事"
     ],
     "subtitle": "以上",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 439
   },
   {
@@ -7037,6 +8354,9 @@
       "이유 | 理由"
     ],
     "subtitle": "理想",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 440
   },
   {
@@ -7053,6 +8373,9 @@
       "이순신 | 李舜臣"
     ],
     "subtitle": "異常",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 441
   },
   {
@@ -7069,6 +8392,9 @@
       "이상 | 以上"
     ],
     "subtitle": "李舜臣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 442
   },
   {
@@ -7085,6 +8411,9 @@
       "오월 | 五月"
     ],
     "subtitle": "二月",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 443
   },
   {
@@ -7101,6 +8430,9 @@
       "이상 | 理想"
     ],
     "subtitle": "理由",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 444
   },
   {
@@ -7117,6 +8449,9 @@
       "이상 | 理想"
     ],
     "subtitle": "理解",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 445
   },
   {
@@ -7133,6 +8468,9 @@
       "결혼식 | 結婚式"
     ],
     "subtitle": "離婚",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 446
   },
   {
@@ -7149,6 +8487,9 @@
       "인형 | 人形"
     ],
     "subtitle": "人間",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 447
   },
   {
@@ -7165,6 +8506,9 @@
       "연인 | 戀人"
     ],
     "subtitle": "人氣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 448
   },
   {
@@ -7181,6 +8525,9 @@
       "연인 | 戀人"
     ],
     "subtitle": "人物",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 449
   },
   {
@@ -7197,6 +8544,9 @@
       "연인 | 戀人"
     ],
     "subtitle": "人事",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 450
   },
   {
@@ -7213,6 +8563,9 @@
       "인물 | 人物"
     ],
     "subtitle": "仁寺洞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 451
   },
   {
@@ -7229,6 +8582,9 @@
       "연인 | 戀人"
     ],
     "subtitle": "人蔘",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 452
   },
   {
@@ -7245,6 +8601,9 @@
       "연인 | 戀人"
     ],
     "subtitle": "人生",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 453
   },
   {
@@ -7261,6 +8620,9 @@
       "연인 | 戀人"
     ],
     "subtitle": "人魚",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 454
   },
   {
@@ -7277,6 +8639,9 @@
       "인천 | 仁川"
     ],
     "subtitle": "因緣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 455
   },
   {
@@ -7293,6 +8658,9 @@
       "연인 | 戀人"
     ],
     "subtitle": "人員數",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 456
   },
   {
@@ -7309,6 +8677,9 @@
       "인연 | 因緣"
     ],
     "subtitle": "仁川",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 457
   },
   {
@@ -7325,6 +8696,9 @@
       "일기 | 日氣"
     ],
     "subtitle": "因--",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "動詞",
     "row_index": 458
   },
   {
@@ -7341,6 +8715,9 @@
       "연인 | 戀人"
     ],
     "subtitle": "人形",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 459
   },
   {
@@ -7357,6 +8734,9 @@
       "일본 | 日本"
     ],
     "subtitle": "日氣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 460
   },
   {
@@ -7373,6 +8753,9 @@
       "일본 | 日本"
     ],
     "subtitle": "日記",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 461
   },
   {
@@ -7389,6 +8772,9 @@
       "일기 | 日記"
     ],
     "subtitle": "一旦",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 462
   },
   {
@@ -7405,6 +8791,9 @@
       "일본 | 日本"
     ],
     "subtitle": "一般",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 463
   },
   {
@@ -7421,6 +8810,9 @@
       "일기 | 日記"
     ],
     "subtitle": "日本",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 464
   },
   {
@@ -7437,6 +8829,9 @@
       "일기 | 日記"
     ],
     "subtitle": "日本語",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 465
   },
   {
@@ -7453,6 +8848,9 @@
       "일기 | 日記"
     ],
     "subtitle": "日常",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 466
   },
   {
@@ -7469,6 +8867,9 @@
       "일기 | 日記"
     ],
     "subtitle": "日曜日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 467
   },
   {
@@ -7485,6 +8886,9 @@
       "순위 | 順位"
     ],
     "subtitle": "一位",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 468
   },
   {
@@ -7501,6 +8905,9 @@
       "여행 | 旅行"
     ],
     "subtitle": "一行",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 469
   },
   {
@@ -7517,6 +8924,9 @@
       "일요일 | 日曜日"
     ],
     "subtitle": "妊娠",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 470
   },
   {
@@ -7533,6 +8943,9 @@
       "창구 | 窓口"
     ],
     "subtitle": "入口",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 471
   },
   {
@@ -7549,6 +8962,9 @@
       "요금 | 料金"
     ],
     "subtitle": "入金",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 472
   },
   {
@@ -7565,6 +8981,9 @@
       "자료 | 資料"
     ],
     "subtitle": "刺戟",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 473
   },
   {
@@ -7581,6 +9000,9 @@
       "자료 | 資料"
     ],
     "subtitle": "自己",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 474
   },
   {
@@ -7597,6 +9019,9 @@
       "자기 | 自己"
     ],
     "subtitle": "資料",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 475
   },
   {
@@ -7613,6 +9038,9 @@
       "자극 | 刺戟"
     ],
     "subtitle": "姿勢",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 476
   },
   {
@@ -7629,6 +9057,9 @@
       "자세 | 姿勢"
     ],
     "subtitle": "自信",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 477
   },
   {
@@ -7645,6 +9076,9 @@
       "우연 | 偶然"
     ],
     "subtitle": "自然",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 478
   },
   {
@@ -7661,6 +9095,9 @@
       "체전 | 體典"
     ],
     "subtitle": "自體",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 479
   },
   {
@@ -7677,6 +9114,9 @@
       "가사 | 家事"
     ],
     "subtitle": "作家",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 480
   },
   {
@@ -7693,6 +9133,9 @@
       "작업 | 作業"
     ],
     "subtitle": "昨年",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 481
   },
   {
@@ -7709,6 +9152,9 @@
       "수업 | 授業"
     ],
     "subtitle": "作業",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 482
   },
   {
@@ -7725,6 +9171,9 @@
       "반품 | 返品"
     ],
     "subtitle": "作品",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 483
   },
   {
@@ -7741,6 +9190,9 @@
       "작품 | 作品"
     ],
     "subtitle": "殘業",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 484
   },
   {
@@ -7757,6 +9209,9 @@
       "잡지 | 雜誌"
     ],
     "subtitle": "暫時",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 485
   },
   {
@@ -7773,6 +9228,9 @@
       "작품 | 作品"
     ],
     "subtitle": "雜誌",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 486
   },
   {
@@ -7789,6 +9247,9 @@
       "잔업 | 殘業"
     ],
     "subtitle": "將軍",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 487
   },
   {
@@ -7805,6 +9266,9 @@
       "재수 | 財數"
     ],
     "subtitle": "障礙",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 488
   },
   {
@@ -7821,6 +9285,9 @@
       "잡지 | 雜誌"
     ],
     "subtitle": "財閥",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 489
   },
   {
@@ -7837,6 +9304,9 @@
       "장애 | 障礙"
     ],
     "subtitle": "財數",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 490
   },
   {
@@ -7853,6 +9323,9 @@
       "재벌 | 財閥"
     ],
     "subtitle": "這番",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 491
   },
   {
@@ -7869,6 +9342,9 @@
       "적당 | 適當"
     ],
     "subtitle": "低刺戟",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 492
   },
   {
@@ -7885,6 +9361,9 @@
       "전당 | 殿堂"
     ],
     "subtitle": "貯藏",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 493
   },
   {
@@ -7901,6 +9380,9 @@
       "저장 | 貯藏"
     ],
     "subtitle": "適當",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 494
   },
   {
@@ -7917,6 +9399,9 @@
       "적당 | 適當"
     ],
     "subtitle": "殿堂",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 495
   },
   {
@@ -7933,6 +9418,9 @@
       "전부 | 全部"
     ],
     "subtitle": "專門",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 496
   },
   {
@@ -7949,6 +9437,9 @@
       "광화문 | 光化門"
     ],
     "subtitle": "專門家",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 497
   },
   {
@@ -7965,6 +9456,9 @@
       "전문 | 專門"
     ],
     "subtitle": "全部",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 498
   },
   {
@@ -7981,6 +9475,9 @@
       "회장 | 會長"
     ],
     "subtitle": "展示會",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 499
   },
   {
@@ -7997,6 +9494,9 @@
       "전학생 | 轉學生"
     ],
     "subtitle": "傳統",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 500
   },
   {
@@ -8013,6 +9513,9 @@
       "전시회 | 展示會"
     ],
     "subtitle": "殿下",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 501
   },
   {
@@ -8029,6 +9532,9 @@
       "생산 | 生產"
     ],
     "subtitle": "轉學生",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 502
   },
   {
@@ -8045,6 +9551,9 @@
       "절대 | 絕對"
     ],
     "subtitle": "電話",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 503
   },
   {
@@ -8061,6 +9570,9 @@
       "상대방 | 相對方"
     ],
     "subtitle": "絕對",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 504
   },
   {
@@ -8077,6 +9589,9 @@
       "양심 | 良心"
     ],
     "subtitle": "點心",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 505
   },
   {
@@ -8093,6 +9608,9 @@
       "점심 | 點心"
     ],
     "subtitle": "正答",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 506
   },
   {
@@ -8109,6 +9627,9 @@
       "절대 | 絕對"
     ],
     "subtitle": "程度",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 507
   },
   {
@@ -8125,6 +9646,9 @@
       "이상 | 理想"
     ],
     "subtitle": "整理",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 508
   },
   {
@@ -8141,6 +9665,9 @@
       "정밀 | 精密"
     ],
     "subtitle": "正말",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 509
   },
   {
@@ -8157,6 +9684,9 @@
       "정보 | 情報"
     ],
     "subtitle": "精密",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 510
   },
   {
@@ -8173,6 +9703,9 @@
       "예보 | 豫報"
     ],
     "subtitle": "情報",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 511
   },
   {
@@ -8189,6 +9722,9 @@
       "여신 | 女神"
     ],
     "subtitle": "精神",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 512
   },
   {
@@ -8205,6 +9741,9 @@
       "정신 | 精神"
     ],
     "subtitle": "正確",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 513
   },
   {
@@ -8221,6 +9760,9 @@
       "정확 | 正確"
     ],
     "subtitle": "第一",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 514
   },
   {
@@ -8237,6 +9779,9 @@
       "정확 | 正確"
     ],
     "subtitle": "濟州島",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 515
   },
   {
@@ -8253,6 +9798,9 @@
       "별일 | 別일"
     ],
     "subtitle": "組別",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 516
   },
   {
@@ -8269,6 +9817,9 @@
       "제일 | 第一"
     ],
     "subtitle": "調査",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 517
   },
   {
@@ -8285,6 +9836,9 @@
       "존댓말 | 尊待말"
     ],
     "subtitle": "朝鮮",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 518
   },
   {
@@ -8301,6 +9855,9 @@
       "열심히 | 熱心히"
     ],
     "subtitle": "操心",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 519
   },
   {
@@ -8317,6 +9874,9 @@
       "조사 | 調査"
     ],
     "subtitle": "尊待말",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 520
   },
   {
@@ -8333,6 +9893,9 @@
       "존댓말 | 尊待말"
     ],
     "subtitle": "宗敎",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 521
   },
   {
@@ -8349,6 +9912,9 @@
       "일기 | 日氣"
     ],
     "subtitle": "終日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 522
   },
   {
@@ -8365,6 +9931,9 @@
       "주가 | 株價"
     ],
     "subtitle": "終點",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 523
   },
   {
@@ -8381,6 +9950,9 @@
       "종교 | 宗敎"
     ],
     "subtitle": "罪悚",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 524
   },
   {
@@ -8397,6 +9969,9 @@
       "주문 | 注文"
     ],
     "subtitle": "株價",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 525
   },
   {
@@ -8413,6 +9988,9 @@
       "주사 | 注射"
     ],
     "subtitle": "週末",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 526
   },
   {
@@ -8429,6 +10007,9 @@
       "주말 | 週末"
     ],
     "subtitle": "注文",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 527
   },
   {
@@ -8445,6 +10026,9 @@
       "주가 | 株價"
     ],
     "subtitle": "注射",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 528
   },
   {
@@ -8461,6 +10045,9 @@
       "소중 | 所重"
     ],
     "subtitle": "住所",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 529
   },
   {
@@ -8477,6 +10064,9 @@
       "주요 | 主要"
     ],
     "subtitle": "株式",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 530
   },
   {
@@ -8493,6 +10083,9 @@
       "필요 | 必要"
     ],
     "subtitle": "主要",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 531
   },
   {
@@ -8509,6 +10102,9 @@
       "숙제 | 宿題"
     ],
     "subtitle": "主題",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 532
   },
   {
@@ -8525,6 +10121,9 @@
       "주요 | 主要"
     ],
     "subtitle": "準備",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 533
   },
   {
@@ -8541,6 +10140,9 @@
       "시간 | 時間"
     ],
     "subtitle": "中間",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 534
   },
   {
@@ -8557,6 +10159,9 @@
       "민국 | 民國"
     ],
     "subtitle": "中國",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 535
   },
   {
@@ -8573,6 +10178,9 @@
       "필요 | 必要"
     ],
     "subtitle": "重要",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 536
   },
   {
@@ -8589,6 +10197,9 @@
       "방학 | 放學"
     ],
     "subtitle": "中學校",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 537
   },
   {
@@ -8605,6 +10216,9 @@
       "지갑 | 紙匣"
     ],
     "subtitle": "卽刻",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 538
   },
   {
@@ -8621,6 +10235,9 @@
       "지구 | 地球"
     ],
     "subtitle": "遲刻",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 539
   },
   {
@@ -8637,6 +10254,9 @@
       "즉각 | 卽刻"
     ],
     "subtitle": "紙匣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 540
   },
   {
@@ -8653,6 +10273,9 @@
       "축구 | 蹴球"
     ],
     "subtitle": "地球",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 541
   },
   {
@@ -8669,6 +10292,9 @@
       "지하철 | 地下鐵"
     ],
     "subtitle": "只今",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 542
   },
   {
@@ -8685,6 +10311,9 @@
       "지갑 | 紙匣"
     ],
     "subtitle": "地獄",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 543
   },
   {
@@ -8701,6 +10330,9 @@
       "직업 | 職業"
     ],
     "subtitle": "地下鐵",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 544
   },
   {
@@ -8717,6 +10349,9 @@
       "지하철 | 地下鐵"
     ],
     "subtitle": "職業",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 545
   },
   {
@@ -8733,6 +10368,9 @@
       "양심 | 良心"
     ],
     "subtitle": "真心",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 546
   },
   {
@@ -8749,6 +10387,9 @@
       "지하철 | 地下鐵"
     ],
     "subtitle": "眞摯",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 547
   },
   {
@@ -8765,6 +10406,9 @@
       "직업 | 職業"
     ],
     "subtitle": "眞짜",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 548
   },
   {
@@ -8781,6 +10425,9 @@
       "차단 | 遮斷"
     ],
     "subtitle": "質問",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 549
   },
   {
@@ -8797,6 +10444,9 @@
       "차단 | 遮斷"
     ],
     "subtitle": "集中",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 550
   },
   {
@@ -8813,6 +10463,9 @@
       "찬성 | 贊成"
     ],
     "subtitle": "遮斷",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 551
   },
   {
@@ -8829,6 +10482,9 @@
       "참가 | 參加"
     ],
     "subtitle": "差異",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 552
   },
   {
@@ -8845,6 +10501,9 @@
       "완성 | 完成"
     ],
     "subtitle": "贊成",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 553
   },
   {
@@ -8861,6 +10520,9 @@
       "창밖 | 窓밖"
     ],
     "subtitle": "參加",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 554
   },
   {
@@ -8877,6 +10539,9 @@
       "참가 | 參加"
     ],
     "subtitle": "窓口",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 555
   },
   {
@@ -8893,6 +10558,9 @@
       "책방 | 冊房"
     ],
     "subtitle": "窓밖",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 556
   },
   {
@@ -8909,6 +10577,9 @@
       "참가 | 參加"
     ],
     "subtitle": "猖披",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 557
   },
   {
@@ -8925,6 +10596,9 @@
       "천사 | 天使"
     ],
     "subtitle": "冊房",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 558
   },
   {
@@ -8941,6 +10615,9 @@
       "창밖 | 窓밖"
     ],
     "subtitle": "責任",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 559
   },
   {
@@ -8957,6 +10634,9 @@
       "책방 | 冊房"
     ],
     "subtitle": "天使",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 560
   },
   {
@@ -8973,6 +10653,9 @@
       "천사 | 天使"
     ],
     "subtitle": "鐵道",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 561
   },
   {
@@ -8989,6 +10672,9 @@
       "책임 | 責任"
     ],
     "subtitle": "靑--",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 562
   },
   {
@@ -9005,6 +10691,9 @@
       "천사 | 天使"
     ],
     "subtitle": "淸掃",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 563
   },
   {
@@ -9021,6 +10710,9 @@
       "초기 | 初期"
     ],
     "subtitle": "體典",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 564
   },
   {
@@ -9037,6 +10729,9 @@
       "최고 | 最高"
     ],
     "subtitle": "初期",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 565
   },
   {
@@ -9053,6 +10748,9 @@
       "청소 | 淸掃"
     ],
     "subtitle": "撮影",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 566
   },
   {
@@ -9069,6 +10767,9 @@
       "초기 | 初期"
     ],
     "subtitle": "最高",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 567
   },
   {
@@ -9085,6 +10786,9 @@
       "초기 | 初期"
     ],
     "subtitle": "最善",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 568
   },
   {
@@ -9101,6 +10805,9 @@
       "축하 | 祝賀"
     ],
     "subtitle": "追憶",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 569
   },
   {
@@ -9117,6 +10824,9 @@
       "추억 | 追憶"
     ],
     "subtitle": "蹴球",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 570
   },
   {
@@ -9133,6 +10843,9 @@
       "최선 | 最善"
     ],
     "subtitle": "祝賀",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 571
   },
   {
@@ -9149,6 +10862,9 @@
       "출발 | 出發"
     ],
     "subtitle": "春川",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 572
   },
   {
@@ -9165,6 +10881,9 @@
       "현금인출기 | 現金引出機"
     ],
     "subtitle": "出金",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 573
   },
   {
@@ -9181,6 +10900,9 @@
       "현금인출기 | 現金引出機"
     ],
     "subtitle": "出發",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 574
   },
   {
@@ -9197,6 +10919,9 @@
       "현금인출기 | 現金引出機"
     ],
     "subtitle": "出身",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 575
   },
   {
@@ -9213,6 +10938,9 @@
       "현금인출기 | 現金引出機"
     ],
     "subtitle": "出張",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 576
   },
   {
@@ -9229,6 +10957,9 @@
       "출장 | 出張"
     ],
     "subtitle": "充分",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 577
   },
   {
@@ -9245,6 +10976,9 @@
       "취하다 | 醉하다"
     ],
     "subtitle": "充電",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 578
   },
   {
@@ -9261,6 +10995,9 @@
       "치료 | 治療"
     ],
     "subtitle": "趣味",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 579
   },
   {
@@ -9277,6 +11014,9 @@
       "충분 | 充分"
     ],
     "subtitle": "醉--",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "動詞",
     "row_index": 580
   },
   {
@@ -9293,6 +11033,9 @@
       "충전 | 充電"
     ],
     "subtitle": "治療",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 581
   },
   {
@@ -9309,6 +11052,9 @@
       "취미 | 趣味"
     ],
     "subtitle": "親舊",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 582
   },
   {
@@ -9325,6 +11071,9 @@
       "침투 | 浸透"
     ],
     "subtitle": "寢臺",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 583
   },
   {
@@ -9341,6 +11090,9 @@
       "탈락 | 脫落"
     ],
     "subtitle": "浸透",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 584
   },
   {
@@ -9357,6 +11109,9 @@
       "친구 | 親舊"
     ],
     "subtitle": "炭酸",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 585
   },
   {
@@ -9373,6 +11128,9 @@
       "침대 | 寢臺"
     ],
     "subtitle": "脫落",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 586
   },
   {
@@ -9389,6 +11147,9 @@
       "태권도 | 跆拳道"
     ],
     "subtitle": "脫退",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 587
   },
   {
@@ -9405,6 +11166,9 @@
       "태양 | 太陽"
     ],
     "subtitle": "跆拳道",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 588
   },
   {
@@ -9421,6 +11185,9 @@
       "탈락 | 脫落"
     ],
     "subtitle": "太陽",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 589
   },
   {
@@ -9437,6 +11204,9 @@
       "탈퇴 | 脫退"
     ],
     "subtitle": "颱風",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 590
   },
   {
@@ -9453,6 +11223,9 @@
       "일기 | 日記"
     ],
     "subtitle": "土曜日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 591
   },
   {
@@ -9469,6 +11242,9 @@
       "토요일 | 土曜日"
     ],
     "subtitle": "通帳",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 592
   },
   {
@@ -9485,6 +11261,9 @@
       "대화 | 對話"
     ],
     "subtitle": "通話",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 593
   },
   {
@@ -9501,6 +11280,9 @@
       "통장 | 通帳"
     ],
     "subtitle": "退勤",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 594
   },
   {
@@ -9517,6 +11299,9 @@
       "회사 | 會社"
     ],
     "subtitle": "退社",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 595
   },
   {
@@ -9533,6 +11318,9 @@
       "학원 | 學院"
     ],
     "subtitle": "退院",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 596
   },
   {
@@ -9549,6 +11337,9 @@
       "퇴사 | 退社"
     ],
     "subtitle": "透明",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 597
   },
   {
@@ -9565,6 +11356,9 @@
       "팔월 | 八月"
     ],
     "subtitle": "投票",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 598
   },
   {
@@ -9581,6 +11375,9 @@
       "별일 | 別일"
     ],
     "subtitle": "特別",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 599
   },
   {
@@ -9597,6 +11394,9 @@
       "유월 | 六月"
     ],
     "subtitle": "八月",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 600
   },
   {
@@ -9613,6 +11413,9 @@
       "특별 | 特別"
     ],
     "subtitle": "便易",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 601
   },
   {
@@ -9629,6 +11432,9 @@
       "신문지 | 新聞紙"
     ],
     "subtitle": "便紙",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 602
   },
   {
@@ -9645,6 +11451,9 @@
       "팔월 | 八月"
     ],
     "subtitle": "編輯",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 603
   },
   {
@@ -9661,6 +11470,9 @@
       "생일 | 生日"
     ],
     "subtitle": "平生",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 604
   },
   {
@@ -9677,6 +11489,9 @@
       "편지 | 便紙"
     ],
     "subtitle": "平素",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 605
   },
   {
@@ -9693,6 +11508,9 @@
       "편집 | 編輯"
     ],
     "subtitle": "拋棄",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 606
   },
   {
@@ -9709,6 +11527,9 @@
       "평생 | 平生"
     ],
     "subtitle": "葡萄",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 607
   },
   {
@@ -9725,6 +11546,9 @@
       "포도 | 葡萄"
     ],
     "subtitle": "標示板",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 608
   },
   {
@@ -9741,6 +11565,9 @@
       "정보 | 情報"
     ],
     "subtitle": "表情",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 609
   },
   {
@@ -9757,6 +11584,9 @@
       "표정 | 表情"
     ],
     "subtitle": "標示板",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 610
   },
   {
@@ -9773,6 +11603,9 @@
       "표시판 | 標示板"
     ],
     "subtitle": "疲困",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 611
   },
   {
@@ -9789,6 +11622,9 @@
       "피곤 | 疲困"
     ],
     "subtitle": "避球",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 612
   },
   {
@@ -9805,6 +11641,9 @@
       "표지판 | 標示板"
     ],
     "subtitle": "皮膚",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 613
   },
   {
@@ -9821,6 +11660,9 @@
       "피곤 | 疲困"
     ],
     "subtitle": "必需",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 614
   },
   {
@@ -9837,6 +11679,9 @@
       "필통 | 筆筒"
     ],
     "subtitle": "必要",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 615
   },
   {
@@ -9853,6 +11698,9 @@
       "학교 | 學校"
     ],
     "subtitle": "筆筒",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 616
   },
   {
@@ -9869,6 +11717,9 @@
       "학교 | 學校"
     ],
     "subtitle": "學科",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 617
   },
   {
@@ -9885,6 +11736,9 @@
       "학과 | 學科"
     ],
     "subtitle": "學校",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 618
   },
   {
@@ -9901,6 +11755,9 @@
       "학과 | 學科"
     ],
     "subtitle": "學年",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 619
   },
   {
@@ -9917,6 +11774,9 @@
       "학과 | 學科"
     ],
     "subtitle": "學費",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 620
   },
   {
@@ -9933,6 +11793,9 @@
       "학과 | 學科"
     ],
     "subtitle": "學生",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 621
   },
   {
@@ -9949,6 +11812,9 @@
       "학과 | 學科"
     ],
     "subtitle": "學院",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 622
   },
   {
@@ -9965,6 +11831,9 @@
       "민국 | 民國"
     ],
     "subtitle": "韓國",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 623
   },
   {
@@ -9981,6 +11850,9 @@
       "학원 | 學院"
     ],
     "subtitle": "韓流",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 624
   },
   {
@@ -9997,6 +11869,9 @@
       "항상 | 恒常"
     ],
     "subtitle": "韓服",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 625
   },
   {
@@ -10013,6 +11888,9 @@
       "한류 | 韓流"
     ],
     "subtitle": "恒常",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 626
   },
   {
@@ -10029,6 +11907,9 @@
       "항상 | 恒常"
     ],
     "subtitle": "解決",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 627
   },
   {
@@ -10045,6 +11926,9 @@
       "외자 | 外字"
     ],
     "subtitle": "海外",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 628
   },
   {
@@ -10061,6 +11945,9 @@
       "해체 | 解體"
     ],
     "subtitle": "海雲臺",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 629
   },
   {
@@ -10077,6 +11964,9 @@
       "자체 | 自體"
     ],
     "subtitle": "解體",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 630
   },
   {
@@ -10093,6 +11983,9 @@
       "행사 | 行事"
     ],
     "subtitle": "幸福",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 631
   },
   {
@@ -10109,6 +12002,9 @@
       "비행기 | 飛行機"
     ],
     "subtitle": "行事",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 632
   },
   {
@@ -10125,6 +12021,9 @@
       "인기 | 人氣"
     ],
     "subtitle": "香氣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 633
   },
   {
@@ -10141,6 +12040,9 @@
       "출금 | 出金"
     ],
     "subtitle": "現金",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 634
   },
   {
@@ -10157,6 +12059,9 @@
       "요금 | 料金"
     ],
     "subtitle": "現金引出機",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 635
   },
   {
@@ -10173,6 +12078,9 @@
       "현금인출기 | 現金引出機"
     ],
     "subtitle": "形容詞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 636
   },
   {
@@ -10189,6 +12097,9 @@
       "현금 | 現金"
     ],
     "subtitle": "濠洲",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 637
   },
   {
@@ -10205,6 +12116,9 @@
       "화장실 | 化粧室"
     ],
     "subtitle": "或是",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 638
   },
   {
@@ -10221,6 +12135,9 @@
       "일기 | 日記"
     ],
     "subtitle": "火曜日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 639
   },
   {
@@ -10237,6 +12154,9 @@
       "사무실 | 事務室"
     ],
     "subtitle": "化粧室",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 640
   },
   {
@@ -10253,6 +12173,9 @@
       "활동 | 活動"
     ],
     "subtitle": "確認",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 641
   },
   {
@@ -10269,6 +12192,9 @@
       "화요일 | 火曜日"
     ],
     "subtitle": "歡迎",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 642
   },
   {
@@ -10285,6 +12211,9 @@
       "동영상 | 動映像"
     ],
     "subtitle": "活動",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 643
   },
   {
@@ -10301,6 +12230,9 @@
       "회사원 | 會社員"
     ],
     "subtitle": "荒唐",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 644
   },
   {
@@ -10317,6 +12249,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "會社",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 645
   },
   {
@@ -10333,6 +12268,9 @@
       "회장 | 會長"
     ],
     "subtitle": "會社員",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 646
   },
   {
@@ -10349,6 +12287,9 @@
       "황당 | 荒唐"
     ],
     "subtitle": "灰色",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 647
   },
   {
@@ -10365,6 +12306,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "會員",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 648
   },
   {
@@ -10381,6 +12325,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "會議",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 649
   },
   {
@@ -10397,6 +12344,9 @@
       "동호회 | 同好會"
     ],
     "subtitle": "會長",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 650
   },
   {
@@ -10413,6 +12363,9 @@
       "후회 | 後悔"
     ],
     "subtitle": "橫斷",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 651
   },
   {
@@ -10429,6 +12382,9 @@
       "회장 | 會長"
     ],
     "subtitle": "後輩",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 652
   },
   {
@@ -10445,6 +12401,9 @@
       "휴가 | 休暇"
     ],
     "subtitle": "後悔",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 653
   },
   {
@@ -10461,6 +12420,9 @@
       "횡단 | 橫斷"
     ],
     "subtitle": "訓鍊",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 654
   },
   {
@@ -10477,6 +12439,9 @@
       "휴대 | 携帶"
     ],
     "subtitle": "休暇",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 655
   },
   {
@@ -10493,6 +12458,9 @@
       "훈련 | 訓鍊"
     ],
     "subtitle": "休講",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 656
   },
   {
@@ -10509,6 +12477,9 @@
       "훈련 | 訓鍊"
     ],
     "subtitle": "携帶",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 657
   },
   {
@@ -10525,6 +12496,9 @@
       "훈련 | 訓鍊"
     ],
     "subtitle": "稀微",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 658
   },
   {
@@ -10541,6 +12515,9 @@
       "욕하다 | 辱하다"
     ],
     "subtitle": "容赦",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 659
   },
   {
@@ -10557,6 +12534,9 @@
       "상상 | 想像"
     ],
     "subtitle": "傷處",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 660
   },
   {
@@ -10573,6 +12553,9 @@
       "한류 | 韓流"
     ],
     "subtitle": "漢字",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 661
   },
   {
@@ -10589,6 +12572,9 @@
       "개인적 | 個人的"
     ],
     "subtitle": "距離",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 662
   },
   {
@@ -10605,6 +12591,9 @@
       "준비 | 準備"
     ],
     "subtitle": "警備室",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 663
   },
   {
@@ -10621,6 +12610,9 @@
       "경찰 | 警察"
     ],
     "subtitle": "經驗",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 664
   },
   {
@@ -10637,6 +12629,9 @@
       "놀이공원 | --公園"
     ],
     "subtitle": "公演",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 665
   },
   {
@@ -10653,6 +12648,9 @@
       "산악인 | 山岳人"
     ],
     "subtitle": "辭典",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 666
   },
   {
@@ -10669,6 +12667,9 @@
       "공주 | 公主"
     ],
     "subtitle": "公演場",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 667
   },
   {
@@ -10685,6 +12686,9 @@
       "공연장 | 公演場"
     ],
     "subtitle": "廣場",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 668
   },
   {
@@ -10701,6 +12705,9 @@
       "고향 | 故鄕"
     ],
     "subtitle": "交通事故",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 669
   },
   {
@@ -10717,6 +12724,9 @@
       "구원 | 救援"
     ],
     "subtitle": "交換",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 670
   },
   {
@@ -10733,6 +12743,9 @@
       "미국 | 美國"
     ],
     "subtitle": "國立",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 671
   },
   {
@@ -10749,6 +12762,9 @@
       "미국 | 美國"
     ],
     "subtitle": "國樂",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 672
   },
   {
@@ -10765,6 +12781,9 @@
       "미국 | 美國"
     ],
     "subtitle": "國際",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 673
   },
   {
@@ -10781,6 +12800,9 @@
       "미국 | 美國"
     ],
     "subtitle": "國籍",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 674
   },
   {
@@ -10797,6 +12819,9 @@
       "미국 | 美國"
     ],
     "subtitle": "歸國",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 675
   },
   {
@@ -10813,6 +12838,9 @@
       "남자 | 男子"
     ],
     "subtitle": "內容",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 676
   },
   {
@@ -10829,6 +12857,9 @@
       "공주 | 公主"
     ],
     "subtitle": "--公園",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 677
   },
   {
@@ -10845,6 +12876,9 @@
       "다양 | 多樣"
     ],
     "subtitle": "茶道",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 678
   },
   {
@@ -10861,6 +12895,9 @@
       "능력 | 能力"
     ],
     "subtitle": "多樣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 679
   },
   {
@@ -10877,6 +12914,9 @@
       "내일 | 來日"
     ],
     "subtitle": "當日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 680
   },
   {
@@ -10893,6 +12933,9 @@
       "대통령 | 大統領"
     ],
     "subtitle": "大學院",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 681
   },
   {
@@ -10909,6 +12952,9 @@
       "대학교 | 大學校"
     ],
     "subtitle": "大會",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 682
   },
   {
@@ -10925,6 +12971,9 @@
       "덕담 | 德談"
     ],
     "subtitle": "圖章",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 683
   },
   {
@@ -10941,6 +12990,9 @@
       "도서관 | 圖書館"
     ],
     "subtitle": "到着",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 684
   },
   {
@@ -10957,6 +13009,9 @@
       "도착 | 到着"
     ],
     "subtitle": "讀書",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 685
   },
   {
@@ -10973,6 +13028,9 @@
       "신동엽 | 申東燁"
     ],
     "subtitle": "東洋",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 686
   },
   {
@@ -10989,6 +13047,9 @@
       "김제동 | 金濟東"
     ],
     "subtitle": "東洋畫",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 687
   },
   {
@@ -11005,6 +13066,9 @@
       "매점 | 賣店"
     ],
     "subtitle": "每週",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 688
   },
   {
@@ -11021,6 +13085,9 @@
       "문자 | 文字"
     ],
     "subtitle": "問議",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 689
   },
   {
@@ -11037,6 +13104,9 @@
       "박력 | 迫力"
     ],
     "subtitle": "民泊",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 690
   },
   {
@@ -11053,6 +13123,9 @@
       "소원 | 所願"
     ],
     "subtitle": "保健所",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 691
   },
   {
@@ -11069,6 +13142,9 @@
       "인기 | 人氣"
     ],
     "subtitle": "雰圍氣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 692
   },
   {
@@ -11085,6 +13161,9 @@
       "비행기 | 飛行機"
     ],
     "subtitle": "四--",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 693
   },
   {
@@ -11101,6 +13180,9 @@
       "사고 | 事故"
     ],
     "subtitle": "沙漠",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 694
   },
   {
@@ -11117,6 +13199,9 @@
       "철도 | 鐵道"
     ],
     "subtitle": "橫斷步道",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 695
   },
   {
@@ -11133,6 +13218,9 @@
       "편리 | 便利"
     ],
     "subtitle": "郵便",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 696
   },
   {
@@ -11149,6 +13237,9 @@
       "장소 | 場所"
     ],
     "subtitle": "掌匣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 697
   },
   {
@@ -11165,6 +13256,9 @@
       "소속 | 所屬"
     ],
     "subtitle": "場所",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 698
   },
   {
@@ -11181,6 +13275,9 @@
       "전지현 | 全智賢"
     ],
     "subtitle": "傳하다",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "動詞",
     "row_index": 699
   },
   {
@@ -11197,6 +13294,9 @@
       "죄송 | 罪悚"
     ],
     "subtitle": "左回轉",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 700
   },
   {
@@ -11213,6 +13313,9 @@
       "운동 | 運動"
     ],
     "subtitle": "右回轉",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 701
   },
   {
@@ -11229,6 +13332,9 @@
       "교통사고 | 交通事故"
     ],
     "subtitle": "通譯",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 702
   },
   {
@@ -11245,6 +13351,9 @@
       "태양 | 太陽"
     ],
     "subtitle": "宅配",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 703
   },
   {
@@ -11261,6 +13370,9 @@
       "연말 | 年末"
     ],
     "subtitle": "連絡處",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 704
   },
   {
@@ -11277,6 +13389,9 @@
       "극장 | 劇場"
     ],
     "subtitle": "演劇",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 705
   },
   {
@@ -11293,6 +13408,9 @@
       "교통 | 交通"
     ],
     "subtitle": "敎材",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 706
   },
   {
@@ -11309,6 +13427,9 @@
       "완성 | 完成"
     ],
     "subtitle": "構成",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 707
   },
   {
@@ -11325,6 +13446,9 @@
       "영광 | 榮光"
     ],
     "subtitle": "領收證",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 708
   },
   {
@@ -11341,6 +13465,9 @@
       "진지 | 眞摯"
     ],
     "subtitle": "家族寫眞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 709
   },
   {
@@ -11357,6 +13484,9 @@
       "감상 | 鑑賞"
     ],
     "subtitle": "江南",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 710
   },
   {
@@ -11373,6 +13503,9 @@
       "공개 | 公開"
     ],
     "subtitle": "空",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 711
   },
   {
@@ -11389,6 +13522,9 @@
       "기억 | 記憶"
     ],
     "subtitle": "汽車驛",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 712
   },
   {
@@ -11405,6 +13541,9 @@
       "도서관 | 圖書館"
     ],
     "subtitle": "都市",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 713
   },
   {
@@ -11421,6 +13560,9 @@
       "부모 | 父母"
     ],
     "subtitle": "富者",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 714
   },
   {
@@ -11437,6 +13579,9 @@
       "고생 | 苦生"
     ],
     "subtitle": "生辰",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 715
   },
   {
@@ -11453,6 +13598,9 @@
       "성당 | 聖堂"
     ],
     "subtitle": "姓銜",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 716
   },
   {
@@ -11469,6 +13617,9 @@
       "신문지 | 新聞紙"
     ],
     "subtitle": "新婚旅行",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 717
   },
   {
@@ -11485,6 +13636,9 @@
       "농구 | 籠球"
     ],
     "subtitle": "野球場",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 718
   },
   {
@@ -11501,6 +13655,9 @@
       "연극 | 演劇"
     ],
     "subtitle": "歷史",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 719
   },
   {
@@ -11517,6 +13674,9 @@
       "학년 | 學年"
     ],
     "subtitle": "年歲",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 720
   },
   {
@@ -11533,6 +13693,9 @@
       "제주도 | 濟州島"
     ],
     "subtitle": "全州",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 721
   },
   {
@@ -11549,6 +13712,9 @@
       "인원수 | 人員數"
     ],
     "subtitle": "點數",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 722
   },
   {
@@ -11565,6 +13731,9 @@
       "승리 | 勝利"
     ],
     "subtitle": "便利",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 723
   },
   {
@@ -11581,6 +13750,9 @@
       "매일 | 每日"
     ],
     "subtitle": "休日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 724
   },
   {
@@ -11597,6 +13769,9 @@
       "체전 | 體典"
     ],
     "subtitle": "招待",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 725
   },
   {
@@ -11613,6 +13788,9 @@
       "다행 | 多幸"
     ],
     "subtitle": "單純",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 726
   },
   {
@@ -11629,6 +13807,9 @@
       "야망 | 野望"
     ],
     "subtitle": "藥局",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 727
   },
   {
@@ -11645,6 +13826,9 @@
       "현금인출기 | 現金引出機"
     ],
     "subtitle": "表現",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 728
   },
   {
@@ -11661,6 +13845,9 @@
       "기념품 | 紀念品"
     ],
     "subtitle": "期待",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 729
   },
   {
@@ -11677,6 +13864,9 @@
       "최수영 | 崔秀榮"
     ],
     "subtitle": "最近",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 730
   },
   {
@@ -11693,6 +13883,9 @@
       "당일 | 當日"
     ],
     "subtitle": "發賣日",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 731
   },
   {
@@ -11709,6 +13902,9 @@
       "편지 | 便紙"
     ],
     "subtitle": "評價",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 732
   },
   {
@@ -11725,6 +13921,9 @@
       "일본어 | 日本語"
     ],
     "subtitle": "本名",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 733
   },
   {
@@ -11741,6 +13940,9 @@
       "정밀 | 精密"
     ],
     "subtitle": "鄭睿隣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 734
   },
   {
@@ -11757,6 +13959,9 @@
       "정신 | 精神"
     ],
     "subtitle": "丁恩妃",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 735
   },
   {
@@ -11773,6 +13978,9 @@
       "최근 | 最近"
     ],
     "subtitle": "崔裕那",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 736
   },
   {
@@ -11789,6 +13997,9 @@
       "활동 | 活動"
     ],
     "subtitle": "黃恩妃",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 737
   },
   {
@@ -11805,6 +14016,9 @@
       "김태희 | 金泰希"
     ],
     "subtitle": "金韶情",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 738
   },
   {
@@ -11821,6 +14035,9 @@
       "김태희 | 金泰希"
     ],
     "subtitle": "金太軟",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 739
   },
   {
@@ -11837,6 +14054,9 @@
       "김태연 | 金太軟"
     ],
     "subtitle": "金孝淵",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 740
   },
   {
@@ -11853,6 +14073,9 @@
       "단순 | 單純"
     ],
     "subtitle": "李純揆",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 741
   },
   {
@@ -11869,6 +14092,9 @@
       "국제 | 國際"
     ],
     "subtitle": "權兪利",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 742
   },
   {
@@ -11885,6 +14111,9 @@
       "최근 | 最近"
     ],
     "subtitle": "崔秀榮",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 743
   },
   {
@@ -11901,6 +14130,9 @@
       "일위 | 一位"
     ],
     "subtitle": "林潤妸",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 744
   },
   {
@@ -11917,6 +14149,9 @@
       "샤이니 | SHINee"
     ],
     "subtitle": "徐朱玄",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 745
   },
   {
@@ -11933,6 +14168,9 @@
       "국악 | 國樂"
     ],
     "subtitle": "權𤣰雅",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 746
   },
   {
@@ -11949,6 +14187,9 @@
       "개요 | 槪要"
     ],
     "subtitle": "姜鎬童",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 747
   },
   {
@@ -11965,6 +14206,9 @@
       "공연장 | 公演場"
     ],
     "subtitle": "孔劉",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 748
   },
   {
@@ -11981,6 +14225,9 @@
       "이동 | 移動"
     ],
     "subtitle": "李棟旭",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 749
   },
   {
@@ -11997,6 +14244,9 @@
       "전통 | 傳統"
     ],
     "subtitle": "全智賢",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 750
   },
   {
@@ -12013,6 +14263,9 @@
       "김태희 | 金泰希"
     ],
     "subtitle": "金秀賢",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 751
   },
   {
@@ -12029,6 +14282,9 @@
       "김태연 | 金太軟"
     ],
     "subtitle": "金泰希",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 752
   },
   {
@@ -12045,6 +14301,9 @@
       "경영 | 經營"
     ],
     "subtitle": "李聖經",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 753
   },
   {
@@ -12061,6 +14320,9 @@
       "정은비 | 丁恩妃"
     ],
     "subtitle": "李知恩",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 754
   },
   {
@@ -12077,6 +14339,9 @@
       "신기 | 神奇"
     ],
     "subtitle": "申東燁",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 755
   },
   {
@@ -12093,6 +14358,9 @@
       "학비 | 學費"
     ],
     "subtitle": "學歷",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 756
   },
   {
@@ -12109,6 +14377,9 @@
       "입금 | 入金"
     ],
     "subtitle": "資格",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 757
   },
   {
@@ -12125,6 +14396,9 @@
       "휴강 | 休講"
     ],
     "subtitle": "痕跡",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 758
   },
   {
@@ -12141,6 +14415,9 @@
       "열심히 | 熱心히"
     ],
     "subtitle": "慾心",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 759
   },
   {
@@ -12157,6 +14434,9 @@
       "본명 | 本名"
     ],
     "subtitle": "複雜",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 760
   },
   {
@@ -12173,6 +14453,9 @@
       "조사 | 調査"
     ],
     "subtitle": "助詞",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 761
   },
   {
@@ -12189,6 +14472,9 @@
       "모자 | 帽子"
     ],
     "subtitle": "目的",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 762
   },
   {
@@ -12205,6 +14491,9 @@
       "어색 | 語塞"
     ],
     "subtitle": "主語",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 763
   },
   {
@@ -12221,6 +14510,9 @@
       "진심 | 真心"
     ],
     "subtitle": "職員",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 764
   },
   {
@@ -12237,6 +14529,9 @@
       "직업 | 職業"
     ],
     "subtitle": "畢業",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 765
   },
   {
@@ -12253,6 +14548,9 @@
       "활동 | 活動"
     ],
     "subtitle": "移動",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 766
   },
   {
@@ -12269,6 +14567,9 @@
       "조심 | 操心"
     ],
     "subtitle": "種類",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 767
   },
   {
@@ -12285,6 +14586,9 @@
       "목요일 | 木曜日"
     ],
     "subtitle": "模樣",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 768
   },
   {
@@ -12301,6 +14605,9 @@
       "약국 | 藥局"
     ],
     "subtitle": "羊--",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 769
   },
   {
@@ -12317,6 +14624,9 @@
       "담당 | 擔當"
     ],
     "subtitle": "當籤",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 770
   },
   {
@@ -12333,6 +14643,9 @@
       "가발 | 假髮"
     ],
     "subtitle": "價格",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 771
   },
   {
@@ -12349,6 +14662,9 @@
       "학비 | 學費"
     ],
     "subtitle": "學堂",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 772
   },
   {
@@ -12365,6 +14681,9 @@
       "치료 | 治療"
     ],
     "subtitle": "親切",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
     "row_index": 773
   },
   {
@@ -12381,6 +14700,9 @@
       "슈퍼주니어 | SUPER JUNIOR"
     ],
     "subtitle": "Starbucks",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 774
   },
   {
@@ -12397,6 +14719,9 @@
       "해외 | 海外"
     ],
     "subtitle": "hamburger",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 775
   },
   {
@@ -12413,6 +14738,9 @@
       "카카오 | Kakao"
     ],
     "subtitle": "computer",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 776
   },
   {
@@ -12429,6 +14757,9 @@
       "방학 | 放學"
     ],
     "subtitle": "badminton",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 777
   },
   {
@@ -12445,6 +14776,9 @@
       "미인 | 美人"
     ],
     "subtitle": "banana",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 778
   },
   {
@@ -12461,6 +14795,9 @@
       "카메라 | camera"
     ],
     "subtitle": "coffee",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 779
   },
   {
@@ -12477,6 +14814,9 @@
       "커피 | coffee"
     ],
     "subtitle": "cola",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 780
   },
   {
@@ -12493,6 +14833,9 @@
       "주문 | 注文"
     ],
     "subtitle": "juice",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 781
   },
   {
@@ -12509,6 +14852,9 @@
       "피구 | 避球"
     ],
     "subtitle": "pizza",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 782
   },
   {
@@ -12525,6 +14871,9 @@
       "캐나다 | Canada"
     ],
     "subtitle": "cake",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 783
   },
   {
@@ -12541,6 +14890,9 @@
       "아르바이트 | arbeit"
     ],
     "subtitle": "ice cream",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 784
   },
   {
@@ -12557,6 +14909,9 @@
       "매주 | 每週"
     ],
     "subtitle": "menu",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 785
   },
   {
@@ -12573,6 +14928,9 @@
       "체전 | 體典"
     ],
     "subtitle": "chocolate",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 786
   },
   {
@@ -12589,6 +14947,9 @@
       "배우 | 俳優"
     ],
     "subtitle": "bus",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 787
   },
   {
@@ -12605,6 +14966,9 @@
       "태양 | 太陽"
     ],
     "subtitle": "taxi",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 788
   },
   {
@@ -12621,6 +14985,9 @@
       "현금인출기 | 現金引出機"
     ],
     "subtitle": "hotel",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 789
   },
   {
@@ -12637,6 +15004,9 @@
       "아이브 | IVE"
     ],
     "subtitle": "apartment",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 790
   },
   {
@@ -12653,6 +15023,9 @@
       "순간 | 瞬間"
     ],
     "subtitle": "supermarket",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 791
   },
   {
@@ -12669,6 +15042,9 @@
       "세븐틴 | SEVENTEEN"
     ],
     "subtitle": "center",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 792
   },
   {
@@ -12685,6 +15061,9 @@
       "태풍 | 颱風"
     ],
     "subtitle": "television",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 793
   },
   {
@@ -12701,6 +15080,9 @@
       "침대 | 寢臺"
     ],
     "subtitle": "camera",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 794
   },
   {
@@ -12717,6 +15099,9 @@
       "등록금 | 登錄金"
     ],
     "subtitle": "radio",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 795
   },
   {
@@ -12733,6 +15118,9 @@
       "특별 | 特別"
     ],
     "subtitle": "pen",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 796
   },
   {
@@ -12749,6 +15137,9 @@
       "네이버 | NAVAR"
     ],
     "subtitle": "note",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 797
   },
   {
@@ -12765,6 +15156,9 @@
       "소화 | 消化"
     ],
     "subtitle": "shopping",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 798
   },
   {
@@ -12781,6 +15175,9 @@
       "슈퍼마켓 | supermarket"
     ],
     "subtitle": "ski",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 799
   },
   {
@@ -12797,6 +15194,9 @@
       "피곤 | 疲困"
     ],
     "subtitle": "piano",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 800
   },
   {
@@ -12813,6 +15213,9 @@
       "기적 | 奇跡"
     ],
     "subtitle": "guitar",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 801
   },
   {
@@ -12829,6 +15232,9 @@
       "투표 | 投票"
     ],
     "subtitle": "party",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 802
   },
   {
@@ -12845,6 +15251,9 @@
       "인연 | 因緣"
     ],
     "subtitle": "internet",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 803
   },
   {
@@ -12861,26 +15270,13 @@
       "에스파 | aespa"
     ],
     "subtitle": "LG",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
     "row_index": 804
   },
   {
     "id": "#C103-0806",
-    "ja_term": "삼성 | 三星",
-    "tw_translation": "三星",
-    "reading": "",
-    "created_at": "2026-09-21",
-    "recommendations": [
-      "삼월 | 三月",
-      "삼촌 | 三寸",
-      "산악인 | 山岳人",
-      "사진 | 寫真",
-      "상관 | 相關"
-    ],
-    "subtitle": "三星",
-    "row_index": 805
-  },
-  {
-    "id": "#C103-0807",
     "ja_term": "롯데 | Lotte",
     "tw_translation": "樂天",
     "reading": "",
@@ -12893,10 +15289,13 @@
       "라이즈 | RIIZE"
     ],
     "subtitle": "Lotte",
-    "row_index": 806
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 805
   },
   {
-    "id": "#C103-0808",
+    "id": "#C103-0807",
     "ja_term": "카카오 | Kakao",
     "tw_translation": "Kakao (韓國最大通訊軟體)",
     "reading": "",
@@ -12909,10 +15308,13 @@
       "침투 | 浸透"
     ],
     "subtitle": "Kakao",
-    "row_index": 807
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 806
   },
   {
-    "id": "#C103-0809",
+    "id": "#C103-0808",
     "ja_term": "네이버 | NAVAR",
     "tw_translation": "NAVAR (韓國最大搜尋引擎)",
     "reading": "",
@@ -12925,10 +15327,13 @@
       "내일 | 來日"
     ],
     "subtitle": "NAVAR",
-    "row_index": 808
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 807
   },
   {
-    "id": "#C103-0810",
+    "id": "#C103-0809",
     "ja_term": "뉴진스 | NewJeans",
     "tw_translation": "NewJeans",
     "reading": "NewJeans (近年現象級女團)",
@@ -12941,10 +15346,13 @@
       "놀이공원 | --公園"
     ],
     "subtitle": "NewJeans",
-    "row_index": 809
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 808
   },
   {
-    "id": "#C103-0811",
+    "id": "#C103-0810",
     "ja_term": "아이브 | IVE",
     "tw_translation": "IVE",
     "reading": "IVE",
@@ -12957,10 +15365,13 @@
       "십이월 | 十二月"
     ],
     "subtitle": "IVE",
-    "row_index": 810
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 809
   },
   {
-    "id": "#C103-0812",
+    "id": "#C103-0811",
     "ja_term": "르세라핌 | LE SSERAFIM",
     "tw_translation": "LE SSERAFIM",
     "reading": "LE SSERAFIM",
@@ -12973,10 +15384,13 @@
       "레드 | red"
     ],
     "subtitle": "LE SSERAFIM",
-    "row_index": 811
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 810
   },
   {
-    "id": "#C103-0813",
+    "id": "#C103-0812",
     "ja_term": "에스파 | aespa",
     "tw_translation": "aespa",
     "reading": "aespa",
@@ -12989,10 +15403,13 @@
       "어차피 | 於此彼"
     ],
     "subtitle": "aespa",
-    "row_index": 812
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 811
   },
   {
-    "id": "#C103-0814",
+    "id": "#C103-0813",
     "ja_term": "아일릿 | ILLIT",
     "tw_translation": "ILLIT",
     "reading": "ILLIT (近期討論度極高的新女團)",
@@ -13005,10 +15422,13 @@
       "아이돌 | Idol"
     ],
     "subtitle": "ILLIT",
-    "row_index": 813
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 812
   },
   {
-    "id": "#C103-0815",
+    "id": "#C103-0814",
     "ja_term": "베이비몬스터 | BABYMONSTER",
     "tw_translation": "BABYMONSTER",
     "reading": "BABYMONSTER",
@@ -13021,10 +15441,13 @@
       "백화점 | 百貨店"
     ],
     "subtitle": "BABYMONSTER",
-    "row_index": 814
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 813
   },
   {
-    "id": "#C103-0816",
+    "id": "#C103-0815",
     "ja_term": "블랙핑크 | BLACKPINK",
     "tw_translation": "BLACKPINK",
     "reading": "BLACKPINK (世界級女團)",
@@ -13037,10 +15460,13 @@
       "불행 | 不幸"
     ],
     "subtitle": "BLACKPINK",
-    "row_index": 815
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 814
   },
   {
-    "id": "#C103-0817",
+    "id": "#C103-0816",
     "ja_term": "트와이스 | TWICE",
     "tw_translation": "TWICE",
     "reading": "TWICE",
@@ -13053,10 +15479,13 @@
       "투모로우바이투게더 | Tomorrow X Together"
     ],
     "subtitle": "TWICE",
-    "row_index": 816
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 815
   },
   {
-    "id": "#C103-0818",
+    "id": "#C103-0817",
     "ja_term": "세븐틴 | SEVENTEEN",
     "tw_translation": "SEVENTEEN",
     "reading": "SEVENTEEN (目前人氣極高的男團)",
@@ -13069,10 +15498,13 @@
       "세계 | 世界"
     ],
     "subtitle": "SEVENTEEN",
-    "row_index": 817
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 816
   },
   {
-    "id": "#C103-0819",
+    "id": "#C103-0818",
     "ja_term": "스트레이 키즈 | Stray Kids",
     "tw_translation": "Stray Kids",
     "reading": "Stray Kids (常簡稱 스키즈 SKZ)",
@@ -13085,10 +15517,13 @@
       "스타벅스 | Starbucks"
     ],
     "subtitle": "Stray Kids",
-    "row_index": 818
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 817
   },
   {
-    "id": "#C103-0820",
+    "id": "#C103-0819",
     "ja_term": "라이즈 | RIIZE",
     "tw_translation": "RIIZE",
     "reading": "RIIZE (近期非常紅的新生代男團)",
@@ -13101,10 +15536,13 @@
       "등산 | 登山"
     ],
     "subtitle": "RIIZE",
-    "row_index": 819
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 818
   },
   {
-    "id": "#C103-0821",
+    "id": "#C103-0820",
     "ja_term": "엔하이픈 | ENHYPEN",
     "tw_translation": "ENHYPEN",
     "reading": "ENHYPEN",
@@ -13117,10 +15555,13 @@
       "에스엠 | SM"
     ],
     "subtitle": "ENHYPEN",
-    "row_index": 820
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 819
   },
   {
-    "id": "#C103-0822",
+    "id": "#C103-0821",
     "ja_term": "투어스 | TWS",
     "tw_translation": "TWS",
     "reading": "TWS (今年剛出道的高人氣男團)",
@@ -13133,10 +15574,13 @@
       "퇴원 | 退院"
     ],
     "subtitle": "TWS",
-    "row_index": 821
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 820
   },
   {
-    "id": "#C103-0823",
+    "id": "#C103-0822",
     "ja_term": "엔시티 | NCT",
     "tw_translation": "NCT",
     "reading": "NCT",
@@ -13149,10 +15593,13 @@
       "언어 | 言語"
     ],
     "subtitle": "NCT",
-    "row_index": 822
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 821
   },
   {
-    "id": "#C103-0824",
+    "id": "#C103-0823",
     "ja_term": "투모로우바이투게더 | Tomorrow X Together",
     "tw_translation": "Tomorrow X Together",
     "reading": "TXT (韓文全名較長，是很好的拼讀練習)",
@@ -13165,10 +15612,13 @@
       "퇴사 | 退社"
     ],
     "subtitle": "Tomorrow X Together",
-    "row_index": 823
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 822
   },
   {
-    "id": "#C103-0825",
+    "id": "#C103-0824",
     "ja_term": "레드벨벳 | Red Velvet",
     "tw_translation": "Red Velvet",
     "reading": "",
@@ -13181,10 +15631,13 @@
       "라디오 | radio"
     ],
     "subtitle": "Red Velvet",
-    "row_index": 824
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 823
   },
   {
-    "id": "#C103-0826",
+    "id": "#C103-0825",
     "ja_term": "여자친구 | GFRIEND",
     "tw_translation": "GFRIEND",
     "reading": "",
@@ -13197,10 +15650,13 @@
       "여신 | 女神"
     ],
     "subtitle": "GFRIEND",
-    "row_index": 825
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 824
   },
   {
-    "id": "#C103-0827",
+    "id": "#C103-0826",
     "ja_term": "에스엠 | SM",
     "tw_translation": "SM娛樂 (SM Entertainment)",
     "reading": "SM娛樂 (SM Entertainment)",
@@ -13213,10 +15669,13 @@
       "어색 | 語塞"
     ],
     "subtitle": "SM",
-    "row_index": 826
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 825
   },
   {
-    "id": "#C103-0828",
+    "id": "#C103-0827",
     "ja_term": "제이와이피 | JYP",
     "tw_translation": "JYP娛樂 (JYP Entertainment)",
     "reading": "JYP娛樂 (JYP Entertainment)",
@@ -13229,10 +15688,13 @@
       "정예린 | 鄭睿隣"
     ],
     "subtitle": "JYP",
-    "row_index": 827
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 826
   },
   {
-    "id": "#C103-0829",
+    "id": "#C103-0828",
     "ja_term": "와이지 | YG",
     "tw_translation": "YG娛樂 (YG Entertainment)",
     "reading": "YG娛樂 (YG Entertainment)",
@@ -13245,10 +15707,13 @@
       "오월 | 五月"
     ],
     "subtitle": "YG",
-    "row_index": 828
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 827
   },
   {
-    "id": "#C103-0830",
+    "id": "#C103-0829",
     "ja_term": "하이브 | HYBE",
     "tw_translation": "HYBE",
     "reading": "HYBE (近年躍升為四大之一的大型娛樂公司)",
@@ -13261,10 +15726,13 @@
       "필요 | 必要"
     ],
     "subtitle": "HYBE",
-    "row_index": 829
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 828
   },
   {
-    "id": "#C103-0831",
+    "id": "#C103-0830",
     "ja_term": "슈퍼주니어 | SUPER JUNIOR",
     "tw_translation": "SUPER JUNIOR",
     "reading": "",
@@ -13277,10 +15745,13 @@
       "순수 | 純粹"
     ],
     "subtitle": "SUPER JUNIOR",
-    "row_index": 830
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 829
   },
   {
-    "id": "#C103-0832",
+    "id": "#C103-0831",
     "ja_term": "샤이니 | SHINee",
     "tw_translation": "SHINee",
     "reading": "",
@@ -13293,10 +15764,13 @@
       "생선 | 生鮮"
     ],
     "subtitle": "SHINee",
-    "row_index": 831
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 830
   },
   {
-    "id": "#C103-0833",
+    "id": "#C103-0832",
     "ja_term": "블랙 | black",
     "tw_translation": "黑色",
     "reading": "黑色",
@@ -13309,10 +15783,13 @@
       "불편 | 不便"
     ],
     "subtitle": "black",
-    "row_index": 832
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 831
   },
   {
-    "id": "#C103-0834",
+    "id": "#C103-0833",
     "ja_term": "화이트 | white",
     "tw_translation": "白色",
     "reading": "白色",
@@ -13325,10 +15802,13 @@
       "호텔 | hotel"
     ],
     "subtitle": "white",
-    "row_index": 833
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 832
   },
   {
-    "id": "#C103-0835",
+    "id": "#C103-0834",
     "ja_term": "레드 | red",
     "tw_translation": "紅色",
     "reading": "紅色",
@@ -13341,10 +15821,13 @@
       "디자인 | design"
     ],
     "subtitle": "red",
-    "row_index": 834
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 833
   },
   {
-    "id": "#C103-0836",
+    "id": "#C103-0835",
     "ja_term": "블루 | blue",
     "tw_translation": "藍色",
     "reading": "藍色",
@@ -13357,10 +15840,13 @@
       "브라운 | brown"
     ],
     "subtitle": "blue",
-    "row_index": 835
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 834
   },
   {
-    "id": "#C103-0837",
+    "id": "#C103-0836",
     "ja_term": "옐로우 | yellow",
     "tw_translation": "黃色",
     "reading": "黃色",
@@ -13373,10 +15859,13 @@
       "예술 | 藝術"
     ],
     "subtitle": "yellow",
-    "row_index": 836
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 835
   },
   {
-    "id": "#C103-0838",
+    "id": "#C103-0837",
     "ja_term": "그린 | green",
     "tw_translation": "綠色",
     "reading": "綠色",
@@ -13389,10 +15878,13 @@
       "귀국 | 歸國"
     ],
     "subtitle": "green",
-    "row_index": 837
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 836
   },
   {
-    "id": "#C103-0839",
+    "id": "#C103-0838",
     "ja_term": "핑크 | pink",
     "tw_translation": "粉紅色",
     "reading": "粉紅色 (極常用)",
@@ -13405,10 +15897,13 @@
       "필업 | 畢業"
     ],
     "subtitle": "pink",
-    "row_index": 838
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 837
   },
   {
-    "id": "#C103-0840",
+    "id": "#C103-0839",
     "ja_term": "오렌지 | orange",
     "tw_translation": "橘色",
     "reading": "橘色",
@@ -13421,10 +15916,13 @@
       "예인 | 藝人"
     ],
     "subtitle": "orange",
-    "row_index": 839
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 838
   },
   {
-    "id": "#C103-0841",
+    "id": "#C103-0840",
     "ja_term": "브라운 | brown",
     "tw_translation": "咖啡色",
     "reading": "棕色 / 咖啡色",
@@ -13437,10 +15935,13 @@
       "불쾌 | 不快"
     ],
     "subtitle": "brown",
-    "row_index": 840
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 839
   },
   {
-    "id": "#C103-0842",
+    "id": "#C103-0841",
     "ja_term": "그레이 | gray",
     "tw_translation": "灰色",
     "reading": "灰色",
@@ -13453,10 +15954,13 @@
       "권보아 | 權𤣰雅"
     ],
     "subtitle": "gray",
-    "row_index": 841
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 840
   },
   {
-    "id": "#C103-0843",
+    "id": "#C103-0842",
     "ja_term": "골드 | gold",
     "tw_translation": "金色",
     "reading": "金色",
@@ -13469,10 +15973,13 @@
       "고속 | 高速"
     ],
     "subtitle": "gold",
-    "row_index": 842
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 841
   },
   {
-    "id": "#C103-0844",
+    "id": "#C103-0843",
     "ja_term": "실버 | silver",
     "tw_translation": "銀色",
     "reading": "銀色",
@@ -13485,10 +15992,13 @@
       "실기 | 實技"
     ],
     "subtitle": "silver",
-    "row_index": 843
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 842
   },
   {
-    "id": "#C103-0845",
+    "id": "#C103-0844",
     "ja_term": "있지 | ITZY",
     "tw_translation": "ITZY",
     "reading": "",
@@ -13501,10 +16011,13 @@
       "임윤아 | 林潤妸"
     ],
     "subtitle": "ITZY",
-    "row_index": 844
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 843
   },
   {
-    "id": "#C103-0846",
+    "id": "#C103-0845",
     "ja_term": "아이돌 | Idol",
     "tw_translation": "Idol",
     "reading": "",
@@ -13517,10 +16030,13 @@
       "심하다 | 甚하다"
     ],
     "subtitle": "Idol",
-    "row_index": 845
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 844
   },
   {
-    "id": "#C103-0847",
+    "id": "#C103-0846",
     "ja_term": "걸그룹 | girl group",
     "tw_translation": "女團",
     "reading": "",
@@ -13533,10 +16049,13 @@
       "거실 | 居室"
     ],
     "subtitle": "girl group",
-    "row_index": 846
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 845
   },
   {
-    "id": "#C103-0848",
+    "id": "#C103-0847",
     "ja_term": "프로그램 | program",
     "tw_translation": "節目 / 程式",
     "reading": "",
@@ -13549,10 +16068,13 @@
       "표지판 | 標示板"
     ],
     "subtitle": "program",
-    "row_index": 847
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 846
   },
   {
-    "id": "#C103-0849",
+    "id": "#C103-0848",
     "ja_term": "오디션 | audition",
     "tw_translation": "試鏡 / 選秀",
     "reading": "",
@@ -13565,10 +16087,13 @@
       "예약 | 豫約"
     ],
     "subtitle": "audition",
-    "row_index": 848
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 847
   },
   {
-    "id": "#C103-0850",
+    "id": "#C103-0849",
     "ja_term": "이니스프리 | INNISFREE",
     "tw_translation": "INNISFREE",
     "reading": "",
@@ -13581,10 +16106,13 @@
       "의사 | 醫師"
     ],
     "subtitle": "INNISFREE",
-    "row_index": 849
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 848
   },
   {
-    "id": "#C103-0851",
+    "id": "#C103-0850",
     "ja_term": "콜라겐 | collagen",
     "tw_translation": "膠原蛋白",
     "reading": "",
@@ -13597,10 +16125,13 @@
       "컴퓨터 | computer"
     ],
     "subtitle": "collagen",
-    "row_index": 850
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 849
   },
   {
-    "id": "#C103-0852",
+    "id": "#C103-0851",
     "ja_term": "넷플릭스 | Netflix",
     "tw_translation": "Netflix",
     "reading": "",
@@ -13613,10 +16144,13 @@
       "냉면 | 冷麵"
     ],
     "subtitle": "Netflix",
-    "row_index": 851
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 850
   },
   {
-    "id": "#C103-0853",
+    "id": "#C103-0852",
     "ja_term": "게임 | game",
     "tw_translation": "遊戲",
     "reading": "",
@@ -13629,10 +16163,13 @@
       "건강 | 健康"
     ],
     "subtitle": "game",
-    "row_index": 852
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 851
   },
   {
-    "id": "#C103-0854",
+    "id": "#C103-0853",
     "ja_term": "프랑스 | France",
     "tw_translation": "法國",
     "reading": "",
@@ -13645,10 +16182,13 @@
       "표정 | 表情"
     ],
     "subtitle": "France",
-    "row_index": 853
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 852
   },
   {
-    "id": "#C103-0855",
+    "id": "#C103-0854",
     "ja_term": "스페인 | Spain",
     "tw_translation": "西班牙",
     "reading": "",
@@ -13661,10 +16201,13 @@
       "스타일 | style"
     ],
     "subtitle": "Spain",
-    "row_index": 854
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 853
   },
   {
-    "id": "#C103-0856",
+    "id": "#C103-0855",
     "ja_term": "캐나다 | Canada",
     "tw_translation": "加拿大",
     "reading": "",
@@ -13677,10 +16220,13 @@
       "카드 | card"
     ],
     "subtitle": "Canada",
-    "row_index": 855
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 854
   },
   {
-    "id": "#C103-0857",
+    "id": "#C103-0856",
     "ja_term": "세럼 | serum",
     "tw_translation": "精華 / 精華液",
     "reading": "",
@@ -13693,10 +16239,13 @@
       "성형 | 成形"
     ],
     "subtitle": "serum",
-    "row_index": 856
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 855
   },
   {
-    "id": "#C103-0858",
+    "id": "#C103-0857",
     "ja_term": "치킨 | chicken",
     "tw_translation": "炸雞 (韓文通常特指炸雞，而非一般雞肉)",
     "reading": "",
@@ -13709,10 +16258,13 @@
       "취미 | 趣味"
     ],
     "subtitle": "chicken",
-    "row_index": 857
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 856
   },
   {
-    "id": "#C103-0859",
+    "id": "#C103-0858",
     "ja_term": "스마트폰 | smartphone",
     "tw_translation": "智慧型手機",
     "reading": "",
@@ -13725,10 +16277,13 @@
       "순위 | 順位"
     ],
     "subtitle": "smartphone",
-    "row_index": 858
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 857
   },
   {
-    "id": "#C103-0860",
+    "id": "#C103-0859",
     "ja_term": "카드 | card",
     "tw_translation": "卡片 (常指信用卡 신용카드)",
     "reading": "",
@@ -13741,10 +16296,13 @@
       "친절 | 親切"
     ],
     "subtitle": "card",
-    "row_index": 859
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 858
   },
   {
-    "id": "#C103-0861",
+    "id": "#C103-0860",
     "ja_term": "아르바이트 | arbeit",
     "tw_translation": "打工 (源自德文，韓國人常縮寫為 알바)",
     "reading": "",
@@ -13757,10 +16315,13 @@
       "심장 | 心臟"
     ],
     "subtitle": "arbeit",
-    "row_index": 860
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 859
   },
   {
-    "id": "#C103-0862",
+    "id": "#C103-0861",
     "ja_term": "스트레스 | stress",
     "tw_translation": "壓力",
     "reading": "",
@@ -13773,10 +16334,13 @@
       "스키 | ski"
     ],
     "subtitle": "stress",
-    "row_index": 861
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 860
   },
   {
-    "id": "#C103-0863",
+    "id": "#C103-0862",
     "ja_term": "다이어트 | diet",
     "tw_translation": "減肥",
     "reading": "",
@@ -13789,10 +16353,13 @@
       "단어 | 單語"
     ],
     "subtitle": "diet",
-    "row_index": 862
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 861
   },
   {
-    "id": "#C103-0864",
+    "id": "#C103-0863",
     "ja_term": "이벤트 | event",
     "tw_translation": "活動",
     "reading": "",
@@ -13805,10 +16372,13 @@
       "이동 | 移動"
     ],
     "subtitle": "event",
-    "row_index": 863
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 862
   },
   {
-    "id": "#C103-0865",
+    "id": "#C103-0864",
     "ja_term": "서비스 | service",
     "tw_translation": "服務\n \n㊟\n在韓國餐廳常指「店家免費招待的東西」",
     "reading": "",
@@ -13821,10 +16391,13 @@
       "생신 | 生辰"
     ],
     "subtitle": "service",
-    "row_index": 864
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 863
   },
   {
-    "id": "#C103-0866",
+    "id": "#C103-0865",
     "ja_term": "디자인 | design",
     "tw_translation": "設計",
     "reading": "",
@@ -13837,10 +16410,13 @@
       "등록 | 登錄"
     ],
     "subtitle": "design",
-    "row_index": 865
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 864
   },
   {
-    "id": "#C103-0867",
+    "id": "#C103-0866",
     "ja_term": "인터뷰 | interview",
     "tw_translation": "採訪 / 面試",
     "reading": "",
@@ -13853,10 +16429,13 @@
       "인원수 | 人員數"
     ],
     "subtitle": "interview",
-    "row_index": 866
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 865
   },
   {
-    "id": "#C103-0868",
+    "id": "#C103-0867",
     "ja_term": "뉴스 | news",
     "tw_translation": "新聞",
     "reading": "",
@@ -13869,10 +16448,13 @@
       "노트 | note"
     ],
     "subtitle": "news",
-    "row_index": 867
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 866
   },
   {
-    "id": "#C103-0869",
+    "id": "#C103-0868",
     "ja_term": "스타일 | style",
     "tw_translation": "風格 / 類型",
     "reading": "",
@@ -13885,10 +16467,13 @@
       "스마트폰 | smartphone"
     ],
     "subtitle": "style",
-    "row_index": 868
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 867
   },
   {
-    "id": "#C103-0870",
+    "id": "#C103-0869",
     "ja_term": "사이즈 | size",
     "tw_translation": "尺寸 / 大小",
     "reading": "",
@@ -13901,10 +16486,13 @@
       "사실 | 事實"
     ],
     "subtitle": "size",
-    "row_index": 869
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 868
   },
   {
-    "id": "#C103-0871",
+    "id": "#C103-0870",
     "ja_term": "알레르기 | allergy",
     "tw_translation": "過敏",
     "reading": "",
@@ -13917,10 +16505,13 @@
       "안경 | 眼鏡"
     ],
     "subtitle": "allergy",
-    "row_index": 870
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 869
   },
   {
-    "id": "#C103-0872",
+    "id": "#C103-0871",
     "ja_term": "빅뱅 | BIGBANG",
     "tw_translation": "BIGBANG",
     "reading": "",
@@ -13933,10 +16524,13 @@
       "비밀 | 祕密"
     ],
     "subtitle": "BIGBANG",
-    "row_index": 871
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 870
   },
   {
-    "id": "#C103-0873",
+    "id": "#C103-0872",
     "ja_term": "그룹 | group",
     "tw_translation": "group",
     "reading": "",
@@ -13949,10 +16543,13 @@
       "권유리 | 權兪利"
     ],
     "subtitle": "group",
-    "row_index": 872
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 871
   },
   {
-    "id": "#C103-0874",
+    "id": "#C103-0873",
     "ja_term": "멤버 | member",
     "tw_translation": "成員",
     "reading": "",
@@ -13965,6 +16562,165 @@
       "매진 | 賣盡"
     ],
     "subtitle": "member",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 872
+  },
+  {
+    "id": "#C103-0874",
+    "ja_term": "하늘 | 固有詞",
+    "tw_translation": "天空",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
     "row_index": 873
+  },
+  {
+    "id": "#C103-0875",
+    "ja_term": "바다 | 固有詞",
+    "tw_translation": "大海",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 874
+  },
+  {
+    "id": "#C103-0876",
+    "ja_term": "별 | 固有詞",
+    "tw_translation": "星星",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 875
+  },
+  {
+    "id": "#C103-0877",
+    "ja_term": "달 | 固有詞",
+    "tw_translation": "月亮",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 876
+  },
+  {
+    "id": "#C103-0878",
+    "ja_term": "구름 | 固有詞",
+    "tw_translation": "雲",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 877
+  },
+  {
+    "id": "#C103-0879",
+    "ja_term": "예쁘다 | 固有詞",
+    "tw_translation": "漂亮",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
+    "row_index": 878
+  },
+  {
+    "id": "#C103-0880",
+    "ja_term": "아름답다 | 固有詞",
+    "tw_translation": "美麗",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
+    "row_index": 879
+  },
+  {
+    "id": "#C103-0881",
+    "ja_term": "귀엽다 | 固有詞",
+    "tw_translation": "可愛",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
+    "row_index": 880
+  },
+  {
+    "id": "#C103-0882",
+    "ja_term": "가다 | 固有詞",
+    "tw_translation": "去",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 881
+  },
+  {
+    "id": "#C103-0883",
+    "ja_term": "오다 | 固有詞",
+    "tw_translation": "來",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 882
+  },
+  {
+    "id": "#C103-0884",
+    "ja_term": "마시다 | 固有詞",
+    "tw_translation": "喝",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 883
+  },
+  {
+    "id": "#C103-0885",
+    "ja_term": "자다 | 固有詞",
+    "tw_translation": "睡覺",
+    "reading": "",
+    "created_at": "",
+    "recommendations": [],
+    "subtitle": "固有詞",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 884
   }
 ]

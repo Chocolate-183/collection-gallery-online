@@ -13,8 +13,8 @@ import {
   parseProfilesGvizResponse,
   formatProfileId
 } from '../js/parser.js';
-import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, filterByBasic100, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
-import { LENGTH_TABS, KANA_TABS, QUICK_FILTERS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue } from '../js/constants.js';
+import { matchesKanaGroup, matchesHangulInitial, getHangulInitialTab, filterByQuery, filterByLength, filterByKana, filterByInitial, filterByLoanword, filterByEtymology, filterByPos, filterByBasic100, sortBySubtitle, sortRecords, resolveSortType, compareCreatedAt, getFilterSummary } from '../js/filter.js';
+import { LENGTH_TABS, KANA_TABS, QUICK_FILTERS, SORT_FIELDS, SORT_ORDERS, PAGE_SIZE_ALL, DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, resolvePageSize, pageSizeTabValue, ETYMOLOGY_TABS, POS_TABS } from '../js/constants.js';
 import {
   escapeHtml,
   getUnicodeLength,
@@ -248,6 +248,22 @@ test('Filter Modal - Initial, Length, Kind and Sort combine independently', () =
   const combined = filterByLength(filterByLoanword(filterByInitial(records, 'ㄱ'), true), LENGTH_TABS.TWO);
   assert.equal(combined.length, 0);
 
+  const etymologyRecords = [
+    { id: 'hanja', etymology: '漢字語', pos: '名詞' },
+    { id: 'loan', etymology: '外來語', pos: '名詞' },
+    { id: 'native', etymology: '固有詞', pos: '動詞' },
+    { id: 'adj', etymology: '漢字語', pos: '形容詞' }
+  ];
+  assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.LOANWORD).map(r => r.id), ['loan']);
+  assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA).map(r => r.id), ['hanja', 'adj']);
+  assert.equal(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.ALL).length, 4);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.NOUN).map(r => r.id), ['hanja', 'loan']);
+  assert.deepEqual(
+    filterByPos(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA), POS_TABS.ADJECTIVE).map(r => r.id),
+    ['adj']
+  );
+
   const byIdAsc = sortRecords(records, null, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.ASC });
   assert.deepEqual(byIdAsc.map(r => r.id), ['#C103-0001', '#C103-0002', '#C103-0003', '#C103-0010']);
 
@@ -324,21 +340,22 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(krCol.name, '韓語單字速成攻略');
   assert.equal(krCol.defaultMeta.title, '韓語單字速成攻略');
   assert.equal(krCol.defaultMeta.id, 'C103');
-  assert.equal(krCol.gid, '168524304');
+  assert.equal(krCol.gid, '1153058362');
   assert.equal(krCol.hasReading, true);
   assert.equal(krCol.hasKanaTabs, false);
   assert.equal(krCol.hasHangulTabs, true);
-  assert.equal(krCol.hasLoanwordFilter, true);
+  assert.equal(krCol.hasEtymologyPosFilter, true);
+  assert.equal(krCol.hasLoanwordFilter, undefined);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
   const krUrls = getCollectionDataUrls(krCol);
   assert(krUrls.csvUrl.includes('1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM'));
-  assert(krUrls.csvUrl.includes('gid=168524304'));
+  assert(krUrls.csvUrl.includes('gid=1153058362'));
 });
 
 test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C and D', () => {
-  const sampleCSV = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目
-#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,
-#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,`;
+  const sampleCSV = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目,詞源,詞性
+#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,,漢字語,名詞
+#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,,漢字語,名詞`;
 
   const parsed = parseCSVData(sampleCSV, 'korean-terms');
   assert.equal(parsed.length, 2);
@@ -347,6 +364,8 @@ test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C 
   assert.equal(parsed[0].reading, '가능');
   assert.equal(parsed[0].tw_translation, '可能');
   assert.equal(parsed[0].subtitle, '可能');
+  assert.equal(parsed[0].etymology, '漢字語');
+  assert.equal(parsed[0].pos, '名詞');
   assert.equal(parsed[1].ja_term, '실수 | 失手');
   assert.equal(parsed[1].reading, '실수');
   assert.equal(parsed[1].tw_translation, '失誤');
@@ -380,7 +399,8 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
     table: {
       cols: [
         { label: 'ID' }, { label: '顯示' }, { label: '諺文' }, { label: '副標' },
-        { label: '發音' }, { label: '意思' }, { label: '新增日期' }, { label: '推薦條目' }
+        { label: '發音' }, { label: '意思' }, { label: '新增日期' }, { label: '推薦條目' },
+        { label: '詞源' }, { label: '詞性' }
       ],
       rows: [{
         c: [
@@ -391,7 +411,9 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
           { v: '가능' },
           { v: '可能' },
           { v: 'Date(2026,8,15)', f: '2026-09-15' },
-          { v: '' }
+          { v: '' },
+          { v: '漢字語' },
+          { v: '名詞' }
         ]
       }, {
         c: [
@@ -402,7 +424,9 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
           { v: '실수' },
           { v: '失誤' },
           { v: 'Date(2026,8,15)' },
-          { v: '' }
+          { v: '' },
+          { v: '漢字語' },
+          { v: '名詞' }
         ]
       }]
     }
@@ -412,6 +436,8 @@ test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
   assert.equal(parsed.length, 2);
   assert.equal(parsed[0].id, '#C103-0002');
   assert.equal(parsed[0].created_at, '2026-09-15');
+  assert.equal(parsed[0].etymology, '漢字語');
+  assert.equal(parsed[0].pos, '名詞');
   assert.equal(parsed[1].id, '#C103-1047');
   assert.equal(parsed[1].created_at, '2026-09-15');
 });

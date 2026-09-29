@@ -39,8 +39,24 @@ export const KANA_TABS = {
 
 export const CATEGORY_TABS = {
   ALL: 'ALL',
-  LOANWORD: 'LOANWORD',
   BASIC100: 'BASIC100'
+};
+
+/** C103 詞源 (sheet I). */
+export const ETYMOLOGY_TABS = {
+  ALL: 'ALL',
+  HANJA: '漢字語',
+  LOANWORD: '外來語',
+  NATIVE: '固有詞'
+};
+
+/** C103 詞性 (sheet J). */
+export const POS_TABS = {
+  ALL: 'ALL',
+  NOUN: '名詞',
+  VERB: '動詞',
+  ADJECTIVE: '形容詞',
+  ADVERB: '副詞'
 };
 
 export const BASIC100_TAG = '基礎100';

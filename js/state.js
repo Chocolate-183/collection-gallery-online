@@ -27,6 +27,8 @@ class Store {
       currentLengthTab: 'ALL',
       currentInitialTab: 'ALL',
       loanwordOnly: false,
+      etymologyTab: 'ALL',
+      posTab: 'ALL',
       basic100Only: false,
       currentSortField: SORT_FIELDS.STANDARD,
       currentSortOrder: SORT_ORDERS.ASC,
