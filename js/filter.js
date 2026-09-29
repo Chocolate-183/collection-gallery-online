@@ -434,8 +434,8 @@ export function getFilterSummary() {
     parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5字+' : `${currentLengthTab}字`);
   }
   if (loanwordOnly) parts.push('外來語');
-  if (etymologyTab && etymologyTab !== ETYMOLOGY_TABS.ALL) parts.push(etymologyTab);
   if (posTab && posTab !== POS_TABS.ALL) parts.push(posTab);
+  if (etymologyTab && etymologyTab !== ETYMOLOGY_TABS.ALL) parts.push(etymologyTab);
   if (basic100Only) parts.push(BASIC100_TAG);
 
   const fieldLabel = currentSortField === SORT_FIELDS.ID
