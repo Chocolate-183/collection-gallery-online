@@ -146,7 +146,9 @@
       "간단 | 簡單"
     ],
     "subtitle": "家族",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 8
@@ -963,7 +965,9 @@
       "공개 | 公開"
     ],
     "subtitle": "工夫",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 51
@@ -1723,7 +1727,9 @@
       "왕자 | 王子"
     ],
     "subtitle": "男子",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 91
@@ -1761,7 +1767,9 @@
       "일기 | 日氣"
     ],
     "subtitle": "來日",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 93
@@ -3129,7 +3137,9 @@
       "미인 | 美人"
     ],
     "subtitle": "未安",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 165
@@ -3718,7 +3728,9 @@
       "별명 | 別名"
     ],
     "subtitle": "病院",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 196
@@ -5523,7 +5535,9 @@
       "인간 | 人間"
     ],
     "subtitle": "時間",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 291
@@ -5732,7 +5746,9 @@
       "성당 | 聖堂"
     ],
     "subtitle": "食堂",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 302
@@ -6264,7 +6280,9 @@
       "악어 | 鰐魚"
     ],
     "subtitle": "安寧",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 330
@@ -6663,7 +6681,9 @@
       "여왕 | 女王"
     ],
     "subtitle": "女子",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 351
@@ -7100,7 +7120,9 @@
       "영원 | 永遠"
     ],
     "subtitle": "映畫",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 374
@@ -8145,7 +8167,9 @@
       "음악 | 音樂"
     ],
     "subtitle": "飮食",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 429
@@ -9551,7 +9575,9 @@
       "절대 | 絕對"
     ],
     "subtitle": "電話",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 503
@@ -10292,7 +10318,9 @@
       "지하철 | 地下鐵"
     ],
     "subtitle": "只今",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 542
@@ -10330,7 +10358,9 @@
       "직업 | 職業"
     ],
     "subtitle": "地下鐵",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 544
@@ -11052,7 +11082,9 @@
       "취미 | 趣味"
     ],
     "subtitle": "親舊",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 582
@@ -11736,7 +11768,9 @@
       "학과 | 學科"
     ],
     "subtitle": "學校",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 618
@@ -11793,7 +11827,9 @@
       "학과 | 學科"
     ],
     "subtitle": "學生",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 621
@@ -11831,7 +11867,9 @@
       "민국 | 民國"
     ],
     "subtitle": "韓國",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 623
@@ -12154,7 +12192,9 @@
       "사무실 | 事務室"
     ],
     "subtitle": "化粧室",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 640
@@ -14700,7 +14740,9 @@
       "카메라 | camera"
     ],
     "subtitle": "coffee",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 774
@@ -14852,7 +14894,9 @@
       "배우 | 俳優"
     ],
     "subtitle": "bus",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 782
@@ -16480,7 +16524,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 868
@@ -16545,7 +16591,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 873
@@ -16584,7 +16632,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 876
@@ -16597,7 +16647,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 877
@@ -16610,7 +16662,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 878
@@ -16623,7 +16677,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 879
@@ -16857,7 +16913,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "副詞",
     "row_index": 897
@@ -17065,7 +17123,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 913
@@ -17130,7 +17190,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 918
@@ -17247,7 +17309,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 927
@@ -17572,7 +17636,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 952
@@ -17663,7 +17729,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 959
@@ -17780,7 +17848,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 968
@@ -17923,7 +17993,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "副詞",
     "row_index": 979
@@ -17975,7 +18047,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "(感嘆詞)",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "感嘆詞",
     "row_index": 983
@@ -18066,7 +18140,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 990
@@ -18092,7 +18168,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 992
@@ -18313,7 +18391,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1009
@@ -18352,7 +18432,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1012
@@ -18521,7 +18603,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1025
@@ -18729,7 +18813,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1041
@@ -18755,7 +18841,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1043
@@ -18872,7 +18960,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1052
@@ -18924,7 +19014,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1056
@@ -19041,7 +19133,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1065
@@ -19197,7 +19291,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1077
@@ -19210,7 +19306,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 1078
@@ -19288,7 +19386,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1084
@@ -19353,7 +19453,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1089
@@ -19405,7 +19507,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1093
@@ -19444,7 +19548,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1096
@@ -19548,7 +19654,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "(動詞)",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1104
@@ -19704,7 +19812,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1116
@@ -19769,7 +19879,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "副詞",
     "row_index": 1121
@@ -19821,7 +19933,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1125
@@ -19834,7 +19948,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1126
@@ -19847,7 +19963,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1127
@@ -19938,7 +20056,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1134
@@ -20042,7 +20162,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1142
@@ -20055,7 +20177,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "先生",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 1143
@@ -20133,7 +20257,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1149
@@ -20211,7 +20337,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1155
@@ -20523,7 +20651,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1179
@@ -20549,7 +20679,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1181
@@ -20627,7 +20759,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1187
@@ -20640,7 +20774,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1188
@@ -20731,7 +20867,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1195
@@ -20809,7 +20947,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 1201
@@ -20848,7 +20988,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1204
@@ -20861,7 +21003,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1205
@@ -20887,7 +21031,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1207
@@ -20926,7 +21072,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 1210
@@ -20952,7 +21100,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1212
@@ -20978,7 +21128,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1214
@@ -21004,7 +21156,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 1216
@@ -21251,7 +21405,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1235
@@ -21342,7 +21498,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1242
@@ -21368,7 +21526,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "副詞",
     "row_index": 1244
@@ -21446,7 +21606,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 1250
@@ -21628,7 +21790,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 1264
@@ -21654,7 +21818,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1266
@@ -21862,7 +22028,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1282
@@ -21888,7 +22056,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1284
@@ -21901,7 +22071,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1285
@@ -21953,7 +22125,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1289
@@ -22083,7 +22257,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "(代名詞)",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "代名詞",
     "row_index": 1299
@@ -22148,7 +22324,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1304
@@ -22252,7 +22430,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "副詞",
     "row_index": 1312
@@ -22317,7 +22497,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1317
@@ -22330,7 +22512,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1318
@@ -22343,7 +22527,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "罪悚--",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "形容詞",
     "row_index": 1319
@@ -22369,7 +22555,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1321
@@ -22551,7 +22739,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 1335
@@ -22668,7 +22858,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "冊",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 1344
@@ -22785,7 +22977,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1353
@@ -22831,12 +23025,12 @@
   },
   {
     "id": "#C103-1358",
-    "ja_term": "친하다 | 親",
+    "ja_term": "친하다 | 親--",
     "tw_translation": "親近的",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "親",
+    "subtitle": "親--",
     "tags": [],
     "etymology": "漢字語",
     "pos": "形容詞",
@@ -22967,7 +23161,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "形容詞",
     "row_index": 1367
@@ -23188,7 +23384,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "數詞",
     "row_index": 1384
@@ -23201,7 +23399,9 @@
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "固有詞",
     "pos": "動詞",
     "row_index": 1385

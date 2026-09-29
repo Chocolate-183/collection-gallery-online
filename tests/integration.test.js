@@ -73,6 +73,8 @@ test('Local Fallback Snapshot Integrity - Master Korean Vocabulary Fast: The Ult
   for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
     assert.ok(posValues.includes(pos), `C103 dump missing POS ${pos}`);
   }
+  const basic100 = koreanJson.filter(r => Array.isArray(r.tags) && r.tags.includes('基礎100'));
+  assert.equal(basic100.length, 100);
 });
 
 test('C103 Filter POS pills include all sheet 詞性 values', () => {
@@ -711,11 +713,11 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   switchCollection('korean-terms', false);
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockHangul.style.display, '');
-  assert.equal(mockKind.style.display, 'none');
+  assert.equal(mockKind.style.display, '');
   assert.equal(mockEtymology.style.display, '');
   assert.equal(mockPos.style.display, '');
-  assert.equal(mockBasic100.style.display, 'none');
-  assert.equal(mockQuickBasic100.style.display, 'none');
+  assert.equal(mockBasic100.style.display, '');
+  assert.equal(mockQuickBasic100.style.display, '');
   assert.equal(mockKana.style.display, 'none');
   assert.equal(mockGloss.style.display, '');
   assert.equal(mockReading.style.display, 'none');

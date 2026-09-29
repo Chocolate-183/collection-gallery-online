@@ -356,6 +356,7 @@ test('Config & Endpoint URL Builders', () => {
   assert.equal(krCol.hasReading, true);
   assert.equal(krCol.hasKanaTabs, false);
   assert.equal(krCol.hasHangulTabs, true);
+  assert.equal(krCol.hasBasic100Filter, true);
   assert.equal(krCol.hasEtymologyPosFilter, true);
   assert.equal(krCol.hasLoanwordFilter, undefined);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
@@ -384,7 +385,7 @@ test('C103 Korean gallery CSV uses 顯示 / 發音 / 意思 and hides columns C 
   assert.equal(parsed[0].created_at, '2026-09-15');
 });
 
-test('C101/C102 CSV parse 標籤 and Category 基礎100', () => {
+test('C101/C102/C103 CSV parse 標籤 and Category 基礎100', () => {
   const jpCsv = `ID,日語用詞,台灣用詞,読み方,新增日期,推薦條目,標籤
 #C101-0002,1LDK,一房一廳一廚（格局）,ワンエルディーケー,2026-09-02,物件,基礎100
 #C101-0005,一人尺八,成人用語,ひとりしゃくはち,2026-09-02,本番行為,成人用語`;
@@ -403,6 +404,15 @@ test('C101/C102 CSV parse 標籤 and Category 基礎100', () => {
   assert.deepEqual(cn[0].tags, ['基礎100']);
   assert.deepEqual(cn[1].tags, []);
   assert.deepEqual(filterByBasic100(cn, true).map(r => r.id), ['#C102-0007']);
+
+  const krCsv = `ID,顯示,諺文,副標,意思,新增日期,推薦條目,詞源,詞性,標籤
+#C103-0002,가능 | 可能,가능,可能,可能,2026-09-15,,漢字語,名詞,基礎100
+#C103-0005,실수 | 失手,실수,失手,失誤,2026-09-15,,漢字語,名詞,`;
+  const kr = parseCSVData(krCsv, 'korean-terms');
+  assert.equal(kr.length, 2);
+  assert.deepEqual(kr[0].tags, ['基礎100']);
+  assert.deepEqual(kr[1].tags, []);
+  assert.deepEqual(filterByBasic100(kr, true).map(r => r.id), ['#C103-0002']);
 });
 
 test('GViz exhibit ID and Timestamp use C101 formatted values', () => {
