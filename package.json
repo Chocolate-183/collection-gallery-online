@@ -1,0 +1,14 @@
+{
+  "name": "collection-gallery-online",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild js/app.js --bundle --minify --format=esm --outfile=dist/app.js --target=es2020",
+    "watch": "esbuild js/app.js --bundle --sourcemap --format=esm --outfile=dist/app.js --target=es2020 --watch",
+    "test": "node --test tests/*.test.js",
+    "preview": "python3 -m http.server 8899"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12"
+  }
+}

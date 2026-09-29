@@ -115,6 +115,15 @@ test('Header refresh button is the second nav action and calls refreshGalleryDat
   assert.match(html, /<div class="awsui-nav-actions">[\s\S]*id="btn-toggle-theme"[\s\S]*id="btn-refresh-data"[\s\S]*onclick="refreshGalleryData\(window\.currentCollectionId\)"/);
 });
 
+test('index.html loads the esbuild bundle, not raw js/app.js', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const bundle = readFileSync(resolve('dist/app.js'), 'utf-8');
+  assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
+  assert.doesNotMatch(html, /src="js\/app\.js"/);
+  assert.match(bundle, /preloadAllCollections/);
+  assert.doesNotMatch(bundle, /data\.json[\s\S]{0,40}china-data\.json/);
+});
+
 test('Catalog search row has 最新10 and 隨機10 to the right of search', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*id="pagination-controls"/);

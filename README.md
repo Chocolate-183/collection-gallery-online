@@ -47,6 +47,8 @@
 .
 ├── index.html        # 主網頁應用程式 (Cloudscape Layout & Root Shell)
 ├── styles.css        # Cloudscape Design System 樣式表 (含 Layout, Cards Grid, Modal & Dark Mode)
+├── dist/app.js       # esbuild 打包後的瀏覽器進入點（index.html 載入此檔）
+├── package.json      # 建置腳本（esbuild）
 ├── opening-hours.csv # 展館開放時間離線備援（正式來源為中央 metadata spreadsheet）
 ├── js/
 │   ├── app.js        # 進入點、全域事件監聽與 Downward Compatibility Bridge
@@ -80,11 +82,16 @@
 
 ## 🚀 本地啟動與預覽方式
 
-1. 於本專案目錄啟動 HTTP 靜態伺服器：
-   ```bash
-   python3 -m http.server 8899
-   ```
-2. 於瀏覽器開啟 `http://localhost:8899` 即可預覽線上展覽應用程式。
+瀏覽器載入 `dist/app.js`（由 `js/` 以 esbuild 打包）。倉庫已提交此檔，靜態伺服器可直接開。改 `js/` 後需重建：
+
+```bash
+npm install
+npm run build          # 產出 dist/app.js
+npm run watch          # 開發時監看並重建
+python3 -m http.server 8899
+```
+
+於瀏覽器開啟 `http://localhost:8899` 即可預覽。離線 JSON 快照（`data.json` 等）不打進 bundle，仍獨立 fetch。
 
 ---
 
@@ -93,5 +100,9 @@
 本專案採用 Node.js 內建測試執行器（Zero-dependency）：
 
 ```bash
+npm test
+# 或
 node --test tests/*.test.js
 ```
+
+測試仍直接 import `js/` 原始模組，不經過 bundle。
