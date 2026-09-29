@@ -116,8 +116,8 @@ test('Display panel holds Sort by / Order / Page size and sits right of Filter',
   assert.doesNotMatch(filterChunk, /id="page-size-tabs"/);
   assert.match(filterChunk, /<span>Filter<\/span>/);
   assert.doesNotMatch(filterChunk, />Done</);
-  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-right:\s*calc\(50vw - 28px\)/);
-  assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 52px\)/);
+  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-right:\s*calc\(50vw - 68px\)/);
+  assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 92px\)/);
 });
 
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
