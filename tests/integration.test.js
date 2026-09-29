@@ -106,6 +106,10 @@ test('Display panel holds Sort by / Order / Page size and sits right of Filter',
   assert.match(displayChunk, /id="sort-field-tabs"/);
   assert.match(displayChunk, /id="sort-order-tabs"/);
   assert.match(displayChunk, /id="page-size-tabs"/);
+  const orderIdx = displayChunk.indexOf('id="sort-order-tabs"');
+  const pageSizeIdx = displayChunk.indexOf('id="page-size-tabs"');
+  assert.ok(orderIdx > 0 && pageSizeIdx > orderIdx);
+  assert.doesNotMatch(displayChunk, /awsui-filter-modal-row/);
   assert.match(displayChunk, /onclick="resetDisplaySettings\(\)"/);
   assert.doesNotMatch(filterChunk, /id="sort-field-tabs"/);
   assert.doesNotMatch(filterChunk, /id="page-size-tabs"/);

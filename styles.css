@@ -744,6 +744,10 @@ a:focus {
   flex-direction: column;
 }
 
+#display-modal .awsui-display-modal {
+  max-width: 380px;
+}
+
 #filter-modal .awsui-modal-body,
 #display-modal .awsui-modal-body {
   display: flex;
@@ -2460,6 +2464,10 @@ a:focus {
     max-width: min(560px, calc(50vw - 32px));
     aspect-ratio: auto;
     max-height: 85vh;
+  }
+
+  #display-modal .awsui-display-modal {
+    max-width: min(380px, calc(50vw - 32px));
   }
 
   #filter-modal {
