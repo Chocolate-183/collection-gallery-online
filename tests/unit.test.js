@@ -258,13 +258,15 @@ test('Filter Modal - Initial, Length, Kind and Sort combine independently', () =
     { id: 'pronoun', etymology: '固有詞', pos: '代名詞' },
     { id: 'counter', etymology: '固有詞', pos: '量詞' },
     { id: 'numeral', etymology: '漢字語', pos: '數詞' },
-    { id: 'bound', etymology: '固有詞', pos: '依存名詞' }
+    { id: 'bound', etymology: '固有詞', pos: '依存名詞' },
+    { id: 'hybrid', etymology: '混種詞', pos: '名詞' }
   ];
   assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.LOANWORD).map(r => r.id), ['loan']);
   assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA).map(r => r.id), ['hanja', 'adj', 'determiner', 'numeral']);
-  assert.equal(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.ALL).length, 10);
+  assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HYBRID).map(r => r.id), ['hybrid']);
+  assert.equal(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.ALL).length, 11);
   assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
-  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.NOUN).map(r => r.id), ['hanja', 'loan']);
+  assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.NOUN).map(r => r.id), ['hanja', 'loan', 'hybrid']);
   assert.deepEqual(
     filterByPos(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HANJA), POS_TABS.ADJECTIVE).map(r => r.id),
     ['adj']

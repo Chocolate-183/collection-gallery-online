@@ -75,6 +75,10 @@ test('Local Fallback Snapshot Integrity - Master Korean Vocabulary Fast: The Ult
   }
   const basic100 = koreanJson.filter(r => Array.isArray(r.tags) && r.tags.includes('基礎100'));
   assert.equal(basic100.length, 100);
+  const etymologyValues = [...new Set(koreanJson.map(r => String(r.etymology || '').trim()).filter(Boolean))];
+  for (const etym of ['漢字語', '外來語', '固有詞', '混種詞']) {
+    assert.ok(etymologyValues.includes(etym), `C103 dump missing etymology ${etym}`);
+  }
 });
 
 test('C103 Filter POS pills include all sheet 詞性 values', () => {
@@ -82,6 +86,14 @@ test('C103 Filter POS pills include all sheet 詞性 values', () => {
   const posSection = html.match(/id="pos-tabs"[\s\S]*?<\/div>/)[0];
   for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
     assert.match(posSection, new RegExp(`data-tab="${pos}"`));
+  }
+});
+
+test('C103 Filter Etymology pills include all sheet 詞源 values', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const etymologySection = html.match(/id="etymology-tabs"[\s\S]*?<\/div>/)[0];
+  for (const etym of ['漢字語', '外來語', '固有詞', '混種詞']) {
+    assert.match(etymologySection, new RegExp(`data-tab="${etym}"`));
   }
 });
 
