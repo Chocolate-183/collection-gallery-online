@@ -822,6 +822,21 @@ a:focus {
   border-color: #ECC94B !important;
 }
 
+#filter-panel-title-combined,
+#filter-display-actions {
+  display: none;
+}
+
+#filter-combined-host {
+  display: contents;
+}
+
+#display-panel-body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
 /* Uniform Height Cards Grid Matrix */
 .awsui-cards-grid {
   display: grid;
@@ -2720,32 +2735,21 @@ a:focus {
     margin-right: 0 !important;
   }
 
-  #filter-modal {
-    align-items: flex-start;
-    justify-content: center;
-  }
-
   #display-modal {
-    align-items: flex-end;
-    justify-content: center;
+    display: none !important;
   }
 
-  /* align-self:center on the shared mobile box would re-center both panels
-     and stack them on top of each other. Pin Filter to the top and Display
-     to the bottom of the padded overlay so they sit in a column. */
-  #filter-modal .awsui-filter-modal {
-    align-self: flex-start;
+  #filter-panel-title-filter,
+  #filter-reset-actions {
+    display: none !important;
   }
 
-  #display-modal .awsui-display-modal {
-    align-self: flex-end;
+  #filter-panel-title-combined {
+    display: inline;
   }
 
-  #display-modal .awsui-display-modal,
-  #filter-modal .awsui-filter-modal {
-    height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
-    min-height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
-    max-height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
+  #filter-display-actions {
+    display: flex;
   }
 
   .awsui-modal-body {

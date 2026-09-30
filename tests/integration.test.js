@@ -114,7 +114,10 @@ test('Display panel holds Sort by / Order / Page size and sits right of Filter',
   assert.doesNotMatch(displayChunk, />Done</);
   assert.doesNotMatch(filterChunk, /id="sort-field-tabs"/);
   assert.doesNotMatch(filterChunk, /id="page-size-tabs"/);
-  assert.match(filterChunk, /<span>Filter<\/span>/);
+  assert.match(filterChunk, /id="filter-panel-title-filter">Filter</);
+  assert.match(filterChunk, /id="filter-panel-title-combined">Filter & Display</);
+  assert.match(filterChunk, /id="filter-combined-host"/);
+  assert.match(filterChunk, /onclick="resetFilterAndDisplay\(\)"/);
   assert.doesNotMatch(filterChunk, />Done</);
   assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-right:\s*calc\(50vw - 68px\)/);
   assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 92px\)/);
@@ -197,14 +200,17 @@ test('RWD layout uses viewport-fit cover and iPhone 16 Pro Max modal box', () =>
   assert.match(css, /@media \(max-width: 768px\)[\s\S]*\.awsui-text-filter \{[\s\S]*flex:\s*1 1 100%/);
 });
 
-test('Mobile Filter and Display panels stack instead of overlapping', () => {
+test('Mobile Filter and Display merge into one Filter & Display panel', () => {
+  const html = readFileSync(resolve('index.html'), 'utf-8');
   const css = readFileSync(resolve('styles.css'), 'utf-8');
+  assert.match(html, /id="display-panel-body"/);
+  assert.match(html, /id="filter-combined-host"/);
+  assert.match(html, /id="filter-panel-title-combined">Filter & Display</);
   const mobileBlocks = css.split('@media (max-width: 768px)');
   const mobile = mobileBlocks[mobileBlocks.length - 1];
-  assert.match(mobile, /#filter-modal \{[\s\S]*align-items:\s*flex-start/);
-  assert.match(mobile, /#display-modal \{[\s\S]*align-items:\s*flex-end/);
-  assert.match(mobile, /#filter-modal \.awsui-filter-modal \{[\s\S]*align-self:\s*flex-start/);
-  assert.match(mobile, /#display-modal \.awsui-display-modal \{[\s\S]*align-self:\s*flex-end/);
+  assert.match(mobile, /#display-modal \{[\s\S]*display:\s*none\s*!important/);
+  assert.match(mobile, /#filter-panel-title-combined \{[\s\S]*display:\s*inline/);
+  assert.match(mobile, /#filter-display-actions \{[\s\S]*display:\s*flex/);
 });
 
 test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () => {
@@ -758,6 +764,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   global.window = {
     switchView: () => {},
     scrollTo: () => {},
+    innerWidth: 1200,
     setTimeout: fakeSetTimeout,
     clearTimeout: fakeClearTimeout,
     syncFilterUi: undefined,
@@ -805,6 +812,14 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   closeCatalogPanels();
   flushTimers();
   assert(!mockDisplayModal.classes.has('open'), 'closing Filter cancels a pending Display follow');
+
+  global.window.innerWidth = 390;
+  openFilterModal();
+  assert(mockFilterModal.classes.has('open'));
+  assert.equal(pendingTimers.length, 0, 'mobile does not schedule Display follow');
+  flushTimers();
+  assert(!mockDisplayModal.classes.has('open'), 'mobile merges Display into Filter');
+  closeCatalogPanels();
 
   store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', etymologyTab: '外來語', posTab: '名詞', currentCollectionId: 'korean-terms' });
   assert.equal(countActiveFineFilters() >= 4, true);

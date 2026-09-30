@@ -505,6 +505,29 @@ function isCatalogPanelOpen(id) {
   return document.getElementById(id)?.classList.contains('open');
 }
 
+export const CATALOG_MOBILE_MAX = 768;
+
+export function isCatalogMobile() {
+  const win = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : null);
+  if (win && typeof win.innerWidth === 'number') return win.innerWidth <= CATALOG_MOBILE_MAX;
+  return false;
+}
+
+export function placeDisplayPanel() {
+  if (typeof document === 'undefined') return;
+  const body = document.getElementById('display-panel-body');
+  const combined = document.getElementById('filter-combined-host');
+  const displayHost = document.getElementById('display-panel-host');
+  if (!body || !combined || !displayHost) return;
+  const target = isCatalogMobile() ? combined : displayHost;
+  if (body.parentNode !== target) target.appendChild(body);
+}
+
+export function resetFilterAndDisplay() {
+  resetFineFilters();
+  resetDisplaySettings();
+}
+
 export const DISPLAY_FOLLOW_DELAY_MS = 160;
 let displayFollowTimer = null;
 
@@ -536,6 +559,7 @@ function syncFilterTriggerActive() {
 }
 
 export function openDisplayModal() {
+  if (isCatalogMobile()) return;
   const modal = document.getElementById('display-modal');
   if (!modal) return;
   syncFilterUi();
@@ -557,9 +581,17 @@ export function closeDisplayModalOnBackdrop(e) {
 export function openFilterModal() {
   const modal = document.getElementById('filter-modal');
   if (!modal) return;
+  placeDisplayPanel();
   syncFilterUi();
   modal.classList.add('open');
   syncFilterTriggerActive();
+  if (isCatalogMobile()) {
+    cancelDisplayFollow();
+    const display = document.getElementById('display-modal');
+    if (display) display.classList.remove('open');
+    syncFilterTriggerActive();
+    return;
+  }
   scheduleDisplayFollow();
 }
 
@@ -578,4 +610,22 @@ export function closeCatalogPanels() {
   cancelDisplayFollow();
   closeFilterModal();
   closeDisplayModal();
+}
+
+export function initCatalogPanelLayout() {
+  if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') return;
+  placeDisplayPanel();
+  window.addEventListener('resize', () => {
+    placeDisplayPanel();
+    if (isCatalogMobile()) {
+      cancelDisplayFollow();
+      const display = document.getElementById('display-modal');
+      if (display) display.classList.remove('open');
+      syncFilterTriggerActive();
+      return;
+    }
+    if (isCatalogPanelOpen('filter-modal') && !isCatalogPanelOpen('display-modal')) {
+      scheduleDisplayFollow();
+    }
+  });
 }
