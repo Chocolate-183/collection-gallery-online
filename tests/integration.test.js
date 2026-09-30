@@ -197,6 +197,16 @@ test('RWD layout uses viewport-fit cover and iPhone 16 Pro Max modal box', () =>
   assert.match(css, /@media \(max-width: 768px\)[\s\S]*\.awsui-text-filter \{[\s\S]*flex:\s*1 1 100%/);
 });
 
+test('Mobile Filter and Display panels stack instead of overlapping', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const mobileBlocks = css.split('@media (max-width: 768px)');
+  const mobile = mobileBlocks[mobileBlocks.length - 1];
+  assert.match(mobile, /#filter-modal \{[\s\S]*align-items:\s*flex-start/);
+  assert.match(mobile, /#display-modal \{[\s\S]*align-items:\s*flex-end/);
+  assert.match(mobile, /#filter-modal \.awsui-filter-modal \{[\s\S]*align-self:\s*flex-start/);
+  assert.match(mobile, /#display-modal \.awsui-display-modal \{[\s\S]*align-self:\s*flex-end/);
+});
+
 test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   assert.match(html, /id="notice-modal"/);

@@ -2730,6 +2730,17 @@ a:focus {
     justify-content: center;
   }
 
+  /* align-self:center on the shared mobile box would re-center both panels
+     and stack them on top of each other. Pin Filter to the top and Display
+     to the bottom of the padded overlay so they sit in a column. */
+  #filter-modal .awsui-filter-modal {
+    align-self: flex-start;
+  }
+
+  #display-modal .awsui-display-modal {
+    align-self: flex-end;
+  }
+
   #display-modal .awsui-display-modal,
   #filter-modal .awsui-filter-modal {
     height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
