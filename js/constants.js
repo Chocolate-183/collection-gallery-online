@@ -42,12 +42,13 @@ export const CATEGORY_TABS = {
   BASIC100: 'BASIC100'
 };
 
-/** C103 詞源 (sheet I). */
+/** C103 詞源 (sheet H). */
 export const ETYMOLOGY_TABS = {
   ALL: 'ALL',
   HANJA: '漢字語',
   LOANWORD: '外來語',
-  NATIVE: '固有詞'
+  NATIVE: '固有詞',
+  HYBRID: '混種詞'
 };
 
 /** C103 詞性 (sheet J). */

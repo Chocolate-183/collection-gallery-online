@@ -307,8 +307,8 @@
   },
   {
     "id": "#C103-0018",
-    "ja_term": "갑자 | 甲子",
-    "tw_translation": "甲子（六十甲子）",
+    "ja_term": "갑자기",
+    "tw_translation": "突然",
     "reading": "",
     "created_at": "2026-09-17",
     "recommendations": [
@@ -318,15 +318,15 @@
       "여자 | 女子",
       "왕자 | 王子"
     ],
-    "subtitle": "甲子",
+    "subtitle": "",
     "tags": [],
-    "etymology": "漢字語",
-    "pos": "名詞",
+    "etymology": "固有詞",
+    "pos": "副詞",
     "row_index": 17
   },
   {
     "id": "#C103-0019",
-    "ja_term": "강하다 | 強--",
+    "ja_term": "강하다 | 強하다",
     "tw_translation": "強大 | 強烈",
     "reading": "",
     "created_at": "2026-09-15",
@@ -337,7 +337,7 @@
       "개요 | 槪要",
       "감상 | 鑑賞"
     ],
-    "subtitle": "強--",
+    "subtitle": "強하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "形容詞",
@@ -1316,7 +1316,7 @@
   },
   {
     "id": "#C103-0071",
-    "ja_term": "구경 | 口徑",
+    "ja_term": "구경",
     "tw_translation": "參觀 / 觀賞 / 逛一逛",
     "reading": "",
     "created_at": "2026-09-15",
@@ -1327,9 +1327,9 @@
       "구원 | 救援",
       "교통 | 交通"
     ],
-    "subtitle": "口徑",
+    "subtitle": "",
     "tags": [],
-    "etymology": "漢字語",
+    "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 70
   },
@@ -1928,7 +1928,7 @@
   },
   {
     "id": "#C103-0103",
-    "ja_term": "닭발 | 鷄-",
+    "ja_term": "닭발",
     "tw_translation": "雞爪",
     "reading": "",
     "created_at": "2026-09-15",
@@ -1939,9 +1939,9 @@
       "다행 | 多幸",
       "당당 | 堂堂"
     ],
-    "subtitle": "鷄-",
+    "subtitle": "",
     "tags": [],
-    "etymology": "漢字語",
+    "etymology": "固有詞",
     "pos": "名詞",
     "row_index": 102
   },
@@ -2612,7 +2612,7 @@
   },
   {
     "id": "#C103-0139",
-    "ja_term": "망하다 | 亡--",
+    "ja_term": "망하다 | 亡하다",
     "tw_translation": "完蛋、失敗、滅亡",
     "reading": "",
     "created_at": "2026-09-15",
@@ -2623,7 +2623,7 @@
       "매몰 | 埋沒",
       "등산 | 登山"
     ],
-    "subtitle": "亡--",
+    "subtitle": "亡하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "動詞",
@@ -3640,7 +3640,7 @@
   },
   {
     "id": "#C103-0193",
-    "ja_term": "변하다 | 變--",
+    "ja_term": "변하다 | 變하다",
     "tw_translation": "改變、變了",
     "reading": "",
     "created_at": "2026-09-17",
@@ -3651,7 +3651,7 @@
       "별명 | 別名",
       "백화점 | 百貨店"
     ],
-    "subtitle": "變--",
+    "subtitle": "變하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "動詞",
@@ -4231,7 +4231,7 @@
   },
   {
     "id": "#C103-0224",
-    "ja_term": "사물놀이 | 四物--",
+    "ja_term": "사물놀이 | 四物놀이",
     "tw_translation": "四物打擊樂（韓國傳統打擊樂）",
     "reading": "",
     "created_at": "2026-09-17",
@@ -4242,9 +4242,9 @@
       "실물 | 實物",
       "인물 | 人物"
     ],
-    "subtitle": "四物--",
+    "subtitle": "四物놀이",
     "tags": [],
-    "etymology": "漢字語",
+    "etymology": "混種詞",
     "pos": "名詞",
     "row_index": 223
   },
@@ -6173,7 +6173,7 @@
   },
   {
     "id": "#C103-0326",
-    "ja_term": "심하다 | 甚--",
+    "ja_term": "심하다 | 甚하다",
     "tw_translation": "走極端",
     "reading": "",
     "created_at": "2026-09-15",
@@ -6184,7 +6184,7 @@
       "악마 | 惡魔",
       "심각 | 深刻"
     ],
-    "subtitle": "甚--",
+    "subtitle": "甚하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "形容詞",
@@ -6422,7 +6422,7 @@
   },
   {
     "id": "#C103-0339",
-    "ja_term": "약하다 | 弱--",
+    "ja_term": "약하다 | 弱하다",
     "tw_translation": "軟弱",
     "reading": "",
     "created_at": "2026-09-15",
@@ -6433,7 +6433,7 @@
       "양복 | 洋服",
       "야망 | 野望"
     ],
-    "subtitle": "弱--",
+    "subtitle": "弱하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "形容詞",
@@ -7547,7 +7547,7 @@
   },
   {
     "id": "#C103-0398",
-    "ja_term": "욕하다 | 辱--",
+    "ja_term": "욕하다 | 辱하다",
     "tw_translation": "罵 / 責備",
     "reading": "",
     "created_at": "2026-09-15",
@@ -7558,7 +7558,7 @@
       "우산 | 雨傘",
       "요금 | 料金"
     ],
-    "subtitle": "辱--",
+    "subtitle": "辱하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "動詞",
@@ -7832,7 +7832,7 @@
   },
   {
     "id": "#C103-0413",
-    "ja_term": "원하다 | 願--",
+    "ja_term": "원하다 | 願하다",
     "tw_translation": "希望、想要",
     "reading": "",
     "created_at": "2026-09-17",
@@ -7843,7 +7843,7 @@
       "울적 | 鬱寂",
       "위로 | 慰勞"
     ],
-    "subtitle": "願--",
+    "subtitle": "願하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "動詞",
@@ -7889,7 +7889,7 @@
   },
   {
     "id": "#C103-0416",
-    "ja_term": "위하다 | 爲--",
+    "ja_term": "위하다 | 爲하다",
     "tw_translation": "為……而做",
     "reading": "",
     "created_at": "2026-09-15",
@@ -7900,7 +7900,7 @@
       "유리 | 琉璃",
       "원하다 | 願하다"
     ],
-    "subtitle": "爲--",
+    "subtitle": "爲하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "動詞",
@@ -8708,7 +8708,7 @@
   },
   {
     "id": "#C103-0459",
-    "ja_term": "인하다 | 因--",
+    "ja_term": "인하다 | 因하다",
     "tw_translation": "因為、由於",
     "reading": "",
     "created_at": "2026-09-17",
@@ -8719,7 +8719,7 @@
       "인원수 | 人員數",
       "일기 | 日氣"
     ],
-    "subtitle": "因--",
+    "subtitle": "因하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "動詞",
@@ -10690,7 +10690,7 @@
   },
   {
     "id": "#C103-0563",
-    "ja_term": "청바지 | 靑--",
+    "ja_term": "청바지 | 靑바지",
     "tw_translation": "牛仔褲",
     "reading": "",
     "created_at": "2026-09-17",
@@ -10701,7 +10701,7 @@
       "체전 | 體典",
       "책임 | 責任"
     ],
-    "subtitle": "靑--",
+    "subtitle": "靑바지",
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
@@ -11032,7 +11032,7 @@
   },
   {
     "id": "#C103-0581",
-    "ja_term": "취하다 | 醉--",
+    "ja_term": "취하다 | 醉하다",
     "tw_translation": "醉",
     "reading": "",
     "created_at": "2026-09-15",
@@ -11043,7 +11043,7 @@
       "친구 | 親舊",
       "충분 | 充分"
     ],
-    "subtitle": "醉--",
+    "subtitle": "醉하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "動詞",
@@ -12847,7 +12847,7 @@
   },
   {
     "id": "#C103-0676",
-    "ja_term": "놀이공원 | --公園",
+    "ja_term": "놀이공원 | 놀이公園",
     "tw_translation": "遊樂園",
     "reading": "",
     "created_at": "2026-09-19",
@@ -12858,7 +12858,7 @@
       "공원 | 公園",
       "공주 | 公主"
     ],
-    "subtitle": "--公園",
+    "subtitle": "놀이公園",
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
@@ -13132,7 +13132,7 @@
   },
   {
     "id": "#C103-0691",
-    "ja_term": "사거리 | 四--",
+    "ja_term": "사거리 | 四거리",
     "tw_translation": "十字路口",
     "reading": "",
     "created_at": "2026-09-19",
@@ -13143,7 +13143,7 @@
       "사고 | 事故",
       "비행기 | 飛行機"
     ],
-    "subtitle": "四--",
+    "subtitle": "四거리",
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
@@ -13246,7 +13246,7 @@
   },
   {
     "id": "#C103-0697",
-    "ja_term": "전하다 | 傳--",
+    "ja_term": "전하다 | 傳하다",
     "tw_translation": "傳遞",
     "reading": "",
     "created_at": "2026-09-19",
@@ -13257,7 +13257,7 @@
       "전화 | 電話",
       "전지현 | 全智賢"
     ],
-    "subtitle": "傳--",
+    "subtitle": "傳하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "動詞",
@@ -14538,7 +14538,7 @@
   },
   {
     "id": "#C103-0765",
-    "ja_term": "양고기 | 羊--",
+    "ja_term": "양고기 | 羊고기",
     "tw_translation": "羊肉",
     "reading": "",
     "created_at": "2026-09-20",
@@ -14549,7 +14549,7 @@
       "양복 | 洋服",
       "약국 | 藥局"
     ],
-    "subtitle": "羊--",
+    "subtitle": "羊고기",
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
@@ -16738,14 +16738,14 @@
   },
   {
     "id": "#C103-0885",
-    "ja_term": "가방",
+    "ja_term": "가방 | kabas",
     "tw_translation": "包包",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "kabas",
     "tags": [],
-    "etymology": "固有詞",
+    "etymology": "外來語",
     "pos": "名詞",
     "row_index": 884
   },
@@ -16842,14 +16842,14 @@
   },
   {
     "id": "#C103-0893",
-    "ja_term": "갈비탕",
+    "ja_term": "갈비탕 | 갈비湯",
     "tw_translation": "排骨湯",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "갈비湯",
     "tags": [],
-    "etymology": "固有詞",
+    "etymology": "混種詞",
     "pos": "名詞",
     "row_index": 892
   },
@@ -17883,14 +17883,14 @@
   },
   {
     "id": "#C103-0972",
-    "ja_term": "남동생",
+    "ja_term": "남동생 | 男동생",
     "tw_translation": "弟弟",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "男동생",
     "tags": [],
-    "etymology": "固有詞",
+    "etymology": "混種詞",
     "pos": "名詞",
     "row_index": 971
   },
@@ -18333,14 +18333,14 @@
   },
   {
     "id": "#C103-1006",
-    "ja_term": "담배",
+    "ja_term": "담배 | tabaco",
     "tw_translation": "菸",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "tabaco",
     "tags": [],
-    "etymology": "固有詞",
+    "etymology": "外來語",
     "pos": "名詞",
     "row_index": 1005
   },
@@ -18519,14 +18519,14 @@
   },
   {
     "id": "#C103-1020",
-    "ja_term": "된장찌개",
+    "ja_term": "된장찌개 | 된醬찌개",
     "tw_translation": "大醬湯",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "된醬찌개",
     "tags": [],
-    "etymology": "固有詞",
+    "etymology": "混種詞",
     "pos": "名詞",
     "row_index": 1019
   },
@@ -19715,14 +19715,14 @@
   },
   {
     "id": "#C103-1110",
-    "ja_term": "부모님 | 父母",
+    "ja_term": "부모님 | 父母님",
     "tw_translation": "父母",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "父母",
+    "subtitle": "父母님",
     "tags": [],
-    "etymology": "漢字語",
+    "etymology": "混種詞",
     "pos": "名詞",
     "row_index": 1109
   },
@@ -19888,14 +19888,14 @@
   },
   {
     "id": "#C103-1123",
-    "ja_term": "빵",
+    "ja_term": "빵 | pão",
     "tw_translation": "麵包",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "pão",
     "tags": [],
-    "etymology": "固有詞",
+    "etymology": "外來語",
     "pos": "名詞",
     "row_index": 1122
   },
@@ -20171,21 +20171,6 @@
   },
   {
     "id": "#C103-1144",
-    "ja_term": "선생님 | 先生",
-    "tw_translation": "老師",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "先生",
-    "tags": [
-      "基礎100"
-    ],
-    "etymology": "漢字語",
-    "pos": "名詞",
-    "row_index": 1143
-  },
-  {
-    "id": "#C103-1145",
     "ja_term": "설명 | 說明",
     "tw_translation": "說明",
     "reading": "",
@@ -20195,10 +20180,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1144
+    "row_index": 1143
   },
   {
-    "id": "#C103-1146",
+    "id": "#C103-1145",
     "ja_term": "세",
     "tw_translation": "三（冠詞）",
     "reading": "",
@@ -20208,10 +20193,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "冠形詞",
-    "row_index": 1145
+    "row_index": 1144
   },
   {
-    "id": "#C103-1147",
+    "id": "#C103-1146",
     "ja_term": "세수 | 洗手",
     "tw_translation": "洗臉",
     "reading": "",
@@ -20221,10 +20206,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1146
+    "row_index": 1145
   },
   {
-    "id": "#C103-1148",
+    "id": "#C103-1147",
     "ja_term": "셋",
     "tw_translation": "三",
     "reading": "",
@@ -20234,10 +20219,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1147
+    "row_index": 1146
   },
   {
-    "id": "#C103-1149",
+    "id": "#C103-1148",
     "ja_term": "소금",
     "tw_translation": "鹽",
     "reading": "",
@@ -20247,10 +20232,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1148
+    "row_index": 1147
   },
   {
-    "id": "#C103-1150",
+    "id": "#C103-1149",
     "ja_term": "손",
     "tw_translation": "手",
     "reading": "",
@@ -20262,12 +20247,25 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
+    "row_index": 1148
+  },
+  {
+    "id": "#C103-1150",
+    "ja_term": "손님",
+    "tw_translation": "客人",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
     "row_index": 1149
   },
   {
     "id": "#C103-1151",
-    "ja_term": "손님",
-    "tw_translation": "客人",
+    "ja_term": "수박",
+    "tw_translation": "西瓜",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -20279,21 +20277,21 @@
   },
   {
     "id": "#C103-1152",
-    "ja_term": "수박",
-    "tw_translation": "西瓜",
+    "ja_term": "수첩 | 手帖",
+    "tw_translation": "筆記本",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "手帖",
     "tags": [],
-    "etymology": "固有詞",
+    "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 1151
   },
   {
     "id": "#C103-1153",
-    "ja_term": "수첩",
-    "tw_translation": "筆記本",
+    "ja_term": "술",
+    "tw_translation": "酒",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -20305,19 +20303,6 @@
   },
   {
     "id": "#C103-1154",
-    "ja_term": "술",
-    "tw_translation": "酒",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "名詞",
-    "row_index": 1153
-  },
-  {
-    "id": "#C103-1155",
     "ja_term": "쉬다",
     "tw_translation": "休息",
     "reading": "",
@@ -20327,10 +20312,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1154
+    "row_index": 1153
   },
   {
-    "id": "#C103-1156",
+    "id": "#C103-1155",
     "ja_term": "쉽다",
     "tw_translation": "容易",
     "reading": "",
@@ -20342,10 +20327,10 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1155
+    "row_index": 1154
   },
   {
-    "id": "#C103-1157",
+    "id": "#C103-1156",
     "ja_term": "스물",
     "tw_translation": "二十（固有語）",
     "reading": "",
@@ -20355,10 +20340,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1156
+    "row_index": 1155
   },
   {
-    "id": "#C103-1158",
+    "id": "#C103-1157",
     "ja_term": "슬프다",
     "tw_translation": "悲傷",
     "reading": "",
@@ -20368,10 +20353,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1157
+    "row_index": 1156
   },
   {
-    "id": "#C103-1159",
+    "id": "#C103-1158",
     "ja_term": "시 | 時",
     "tw_translation": "點鐘",
     "reading": "",
@@ -20381,12 +20366,25 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "量詞",
+    "row_index": 1157
+  },
+  {
+    "id": "#C103-1159",
+    "ja_term": "시다",
+    "tw_translation": "酸",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
     "row_index": 1158
   },
   {
     "id": "#C103-1160",
-    "ja_term": "시다",
-    "tw_translation": "酸",
+    "ja_term": "시원하다",
+    "tw_translation": "涼爽",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -20398,19 +20396,6 @@
   },
   {
     "id": "#C103-1161",
-    "ja_term": "시원하다",
-    "tw_translation": "涼爽",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "形容詞",
-    "row_index": 1160
-  },
-  {
-    "id": "#C103-1162",
     "ja_term": "시월 | 十月",
     "tw_translation": "十月",
     "reading": "",
@@ -20420,12 +20405,25 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
+    "row_index": 1160
+  },
+  {
+    "id": "#C103-1162",
+    "ja_term": "시키다",
+    "tw_translation": "使喚、點（餐）",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
     "row_index": 1161
   },
   {
     "id": "#C103-1163",
-    "ja_term": "시키다",
-    "tw_translation": "使喚、點（餐）",
+    "ja_term": "신다",
+    "tw_translation": "穿（鞋襪）",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -20437,19 +20435,6 @@
   },
   {
     "id": "#C103-1164",
-    "ja_term": "신다",
-    "tw_translation": "穿（鞋襪）",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "動詞",
-    "row_index": 1163
-  },
-  {
-    "id": "#C103-1165",
     "ja_term": "신발",
     "tw_translation": "鞋子",
     "reading": "",
@@ -20459,10 +20444,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1164
+    "row_index": 1163
   },
   {
-    "id": "#C103-1166",
+    "id": "#C103-1165",
     "ja_term": "싫다",
     "tw_translation": "討厭",
     "reading": "",
@@ -20472,10 +20457,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1165
+    "row_index": 1164
   },
   {
-    "id": "#C103-1167",
+    "id": "#C103-1166",
     "ja_term": "싫어하다",
     "tw_translation": "討厭",
     "reading": "",
@@ -20485,10 +20470,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1166
+    "row_index": 1165
   },
   {
-    "id": "#C103-1168",
+    "id": "#C103-1167",
     "ja_term": "십 | 十",
     "tw_translation": "十",
     "reading": "",
@@ -20498,10 +20483,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1167
+    "row_index": 1166
   },
   {
-    "id": "#C103-1169",
+    "id": "#C103-1168",
     "ja_term": "십만 | 十萬",
     "tw_translation": "十萬",
     "reading": "",
@@ -20511,10 +20496,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1168
+    "row_index": 1167
   },
   {
-    "id": "#C103-1170",
+    "id": "#C103-1169",
     "ja_term": "십일월 | 十一月",
     "tw_translation": "十一月",
     "reading": "",
@@ -20524,12 +20509,25 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
+    "row_index": 1168
+  },
+  {
+    "id": "#C103-1170",
+    "ja_term": "싱겁다",
+    "tw_translation": "淡的",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
     "row_index": 1169
   },
   {
     "id": "#C103-1171",
-    "ja_term": "싱겁다",
-    "tw_translation": "淡的",
+    "ja_term": "싸다",
+    "tw_translation": "便宜的",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -20541,19 +20539,6 @@
   },
   {
     "id": "#C103-1172",
-    "ja_term": "싸다",
-    "tw_translation": "便宜的",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "形容詞",
-    "row_index": 1171
-  },
-  {
-    "id": "#C103-1173",
     "ja_term": "쓰다 | (動詞)",
     "tw_translation": "① 寫\n\n② 用",
     "reading": "",
@@ -20563,10 +20548,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1172
+    "row_index": 1171
   },
   {
-    "id": "#C103-1174",
+    "id": "#C103-1173",
     "ja_term": "쓰다 | (形容詞)",
     "tw_translation": "苦的",
     "reading": "",
@@ -20576,10 +20561,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1173
+    "row_index": 1172
   },
   {
-    "id": "#C103-1175",
+    "id": "#C103-1174",
     "ja_term": "씨 | 氏",
     "tw_translation": "先生／小姐（敬稱）",
     "reading": "",
@@ -20589,10 +20574,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "依存名詞",
-    "row_index": 1174
+    "row_index": 1173
   },
   {
-    "id": "#C103-1176",
+    "id": "#C103-1175",
     "ja_term": "씻다",
     "tw_translation": "洗",
     "reading": "",
@@ -20602,10 +20587,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1175
+    "row_index": 1174
   },
   {
-    "id": "#C103-1177",
+    "id": "#C103-1176",
     "ja_term": "아",
     "tw_translation": "啊",
     "reading": "",
@@ -20615,12 +20600,25 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "感嘆詞",
+    "row_index": 1175
+  },
+  {
+    "id": "#C103-1177",
+    "ja_term": "아기",
+    "tw_translation": "嬰兒",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
     "row_index": 1176
   },
   {
     "id": "#C103-1178",
-    "ja_term": "아기",
-    "tw_translation": "嬰兒",
+    "ja_term": "아내",
+    "tw_translation": "妻子",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -20632,19 +20630,6 @@
   },
   {
     "id": "#C103-1179",
-    "ja_term": "아내",
-    "tw_translation": "妻子",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "名詞",
-    "row_index": 1178
-  },
-  {
-    "id": "#C103-1180",
     "ja_term": "아니다",
     "tw_translation": "不是",
     "reading": "",
@@ -20656,10 +20641,10 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1179
+    "row_index": 1178
   },
   {
-    "id": "#C103-1181",
+    "id": "#C103-1180",
     "ja_term": "아래",
     "tw_translation": "下面",
     "reading": "",
@@ -20669,10 +20654,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1180
+    "row_index": 1179
   },
   {
-    "id": "#C103-1182",
+    "id": "#C103-1181",
     "ja_term": "아버지",
     "tw_translation": "父親",
     "reading": "",
@@ -20684,12 +20669,25 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
+    "row_index": 1180
+  },
+  {
+    "id": "#C103-1182",
+    "ja_term": "아이",
+    "tw_translation": "小孩",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
     "row_index": 1181
   },
   {
     "id": "#C103-1183",
-    "ja_term": "아이",
-    "tw_translation": "小孩",
+    "ja_term": "아저씨",
+    "tw_translation": "大叔、先生",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -20701,19 +20699,6 @@
   },
   {
     "id": "#C103-1184",
-    "ja_term": "아저씨",
-    "tw_translation": "大叔、先生",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "名詞",
-    "row_index": 1183
-  },
-  {
-    "id": "#C103-1185",
     "ja_term": "아주",
     "tw_translation": "非常",
     "reading": "",
@@ -20723,10 +20708,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1184
+    "row_index": 1183
   },
   {
-    "id": "#C103-1186",
+    "id": "#C103-1185",
     "ja_term": "아주머니",
     "tw_translation": "大嬸",
     "reading": "",
@@ -20736,10 +20721,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1185
+    "row_index": 1184
   },
   {
-    "id": "#C103-1187",
+    "id": "#C103-1186",
     "ja_term": "아직",
     "tw_translation": "還沒、仍然",
     "reading": "",
@@ -20749,10 +20734,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1186
+    "row_index": 1185
   },
   {
-    "id": "#C103-1188",
+    "id": "#C103-1187",
     "ja_term": "아침",
     "tw_translation": "早上",
     "reading": "",
@@ -20764,10 +20749,10 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1187
+    "row_index": 1186
   },
   {
-    "id": "#C103-1189",
+    "id": "#C103-1188",
     "ja_term": "아프다",
     "tw_translation": "痛、不舒服",
     "reading": "",
@@ -20779,12 +20764,25 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
+    "row_index": 1187
+  },
+  {
+    "id": "#C103-1189",
+    "ja_term": "아홉",
+    "tw_translation": "九（固有語）",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "數詞",
     "row_index": 1188
   },
   {
     "id": "#C103-1190",
-    "ja_term": "아홉",
-    "tw_translation": "九（固有語）",
+    "ja_term": "아흔",
+    "tw_translation": "九十（固有語）",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -20796,19 +20794,6 @@
   },
   {
     "id": "#C103-1191",
-    "ja_term": "아흔",
-    "tw_translation": "九十（固有語）",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "數詞",
-    "row_index": 1190
-  },
-  {
-    "id": "#C103-1192",
     "ja_term": "안",
     "tw_translation": "裡面",
     "reading": "",
@@ -20818,10 +20803,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1191
+    "row_index": 1190
   },
   {
-    "id": "#C103-1193",
+    "id": "#C103-1192",
     "ja_term": "안내 | 案內",
     "tw_translation": "引導、詢問處",
     "reading": "",
@@ -20831,23 +20816,23 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1192
+    "row_index": 1191
   },
   {
-    "id": "#C103-1194",
-    "ja_term": "안녕히",
+    "id": "#C103-1193",
+    "ja_term": "안녕히 | 安寧히",
     "tw_translation": "安好地",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "安寧히",
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1193
+    "row_index": 1192
   },
   {
-    "id": "#C103-1195",
+    "id": "#C103-1194",
     "ja_term": "앉다",
     "tw_translation": "坐",
     "reading": "",
@@ -20857,10 +20842,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1194
+    "row_index": 1193
   },
   {
-    "id": "#C103-1196",
+    "id": "#C103-1195",
     "ja_term": "알다",
     "tw_translation": "知道",
     "reading": "",
@@ -20872,10 +20857,10 @@
     ],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1195
+    "row_index": 1194
   },
   {
-    "id": "#C103-1197",
+    "id": "#C103-1196",
     "ja_term": "알리다",
     "tw_translation": "告知",
     "reading": "",
@@ -20885,10 +20870,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1196
+    "row_index": 1195
   },
   {
-    "id": "#C103-1198",
+    "id": "#C103-1197",
     "ja_term": "앞",
     "tw_translation": "前面",
     "reading": "",
@@ -20898,10 +20883,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1197
+    "row_index": 1196
   },
   {
-    "id": "#C103-1199",
+    "id": "#C103-1198",
     "ja_term": "약 | 約",
     "tw_translation": "大約",
     "reading": "",
@@ -20911,10 +20896,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "冠形詞",
-    "row_index": 1198
+    "row_index": 1197
   },
   {
-    "id": "#C103-1200",
+    "id": "#C103-1199",
     "ja_term": "약 | 藥",
     "tw_translation": "藥",
     "reading": "",
@@ -20924,10 +20909,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1199
+    "row_index": 1198
   },
   {
-    "id": "#C103-1201",
+    "id": "#C103-1200",
     "ja_term": "어느",
     "tw_translation": "哪個",
     "reading": "",
@@ -20937,10 +20922,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "冠形詞",
-    "row_index": 1200
+    "row_index": 1199
   },
   {
-    "id": "#C103-1202",
+    "id": "#C103-1201",
     "ja_term": "어디",
     "tw_translation": "哪裡",
     "reading": "",
@@ -20952,10 +20937,10 @@
     ],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1201
+    "row_index": 1200
   },
   {
-    "id": "#C103-1203",
+    "id": "#C103-1202",
     "ja_term": "어떤",
     "tw_translation": "什麼樣的",
     "reading": "",
@@ -20965,10 +20950,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "冠形詞",
-    "row_index": 1202
+    "row_index": 1201
   },
   {
-    "id": "#C103-1204",
+    "id": "#C103-1203",
     "ja_term": "어떻다",
     "tw_translation": "怎樣",
     "reading": "",
@@ -20978,10 +20963,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1203
+    "row_index": 1202
   },
   {
-    "id": "#C103-1205",
+    "id": "#C103-1204",
     "ja_term": "어렵다",
     "tw_translation": "難的",
     "reading": "",
@@ -20993,10 +20978,10 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1204
+    "row_index": 1203
   },
   {
-    "id": "#C103-1206",
+    "id": "#C103-1205",
     "ja_term": "어머니",
     "tw_translation": "母親",
     "reading": "",
@@ -21008,10 +20993,10 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1205
+    "row_index": 1204
   },
   {
-    "id": "#C103-1207",
+    "id": "#C103-1206",
     "ja_term": "어서",
     "tw_translation": "快、請",
     "reading": "",
@@ -21021,10 +21006,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1206
+    "row_index": 1205
   },
   {
-    "id": "#C103-1208",
+    "id": "#C103-1207",
     "ja_term": "어제",
     "tw_translation": "昨天",
     "reading": "",
@@ -21036,10 +21021,10 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1207
+    "row_index": 1206
   },
   {
-    "id": "#C103-1209",
+    "id": "#C103-1208",
     "ja_term": "억 | 億",
     "tw_translation": "億",
     "reading": "",
@@ -21049,10 +21034,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1208
+    "row_index": 1207
   },
   {
-    "id": "#C103-1210",
+    "id": "#C103-1209",
     "ja_term": "언니",
     "tw_translation": "姊姊（女性稱呼）",
     "reading": "",
@@ -21062,10 +21047,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1209
+    "row_index": 1208
   },
   {
-    "id": "#C103-1211",
+    "id": "#C103-1210",
     "ja_term": "언제",
     "tw_translation": "什麼時候",
     "reading": "",
@@ -21077,10 +21062,10 @@
     ],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1210
+    "row_index": 1209
   },
   {
-    "id": "#C103-1212",
+    "id": "#C103-1211",
     "ja_term": "얼굴",
     "tw_translation": "臉",
     "reading": "",
@@ -21090,10 +21075,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1211
+    "row_index": 1210
   },
   {
-    "id": "#C103-1213",
+    "id": "#C103-1212",
     "ja_term": "얼마",
     "tw_translation": "多少錢、多少",
     "reading": "",
@@ -21105,10 +21090,10 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1212
+    "row_index": 1211
   },
   {
-    "id": "#C103-1214",
+    "id": "#C103-1213",
     "ja_term": "얼마나",
     "tw_translation": "多麼、多少",
     "reading": "",
@@ -21118,10 +21103,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1213
+    "row_index": 1212
   },
   {
-    "id": "#C103-1215",
+    "id": "#C103-1214",
     "ja_term": "없다",
     "tw_translation": "沒有",
     "reading": "",
@@ -21133,10 +21118,10 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1214
+    "row_index": 1213
   },
   {
-    "id": "#C103-1216",
+    "id": "#C103-1215",
     "ja_term": "에어컨 | aircon",
     "tw_translation": "冷氣",
     "reading": "",
@@ -21146,10 +21131,10 @@
     "tags": [],
     "etymology": "外來語",
     "pos": "名詞",
-    "row_index": 1215
+    "row_index": 1214
   },
   {
-    "id": "#C103-1217",
+    "id": "#C103-1216",
     "ja_term": "여기",
     "tw_translation": "這裡",
     "reading": "",
@@ -21161,10 +21146,10 @@
     ],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1216
+    "row_index": 1215
   },
   {
-    "id": "#C103-1218",
+    "id": "#C103-1217",
     "ja_term": "여덟",
     "tw_translation": "八（固有語）",
     "reading": "",
@@ -21174,23 +21159,23 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1217
+    "row_index": 1216
   },
   {
-    "id": "#C103-1219",
-    "ja_term": "여동생 | 女同生",
+    "id": "#C103-1218",
+    "ja_term": "여동생 | 女동생",
     "tw_translation": "妹妹",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "女同生",
+    "subtitle": "女동생",
     "tags": [],
-    "etymology": "漢字語",
+    "etymology": "混種詞",
     "pos": "名詞",
-    "row_index": 1218
+    "row_index": 1217
   },
   {
-    "id": "#C103-1220",
+    "id": "#C103-1219",
     "ja_term": "여든",
     "tw_translation": "八十（固有語）",
     "reading": "",
@@ -21200,10 +21185,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1219
+    "row_index": 1218
   },
   {
-    "id": "#C103-1221",
+    "id": "#C103-1220",
     "ja_term": "여러",
     "tw_translation": "好些、各個",
     "reading": "",
@@ -21213,10 +21198,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "冠形詞",
-    "row_index": 1220
+    "row_index": 1219
   },
   {
-    "id": "#C103-1222",
+    "id": "#C103-1221",
     "ja_term": "여러분",
     "tw_translation": "各位",
     "reading": "",
@@ -21226,10 +21211,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1221
+    "row_index": 1220
   },
   {
-    "id": "#C103-1223",
+    "id": "#C103-1222",
     "ja_term": "여름",
     "tw_translation": "夏天",
     "reading": "",
@@ -21239,10 +21224,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1222
+    "row_index": 1221
   },
   {
-    "id": "#C103-1224",
+    "id": "#C103-1223",
     "ja_term": "여보세요",
     "tw_translation": "喂（電話）",
     "reading": "",
@@ -21252,10 +21237,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "感嘆詞",
-    "row_index": 1223
+    "row_index": 1222
   },
   {
-    "id": "#C103-1225",
+    "id": "#C103-1224",
     "ja_term": "여섯",
     "tw_translation": "六（固有語）",
     "reading": "",
@@ -21265,10 +21250,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1224
+    "row_index": 1223
   },
   {
-    "id": "#C103-1226",
+    "id": "#C103-1225",
     "ja_term": "역 | 驛",
     "tw_translation": "車站",
     "reading": "",
@@ -21278,10 +21263,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1225
+    "row_index": 1224
   },
   {
-    "id": "#C103-1227",
+    "id": "#C103-1226",
     "ja_term": "열",
     "tw_translation": "十（固有語）",
     "reading": "",
@@ -21291,10 +21276,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1226
+    "row_index": 1225
   },
   {
-    "id": "#C103-1228",
+    "id": "#C103-1227",
     "ja_term": "열다",
     "tw_translation": "打開",
     "reading": "",
@@ -21304,10 +21289,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1227
+    "row_index": 1226
   },
   {
-    "id": "#C103-1229",
+    "id": "#C103-1228",
     "ja_term": "열쇠",
     "tw_translation": "鑰匙",
     "reading": "",
@@ -21317,10 +21302,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1228
+    "row_index": 1227
   },
   {
-    "id": "#C103-1230",
+    "id": "#C103-1229",
     "ja_term": "영 | 零",
     "tw_translation": "零",
     "reading": "",
@@ -21330,10 +21315,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1229
+    "row_index": 1228
   },
   {
-    "id": "#C103-1231",
+    "id": "#C103-1230",
     "ja_term": "영국 | 英國",
     "tw_translation": "英國",
     "reading": "",
@@ -21343,23 +21328,23 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1230
+    "row_index": 1229
   },
   {
-    "id": "#C103-1232",
-    "ja_term": "영화배우 | 映畵俳優",
+    "id": "#C103-1231",
+    "ja_term": "영화배우 | 映畫俳優",
     "tw_translation": "電影演員",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "映畵俳優",
+    "subtitle": "映畫俳優",
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1231
+    "row_index": 1230
   },
   {
-    "id": "#C103-1233",
+    "id": "#C103-1232",
     "ja_term": "옆",
     "tw_translation": "旁邊",
     "reading": "",
@@ -21369,10 +21354,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1232
+    "row_index": 1231
   },
   {
-    "id": "#C103-1234",
+    "id": "#C103-1233",
     "ja_term": "예",
     "tw_translation": "是（較正式）",
     "reading": "",
@@ -21382,10 +21367,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "感嘆詞",
-    "row_index": 1233
+    "row_index": 1232
   },
   {
-    "id": "#C103-1235",
+    "id": "#C103-1234",
     "ja_term": "오 | 五",
     "tw_translation": "五",
     "reading": "",
@@ -21395,10 +21380,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1234
+    "row_index": 1233
   },
   {
-    "id": "#C103-1236",
+    "id": "#C103-1235",
     "ja_term": "오늘",
     "tw_translation": "今天",
     "reading": "",
@@ -21410,12 +21395,25 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
+    "row_index": 1234
+  },
+  {
+    "id": "#C103-1236",
+    "ja_term": "오른쪽",
+    "tw_translation": "右邊",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
     "row_index": 1235
   },
   {
     "id": "#C103-1237",
-    "ja_term": "오른쪽",
-    "tw_translation": "右邊",
+    "ja_term": "오빠",
+    "tw_translation": "哥哥（女性稱呼）",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -21427,19 +21425,6 @@
   },
   {
     "id": "#C103-1238",
-    "ja_term": "오빠",
-    "tw_translation": "哥哥（女性稱呼）",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "名詞",
-    "row_index": 1237
-  },
-  {
-    "id": "#C103-1239",
     "ja_term": "오십 | 五十",
     "tw_translation": "五十",
     "reading": "",
@@ -21449,10 +21434,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1238
+    "row_index": 1237
   },
   {
-    "id": "#C103-1240",
+    "id": "#C103-1239",
     "ja_term": "오전 | 午前",
     "tw_translation": "上午",
     "reading": "",
@@ -21462,10 +21447,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1239
+    "row_index": 1238
   },
   {
-    "id": "#C103-1241",
+    "id": "#C103-1240",
     "ja_term": "올라가다",
     "tw_translation": "上去",
     "reading": "",
@@ -21475,10 +21460,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1240
+    "row_index": 1239
   },
   {
-    "id": "#C103-1242",
+    "id": "#C103-1241",
     "ja_term": "올해",
     "tw_translation": "今年",
     "reading": "",
@@ -21488,10 +21473,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1241
+    "row_index": 1240
   },
   {
-    "id": "#C103-1243",
+    "id": "#C103-1242",
     "ja_term": "옷",
     "tw_translation": "衣服",
     "reading": "",
@@ -21503,10 +21488,10 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1242
+    "row_index": 1241
   },
   {
-    "id": "#C103-1244",
+    "id": "#C103-1243",
     "ja_term": "와",
     "tw_translation": "哇",
     "reading": "",
@@ -21516,10 +21501,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "感嘆詞",
-    "row_index": 1243
+    "row_index": 1242
   },
   {
-    "id": "#C103-1245",
+    "id": "#C103-1244",
     "ja_term": "왜",
     "tw_translation": "為什麼",
     "reading": "",
@@ -21531,10 +21516,10 @@
     ],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1244
+    "row_index": 1243
   },
   {
-    "id": "#C103-1246",
+    "id": "#C103-1245",
     "ja_term": "외국어 | 外國語",
     "tw_translation": "外語",
     "reading": "",
@@ -21544,10 +21529,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1245
+    "row_index": 1244
   },
   {
-    "id": "#C103-1247",
+    "id": "#C103-1246",
     "ja_term": "외국인 | 外國人",
     "tw_translation": "外國人",
     "reading": "",
@@ -21557,10 +21542,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1246
+    "row_index": 1245
   },
   {
-    "id": "#C103-1248",
+    "id": "#C103-1247",
     "ja_term": "왼쪽",
     "tw_translation": "左邊",
     "reading": "",
@@ -21570,10 +21555,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1247
+    "row_index": 1246
   },
   {
-    "id": "#C103-1249",
+    "id": "#C103-1248",
     "ja_term": "요일 | 曜日",
     "tw_translation": "星期",
     "reading": "",
@@ -21583,10 +21568,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1248
+    "row_index": 1247
   },
   {
-    "id": "#C103-1250",
+    "id": "#C103-1249",
     "ja_term": "요즘",
     "tw_translation": "最近",
     "reading": "",
@@ -21596,10 +21581,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1249
+    "row_index": 1248
   },
   {
-    "id": "#C103-1251",
+    "id": "#C103-1250",
     "ja_term": "우리",
     "tw_translation": "我們",
     "reading": "",
@@ -21611,10 +21596,10 @@
     ],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1250
+    "row_index": 1249
   },
   {
-    "id": "#C103-1252",
+    "id": "#C103-1251",
     "ja_term": "운동화 | 運動靴",
     "tw_translation": "運動鞋",
     "reading": "",
@@ -21624,12 +21609,25 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
+    "row_index": 1250
+  },
+  {
+    "id": "#C103-1252",
+    "ja_term": "울다",
+    "tw_translation": "哭",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
     "row_index": 1251
   },
   {
     "id": "#C103-1253",
-    "ja_term": "울다",
-    "tw_translation": "哭",
+    "ja_term": "웃다",
+    "tw_translation": "笑",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -21641,19 +21639,6 @@
   },
   {
     "id": "#C103-1254",
-    "ja_term": "웃다",
-    "tw_translation": "笑",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "動詞",
-    "row_index": 1253
-  },
-  {
-    "id": "#C103-1255",
     "ja_term": "원 | 圓",
     "tw_translation": "韓元",
     "reading": "",
@@ -21663,10 +21648,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "量詞",
-    "row_index": 1254
+    "row_index": 1253
   },
   {
-    "id": "#C103-1256",
+    "id": "#C103-1255",
     "ja_term": "월 | 月",
     "tw_translation": "月",
     "reading": "",
@@ -21676,10 +21661,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1255
+    "row_index": 1254
   },
   {
-    "id": "#C103-1257",
+    "id": "#C103-1256",
     "ja_term": "위",
     "tw_translation": "上面",
     "reading": "",
@@ -21689,10 +21674,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1256
+    "row_index": 1255
   },
   {
-    "id": "#C103-1258",
+    "id": "#C103-1257",
     "ja_term": "유명 | 有名",
     "tw_translation": "有名",
     "reading": "",
@@ -21702,10 +21687,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1257
+    "row_index": 1256
   },
   {
-    "id": "#C103-1259",
+    "id": "#C103-1258",
     "ja_term": "육 | 六",
     "tw_translation": "六",
     "reading": "",
@@ -21715,10 +21700,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1258
+    "row_index": 1257
   },
   {
-    "id": "#C103-1260",
+    "id": "#C103-1259",
     "ja_term": "육십 | 六十",
     "tw_translation": "六十",
     "reading": "",
@@ -21728,10 +21713,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1259
+    "row_index": 1258
   },
   {
-    "id": "#C103-1261",
+    "id": "#C103-1260",
     "ja_term": "음",
     "tw_translation": "嗯",
     "reading": "",
@@ -21741,10 +21726,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "感嘆詞",
-    "row_index": 1260
+    "row_index": 1259
   },
   {
-    "id": "#C103-1262",
+    "id": "#C103-1261",
     "ja_term": "의자 | 椅子",
     "tw_translation": "椅子",
     "reading": "",
@@ -21754,10 +21739,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1261
+    "row_index": 1260
   },
   {
-    "id": "#C103-1263",
+    "id": "#C103-1262",
     "ja_term": "이",
     "tw_translation": "這",
     "reading": "",
@@ -21767,10 +21752,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "冠形詞",
-    "row_index": 1262
+    "row_index": 1261
   },
   {
-    "id": "#C103-1264",
+    "id": "#C103-1263",
     "ja_term": "이 | 二",
     "tw_translation": "二",
     "reading": "",
@@ -21780,10 +21765,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1263
+    "row_index": 1262
   },
   {
-    "id": "#C103-1265",
+    "id": "#C103-1264",
     "ja_term": "이것",
     "tw_translation": "這個",
     "reading": "",
@@ -21795,10 +21780,10 @@
     ],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1264
+    "row_index": 1263
   },
   {
-    "id": "#C103-1266",
+    "id": "#C103-1265",
     "ja_term": "이따가",
     "tw_translation": "等一下",
     "reading": "",
@@ -21808,10 +21793,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1265
+    "row_index": 1264
   },
   {
-    "id": "#C103-1267",
+    "id": "#C103-1266",
     "ja_term": "이름",
     "tw_translation": "名字",
     "reading": "",
@@ -21823,10 +21808,10 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1266
+    "row_index": 1265
   },
   {
-    "id": "#C103-1268",
+    "id": "#C103-1267",
     "ja_term": "이번",
     "tw_translation": "這次",
     "reading": "",
@@ -21836,10 +21821,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1267
+    "row_index": 1266
   },
   {
-    "id": "#C103-1269",
+    "id": "#C103-1268",
     "ja_term": "이십 | 二十",
     "tw_translation": "二十",
     "reading": "",
@@ -21849,10 +21834,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1268
+    "row_index": 1267
   },
   {
-    "id": "#C103-1270",
+    "id": "#C103-1269",
     "ja_term": "이야기",
     "tw_translation": "故事、談話",
     "reading": "",
@@ -21862,10 +21847,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1269
+    "row_index": 1268
   },
   {
-    "id": "#C103-1271",
+    "id": "#C103-1270",
     "ja_term": "이쪽",
     "tw_translation": "這邊",
     "reading": "",
@@ -21875,10 +21860,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1270
+    "row_index": 1269
   },
   {
-    "id": "#C103-1272",
+    "id": "#C103-1271",
     "ja_term": "인도네시아 | Indonesia",
     "tw_translation": "印尼",
     "reading": "",
@@ -21888,10 +21873,10 @@
     "tags": [],
     "etymology": "外來語",
     "pos": "名詞",
-    "row_index": 1271
+    "row_index": 1270
   },
   {
-    "id": "#C103-1273",
+    "id": "#C103-1272",
     "ja_term": "인분 | 人分",
     "tw_translation": "人份",
     "reading": "",
@@ -21901,10 +21886,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "量詞",
-    "row_index": 1272
+    "row_index": 1271
   },
   {
-    "id": "#C103-1274",
+    "id": "#C103-1273",
     "ja_term": "일",
     "tw_translation": "事情、工作",
     "reading": "",
@@ -21914,10 +21899,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1273
+    "row_index": 1272
   },
   {
-    "id": "#C103-1275",
+    "id": "#C103-1274",
     "ja_term": "일 | 一",
     "tw_translation": "一",
     "reading": "",
@@ -21927,10 +21912,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1274
+    "row_index": 1273
   },
   {
-    "id": "#C103-1276",
+    "id": "#C103-1275",
     "ja_term": "일 | 日",
     "tw_translation": "日（天）",
     "reading": "",
@@ -21940,10 +21925,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "量詞",
-    "row_index": 1275
+    "row_index": 1274
   },
   {
-    "id": "#C103-1277",
+    "id": "#C103-1276",
     "ja_term": "일곱",
     "tw_translation": "七（固有語）",
     "reading": "",
@@ -21953,10 +21938,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1276
+    "row_index": 1275
   },
   {
-    "id": "#C103-1278",
+    "id": "#C103-1277",
     "ja_term": "일어나다",
     "tw_translation": "起床、發生",
     "reading": "",
@@ -21966,10 +21951,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1277
+    "row_index": 1276
   },
   {
-    "id": "#C103-1279",
+    "id": "#C103-1278",
     "ja_term": "일월 | 一月",
     "tw_translation": "一月",
     "reading": "",
@@ -21979,10 +21964,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1278
+    "row_index": 1277
   },
   {
-    "id": "#C103-1280",
+    "id": "#C103-1279",
     "ja_term": "일주일 | 一週日",
     "tw_translation": "一週",
     "reading": "",
@@ -21992,10 +21977,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1279
+    "row_index": 1278
   },
   {
-    "id": "#C103-1281",
+    "id": "#C103-1280",
     "ja_term": "일찍",
     "tw_translation": "早",
     "reading": "",
@@ -22005,10 +21990,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1280
+    "row_index": 1279
   },
   {
-    "id": "#C103-1282",
+    "id": "#C103-1281",
     "ja_term": "일흔",
     "tw_translation": "七十（固有語）",
     "reading": "",
@@ -22018,10 +22003,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1281
+    "row_index": 1280
   },
   {
-    "id": "#C103-1283",
+    "id": "#C103-1282",
     "ja_term": "읽다",
     "tw_translation": "讀",
     "reading": "",
@@ -22033,10 +22018,10 @@
     ],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1282
+    "row_index": 1281
   },
   {
-    "id": "#C103-1284",
+    "id": "#C103-1283",
     "ja_term": "입",
     "tw_translation": "嘴巴",
     "reading": "",
@@ -22046,12 +22031,27 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
+    "row_index": 1282
+  },
+  {
+    "id": "#C103-1284",
+    "ja_term": "입다",
+    "tw_translation": "穿（衣服）",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [
+      "基礎100"
+    ],
+    "etymology": "固有詞",
+    "pos": "動詞",
     "row_index": 1283
   },
   {
     "id": "#C103-1285",
-    "ja_term": "입다",
-    "tw_translation": "穿（衣服）",
+    "ja_term": "있다",
+    "tw_translation": "有、在",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -22065,21 +22065,6 @@
   },
   {
     "id": "#C103-1286",
-    "ja_term": "있다",
-    "tw_translation": "有、在",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [
-      "基礎100"
-    ],
-    "etymology": "固有詞",
-    "pos": "動詞",
-    "row_index": 1285
-  },
-  {
-    "id": "#C103-1287",
     "ja_term": "자동차 | 自動車",
     "tw_translation": "汽車",
     "reading": "",
@@ -22089,10 +22074,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1286
+    "row_index": 1285
   },
   {
-    "id": "#C103-1288",
+    "id": "#C103-1287",
     "ja_term": "자전거 | 自轉車",
     "tw_translation": "腳踏車",
     "reading": "",
@@ -22102,10 +22087,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1287
+    "row_index": 1286
   },
   {
-    "id": "#C103-1289",
+    "id": "#C103-1288",
     "ja_term": "자주",
     "tw_translation": "常常",
     "reading": "",
@@ -22115,10 +22100,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1288
+    "row_index": 1287
   },
   {
-    "id": "#C103-1290",
+    "id": "#C103-1289",
     "ja_term": "작다",
     "tw_translation": "小的",
     "reading": "",
@@ -22130,10 +22115,10 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1289
+    "row_index": 1288
   },
   {
-    "id": "#C103-1291",
+    "id": "#C103-1290",
     "ja_term": "잔 | 盞",
     "tw_translation": "杯",
     "reading": "",
@@ -22143,10 +22128,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1290
+    "row_index": 1289
   },
   {
-    "id": "#C103-1292",
+    "id": "#C103-1291",
     "ja_term": "잘못",
     "tw_translation": "錯誤",
     "reading": "",
@@ -22156,10 +22141,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1291
+    "row_index": 1290
   },
   {
-    "id": "#C103-1293",
+    "id": "#C103-1292",
     "ja_term": "잘하다",
     "tw_translation": "做得好、擅長",
     "reading": "",
@@ -22169,10 +22154,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1292
+    "row_index": 1291
   },
   {
-    "id": "#C103-1294",
+    "id": "#C103-1293",
     "ja_term": "잠",
     "tw_translation": "睡眠",
     "reading": "",
@@ -22182,10 +22167,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1293
+    "row_index": 1292
   },
   {
-    "id": "#C103-1295",
+    "id": "#C103-1294",
     "ja_term": "잠깐",
     "tw_translation": "一會兒",
     "reading": "",
@@ -22195,10 +22180,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1294
+    "row_index": 1293
   },
   {
-    "id": "#C103-1296",
+    "id": "#C103-1295",
     "ja_term": "잡수시다",
     "tw_translation": "吃（敬語）",
     "reading": "",
@@ -22208,12 +22193,12 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1295
+    "row_index": 1294
   },
   {
-    "id": "#C103-1297",
+    "id": "#C103-1296",
     "ja_term": "잡채 | 雜菜",
-    "tw_translation": "雜菜",
+    "tw_translation": "韓式雜菜",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -22221,12 +22206,25 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
+    "row_index": 1295
+  },
+  {
+    "id": "#C103-1297",
+    "ja_term": "재미없다",
+    "tw_translation": "無趣的",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
     "row_index": 1296
   },
   {
     "id": "#C103-1298",
-    "ja_term": "재미없다",
-    "tw_translation": "無趣的",
+    "ja_term": "재미있다",
+    "tw_translation": "有趣的",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -22238,19 +22236,6 @@
   },
   {
     "id": "#C103-1299",
-    "ja_term": "재미있다",
-    "tw_translation": "有趣的",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "形容詞",
-    "row_index": 1298
-  },
-  {
-    "id": "#C103-1300",
     "ja_term": "저 | (代名詞)",
     "tw_translation": "我（謙稱）",
     "reading": "",
@@ -22262,10 +22247,10 @@
     ],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1299
+    "row_index": 1298
   },
   {
-    "id": "#C103-1301",
+    "id": "#C103-1300",
     "ja_term": "저 | (冠形詞)",
     "tw_translation": "那",
     "reading": "",
@@ -22275,10 +22260,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "冠形詞",
-    "row_index": 1300
+    "row_index": 1299
   },
   {
-    "id": "#C103-1302",
+    "id": "#C103-1301",
     "ja_term": "저 | (感嘆詞)",
     "tw_translation": "那個……（語助）",
     "reading": "",
@@ -22288,12 +22273,25 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "感嘆詞",
+    "row_index": 1300
+  },
+  {
+    "id": "#C103-1302",
+    "ja_term": "저것",
+    "tw_translation": "那個（較遠）",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "代名詞",
     "row_index": 1301
   },
   {
     "id": "#C103-1303",
-    "ja_term": "저것",
-    "tw_translation": "那個（較遠）",
+    "ja_term": "저기",
+    "tw_translation": "那裡",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -22305,19 +22303,6 @@
   },
   {
     "id": "#C103-1304",
-    "ja_term": "저기",
-    "tw_translation": "那裡",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "代名詞",
-    "row_index": 1303
-  },
-  {
-    "id": "#C103-1305",
     "ja_term": "저녁",
     "tw_translation": "晚上、晚餐",
     "reading": "",
@@ -22329,10 +22314,10 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1304
+    "row_index": 1303
   },
   {
-    "id": "#C103-1306",
+    "id": "#C103-1305",
     "ja_term": "저쪽",
     "tw_translation": "那邊",
     "reading": "",
@@ -22342,10 +22327,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1305
+    "row_index": 1304
   },
   {
-    "id": "#C103-1307",
+    "id": "#C103-1306",
     "ja_term": "적다",
     "tw_translation": "少的",
     "reading": "",
@@ -22355,10 +22340,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1306
+    "row_index": 1305
   },
   {
-    "id": "#C103-1308",
+    "id": "#C103-1307",
     "ja_term": "전 | 前",
     "tw_translation": "前、前任",
     "reading": "",
@@ -22368,10 +22353,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "冠形詞",
-    "row_index": 1307
+    "row_index": 1306
   },
   {
-    "id": "#C103-1309",
+    "id": "#C103-1308",
     "ja_term": "전공 | 專攻",
     "tw_translation": "主修",
     "reading": "",
@@ -22381,10 +22366,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1308
+    "row_index": 1307
   },
   {
-    "id": "#C103-1310",
+    "id": "#C103-1309",
     "ja_term": "전화번호 | 電話番號",
     "tw_translation": "電話號碼",
     "reading": "",
@@ -22394,10 +22379,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1309
+    "row_index": 1308
   },
   {
-    "id": "#C103-1311",
+    "id": "#C103-1310",
     "ja_term": "정류장 | 停留場",
     "tw_translation": "站牌",
     "reading": "",
@@ -22407,10 +22392,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1310
+    "row_index": 1309
   },
   {
-    "id": "#C103-1312",
+    "id": "#C103-1311",
     "ja_term": "제",
     "tw_translation": "我的（謙稱）",
     "reading": "",
@@ -22420,10 +22405,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "代名詞",
-    "row_index": 1311
+    "row_index": 1310
   },
   {
-    "id": "#C103-1313",
+    "id": "#C103-1312",
     "ja_term": "조금",
     "tw_translation": "一點",
     "reading": "",
@@ -22435,10 +22420,10 @@
     ],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1312
+    "row_index": 1311
   },
   {
-    "id": "#C103-1314",
+    "id": "#C103-1313",
     "ja_term": "조용하다",
     "tw_translation": "安靜的",
     "reading": "",
@@ -22448,10 +22433,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1313
+    "row_index": 1312
   },
   {
-    "id": "#C103-1315",
+    "id": "#C103-1314",
     "ja_term": "졸업 | 卒業",
     "tw_translation": "畢業",
     "reading": "",
@@ -22461,10 +22446,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1314
+    "row_index": 1313
   },
   {
-    "id": "#C103-1316",
+    "id": "#C103-1315",
     "ja_term": "좀",
     "tw_translation": "稍微、請",
     "reading": "",
@@ -22474,10 +22459,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1315
+    "row_index": 1314
   },
   {
-    "id": "#C103-1317",
+    "id": "#C103-1316",
     "ja_term": "종업원 | 從業員",
     "tw_translation": "店員",
     "reading": "",
@@ -22487,10 +22472,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1316
+    "row_index": 1315
   },
   {
-    "id": "#C103-1318",
+    "id": "#C103-1317",
     "ja_term": "좋다",
     "tw_translation": "好",
     "reading": "",
@@ -22502,10 +22487,10 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1317
+    "row_index": 1316
   },
   {
-    "id": "#C103-1319",
+    "id": "#C103-1318",
     "ja_term": "좋아하다",
     "tw_translation": "喜歡",
     "reading": "",
@@ -22517,25 +22502,25 @@
     ],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1318
+    "row_index": 1317
   },
   {
-    "id": "#C103-1320",
-    "ja_term": "죄송하다 | 罪悚--",
+    "id": "#C103-1319",
+    "ja_term": "죄송하다 | 罪悚하다",
     "tw_translation": "抱歉",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "罪悚--",
+    "subtitle": "罪悚하다",
     "tags": [
       "基礎100"
     ],
     "etymology": "漢字語",
     "pos": "形容詞",
-    "row_index": 1319
+    "row_index": 1318
   },
   {
-    "id": "#C103-1321",
+    "id": "#C103-1320",
     "ja_term": "주 | 週",
     "tw_translation": "週",
     "reading": "",
@@ -22545,10 +22530,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "量詞",
-    "row_index": 1320
+    "row_index": 1319
   },
   {
-    "id": "#C103-1322",
+    "id": "#C103-1321",
     "ja_term": "주다",
     "tw_translation": "給",
     "reading": "",
@@ -22560,10 +22545,10 @@
     ],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1321
+    "row_index": 1320
   },
   {
-    "id": "#C103-1323",
+    "id": "#C103-1322",
     "ja_term": "주로",
     "tw_translation": "主要",
     "reading": "",
@@ -22573,10 +22558,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1322
+    "row_index": 1321
   },
   {
-    "id": "#C103-1324",
+    "id": "#C103-1323",
     "ja_term": "주무시다",
     "tw_translation": "睡（敬語）",
     "reading": "",
@@ -22586,10 +22571,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1323
+    "row_index": 1322
   },
   {
-    "id": "#C103-1325",
+    "id": "#C103-1324",
     "ja_term": "주부 | 主婦",
     "tw_translation": "家庭主婦",
     "reading": "",
@@ -22599,10 +22584,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1324
+    "row_index": 1323
   },
   {
-    "id": "#C103-1326",
+    "id": "#C103-1325",
     "ja_term": "주인 | 主人",
     "tw_translation": "主人",
     "reading": "",
@@ -22612,10 +22597,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1325
+    "row_index": 1324
   },
   {
-    "id": "#C103-1327",
+    "id": "#C103-1326",
     "ja_term": "주일 | 週日",
     "tw_translation": "週",
     "reading": "",
@@ -22625,10 +22610,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "量詞",
-    "row_index": 1326
+    "row_index": 1325
   },
   {
-    "id": "#C103-1328",
+    "id": "#C103-1327",
     "ja_term": "중 | 中",
     "tw_translation": "之中、正在",
     "reading": "",
@@ -22638,10 +22623,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "依存名詞",
-    "row_index": 1327
+    "row_index": 1326
   },
   {
-    "id": "#C103-1329",
+    "id": "#C103-1328",
     "ja_term": "지나다",
     "tw_translation": "經過",
     "reading": "",
@@ -22651,12 +22636,25 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
+    "row_index": 1327
+  },
+  {
+    "id": "#C103-1329",
+    "ja_term": "지난달",
+    "tw_translation": "上個月",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
     "row_index": 1328
   },
   {
     "id": "#C103-1330",
-    "ja_term": "지난달",
-    "tw_translation": "上個月",
+    "ja_term": "지난주",
+    "tw_translation": "上週",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -22668,8 +22666,8 @@
   },
   {
     "id": "#C103-1331",
-    "ja_term": "지난주",
-    "tw_translation": "上週",
+    "ja_term": "지난해",
+    "tw_translation": "去年",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -22681,19 +22679,6 @@
   },
   {
     "id": "#C103-1332",
-    "ja_term": "지난해",
-    "tw_translation": "去年",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "名詞",
-    "row_index": 1331
-  },
-  {
-    "id": "#C103-1333",
     "ja_term": "지내다",
     "tw_translation": "過（日子）",
     "reading": "",
@@ -22703,10 +22688,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1332
+    "row_index": 1331
   },
   {
-    "id": "#C103-1334",
+    "id": "#C103-1333",
     "ja_term": "지우개",
     "tw_translation": "橡皮擦",
     "reading": "",
@@ -22716,10 +22701,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1333
+    "row_index": 1332
   },
   {
-    "id": "#C103-1335",
+    "id": "#C103-1334",
     "ja_term": "지하철역 | 地下鐵驛",
     "tw_translation": "地鐵站",
     "reading": "",
@@ -22729,10 +22714,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1334
+    "row_index": 1333
   },
   {
-    "id": "#C103-1336",
+    "id": "#C103-1335",
     "ja_term": "집",
     "tw_translation": "家、房子",
     "reading": "",
@@ -22744,10 +22729,10 @@
     ],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1335
+    "row_index": 1334
   },
   {
-    "id": "#C103-1337",
+    "id": "#C103-1336",
     "ja_term": "짜다",
     "tw_translation": "鹹的",
     "reading": "",
@@ -22757,10 +22742,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1336
+    "row_index": 1335
   },
   {
-    "id": "#C103-1338",
+    "id": "#C103-1337",
     "ja_term": "쪽",
     "tw_translation": "邊、頁",
     "reading": "",
@@ -22770,10 +22755,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "量詞",
-    "row_index": 1337
+    "row_index": 1336
   },
   {
-    "id": "#C103-1339",
+    "id": "#C103-1338",
     "ja_term": "찍다",
     "tw_translation": "蓋（章）、拍（照）",
     "reading": "",
@@ -22783,10 +22768,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1338
+    "row_index": 1337
   },
   {
-    "id": "#C103-1340",
+    "id": "#C103-1339",
     "ja_term": "참",
     "tw_translation": "真的、真是",
     "reading": "",
@@ -22796,10 +22781,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1339
+    "row_index": 1338
   },
   {
-    "id": "#C103-1341",
+    "id": "#C103-1340",
     "ja_term": "참외",
     "tw_translation": "香瓜",
     "reading": "",
@@ -22809,10 +22794,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1340
+    "row_index": 1339
   },
   {
-    "id": "#C103-1342",
+    "id": "#C103-1341",
     "ja_term": "창문 | 窓門",
     "tw_translation": "窗戶",
     "reading": "",
@@ -22822,12 +22807,25 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
+    "row_index": 1340
+  },
+  {
+    "id": "#C103-1342",
+    "ja_term": "찾다",
+    "tw_translation": "找",
+    "reading": "",
+    "created_at": "2026-09-29",
+    "recommendations": [],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
     "row_index": 1341
   },
   {
     "id": "#C103-1343",
-    "ja_term": "찾다",
-    "tw_translation": "找",
+    "ja_term": "찾아보다",
+    "tw_translation": "查查看",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
@@ -22839,19 +22837,6 @@
   },
   {
     "id": "#C103-1344",
-    "ja_term": "찾아보다",
-    "tw_translation": "查查看",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "動詞",
-    "row_index": 1343
-  },
-  {
-    "id": "#C103-1345",
     "ja_term": "책 | 冊",
     "tw_translation": "書",
     "reading": "",
@@ -22863,10 +22848,10 @@
     ],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1344
+    "row_index": 1343
   },
   {
-    "id": "#C103-1346",
+    "id": "#C103-1345",
     "ja_term": "책상 | 冊床",
     "tw_translation": "書桌",
     "reading": "",
@@ -22876,10 +22861,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1345
+    "row_index": 1344
   },
   {
-    "id": "#C103-1347",
+    "id": "#C103-1346",
     "ja_term": "처음",
     "tw_translation": "第一次、最初",
     "reading": "",
@@ -22889,10 +22874,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1346
+    "row_index": 1345
   },
   {
-    "id": "#C103-1348",
+    "id": "#C103-1347",
     "ja_term": "천 | 千",
     "tw_translation": "千",
     "reading": "",
@@ -22902,10 +22887,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1347
+    "row_index": 1346
   },
   {
-    "id": "#C103-1349",
+    "id": "#C103-1348",
     "ja_term": "천만 | 千萬",
     "tw_translation": "千萬",
     "reading": "",
@@ -22915,10 +22900,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1348
+    "row_index": 1347
   },
   {
-    "id": "#C103-1350",
+    "id": "#C103-1349",
     "ja_term": "천천히",
     "tw_translation": "慢慢地",
     "reading": "",
@@ -22928,10 +22913,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1349
+    "row_index": 1348
   },
   {
-    "id": "#C103-1351",
+    "id": "#C103-1350",
     "ja_term": "추다",
     "tw_translation": "跳（舞）",
     "reading": "",
@@ -22941,10 +22926,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1350
+    "row_index": 1349
   },
   {
-    "id": "#C103-1352",
+    "id": "#C103-1351",
     "ja_term": "춤",
     "tw_translation": "舞",
     "reading": "",
@@ -22954,23 +22939,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1351
+    "row_index": 1350
   },
   {
-    "id": "#C103-1353",
-    "ja_term": "춤추다",
-    "tw_translation": "跳舞",
-    "reading": "",
-    "created_at": "2026-09-29",
-    "recommendations": [],
-    "subtitle": "",
-    "tags": [],
-    "etymology": "固有詞",
-    "pos": "動詞",
-    "row_index": 1352
-  },
-  {
-    "id": "#C103-1354",
+    "id": "#C103-1352",
     "ja_term": "춥다",
     "tw_translation": "冷的",
     "reading": "",
@@ -22982,10 +22954,10 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1353
+    "row_index": 1351
   },
   {
-    "id": "#C103-1355",
+    "id": "#C103-1353",
     "ja_term": "층 | 層",
     "tw_translation": "樓層",
     "reading": "",
@@ -22995,10 +22967,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "量詞",
-    "row_index": 1354
+    "row_index": 1352
   },
   {
-    "id": "#C103-1356",
+    "id": "#C103-1354",
     "ja_term": "치다",
     "tw_translation": "打",
     "reading": "",
@@ -23008,10 +22980,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1355
+    "row_index": 1353
   },
   {
-    "id": "#C103-1357",
+    "id": "#C103-1355",
     "ja_term": "치마",
     "tw_translation": "裙子",
     "reading": "",
@@ -23021,23 +22993,23 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1356
+    "row_index": 1354
   },
   {
-    "id": "#C103-1358",
-    "ja_term": "친하다 | 親--",
+    "id": "#C103-1356",
+    "ja_term": "친하다 | 親하다",
     "tw_translation": "親近的",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "親--",
+    "subtitle": "親하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "形容詞",
-    "row_index": 1357
+    "row_index": 1355
   },
   {
-    "id": "#C103-1359",
+    "id": "#C103-1357",
     "ja_term": "칠 | 七",
     "tw_translation": "七",
     "reading": "",
@@ -23047,10 +23019,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1358
+    "row_index": 1356
   },
   {
-    "id": "#C103-1360",
+    "id": "#C103-1358",
     "ja_term": "칠십 | 七十",
     "tw_translation": "七十",
     "reading": "",
@@ -23060,10 +23032,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1359
+    "row_index": 1357
   },
   {
-    "id": "#C103-1361",
+    "id": "#C103-1359",
     "ja_term": "칠월 | 七月",
     "tw_translation": "七月",
     "reading": "",
@@ -23073,10 +23045,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1360
+    "row_index": 1358
   },
   {
-    "id": "#C103-1362",
+    "id": "#C103-1360",
     "ja_term": "칠판 | 漆板",
     "tw_translation": "黑板",
     "reading": "",
@@ -23086,10 +23058,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1361
+    "row_index": 1359
   },
   {
-    "id": "#C103-1363",
+    "id": "#C103-1361",
     "ja_term": "커피숍 | coffee shop",
     "tw_translation": "咖啡店",
     "reading": "",
@@ -23099,10 +23071,10 @@
     "tags": [],
     "etymology": "外來語",
     "pos": "名詞",
-    "row_index": 1362
+    "row_index": 1360
   },
   {
-    "id": "#C103-1364",
+    "id": "#C103-1362",
     "ja_term": "컵 | cup",
     "tw_translation": "杯子",
     "reading": "",
@@ -23112,10 +23084,10 @@
     "tags": [],
     "etymology": "外來語",
     "pos": "名詞",
-    "row_index": 1363
+    "row_index": 1361
   },
   {
-    "id": "#C103-1365",
+    "id": "#C103-1363",
     "ja_term": "켜다",
     "tw_translation": "打開（燈、電源）",
     "reading": "",
@@ -23125,10 +23097,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1364
+    "row_index": 1362
   },
   {
-    "id": "#C103-1366",
+    "id": "#C103-1364",
     "ja_term": "코",
     "tw_translation": "鼻子",
     "reading": "",
@@ -23138,10 +23110,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1365
+    "row_index": 1363
   },
   {
-    "id": "#C103-1367",
+    "id": "#C103-1365",
     "ja_term": "콘서트 | concert",
     "tw_translation": "演唱會",
     "reading": "",
@@ -23151,10 +23123,10 @@
     "tags": [],
     "etymology": "外來語",
     "pos": "名詞",
-    "row_index": 1366
+    "row_index": 1364
   },
   {
-    "id": "#C103-1368",
+    "id": "#C103-1366",
     "ja_term": "크다",
     "tw_translation": "大的",
     "reading": "",
@@ -23166,10 +23138,10 @@
     ],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1367
+    "row_index": 1365
   },
   {
-    "id": "#C103-1369",
+    "id": "#C103-1367",
     "ja_term": "키",
     "tw_translation": "身高",
     "reading": "",
@@ -23179,10 +23151,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1368
+    "row_index": 1366
   },
   {
-    "id": "#C103-1370",
+    "id": "#C103-1368",
     "ja_term": "타다",
     "tw_translation": "① 搭乘\n\n② 燃燒",
     "reading": "",
@@ -23192,10 +23164,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1369
+    "row_index": 1367
   },
   {
-    "id": "#C103-1371",
+    "id": "#C103-1369",
     "ja_term": "탁구 | 卓球",
     "tw_translation": "桌球",
     "reading": "",
@@ -23205,10 +23177,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1370
+    "row_index": 1368
   },
   {
-    "id": "#C103-1372",
+    "id": "#C103-1370",
     "ja_term": "태국 | Thailand",
     "tw_translation": "泰國",
     "reading": "",
@@ -23218,10 +23190,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1371
+    "row_index": 1369
   },
   {
-    "id": "#C103-1373",
+    "id": "#C103-1371",
     "ja_term": "터미널 | terminal",
     "tw_translation": "客運總站",
     "reading": "",
@@ -23231,10 +23203,10 @@
     "tags": [],
     "etymology": "外來語",
     "pos": "名詞",
-    "row_index": 1372
+    "row_index": 1370
   },
   {
-    "id": "#C103-1374",
+    "id": "#C103-1372",
     "ja_term": "테니스 | tennis",
     "tw_translation": "網球",
     "reading": "",
@@ -23244,36 +23216,36 @@
     "tags": [],
     "etymology": "外來語",
     "pos": "名詞",
-    "row_index": 1373
+    "row_index": 1371
   },
   {
-    "id": "#C103-1375",
-    "ja_term": "특별하다 | 特別--",
+    "id": "#C103-1373",
+    "ja_term": "특별하다 | 特別하다",
     "tw_translation": "特別",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "特別--",
+    "subtitle": "特別하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "形容詞",
-    "row_index": 1374
+    "row_index": 1372
   },
   {
-    "id": "#C103-1376",
-    "ja_term": "특히",
+    "id": "#C103-1374",
+    "ja_term": "특히 | 特히",
     "tw_translation": "尤其",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "",
+    "subtitle": "特히",
     "tags": [],
-    "etymology": "固有詞",
+    "etymology": "漢字語",
     "pos": "副詞",
-    "row_index": 1375
+    "row_index": 1373
   },
   {
-    "id": "#C103-1377",
+    "id": "#C103-1375",
     "ja_term": "티셔츠 | T-shirt",
     "tw_translation": "T恤",
     "reading": "",
@@ -23283,10 +23255,10 @@
     "tags": [],
     "etymology": "外來語",
     "pos": "名詞",
-    "row_index": 1376
+    "row_index": 1374
   },
   {
-    "id": "#C103-1378",
+    "id": "#C103-1376",
     "ja_term": "팔",
     "tw_translation": "手臂",
     "reading": "",
@@ -23296,10 +23268,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1377
+    "row_index": 1375
   },
   {
-    "id": "#C103-1379",
+    "id": "#C103-1377",
     "ja_term": "팔 | 八",
     "tw_translation": "八",
     "reading": "",
@@ -23309,10 +23281,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1378
+    "row_index": 1376
   },
   {
-    "id": "#C103-1380",
+    "id": "#C103-1378",
     "ja_term": "팔다",
     "tw_translation": "賣",
     "reading": "",
@@ -23322,10 +23294,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1379
+    "row_index": 1377
   },
   {
-    "id": "#C103-1381",
+    "id": "#C103-1379",
     "ja_term": "팔십 | 八十",
     "tw_translation": "八十",
     "reading": "",
@@ -23335,10 +23307,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "數詞",
-    "row_index": 1380
+    "row_index": 1378
   },
   {
-    "id": "#C103-1382",
+    "id": "#C103-1380",
     "ja_term": "편의점 | 便宜店",
     "tw_translation": "便利商店",
     "reading": "",
@@ -23348,10 +23320,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1381
+    "row_index": 1379
   },
   {
-    "id": "#C103-1383",
+    "id": "#C103-1381",
     "ja_term": "표 | 票",
     "tw_translation": "票",
     "reading": "",
@@ -23361,10 +23333,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1382
+    "row_index": 1380
   },
   {
-    "id": "#C103-1384",
+    "id": "#C103-1382",
     "ja_term": "피우다",
     "tw_translation": "抽（菸）、開（花）",
     "reading": "",
@@ -23374,10 +23346,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1383
+    "row_index": 1381
   },
   {
-    "id": "#C103-1385",
+    "id": "#C103-1383",
     "ja_term": "하나",
     "tw_translation": "一（固有語）",
     "reading": "",
@@ -23389,10 +23361,10 @@
     ],
     "etymology": "固有詞",
     "pos": "數詞",
-    "row_index": 1384
+    "row_index": 1382
   },
   {
-    "id": "#C103-1386",
+    "id": "#C103-1384",
     "ja_term": "하다",
     "tw_translation": "做",
     "reading": "",
@@ -23404,10 +23376,10 @@
     ],
     "etymology": "固有詞",
     "pos": "動詞",
-    "row_index": 1385
+    "row_index": 1383
   },
   {
-    "id": "#C103-1387",
+    "id": "#C103-1385",
     "ja_term": "하루",
     "tw_translation": "一天",
     "reading": "",
@@ -23417,23 +23389,23 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1386
+    "row_index": 1384
   },
   {
-    "id": "#C103-1388",
-    "ja_term": "하숙집 | 下宿-",
+    "id": "#C103-1386",
+    "ja_term": "하숙집 | 下宿집",
     "tw_translation": "寄宿家庭",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "下宿-",
+    "subtitle": "下宿집",
     "tags": [],
-    "etymology": "漢字語",
+    "etymology": "混種詞",
     "pos": "名詞",
-    "row_index": 1387
+    "row_index": 1385
   },
   {
-    "id": "#C103-1389",
+    "id": "#C103-1387",
     "ja_term": "하지만",
     "tw_translation": "但是",
     "reading": "",
@@ -23443,10 +23415,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1388
+    "row_index": 1386
   },
   {
-    "id": "#C103-1390",
+    "id": "#C103-1388",
     "ja_term": "학생증 | 學生證",
     "tw_translation": "學生證",
     "reading": "",
@@ -23456,10 +23428,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1389
+    "row_index": 1387
   },
   {
-    "id": "#C103-1391",
+    "id": "#C103-1389",
     "ja_term": "한",
     "tw_translation": "一（冠詞）",
     "reading": "",
@@ -23469,23 +23441,23 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "冠形詞",
-    "row_index": 1390
+    "row_index": 1388
   },
   {
-    "id": "#C103-1392",
-    "ja_term": "한가하다 | 閑暇--",
+    "id": "#C103-1390",
+    "ja_term": "한가하다 | 閑暇하다",
     "tw_translation": "閒的",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
-    "subtitle": "閑暇--",
+    "subtitle": "閑暇하다",
     "tags": [],
     "etymology": "漢字語",
     "pos": "形容詞",
-    "row_index": 1391
+    "row_index": 1389
   },
   {
-    "id": "#C103-1393",
+    "id": "#C103-1391",
     "ja_term": "할머니",
     "tw_translation": "奶奶、外婆",
     "reading": "",
@@ -23495,10 +23467,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1392
+    "row_index": 1390
   },
   {
-    "id": "#C103-1394",
+    "id": "#C103-1392",
     "ja_term": "할아버지",
     "tw_translation": "爺爺、外公",
     "reading": "",
@@ -23508,10 +23480,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "名詞",
-    "row_index": 1393
+    "row_index": 1391
   },
   {
-    "id": "#C103-1395",
+    "id": "#C103-1393",
     "ja_term": "함께",
     "tw_translation": "一起",
     "reading": "",
@@ -23521,23 +23493,25 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1394
+    "row_index": 1392
   },
   {
-    "id": "#C103-1396",
+    "id": "#C103-1394",
     "ja_term": "형 | 兄",
     "tw_translation": "哥哥（男性稱呼）",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [],
     "subtitle": "兄",
-    "tags": [],
+    "tags": [
+      "基礎100"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1395
+    "row_index": 1393
   },
   {
-    "id": "#C103-1397",
+    "id": "#C103-1395",
     "ja_term": "호 | 號",
     "tw_translation": "號",
     "reading": "",
@@ -23547,10 +23521,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "量詞",
-    "row_index": 1396
+    "row_index": 1394
   },
   {
-    "id": "#C103-1398",
+    "id": "#C103-1396",
     "ja_term": "혼자",
     "tw_translation": "獨自",
     "reading": "",
@@ -23560,10 +23534,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "副詞",
-    "row_index": 1397
+    "row_index": 1395
   },
   {
-    "id": "#C103-1399",
+    "id": "#C103-1397",
     "ja_term": "후 | 後",
     "tw_translation": "之後",
     "reading": "",
@@ -23573,10 +23547,10 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "row_index": 1398
+    "row_index": 1396
   },
   {
-    "id": "#C103-1400",
+    "id": "#C103-1398",
     "ja_term": "흐리다",
     "tw_translation": "陰、模糊",
     "reading": "",
@@ -23586,10 +23560,10 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1399
+    "row_index": 1397
   },
   {
-    "id": "#C103-1401",
+    "id": "#C103-1399",
     "ja_term": "힘들다",
     "tw_translation": "辛苦的、累的",
     "reading": "",
@@ -23599,6 +23573,6 @@
     "tags": [],
     "etymology": "固有詞",
     "pos": "形容詞",
-    "row_index": 1400
+    "row_index": 1398
   }
 ]

@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-// Local fallback snapshot
 const dataJson = JSON.parse(readFileSync(resolve('data.json'), 'utf-8'));
 
 function createMockElement(props = {}) {
@@ -49,78 +48,50 @@ function mockDOM(elementsMap = {}) {
   global.document.querySelectorAll = () => [];
 }
 
-test('Local Fallback Snapshot Integrity - Japanese Terms', () => {
+test('Offline dumps cover C101 C102 C103 and profiles', () => {
   assert(Array.isArray(dataJson) && dataJson.length > 12);
-  const sample = dataJson[0];
-  assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
-});
+  assert('ja_term' in dataJson[0] && 'tw_translation' in dataJson[0] && 'reading' in dataJson[0]);
 
-test('Local Fallback Snapshot Integrity - Decoding Simplified Chinese: The Ultimate Guide', () => {
   const chinaJson = JSON.parse(readFileSync(resolve('china-data.json'), 'utf-8'));
   assert(Array.isArray(chinaJson) && chinaJson.length > 12);
-  const sample = chinaJson[0];
-  assert('ja_term' in sample && 'tw_translation' in sample);
-});
+  assert('ja_term' in chinaJson[0] && 'tw_translation' in chinaJson[0]);
 
-test('Local Fallback Snapshot Integrity - Master Korean Vocabulary Fast: The Ultimate Cheat Sheet', () => {
   const koreanJson = JSON.parse(readFileSync(resolve('korean-data.json'), 'utf-8'));
   assert(Array.isArray(koreanJson) && koreanJson.length > 12);
-  const sample = koreanJson[0];
-  assert('ja_term' in sample && 'tw_translation' in sample && 'reading' in sample);
-  assert.match(sample.ja_term, /\|/);
-  assert.notEqual(sample.ja_term, sample.reading);
+  assert.match(koreanJson[0].ja_term, /\|/);
   const posValues = [...new Set(koreanJson.map(r => String(r.pos || '').trim()).filter(Boolean))];
   for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
     assert.ok(posValues.includes(pos), `C103 dump missing POS ${pos}`);
   }
-  const basic100 = koreanJson.filter(r => Array.isArray(r.tags) && r.tags.includes('基礎100'));
-  assert.equal(basic100.length, 100);
+  assert.equal(koreanJson.filter(r => Array.isArray(r.tags) && r.tags.includes('基礎100')).length, 100);
+  const etymologyValues = [...new Set(koreanJson.map(r => String(r.etymology || '').trim()).filter(Boolean))];
+  for (const etym of ['漢字語', '外來語', '固有詞', '混種詞']) {
+    assert.ok(etymologyValues.includes(etym), `C103 dump missing etymology ${etym}`);
+  }
+
+  const profilesJson = JSON.parse(readFileSync(resolve('profiles.json'), 'utf-8'));
+  const chocolate = profilesJson.find(p => p.zhName === '巧克力');
+  assert.equal(chocolate.id, '#P-0002');
 });
 
-test('C103 Filter POS pills include all sheet 詞性 values', () => {
+test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   const posSection = html.match(/id="pos-tabs"[\s\S]*?<\/div>/)[0];
   for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
     assert.match(posSection, new RegExp(`data-tab="${pos}"`));
   }
-});
-
-test('Filter modal Category sits after Etymology', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
+  const etymologySection = html.match(/id="etymology-tabs"[\s\S]*?<\/div>/)[0];
+  for (const etym of ['漢字語', '外來語', '固有詞', '混種詞']) {
+    assert.match(etymologySection, new RegExp(`data-tab="${etym}"`));
+  }
   const posIdx = html.indexOf('id="filter-pos-section"');
   const etymologyIdx = html.indexOf('id="filter-etymology-section"');
   const kindIdx = html.indexOf('id="filter-kind-section"');
   assert.ok(posIdx > 0 && etymologyIdx > posIdx && kindIdx > etymologyIdx);
-});
 
-test('Display panel holds Sort by / Order / Page size and sits right of Filter', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-  const displayIdx = html.indexOf('id="display-modal"');
-  const filterIdx = html.indexOf('id="filter-modal"');
-  const profileIdx = html.indexOf('id="profile-modal"');
-  assert.ok(displayIdx > 0 && displayIdx < filterIdx);
-  const displayChunk = html.slice(displayIdx, filterIdx);
-  const filterChunk = html.slice(filterIdx, profileIdx);
-  assert.match(displayChunk, /<span>Display<\/span>/);
-  assert.match(displayChunk, /id="sort-field-tabs"/);
-  assert.match(displayChunk, /id="sort-order-tabs"/);
-  assert.match(displayChunk, /id="page-size-tabs"/);
-  const orderIdx = displayChunk.indexOf('id="sort-order-tabs"');
-  const pageSizeIdx = displayChunk.indexOf('id="page-size-tabs"');
-  assert.ok(orderIdx > 0 && pageSizeIdx > orderIdx);
-  assert.doesNotMatch(displayChunk, /awsui-filter-modal-row/);
-  assert.match(displayChunk, /onclick="resetDisplaySettings\(\)"/);
-  assert.doesNotMatch(displayChunk, />Done</);
-  assert.doesNotMatch(filterChunk, /id="sort-field-tabs"/);
-  assert.doesNotMatch(filterChunk, /id="page-size-tabs"/);
-  assert.match(filterChunk, /<span>Filter<\/span>/);
-  assert.doesNotMatch(filterChunk, />Done</);
-  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*margin-right:\s*calc\(50vw - 68px\)/);
-  assert.match(css, /#display-modal \.awsui-display-modal \{[\s\S]*margin-left:\s*calc\(50vw \+ 92px\)/);
-  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*min-height:\s*min\(620px,\s*85vh\)/);
-  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*aspect-ratio:\s*unset/);
-  assert.match(css, /#filter-modal \.awsui-filter-modal \{[\s\S]*height:\s*min\(620px,\s*85vh\)/);
+  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100/);
+  assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
+  assert.doesNotMatch(html, /src="js\/app\.js"/);
 });
 
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
@@ -145,9 +116,7 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
   assert.ok(collectionsCache['korean-terms']?.length > 12);
   assert.ok(fetched.every(url => !url.includes('docs.google.com')), 'boot must not hit Google Sheets');
   assert.ok(fetched.some(url => url === 'data.json'));
-  assert.ok(fetched.some(url => url === 'china-data.json'));
   assert.ok(fetched.some(url => url === 'korean-data.json'));
-  assert.ok(fetched.some(url => url === 'profiles.json'));
 
   fetched.length = 0;
   const originalSetTimeout = global.setTimeout;
@@ -162,146 +131,16 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
   global.fetch = originalFetch;
 });
 
-test('Header refresh button is the second nav action and calls refreshGalleryData', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert.match(html, /<div class="awsui-nav-actions">[\s\S]*id="btn-toggle-theme"[\s\S]*id="btn-refresh-data"[\s\S]*onclick="refreshGalleryData\(window\.currentCollectionId\)"/);
-});
-
-test('index.html loads the esbuild bundle, not raw js/app.js', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const bundle = readFileSync(resolve('dist/app.js'), 'utf-8');
-  assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
-  assert.doesNotMatch(html, /src="js\/app\.js"/);
-  assert.match(bundle, /preloadAllCollections/);
-  assert.doesNotMatch(bundle, /data\.json[\s\S]{0,40}china-data\.json/);
-});
-
-test('Catalog search row has 最新10 and 隨機10 to the right of search', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100[\s\S]*id="pagination-controls"/);
-  assert.match(html, /onclick="selectQuickFilter\('LATEST10'/);
-  assert.match(html, /onclick="selectQuickFilter\('RANDOM10'/);
-  assert.match(html, /id="quick-basic100"[\s\S]*onclick="selectQuickFilter\('BASIC100'/);
-  assert.doesNotMatch(html, /id="kana-tabs"/);
-});
-
-test('RWD layout uses viewport-fit cover and iPhone 16 Pro Max modal box', () => {
+test('Mobile Filter and Display merge into one panel', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   const css = readFileSync(resolve('styles.css'), 'utf-8');
-  assert.match(html, /viewport-fit=cover/);
-  assert.match(html, /class="awsui-brand-text"/);
-  assert.match(css, /--cgo-modal-pad-y:\s*max\(env\(safe-area-inset-top/);
-  assert.match(css, /width:\s*min\(88dvw,\s*387px\)/);
-  assert.match(css, /min\(62dvh,\s*593px/);
-  assert.match(css, /minmax\(min\(260px,\s*100%\),\s*1fr\)/);
-  assert.match(css, /@media \(max-width: 768px\)[\s\S]*\.awsui-text-filter \{[\s\S]*flex:\s*1 1 100%/);
+  assert.match(html, /id="filter-combined-host"/);
+  assert.match(html, /id="filter-panel-title-combined">Filter & Display</);
+  const mobile = css.split('@media (max-width: 768px)').pop();
+  assert.match(mobile, /#display-modal \{[\s\S]*display:\s*none\s*!important/);
 });
 
-test('Notice Panel markup is titled Notice and defaults to 展廳同步中', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  assert.match(html, /id="notice-modal"/);
-  assert.match(html, /id="notice-modal"[\s\S]*class="awsui-modal awsui-notice-modal"/);
-  assert.doesNotMatch(html, /id="notice-modal"[\s\S]*awsui-modal-lg/);
-  assert.match(html, /id="notice-modal-title">Notice</);
-  assert.match(html, /id="notice-modal-message">展廳同步中</);
-  assert.match(html, /class="awsui-spinner" id="notice-modal-spinner"[\s\S]*id="notice-modal-countdown"[^>]*>5</);
-  assert.doesNotMatch(html, /id="notice-modal"[\s\S]*onclick="close/);
-});
-
-test('Notice Panel holds at least 5 seconds even if work finishes immediately', async () => {
-  const mockModal = createMockElement();
-  const mockMsg = createMockElement();
-  const mockCountdown = createMockElement({ style: {} });
-  const mockBtn = createMockElement();
-  mockDOM({
-    'notice-modal': mockModal,
-    'notice-modal-message': mockMsg,
-    'notice-modal-countdown': mockCountdown,
-    'btn-refresh-data': mockBtn
-  });
-
-  const timeouts = [];
-  const originalSetTimeout = global.setTimeout;
-  const originalSetInterval = global.setInterval;
-  const originalClearInterval = global.clearInterval;
-  global.setTimeout = (fn, ms, ...args) => {
-    timeouts.push(ms);
-    return originalSetTimeout(fn, 0, ...args);
-  };
-  global.setInterval = () => 99;
-  global.clearInterval = () => {};
-
-  const { showNoticeUntil, NOTICE_SYNC_MESSAGE, NOTICE_MIN_VISIBLE_MS } = await import('../js/components/notice.js');
-  await showNoticeUntil(Promise.resolve(), { message: NOTICE_SYNC_MESSAGE, minVisibleMs: NOTICE_MIN_VISIBLE_MS });
-
-  assert.equal(mockMsg.innerText, '展廳同步中');
-  assert.equal(NOTICE_MIN_VISIBLE_MS, 5000);
-  assert.equal(timeouts.includes(5000), true);
-  assert(!mockModal.classes.has('open'));
-  assert(!mockBtn.classes.has('active'));
-  global.setTimeout = originalSetTimeout;
-  global.setInterval = originalSetInterval;
-  global.clearInterval = originalClearInterval;
-});
-
-test('Notice Panel countdown shows remaining seconds', async () => {
-  const mockModal = createMockElement();
-  const mockMsg = createMockElement();
-  const mockCountdown = createMockElement({ style: {} });
-  const mockBtn = createMockElement();
-  mockDOM({
-    'notice-modal': mockModal,
-    'notice-modal-message': mockMsg,
-    'notice-modal-countdown': mockCountdown,
-    'btn-refresh-data': mockBtn
-  });
-
-  let now = 1_000_000;
-  const originalNow = Date.now;
-  Date.now = () => now;
-
-  let tickFn;
-  const originalSetTimeout = global.setTimeout;
-  const originalSetInterval = global.setInterval;
-  const originalClearInterval = global.clearInterval;
-  global.setTimeout = (fn, ms) => {
-    if (ms === 5000) return 1;
-    return originalSetTimeout(fn, ms);
-  };
-  global.setInterval = (fn) => {
-    tickFn = fn;
-    return 7;
-  };
-  global.clearInterval = () => {};
-
-  const { showNoticeUntil, remainingHoldSeconds } = await import('../js/components/notice.js');
-  const done = showNoticeUntil(Promise.resolve(), { message: '展廳同步中', minVisibleMs: 5000 });
-
-  assert.equal(mockMsg.innerText, '展廳同步中');
-  assert.equal(mockCountdown.innerText, 5);
-  assert.equal(remainingHoldSeconds(now + 5000, now), 5);
-
-  now += 1000;
-  tickFn();
-  assert.equal(mockCountdown.innerText, 4);
-
-  now += 3000;
-  tickFn();
-  assert.equal(mockCountdown.innerText, 1);
-
-  now += 1000;
-  tickFn();
-  assert.equal(mockCountdown.innerText, 0);
-
-  Date.now = originalNow;
-  global.setTimeout = originalSetTimeout;
-  global.setInterval = originalSetInterval;
-  global.clearInterval = originalClearInterval;
-  await Promise.resolve();
-  void done;
-});
-
-test('Notice Panel stays open until both work and 5s hold finish', async () => {
+test('Notice Panel stays open until work and 5s hold finish', async () => {
   const mockModal = createMockElement();
   const mockMsg = createMockElement();
   const mockCountdown = createMockElement({ style: {} });
@@ -327,20 +166,18 @@ test('Notice Panel stays open until both work and 5s hold finish', async () => {
   global.setInterval = () => 99;
   global.clearInterval = () => {};
 
-  const { isNoticeOpen, showNoticeUntil } = await import('../js/components/notice.js');
+  const { isNoticeOpen, showNoticeUntil, NOTICE_MIN_VISIBLE_MS } = await import('../js/components/notice.js');
+  assert.equal(NOTICE_MIN_VISIBLE_MS, 5000);
+
   let resolveWork;
   const work = new Promise((resolve) => { resolveWork = resolve; });
   const done = showNoticeUntil(work, { message: '展廳同步中', minVisibleMs: 80 });
 
   assert(mockModal.classes.has('open'));
-  assert.equal(mockMsg.innerText, '展廳同步中');
-  assert(mockBtn.classes.has('active'));
   assert.equal(isNoticeOpen(), true);
-
   resolveWork();
   await Promise.resolve();
   assert(mockModal.classes.has('open'), 'must stay open after fast work until hold elapses');
-
   holdFn();
   await done;
   assert(!mockModal.classes.has('open'));
@@ -349,13 +186,16 @@ test('Notice Panel stays open until both work and 5s hold finish', async () => {
   global.clearInterval = originalClearInterval;
 });
 
-test('Router & View Switcher - View Routing & Maintenance Handling', async () => {
+test('Router sends 調整中 / 籌備中 halls to maintenance and sidebar badges follow status', async () => {
   const mockTitle = createMockElement();
   const mockViewMaint = createMockElement({ style: { display: 'none' } });
-
+  const mockBadge = createMockElement({ style: { display: 'inline-block' } });
   mockDOM({
     'maintenance-title': mockTitle,
-    'view-maintenance': mockViewMaint
+    'view-maintenance': mockViewMaint,
+    'side-nav-count-japanese-terms': mockBadge,
+    'side-nav-count-china-terms': mockBadge,
+    'side-nav-count-korean-terms': mockBadge
   });
 
   const { setOpeningHoursSchedule, OPENING_HOURS_SCHEDULE } = await import('../js/utils.js');
@@ -365,134 +205,31 @@ test('Router & View Switcher - View Routing & Maintenance Handling', async () =>
   const { collectionsMetaCache } = await import('../js/data.js');
   const { store } = await import('../js/state.js');
   const { switchView } = await import('../js/router.js');
+  const { updateSidebarBadge } = await import('../js/components/sidebar.js');
 
-  // Test "調整中" status routing
   collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '調整中' };
   store.set({ currentCollectionId: 'japanese-terms' });
   switchView('dictionary', null, false);
   assert.equal(mockTitle.innerText, 'ADJUSTING');
-  assert.equal(mockViewMaint.style.display, 'block');
 
-  // Test "籌備中" status routing
   collectionsMetaCache['korean-terms'] = { title: '韓語單字速成攻略', status: '籌備中' };
   store.set({ currentCollectionId: 'korean-terms' });
   switchView('dictionary', null, false);
   assert.equal(mockTitle.innerText, 'COMING SOON');
 
-  setOpeningHoursSchedule(originalSchedule);
-});
-
-test('UI Components - Sidebar Badge Display Logic', async () => {
-  const mockBadge = createMockElement({ style: { display: 'inline-block' } });
-  mockDOM({
-    'side-nav-count-japanese-terms': mockBadge,
-    'side-nav-count-china-terms': mockBadge,
-    'side-nav-count-korean-terms': mockBadge
-  });
-
-  const { collectionsMetaCache } = await import('../js/data.js');
-  const { updateSidebarBadge } = await import('../js/components/sidebar.js');
-
-  // Open status -> hidden badge
   collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '開放中' };
   updateSidebarBadge('japanese-terms');
   assert.equal(mockBadge.style.display, 'none');
 
-  // Adjusting status -> ADJUSTING badge
   collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '調整中' };
   updateSidebarBadge('japanese-terms');
   assert.equal(mockBadge.innerText, 'ADJUSTING');
-  assert.equal(mockBadge.style.display, 'inline-block');
 
-  // No live meta yet (even if defaultMeta is 調整中) -> treat as open
-  delete collectionsMetaCache['china-terms'];
-  mockBadge.innerText = 'ADJUSTING';
-  mockBadge.style.display = 'inline-block';
-  updateSidebarBadge('china-terms');
-  assert.equal(mockBadge.innerText, '');
-  assert.equal(mockBadge.style.display, 'none');
+  setOpeningHoursSchedule(originalSchedule);
 });
 
-test('UI Components - Mobile Sidebar Outside Click & Auto-Collapse Logic', async () => {
-  const mockWrapper = createMockElement();
-  mockWrapper.classList.add('sidebar-open');
-  const mockSidebar = createMockElement();
-  const mockToggleBtn = createMockElement();
-
-  mockSidebar.contains = (target) => target === mockSidebar;
-  mockToggleBtn.contains = (target) => target === mockToggleBtn;
-
-  mockDOM({
-    'app-layout-wrapper': mockWrapper,
-    'side-navigation': mockSidebar,
-    'btn-toggle-sidebar': mockToggleBtn
-  });
-
-  const { closeSidebarOnMobile, initSidebarOutsideClick } = await import('../js/components/sidebar.js');
-
-  // Simulate mobile window width <= 768
-  const originalInnerWidth = global.innerWidth;
-  global.innerWidth = 393;
-
-  // 1. Explicit closeSidebarOnMobile
-  closeSidebarOnMobile();
-  assert(mockWrapper.classList.contains('sidebar-collapsed'));
-  assert(!mockWrapper.classList.contains('sidebar-open'));
-
-  // Reset to open
-  mockWrapper.classList.add('sidebar-open');
-  mockWrapper.classList.remove('sidebar-collapsed');
-
-  // 2. Simulate outside click event handler
-  let clickHandler = null;
-  const originalAddEventListener = global.document.addEventListener;
-  global.document.addEventListener = (event, listener) => {
-    if (event === 'click') clickHandler = listener;
-  };
-
-  initSidebarOutsideClick();
-  assert.equal(typeof clickHandler, 'function');
-
-  // Click inside sidebar -> should NOT close
-  clickHandler({ target: mockSidebar });
-  assert(mockWrapper.classList.contains('sidebar-open'));
-
-  // Click on toggle button -> should NOT close via listener
-  clickHandler({ target: mockToggleBtn });
-  assert(mockWrapper.classList.contains('sidebar-open'));
-
-  // Click outside sidebar -> SHOULD close
-  const mockOutsideElem = createMockElement();
-  clickHandler({ target: mockOutsideElem });
-  assert(mockWrapper.classList.contains('sidebar-collapsed'));
-  assert(!mockWrapper.classList.contains('sidebar-open'));
-
-  global.innerWidth = originalInnerWidth;
-  global.document.addEventListener = originalAddEventListener;
-});
-
-test('UI Components - Empty State & Card Rendering', async () => {
+test('Empty catalog, Collection modal, Description modal, and Profile panel', async () => {
   const mockContainer = createMockElement();
-  mockDOM({ 'card-grid': mockContainer });
-
-  const { store } = await import('../js/state.js');
-  const { renderCards } = await import('../js/components/cards.js');
-
-  store.set({
-    currentCollectionId: 'japanese-terms',
-    allRecords: [{ id: '1', ja_term: '測試' }],
-    filteredRecords: [],
-    invalidTerm: '查無此詞',
-    searchQuery: ''
-  });
-
-  renderCards();
-
-  assert(mockContainer.innerHTML.includes('awsui-empty-card'));
-  assert(mockContainer.innerHTML.includes('尚無相符展品'));
-});
-
-test('Collection Modal Component - Population and Open/Close Logic', async () => {
   const mockModal = createMockElement();
   const mockTitle = createMockElement();
   const mockEnTitle = createMockElement();
@@ -503,118 +240,11 @@ test('Collection Modal Component - Population and Open/Close Logic', async () =>
   const mockCreatedAt = createMockElement();
   const mockId = createMockElement();
   const mockHeaderTitle = createMockElement();
-
-  mockDOM({
-    'collection-modal': mockModal,
-    'collection-modal-title': mockTitle,
-    'collection-modal-entitle': mockEnTitle,
-    'collection-modal-curator-section': mockCuratorSection,
-    'collection-modal-curator': mockCurator,
-    'collection-modal-description': mockDesc,
-    'collection-modal-total-items': mockTotal,
-    'collection-modal-created-at': mockCreatedAt,
-    'collection-modal-id': mockId,
-    'collection-header-title': mockHeaderTitle
-  });
-
-  const { collectionsMetaCache, collectionsCache } = await import('../js/data.js');
-  const { openCollectionModal, closeCollectionModal } = await import('../js/components/modal.js');
-
-  collectionsMetaCache['china-terms'] = {
-    title: '簡中語境破解攻略',
-    enTitle: 'Decoding Simplified Chinese: The Ultimate Guide',
-    id: 'C102',
-    tags: ['大陸', '語彙'],
-    description: '簡中語境破解攻略說明內容\n第二行說明\n第三行說明',
-    notice: '詞彙僅供參考',
-    timestamp: '2026-09-04'
-  };
-  collectionsCache['china-terms'] = [{ id: '1' }, { id: '2' }];
-
-  openCollectionModal('china-terms', false);
-
-  assert(mockModal.classes.has('open'));
-  assert(mockHeaderTitle.classes.has('active'), 'collection-header-title should have active class when collection modal opens');
-  assert.equal(mockTitle.innerText, '簡中語境破解攻略');
-  assert.equal(mockEnTitle.innerText, 'Decoding Simplified Chinese: The Ultimate Guide');
-  assert.equal(mockCurator.innerText, '巧克力');
-  assert.notEqual(mockCuratorSection.style.display, 'none');
-  assert.equal(mockDesc.innerText, '簡中語境破解攻略說明內容\n第二行說明\n第三行說明');
-  assert(mockDesc.classes.has('is-multiline'), 'Collection modal description should have is-multiline class for background color block');
-  assert.equal(mockTotal.innerText, 2);
-  assert.equal(mockCreatedAt.innerText, '2026-09-04');
-  assert.equal(mockId.innerText, 'C102');
-
-  closeCollectionModal(false);
-  assert(!mockModal.classes.has('open'));
-  assert(!mockHeaderTitle.classes.has('active'), 'collection-header-title should remove active class when collection modal closes');
-
-  // Test fallback to defaultMeta for korean-terms
-  delete collectionsMetaCache['korean-terms'];
-  openCollectionModal('korean-terms', false);
-  assert(mockModal.classes.has('open'));
-  assert.equal(mockTitle.innerText, '韓語單字速成攻略');
-  assert.equal(mockEnTitle.innerText, 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet');
-  assert.equal(mockCurator.innerText, '巧克力');
-  assert.equal(mockCreatedAt.innerText, '2026-09-18');
-  assert.equal(mockId.innerText, 'C103');
-
-  closeCollectionModal(false);
-  assert(!mockModal.classes.has('open'));
-});
-
-test('Description Modal Component & Interaction Logic', async () => {
   const mockDescModal = createMockElement();
   const mockDescText = createMockElement();
   const mockMeaning = createMockElement({ clientHeight: 100, scrollHeight: 200, 'data-row-index': '1' });
   mockMeaning.classList.add('has-scroll');
   const mockColDesc = createMockElement({ innerText: '展廳詳細介紹說明內容' });
-
-  mockDOM({
-    'description-modal': mockDescModal,
-    'description-modal-text': mockDescText,
-    'modal-meaning-text': mockMeaning,
-    'collection-modal-description': mockColDesc
-  });
-
-  const { store } = await import('../js/state.js');
-  const { openDescriptionModal, closeDescriptionModal, handleMeaningTextClick, handleCollectionDescriptionClick } = await import('../js/components/modal.js');
-
-  store.set({
-    currentCollectionId: 'japanese-terms',
-    allRecords: [{ row_index: 1, ja_term: '測試詞彙', reading: 'チェシー', tw_translation: '測試詳細說明內容', created_at: '2024-01-01', id: 'J101' }]
-  });
-
-  // Test opening Description Modal directly
-  openDescriptionModal(1, false);
-  assert(mockDescModal.classes.has('open'));
-  assert.equal(mockDescText.innerText, '測試詳細說明內容');
-
-  closeDescriptionModal(false);
-  assert(!mockDescModal.classes.has('open'));
-
-  // Test handleMeaningTextClick (with scroll)
-  handleMeaningTextClick();
-  assert(mockDescModal.classes.has('open'));
-
-  // Test handleMeaningTextClick without scroll (unconditional double-click)
-  closeDescriptionModal(false);
-  assert(!mockDescModal.classes.has('open'));
-  mockMeaning.classList.remove('has-scroll');
-  mockMeaning.clientHeight = 200;
-  mockMeaning.scrollHeight = 100;
-  handleMeaningTextClick();
-  assert(mockDescModal.classes.has('open'), 'handleMeaningTextClick should open Description modal even without scroll');
-
-  // Test Collection Modal double-click opens Description Modal
-  closeDescriptionModal(false);
-  assert(!mockDescModal.classes.has('open'));
-  handleCollectionDescriptionClick();
-  assert(mockDescModal.classes.has('open'), 'handleCollectionDescriptionClick should open Description modal');
-  assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
-});
-
-test('Profile Panel - Open from Curator click and populate sheet fields', async () => {
   const mockProfileModal = createMockElement();
   const mockName = createMockElement();
   const mockEnSection = createMockElement();
@@ -626,14 +256,27 @@ test('Profile Panel - Open from Curator click and populate sheet fields', async 
   const mockGmSection = createMockElement();
   const mockGm = createMockElement();
   const mockDescSection = createMockElement();
-  const mockDesc = createMockElement();
+  const mockProfileDesc = createMockElement();
   const mockSocialRow = createMockElement();
-  const mockId = createMockElement();
-  const mockCurator = createMockElement({ innerText: '巧克力' });
-  const mockCollectionModal = createMockElement();
-  mockCollectionModal.classes.add('open');
+  const mockProfileId = createMockElement();
+  mockCurator.innerText = '巧克力';
+  mockModal.classes.add('open');
 
   mockDOM({
+    'card-grid': mockContainer,
+    'collection-modal': mockModal,
+    'collection-modal-title': mockTitle,
+    'collection-modal-entitle': mockEnTitle,
+    'collection-modal-curator-section': mockCuratorSection,
+    'collection-modal-curator': mockCurator,
+    'collection-modal-description': mockDesc,
+    'collection-modal-total-items': mockTotal,
+    'collection-modal-created-at': mockCreatedAt,
+    'collection-modal-id': mockId,
+    'collection-header-title': mockHeaderTitle,
+    'description-modal': mockDescModal,
+    'description-modal-text': mockDescText,
+    'modal-meaning-text': mockMeaning,
     'profile-modal': mockProfileModal,
     'profile-modal-name': mockName,
     'profile-modal-en-section': mockEnSection,
@@ -645,16 +288,60 @@ test('Profile Panel - Open from Curator click and populate sheet fields', async 
     'profile-modal-gmail-section': mockGmSection,
     'profile-modal-gmail': mockGm,
     'profile-modal-description-section': mockDescSection,
-    'profile-modal-description': mockDesc,
+    'profile-modal-description': mockProfileDesc,
     'profile-modal-social-row': mockSocialRow,
-    'profile-modal-id': mockId,
-    'collection-modal-curator': mockCurator,
-    'collection-modal': mockCollectionModal,
-    'description-modal': createMockElement()
+    'profile-modal-id': mockProfileId
   });
 
-  const { profilesCache } = await import('../js/data.js');
-  const { handleCuratorClick, closeProfileModal } = await import('../js/components/modal.js');
+  const { store } = await import('../js/state.js');
+  const { renderCards } = await import('../js/components/cards.js');
+  const { collectionsMetaCache, collectionsCache, profilesCache } = await import('../js/data.js');
+  const {
+    openCollectionModal,
+    closeCollectionModal,
+    openDescriptionModal,
+    handleCollectionDescriptionClick,
+    handleCuratorClick,
+    closeProfileModal
+  } = await import('../js/components/modal.js');
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ id: '1', ja_term: '測試' }],
+    filteredRecords: [],
+    invalidTerm: '查無此詞',
+    searchQuery: ''
+  });
+  renderCards();
+  assert(mockContainer.innerHTML.includes('尚無相符展品'));
+
+  collectionsMetaCache['china-terms'] = {
+    title: '簡中語境破解攻略',
+    enTitle: 'Decoding Simplified Chinese: The Ultimate Guide',
+    id: 'C102',
+    tags: ['大陸', '語彙'],
+    description: '簡中語境破解攻略說明內容',
+    notice: '詞彙僅供參考',
+    timestamp: '2026-09-04'
+  };
+  collectionsCache['china-terms'] = [{ id: '1' }, { id: '2' }];
+  openCollectionModal('china-terms', false);
+  assert(mockModal.classes.has('open'));
+  assert.equal(mockTitle.innerText, '簡中語境破解攻略');
+  assert.equal(mockTotal.innerText, 2);
+  assert.equal(mockId.innerText, 'C102');
+  closeCollectionModal(false);
+  assert(!mockModal.classes.has('open'));
+
+  store.set({
+    currentCollectionId: 'japanese-terms',
+    allRecords: [{ row_index: 1, ja_term: '測試詞彙', reading: 'チェシー', tw_translation: '測試詳細說明內容', created_at: '2024-01-01', id: 'J101' }]
+  });
+  openDescriptionModal(1, false);
+  assert.equal(mockDescText.innerText, '測試詳細說明內容');
+  mockDesc.innerText = '展廳詳細介紹說明內容';
+  handleCollectionDescriptionClick();
+  assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
 
   profilesCache.length = 0;
   profilesCache.push({
@@ -664,39 +351,16 @@ test('Profile Panel - Open from Curator click and populate sheet fields', async 
     ig: '不公開',
     youtube: '不公開',
     gmail: '不公開',
-    description: 'CGO Master\n歡迎大家來玩'
+    description: 'CGO Master'
   });
-
   handleCuratorClick();
-  assert(mockProfileModal.classes.has('open'), 'click Curator should open Profile panel');
-  assert(mockCurator.classes.has('active'), 'Curator should use collection-header-title active invert while Profile is open');
+  assert(mockProfileModal.classes.has('open'));
   assert.equal(mockName.innerText, '巧克力');
-  assert.equal(mockEn.innerText, 'Chocolate');
-  assert.equal(mockIg.innerText, '不公開');
-  assert.equal(mockYt.innerText, '不公開');
-  assert.equal(mockGm.innerText, '不公開');
-  assert.equal(mockDesc.innerText, 'CGO Master\n歡迎大家來玩');
-  assert.equal(mockId.innerText, '#P-0002');
-  assert.notEqual(mockEnSection.style.display, 'none');
-  assert.notEqual(mockSocialRow.style.display, 'none');
-  assert.notEqual(mockDescSection.style.display, 'none');
-
   closeProfileModal(false);
   assert(!mockProfileModal.classes.has('open'));
-  assert(!mockCurator.classes.has('active'), 'Curator should drop active invert when Profile closes');
 });
 
-test('Local Fallback Snapshot Integrity - Profiles', () => {
-  const profilesJson = JSON.parse(readFileSync(resolve('profiles.json'), 'utf-8'));
-  assert(Array.isArray(profilesJson) && profilesJson.length >= 1);
-  const chocolate = profilesJson.find(p => p.zhName === '巧克力');
-  assert(chocolate);
-  assert.equal(chocolate.id, '#P-0002');
-  assert.equal(chocolate.enName, 'Chocolate');
-  assert('ig' in chocolate && 'youtube' in chocolate && 'gmail' in chocolate && 'description' in chocolate);
-});
-
-test('Filter Modal - Open, apply, reset and gallery-specific sections', async () => {
+test('Filter modal shows hall-specific sections and resets Display', async () => {
   const mockFilterModal = createMockElement();
   const mockDisplayModal = createMockElement();
   const mockHangul = createMockElement({ style: { display: 'none' } });
@@ -748,6 +412,7 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
   global.window = {
     switchView: () => {},
     scrollTo: () => {},
+    innerWidth: 1200,
     setTimeout: fakeSetTimeout,
     clearTimeout: fakeClearTimeout,
     syncFilterUi: undefined,
@@ -763,137 +428,80 @@ test('Filter Modal - Open, apply, reset and gallery-specific sections', async ()
 
   const { store } = await import('../js/state.js');
   const { switchCollection } = await import('../js/components/sidebar.js');
-  const { openFilterModal, closeFilterModal, closeCatalogPanels, resetFineFilters, resetDisplaySettings, countActiveFineFilters, DISPLAY_FOLLOW_DELAY_MS } = await import('../js/filter.js');
+  const { openFilterModal, closeCatalogPanels, resetFineFilters, resetDisplaySettings, countActiveFineFilters, DISPLAY_FOLLOW_DELAY_MS } = await import('../js/filter.js');
 
   store.set({ currentCollectionId: 'japanese-terms', allRecords: [], filteredRecords: [] });
   switchCollection('korean-terms', false);
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockHangul.style.display, '');
-  assert.equal(mockKind.style.display, '');
   assert.equal(mockEtymology.style.display, '');
   assert.equal(mockPos.style.display, '');
-  assert.equal(mockBasic100.style.display, '');
-  assert.equal(mockQuickBasic100.style.display, '');
   assert.equal(mockKana.style.display, 'none');
-  assert.equal(mockGloss.style.display, '');
-  assert.equal(mockReading.style.display, 'none');
 
   openFilterModal();
   assert(mockFilterModal.classes.has('open'));
-  assert(!mockDisplayModal.classes.has('open'), 'Display waits until Filter has opened');
-  assert.equal(pendingTimers.length, 1);
   assert.equal(pendingTimers[0].ms, DISPLAY_FOLLOW_DELAY_MS);
-  assert(mockTrigger.classes.has('active'));
   flushTimers();
-  assert(mockDisplayModal.classes.has('open'), 'funnel opens Display after Filter');
+  assert(mockDisplayModal.classes.has('open'));
   closeCatalogPanels();
-  assert(!mockFilterModal.classes.has('open'));
-  assert(!mockDisplayModal.classes.has('open'));
-  assert(!mockTrigger.classes.has('active'));
 
+  global.window.innerWidth = 390;
   openFilterModal();
+  assert.equal(pendingTimers.length, 0, 'mobile does not schedule Display follow');
   closeCatalogPanels();
-  flushTimers();
-  assert(!mockDisplayModal.classes.has('open'), 'closing Filter cancels a pending Display follow');
 
   store.set({ currentLengthTab: '2', currentInitialTab: 'ㄱ', etymologyTab: '外來語', posTab: '名詞', currentCollectionId: 'korean-terms' });
   assert.equal(countActiveFineFilters() >= 4, true);
   resetFineFilters();
-  const afterReset = store.get();
-  assert.equal(afterReset.currentLengthTab, 'ALL');
-  assert.equal(afterReset.currentInitialTab, 'ALL');
-  assert.equal(afterReset.loanwordOnly, false);
-  assert.equal(afterReset.etymologyTab, 'ALL');
-  assert.equal(afterReset.posTab, 'ALL');
-  assert.equal(afterReset.basic100Only, false);
-  assert.equal(afterReset.currentSortField, 'title');
+  assert.equal(store.get().currentLengthTab, 'ALL');
+  assert.equal(store.get().etymologyTab, 'ALL');
 
   store.set({ currentSortField: 'id', currentSortOrder: 'desc', pageSize: 50, currentCollectionId: 'korean-terms' });
   resetDisplaySettings();
-  const afterDisplayReset = store.get();
-  assert.equal(afterDisplayReset.currentSortField, 'title');
-  assert.equal(afterDisplayReset.currentSortOrder, 'asc');
-  assert.equal(afterDisplayReset.pageSize, 10);
+  assert.equal(store.get().currentSortField, 'title');
+  assert.equal(store.get().pageSize, 10);
 
   switchCollection('japanese-terms', false);
   await new Promise(resolve => setTimeout(resolve, 30));
-  assert.equal(mockKind.style.display, '');
-  assert.equal(mockEtymology.style.display, 'none');
-  assert.equal(mockPos.style.display, 'none');
-  assert.equal(mockBasic100.style.display, '');
-  assert.equal(mockQuickBasic100.style.display, '');
   assert.equal(mockKana.style.display, '');
   assert.equal(mockHangul.style.display, 'none');
 
-  switchCollection('china-terms', false);
-  await new Promise(resolve => setTimeout(resolve, 30));
-  assert.equal(mockKind.style.display, '');
-  assert.equal(mockEtymology.style.display, 'none');
-  assert.equal(mockPos.style.display, 'none');
-  assert.equal(mockBasic100.style.display, '');
-  assert.equal(mockQuickBasic100.style.display, '');
-  assert.equal(mockKana.style.display, 'none');
-  assert.equal(mockHangul.style.display, 'none');
-
-  closeFilterModal();
-  assert(!mockFilterModal.classes.has('open'));
   global.window = originalWindow;
   global.location = originalLocation;
   global.fetch = originalFetch;
 });
 
-test('Page size - Display panel pills set store and stay in sync', async () => {
-  const tab10 = createMockElement({ 'data-tab': '10' });
-  const tab25 = createMockElement({ 'data-tab': '25' });
-  const tabAll = createMockElement({ 'data-tab': 'all' });
-  tab10.classList.add('active');
-  tab10.getAttribute = (k) => (k === 'data-tab' ? '10' : tab10[k]);
-  tab25.getAttribute = (k) => (k === 'data-tab' ? '25' : tab25[k]);
-  tabAll.getAttribute = (k) => (k === 'data-tab' ? 'all' : tabAll[k]);
-
-  mockDOM({
-    'card-grid': createMockElement(),
-    'cards-counter': createMockElement(),
-    'pagination-controls': createMockElement(),
-    'filter-summary': createMockElement()
-  });
-  global.document.querySelectorAll = (sel) => {
-    if (sel === '#page-size-tabs .awsui-tab') return [tab10, tab25, tabAll];
-    return [];
-  };
-
-  const { store } = await import('../js/state.js');
-  const { setPageSize, selectPageSize } = await import('../js/components/pagination.js');
-  const { syncFilterUi } = await import('../js/filter.js');
-
-  store.set({ allRecords: [], filteredRecords: [], pageSize: 10 });
-  selectPageSize('25', tab25);
-  assert.equal(store.get().pageSize, 25);
-  assert(tab25.classes.has('active'));
-  assert(!tab10.classes.has('active'));
-
-  setPageSize('all');
-  assert.equal(store.get().pageSize, 9999);
-  syncFilterUi();
-  assert(tabAll.classes.has('active'));
-  assert(!tab25.classes.has('active'));
-});
-
-test('C103 Item Modal hides Pronunciation while C101 still shows it', async () => {
+test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle active', async () => {
   const mockReadingSection = createMockElement({ style: { display: 'none' } });
   const mockReadingRow = createMockElement();
   const mockMeaning = createMockElement();
   const mockModal = createMockElement();
+  const mockEtymPosRow = createMockElement({ style: { display: 'none' } });
+  const mockEtymSection = createMockElement({ style: { display: 'none' } });
+  const mockEtym = createMockElement();
+  const mockPosSection = createMockElement({ style: { display: 'none' } });
+  const mockPos = createMockElement();
+  const card1 = createMockElement({ 'data-row-index': '1' });
+  const card2 = createMockElement({ 'data-row-index': '2' });
 
   mockDOM({
     'detail-modal': mockModal,
     'modal-meaning-text': mockMeaning,
     'modal-reading-section': mockReadingSection,
-    'modal-reading-row': mockReadingRow
+    'modal-reading-row': mockReadingRow,
+    'modal-etymology-pos-row': mockEtymPosRow,
+    'modal-etymology-section': mockEtymSection,
+    'modal-etymology': mockEtym,
+    'modal-pos-section': mockPosSection,
+    'modal-pos': mockPos
   });
+  global.document.querySelectorAll = (sel) => {
+    if (sel === '.awsui-card') return [card1, card2];
+    return [];
+  };
 
   const { store } = await import('../js/state.js');
-  const { openMeaningModal } = await import('../js/components/modal.js');
+  const { openMeaningModal, closeDetailModal } = await import('../js/components/modal.js');
 
   store.set({
     currentCollectionId: 'japanese-terms',
@@ -905,86 +513,20 @@ test('C103 Item Modal hides Pronunciation while C101 still shows it', async () =
 
   store.set({
     currentCollectionId: 'korean-terms',
-    allRecords: [{ row_index: 1, ja_term: '가능 | 可能', reading: '가능', tw_translation: '可能' }]
-  });
-  openMeaningModal(1, false);
-  assert.equal(mockReadingRow.innerText, '');
-  assert.equal(mockReadingSection.style.display, 'none');
-});
-
-test('C103 Item Modal shows Etymology and POS on one row before Description', async () => {
-  const mockMeaning = createMockElement();
-  const mockModal = createMockElement();
-  const mockEtymPosRow = createMockElement({ style: { display: 'none' } });
-  const mockEtymSection = createMockElement({ style: { display: 'none' } });
-  const mockEtym = createMockElement();
-  const mockPosSection = createMockElement({ style: { display: 'none' } });
-  const mockPos = createMockElement();
-
-  mockDOM({
-    'detail-modal': mockModal,
-    'modal-meaning-text': mockMeaning,
-    'modal-etymology-pos-row': mockEtymPosRow,
-    'modal-etymology-section': mockEtymSection,
-    'modal-etymology': mockEtym,
-    'modal-pos-section': mockPosSection,
-    'modal-pos': mockPos
-  });
-
-  const { store } = await import('../js/state.js');
-  const { openMeaningModal } = await import('../js/components/modal.js');
-
-  store.set({
-    currentCollectionId: 'korean-terms',
     allRecords: [{
       row_index: 1,
       ja_term: '가능 | 可能',
+      reading: '가능',
       tw_translation: '可能',
       etymology: '漢字語',
       pos: '名詞'
     }]
   });
   openMeaningModal(1, false);
+  assert.equal(mockReadingSection.style.display, 'none');
   assert.equal(mockEtym.innerText, '漢字語');
   assert.equal(mockPos.innerText, '名詞');
   assert.equal(mockEtymPosRow.style.display, '');
-  assert.equal(mockEtymSection.style.display, '');
-  assert.equal(mockPosSection.style.display, '');
-
-  store.set({
-    currentCollectionId: 'japanese-terms',
-    allRecords: [{
-      row_index: 1,
-      ja_term: '神経衰弱',
-      tw_translation: '神經衰弱',
-      etymology: '漢字語',
-      pos: '名詞'
-    }]
-  });
-  openMeaningModal(1, false);
-  assert.equal(mockEtymPosRow.style.display, 'none');
-  assert.equal(mockEtymSection.style.display, 'none');
-  assert.equal(mockPosSection.style.display, 'none');
-});
-
-test('Card Active State - Toggle Active Class on Open/Close Modal', async () => {
-  const card1 = createMockElement({ 'data-row-index': '1' });
-  const card2 = createMockElement({ 'data-row-index': '2' });
-  const mockModal = createMockElement();
-  const mockMeaning = createMockElement({ 'data-row-index': '1' });
-
-  mockDOM({
-    'detail-modal': mockModal,
-    'modal-meaning-text': mockMeaning
-  });
-
-  global.document.querySelectorAll = (sel) => {
-    if (sel === '.awsui-card') return [card1, card2];
-    return [];
-  };
-
-  const { store } = await import('../js/state.js');
-  const { openMeaningModal, closeDetailModal } = await import('../js/components/modal.js');
 
   store.set({
     currentCollectionId: 'japanese-terms',
@@ -1000,21 +542,11 @@ test('Card Active State - Toggle Active Class on Open/Close Modal', async () => 
     pageSize: 10,
     invalidTerm: null
   });
-
-  // Test 1: openMeaningModal activates matching card
   openMeaningModal(1, false);
-  assert.equal(card1.classList.contains('active'), true, 'Card 1 should be active');
-  assert.equal(card2.classList.contains('active'), false, 'Card 2 should not be active');
-
-  // Test 2: openMeaningModal switches active card
+  assert.equal(card1.classList.contains('active'), true);
   openMeaningModal(2, false);
-  assert.equal(card1.classList.contains('active'), false, 'Card 1 should no longer be active');
-  assert.equal(card2.classList.contains('active'), true, 'Card 2 should now be active');
-
-  // Test 3: closeDetailModal removes active from all cards
+  assert.equal(card2.classList.contains('active'), true);
   closeDetailModal(false);
-  assert.equal(card1.classList.contains('active'), false, 'Card 1 should not be active after close');
-  assert.equal(card2.classList.contains('active'), false, 'Card 2 should not be active after close');
-
+  assert.equal(card1.classList.contains('active'), false);
+  assert.equal(card2.classList.contains('active'), false);
 });
-

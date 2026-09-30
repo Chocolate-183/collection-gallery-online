@@ -765,7 +765,7 @@ a:focus {
   scrollbar-gutter: stable;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  row-gap: 24px;
 }
 
 #filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider,
@@ -786,7 +786,7 @@ a:focus {
 }
 
 .awsui-filter-modal-section .awsui-modal-section-title {
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .awsui-filter-modal-tabs {
@@ -820,6 +820,21 @@ a:focus {
   background: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;
+}
+
+#filter-panel-title-combined,
+#filter-display-actions {
+  display: none;
+}
+
+#filter-combined-host {
+  display: contents;
+}
+
+#display-panel-body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
 }
 
 /* Uniform Height Cards Grid Matrix */
@@ -1368,7 +1383,7 @@ a:focus {
   font-weight: 600;
   font-size: 15px;
   color: var(--awsui-color-text-body-secondary, #687078);
-  margin-bottom: 4px;
+  margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
 }
@@ -2720,21 +2735,21 @@ a:focus {
     margin-right: 0 !important;
   }
 
-  #filter-modal {
-    align-items: flex-start;
-    justify-content: center;
-  }
-
   #display-modal {
-    align-items: flex-end;
-    justify-content: center;
+    display: none !important;
   }
 
-  #display-modal .awsui-display-modal,
-  #filter-modal .awsui-filter-modal {
-    height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
-    min-height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
-    max-height: min(40dvh, calc((100dvh - 2 * var(--cgo-modal-pad-y) - 24px) / 2));
+  #filter-panel-title-filter,
+  #filter-reset-actions {
+    display: none !important;
+  }
+
+  #filter-panel-title-combined {
+    display: inline;
+  }
+
+  #filter-display-actions {
+    display: flex;
   }
 
   .awsui-modal-body {
