@@ -786,7 +786,7 @@ a:focus {
 }
 
 .awsui-filter-modal-section .awsui-modal-section-title {
-  margin-bottom: 0;
+  margin-bottom: 4px;
 }
 
 .awsui-filter-modal-tabs {
