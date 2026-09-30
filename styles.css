@@ -765,7 +765,7 @@ a:focus {
   scrollbar-gutter: stable;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  row-gap: 20px;
 }
 
 #filter-modal .awsui-filter-modal-scroll > .awsui-modal-divider,
