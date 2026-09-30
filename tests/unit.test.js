@@ -247,9 +247,33 @@ test('Profile parsers and hall status helpers', () => {
 });
 
 test('Catalog quick filters map Latest / Random / 基礎100', async () => {
+  const makePill = (tab) => {
+    const classes = new Set();
+    return {
+      getAttribute: () => tab,
+      classList: {
+        toggle(name, on) {
+          if (name !== 'active') return;
+          if (on) classes.add('active');
+          else classes.delete('active');
+        },
+        add(name) { if (name === 'active') classes.add('active'); },
+        remove(name) { if (name === 'active') classes.delete('active'); },
+        contains(name) { return classes.has(name); }
+      }
+    };
+  };
+  const pills = {
+    LATEST10: makePill('LATEST10'),
+    RANDOM10: makePill('RANDOM10'),
+    BASIC100: makePill('BASIC100')
+  };
+  const activeQuickTabs = () => Object.entries(pills)
+    .filter(([, el]) => el.classList.contains('active'))
+    .map(([tab]) => tab);
   global.document = {
     getElementById: () => null,
-    querySelectorAll: () => [],
+    querySelectorAll: (sel) => sel.includes('#quick-filter-tabs') ? Object.values(pills) : [],
     querySelector: () => null
   };
 
@@ -273,12 +297,22 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
   selectQuickFilter(QUICK_FILTERS.LATEST10);
   assert.equal(store.get().currentSortField, SORT_FIELDS.CREATED_AT);
   assert.equal(store.get().pageSize, 10);
+  assert.deepEqual(activeQuickTabs(), ['LATEST10']);
 
   selectQuickFilter(QUICK_FILTERS.RANDOM10);
   assert.equal(store.get().currentSortField, SORT_FIELDS.RANDOM);
   assert.equal(store.get().pageSize, 10);
+  assert.deepEqual(activeQuickTabs(), ['RANDOM10']);
 
   selectQuickFilter(QUICK_FILTERS.BASIC100);
   assert.equal(store.get().basic100Only, true);
   assert.equal(store.get().pageSize, 100);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.STANDARD);
+  assert.deepEqual(activeQuickTabs(), ['BASIC100']);
+
+  selectQuickFilter(QUICK_FILTERS.LATEST10);
+  assert.equal(store.get().basic100Only, false);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.CREATED_AT);
+  assert.equal(store.get().pageSize, 10);
+  assert.deepEqual(activeQuickTabs(), ['LATEST10']);
 });

@@ -284,33 +284,37 @@ function activateTabByValue(containerSelector, value) {
 export function selectQuickFilter(tab) {
   const { currentSortField, currentSortOrder, currentCollectionId, basic100Only } = store.get();
   const col = collectionsConfig[currentCollectionId] || {};
+  const active = getActiveQuickFilter(currentSortField, currentSortOrder, basic100Only);
 
-  if (tab === QUICK_FILTERS.BASIC100) {
-    const next = !basic100Only;
-    store.set({
-      basic100Only: next,
-      ...(next ? { pageSize: 100 } : {}),
-      invalidTerm: null
-    });
+  if (active === tab) {
+    if (tab === QUICK_FILTERS.BASIC100) {
+      store.set({
+        basic100Only: false,
+        invalidTerm: null
+      });
+    } else {
+      store.set({
+        currentSortField: getDefaultSortField(col),
+        currentSortOrder: SORT_ORDERS.ASC,
+        invalidTerm: null
+      });
+    }
     applyFiltersAndSort();
     return;
   }
 
-  const active = getActiveQuickFilter(currentSortField, currentSortOrder);
-
-  if (active === tab) {
+  if (tab === QUICK_FILTERS.BASIC100) {
     store.set({
+      basic100Only: true,
+      pageSize: 100,
       currentSortField: getDefaultSortField(col),
       currentSortOrder: SORT_ORDERS.ASC,
       invalidTerm: null
     });
-    applyFiltersAndSort();
-    return;
-  }
-
-  if (tab === QUICK_FILTERS.RANDOM10) {
+  } else if (tab === QUICK_FILTERS.RANDOM10) {
     store.reshuffleRandomSort();
     store.set({
+      basic100Only: false,
       currentSortField: SORT_FIELDS.RANDOM,
       currentSortOrder: SORT_ORDERS.ASC,
       pageSize: DEFAULT_PAGE_SIZE,
@@ -318,6 +322,7 @@ export function selectQuickFilter(tab) {
     });
   } else if (tab === QUICK_FILTERS.LATEST10) {
     store.set({
+      basic100Only: false,
       currentSortField: SORT_FIELDS.CREATED_AT,
       currentSortOrder: SORT_ORDERS.DESC,
       pageSize: DEFAULT_PAGE_SIZE,
@@ -386,7 +391,8 @@ function getDefaultSortField(col) {
   return SORT_FIELDS.TITLE;
 }
 
-function getActiveQuickFilter(sortField, sortOrder) {
+function getActiveQuickFilter(sortField, sortOrder, basic100Only) {
+  if (basic100Only) return QUICK_FILTERS.BASIC100;
   if (sortField === SORT_FIELDS.RANDOM) return QUICK_FILTERS.RANDOM10;
   if (sortField === SORT_FIELDS.CREATED_AT && sortOrder === SORT_ORDERS.DESC) return QUICK_FILTERS.LATEST10;
   return QUICK_FILTERS.ALL;
@@ -474,7 +480,7 @@ export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
   const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, basic100Only, currentSortField, currentSortOrder, pageSize } = store.get();
-  activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder));
+  activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder, basic100Only));
   activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
   activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
   activateTabByValue('#kana-initial-tabs', currentInitialTab || KANA_TABS.ALL);
@@ -482,8 +488,6 @@ export function syncFilterUi() {
   activateTabByValue('#kind-tabs', kindTab);
   activateTabByValue('#etymology-tabs', etymologyTab || ETYMOLOGY_TABS.ALL);
   activateTabByValue('#pos-tabs', posTab || POS_TABS.ALL);
-  document.querySelector('#quick-filter-tabs [data-tab="BASIC100"]')
-    ?.classList.toggle('active', !!basic100Only);
   activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
   activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));
