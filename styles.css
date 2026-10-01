@@ -1601,6 +1601,7 @@ a:focus {
 .awsui-modal-meta-label {
   font-weight: 600;
   color: var(--awsui-color-text-body-secondary, #687078);
+  text-transform: uppercase;
 }
 
 #modal-created-at,
