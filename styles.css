@@ -1388,6 +1388,10 @@ a:focus {
   border-bottom: none;
 }
 
+.awsui-modal-section-title:not(.awsui-modal-header-title) {
+  text-transform: uppercase;
+}
+
 .awsui-modal-header-title {
   position: relative;
   display: flex;
@@ -1597,6 +1601,7 @@ a:focus {
 .awsui-modal-meta-label {
   font-weight: 600;
   color: var(--awsui-color-text-body-secondary, #687078);
+  text-transform: uppercase;
 }
 
 #modal-created-at,
