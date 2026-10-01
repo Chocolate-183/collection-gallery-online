@@ -1388,6 +1388,10 @@ a:focus {
   border-bottom: none;
 }
 
+.awsui-modal-section-title {
+  text-transform: uppercase;
+}
+
 .awsui-modal-header-title {
   position: relative;
   display: flex;
