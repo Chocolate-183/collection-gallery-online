@@ -42,7 +42,8 @@ import {
   isEnglishLoanword,
   isCollectionAdjusting,
   isCollectionPreparing,
-  isCollectionHidden
+  isCollectionHidden,
+  getCollectionHeaderTitle
 } from '../js/utils.js';
 import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, collectionsConfig } from '../js/config.js';
 
@@ -96,6 +97,21 @@ test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
   assert.equal(formatExhibitTitleHtml('가능 | 可能'), '가능 <span class="awsui-title-separator">|</span><span class="awsui-title-suffix"> 可能</span>');
   assert.equal(isEnglishLoanword({ ja_term: '컴퓨터 | computer' }), true);
   assert.equal(isEnglishLoanword({ ja_term: '가능 | 可能' }), false);
+});
+
+test('Gallery header title is Collection number plus Chinese hall name', () => {
+  assert.equal(
+    getCollectionHeaderTitle('korean-terms', { id: 'C103', title: '韓語單字量最強速成攻略' }),
+    'Collection 103   韓語單字量最強速成攻略'
+  );
+  assert.equal(
+    getCollectionHeaderTitle('china-terms', { id: 'C102', title: '簡中語境破解攻略' }),
+    'Collection 102   簡中語境破解攻略'
+  );
+  assert.equal(
+    getCollectionHeaderTitle('japanese-terms', { id: 'C101', title: '日本特色詞彙一覽' }),
+    'Collection 101   日本特色詞彙一覽'
+  );
 });
 
 test('Filter engine chains query, length, Hangul, etymology, and POS', () => {

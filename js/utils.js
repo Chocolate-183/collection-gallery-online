@@ -43,6 +43,21 @@ export function getCollectionEnTitle(colId, meta, col) {
 }
 
 /**
+ * Gallery page header (`#collection-header-title`):
+ * "Collection {hall number}   {Chinese title}"
+ * e.g. C103 → "Collection 103   韓語單字量最強速成攻略"
+ */
+export function getCollectionHeaderTitle(colId, meta, col) {
+  const hallId = meta?.id || col?.defaultMeta?.id || '';
+  const number = String(hallId).replace(/^[Cc]/, '').trim();
+  const cnTitle = (meta?.title || col?.name || '').trim();
+  if (number && cnTitle) return `Collection ${number}   ${cnTitle}`;
+  if (cnTitle) return cnTitle;
+  if (number) return `Collection ${number}`;
+  return getCollectionEnTitle(colId, meta, col);
+}
+
+/**
  * Escapes special HTML characters to prevent XSS in dynamic rendering.
  * @param {string} str - Raw input string
  * @returns {string} Escaped string
