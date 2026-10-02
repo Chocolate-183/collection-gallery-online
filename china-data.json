@@ -8923,5 +8923,708 @@
     "etymology": "",
     "pos": "",
     "row_index": 459
+  },
+  {
+    "id": "#C102-0461",
+    "ja_term": "台湾同胞",
+    "tw_translation": "台灣同胞（中國大陸官方與民間對台灣民眾的稱呼，帶有兩岸一家親與統戰色彩；台灣多自稱「台灣人」或「台灣民眾」）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "中华民族伟大复兴",
+      "中国梦",
+      "境外势力",
+      "反贼",
+      "中方"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 460
+  },
+  {
+    "id": "#C102-0462",
+    "ja_term": "衡水中学",
+    "tw_translation": "衡水中學（中國大陸河北省著名高中，以軍事化管理、極度嚴格的應試教育及極高考取率聞名）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "高考",
+      "5年高考3年模拟",
+      "鸡娃",
+      "一本",
+      "211"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 461
+  },
+  {
+    "id": "#C102-0463",
+    "ja_term": "出分",
+    "tw_translation": "成績公布 / 放榜（指考試成績揭曉，常見於高考、考研等各類重大考試）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "高考",
+      "考公",
+      "本科",
+      "研究生",
+      "5年高考3年模拟"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 462
+  },
+  {
+    "id": "#C102-0464",
+    "ja_term": "橡皮",
+    "tw_translation": "橡皮擦",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "曲别针",
+      "回形针",
+      "文档",
+      "文件",
+      "打印"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 463
+  },
+  {
+    "id": "#C102-0465",
+    "ja_term": "曲别针",
+    "tw_translation": "迴紋針",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "回形针",
+      "橡皮",
+      "文件",
+      "文件夹",
+      "打印"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 464
+  },
+  {
+    "id": "#C102-0466",
+    "ja_term": "党指挥枪",
+    "tw_translation": "黨指揮槍（中國共產黨對軍隊實施絕對領導的根本建軍原則，強調軍隊必須無條件服從黨的指揮）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "听党指挥 能打胜仗 作风优良",
+      "党的全面领导",
+      "解放军",
+      "武警",
+      "百万大裁军"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 465
+  },
+  {
+    "id": "#C102-0467",
+    "ja_term": "江浙沪",
+    "tw_translation": "江浙滬（江蘇省、浙江省與上海市之合稱，為中國大陸長三角經濟核心區，常與「包郵」聯用）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "包邮",
+      "北上广深",
+      "快递",
+      "大厂",
+      "基建"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 466
+  },
+  {
+    "id": "#C102-0468",
+    "ja_term": "交规",
+    "tw_translation": "交通規則 / 交通法規",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "驾驶证",
+      "驾驶员",
+      "打车",
+      "出租车",
+      "交通卡"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 467
+  },
+  {
+    "id": "#C102-0469",
+    "ja_term": "二恶英",
+    "tw_translation": "戴奧辛",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "科技与狠活",
+      "塑料袋",
+      "车间",
+      "质量",
+      "卫生间"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 468
+  },
+  {
+    "id": "#C102-0470",
+    "ja_term": "公安",
+    "tw_translation": "警察 / 公安機關（中國大陸負責維持公共秩序、治安及刑事偵辦的國家行政與執法警察力量）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "武警",
+      "城管",
+      "查水表",
+      "警情通报",
+      "严打"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 469
+  },
+  {
+    "id": "#C102-0471",
+    "ja_term": "比亚迪",
+    "tw_translation": "比亞迪（BYD，中國大陸大型新能源汽車與動力電池製造企業）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "车企",
+      "蔚来汽车",
+      "长城汽车",
+      "中国制造2025",
+      "网约车"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 470
+  },
+  {
+    "id": "#C102-0472",
+    "ja_term": "豆包",
+    "tw_translation": "豆包（字節跳動旗下基於雲雀大模型的AI人工智慧對話助手）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "字节跳动",
+      "人工智能",
+      "应用",
+      "软件",
+      "代码"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 471
+  },
+  {
+    "id": "#C102-0473",
+    "ja_term": "字节跳动",
+    "tw_translation": "字節跳動（ByteDance，中國大陸大型互聯網科技公司，抖音與TikTok之母公司）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "豆包",
+      "抖音",
+      "大厂",
+      "996",
+      "软件"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 472
+  },
+  {
+    "id": "#C102-0474",
+    "ja_term": "高速",
+    "tw_translation": "高速公路",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "大巴",
+      "打车",
+      "驾驶员",
+      "驾驶证",
+      "基建"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 473
+  },
+  {
+    "id": "#C102-0475",
+    "ja_term": "长城汽车",
+    "tw_translation": "長城汽車（中國大陸大型民營汽車製造商，以SUV與皮卡車型聞名）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "车企",
+      "比亚迪",
+      "蔚来汽车",
+      "中国制造2025",
+      "质量"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 474
+  },
+  {
+    "id": "#C102-0476",
+    "ja_term": "蔚来汽车",
+    "tw_translation": "蔚來汽車（NIO，中國大陸高端智慧電動車新興品牌）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "车企",
+      "比亚迪",
+      "长城汽车",
+      "充电",
+      "网约车"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 475
+  },
+  {
+    "id": "#C102-0477",
+    "ja_term": "凡尔赛",
+    "tw_translation": "凡爾賽（網路流行語，指以低調、抱怨或看似不經意的口吻進行隱蔽式的炫耀自誇）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "装B",
+      "牛逼",
+      "大V",
+      "博主",
+      "爆款"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 476
+  },
+  {
+    "id": "#C102-0478",
+    "ja_term": "叠甲",
+    "tw_translation": "疊甲（網路流行用語，指在發表意見前先陳述大量免責聲明以防遭網友批評或攻擊）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "杠精",
+      "阴阳",
+      "内涵",
+      "黑子",
+      "网暴"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 477
+  },
+  {
+    "id": "#C102-0479",
+    "ja_term": "吃灰",
+    "tw_translation": "吃灰（指物品購買後長久放置不用、閒置在角落積累灰塵）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "包邮",
+      "爆款",
+      "快递",
+      "笔记本电脑",
+      "电子游戏"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 478
+  },
+  {
+    "id": "#C102-0480",
+    "ja_term": "装B",
+    "tw_translation": "裝B / 裝模作樣（指裝腔作勢、炫耀或假裝厲害、有派頭）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "凡尔赛",
+      "牛逼",
+      "大牛",
+      "nb",
+      "yyds"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 479
+  },
+  {
+    "id": "#C102-0481",
+    "ja_term": "恒大",
+    "tw_translation": "恆大（中國恆大集團，中國大陸大型房地產開發企業，曾爆發嚴重債務違約危機）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "房住不炒",
+      "爆雷",
+      "期房",
+      "基建",
+      "单间"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 480
+  },
+  {
+    "id": "#C102-0482",
+    "ja_term": "车企",
+    "tw_translation": "車廠 / 汽車企業",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "比亚迪",
+      "蔚来汽车",
+      "长城汽车",
+      "中国制造2025",
+      "车间"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 481
+  },
+  {
+    "id": "#C102-0483",
+    "ja_term": "A股",
+    "tw_translation": "A股（中國大陸境內發行、以人民幣認購和交易的普通股票市場）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "央妈",
+      "爆雷",
+      "挣钱",
+      "发改委",
+      "举国体制"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 482
+  },
+  {
+    "id": "#C102-0484",
+    "ja_term": "网约车",
+    "tw_translation": "預約叫車 / 網約計程車（指透過網路應用程式預約接送的客運車輛服務）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "打车",
+      "出租车",
+      "驾驶员",
+      "大巴",
+      "交通卡"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 483
+  },
+  {
+    "id": "#C102-0485",
+    "ja_term": "固本培元",
+    "tw_translation": "固本培元（政策用語，原為中醫術語，指鞏固根本、培育元氣，常用於強健實體經濟基礎與體制優勢）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "举国体制",
+      "十五五",
+      "中国制造2025",
+      "指导思想",
+      "基建"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 484
+  },
+  {
+    "id": "#C102-0486",
+    "ja_term": "房住不吵",
+    "tw_translation": "房住不炒（「房子是用來住的，不是用來炒的」之簡稱，中國大陸房地產調控長期指導原則）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "恒大",
+      "期房",
+      "租房",
+      "单间",
+      "发改委"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 485
+  },
+  {
+    "id": "#C102-0487",
+    "ja_term": "p2p",
+    "tw_translation": "P2P借貸 / 網路借貸平台（個人對個人的網路借貸融資模式，在大陸盛行一時後引發大規模違約爆雷並遭官方清退）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "网贷",
+      "爆雷",
+      "失信名单",
+      "老赖名单",
+      "扫码支付"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 486
+  },
+  {
+    "id": "#C102-0488",
+    "ja_term": "实践是检验真理的唯一标准",
+    "tw_translation": "實踐是檢驗真理的唯一標準（1978年發表的重要評論文章標題，引發真理標準大討論，為中國改革開放拉開思想序幕）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "四个现代化",
+      "三中全会",
+      "指导思想",
+      "党的全面领导",
+      "总书记"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 487
+  },
+  {
+    "id": "#C102-0489",
+    "ja_term": "四个现代化",
+    "tw_translation": "四個現代化（中國現代化戰略目標，指工業現代化、農業現代化、國防現代化和科學技術現代化）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "实践是检验真理的唯一标准",
+      "中国制造2025",
+      "基建",
+      "共同富裕",
+      "十五五"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 488
+  },
+  {
+    "id": "#C102-0490",
+    "ja_term": "两会",
+    "tw_translation": "兩會（指「全國人民代表大會」與「中國人民政治協商會議」每年春季同期舉行的統稱）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "发改委",
+      "总书记",
+      "红头文件",
+      "十五五",
+      "三中全会"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 489
+  },
+  {
+    "id": "#C102-0491",
+    "ja_term": "共同富裕",
+    "tw_translation": "共同富裕（中國共產黨核心政策導向與目標，強調透過健全體制與分配機制促進社會全體成員共享發展成果）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "中华民族伟大复兴",
+      "中国梦",
+      "转移支付",
+      "举国体制",
+      "十五五"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 490
+  },
+  {
+    "id": "#C102-0492",
+    "ja_term": "央妈",
+    "tw_translation": "央媽（中國大陸民間與金融市場對中央銀行「中國人民銀行」的親暱稱呼）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "A股",
+      "发改委",
+      "国企",
+      "打钱",
+      "RMB"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 491
+  },
+  {
+    "id": "#C102-0493",
+    "ja_term": "蚂蚁金服",
+    "tw_translation": "螞蟻集團 / 螞蟻金服（阿里巴巴關聯的金融科技公司，擁有支付寶等普惠金融服務產品）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "扫码支付",
+      "大厂",
+      "网贷",
+      "应用",
+      "软件"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 492
+  },
+  {
+    "id": "#C102-0494",
+    "ja_term": "预制菜",
+    "tw_translation": "預製菜 / 調理包食品（以農禽水產為原料，經工廠規模化預加工、包裝，加熱或簡易烹飪後即可食用的菜餚）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "盒饭",
+      "外卖",
+      "方便面",
+      "科技与狠活",
+      "便利店"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 493
+  },
+  {
+    "id": "#C102-0495",
+    "ja_term": "又双叒叕",
+    "tw_translation": "又双叒叕（網路流行用語，連用四個含「又」的疊字，強調頻率極高、某件事一而再再而三地重複發生）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "绝绝子",
+      "翻车",
+      "yyds",
+      "爆款",
+      "鬼畜视频"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 494
+  },
+  {
+    "id": "#C102-0496",
+    "ja_term": "红歌",
+    "tw_translation": "紅歌（歌頌中國共產黨、社會主義革命或祖國發展歷程的政治主題宣傳歌曲）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "同志",
+      "爱国自媒体",
+      "正能量",
+      "党的全面领导",
+      "中华民族伟大复兴"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 495
+  },
+  {
+    "id": "#C102-0497",
+    "ja_term": "坦白从宽 抗拒从严",
+    "tw_translation": "坦白從寬，抗拒從嚴（中國大陸司法實踐中的長年政策宣傳口號，指主動坦白認罪可獲寬大處理，負隅頑抗則嚴厲懲罰）",
+    "reading": "",
+    "created_at": "2026-10-01",
+    "recommendations": [
+      "公安",
+      "查水表",
+      "警情通报",
+      "严打",
+      "秦城监狱"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 496
   }
 ]
