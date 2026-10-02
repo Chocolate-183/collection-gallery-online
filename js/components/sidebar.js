@@ -5,7 +5,7 @@ import { EXHIBITION_STATUS, STORAGE_KEYS, SORT_FIELDS, SORT_ORDERS } from '../co
 import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
 import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
-import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionHeaderTitle } from '../utils.js';
+import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, applyCollectionHeaderTitle } from '../utils.js';
 
 function isMobileView() {
   const win = typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : null);
@@ -122,7 +122,7 @@ export function switchCollection(collectionId, updateHash = true) {
 
   // Update Header Title & Subtitle & ID
   const headerTitle = document.getElementById('collection-header-title');
-  if (headerTitle) headerTitle.innerText = getCollectionHeaderTitle(collectionId, meta, col);
+  applyCollectionHeaderTitle(headerTitle, collectionId, meta, col);
 
   const headerCnTitle = document.getElementById('collection-header-cn-title');
   if (headerCnTitle) headerCnTitle.innerText = meta?.title || col.name;

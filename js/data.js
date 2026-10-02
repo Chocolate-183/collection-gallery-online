@@ -10,7 +10,7 @@ import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
 import { showNoticeUntil, NOTICE_SYNC_MESSAGE, NOTICE_MIN_VISIBLE_MS } from './components/notice.js';
 import { updateSidebarBadge } from './components/sidebar.js';
-import { safeFetchText, setOpeningHoursSchedule, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, getCollectionHeaderTitle } from './utils.js';
+import { safeFetchText, setOpeningHoursSchedule, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, applyCollectionHeaderTitle } from './utils.js';
 
 // Cache for storing fetched collection records & metadata
 export const collectionsCache = {};
@@ -210,9 +210,7 @@ export function applyCollectionMetaToUI(colId, meta) {
   if (currentCollectionId === colId) {
     const col = collectionsConfig[colId];
     const headerTitle = document.getElementById('collection-header-title');
-    if (headerTitle) {
-      headerTitle.innerText = getCollectionHeaderTitle(colId, meta, col);
-    }
+    applyCollectionHeaderTitle(headerTitle, colId, meta, col);
 
     const headerCnTitle = document.getElementById('collection-header-cn-title');
     if (headerCnTitle && meta.title) {
@@ -403,8 +401,7 @@ export function processDataAndRender() {
   const col = collectionsConfig[currentCollectionId];
   const meta = collectionsMetaCache[currentCollectionId] || col?.defaultMeta;
 
-  const titleElem = document.getElementById('collection-header-title');
-  if (titleElem) titleElem.innerText = getCollectionHeaderTitle(currentCollectionId, meta, col);
+  applyCollectionHeaderTitle(document.getElementById('collection-header-title'), currentCollectionId, meta, col);
 
   const cnTitleElem = document.getElementById('collection-header-cn-title');
   if (cnTitleElem) cnTitleElem.innerText = meta?.title || col?.name || '';

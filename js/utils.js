@@ -44,17 +44,35 @@ export function getCollectionEnTitle(colId, meta, col) {
 
 /**
  * Gallery page header (`#collection-header-title`):
- * "Collection {hall number}   {Chinese title}"
- * e.g. C103 → "Collection 103   韓語單字量最強速成攻略"
+ * "Collection {hall number}" + wider CSS gap + "{Chinese title}"
+ * e.g. C103 → Collection 103  韓語單字量最強速成攻略
  */
-export function getCollectionHeaderTitle(colId, meta, col) {
+export function getCollectionHeaderTitleParts(colId, meta, col) {
   const hallId = meta?.id || col?.defaultMeta?.id || '';
   const number = String(hallId).replace(/^[Cc]/, '').trim();
   const cnTitle = (meta?.title || col?.name || '').trim();
-  if (number && cnTitle) return `Collection ${number}   ${cnTitle}`;
-  if (cnTitle) return cnTitle;
-  if (number) return `Collection ${number}`;
+  return {
+    hall: number ? `Collection ${number}` : '',
+    name: cnTitle
+  };
+}
+
+export function getCollectionHeaderTitle(colId, meta, col) {
+  const { hall, name } = getCollectionHeaderTitleParts(colId, meta, col);
+  if (hall && name) return `${hall} ${name}`;
+  if (name) return name;
+  if (hall) return hall;
   return getCollectionEnTitle(colId, meta, col);
+}
+
+export function applyCollectionHeaderTitle(el, colId, meta, col) {
+  if (!el) return;
+  const { hall, name } = getCollectionHeaderTitleParts(colId, meta, col);
+  if (hall && name) {
+    el.innerHTML = `<span class="collection-header-hall">${escapeHtml(hall)}</span><span class="collection-header-name">${escapeHtml(name)}</span>`;
+    return;
+  }
+  el.textContent = name || hall || getCollectionEnTitle(colId, meta, col);
 }
 
 /**

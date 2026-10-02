@@ -43,7 +43,9 @@ import {
   isCollectionAdjusting,
   isCollectionPreparing,
   isCollectionHidden,
-  getCollectionHeaderTitle
+  getCollectionHeaderTitle,
+  getCollectionHeaderTitleParts,
+  applyCollectionHeaderTitle
 } from '../js/utils.js';
 import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, collectionsConfig } from '../js/config.js';
 
@@ -100,18 +102,26 @@ test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
 });
 
 test('Gallery header title is Collection number plus Chinese hall name', () => {
+  assert.deepEqual(
+    getCollectionHeaderTitleParts('korean-terms', { id: 'C103', title: '韓語單字量最強速成攻略' }),
+    { hall: 'Collection 103', name: '韓語單字量最強速成攻略' }
+  );
   assert.equal(
     getCollectionHeaderTitle('korean-terms', { id: 'C103', title: '韓語單字量最強速成攻略' }),
-    'Collection 103   韓語單字量最強速成攻略'
+    'Collection 103 韓語單字量最強速成攻略'
   );
-  assert.equal(
-    getCollectionHeaderTitle('china-terms', { id: 'C102', title: '簡中語境破解攻略' }),
-    'Collection 102   簡中語境破解攻略'
+  assert.deepEqual(
+    getCollectionHeaderTitleParts('china-terms', { id: 'C102', title: '簡中語境破解攻略' }),
+    { hall: 'Collection 102', name: '簡中語境破解攻略' }
   );
-  assert.equal(
-    getCollectionHeaderTitle('japanese-terms', { id: 'C101', title: '日本特色詞彙一覽' }),
-    'Collection 101   日本特色詞彙一覽'
+  assert.deepEqual(
+    getCollectionHeaderTitleParts('japanese-terms', { id: 'C101', title: '日本特色詞彙一覽' }),
+    { hall: 'Collection 101', name: '日本特色詞彙一覽' }
   );
+  const el = { innerHTML: '', textContent: '' };
+  applyCollectionHeaderTitle(el, 'korean-terms', { id: 'C103', title: '韓語單字量最強速成攻略' });
+  assert.match(el.innerHTML, /collection-header-hall">Collection 103</);
+  assert.match(el.innerHTML, /collection-header-name">韓語單字量最強速成攻略</);
 });
 
 test('Filter engine chains query, length, Hangul, etymology, and POS', () => {
