@@ -319,18 +319,6 @@ a:focus {
   color: #ffffff !important;
 }
 
-.awsui-side-nav-footer {
-  padding: 12px 20px 0 20px;
-  margin-top: 16px;
-  border-top: 1px solid var(--awsui-color-border-item-default);
-}
-
-.awsui-version-tag {
-  font-size: 12px;
-  color: var(--awsui-color-text-body-secondary);
-  font-weight: 500;
-}
-
 /* Main Container */
 .awsui-app-layout {
   flex: 1;
@@ -2162,8 +2150,7 @@ a:focus {
   border-color: #1d2a3a;
 }
 
-[data-theme="dark"] .awsui-side-nav-header,
-[data-theme="dark"] .awsui-side-nav-footer {
+[data-theme="dark"] .awsui-side-nav-header {
   border-color: #1d2a3a;
 }
 
