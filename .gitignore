@@ -66,6 +66,9 @@ out/
 .env.local
 .env.*.local
 
+# Wrangler
+.wrangler/
+
 # npm cache directory
 .npm
 *.tgz
