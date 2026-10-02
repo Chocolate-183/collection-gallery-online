@@ -1,0 +1,23 @@
+# Build / VCS / secrets — never serve these as Workers static assets
+node_modules/
+.git/
+.github/
+.wrangler/
+**/.DS_Store
+**/.git
+**/node_modules
+
+# App source & tests (site loads dist/app.js)
+js/
+tests/
+
+# Tooling files
+package.json
+package-lock.json
+.gitignore
+.assetsignore
+wrangler.jsonc
+*.md
+.env
+.env.*
+*.log

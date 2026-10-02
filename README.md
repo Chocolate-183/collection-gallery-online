@@ -95,6 +95,14 @@ python3 -m http.server 8899
 
 ---
 
+## ☁️ Cloudflare Workers 部署
+
+此專案為純靜態站（`index.html`、`styles.css`、`dist/app.js`、JSON 快照）。Workers 靜態資產目錄為 repo 根目錄，但必須用 `.assetsignore` 排除 `node_modules/`、`.git/`、`js/`、`tests/` 等。否則 `npx wrangler deploy` 會把建置依賴（含 `workerd`，約 128 MiB）當資產上傳，超過 Workers 單檔 25 MiB 上限。
+
+倉庫已含 `wrangler.jsonc`，Cloudflare 不會再走互動式 scaffold。Dashboard 建置可維持 `npm run build`，部署指令 `npx wrangler deploy`。
+
+---
+
 ## 🧪 執行自動化測試
 
 本專案採用 Node.js 內建測試執行器（Zero-dependency）：
