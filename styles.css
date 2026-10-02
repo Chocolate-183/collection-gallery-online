@@ -387,7 +387,7 @@ a:focus {
   display: inline-flex;
   align-items: baseline;
   flex-wrap: wrap;
-  column-gap: 1.5em;
+  column-gap: 0.75em;
   max-width: 100%;
   padding: 2px 10px;
   margin-left: -10px;
