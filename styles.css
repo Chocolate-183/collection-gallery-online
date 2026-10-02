@@ -403,6 +403,11 @@ a:focus {
   border-color: #ECC94B !important;
 }
 
+#collection-header-title > span.collection-header-name {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 400;
+}
+
 .awsui-header-cn-title,
 #collection-header-cn-title {
   font-size: 15px;
