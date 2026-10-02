@@ -1,10 +1,10 @@
 /**
- * C103 韓語單字速成攻略 — gallery config (dataset wiring only).
+ * C103 韓語單字量最強速成攻略 — gallery config (dataset wiring only).
  * Live hall metadata and opening hours come from the central spreadsheet.
  */
 export default {
   id: 'korean-terms',
-  name: '韓語單字速成攻略',
+  name: '韓語單字量最強速成攻略',
   enTitle: 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet',
   sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
   gid: '1153058362',
@@ -18,13 +18,13 @@ export default {
   searchPlaceholder: '尋找展品...',
   curator: '巧克力',
   defaultMeta: {
-    title: '韓語單字速成攻略',
+    title: '韓語單字量最強速成攻略',
     enTitle: 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet',
     id: 'C103',
     status: '開放中',
     announcement: '',
     tags: ['韓語', '語彙'],
-    subtitle: '籌備中',
+    subtitle: '',
     description: '你知道韓語以前也使用過漢字嗎？\n如果你懂漢字，背韓語單字會輕鬆很多！\n本單字集會依單字來源加上輔助標註：若是漢字詞，會標註對應漢字；若是源自英文的外來詞，則會標註英文。\n相信會對你很有幫助！',
     notice: '詞彙可能因地區或時間有所變化，僅供參考。',
     timestamp: '2026-09-18'
