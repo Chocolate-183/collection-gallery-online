@@ -14,6 +14,7 @@ export default {
   hasHangulTabs: true,
   hasBasic100Filter: true,
   hasEtymologyPosFilter: true,
+  hasNameCategoryFilter: true,
   hiddenColumnIndexes: [2, 3],
   searchPlaceholder: '尋找展品...',
   curator: '巧克力',

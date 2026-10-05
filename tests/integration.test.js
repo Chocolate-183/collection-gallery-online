@@ -64,6 +64,9 @@ test('Offline dumps cover C101 C102 C103 and profiles', () => {
     assert.ok(posValues.includes(pos), `C103 dump missing POS ${pos}`);
   }
   assert.equal(koreanJson.filter(r => Array.isArray(r.tags) && r.tags.includes('基礎100')).length, 100);
+  for (const tag of ['人名', '團體名', '公司名']) {
+    assert.ok(koreanJson.some(r => Array.isArray(r.tags) && r.tags.includes(tag)), `C103 dump missing tag ${tag}`);
+  }
   const etymologyValues = [...new Set(koreanJson.map(r => String(r.etymology || '').trim()).filter(Boolean))];
   for (const etym of ['漢字語', '外來語', '固有詞', '混種詞']) {
     assert.ok(etymologyValues.includes(etym), `C103 dump missing etymology ${etym}`);
@@ -84,6 +87,11 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   for (const etym of ['漢字語', '外來語', '固有詞', '混種詞']) {
     assert.match(etymologySection, new RegExp(`data-tab="${etym}"`));
   }
+  const kindTabs = html.match(/id="kind-tabs"[\s\S]*?<\/div>/)[0];
+  for (const kind of ['BASIC100', '人名', '團體名', '公司名']) {
+    assert.match(kindTabs, new RegExp(`data-tab="${kind}"`));
+  }
+  assert.match(html, /id="modal-category-section"/);
   const posIdx = html.indexOf('id="filter-pos-section"');
   const etymologyIdx = html.indexOf('id="filter-etymology-section"');
   const kindIdx = html.indexOf('id="filter-kind-section"');
@@ -369,6 +377,9 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
   const mockEtymology = createMockElement({ style: { display: 'none' } });
   const mockPos = createMockElement({ style: { display: 'none' } });
   const mockBasic100 = createMockElement({ style: { display: 'none' } });
+  const mockPerson = createMockElement({ style: { display: 'none' } });
+  const mockGroup = createMockElement({ style: { display: 'none' } });
+  const mockCompany = createMockElement({ style: { display: 'none' } });
   const mockQuickBasic100 = createMockElement({ style: { display: 'none' } });
   const mockReading = createMockElement({ style: {} });
   const mockGloss = createMockElement({ style: { display: 'none' } });
@@ -384,6 +395,9 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
     'filter-etymology-section': mockEtymology,
     'filter-pos-section': mockPos,
     'kind-basic100': mockBasic100,
+    'kind-person': mockPerson,
+    'kind-group': mockGroup,
+    'kind-company': mockCompany,
     'quick-basic100': mockQuickBasic100,
     'sort-field-reading': mockReading,
     'sort-field-subtitle': mockGloss,
@@ -436,6 +450,9 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
   assert.equal(mockHangul.style.display, '');
   assert.equal(mockEtymology.style.display, '');
   assert.equal(mockPos.style.display, '');
+  assert.equal(mockPerson.style.display, '');
+  assert.equal(mockGroup.style.display, '');
+  assert.equal(mockCompany.style.display, '');
   assert.equal(mockKana.style.display, 'none');
 
   openFilterModal();
@@ -465,6 +482,9 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.equal(mockKana.style.display, '');
   assert.equal(mockHangul.style.display, 'none');
+  assert.equal(mockPerson.style.display, 'none');
+  assert.equal(mockGroup.style.display, 'none');
+  assert.equal(mockCompany.style.display, 'none');
 
   global.window = originalWindow;
   global.location = originalLocation;
@@ -483,6 +503,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   const mockPos = createMockElement();
   const mockReferenceSection = createMockElement({ style: { display: 'none' } });
   const mockReference = createMockElement();
+  const mockCategorySection = createMockElement({ style: { display: 'none' } });
+  const mockCategory = createMockElement();
   const card1 = createMockElement({ 'data-row-index': '1' });
   const card2 = createMockElement({ 'data-row-index': '2' });
 
@@ -497,7 +519,9 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     'modal-pos-section': mockPosSection,
     'modal-pos': mockPos,
     'modal-reference-section': mockReferenceSection,
-    'modal-reference': mockReference
+    'modal-reference': mockReference,
+    'modal-category-section': mockCategorySection,
+    'modal-category': mockCategory
   });
   global.document.querySelectorAll = (sel) => {
     if (sel === '.awsui-card') return [card1, card2];
@@ -515,6 +539,7 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockReadingRow.innerText, 'しんけいすいじゃく');
   assert.equal(mockReadingSection.style.display, 'block');
   assert.equal(mockReferenceSection.style.display, 'none');
+  assert.equal(mockCategorySection.style.display, 'none');
 
   store.set({
     currentCollectionId: 'korean-terms',
@@ -524,7 +549,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
       reading: '가능',
       tw_translation: '可能',
       etymology: '漢字語',
-      pos: '名詞'
+      pos: '名詞',
+      tags: ['人名']
     }]
   });
   openMeaningModal(1, false);
@@ -532,6 +558,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockEtym.innerText, '漢字語');
   assert.equal(mockPos.innerText, '名詞');
   assert.equal(mockEtymPosRow.style.display, '');
+  assert.equal(mockCategory.innerText, '人名');
+  assert.equal(mockCategorySection.style.display, '');
   assert.equal(mockReferenceSection.style.display, '');
   assert.match(mockReference.innerHTML, /searchKeyword=%EA%B0%80%EB%8A%A5/);
   assert.match(mockReference.innerHTML, />國立國語院標準國語大辭典</);

@@ -109,7 +109,7 @@ export function switchCollection(collectionId, updateHash = true) {
       loanwordOnly: false,
       etymologyTab: 'ALL',
       posTab: 'ALL',
-      basic100Only: false,
+      categoryTab: 'ALL',
       currentSortField: col.hasHangulTabs
         ? SORT_FIELDS.TITLE
         : ((col.hasKanaTabs ?? col.hasReading) ? SORT_FIELDS.STANDARD : SORT_FIELDS.TITLE),
@@ -146,15 +146,22 @@ export function switchCollection(collectionId, updateHash = true) {
   const etymologySection = document.getElementById('filter-etymology-section');
   const posSection = document.getElementById('filter-pos-section');
   const basic100Kind = document.getElementById('kind-basic100');
+  const personKind = document.getElementById('kind-person');
+  const groupKind = document.getElementById('kind-group');
+  const companyKind = document.getElementById('kind-company');
   const quickBasic100 = document.getElementById('quick-basic100');
   const readingSortTab = document.getElementById('sort-field-reading');
   const glossSortTab = document.getElementById('sort-field-subtitle');
   if (hangulSection) hangulSection.style.display = col.hasHangulTabs ? '' : 'none';
   if (kanaSection) kanaSection.style.display = (col.hasKanaTabs ?? col.hasReading) ? '' : 'none';
-  if (kindSection) kindSection.style.display = col.hasBasic100Filter ? '' : 'none';
+  if (kindSection) kindSection.style.display = (col.hasBasic100Filter || col.hasNameCategoryFilter) ? '' : 'none';
   if (etymologySection) etymologySection.style.display = col.hasEtymologyPosFilter ? '' : 'none';
   if (posSection) posSection.style.display = col.hasEtymologyPosFilter ? '' : 'none';
   if (basic100Kind) basic100Kind.style.display = col.hasBasic100Filter ? '' : 'none';
+  const showNameKinds = Boolean(col.hasNameCategoryFilter);
+  if (personKind) personKind.style.display = showNameKinds ? '' : 'none';
+  if (groupKind) groupKind.style.display = showNameKinds ? '' : 'none';
+  if (companyKind) companyKind.style.display = showNameKinds ? '' : 'none';
   if (quickBasic100) quickBasic100.style.display = col.hasBasic100Filter ? '' : 'none';
   if (readingSortTab) readingSortTab.style.display = (col.hasKanaTabs ?? col.hasReading) && !col.hasHangulTabs ? '' : 'none';
   if (glossSortTab) glossSortTab.style.display = col.hasHangulTabs ? '' : 'none';

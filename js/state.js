@@ -29,7 +29,7 @@ class Store {
       loanwordOnly: false,
       etymologyTab: 'ALL',
       posTab: 'ALL',
-      basic100Only: false,
+      categoryTab: 'ALL',
       currentSortField: SORT_FIELDS.STANDARD,
       currentSortOrder: SORT_ORDERS.ASC,
       searchQuery: '',

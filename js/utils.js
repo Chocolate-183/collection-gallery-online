@@ -1,7 +1,7 @@
 /**
  * Shared Helper Utilities
  */
-import { EXHIBITION_STATUS, DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
+import { EXHIBITION_STATUS, DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS, NAME_CATEGORY_TAGS } from './constants.js';
 import { parseOpeningHoursCSV } from './parser.js';
 
 function matchStatus(meta, keywords) {
@@ -206,6 +206,14 @@ export function parseRecommendationList(val) {
 
 export function parseExhibitTagList(val) {
   return parseRecommendationList(val);
+}
+
+export function getExhibitCategoryLabel(record) {
+  const tags = Array.isArray(record?.tags) ? record.tags : [];
+  for (const wanted of NAME_CATEGORY_TAGS) {
+    if (tags.some(t => String(t).trim() === wanted)) return wanted;
+  }
+  return '';
 }
 
 export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];

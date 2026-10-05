@@ -531,6 +531,13 @@
           </div>
         </div>
 
+        <div id="modal-category-section" class="awsui-modal-section" style="display: none; margin-top: 20px;">
+          <div class="awsui-modal-section-title">
+            <span>Category</span>
+          </div>
+          <div id="modal-category" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+        </div>
+
         <div class="awsui-modal-section awsui-modal-description-section" style="margin-top: 20px;">
           <div class="awsui-modal-section-title">
             <span>Description</span>
@@ -786,6 +793,9 @@
             <div class="awsui-tabs awsui-filter-modal-tabs" id="kind-tabs">
               <button class="awsui-tab active" data-tab="ALL" onclick="selectKindTab('ALL', this)">不限</button>
               <button class="awsui-tab" data-tab="BASIC100" id="kind-basic100" onclick="selectKindTab('BASIC100', this)">基礎100</button>
+              <button class="awsui-tab" data-tab="人名" id="kind-person" onclick="selectKindTab('人名', this)" style="display: none;">人名</button>
+              <button class="awsui-tab" data-tab="團體名" id="kind-group" onclick="selectKindTab('團體名', this)" style="display: none;">團體名</button>
+              <button class="awsui-tab" data-tab="公司名" id="kind-company" onclick="selectKindTab('公司名', this)" style="display: none;">公司名</button>
             </div>
           </div>
           <div id="filter-combined-host"></div>

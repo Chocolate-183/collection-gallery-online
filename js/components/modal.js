@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache, findProfileByName } from '../data.js';
-import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml } from '../utils.js';
+import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml, getExhibitCategoryLabel } from '../utils.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -296,6 +296,13 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   if (etymSection) etymSection.style.display = (showEtymPos && etymology) ? '' : 'none';
   if (posSection) posSection.style.display = (showEtymPos && pos) ? '' : 'none';
   if (etymPosRow) etymPosRow.style.display = (showEtymPos && (etymology || pos)) ? '' : 'none';
+
+  const categorySection = document.getElementById('modal-category-section');
+  const categoryElem = document.getElementById('modal-category');
+  const showNameCategory = Boolean(collectionsConfig[currentCollectionId]?.hasNameCategoryFilter);
+  const categoryLabel = showNameCategory ? getExhibitCategoryLabel(rec) : '';
+  if (categoryElem) categoryElem.innerText = categoryLabel || '--';
+  if (categorySection) categorySection.style.display = categoryLabel ? '' : 'none';
 
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));
