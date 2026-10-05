@@ -91,7 +91,7 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   for (const kind of ['BASIC100', '人名', '團體名', '公司名']) {
     assert.match(kindTabs, new RegExp(`data-tab="${kind}"`));
   }
-  assert.match(html, /id="modal-category-section"/);
+  assert.doesNotMatch(html, /id="modal-category-section"/);
   const posIdx = html.indexOf('id="filter-pos-section"');
   const etymologyIdx = html.indexOf('id="filter-etymology-section"');
   const kindIdx = html.indexOf('id="filter-kind-section"');
@@ -503,8 +503,6 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   const mockPos = createMockElement();
   const mockReferenceSection = createMockElement({ style: { display: 'none' } });
   const mockReference = createMockElement();
-  const mockCategorySection = createMockElement({ style: { display: 'none' } });
-  const mockCategory = createMockElement();
   const card1 = createMockElement({ 'data-row-index': '1' });
   const card2 = createMockElement({ 'data-row-index': '2' });
 
@@ -519,9 +517,7 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     'modal-pos-section': mockPosSection,
     'modal-pos': mockPos,
     'modal-reference-section': mockReferenceSection,
-    'modal-reference': mockReference,
-    'modal-category-section': mockCategorySection,
-    'modal-category': mockCategory
+    'modal-reference': mockReference
   });
   global.document.querySelectorAll = (sel) => {
     if (sel === '.awsui-card') return [card1, card2];
@@ -539,7 +535,6 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockReadingRow.innerText, 'しんけいすいじゃく');
   assert.equal(mockReadingSection.style.display, 'block');
   assert.equal(mockReferenceSection.style.display, 'none');
-  assert.equal(mockCategorySection.style.display, 'none');
 
   store.set({
     currentCollectionId: 'korean-terms',
@@ -558,8 +553,6 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockEtym.innerText, '漢字語');
   assert.equal(mockPos.innerText, '名詞');
   assert.equal(mockEtymPosRow.style.display, '');
-  assert.equal(mockCategory.innerText, '人名');
-  assert.equal(mockCategorySection.style.display, '');
   assert.equal(mockReferenceSection.style.display, 'none');
   assert.equal(mockReference.innerHTML, '');
 
@@ -576,7 +569,6 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     }]
   });
   openMeaningModal(1, false);
-  assert.equal(mockCategorySection.style.display, 'none');
   assert.equal(mockReferenceSection.style.display, '');
   assert.match(mockReference.innerHTML, /searchKeyword=%EA%B0%80%EB%8A%A5/);
   assert.match(mockReference.innerHTML, />國立國語院標準國語大辭典</);

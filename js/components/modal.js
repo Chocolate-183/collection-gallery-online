@@ -297,13 +297,6 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   if (posSection) posSection.style.display = (showEtymPos && pos) ? '' : 'none';
   if (etymPosRow) etymPosRow.style.display = (showEtymPos && (etymology || pos)) ? '' : 'none';
 
-  const categorySection = document.getElementById('modal-category-section');
-  const categoryElem = document.getElementById('modal-category');
-  const showNameCategory = Boolean(collectionsConfig[currentCollectionId]?.hasNameCategoryFilter);
-  const categoryLabel = showNameCategory ? getExhibitCategoryLabel(rec) : '';
-  if (categoryElem) categoryElem.innerText = categoryLabel || '--';
-  if (categorySection) categorySection.style.display = categoryLabel ? '' : 'none';
-
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';
