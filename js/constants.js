@@ -39,7 +39,10 @@ export const KANA_TABS = {
 
 export const CATEGORY_TABS = {
   ALL: 'ALL',
-  BASIC100: 'BASIC100'
+  BASIC100: 'BASIC100',
+  PERSON: '人名',
+  GROUP: '團體名',
+  COMPANY: '公司名'
 };
 
 /** C103 詞源 (sheet H). */
@@ -67,6 +70,20 @@ export const POS_TABS = {
 };
 
 export const BASIC100_TAG = '基礎100';
+
+/** C103 sheet J name-class tags (Filter Category + Item Modal). */
+export const NAME_CATEGORY_TAGS = [
+  CATEGORY_TABS.PERSON,
+  CATEGORY_TABS.GROUP,
+  CATEGORY_TABS.COMPANY
+];
+
+export const FILTER_CATEGORY_TAGS = [BASIC100_TAG, ...NAME_CATEGORY_TAGS];
+
+export function categoryTabToTag(tab) {
+  if (!tab || tab === CATEGORY_TABS.ALL) return null;
+  return tab === CATEGORY_TABS.BASIC100 ? BASIC100_TAG : tab;
+}
 
 export const QUICK_FILTERS = {
   ALL: 'ALL',

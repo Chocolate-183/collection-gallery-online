@@ -23,6 +23,7 @@ import {
   filterByEtymology,
   filterByPos,
   filterByBasic100,
+  filterByCategory,
   sortRecords,
   getFilterSummary
 } from '../js/filter.js';
@@ -33,19 +34,24 @@ import {
   SORT_FIELDS,
   SORT_ORDERS,
   ETYMOLOGY_TABS,
-  POS_TABS
+  POS_TABS,
+  CATEGORY_TABS
 } from '../js/constants.js';
 import {
   escapeHtml,
   getExhibitFilterLength,
   formatExhibitTitleHtml,
+  getExhibitHangulHeadword,
+  getStdictSearchUrl,
+  formatStdictReferenceHtml,
   isEnglishLoanword,
   isCollectionAdjusting,
   isCollectionPreparing,
   isCollectionHidden,
   getCollectionHeaderTitle,
   getCollectionHeaderTitleParts,
-  applyCollectionHeaderTitle
+  applyCollectionHeaderTitle,
+  getExhibitCategoryLabel
 } from '../js/utils.js';
 import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, collectionsConfig } from '../js/config.js';
 
@@ -99,6 +105,19 @@ test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
   assert.equal(formatExhibitTitleHtml('가능 | 可能'), '가능 <span class="awsui-title-separator">|</span><span class="awsui-title-suffix"> 可能</span>');
   assert.equal(isEnglishLoanword({ ja_term: '컴퓨터 | computer' }), true);
   assert.equal(isEnglishLoanword({ ja_term: '가능 | 可能' }), false);
+  assert.equal(getExhibitHangulHeadword('가게'), '가게');
+  assert.equal(getExhibitHangulHeadword('가능 | 可能'), '가능');
+  assert.equal(
+    getStdictSearchUrl('가게'),
+    'https://stdict.korean.go.kr/search/searchResult.do?pageSize=10&searchKeyword=%EA%B0%80%EA%B2%8C'
+  );
+  const refHtml = formatStdictReferenceHtml('가게');
+  assert.match(refHtml, />國立國語院標準國語大辭典</);
+  assert.equal(refHtml.includes('|'), false);
+  assert.equal(refHtml.includes('가게'), false);
+  assert.match(refHtml, /searchKeyword=%EA%B0%80%EA%B2%8C/);
+  assert.equal(formatStdictReferenceHtml('가능 | 可能').includes('가능'), false);
+  assert.equal(formatStdictReferenceHtml('가능 | 可能').includes('可能'), false);
 });
 
 test('Gallery header title is Collection number plus Chinese hall name', () => {
@@ -178,7 +197,7 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
 
   const jpCol = collectionsConfig['japanese-terms'];
   const dataUrls = getCollectionDataUrls(jpCol);
-  assert(dataUrls.csvUrl.includes('gid=978348869'));
+  assert(dataUrls.csvUrl.includes('gid=1923603290'));
   assert.equal(jpCol.defaultMeta.status, '開放中');
 
   const metaUrls = getMetadataUrls();
@@ -187,9 +206,13 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   assert.equal(profileUrls.localFallback, 'profiles.json');
 
   const krCol = collectionsConfig['korean-terms'];
+  const krUrls = getCollectionDataUrls(krCol);
   assert.equal(krCol.defaultMeta.id, 'C103');
+  assert.equal(krCol.gid, '284986562');
+  assert(krUrls.csvUrl.includes('gid=284986562'));
   assert.equal(krCol.hasHangulTabs, true);
   assert.equal(krCol.hasEtymologyPosFilter, true);
+  assert.equal(krCol.hasNameCategoryFilter, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
 });
 
@@ -204,6 +227,18 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
   assert.equal(kr[0].pos, '名詞');
   assert.deepEqual(kr[0].tags, ['基礎100']);
   assert.deepEqual(filterByBasic100(kr, true).map(r => r.id), ['#C103-0002']);
+  const named = [
+    { id: 'p', tags: ['人名'] },
+    { id: 'g', tags: ['團體名'] },
+    { id: 'c', tags: ['公司名'] },
+    { id: 'b', tags: ['基礎100'] }
+  ];
+  assert.deepEqual(filterByCategory(named, CATEGORY_TABS.PERSON).map(r => r.id), ['p']);
+  assert.deepEqual(filterByCategory(named, CATEGORY_TABS.GROUP).map(r => r.id), ['g']);
+  assert.deepEqual(filterByCategory(named, CATEGORY_TABS.COMPANY).map(r => r.id), ['c']);
+  assert.deepEqual(filterByCategory(named, CATEGORY_TABS.BASIC100).map(r => r.id), ['b']);
+  assert.equal(getExhibitCategoryLabel(named[0]), '人名');
+  assert.equal(getExhibitCategoryLabel(named[3]), '');
 
   const jpCsv = `ID,日語用詞,台灣用詞,読み方,新增日期,推薦條目,標籤
 #C101-0002,1LDK,一房一廳一廚（格局）,ワンエルディーケー,2026-09-02,物件,基礎100`;
@@ -310,7 +345,7 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
     currentLengthTab: LENGTH_TABS.ALL,
     currentInitialTab: KANA_TABS.ALL,
     loanwordOnly: false,
-    basic100Only: false,
+    categoryTab: CATEGORY_TABS.ALL,
     currentSortField: SORT_FIELDS.STANDARD,
     currentSortOrder: SORT_ORDERS.ASC,
     currentCollectionId: 'japanese-terms',
@@ -331,13 +366,13 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
   assert.deepEqual(activeQuickTabs(), ['RANDOM10']);
 
   selectQuickFilter(QUICK_FILTERS.BASIC100);
-  assert.equal(store.get().basic100Only, true);
+  assert.equal(store.get().categoryTab, CATEGORY_TABS.BASIC100);
   assert.equal(store.get().pageSize, 100);
   assert.equal(store.get().currentSortField, SORT_FIELDS.STANDARD);
   assert.deepEqual(activeQuickTabs(), ['BASIC100']);
 
   selectQuickFilter(QUICK_FILTERS.LATEST10);
-  assert.equal(store.get().basic100Only, false);
+  assert.equal(store.get().categoryTab, CATEGORY_TABS.ALL);
   assert.equal(store.get().currentSortField, SORT_FIELDS.CREATED_AT);
   assert.equal(store.get().pageSize, 10);
   assert.deepEqual(activeQuickTabs(), ['LATEST10']);

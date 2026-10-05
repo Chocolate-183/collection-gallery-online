@@ -1689,7 +1689,9 @@
       "현금 | 現金"
     ],
     "subtitle": "金濟東",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 89
@@ -4395,7 +4397,9 @@
       "사장 | 社長"
     ],
     "subtitle": "三星",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 231
@@ -4927,7 +4931,9 @@
       "소감 | 所感"
     ],
     "subtitle": "世宗",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 259
@@ -6366,7 +6372,7 @@
   {
     "id": "#C103-0336",
     "ja_term": "야망 | 野望",
-    "tw_translation": "志向",
+    "tw_translation": "野心",
     "reading": "",
     "created_at": "2026-09-15",
     "recommendations": [
@@ -7977,7 +7983,9 @@
       "위험 | 危險"
     ],
     "subtitle": "劉在錫",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 419
@@ -8416,7 +8424,9 @@
       "이상 | 以上"
     ],
     "subtitle": "李舜臣",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 442
@@ -13923,7 +13933,9 @@
       "정신 | 精神"
     ],
     "subtitle": "鄭睿隣",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 731
@@ -13942,7 +13954,9 @@
       "김소정 | 金韶情"
     ],
     "subtitle": "丁恩妃",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 732
@@ -13961,7 +13975,9 @@
       "정예린 | 鄭睿隣"
     ],
     "subtitle": "崔裕那",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 733
@@ -13980,7 +13996,9 @@
       "최유나 | 崔裕那"
     ],
     "subtitle": "黃恩妃",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 734
@@ -13999,7 +14017,9 @@
       "김수현 | 金秀賢"
     ],
     "subtitle": "金韶情",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 735
@@ -14018,7 +14038,9 @@
       "김제동 | 金濟東"
     ],
     "subtitle": "金太軟",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 736
@@ -14037,7 +14059,9 @@
       "김제동 | 金濟東"
     ],
     "subtitle": "金孝淵",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 737
@@ -14056,7 +14080,9 @@
       "순수 | 純粹"
     ],
     "subtitle": "李純揆",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 738
@@ -14075,7 +14101,9 @@
       "최수영 | 崔秀榮"
     ],
     "subtitle": "權兪利",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 739
@@ -14094,7 +14122,9 @@
       "수영장 | 水泳場"
     ],
     "subtitle": "崔秀榮",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 740
@@ -14113,7 +14143,9 @@
       "이순규 | 李純揆"
     ],
     "subtitle": "林潤妸",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 741
@@ -14132,7 +14164,9 @@
       "김효연 | 金孝淵"
     ],
     "subtitle": "徐朱玄",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 742
@@ -14151,7 +14185,9 @@
       "강하다 | 強하다"
     ],
     "subtitle": "姜鎬童",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 743
@@ -14170,7 +14206,9 @@
       "공개 | 公開"
     ],
     "subtitle": "孔劉",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 744
@@ -14189,7 +14227,9 @@
       "이동 | 移動"
     ],
     "subtitle": "李棟旭",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 745
@@ -14208,7 +14248,9 @@
       "전통 | 傳統"
     ],
     "subtitle": "全智賢",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 746
@@ -14227,7 +14269,9 @@
       "김제동 | 金濟東"
     ],
     "subtitle": "金秀賢",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 747
@@ -14246,7 +14290,9 @@
       "김제동 | 金濟東"
     ],
     "subtitle": "金泰希",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 748
@@ -14265,7 +14311,9 @@
       "이동욱 | 李棟旭"
     ],
     "subtitle": "李聖經",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 749
@@ -14284,7 +14332,9 @@
       "이순신 | 李舜臣"
     ],
     "subtitle": "李知恩",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 750
@@ -14303,7 +14353,9 @@
       "신청 | 申請"
     ],
     "subtitle": "申東燁",
-    "tags": [],
+    "tags": [
+      "人名"
+    ],
     "etymology": "漢字語",
     "pos": "名詞",
     "row_index": 751
@@ -14645,7 +14697,9 @@
       "주스 | juice"
     ],
     "subtitle": "Starbucks",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 769
@@ -15219,7 +15273,9 @@
       "하이브 | HYBE"
     ],
     "subtitle": "LG",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 799
@@ -15238,7 +15294,9 @@
       "슈퍼마켓 | supermarket"
     ],
     "subtitle": "Lotte",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 800
@@ -15257,7 +15315,9 @@
       "인터넷 | internet"
     ],
     "subtitle": "Kakao",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 801
@@ -15276,7 +15336,9 @@
       "스마트폰 | smartphone"
     ],
     "subtitle": "NAVER",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 802
@@ -15295,7 +15357,9 @@
       "블랙핑크 | BLACKPINK"
     ],
     "subtitle": "NewJeans",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 803
@@ -15314,7 +15378,9 @@
       "블랙핑크 | BLACKPINK"
     ],
     "subtitle": "IVE",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 804
@@ -15333,7 +15399,9 @@
       "베이비몬스터 | BABYMONSTER"
     ],
     "subtitle": "LE SSERAFIM",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 805
@@ -15352,7 +15420,9 @@
       "블랙핑크 | BLACKPINK"
     ],
     "subtitle": "aespa",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 806
@@ -15371,7 +15441,9 @@
       "에스파 | aespa"
     ],
     "subtitle": "ILLIT",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 807
@@ -15390,7 +15462,9 @@
       "에스파 | aespa"
     ],
     "subtitle": "BABYMONSTER",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 808
@@ -15409,7 +15483,9 @@
       "뉴진스 | NewJeans"
     ],
     "subtitle": "BLACKPINK",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 809
@@ -15428,7 +15504,9 @@
       "뉴진스 | NewJeans"
     ],
     "subtitle": "TWICE",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 810
@@ -15447,7 +15525,9 @@
       "라이즈 | RIIZE"
     ],
     "subtitle": "SEVENTEEN",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 811
@@ -15466,7 +15546,9 @@
       "라이즈 | RIIZE"
     ],
     "subtitle": "Stray Kids",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 812
@@ -15485,7 +15567,9 @@
       "세븐틴 | SEVENTEEN"
     ],
     "subtitle": "RIIZE",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 813
@@ -15504,7 +15588,9 @@
       "엔시티 | NCT"
     ],
     "subtitle": "ENHYPEN",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 814
@@ -15523,7 +15609,9 @@
       "스트레이 키즈 | Stray Kids"
     ],
     "subtitle": "TWS",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 815
@@ -15542,7 +15630,9 @@
       "슈퍼주니어 | SUPER JUNIOR"
     ],
     "subtitle": "NCT",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 816
@@ -15561,7 +15651,9 @@
       "라이즈 | RIIZE"
     ],
     "subtitle": "Tomorrow X Together",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 817
@@ -15580,7 +15672,9 @@
       "샤이니 | SHINee"
     ],
     "subtitle": "Red Velvet",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 818
@@ -15599,7 +15693,9 @@
       "있지 | ITZY"
     ],
     "subtitle": "GFRIEND",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 819
@@ -15618,7 +15714,9 @@
       "그룹 | group"
     ],
     "subtitle": "SM",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 820
@@ -15637,7 +15735,9 @@
       "그룹 | group"
     ],
     "subtitle": "JYP",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 821
@@ -15656,7 +15756,9 @@
       "그룹 | group"
     ],
     "subtitle": "YG",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 822
@@ -15675,7 +15777,9 @@
       "그룹 | group"
     ],
     "subtitle": "HYBE",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 823
@@ -15694,7 +15798,9 @@
       "에스엠 | SM"
     ],
     "subtitle": "SUPER JUNIOR",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 824
@@ -15713,7 +15819,9 @@
       "에스엠 | SM"
     ],
     "subtitle": "SHINee",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 825
@@ -15960,7 +16068,9 @@
       "걸그룹 | girl group"
     ],
     "subtitle": "ITZY",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 838
@@ -16055,7 +16165,9 @@
       "디자인 | design"
     ],
     "subtitle": "INNISFREE",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 843
@@ -16093,7 +16205,9 @@
       "게임 | game"
     ],
     "subtitle": "Netflix",
-    "tags": [],
+    "tags": [
+      "公司名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 845
@@ -16473,7 +16587,9 @@
       "블랙핑크 | BLACKPINK"
     ],
     "subtitle": "BIGBANG",
-    "tags": [],
+    "tags": [
+      "團體名"
+    ],
     "etymology": "外來語",
     "pos": "名詞",
     "row_index": 865
@@ -19426,7 +19542,7 @@
   {
     "id": "#C103-1020",
     "ja_term": "된장찌개 | 된醬찌개",
-    "tw_translation": "大醬湯",
+    "tw_translation": "韓式味噌鍋 / 大醬湯",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -27847,7 +27963,7 @@
   {
     "id": "#C103-1457",
     "ja_term": "틀리다",
-    "tw_translation": "錯的、不正確",
+    "tw_translation": "錯的、不正確的",
     "reading": "",
     "created_at": "2026-10-02",
     "recommendations": [
@@ -27957,5 +28073,881 @@
     "etymology": "漢字語",
     "pos": "副詞",
     "row_index": 1461
+  },
+  {
+    "id": "#C103-1463",
+    "ja_term": "오디오 | audio",
+    "tw_translation": "音響、音訊",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "라디오 | radio",
+      "텔레비전 | television",
+      "스마트폰 | smartphone",
+      "컴퓨터 | computer",
+      "카메라 | camera"
+    ],
+    "subtitle": "audio",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 1462
+  },
+  {
+    "id": "#C103-1464",
+    "ja_term": "개발 | 開發",
+    "tw_translation": "開發、研發",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "공개 | 公開",
+      "발표 | 發表",
+      "발매일 | 發賣日",
+      "개강 | 開講",
+      "출발 | 出發"
+    ],
+    "subtitle": "開發",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1463
+  },
+  {
+    "id": "#C103-1465",
+    "ja_term": "출판 | 出版",
+    "tw_translation": "出版",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "출발 | 出發",
+      "외출 | 外出",
+      "출장 | 出張",
+      "출신 | 出身",
+      "출금 | 出金"
+    ],
+    "subtitle": "出版",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1464
+  },
+  {
+    "id": "#C103-1466",
+    "ja_term": "형태 | 形態",
+    "tw_translation": "形態、形式",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "상태 | 狀態",
+      "성형 | 成形",
+      "형용사 | 形容詞",
+      "변태 | 變態",
+      "인형 | 人形"
+    ],
+    "subtitle": "形態",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1465
+  },
+  {
+    "id": "#C103-1467",
+    "ja_term": "복사 | 複寫",
+    "tw_translation": "影印、複製",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "사진 | 寫真",
+      "복잡 | 複雜",
+      "가족사진 | 家族寫眞",
+      "반복 | 反復",
+      "보복 | 報復"
+    ],
+    "subtitle": "複寫",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1466
+  },
+  {
+    "id": "#C103-1468",
+    "ja_term": "주식회사 | 株式會社",
+    "tw_translation": "股份有限公司",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "주식 | 株式",
+      "회사 | 會社",
+      "주가 | 株價",
+      "회사원 | 會社員",
+      "사장 | 社長"
+    ],
+    "subtitle": "株式會社",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1467
+  },
+  {
+    "id": "#C103-1469",
+    "ja_term": "혹은 | 或은",
+    "tw_translation": "或者、或是",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "혹시 | 或是",
+      "만약 | 萬若",
+      "어차피 | 於此彼",
+      "역시 | 亦是",
+      "일단 | 一旦"
+    ],
+    "subtitle": "或은",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "副詞",
+    "row_index": 1468
+  },
+  {
+    "id": "#C103-1470",
+    "ja_term": "순두부찌개 | 순豆腐찌개",
+    "tw_translation": "嫩豆腐鍋",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "두부 | 豆腐",
+      "된장찌개 | 된醬찌개",
+      "김치찌개",
+      "감자탕 | 감자湯",
+      "설렁탕 | 설렁湯"
+    ],
+    "subtitle": "순豆腐찌개",
+    "tags": [],
+    "etymology": "混種詞",
+    "pos": "名詞",
+    "row_index": 1469
+  },
+  {
+    "id": "#C103-1471",
+    "ja_term": "감자탕 | 감자湯",
+    "tw_translation": "馬鈴薯排骨湯",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "설렁탕 | 설렁湯",
+      "갈비탕 | 갈비湯",
+      "매운탕 | 매운湯",
+      "삼계탕 | 蔘鷄湯",
+      "순두부찌개 | 순豆腐찌개"
+    ],
+    "subtitle": "감자湯",
+    "tags": [],
+    "etymology": "混種詞",
+    "pos": "名詞",
+    "row_index": 1470
+  },
+  {
+    "id": "#C103-1472",
+    "ja_term": "매운탕 | 매운湯",
+    "tw_translation": "辣魚湯",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "맵다",
+      "감자탕 | 감자湯",
+      "설렁탕 | 설렁湯",
+      "갈비탕 | 갈비湯",
+      "삼계탕 | 蔘鷄湯"
+    ],
+    "subtitle": "매운湯",
+    "tags": [],
+    "etymology": "混種詞",
+    "pos": "名詞",
+    "row_index": 1471
+  },
+  {
+    "id": "#C103-1473",
+    "ja_term": "설렁탕 | 설렁湯",
+    "tw_translation": "雪濃湯、牛骨湯",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "갈비탕 | 갈비湯",
+      "감자탕 | 감자湯",
+      "삼계탕 | 蔘鷄湯",
+      "매운탕 | 매운湯",
+      "순두부찌개 | 순豆腐찌개"
+    ],
+    "subtitle": "설렁湯",
+    "tags": [],
+    "etymology": "混種詞",
+    "pos": "名詞",
+    "row_index": 1472
+  },
+  {
+    "id": "#C103-1474",
+    "ja_term": "국수",
+    "tw_translation": "麵條、麵",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "라면 | ramen",
+      "냉면 | 冷麵",
+      "밥",
+      "음식 | 飮食",
+      "식사 | 食事"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 1473
+  },
+  {
+    "id": "#C103-1475",
+    "ja_term": "미리",
+    "tw_translation": "事先、提前",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "먼저",
+      "나중",
+      "이따가",
+      "일찍",
+      "지금 | 只今"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "副詞",
+    "row_index": 1474
+  },
+  {
+    "id": "#C103-1476",
+    "ja_term": "빈칸",
+    "tw_translation": "空格、空白處",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "문제 | 問題",
+      "정답 | 正答",
+      "질문 | 質問",
+      "공 | 空",
+      "시험 | 試驗"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 1475
+  },
+  {
+    "id": "#C103-1477",
+    "ja_term": "미치다",
+    "tw_translation": "發瘋、瘋掉",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "정신 | 精神",
+      "이상 | 異常",
+      "심하다 | 甚하다",
+      "답답하다",
+      "불안 | 不安"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 1476
+  },
+  {
+    "id": "#C103-1478",
+    "ja_term": "메이크업 | makeup",
+    "tw_translation": "化妝、彩妝",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "세럼 | serum",
+      "콜라겐 | collagen",
+      "스타일 | style",
+      "이니스프리 | INNISFREE",
+      "비주얼"
+    ],
+    "subtitle": "makeup",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 1477
+  },
+  {
+    "id": "#C103-1479",
+    "ja_term": "젊다",
+    "tw_translation": "年輕",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "어리다",
+      "어린아이",
+      "아이",
+      "연세 | 年歲",
+      "성인 | 成人"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
+    "row_index": 1478
+  },
+  {
+    "id": "#C103-1480",
+    "ja_term": "부럽다",
+    "tw_translation": "羨慕",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "원하다 | 願하다",
+      "욕심 | 慾心",
+      "부끄럽다",
+      "행복 | 幸福",
+      "좋다"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
+    "row_index": 1479
+  },
+  {
+    "id": "#C103-1481",
+    "ja_term": "솔직히 | 率直히",
+    "tw_translation": "坦白地、老實說",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "솔직 | 率直",
+      "진심 | 真心",
+      "사실 | 事實",
+      "정말 | 正말",
+      "진짜 | 眞짜"
+    ],
+    "subtitle": "率直히",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "副詞",
+    "row_index": 1480
+  },
+  {
+    "id": "#C103-1482",
+    "ja_term": "늘",
+    "tw_translation": "總是、一直",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "항상 | 恒常",
+      "계속 | 繼續",
+      "자주",
+      "매일 | 每日",
+      "평소 | 平素"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "副詞",
+    "row_index": 1481
+  },
+  {
+    "id": "#C103-1483",
+    "ja_term": "최애 | 最愛",
+    "tw_translation": "最愛、本命",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "최고 | 最高",
+      "애인 | 愛人",
+      "연애 | 戀愛",
+      "최선 | 最善",
+      "최근 | 最近"
+    ],
+    "subtitle": "最愛",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1482
+  },
+  {
+    "id": "#C103-1484",
+    "ja_term": "비주얼 | visual",
+    "tw_translation": "外貌、顏值",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "스타일 | style",
+      "메이크업 | makeup",
+      "아이돌 | Idol",
+      "디자인 | design",
+      "걸그룹 | girl group"
+    ],
+    "subtitle": "visual",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 1483
+  },
+  {
+    "id": "#C103-1485",
+    "ja_term": "아이폰 | iPhone",
+    "tw_translation": "iPhone、蘋果手機",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "스마트폰 | smartphone",
+      "컴퓨터 | computer",
+      "인터넷 | internet",
+      "카메라 | camera",
+      "게임 | game"
+    ],
+    "subtitle": "iPhone",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 1484
+  },
+  {
+    "id": "#C103-1486",
+    "ja_term": "아무것",
+    "tw_translation": "任何事物、什麼",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "무엇",
+      "것",
+      "이것",
+      "그것",
+      "다"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "代名詞",
+    "row_index": 1485
+  },
+  {
+    "id": "#C103-1487",
+    "ja_term": "아마",
+    "tw_translation": "大概、也許",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "혹시 | 或是",
+      "꼭",
+      "만약 | 萬若",
+      "정말 | 正말",
+      "당연 | 當然"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "副詞",
+    "row_index": 1486
+  },
+  {
+    "id": "#C103-1488",
+    "ja_term": "사탕 | 沙糖",
+    "tw_translation": "糖果",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "설탕 | 雪糖",
+      "사과 | 沙果",
+      "사막 | 沙漠",
+      "식사 | 食事",
+      "음식 | 飮食"
+    ],
+    "subtitle": "沙糖",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1487
+  },
+  {
+    "id": "#C103-1489",
+    "ja_term": "설탕 | 雪糖",
+    "tw_translation": "白糖、砂糖",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "사탕 | 沙糖",
+      "설렁탕 | 설렁湯",
+      "설명 | 說明",
+      "사과 | 沙果",
+      "음식 | 飮食"
+    ],
+    "subtitle": "雪糖",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1488
+  },
+  {
+    "id": "#C103-1490",
+    "ja_term": "맥도날드 | McDonald",
+    "tw_translation": "麥當勞",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "햄버거 | hamburger",
+      "콜라 | cola",
+      "스타벅스 | Starbucks",
+      "치킨 | chicken",
+      "피자 | pizza"
+    ],
+    "subtitle": "McDonald",
+    "tags": [
+      "公司名"
+    ],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "row_index": 1489
+  },
+  {
+    "id": "#C103-1491",
+    "ja_term": "가루",
+    "tw_translation": "粉、粉末",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "소금",
+      "설탕 | 雪糖",
+      "빵 | pão",
+      "물",
+      "약 | 藥"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 1490
+  },
+  {
+    "id": "#C103-1492",
+    "ja_term": "깎다",
+    "tw_translation": "削、剪、砍價",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "반값 | 半값",
+      "값",
+      "사과 | 沙果",
+      "머리",
+      "비싸다"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 1491
+  },
+  {
+    "id": "#C103-1493",
+    "ja_term": "반값 | 半값",
+    "tw_translation": "半價",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "값",
+      "반 | 半",
+      "깎다",
+      "싸다",
+      "비싸다"
+    ],
+    "subtitle": "半값",
+    "tags": [],
+    "etymology": "混種詞",
+    "pos": "名詞",
+    "row_index": 1492
+  },
+  {
+    "id": "#C103-1494",
+    "ja_term": "검색 | 檢索",
+    "tw_translation": "搜尋、檢索",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "조사 | 調査",
+      "정보 | 情報",
+      "확인 | 確認",
+      "질문 | 質問",
+      "회색 | 灰色"
+    ],
+    "subtitle": "檢索",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1493
+  },
+  {
+    "id": "#C103-1495",
+    "ja_term": "유학 | 留學",
+    "tw_translation": "留學",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "정류장 | 停留場",
+      "대학원 | 大學院",
+      "대학교 | 大學校",
+      "대학생 | 大學生",
+      "학교 | 學校"
+    ],
+    "subtitle": "留學",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1494
+  },
+  {
+    "id": "#C103-1496",
+    "ja_term": "만화 | 漫畫",
+    "tw_translation": "漫畫",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "동양화 | 東洋畫",
+      "영화 | 映畫",
+      "영화관 | 映畫館",
+      "소설 | 小說",
+      "영화배우 | 映畫俳優"
+    ],
+    "subtitle": "漫畫",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1495
+  },
+  {
+    "id": "#C103-1497",
+    "ja_term": "소설 | 小說",
+    "tw_translation": "小說",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "설명 | 說明",
+      "만화 | 漫畫",
+      "작가 | 作家",
+      "독서 | 讀書",
+      "소품 | 小品"
+    ],
+    "subtitle": "小說",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1496
+  },
+  {
+    "id": "#C103-1498",
+    "ja_term": "싸우다",
+    "tw_translation": "吵架、打架",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "대화 | 對話",
+      "친하다 | 親하다",
+      "사랑",
+      "승리 | 勝利",
+      "말"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 1497
+  },
+  {
+    "id": "#C103-1499",
+    "ja_term": "야근 | 夜勤",
+    "tw_translation": "加班、夜班",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "퇴근 | 退勤",
+      "잔업 | 殘業",
+      "심야 | 深夜",
+      "열대야 | 熱帶夜",
+      "작업 | 作業"
+    ],
+    "subtitle": "夜勤",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1498
+  },
+  {
+    "id": "#C103-1500",
+    "ja_term": "그만두다",
+    "tw_translation": "辭職、罷休",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "그만하다",
+      "멈추다",
+      "퇴사 | 退社",
+      "시작 | 始作",
+      "계속 | 繼續"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 1499
+  },
+  {
+    "id": "#C103-1501",
+    "ja_term": "이루다",
+    "tw_translation": "實現、達成",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "이루어지다",
+      "소원 | 所願",
+      "목표 | 目標",
+      "성공 | 成功",
+      "완성 | 完成"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 1500
+  },
+  {
+    "id": "#C103-1502",
+    "ja_term": "이루어지다",
+    "tw_translation": "實現、構成",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "이루다",
+      "소원 | 所願",
+      "완성 | 完成",
+      "성공 | 成功",
+      "포기 | 拋棄"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "動詞",
+    "row_index": 1501
+  },
+  {
+    "id": "#C103-1503",
+    "ja_term": "외롭다",
+    "tw_translation": "孤單、寂寞",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "혼자",
+      "함께",
+      "슬프다",
+      "우울 | 憂鬱",
+      "친구 | 親舊"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
+    "row_index": 1502
+  },
+  {
+    "id": "#C103-1504",
+    "ja_term": "속상하다 | 속傷하다",
+    "tw_translation": "傷心、難過",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "상처 | 傷處",
+      "답답하다",
+      "슬프다",
+      "기쁘다",
+      "마음"
+    ],
+    "subtitle": "속傷하다",
+    "tags": [],
+    "etymology": "混種詞",
+    "pos": "形容詞",
+    "row_index": 1503
+  },
+  {
+    "id": "#C103-1505",
+    "ja_term": "답답하다",
+    "tw_translation": "悶、鬱悶",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "시원하다",
+      "속상하다 | 속傷하다",
+      "불편 | 不便",
+      "기분 | 氣分",
+      "복잡 | 複雜"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "形容詞",
+    "row_index": 1504
+  },
+  {
+    "id": "#C103-1506",
+    "ja_term": "걱정",
+    "tw_translation": "擔心、憂慮",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "고민 | 苦悶",
+      "불안 | 不安",
+      "괜찮다",
+      "조심 | 操心",
+      "생각"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 1505
+  },
+  {
+    "id": "#C103-1507",
+    "ja_term": "비행기표 | 飛行機票",
+    "tw_translation": "機票",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "비행기 | 飛行機",
+      "표 | 票",
+      "예매 | 豫買",
+      "공항 | 空港",
+      "여행 | 旅行"
+    ],
+    "subtitle": "飛行機票",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "row_index": 1506
+  },
+  {
+    "id": "#C103-1508",
+    "ja_term": "낚시",
+    "tw_translation": "釣魚",
+    "reading": "",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "생선 | 生鮮",
+      "바다",
+      "취미 | 趣味",
+      "배",
+      "물"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "固有詞",
+    "pos": "名詞",
+    "row_index": 1507
   }
 ]

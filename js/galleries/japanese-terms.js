@@ -7,7 +7,7 @@ export default {
   name: '日本特色詞彙一覽',
   enTitle: 'Japanese Terms',
   sheetId: '1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI',
-  gid: '978348869',
+  gid: '1923603290',
   localFallback: 'data.json',
   hasReading: true,
   hasKanaTabs: true,

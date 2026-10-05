@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache, findProfileByName } from '../data.js';
-import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml } from '../utils.js';
+import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml, getExhibitCategoryLabel } from '../utils.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -15,6 +15,32 @@ function syncHash(newHash) {
 function getCollectionSlug(colId) {
   const col = collectionsConfig[colId];
   return col ? col.name : colId;
+}
+
+export const STDICT_OPEN_DELAY_MS = 500;
+let stdictOpenTimer = null;
+
+function clearStdictOpenTimer() {
+  if (stdictOpenTimer) {
+    clearTimeout(stdictOpenTimer);
+    stdictOpenTimer = null;
+  }
+}
+
+export function handleStdictReferenceClick(event) {
+  const link = event?.target?.closest?.('.modal-reference-link');
+  if (!link) return;
+  event.preventDefault();
+  const url = link.getAttribute('href');
+  if (!url) return;
+  clearStdictOpenTimer();
+  link.classList.add('active');
+  stdictOpenTimer = setTimeout(() => {
+    stdictOpenTimer = null;
+    link.classList.remove('active');
+    if (typeof link.blur === 'function') link.blur();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }, STDICT_OPEN_DELAY_MS);
 }
 
 /**
@@ -271,6 +297,13 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   if (posSection) posSection.style.display = (showEtymPos && pos) ? '' : 'none';
   if (etymPosRow) etymPosRow.style.display = (showEtymPos && (etymology || pos)) ? '' : 'none';
 
+  const categorySection = document.getElementById('modal-category-section');
+  const categoryElem = document.getElementById('modal-category');
+  const showNameCategory = Boolean(collectionsConfig[currentCollectionId]?.hasNameCategoryFilter);
+  const categoryLabel = showNameCategory ? getExhibitCategoryLabel(rec) : '';
+  if (categoryElem) categoryElem.innerText = categoryLabel || '--';
+  if (categorySection) categorySection.style.display = categoryLabel ? '' : 'none';
+
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';
@@ -280,6 +313,16 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       meaningElem.classList.toggle('has-scroll', checkMeaningHasScroll(meaningElem));
     }
   }
+
+  const referenceSection = document.getElementById('modal-reference-section');
+  const referenceElem = document.getElementById('modal-reference');
+  const showReference = currentCollectionId === 'korean-terms' && !getExhibitCategoryLabel(rec);
+  const referenceHtml = showReference ? formatStdictReferenceHtml(rec.ja_term) : '';
+  if (referenceElem) {
+    referenceElem.setAttribute('data-collection', currentCollectionId || '');
+    referenceElem.innerHTML = referenceHtml;
+  }
+  if (referenceSection) referenceSection.style.display = referenceHtml ? '' : 'none';
 
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
@@ -309,6 +352,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   }
 
   if (modal) {
+    modal.setAttribute('data-collection', currentCollectionId || '');
     const modalBox = modal.querySelector('.awsui-modal');
     if (modalBox) modalBox.classList.remove('awsui-modal-lg');
     modal.classList.add('open');
@@ -321,6 +365,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
 export function closeDetailModal(updateHash = true) {
   closeDescriptionModal(false);
+  clearStdictOpenTimer();
   const modal = document.getElementById('detail-modal');
   if (modal) modal.classList.remove('open');
   if (typeof document !== 'undefined') {

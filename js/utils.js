@@ -1,7 +1,7 @@
 /**
  * Shared Helper Utilities
  */
-import { EXHIBITION_STATUS, DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS } from './constants.js';
+import { EXHIBITION_STATUS, DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS, NAME_CATEGORY_TAGS } from './constants.js';
 import { parseOpeningHoursCSV } from './parser.js';
 
 function matchStatus(meta, keywords) {
@@ -121,6 +121,36 @@ export function getExhibitTitleSuffix(str) {
 }
 
 /**
+ * Hangul headword in a C103 title (text before the first `|`).
+ * e.g. "가능 | 可能" → "가능", "가게" → "가게"
+ */
+export function getExhibitHangulHeadword(str) {
+  if (!str) return '';
+  return String(str).split('|')[0].trim();
+}
+
+/**
+ * 국립국어원 표준국어대사전 search URL for a Hangul headword.
+ */
+export function getStdictSearchUrl(keyword) {
+  const q = String(keyword || '').trim();
+  if (!q) return '';
+  return `https://stdict.korean.go.kr/search/searchResult.do?pageSize=10&searchKeyword=${encodeURIComponent(q)}`;
+}
+
+export const STDICT_SOURCE_LABEL = '國立國語院標準國語大辭典';
+
+/**
+ * C103 Item Reference link label: `國立國語院標準國語大辭典`
+ */
+export function formatStdictReferenceHtml(headword) {
+  const q = getExhibitHangulHeadword(headword);
+  const url = getStdictSearchUrl(q);
+  if (!url) return '';
+  return `<a class="modal-reference-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(STDICT_SOURCE_LABEL)}</a>`;
+}
+
+/**
  * C103 副標 used for loanword filtering: sheet column D, else title suffix after `|`.
  */
 export function getExhibitSubtitle(record) {
@@ -176,6 +206,14 @@ export function parseRecommendationList(val) {
 
 export function parseExhibitTagList(val) {
   return parseRecommendationList(val);
+}
+
+export function getExhibitCategoryLabel(record) {
+  const tags = Array.isArray(record?.tags) ? record.tags : [];
+  for (const wanted of NAME_CATEGORY_TAGS) {
+    if (tags.some(t => String(t).trim() === wanted)) return wanted;
+  }
+  return '';
 }
 
 export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];
