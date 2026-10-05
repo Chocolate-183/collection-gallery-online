@@ -41,6 +41,7 @@ import {
   formatExhibitTitleHtml,
   getExhibitHangulHeadword,
   getStdictSearchUrl,
+  formatStdictReferenceHtml,
   isEnglishLoanword,
   isCollectionAdjusting,
   isCollectionPreparing,
@@ -107,6 +108,11 @@ test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
     getStdictSearchUrl('가게'),
     'https://stdict.korean.go.kr/search/searchView.do?pageSize=10&searchKeyword=%EA%B0%80%EA%B2%8C'
   );
+  const refHtml = formatStdictReferenceHtml('가게');
+  assert.match(refHtml, /國立國語院標準國語大辭典/);
+  assert.match(refHtml, /awsui-title-suffix"> 가게<\/span>/);
+  assert.match(refHtml, /searchKeyword=%EA%B0%80%EA%B2%8C/);
+  assert.equal(formatStdictReferenceHtml('가능 | 可能').includes('可能'), false);
 });
 
 test('Gallery header title is Collection number plus Chinese hall name', () => {

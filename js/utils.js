@@ -138,6 +138,19 @@ export function getStdictSearchUrl(keyword) {
   return `https://stdict.korean.go.kr/search/searchView.do?pageSize=10&searchKeyword=${encodeURIComponent(q)}`;
 }
 
+export const STDICT_SOURCE_LABEL = '國立國語院標準國語大辭典';
+
+/**
+ * C103 Item Reference link: `國立國語院標準國語大辭典 | 가게`
+ */
+export function formatStdictReferenceHtml(headword) {
+  const q = getExhibitHangulHeadword(headword);
+  const url = getStdictSearchUrl(q);
+  if (!url) return '';
+  const label = formatExhibitTitleHtml(`${STDICT_SOURCE_LABEL} | ${q}`);
+  return `<a class="modal-reference-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+}
+
 /**
  * C103 副標 used for loanword filtering: sheet column D, else title suffix after `|`.
  */
