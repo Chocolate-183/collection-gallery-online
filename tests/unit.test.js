@@ -109,9 +109,11 @@ test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
     'https://stdict.korean.go.kr/search/searchView.do?pageSize=10&searchKeyword=%EA%B0%80%EA%B2%8C'
   );
   const refHtml = formatStdictReferenceHtml('가게');
-  assert.match(refHtml, /國立國語院標準國語大辭典/);
-  assert.match(refHtml, /awsui-title-suffix"> 가게<\/span>/);
+  assert.match(refHtml, />國立國語院標準國語大辭典</);
+  assert.equal(refHtml.includes('|'), false);
+  assert.equal(refHtml.includes('가게'), false);
   assert.match(refHtml, /searchKeyword=%EA%B0%80%EA%B2%8C/);
+  assert.equal(formatStdictReferenceHtml('가능 | 可能').includes('가능'), false);
   assert.equal(formatStdictReferenceHtml('가능 | 可能').includes('可能'), false);
 });
 

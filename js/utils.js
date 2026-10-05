@@ -141,14 +141,13 @@ export function getStdictSearchUrl(keyword) {
 export const STDICT_SOURCE_LABEL = '國立國語院標準國語大辭典';
 
 /**
- * C103 Item Reference link: `國立國語院標準國語大辭典 | 가게`
+ * C103 Item Reference link label: `國立國語院標準國語大辭典`
  */
 export function formatStdictReferenceHtml(headword) {
   const q = getExhibitHangulHeadword(headword);
   const url = getStdictSearchUrl(q);
   if (!url) return '';
-  const label = formatExhibitTitleHtml(`${STDICT_SOURCE_LABEL} | ${q}`);
-  return `<a class="modal-reference-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+  return `<a class="modal-reference-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(STDICT_SOURCE_LABEL)}</a>`;
 }
 
 /**

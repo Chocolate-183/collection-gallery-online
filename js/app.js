@@ -8,7 +8,7 @@ import { preloadAllCollections, refreshGalleryData, updateStatsView } from './da
 import { onSearchInput, onFilterChange, selectQuickFilter, selectLengthTab, selectInitialTab, selectKindTab, selectEtymologyTab, selectPosTab, selectSortField, selectSortOrder, resetFineFilters, resetDisplaySettings, resetFilterAndDisplay, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, openDisplayModal, closeDisplayModal, closeDisplayModalOnBackdrop, closeCatalogPanels, syncFilterUi, initCatalogPanelLayout } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
 import { goToPage, selectPageSize } from './components/pagination.js';
-import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop, handleStdictReferenceClick } from './components/modal.js';
 import { openNoticePanel, closeNoticePanel, showNoticeUntil } from './components/notice.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
@@ -75,6 +75,7 @@ Object.assign(window, {
   openProfileModal,
   closeProfileModal,
   closeProfileModalOnBackdrop,
+  handleStdictReferenceClick,
   openNoticePanel,
   closeNoticePanel,
   showNoticeUntil,
@@ -152,5 +153,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       }
     });
+  }
+
+  const referenceElem = document.getElementById('modal-reference');
+  if (referenceElem) {
+    referenceElem.addEventListener('click', handleStdictReferenceClick);
   }
 });

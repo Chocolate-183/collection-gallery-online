@@ -17,6 +17,31 @@ function getCollectionSlug(colId) {
   return col ? col.name : colId;
 }
 
+export const STDICT_OPEN_DELAY_MS = 1000;
+let stdictOpenTimer = null;
+
+function clearStdictOpenTimer() {
+  if (stdictOpenTimer) {
+    clearTimeout(stdictOpenTimer);
+    stdictOpenTimer = null;
+  }
+}
+
+export function handleStdictReferenceClick(event) {
+  const link = event?.target?.closest?.('.modal-reference-link');
+  if (!link) return;
+  event.preventDefault();
+  const url = link.getAttribute('href');
+  if (!url) return;
+  clearStdictOpenTimer();
+  link.classList.add('active');
+  stdictOpenTimer = setTimeout(() => {
+    stdictOpenTimer = null;
+    link.classList.remove('active');
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }, STDICT_OPEN_DELAY_MS);
+}
+
 /**
  * Navigates directly to a target recommended term's detail modal.
  * @param {string} term - Term name or ID to open
@@ -331,6 +356,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
 export function closeDetailModal(updateHash = true) {
   closeDescriptionModal(false);
+  clearStdictOpenTimer();
   const modal = document.getElementById('detail-modal');
   if (modal) modal.classList.remove('open');
   if (typeof document !== 'undefined') {

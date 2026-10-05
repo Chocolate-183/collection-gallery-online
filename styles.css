@@ -1615,16 +1615,19 @@ a:focus {
   color: #ECC94B;
 }
 
-.modal-reference-link:active {
+.modal-reference-link:active,
+.modal-reference-link.active {
   background: #ECC94B !important;
   color: #ffffff !important;
 }
 
-.modal-reference-link:active .awsui-title-separator {
+.modal-reference-link:active .awsui-title-separator,
+.modal-reference-link.active .awsui-title-separator {
   color: rgba(255, 255, 255, 0.55) !important;
 }
 
-.modal-reference-link:active .awsui-title-suffix {
+.modal-reference-link:active .awsui-title-suffix,
+.modal-reference-link.active .awsui-title-suffix {
   color: rgba(255, 255, 255, 0.72) !important;
 }
 

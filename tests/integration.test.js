@@ -534,8 +534,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockEtymPosRow.style.display, '');
   assert.equal(mockReferenceSection.style.display, '');
   assert.match(mockReference.innerHTML, /searchKeyword=%EA%B0%80%EB%8A%A5/);
-  assert.match(mockReference.innerHTML, /國立國語院標準國語大辭典/);
-  assert.match(mockReference.innerHTML, /awsui-title-suffix"> 가능<\/span>/);
+  assert.match(mockReference.innerHTML, />國立國語院標準國語大辭典</);
+  assert.equal(mockReference.innerHTML.includes('가능'), false);
 
   store.set({
     currentCollectionId: 'japanese-terms',
