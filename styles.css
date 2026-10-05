@@ -1607,12 +1607,8 @@ a:focus {
   transition: color 0.15s ease, background-color 0.15s ease;
 }
 
-.modal-reference-link .awsui-title-suffix {
-  font-family: 'Noto Sans KR', var(--awsui-font-family-exhibit);
-}
-
 .modal-reference-link:hover {
-  color: #ECC94B;
+  color: inherit;
 }
 
 .modal-reference-link:active,

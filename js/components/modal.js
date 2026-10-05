@@ -17,7 +17,7 @@ function getCollectionSlug(colId) {
   return col ? col.name : colId;
 }
 
-export const STDICT_OPEN_DELAY_MS = 1000;
+export const STDICT_OPEN_DELAY_MS = 500;
 let stdictOpenTimer = null;
 
 function clearStdictOpenTimer() {
