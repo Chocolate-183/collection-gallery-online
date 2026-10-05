@@ -39,6 +39,8 @@ import {
   escapeHtml,
   getExhibitFilterLength,
   formatExhibitTitleHtml,
+  getExhibitHangulHeadword,
+  getStdictSearchUrl,
   isEnglishLoanword,
   isCollectionAdjusting,
   isCollectionPreparing,
@@ -99,6 +101,12 @@ test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
   assert.equal(formatExhibitTitleHtml('가능 | 可能'), '가능 <span class="awsui-title-separator">|</span><span class="awsui-title-suffix"> 可能</span>');
   assert.equal(isEnglishLoanword({ ja_term: '컴퓨터 | computer' }), true);
   assert.equal(isEnglishLoanword({ ja_term: '가능 | 可能' }), false);
+  assert.equal(getExhibitHangulHeadword('가게'), '가게');
+  assert.equal(getExhibitHangulHeadword('가능 | 可能'), '가능');
+  assert.equal(
+    getStdictSearchUrl('가게'),
+    'https://stdict.korean.go.kr/search/searchView.do?pageSize=10&searchKeyword=%EA%B0%80%EA%B2%8C'
+  );
 });
 
 test('Gallery header title is Collection number plus Chinese hall name', () => {

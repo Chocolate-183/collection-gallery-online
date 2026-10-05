@@ -481,6 +481,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   const mockEtym = createMockElement();
   const mockPosSection = createMockElement({ style: { display: 'none' } });
   const mockPos = createMockElement();
+  const mockReferenceSection = createMockElement({ style: { display: 'none' } });
+  const mockReference = createMockElement();
   const card1 = createMockElement({ 'data-row-index': '1' });
   const card2 = createMockElement({ 'data-row-index': '2' });
 
@@ -493,7 +495,9 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     'modal-etymology-section': mockEtymSection,
     'modal-etymology': mockEtym,
     'modal-pos-section': mockPosSection,
-    'modal-pos': mockPos
+    'modal-pos': mockPos,
+    'modal-reference-section': mockReferenceSection,
+    'modal-reference': mockReference
   });
   global.document.querySelectorAll = (sel) => {
     if (sel === '.awsui-card') return [card1, card2];
@@ -510,6 +514,7 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   openMeaningModal(1, false);
   assert.equal(mockReadingRow.innerText, 'しんけいすいじゃく');
   assert.equal(mockReadingSection.style.display, 'block');
+  assert.equal(mockReferenceSection.style.display, 'none');
 
   store.set({
     currentCollectionId: 'korean-terms',
@@ -527,6 +532,9 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockEtym.innerText, '漢字語');
   assert.equal(mockPos.innerText, '名詞');
   assert.equal(mockEtymPosRow.style.display, '');
+  assert.equal(mockReferenceSection.style.display, '');
+  assert.match(mockReference.innerHTML, /searchKeyword=%EA%B0%80%EB%8A%A5/);
+  assert.match(mockReference.innerHTML, />가능</);
 
   store.set({
     currentCollectionId: 'japanese-terms',

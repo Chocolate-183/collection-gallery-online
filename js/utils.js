@@ -121,6 +121,24 @@ export function getExhibitTitleSuffix(str) {
 }
 
 /**
+ * Hangul headword in a C103 title (text before the first `|`).
+ * e.g. "가능 | 可能" → "가능", "가게" → "가게"
+ */
+export function getExhibitHangulHeadword(str) {
+  if (!str) return '';
+  return String(str).split('|')[0].trim();
+}
+
+/**
+ * 국립국어원 표준국어대사전 search URL for a Hangul headword.
+ */
+export function getStdictSearchUrl(keyword) {
+  const q = String(keyword || '').trim();
+  if (!q) return '';
+  return `https://stdict.korean.go.kr/search/searchView.do?pageSize=10&searchKeyword=${encodeURIComponent(q)}`;
+}
+
+/**
  * C103 副標 used for loanword filtering: sheet column D, else title suffix after `|`.
  */
 export function getExhibitSubtitle(record) {

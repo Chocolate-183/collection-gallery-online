@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache, findProfileByName } from '../data.js';
-import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml } from '../utils.js';
+import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, getExhibitHangulHeadword, getStdictSearchUrl } from '../utils.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -280,6 +280,21 @@ export function openMeaningModal(rowIndex, updateHash = true) {
       meaningElem.classList.toggle('has-scroll', checkMeaningHasScroll(meaningElem));
     }
   }
+
+  const referenceSection = document.getElementById('modal-reference-section');
+  const referenceElem = document.getElementById('modal-reference');
+  const showReference = currentCollectionId === 'korean-terms';
+  const headword = showReference ? getExhibitHangulHeadword(rec.ja_term) : '';
+  const stdictUrl = headword ? getStdictSearchUrl(headword) : '';
+  if (referenceElem) {
+    referenceElem.setAttribute('data-collection', currentCollectionId || '');
+    if (stdictUrl) {
+      referenceElem.innerHTML = `<a class="modal-reference-link" href="${escapeHtml(stdictUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(headword)}</a>`;
+    } else {
+      referenceElem.innerHTML = '';
+    }
+  }
+  if (referenceSection) referenceSection.style.display = stdictUrl ? '' : 'none';
 
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
