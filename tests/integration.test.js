@@ -560,10 +560,49 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockEtymPosRow.style.display, '');
   assert.equal(mockCategory.innerText, '人名');
   assert.equal(mockCategorySection.style.display, '');
+  assert.equal(mockReferenceSection.style.display, 'none');
+  assert.equal(mockReference.innerHTML, '');
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '가능 | 可能',
+      reading: '가능',
+      tw_translation: '可能',
+      etymology: '漢字語',
+      pos: '名詞',
+      tags: ['基礎100']
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockCategorySection.style.display, 'none');
   assert.equal(mockReferenceSection.style.display, '');
   assert.match(mockReference.innerHTML, /searchKeyword=%EA%B0%80%EB%8A%A5/);
   assert.match(mockReference.innerHTML, />國立國語院標準國語大辭典</);
   assert.equal(mockReference.innerHTML.includes('가능'), false);
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '가능 | 可能',
+      tags: ['團體名']
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockReferenceSection.style.display, 'none');
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '가능 | 可能',
+      tags: ['公司名']
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockReferenceSection.style.display, 'none');
 
   store.set({
     currentCollectionId: 'japanese-terms',

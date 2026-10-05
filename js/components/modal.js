@@ -316,7 +316,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
   const referenceSection = document.getElementById('modal-reference-section');
   const referenceElem = document.getElementById('modal-reference');
-  const showReference = currentCollectionId === 'korean-terms';
+  const showReference = currentCollectionId === 'korean-terms' && !getExhibitCategoryLabel(rec);
   const referenceHtml = showReference ? formatStdictReferenceHtml(rec.ja_term) : '';
   if (referenceElem) {
     referenceElem.setAttribute('data-collection', currentCollectionId || '');
