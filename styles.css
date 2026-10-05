@@ -1357,6 +1357,10 @@ a:focus {
   margin-bottom: 8px;
 }
 
+#detail-modal[data-collection="japanese-terms"] .awsui-modal-description-section {
+  margin-top: 8px !important;
+}
+
 #modal-term-title,
 #collection-modal-title,
 #profile-modal-name {

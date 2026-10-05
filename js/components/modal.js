@@ -345,6 +345,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   }
 
   if (modal) {
+    modal.setAttribute('data-collection', currentCollectionId || '');
     const modalBox = modal.querySelector('.awsui-modal');
     if (modalBox) modalBox.classList.remove('awsui-modal-lg');
     modal.classList.add('open');
