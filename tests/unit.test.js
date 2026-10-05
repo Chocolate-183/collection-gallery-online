@@ -203,7 +203,10 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   assert.equal(profileUrls.localFallback, 'profiles.json');
 
   const krCol = collectionsConfig['korean-terms'];
+  const krUrls = getCollectionDataUrls(krCol);
   assert.equal(krCol.defaultMeta.id, 'C103');
+  assert.equal(krCol.gid, '284986562');
+  assert(krUrls.csvUrl.includes('gid=284986562'));
   assert.equal(krCol.hasHangulTabs, true);
   assert.equal(krCol.hasEtymologyPosFilter, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
