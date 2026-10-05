@@ -135,7 +135,7 @@ export function getExhibitHangulHeadword(str) {
 export function getStdictSearchUrl(keyword) {
   const q = String(keyword || '').trim();
   if (!q) return '';
-  return `https://stdict.korean.go.kr/search/searchView.do?pageSize=10&searchKeyword=${encodeURIComponent(q)}`;
+  return `https://stdict.korean.go.kr/search/searchResult.do?pageSize=10&searchKeyword=${encodeURIComponent(q)}`;
 }
 
 export const STDICT_SOURCE_LABEL = '國立國語院標準國語大辭典';

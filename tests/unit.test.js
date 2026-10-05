@@ -106,7 +106,7 @@ test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
   assert.equal(getExhibitHangulHeadword('가능 | 可能'), '가능');
   assert.equal(
     getStdictSearchUrl('가게'),
-    'https://stdict.korean.go.kr/search/searchView.do?pageSize=10&searchKeyword=%EA%B0%80%EA%B2%8C'
+    'https://stdict.korean.go.kr/search/searchResult.do?pageSize=10&searchKeyword=%EA%B0%80%EA%B2%8C'
   );
   const refHtml = formatStdictReferenceHtml('가게');
   assert.match(refHtml, />國立國語院標準國語大辭典</);
