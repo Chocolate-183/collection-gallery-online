@@ -38,6 +38,7 @@ export function handleStdictReferenceClick(event) {
   stdictOpenTimer = setTimeout(() => {
     stdictOpenTimer = null;
     link.classList.remove('active');
+    if (typeof link.blur === 'function') link.blur();
     window.open(url, '_blank', 'noopener,noreferrer');
   }, STDICT_OPEN_DELAY_MS);
 }
