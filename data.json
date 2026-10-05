@@ -29417,5 +29417,974 @@
     "etymology": "",
     "pos": "",
     "row_index": 1533
+  },
+  {
+    "id": "#C101-1535",
+    "ja_term": "御年玉",
+    "tw_translation": "壓歲錢、紅包",
+    "reading": "おとしだま",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "御小遣",
+      "年末年始",
+      "子供",
+      "縁起物",
+      "財布"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1534
+  },
+  {
+    "id": "#C101-1536",
+    "ja_term": "御小遣",
+    "tw_translation": "零用錢",
+    "reading": "おこづかい",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "御年玉",
+      "財布",
+      "給料",
+      "散財",
+      "代金"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1535
+  },
+  {
+    "id": "#C101-1537",
+    "ja_term": "従兄弟",
+    "tw_translation": "堂表兄弟、堂表親",
+    "reading": "いとこ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "従兄妹",
+      "両親",
+      "兄貴",
+      "幼馴染",
+      "同級生"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1536
+  },
+  {
+    "id": "#C101-1538",
+    "ja_term": "親孝行",
+    "tw_translation": "孝順、孝敬父母",
+    "reading": "おやこうこう",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "両親",
+      "親",
+      "実家",
+      "帰省",
+      "子供"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1537
+  },
+  {
+    "id": "#C101-1539",
+    "ja_term": "屈託",
+    "tw_translation": "顧慮、煩惱、心事",
+    "reading": "くったく",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "葛藤",
+      "心配",
+      "機嫌",
+      "遠慮",
+      "本音"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1538
+  },
+  {
+    "id": "#C101-1540",
+    "ja_term": "往生際",
+    "tw_translation": "認輸之際、臨終時刻",
+    "reading": "おうじょうぎわ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "瀬戸際",
+      "土壇場",
+      "絶体絶命",
+      "投了",
+      "決着"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1539
+  },
+  {
+    "id": "#C101-1541",
+    "ja_term": "交番",
+    "tw_translation": "派出所、警察局",
+    "reading": "こうばん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "警視庁",
+      "職務質問",
+      "通報",
+      "道案内",
+      "手錠"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1540
+  },
+  {
+    "id": "#C101-1542",
+    "ja_term": "不承",
+    "tw_translation": "不答應、不同意、不情願",
+    "reading": "ふしょう",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "承知",
+      "断固拒否",
+      "不本意",
+      "了承",
+      "異存"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1541
+  },
+  {
+    "id": "#C101-1543",
+    "ja_term": "耳元",
+    "tw_translation": "耳邊、耳際",
+    "reading": "みみもと",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "内緒話",
+      "襟足",
+      "噂",
+      "伝言",
+      "背中"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1542
+  },
+  {
+    "id": "#C101-1544",
+    "ja_term": "口約束",
+    "tw_translation": "口頭約定、口頭承諾",
+    "reading": "くちやくそく",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "約束",
+      "言葉",
+      "建前",
+      "嘘",
+      "証左"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1543
+  },
+  {
+    "id": "#C101-1545",
+    "ja_term": "鳩尾",
+    "tw_translation": "心窩、鳩尾（胸骨劍突下凹陷處）",
+    "reading": "みぞおち",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "急所",
+      "腹筋",
+      "胃袋",
+      "脇",
+      "背中"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1544
+  },
+  {
+    "id": "#C101-1546",
+    "ja_term": "杓子定規",
+    "tw_translation": "墨守成規、死板、不知變通",
+    "reading": "しゃくしじょうぎ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "融通",
+      "規範意識",
+      "定石",
+      "四字熟語",
+      "手順"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1545
+  },
+  {
+    "id": "#C101-1547",
+    "ja_term": "有耶無耶",
+    "tw_translation": "含糊其辭、不了了之、模稜兩可",
+    "reading": "うやむや",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "曖昧",
+      "決着",
+      "隠蔽",
+      "建前",
+      "四字熟語"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1546
+  },
+  {
+    "id": "#C101-1548",
+    "ja_term": "出鱈目",
+    "tw_translation": "胡說八道、胡扯、毫無根據",
+    "reading": "でたらめ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "嘘",
+      "誤情報",
+      "根拠",
+      "絵空事",
+      "暴論"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1547
+  },
+  {
+    "id": "#C101-1549",
+    "ja_term": "用心棒",
+    "tw_translation": "保鏢、保鑣、打手",
+    "reading": "ようじんぼう",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "門番",
+      "極道",
+      "若頭",
+      "子分",
+      "得物"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1548
+  },
+  {
+    "id": "#C101-1550",
+    "ja_term": "蘇生",
+    "tw_translation": "甦醒、起死回生、復甦",
+    "reading": "そせい",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "再生",
+      "再起不能",
+      "気絶",
+      "応急処置",
+      "危篤状態"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1549
+  },
+  {
+    "id": "#C101-1551",
+    "ja_term": "猶予",
+    "tw_translation": "寬限、延期、緩和",
+    "reading": "ゆうよ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "納期",
+      "返済",
+      "借金",
+      "大至急",
+      "瀬戸際"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1550
+  },
+  {
+    "id": "#C101-1552",
+    "ja_term": "手加減",
+    "tw_translation": "手下留情、手下分寸、斟酌力道",
+    "reading": "てかげん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "容赦",
+      "本気",
+      "真剣勝負",
+      "配慮",
+      "油断"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1551
+  },
+  {
+    "id": "#C101-1553",
+    "ja_term": "思念伝達",
+    "tw_translation": "心靈感應、意念傳遞",
+    "reading": "しねんでんたつ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "摩訶不思議",
+      "不思議",
+      "暗号",
+      "伝言",
+      "意気投合"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1552
+  },
+  {
+    "id": "#C101-1554",
+    "ja_term": "通用",
+    "tw_translation": "通用、行得通、吃得開",
+    "reading": "つうよう",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "汎用",
+      "有効化",
+      "定番",
+      "規格外",
+      "腕次第"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1553
+  },
+  {
+    "id": "#C101-1555",
+    "ja_term": "心意気",
+    "tw_translation": "氣概、氣魄、志氣",
+    "reading": "こころいき",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "気合",
+      "根性",
+      "度胸",
+      "本気",
+      "全身全霊"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1554
+  },
+  {
+    "id": "#C101-1556",
+    "ja_term": "悲願",
+    "tw_translation": "夙願、長期以來的宿願",
+    "reading": "ひがん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "優勝",
+      "完遂",
+      "仇討",
+      "復讐",
+      "健闘"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1555
+  },
+  {
+    "id": "#C101-1557",
+    "ja_term": "無駄死",
+    "tw_translation": "白白送死、枉死、徒勞犧牲",
+    "reading": "むだじに",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "無駄",
+      "生贄",
+      "痛恨事",
+      "大惨事",
+      "絶体絶命"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1556
+  },
+  {
+    "id": "#C101-1558",
+    "ja_term": "残弾",
+    "tw_translation": "剩餘彈藥、殘彈",
+    "reading": "ざんだん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "弾丸",
+      "拳銃",
+      "銃器",
+      "二丁拳銃",
+      "機銃掃射"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1557
+  },
+  {
+    "id": "#C101-1559",
+    "ja_term": "弾丸",
+    "tw_translation": "子彈",
+    "reading": "だんがん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "残弾",
+      "拳銃",
+      "銃器",
+      "二丁拳銃",
+      "機銃掃射"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1558
+  },
+  {
+    "id": "#C101-1560",
+    "ja_term": "自販機",
+    "tw_translation": "自動販賣機",
+    "reading": "じはんき",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "電子決済",
+      "珈琲",
+      "代金",
+      "料金",
+      "御菓子"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1559
+  },
+  {
+    "id": "#C101-1561",
+    "ja_term": "大黒天",
+    "tw_translation": "大黑天（日本七福神之一，財神）",
+    "reading": "だいこくてん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "宝船",
+      "神様",
+      "縁起物",
+      "御守",
+      "初詣"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1560
+  },
+  {
+    "id": "#C101-1562",
+    "ja_term": "火傷",
+    "tw_translation": "燙傷、燒傷",
+    "reading": "やけど",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "怪我",
+      "火事",
+      "応急処置",
+      "包帯",
+      "絆創膏"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1561
+  },
+  {
+    "id": "#C101-1563",
+    "ja_term": "目玉",
+    "tw_translation": "眼球 / 主打、焦點、吸睛焦點",
+    "reading": "めだま",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "激安",
+      "格安",
+      "定番",
+      "絶品",
+      "近眼"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1562
+  },
+  {
+    "id": "#C101-1564",
+    "ja_term": "学習塾",
+    "tw_translation": "補習班、課後輔導班",
+    "reading": "がくしゅうじゅく",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "予備校",
+      "受験勉強",
+      "偏差値",
+      "生徒",
+      "宿題"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1563
+  },
+  {
+    "id": "#C101-1565",
+    "ja_term": "道案内",
+    "tw_translation": "帶路、指路、導覽",
+    "reading": "みちあんない",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "案内図",
+      "方向音痴",
+      "交番",
+      "交差点",
+      "行先"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1564
+  },
+  {
+    "id": "#C101-1566",
+    "ja_term": "悪気",
+    "tw_translation": "惡意、壞心眼",
+    "reading": "わるぎ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "悪戯",
+      "確信犯",
+      "悪口",
+      "冗談",
+      "不本意"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1565
+  },
+  {
+    "id": "#C101-1567",
+    "ja_term": "先週",
+    "tw_translation": "上週、上星期",
+    "reading": "せんしゅう",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "土日",
+      "日曜日",
+      "月曜日",
+      "日付",
+      "時系列"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1566
+  },
+  {
+    "id": "#C101-1568",
+    "ja_term": "悪戯",
+    "tw_translation": "惡作劇、淘氣、惡搞",
+    "reading": "いたずら",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "悪気",
+      "冗談半分",
+      "面白半分",
+      "迷惑行為",
+      "子供"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1567
+  },
+  {
+    "id": "#C101-1569",
+    "ja_term": "些細",
+    "tw_translation": "微不足道、瑣碎、細微",
+    "reading": "ささい",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "日常茶飯事",
+      "痴話喧嘩",
+      "口喧嘩",
+      "出来事",
+      "無駄"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1568
+  },
+  {
+    "id": "#C101-1570",
+    "ja_term": "区画整理",
+    "tw_translation": "市地重劃、土地重劃",
+    "reading": "くかくせいり",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "敷地",
+      "建物",
+      "物件",
+      "改修",
+      "交差点"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1569
+  },
+  {
+    "id": "#C101-1571",
+    "ja_term": "出不精",
+    "tw_translation": "宅、不愛出門、足不出戶",
+    "reading": "でぶしょう",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "自宅",
+      "帰宅部",
+      "実家",
+      "面倒",
+      "散策"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1570
+  },
+  {
+    "id": "#C101-1572",
+    "ja_term": "嗚咽",
+    "tw_translation": "哽咽、抽泣",
+    "reading": "おえつ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "可哀想",
+      "痛恨事",
+      "葛藤",
+      "屈託",
+      "大惨事"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1571
+  },
+  {
+    "id": "#C101-1573",
+    "ja_term": "土地勘",
+    "tw_translation": "對當地的熟悉度、地緣熟悉度",
+    "reading": "とちかん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "地元",
+      "方向音痴",
+      "道案内",
+      "近所",
+      "案内図"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1572
+  },
+  {
+    "id": "#C101-1574",
+    "ja_term": "下準備",
+    "tw_translation": "事前準備、預先準備",
+    "reading": "したじゅんび",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "準備万端",
+      "用意",
+      "手順",
+      "点検",
+      "仕上"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1573
+  },
+  {
+    "id": "#C101-1575",
+    "ja_term": "無駄毛",
+    "tw_translation": "體毛、多餘雜毛",
+    "reading": "むだげ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "美意識",
+      "清潔系",
+      "生足",
+      "脇",
+      "容姿"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1574
+  },
+  {
+    "id": "#C101-1576",
+    "ja_term": "朝御飯",
+    "tw_translation": "早餐、早飯",
+    "reading": "あさごはん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "昼飯",
+      "晩御飯",
+      "夕飯",
+      "翌朝",
+      "炊飯器"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1575
+  },
+  {
+    "id": "#C101-1577",
+    "ja_term": "晩御飯",
+    "tw_translation": "晚餐、晚飯",
+    "reading": "ばんごはん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "夕飯",
+      "昼飯",
+      "朝御飯",
+      "晩酌",
+      "焼肉定食"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1576
+  },
+  {
+    "id": "#C101-1578",
+    "ja_term": "襟足",
+    "tw_translation": "後頸髮際、脖子後方的髮際線",
+    "reading": "えりあし",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "耳元",
+      "背中",
+      "美意識",
+      "容姿",
+      "清楚系"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1577
+  },
+  {
+    "id": "#C101-1579",
+    "ja_term": "絆創膏",
+    "tw_translation": "OK繃、創可貼",
+    "reading": "ばんそうこう",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "包帯",
+      "怪我",
+      "応急処置",
+      "救急箱",
+      "火傷"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1578
+  },
+  {
+    "id": "#C101-1580",
+    "ja_term": "包帯",
+    "tw_translation": "繃帶",
+    "reading": "ほうたい",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "絆創膏",
+      "怪我",
+      "応急処置",
+      "救急箱",
+      "火傷"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1579
+  },
+  {
+    "id": "#C101-1581",
+    "ja_term": "中継",
+    "tw_translation": "實況轉播、轉播 / 中繼、中轉",
+    "reading": "ちゅうけい",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "生放送",
+      "生配信",
+      "放送",
+      "番組",
+      "地上波"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1580
+  },
+  {
+    "id": "#C101-1582",
+    "ja_term": "一勝負",
+    "tw_translation": "比一場、較量一局",
+    "reading": "ひとしょうぶ",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "真剣勝負",
+      "試合",
+      "勝負勘",
+      "決着",
+      "麻雀"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1581
+  },
+  {
+    "id": "#C101-1583",
+    "ja_term": "枠",
+    "tw_translation": "框、邊框 / 名額、時段、額度",
+    "reading": "わく",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "歌枠",
+      "枠連",
+      "制限",
+      "指定席",
+      "番組"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1582
+  },
+  {
+    "id": "#C101-1584",
+    "ja_term": "突入作戦",
+    "tw_translation": "突入行動、攻堅作戰",
+    "reading": "とつにゅうさくせん",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "任務遂行",
+      "電撃戦",
+      "実力行使",
+      "先制攻撃",
+      "警視庁"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1583
+  },
+  {
+    "id": "#C101-1585",
+    "ja_term": "万着",
+    "tw_translation": "墊底、最後一名（賽艇/賽馬等比賽用語）",
+    "reading": "まんちゃく",
+    "created_at": "2026-10-05",
+    "recommendations": [
+      "競馬",
+      "馬券",
+      "3連単",
+      "3連複",
+      "最低"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "row_index": 1584
   }
 ]

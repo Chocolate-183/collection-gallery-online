@@ -197,7 +197,7 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
 
   const jpCol = collectionsConfig['japanese-terms'];
   const dataUrls = getCollectionDataUrls(jpCol);
-  assert(dataUrls.csvUrl.includes('gid=978348869'));
+  assert(dataUrls.csvUrl.includes('gid=1923603290'));
   assert.equal(jpCol.defaultMeta.status, '開放中');
 
   const metaUrls = getMetadataUrls();
