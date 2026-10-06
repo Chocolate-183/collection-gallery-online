@@ -614,7 +614,7 @@ a:focus {
   min-width: 60px;
   text-align: center;
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   padding-left: 8px;
   padding-right: 8px;
@@ -622,6 +622,12 @@ a:focus {
 
 #length-tabs .length-tab-num {
   font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+#length-tabs .length-tab-unit {
+  font-size: 12px;
   font-weight: 400;
   line-height: 1;
 }
