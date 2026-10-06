@@ -111,7 +111,7 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   const kindIdx = html.indexOf('id="filter-kind-section"');
   assert.ok(posIdx > 0 && etymologyIdx > posIdx && levelIdx > etymologyIdx && kindIdx > levelIdx);
 
-  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100/);
+  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100[\s\S]*初級[\s\S]*中級[\s\S]*高級/);
   assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
   assert.doesNotMatch(html, /src="js\/app\.js"/);
 });
@@ -396,6 +396,9 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
   const mockGroup = createMockElement({ style: { display: 'none' } });
   const mockCompany = createMockElement({ style: { display: 'none' } });
   const mockQuickBasic100 = createMockElement({ style: { display: 'none' } });
+  const mockQuickBeginner = createMockElement({ style: { display: 'none' } });
+  const mockQuickIntermediate = createMockElement({ style: { display: 'none' } });
+  const mockQuickAdvanced = createMockElement({ style: { display: 'none' } });
   const mockReading = createMockElement({ style: {} });
   const mockGloss = createMockElement({ style: { display: 'none' } });
   const mockSummary = createMockElement();
@@ -415,6 +418,9 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
     'kind-group': mockGroup,
     'kind-company': mockCompany,
     'quick-basic100': mockQuickBasic100,
+    'quick-beginner': mockQuickBeginner,
+    'quick-intermediate': mockQuickIntermediate,
+    'quick-advanced': mockQuickAdvanced,
     'sort-field-reading': mockReading,
     'sort-field-subtitle': mockGloss,
     'filter-summary': mockSummary,
@@ -470,6 +476,9 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
   assert.equal(mockPerson.style.display, '');
   assert.equal(mockGroup.style.display, '');
   assert.equal(mockCompany.style.display, '');
+  assert.equal(mockQuickBeginner.style.display, '');
+  assert.equal(mockQuickIntermediate.style.display, '');
+  assert.equal(mockQuickAdvanced.style.display, '');
   assert.equal(mockKana.style.display, 'none');
 
   openFilterModal();
@@ -502,6 +511,9 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
   assert.equal(mockPerson.style.display, 'none');
   assert.equal(mockGroup.style.display, 'none');
   assert.equal(mockCompany.style.display, 'none');
+  assert.equal(mockQuickBeginner.style.display, 'none');
+  assert.equal(mockQuickIntermediate.style.display, 'none');
+  assert.equal(mockQuickAdvanced.style.display, 'none');
 
   global.window = originalWindow;
   global.location = originalLocation;

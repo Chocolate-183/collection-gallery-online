@@ -1,7 +1,7 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, LEVEL_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, LEVEL_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, QUICK_LEVEL_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
@@ -300,14 +300,20 @@ function activateTabByValue(containerSelector, value) {
 }
 
 export function selectQuickFilter(tab) {
-  const { currentSortField, currentSortOrder, currentCollectionId, categoryTab } = store.get();
+  const { currentSortField, currentSortOrder, currentCollectionId, categoryTab, levelTab } = store.get();
   const col = collectionsConfig[currentCollectionId] || {};
-  const active = getActiveQuickFilter(currentSortField, currentSortOrder, categoryTab);
+  const active = getActiveQuickFilter(currentSortField, currentSortOrder, categoryTab, levelTab);
+  const isLevelQuick = QUICK_LEVEL_FILTERS.includes(tab);
 
   if (active === tab) {
     if (tab === QUICK_FILTERS.BASIC100) {
       store.set({
         categoryTab: CATEGORY_TABS.ALL,
+        invalidTerm: null
+      });
+    } else if (isLevelQuick) {
+      store.set({
+        levelTab: LEVEL_TABS.ALL,
         invalidTerm: null
       });
     } else {
@@ -324,6 +330,16 @@ export function selectQuickFilter(tab) {
   if (tab === QUICK_FILTERS.BASIC100) {
     store.set({
       categoryTab: CATEGORY_TABS.BASIC100,
+      levelTab: LEVEL_TABS.ALL,
+      pageSize: 100,
+      currentSortField: getDefaultSortField(col),
+      currentSortOrder: SORT_ORDERS.ASC,
+      invalidTerm: null
+    });
+  } else if (isLevelQuick) {
+    store.set({
+      levelTab: tab,
+      categoryTab: CATEGORY_TABS.ALL,
       pageSize: 100,
       currentSortField: getDefaultSortField(col),
       currentSortOrder: SORT_ORDERS.ASC,
@@ -333,6 +349,7 @@ export function selectQuickFilter(tab) {
     store.reshuffleRandomSort();
     store.set({
       categoryTab: CATEGORY_TABS.ALL,
+      levelTab: LEVEL_TABS.ALL,
       currentSortField: SORT_FIELDS.RANDOM,
       currentSortOrder: SORT_ORDERS.ASC,
       pageSize: DEFAULT_PAGE_SIZE,
@@ -341,6 +358,7 @@ export function selectQuickFilter(tab) {
   } else if (tab === QUICK_FILTERS.LATEST10) {
     store.set({
       categoryTab: CATEGORY_TABS.ALL,
+      levelTab: LEVEL_TABS.ALL,
       currentSortField: SORT_FIELDS.CREATED_AT,
       currentSortOrder: SORT_ORDERS.DESC,
       pageSize: DEFAULT_PAGE_SIZE,
@@ -437,8 +455,9 @@ function getDefaultSortField(col) {
   return SORT_FIELDS.TITLE;
 }
 
-function getActiveQuickFilter(sortField, sortOrder, categoryTab) {
+function getActiveQuickFilter(sortField, sortOrder, categoryTab, levelTab) {
   if (categoryTab === CATEGORY_TABS.BASIC100) return QUICK_FILTERS.BASIC100;
+  if (QUICK_LEVEL_FILTERS.includes(levelTab)) return levelTab;
   if (sortField === SORT_FIELDS.RANDOM) return QUICK_FILTERS.RANDOM10;
   if (sortField === SORT_FIELDS.CREATED_AT && sortOrder === SORT_ORDERS.DESC) return QUICK_FILTERS.LATEST10;
   return QUICK_FILTERS.ALL;
@@ -531,7 +550,7 @@ export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
   const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder, pageSize } = store.get();
-  activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder, categoryTab));
+  activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder, categoryTab, levelTab));
   activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
   activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
   activateTabByValue('#kana-initial-tabs', currentInitialTab || KANA_TABS.ALL);

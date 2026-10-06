@@ -323,7 +323,7 @@ test('Profile parsers and hall status helpers', () => {
   assert.equal(isCollectionHidden({ status: '開放中' }), false);
 });
 
-test('Catalog quick filters map Latest / Random / 基礎100', async () => {
+test('Catalog quick filters map Latest / Random / 基礎100 / Level', async () => {
   const makePill = (tab) => {
     const classes = new Set();
     return {
@@ -343,7 +343,10 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
   const pills = {
     LATEST10: makePill('LATEST10'),
     RANDOM10: makePill('RANDOM10'),
-    BASIC100: makePill('BASIC100')
+    BASIC100: makePill('BASIC100'),
+    [QUICK_FILTERS.BEGINNER]: makePill(QUICK_FILTERS.BEGINNER),
+    [QUICK_FILTERS.INTERMEDIATE]: makePill(QUICK_FILTERS.INTERMEDIATE),
+    [QUICK_FILTERS.ADVANCED]: makePill(QUICK_FILTERS.ADVANCED)
   };
   const activeQuickTabs = () => Object.entries(pills)
     .filter(([, el]) => el.classList.contains('active'))
@@ -362,6 +365,7 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
     currentInitialTab: KANA_TABS.ALL,
     loanwordOnly: false,
     categoryTab: CATEGORY_TABS.ALL,
+    levelTab: LEVEL_TABS.ALL,
     currentSortField: SORT_FIELDS.STANDARD,
     currentSortOrder: SORT_ORDERS.ASC,
     currentCollectionId: 'japanese-terms',
@@ -392,4 +396,40 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
   assert.equal(store.get().currentSortField, SORT_FIELDS.CREATED_AT);
   assert.equal(store.get().pageSize, 10);
   assert.deepEqual(activeQuickTabs(), ['LATEST10']);
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    currentSortField: SORT_FIELDS.TITLE,
+    currentSortOrder: SORT_ORDERS.ASC,
+    categoryTab: CATEGORY_TABS.ALL,
+    levelTab: LEVEL_TABS.ALL,
+    pageSize: 10
+  });
+  selectQuickFilter(QUICK_FILTERS.BEGINNER);
+  assert.equal(store.get().levelTab, LEVEL_TABS.BEGINNER);
+  assert.equal(store.get().categoryTab, CATEGORY_TABS.ALL);
+  assert.equal(store.get().pageSize, 100);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.TITLE);
+  assert.deepEqual(activeQuickTabs(), [QUICK_FILTERS.BEGINNER]);
+
+  selectQuickFilter(QUICK_FILTERS.INTERMEDIATE);
+  assert.equal(store.get().levelTab, LEVEL_TABS.INTERMEDIATE);
+  assert.deepEqual(activeQuickTabs(), [QUICK_FILTERS.INTERMEDIATE]);
+
+  selectQuickFilter(QUICK_FILTERS.ADVANCED);
+  assert.equal(store.get().levelTab, LEVEL_TABS.ADVANCED);
+  assert.deepEqual(activeQuickTabs(), [QUICK_FILTERS.ADVANCED]);
+
+  selectQuickFilter(QUICK_FILTERS.BASIC100);
+  assert.equal(store.get().categoryTab, CATEGORY_TABS.BASIC100);
+  assert.equal(store.get().levelTab, LEVEL_TABS.ALL);
+  assert.deepEqual(activeQuickTabs(), ['BASIC100']);
+
+  selectQuickFilter(QUICK_FILTERS.BEGINNER);
+  assert.equal(store.get().levelTab, LEVEL_TABS.BEGINNER);
+  assert.equal(store.get().categoryTab, CATEGORY_TABS.ALL);
+  selectQuickFilter(QUICK_FILTERS.BEGINNER);
+  assert.equal(store.get().levelTab, LEVEL_TABS.ALL);
+  assert.equal(store.get().pageSize, 100);
+  assert.deepEqual(activeQuickTabs(), []);
 });
