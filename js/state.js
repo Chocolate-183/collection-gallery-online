@@ -29,6 +29,7 @@ class Store {
       loanwordOnly: false,
       etymologyTab: 'ALL',
       posTab: 'ALL',
+      levelTab: 'ALL',
       categoryTab: 'ALL',
       currentSortField: SORT_FIELDS.STANDARD,
       currentSortOrder: SORT_ORDERS.ASC,

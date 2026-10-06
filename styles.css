@@ -616,8 +616,21 @@ a:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 1px;
   padding-left: 8px;
   padding-right: 8px;
+}
+
+#length-tabs .length-tab-num {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+#length-tabs .length-tab-unit {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
 }
 
 .hangul-only {
@@ -799,6 +812,35 @@ a:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+#pos-tabs:not(.pos-expanded) .pos-tab-more {
+  display: none;
+}
+
+#pos-tabs.pos-expanded #pos-show-more {
+  display: none;
+}
+
+#pos-show-more {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 400;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--awsui-color-text-body-secondary, #687078);
+  cursor: pointer;
+  border-radius: var(--awsui-border-radius-control, 8px);
+}
+
+#pos-show-more:hover {
+  color: #ECC94B;
+}
+
+#pos-show-more:active {
+  background: #ECC94B !important;
+  color: #ffffff !important;
+  border-color: #ECC94B !important;
 }
 
 .awsui-filter-modal-actions {
@@ -1565,6 +1607,10 @@ a:focus {
   min-width: 0;
 }
 
+.modal-etymology-pos-row {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .profile-modal-social-row > .awsui-modal-section,
 .modal-etymology-pos-row > .awsui-modal-section {
   margin-top: 0;
@@ -2270,7 +2316,8 @@ a:focus {
 [data-theme="dark"] #btn-open-filter-modal:active,
 [data-theme="dark"] #btn-refresh-data.active,
 [data-theme="dark"] #btn-refresh-data:active,
-[data-theme="dark"] .awsui-filter-modal-actions .awsui-btn:active {
+[data-theme="dark"] .awsui-filter-modal-actions .awsui-btn:active,
+[data-theme="dark"] #pos-show-more:active {
   background-color: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;
@@ -2385,6 +2432,14 @@ a:focus {
   background-color: #303748;
   color: #ffffff;
   border-color: #ECC94B;
+}
+
+[data-theme="dark"] #pos-show-more {
+  color: var(--awsui-color-text-body-secondary);
+}
+
+[data-theme="dark"] #pos-show-more:hover {
+  color: #ECC94B;
 }
 
 [data-theme="dark"] .awsui-page-btn {
@@ -2549,9 +2604,9 @@ a:focus {
   #filter-modal .awsui-filter-modal {
     margin-right: calc(50vw - 68px);
     width: min(560px, calc(50vw - 32px));
-    height: min(620px, 85vh);
-    min-height: min(620px, 85vh);
-    max-height: min(620px, 85vh);
+    height: min(660px, 85vh);
+    min-height: min(660px, 85vh);
+    max-height: min(660px, 85vh);
     aspect-ratio: unset;
     flex: 0 0 auto;
   }
@@ -2869,7 +2924,9 @@ a:focus {
   #modal-reading-row,
   #modal-etymology,
   #modal-pos,
+  #modal-level,
   #modal-reference,
+  #modal-reference > a,
   #collection-modal-entitle,
   #collection-modal-curator,
   #profile-modal-en,

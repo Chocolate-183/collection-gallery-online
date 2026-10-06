@@ -50,11 +50,11 @@ export const ETYMOLOGY_TABS = {
   ALL: 'ALL',
   HANJA: '漢字語',
   LOANWORD: '外來語',
-  NATIVE: '固有詞',
-  HYBRID: '混種詞'
+  NATIVE: '固有語',
+  HYBRID: '混種語'
 };
 
-/** C103 詞性 (sheet J). */
+/** C103 詞性 (sheet I). */
 export const POS_TABS = {
   ALL: 'ALL',
   NOUN: '名詞',
@@ -67,6 +67,33 @@ export const POS_TABS = {
   COUNTER: '量詞',
   NUMERAL: '數詞',
   BOUND_NOUN: '依存名詞'
+};
+
+/** Filter POS pills shown before more. */
+export const POS_PRIMARY_TABS = [
+  POS_TABS.ALL,
+  POS_TABS.NOUN,
+  POS_TABS.VERB,
+  POS_TABS.ADJECTIVE,
+  POS_TABS.ADVERB
+];
+
+/** Filter POS pills revealed by more. */
+export const POS_EXTRA_TABS = [
+  POS_TABS.INTERJECTION,
+  POS_TABS.DETERMINER,
+  POS_TABS.PRONOUN,
+  POS_TABS.COUNTER,
+  POS_TABS.NUMERAL,
+  POS_TABS.BOUND_NOUN
+];
+
+/** C103 Level (sheet J). */
+export const LEVEL_TABS = {
+  ALL: 'ALL',
+  BEGINNER: '初級',
+  INTERMEDIATE: '中級',
+  ADVANCED: '高級'
 };
 
 export const BASIC100_TAG = '基礎100';
@@ -89,8 +116,17 @@ export const QUICK_FILTERS = {
   ALL: 'ALL',
   LATEST10: 'LATEST10',
   RANDOM10: 'RANDOM10',
-  BASIC100: 'BASIC100'
+  BASIC100: 'BASIC100',
+  BEGINNER: '初級',
+  INTERMEDIATE: '中級',
+  ADVANCED: '高級'
 };
+
+export const QUICK_LEVEL_FILTERS = [
+  QUICK_FILTERS.BEGINNER,
+  QUICK_FILTERS.INTERMEDIATE,
+  QUICK_FILTERS.ADVANCED
+];
 
 export const LENGTH_TABS = {
   ALL: 'ALL',

@@ -109,6 +109,7 @@ export function switchCollection(collectionId, updateHash = true) {
       loanwordOnly: false,
       etymologyTab: 'ALL',
       posTab: 'ALL',
+      levelTab: 'ALL',
       categoryTab: 'ALL',
       currentSortField: col.hasHangulTabs
         ? SORT_FIELDS.TITLE
@@ -116,6 +117,10 @@ export function switchCollection(collectionId, updateHash = true) {
       currentSortOrder: SORT_ORDERS.ASC
     } : {})
   });
+
+  if (isDifferent) {
+    document.getElementById('pos-tabs')?.classList.remove('pos-expanded');
+  }
 
   const cardGrid = document.getElementById('card-grid');
   if (cardGrid) cardGrid.setAttribute('data-collection', collectionId);
@@ -145,11 +150,15 @@ export function switchCollection(collectionId, updateHash = true) {
   const kindSection = document.getElementById('filter-kind-section');
   const etymologySection = document.getElementById('filter-etymology-section');
   const posSection = document.getElementById('filter-pos-section');
+  const levelSection = document.getElementById('filter-level-section');
   const basic100Kind = document.getElementById('kind-basic100');
   const personKind = document.getElementById('kind-person');
   const groupKind = document.getElementById('kind-group');
   const companyKind = document.getElementById('kind-company');
   const quickBasic100 = document.getElementById('quick-basic100');
+  const quickBeginner = document.getElementById('quick-beginner');
+  const quickIntermediate = document.getElementById('quick-intermediate');
+  const quickAdvanced = document.getElementById('quick-advanced');
   const readingSortTab = document.getElementById('sort-field-reading');
   const glossSortTab = document.getElementById('sort-field-subtitle');
   if (hangulSection) hangulSection.style.display = col.hasHangulTabs ? '' : 'none';
@@ -157,12 +166,17 @@ export function switchCollection(collectionId, updateHash = true) {
   if (kindSection) kindSection.style.display = (col.hasBasic100Filter || col.hasNameCategoryFilter) ? '' : 'none';
   if (etymologySection) etymologySection.style.display = col.hasEtymologyPosFilter ? '' : 'none';
   if (posSection) posSection.style.display = col.hasEtymologyPosFilter ? '' : 'none';
+  if (levelSection) levelSection.style.display = col.hasLevelFilter ? '' : 'none';
   if (basic100Kind) basic100Kind.style.display = col.hasBasic100Filter ? '' : 'none';
   const showNameKinds = Boolean(col.hasNameCategoryFilter);
   if (personKind) personKind.style.display = showNameKinds ? '' : 'none';
   if (groupKind) groupKind.style.display = showNameKinds ? '' : 'none';
   if (companyKind) companyKind.style.display = showNameKinds ? '' : 'none';
   if (quickBasic100) quickBasic100.style.display = col.hasBasic100Filter ? '' : 'none';
+  const showQuickLevels = Boolean(col.hasLevelFilter);
+  if (quickBeginner) quickBeginner.style.display = showQuickLevels ? '' : 'none';
+  if (quickIntermediate) quickIntermediate.style.display = showQuickLevels ? '' : 'none';
+  if (quickAdvanced) quickAdvanced.style.display = showQuickLevels ? '' : 'none';
   if (readingSortTab) readingSortTab.style.display = (col.hasKanaTabs ?? col.hasReading) && !col.hasHangulTabs ? '' : 'none';
   if (glossSortTab) glossSortTab.style.display = col.hasHangulTabs ? '' : 'none';
   const titleSortTab = document.querySelector('#sort-field-tabs [data-tab="title"]');

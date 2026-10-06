@@ -22,6 +22,7 @@ import {
   filterByLoanword,
   filterByEtymology,
   filterByPos,
+  filterByLevel,
   filterByBasic100,
   filterByCategory,
   sortRecords,
@@ -35,6 +36,9 @@ import {
   SORT_ORDERS,
   ETYMOLOGY_TABS,
   POS_TABS,
+  POS_PRIMARY_TABS,
+  POS_EXTRA_TABS,
+  LEVEL_TABS,
   CATEGORY_TABS
 } from '../js/constants.js';
 import {
@@ -181,11 +185,14 @@ test('Filter engine chains query, length, Hangul, etymology, and POS', () => {
   const etymologyRecords = [
     { id: 'hanja', etymology: '漢字語', pos: '名詞' },
     { id: 'loan', etymology: '外來語', pos: '名詞' },
-    { id: 'native', etymology: '固有詞', pos: '動詞' },
-    { id: 'hybrid', etymology: '混種詞', pos: '名詞' }
+    { id: 'native', etymology: '固有語', pos: '動詞' },
+    { id: 'hybrid', etymology: '混種語', pos: '名詞' }
   ];
   assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HYBRID).map(r => r.id), ['hybrid']);
   assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
+  assert.deepEqual(filterByLevel([{ id: 'a', level: '初級' }, { id: 'b', level: '中級' }], LEVEL_TABS.BEGINNER).map(r => r.id), ['a']);
+  assert.deepEqual(POS_PRIMARY_TABS, [POS_TABS.ALL, POS_TABS.NOUN, POS_TABS.VERB, POS_TABS.ADJECTIVE, POS_TABS.ADVERB]);
+  assert.ok(POS_EXTRA_TABS.includes(POS_TABS.BOUND_NOUN));
 
   const byIdDesc = sortRecords(records, null, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.DESC });
   assert.deepEqual(byIdDesc.map(r => r.id), ['#C103-0003', '#C103-0002', '#C103-0001']);
@@ -208,23 +215,26 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   const krCol = collectionsConfig['korean-terms'];
   const krUrls = getCollectionDataUrls(krCol);
   assert.equal(krCol.defaultMeta.id, 'C103');
-  assert.equal(krCol.gid, '284986562');
-  assert(krUrls.csvUrl.includes('gid=284986562'));
+  assert.equal(krCol.gid, '585106275');
+  assert(krUrls.csvUrl.includes('gid=585106275'));
   assert.equal(krCol.hasHangulTabs, true);
   assert.equal(krCol.hasEtymologyPosFilter, true);
+  assert.equal(krCol.hasLevelFilter, true);
   assert.equal(krCol.hasNameCategoryFilter, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
 });
 
 test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
-  const krCsv = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目,詞源,詞性,標籤
-#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,,漢字語,名詞,基礎100
-#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,,漢字語,名詞,`;
+  const krCsv = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目,詞源,詞性,Level,標籤
+#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,,漢字語,名詞,初級,基礎100
+#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,,漢字語,名詞,中級,`;
   const kr = parseCSVData(krCsv, 'korean-terms');
   assert.equal(kr[0].ja_term, '가능 | 可能');
   assert.equal(kr[0].tw_translation, '可能');
   assert.equal(kr[0].etymology, '漢字語');
   assert.equal(kr[0].pos, '名詞');
+  assert.equal(kr[0].level, '初級');
+  assert.equal(kr[1].level, '中級');
   assert.deepEqual(kr[0].tags, ['基礎100']);
   assert.deepEqual(filterByBasic100(kr, true).map(r => r.id), ['#C103-0002']);
   const named = [
@@ -251,7 +261,7 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
       cols: [
         { label: 'ID' }, { label: '顯示' }, { label: '諺文' }, { label: '副標' },
         { label: '發音' }, { label: '意思' }, { label: '新增日期' }, { label: '推薦條目' },
-        { label: '詞源' }, { label: '詞性' }
+        { label: '詞源' }, { label: '詞性' }, { label: 'Level' }, { label: '標籤' }
       ],
       rows: [{
         c: [
@@ -264,7 +274,9 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
           { v: 'Date(2026,8,15)', f: '2026-09-15' },
           { v: '' },
           { v: '漢字語' },
-          { v: '名詞' }
+          { v: '名詞' },
+          { v: '初級' },
+          { v: '基礎100' }
         ]
       }, {
         c: [
@@ -277,7 +289,9 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
           { v: 'Date(2026,8,15)' },
           { v: '' },
           { v: '漢字語' },
-          { v: '名詞' }
+          { v: '名詞' },
+          { v: '中級' },
+          { v: '' }
         ]
       }]
     }
@@ -285,7 +299,9 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
   const parsed = parseGvizResponse(sampleGviz, 'korean-terms');
   assert.equal(parsed[0].id, '#C103-0002');
   assert.equal(parsed[0].created_at, '2026-09-15');
+  assert.equal(parsed[0].level, '初級');
   assert.equal(parsed[1].id, '#C103-1047');
+  assert.equal(parsed[1].level, '中級');
 });
 
 test('Profile parsers and hall status helpers', () => {
@@ -307,7 +323,7 @@ test('Profile parsers and hall status helpers', () => {
   assert.equal(isCollectionHidden({ status: '開放中' }), false);
 });
 
-test('Catalog quick filters map Latest / Random / 基礎100', async () => {
+test('Catalog quick filters map Latest / Random / 基礎100 / Level', async () => {
   const makePill = (tab) => {
     const classes = new Set();
     return {
@@ -327,7 +343,10 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
   const pills = {
     LATEST10: makePill('LATEST10'),
     RANDOM10: makePill('RANDOM10'),
-    BASIC100: makePill('BASIC100')
+    BASIC100: makePill('BASIC100'),
+    [QUICK_FILTERS.BEGINNER]: makePill(QUICK_FILTERS.BEGINNER),
+    [QUICK_FILTERS.INTERMEDIATE]: makePill(QUICK_FILTERS.INTERMEDIATE),
+    [QUICK_FILTERS.ADVANCED]: makePill(QUICK_FILTERS.ADVANCED)
   };
   const activeQuickTabs = () => Object.entries(pills)
     .filter(([, el]) => el.classList.contains('active'))
@@ -346,6 +365,7 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
     currentInitialTab: KANA_TABS.ALL,
     loanwordOnly: false,
     categoryTab: CATEGORY_TABS.ALL,
+    levelTab: LEVEL_TABS.ALL,
     currentSortField: SORT_FIELDS.STANDARD,
     currentSortOrder: SORT_ORDERS.ASC,
     currentCollectionId: 'japanese-terms',
@@ -376,4 +396,40 @@ test('Catalog quick filters map Latest / Random / 基礎100', async () => {
   assert.equal(store.get().currentSortField, SORT_FIELDS.CREATED_AT);
   assert.equal(store.get().pageSize, 10);
   assert.deepEqual(activeQuickTabs(), ['LATEST10']);
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    currentSortField: SORT_FIELDS.TITLE,
+    currentSortOrder: SORT_ORDERS.ASC,
+    categoryTab: CATEGORY_TABS.ALL,
+    levelTab: LEVEL_TABS.ALL,
+    pageSize: 10
+  });
+  selectQuickFilter(QUICK_FILTERS.BEGINNER);
+  assert.equal(store.get().levelTab, LEVEL_TABS.BEGINNER);
+  assert.equal(store.get().categoryTab, CATEGORY_TABS.ALL);
+  assert.equal(store.get().pageSize, 100);
+  assert.equal(store.get().currentSortField, SORT_FIELDS.TITLE);
+  assert.deepEqual(activeQuickTabs(), [QUICK_FILTERS.BEGINNER]);
+
+  selectQuickFilter(QUICK_FILTERS.INTERMEDIATE);
+  assert.equal(store.get().levelTab, LEVEL_TABS.INTERMEDIATE);
+  assert.deepEqual(activeQuickTabs(), [QUICK_FILTERS.INTERMEDIATE]);
+
+  selectQuickFilter(QUICK_FILTERS.ADVANCED);
+  assert.equal(store.get().levelTab, LEVEL_TABS.ADVANCED);
+  assert.deepEqual(activeQuickTabs(), [QUICK_FILTERS.ADVANCED]);
+
+  selectQuickFilter(QUICK_FILTERS.BASIC100);
+  assert.equal(store.get().categoryTab, CATEGORY_TABS.BASIC100);
+  assert.equal(store.get().levelTab, LEVEL_TABS.ALL);
+  assert.deepEqual(activeQuickTabs(), ['BASIC100']);
+
+  selectQuickFilter(QUICK_FILTERS.BEGINNER);
+  assert.equal(store.get().levelTab, LEVEL_TABS.BEGINNER);
+  assert.equal(store.get().categoryTab, CATEGORY_TABS.ALL);
+  selectQuickFilter(QUICK_FILTERS.BEGINNER);
+  assert.equal(store.get().levelTab, LEVEL_TABS.ALL);
+  assert.equal(store.get().pageSize, 100);
+  assert.deepEqual(activeQuickTabs(), []);
 });
