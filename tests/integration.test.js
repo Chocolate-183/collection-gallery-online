@@ -71,6 +71,10 @@ test('Offline dumps cover C101 C102 C103 and profiles', () => {
   for (const etym of ['漢字語', '外來語', '固有語', '混種語']) {
     assert.ok(etymologyValues.includes(etym), `C103 dump missing etymology ${etym}`);
   }
+  const levelValues = [...new Set(koreanJson.map(r => String(r.level || '').trim()).filter(Boolean))];
+  for (const level of ['初級', '中級', '高級', '無等級']) {
+    assert.ok(levelValues.includes(level), `C103 dump missing Level ${level}`);
+  }
 
   const profilesJson = JSON.parse(readFileSync(resolve('profiles.json'), 'utf-8'));
   const chocolate = profilesJson.find(p => p.zhName === '巧克力');
@@ -91,6 +95,10 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   for (const etym of ['漢字語', '外來語', '固有語', '混種語']) {
     assert.match(etymologySection, new RegExp(`data-tab="${etym}"`));
   }
+  const levelSection = html.match(/id="level-tabs"[\s\S]*?<\/div>/)[0];
+  for (const level of ['初級', '中級', '高級', '無等級']) {
+    assert.match(levelSection, new RegExp(`data-tab="${level}"`));
+  }
   const kindTabs = html.match(/id="kind-tabs"[\s\S]*?<\/div>/)[0];
   for (const kind of ['BASIC100', '人名', '團體名', '公司名']) {
     assert.match(kindTabs, new RegExp(`data-tab="${kind}"`));
@@ -98,8 +106,9 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   assert.doesNotMatch(html, /id="modal-category-section"/);
   const posIdx = html.indexOf('id="filter-pos-section"');
   const etymologyIdx = html.indexOf('id="filter-etymology-section"');
+  const levelIdx = html.indexOf('id="filter-level-section"');
   const kindIdx = html.indexOf('id="filter-kind-section"');
-  assert.ok(posIdx > 0 && etymologyIdx > posIdx && kindIdx > etymologyIdx);
+  assert.ok(posIdx > 0 && etymologyIdx > posIdx && levelIdx > etymologyIdx && kindIdx > levelIdx);
 
   assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100/);
   assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
@@ -380,6 +389,7 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
   const mockKind = createMockElement({ style: { display: 'none' } });
   const mockEtymology = createMockElement({ style: { display: 'none' } });
   const mockPos = createMockElement({ style: { display: 'none' } });
+  const mockLevel = createMockElement({ style: { display: 'none' } });
   const mockBasic100 = createMockElement({ style: { display: 'none' } });
   const mockPerson = createMockElement({ style: { display: 'none' } });
   const mockGroup = createMockElement({ style: { display: 'none' } });
@@ -398,6 +408,7 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
     'filter-kind-section': mockKind,
     'filter-etymology-section': mockEtymology,
     'filter-pos-section': mockPos,
+    'filter-level-section': mockLevel,
     'kind-basic100': mockBasic100,
     'kind-person': mockPerson,
     'kind-group': mockGroup,
@@ -454,6 +465,7 @@ test('Filter modal shows hall-specific sections and resets Display', async () =>
   assert.equal(mockHangul.style.display, '');
   assert.equal(mockEtymology.style.display, '');
   assert.equal(mockPos.style.display, '');
+  assert.equal(mockLevel.style.display, '');
   assert.equal(mockPerson.style.display, '');
   assert.equal(mockGroup.style.display, '');
   assert.equal(mockCompany.style.display, '');
@@ -505,6 +517,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   const mockEtym = createMockElement();
   const mockPosSection = createMockElement({ style: { display: 'none' } });
   const mockPos = createMockElement();
+  const mockLevelSection = createMockElement({ style: { display: 'none' } });
+  const mockLevel = createMockElement();
   const mockReferenceSection = createMockElement({ style: { display: 'none' } });
   const mockReference = createMockElement();
   const card1 = createMockElement({ 'data-row-index': '1' });
@@ -520,6 +534,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     'modal-etymology': mockEtym,
     'modal-pos-section': mockPosSection,
     'modal-pos': mockPos,
+    'modal-level-section': mockLevelSection,
+    'modal-level': mockLevel,
     'modal-reference-section': mockReferenceSection,
     'modal-reference': mockReference
   });
@@ -539,6 +555,7 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockReadingRow.innerText, 'しんけいすいじゃく');
   assert.equal(mockReadingSection.style.display, 'block');
   assert.equal(mockReferenceSection.style.display, 'none');
+  assert.equal(mockLevelSection.style.display, 'none');
 
   store.set({
     currentCollectionId: 'korean-terms',
@@ -549,6 +566,7 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
       tw_translation: '可能',
       etymology: '漢字語',
       pos: '名詞',
+      level: '初級',
       tags: ['人名']
     }]
   });
@@ -556,7 +574,9 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockReadingSection.style.display, 'none');
   assert.equal(mockEtym.innerText, '漢字語');
   assert.equal(mockPos.innerText, '名詞');
+  assert.equal(mockLevel.innerText, '初級');
   assert.equal(mockEtymPosRow.style.display, '');
+  assert.equal(mockLevelSection.style.display, '');
   assert.equal(mockReferenceSection.style.display, 'none');
   assert.equal(mockReference.innerHTML, '');
 

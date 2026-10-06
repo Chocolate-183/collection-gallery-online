@@ -14,6 +14,7 @@ export default {
   hasHangulTabs: true,
   hasBasic100Filter: true,
   hasEtymologyPosFilter: true,
+  hasLevelFilter: true,
   hasNameCategoryFilter: true,
   hiddenColumnIndexes: [2, 3],
   searchPlaceholder: '尋找展品...',

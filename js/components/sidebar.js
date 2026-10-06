@@ -109,6 +109,7 @@ export function switchCollection(collectionId, updateHash = true) {
       loanwordOnly: false,
       etymologyTab: 'ALL',
       posTab: 'ALL',
+      levelTab: 'ALL',
       categoryTab: 'ALL',
       currentSortField: col.hasHangulTabs
         ? SORT_FIELDS.TITLE
@@ -149,6 +150,7 @@ export function switchCollection(collectionId, updateHash = true) {
   const kindSection = document.getElementById('filter-kind-section');
   const etymologySection = document.getElementById('filter-etymology-section');
   const posSection = document.getElementById('filter-pos-section');
+  const levelSection = document.getElementById('filter-level-section');
   const basic100Kind = document.getElementById('kind-basic100');
   const personKind = document.getElementById('kind-person');
   const groupKind = document.getElementById('kind-group');
@@ -161,6 +163,7 @@ export function switchCollection(collectionId, updateHash = true) {
   if (kindSection) kindSection.style.display = (col.hasBasic100Filter || col.hasNameCategoryFilter) ? '' : 'none';
   if (etymologySection) etymologySection.style.display = col.hasEtymologyPosFilter ? '' : 'none';
   if (posSection) posSection.style.display = col.hasEtymologyPosFilter ? '' : 'none';
+  if (levelSection) levelSection.style.display = col.hasLevelFilter ? '' : 'none';
   if (basic100Kind) basic100Kind.style.display = col.hasBasic100Filter ? '' : 'none';
   const showNameKinds = Boolean(col.hasNameCategoryFilter);
   if (personKind) personKind.style.display = showNameKinds ? '' : 'none';

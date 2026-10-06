@@ -297,6 +297,13 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   if (posSection) posSection.style.display = (showEtymPos && pos) ? '' : 'none';
   if (etymPosRow) etymPosRow.style.display = (showEtymPos && (etymology || pos)) ? '' : 'none';
 
+  const levelSection = document.getElementById('modal-level-section');
+  const levelElem = document.getElementById('modal-level');
+  const showLevel = Boolean(collectionsConfig[currentCollectionId]?.hasLevelFilter);
+  const level = rec.level ? String(rec.level).trim() : '';
+  if (levelElem) levelElem.innerText = level || '--';
+  if (levelSection) levelSection.style.display = (showLevel && level) ? '' : 'none';
+
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));
     meaningElem.innerText = rec.tw_translation || '（無說明內容）';

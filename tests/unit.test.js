@@ -22,6 +22,7 @@ import {
   filterByLoanword,
   filterByEtymology,
   filterByPos,
+  filterByLevel,
   filterByBasic100,
   filterByCategory,
   sortRecords,
@@ -37,6 +38,7 @@ import {
   POS_TABS,
   POS_PRIMARY_TABS,
   POS_EXTRA_TABS,
+  LEVEL_TABS,
   CATEGORY_TABS
 } from '../js/constants.js';
 import {
@@ -188,6 +190,7 @@ test('Filter engine chains query, length, Hangul, etymology, and POS', () => {
   ];
   assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HYBRID).map(r => r.id), ['hybrid']);
   assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
+  assert.deepEqual(filterByLevel([{ id: 'a', level: '初級' }, { id: 'b', level: '中級' }], LEVEL_TABS.BEGINNER).map(r => r.id), ['a']);
   assert.deepEqual(POS_PRIMARY_TABS, [POS_TABS.ALL, POS_TABS.NOUN, POS_TABS.VERB, POS_TABS.ADJECTIVE, POS_TABS.ADVERB]);
   assert.ok(POS_EXTRA_TABS.includes(POS_TABS.BOUND_NOUN));
 
@@ -216,19 +219,22 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   assert(krUrls.csvUrl.includes('gid=585106275'));
   assert.equal(krCol.hasHangulTabs, true);
   assert.equal(krCol.hasEtymologyPosFilter, true);
+  assert.equal(krCol.hasLevelFilter, true);
   assert.equal(krCol.hasNameCategoryFilter, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
 });
 
 test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
-  const krCsv = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目,詞源,詞性,標籤
-#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,,漢字語,名詞,基礎100
-#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,,漢字語,名詞,`;
+  const krCsv = `ID,顯示,諺文,副標,發音,意思,新增日期,推薦條目,詞源,詞性,Level,標籤
+#C103-0002,가능 | 可能,가능,可能,가능,可能,2026-09-15,,漢字語,名詞,初級,基礎100
+#C103-0005,실수 | 失手,실수,失手,실수,失誤,2026-09-15,,漢字語,名詞,中級,`;
   const kr = parseCSVData(krCsv, 'korean-terms');
   assert.equal(kr[0].ja_term, '가능 | 可能');
   assert.equal(kr[0].tw_translation, '可能');
   assert.equal(kr[0].etymology, '漢字語');
   assert.equal(kr[0].pos, '名詞');
+  assert.equal(kr[0].level, '初級');
+  assert.equal(kr[1].level, '中級');
   assert.deepEqual(kr[0].tags, ['基礎100']);
   assert.deepEqual(filterByBasic100(kr, true).map(r => r.id), ['#C103-0002']);
   const named = [
@@ -255,7 +261,7 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
       cols: [
         { label: 'ID' }, { label: '顯示' }, { label: '諺文' }, { label: '副標' },
         { label: '發音' }, { label: '意思' }, { label: '新增日期' }, { label: '推薦條目' },
-        { label: '詞源' }, { label: '詞性' }
+        { label: '詞源' }, { label: '詞性' }, { label: 'Level' }, { label: '標籤' }
       ],
       rows: [{
         c: [
@@ -268,7 +274,9 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
           { v: 'Date(2026,8,15)', f: '2026-09-15' },
           { v: '' },
           { v: '漢字語' },
-          { v: '名詞' }
+          { v: '名詞' },
+          { v: '初級' },
+          { v: '基礎100' }
         ]
       }, {
         c: [
@@ -281,7 +289,9 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
           { v: 'Date(2026,8,15)' },
           { v: '' },
           { v: '漢字語' },
-          { v: '名詞' }
+          { v: '名詞' },
+          { v: '中級' },
+          { v: '' }
         ]
       }]
     }
@@ -289,7 +299,9 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
   const parsed = parseGvizResponse(sampleGviz, 'korean-terms');
   assert.equal(parsed[0].id, '#C103-0002');
   assert.equal(parsed[0].created_at, '2026-09-15');
+  assert.equal(parsed[0].level, '初級');
   assert.equal(parsed[1].id, '#C103-1047');
+  assert.equal(parsed[1].level, '中級');
 });
 
 test('Profile parsers and hall status helpers', () => {

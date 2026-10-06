@@ -54,7 +54,7 @@ export const ETYMOLOGY_TABS = {
   HYBRID: '混種語'
 };
 
-/** C103 詞性 (sheet J). */
+/** C103 詞性 (sheet I). */
 export const POS_TABS = {
   ALL: 'ALL',
   NOUN: '名詞',
@@ -87,6 +87,15 @@ export const POS_EXTRA_TABS = [
   POS_TABS.NUMERAL,
   POS_TABS.BOUND_NOUN
 ];
+
+/** C103 Level (sheet J). */
+export const LEVEL_TABS = {
+  ALL: 'ALL',
+  BEGINNER: '初級',
+  INTERMEDIATE: '中級',
+  ADVANCED: '高級',
+  NONE: '無等級'
+};
 
 export const BASIC100_TAG = '基礎100';
 

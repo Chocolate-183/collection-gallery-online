@@ -1,7 +1,7 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, LEVEL_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
@@ -113,6 +113,11 @@ export function filterByEtymology(records, etymologyTab) {
 export function filterByPos(records, posTab) {
   if (!posTab || posTab === POS_TABS.ALL) return records;
   return records.filter(r => String(r?.pos || '').trim() === posTab);
+}
+
+export function filterByLevel(records, levelTab) {
+  if (!levelTab || levelTab === LEVEL_TABS.ALL) return records;
+  return records.filter(r => String(r?.level || '').trim() === levelTab);
 }
 
 export function hasTag(record, tag) {
@@ -229,6 +234,7 @@ export function applyFiltersAndSort() {
     loanwordOnly,
     etymologyTab,
     posTab,
+    levelTab,
     categoryTab,
     currentSortField,
     currentSortOrder,
@@ -249,6 +255,7 @@ export function applyFiltersAndSort() {
   result = filterByLoanword(result, loanwordOnly);
   result = filterByEtymology(result, etymologyTab);
   result = filterByPos(result, posTab);
+  result = filterByLevel(result, levelTab);
   result = filterByCategory(result, categoryTab);
   result = filterByInitial(result, currentInitialTab);
 
@@ -382,6 +389,12 @@ export function selectPosTab(tab, element) {
   applyFiltersAndSort();
 }
 
+export function selectLevelTab(tab, element) {
+  store.set({ levelTab: tab, invalidTerm: null });
+  if (element) updateTabPills('#level-tabs', element);
+  applyFiltersAndSort();
+}
+
 function getPosTabsEl() {
   return typeof document === 'undefined' ? null : document.getElementById('pos-tabs');
 }
@@ -438,6 +451,7 @@ export function resetFineFilters() {
     loanwordOnly: false,
     etymologyTab: ETYMOLOGY_TABS.ALL,
     posTab: POS_TABS.ALL,
+    levelTab: LEVEL_TABS.ALL,
     categoryTab: CATEGORY_TABS.ALL,
     invalidTerm: null
   });
@@ -458,13 +472,14 @@ export function resetDisplaySettings() {
 }
 
 export function countActiveFineFilters() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, categoryTab } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab } = store.get();
   let count = 0;
   if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) count += 1;
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) count += 1;
   if (loanwordOnly) count += 1;
   if (etymologyTab && etymologyTab !== ETYMOLOGY_TABS.ALL) count += 1;
   if (posTab && posTab !== POS_TABS.ALL) count += 1;
+  if (levelTab && levelTab !== LEVEL_TABS.ALL) count += 1;
   if (categoryTab && categoryTab !== CATEGORY_TABS.ALL) count += 1;
   return count;
 }
@@ -479,7 +494,7 @@ export function countActiveDisplaySettings() {
 }
 
 export function getFilterSummary() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, categoryTab, currentSortField, currentSortOrder } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder } = store.get();
   const parts = [];
 
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
@@ -491,6 +506,7 @@ export function getFilterSummary() {
   if (loanwordOnly) parts.push('外來語');
   if (posTab && posTab !== POS_TABS.ALL) parts.push(posTab);
   if (etymologyTab && etymologyTab !== ETYMOLOGY_TABS.ALL) parts.push(etymologyTab);
+  if (levelTab && levelTab !== LEVEL_TABS.ALL) parts.push(levelTab);
   const categoryLabel = categoryTabToTag(categoryTab);
   if (categoryLabel) parts.push(categoryLabel);
 
@@ -514,7 +530,7 @@ export function getFilterSummary() {
 export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, categoryTab, currentSortField, currentSortOrder, pageSize } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder, pageSize } = store.get();
   activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder, categoryTab));
   activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
   activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
@@ -522,6 +538,7 @@ export function syncFilterUi() {
   activateTabByValue('#kind-tabs', categoryTab || CATEGORY_TABS.ALL);
   activateTabByValue('#etymology-tabs', etymologyTab || ETYMOLOGY_TABS.ALL);
   activateTabByValue('#pos-tabs', posTab || POS_TABS.ALL);
+  activateTabByValue('#level-tabs', levelTab || LEVEL_TABS.ALL);
   syncPosTabsExpanded();
   activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
