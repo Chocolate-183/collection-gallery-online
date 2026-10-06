@@ -106,10 +106,14 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   }
   assert.doesNotMatch(html, /id="modal-category-section"/);
   const posIdx = html.indexOf('id="filter-pos-section"');
-  const etymologyIdx = html.indexOf('id="filter-etymology-section"');
   const levelIdx = html.indexOf('id="filter-level-section"');
+  const etymologyIdx = html.indexOf('id="filter-etymology-section"');
   const kindIdx = html.indexOf('id="filter-kind-section"');
-  assert.ok(posIdx > 0 && etymologyIdx > posIdx && levelIdx > etymologyIdx && kindIdx > levelIdx);
+  assert.ok(posIdx > 0 && levelIdx > posIdx && etymologyIdx > levelIdx && kindIdx > etymologyIdx);
+  const modalPosIdx = html.indexOf('id="modal-pos-section"');
+  const modalLevelIdx = html.indexOf('id="modal-level-section"');
+  const modalEtymIdx = html.indexOf('id="modal-etymology-section"');
+  assert.ok(modalPosIdx > 0 && modalLevelIdx > modalPosIdx && modalEtymIdx > modalLevelIdx);
 
   assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100[\s\S]*初級[\s\S]*中級[\s\S]*高級/);
   assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
