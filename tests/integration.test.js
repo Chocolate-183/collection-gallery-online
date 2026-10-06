@@ -577,6 +577,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockLevel.innerText, '初級');
   assert.equal(mockEtymPosRow.style.display, '');
   assert.equal(mockLevelSection.style.display, '');
+  assert.equal(mockPosSection.style.display, '');
+  assert.equal(mockEtymSection.style.display, '');
   assert.equal(mockReferenceSection.style.display, 'none');
   assert.equal(mockReference.innerHTML, '');
 

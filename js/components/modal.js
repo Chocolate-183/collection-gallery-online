@@ -288,21 +288,22 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const etymElem = document.getElementById('modal-etymology');
   const posSection = document.getElementById('modal-pos-section');
   const posElem = document.getElementById('modal-pos');
-  const showEtymPos = Boolean(collectionsConfig[currentCollectionId]?.hasEtymologyPosFilter);
-  const etymology = rec.etymology ? String(rec.etymology).trim() : '';
-  const pos = rec.pos ? String(rec.pos).trim() : '';
-  if (etymElem) etymElem.innerText = etymology || '--';
-  if (posElem) posElem.innerText = pos || '--';
-  if (etymSection) etymSection.style.display = (showEtymPos && etymology) ? '' : 'none';
-  if (posSection) posSection.style.display = (showEtymPos && pos) ? '' : 'none';
-  if (etymPosRow) etymPosRow.style.display = (showEtymPos && (etymology || pos)) ? '' : 'none';
-
   const levelSection = document.getElementById('modal-level-section');
   const levelElem = document.getElementById('modal-level');
+  const showEtymPos = Boolean(collectionsConfig[currentCollectionId]?.hasEtymologyPosFilter);
   const showLevel = Boolean(collectionsConfig[currentCollectionId]?.hasLevelFilter);
+  const etymology = rec.etymology ? String(rec.etymology).trim() : '';
+  const pos = rec.pos ? String(rec.pos).trim() : '';
   const level = rec.level ? String(rec.level).trim() : '';
+  if (etymElem) etymElem.innerText = etymology || '--';
+  if (posElem) posElem.innerText = pos || '--';
   if (levelElem) levelElem.innerText = level || '--';
+  if (etymSection) etymSection.style.display = (showEtymPos && etymology) ? '' : 'none';
+  if (posSection) posSection.style.display = (showEtymPos && pos) ? '' : 'none';
   if (levelSection) levelSection.style.display = (showLevel && level) ? '' : 'none';
+  if (etymPosRow) {
+    etymPosRow.style.display = ((showEtymPos && (etymology || pos)) || (showLevel && level)) ? '' : 'none';
+  }
 
   if (meaningElem) {
     meaningElem.setAttribute('data-row-index', String(rowIndex));

@@ -1607,6 +1607,10 @@ a:focus {
   min-width: 0;
 }
 
+.modal-etymology-pos-row {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .profile-modal-social-row > .awsui-modal-section,
 .modal-etymology-pos-row > .awsui-modal-section {
   margin-top: 0;
@@ -2920,6 +2924,7 @@ a:focus {
   #modal-reading-row,
   #modal-etymology,
   #modal-pos,
+  #modal-level,
   #modal-reference,
   #modal-reference > a,
   #collection-modal-entitle,
