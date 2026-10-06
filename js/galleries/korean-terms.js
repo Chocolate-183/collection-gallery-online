@@ -7,7 +7,7 @@ export default {
   name: '韓語單字量最強速成攻略',
   enTitle: 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet',
   sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
-  gid: '284986562',
+  gid: '585106275',
   localFallback: 'korean-data.json',
   hasReading: true,
   hasKanaTabs: false,

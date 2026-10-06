@@ -50,8 +50,8 @@ export const ETYMOLOGY_TABS = {
   ALL: 'ALL',
   HANJA: '漢字語',
   LOANWORD: '外來語',
-  NATIVE: '固有詞',
-  HYBRID: '混種詞'
+  NATIVE: '固有語',
+  HYBRID: '混種語'
 };
 
 /** C103 詞性 (sheet J). */

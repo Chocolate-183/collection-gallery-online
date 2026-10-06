@@ -68,7 +68,7 @@ test('Offline dumps cover C101 C102 C103 and profiles', () => {
     assert.ok(koreanJson.some(r => Array.isArray(r.tags) && r.tags.includes(tag)), `C103 dump missing tag ${tag}`);
   }
   const etymologyValues = [...new Set(koreanJson.map(r => String(r.etymology || '').trim()).filter(Boolean))];
-  for (const etym of ['漢字語', '外來語', '固有詞', '混種詞']) {
+  for (const etym of ['漢字語', '外來語', '固有語', '混種語']) {
     assert.ok(etymologyValues.includes(etym), `C103 dump missing etymology ${etym}`);
   }
 
@@ -84,7 +84,7 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
     assert.match(posSection, new RegExp(`data-tab="${pos}"`));
   }
   const etymologySection = html.match(/id="etymology-tabs"[\s\S]*?<\/div>/)[0];
-  for (const etym of ['漢字語', '外來語', '固有詞', '混種詞']) {
+  for (const etym of ['漢字語', '外來語', '固有語', '混種語']) {
     assert.match(etymologySection, new RegExp(`data-tab="${etym}"`));
   }
   const kindTabs = html.match(/id="kind-tabs"[\s\S]*?<\/div>/)[0];

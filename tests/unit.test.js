@@ -181,8 +181,8 @@ test('Filter engine chains query, length, Hangul, etymology, and POS', () => {
   const etymologyRecords = [
     { id: 'hanja', etymology: '漢字語', pos: '名詞' },
     { id: 'loan', etymology: '外來語', pos: '名詞' },
-    { id: 'native', etymology: '固有詞', pos: '動詞' },
-    { id: 'hybrid', etymology: '混種詞', pos: '名詞' }
+    { id: 'native', etymology: '固有語', pos: '動詞' },
+    { id: 'hybrid', etymology: '混種語', pos: '名詞' }
   ];
   assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HYBRID).map(r => r.id), ['hybrid']);
   assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
@@ -208,8 +208,8 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   const krCol = collectionsConfig['korean-terms'];
   const krUrls = getCollectionDataUrls(krCol);
   assert.equal(krCol.defaultMeta.id, 'C103');
-  assert.equal(krCol.gid, '284986562');
-  assert(krUrls.csvUrl.includes('gid=284986562'));
+  assert.equal(krCol.gid, '585106275');
+  assert(krUrls.csvUrl.includes('gid=585106275'));
   assert.equal(krCol.hasHangulTabs, true);
   assert.equal(krCol.hasEtymologyPosFilter, true);
   assert.equal(krCol.hasNameCategoryFilter, true);
