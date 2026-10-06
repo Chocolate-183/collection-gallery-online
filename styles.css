@@ -616,7 +616,7 @@ a:focus {
   display: inline-flex;
   align-items: baseline;
   justify-content: center;
-  gap: 2px;
+  gap: 1px;
   padding-left: 8px;
   padding-right: 8px;
 }
