@@ -69,7 +69,7 @@ export const POS_TABS = {
   BOUND_NOUN: '依存名詞'
 };
 
-/** Filter POS pills shown before 顯示更多. */
+/** Filter POS pills shown before more. */
 export const POS_PRIMARY_TABS = [
   POS_TABS.ALL,
   POS_TABS.NOUN,
@@ -78,7 +78,7 @@ export const POS_PRIMARY_TABS = [
   POS_TABS.ADVERB
 ];
 
-/** Filter POS pills revealed by 顯示更多. */
+/** Filter POS pills revealed by more. */
 export const POS_EXTRA_TABS = [
   POS_TABS.INTERJECTION,
   POS_TABS.DETERMINER,
