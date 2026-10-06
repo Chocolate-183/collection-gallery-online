@@ -117,6 +117,10 @@ export function switchCollection(collectionId, updateHash = true) {
     } : {})
   });
 
+  if (isDifferent) {
+    document.getElementById('pos-tabs')?.classList.remove('pos-expanded');
+  }
+
   const cardGrid = document.getElementById('card-grid');
   if (cardGrid) cardGrid.setAttribute('data-collection', collectionId);
 

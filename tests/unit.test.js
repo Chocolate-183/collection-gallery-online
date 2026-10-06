@@ -35,6 +35,8 @@ import {
   SORT_ORDERS,
   ETYMOLOGY_TABS,
   POS_TABS,
+  POS_PRIMARY_TABS,
+  POS_EXTRA_TABS,
   CATEGORY_TABS
 } from '../js/constants.js';
 import {
@@ -186,6 +188,8 @@ test('Filter engine chains query, length, Hangul, etymology, and POS', () => {
   ];
   assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HYBRID).map(r => r.id), ['hybrid']);
   assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
+  assert.deepEqual(POS_PRIMARY_TABS, [POS_TABS.ALL, POS_TABS.NOUN, POS_TABS.VERB, POS_TABS.ADJECTIVE, POS_TABS.ADVERB]);
+  assert.ok(POS_EXTRA_TABS.includes(POS_TABS.BOUND_NOUN));
 
   const byIdDesc = sortRecords(records, null, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.DESC });
   assert.deepEqual(byIdDesc.map(r => r.id), ['#C103-0003', '#C103-0002', '#C103-0001']);

@@ -1,7 +1,7 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
@@ -378,7 +378,29 @@ export function selectEtymologyTab(tab, element) {
 export function selectPosTab(tab, element) {
   store.set({ posTab: tab, invalidTerm: null });
   if (element) updateTabPills('#pos-tabs', element);
+  if (POS_EXTRA_TABS.includes(tab)) expandPosTabs();
   applyFiltersAndSort();
+}
+
+function getPosTabsEl() {
+  return typeof document === 'undefined' ? null : document.getElementById('pos-tabs');
+}
+
+export function expandPosTabs() {
+  getPosTabsEl()?.classList.add('pos-expanded');
+}
+
+export function collapsePosTabs() {
+  getPosTabsEl()?.classList.remove('pos-expanded');
+}
+
+export function showMorePosTabs() {
+  expandPosTabs();
+}
+
+export function syncPosTabsExpanded() {
+  const { posTab } = store.get();
+  if (POS_EXTRA_TABS.includes(posTab)) expandPosTabs();
 }
 
 export function selectSortField(field, element) {
@@ -419,6 +441,7 @@ export function resetFineFilters() {
     categoryTab: CATEGORY_TABS.ALL,
     invalidTerm: null
   });
+  collapsePosTabs();
   applyFiltersAndSort();
 }
 
@@ -499,6 +522,7 @@ export function syncFilterUi() {
   activateTabByValue('#kind-tabs', categoryTab || CATEGORY_TABS.ALL);
   activateTabByValue('#etymology-tabs', etymologyTab || ETYMOLOGY_TABS.ALL);
   activateTabByValue('#pos-tabs', posTab || POS_TABS.ALL);
+  syncPosTabsExpanded();
   activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
   activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));

@@ -69,6 +69,25 @@ export const POS_TABS = {
   BOUND_NOUN: '依存名詞'
 };
 
+/** Filter POS pills shown before 顯示更多. */
+export const POS_PRIMARY_TABS = [
+  POS_TABS.ALL,
+  POS_TABS.NOUN,
+  POS_TABS.VERB,
+  POS_TABS.ADJECTIVE,
+  POS_TABS.ADVERB
+];
+
+/** Filter POS pills revealed by 顯示更多. */
+export const POS_EXTRA_TABS = [
+  POS_TABS.INTERJECTION,
+  POS_TABS.DETERMINER,
+  POS_TABS.PRONOUN,
+  POS_TABS.COUNTER,
+  POS_TABS.NUMERAL,
+  POS_TABS.BOUND_NOUN
+];
+
 export const BASIC100_TAG = '基礎100';
 
 /** C103 sheet J name-class tags (Filter Category + Item Modal). */

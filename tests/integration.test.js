@@ -83,6 +83,10 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
     assert.match(posSection, new RegExp(`data-tab="${pos}"`));
   }
+  assert.match(posSection, /id="pos-show-more"[^>]*>顯示更多</);
+  for (const pos of ['感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
+    assert.match(posSection, new RegExp(`class="awsui-tab pos-tab-more" data-tab="${pos}"`));
+  }
   const etymologySection = html.match(/id="etymology-tabs"[\s\S]*?<\/div>/)[0];
   for (const etym of ['漢字語', '外來語', '固有語', '混種語']) {
     assert.match(etymologySection, new RegExp(`data-tab="${etym}"`));
