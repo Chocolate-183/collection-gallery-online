@@ -96,9 +96,10 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
     assert.match(etymologySection, new RegExp(`data-tab="${etym}"`));
   }
   const levelSection = html.match(/id="level-tabs"[\s\S]*?<\/div>/)[0];
-  for (const level of ['初級', '中級', '高級', '無等級']) {
+  for (const level of ['初級', '中級', '高級']) {
     assert.match(levelSection, new RegExp(`data-tab="${level}"`));
   }
+  assert.doesNotMatch(levelSection, /data-tab="無等級"/);
   const kindTabs = html.match(/id="kind-tabs"[\s\S]*?<\/div>/)[0];
   for (const kind of ['BASIC100', '人名', '團體名', '公司名']) {
     assert.match(kindTabs, new RegExp(`data-tab="${kind}"`));

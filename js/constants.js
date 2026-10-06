@@ -93,8 +93,7 @@ export const LEVEL_TABS = {
   ALL: 'ALL',
   BEGINNER: '初級',
   INTERMEDIATE: '中級',
-  ADVANCED: '高級',
-  NONE: '無等級'
+  ADVANCED: '高級'
 };
 
 export const BASIC100_TAG = '基礎100';
