@@ -2870,6 +2870,7 @@ a:focus {
   #modal-etymology,
   #modal-pos,
   #modal-reference,
+  #modal-reference > a,
   #collection-modal-entitle,
   #collection-modal-curator,
   #profile-modal-en,
