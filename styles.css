@@ -510,6 +510,7 @@ a:focus {
   gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 2px;
+  min-width: 0;
 }
 
 .awsui-text-filter {
@@ -523,8 +524,19 @@ a:focus {
 .awsui-quick-filters {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 6px;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.awsui-quick-filters::-webkit-scrollbar {
+  display: none;
 }
 
 .awsui-quick-filters .awsui-tab {
@@ -533,6 +545,7 @@ a:focus {
   font-size: 12px;
   font-weight: 400;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .awsui-input {
@@ -2760,7 +2773,9 @@ a:focus {
   }
 
   .awsui-quick-filters {
-    flex: 0 0 auto;
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
   }
 
   .awsui-cards-controls .awsui-pagination-controls {

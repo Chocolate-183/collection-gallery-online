@@ -120,6 +120,16 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   assert.doesNotMatch(html, /src="js\/app\.js"/);
 });
 
+test('Catalog quick filters stay in a scrollable row on narrow screens', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const quickFiltersRule = css.match(/\.awsui-quick-filters \{[\s\S]*?\n\}/)[0];
+  assert.match(quickFiltersRule, /overflow-x:\s*auto/);
+  assert.match(quickFiltersRule, /min-width:\s*0/);
+  assert.match(quickFiltersRule, /flex-wrap:\s*nowrap/);
+  const mobile = css.split('@media (max-width: 768px)').pop();
+  assert.match(mobile, /\.awsui-quick-filters \{[\s\S]*?flex:\s*1 1 100%/);
+});
+
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
   mockDOM({});
   const fetched = [];
