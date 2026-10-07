@@ -1660,8 +1660,9 @@ a:focus {
 
 .modal-pos-value-row {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   min-width: 0;
 }
 
