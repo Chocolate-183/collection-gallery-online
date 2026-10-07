@@ -1669,6 +1669,7 @@ a:focus {
   flex-shrink: 0;
   line-height: 1.2;
   text-align: left;
+  text-transform: none;
 }
 
 .conjugate-modal-scroll {
