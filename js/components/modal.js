@@ -154,47 +154,47 @@ export function handleCuratorClick() {
   openProfileModal(name);
 }
 
-function setConjugateActive(isActive) {
+function setConjugationActive(isActive) {
   if (typeof document === 'undefined') return;
-  const conjugateElem = document.getElementById('modal-view-conjugate');
-  if (conjugateElem && conjugateElem.classList) {
-    conjugateElem.classList.toggle('active', !!isActive);
+  const conjugationElem = document.getElementById('modal-view-conjugation');
+  if (conjugationElem && conjugationElem.classList) {
+    conjugationElem.classList.toggle('active', !!isActive);
   }
 }
 
-export function handleConjugateClick() {
+export function handleConjugationClick() {
   const meaningElem = getMeaningElement();
   const rowIndexStr = meaningElem && typeof meaningElem.getAttribute === 'function'
     ? meaningElem.getAttribute('data-row-index')
     : null;
   const rowIndex = rowIndexStr !== null && rowIndexStr !== undefined ? parseInt(rowIndexStr, 10) : null;
   if (rowIndex === null || Number.isNaN(rowIndex)) return;
-  openConjugateModal(rowIndex);
+  openConjugationModal(rowIndex);
 }
 
-function renderConjugateColumn(section) {
+function renderConjugationColumn(section) {
   const forms = section.forms.map(form => `
-    <div class="conjugate-form">
-      <div class="conjugate-form-value">${escapeHtml(form.value)}</div>
+    <div class="conjugation-form">
+      <div class="conjugation-form-value">${escapeHtml(form.value)}</div>
     </div>
   `).join('');
   return `
-    <div class="awsui-modal-section conjugate-section conjugate-section-${escapeHtml(section.id)}">
+    <div class="awsui-modal-section conjugation-section conjugation-section-${escapeHtml(section.id)}">
       <div class="awsui-modal-section-title"><span>${escapeHtml(section.title)}</span></div>
-      <div class="conjugate-forms conjugate-forms-${escapeHtml(section.id)}">${forms}</div>
+      <div class="conjugation-forms conjugation-forms-${escapeHtml(section.id)}">${forms}</div>
     </div>
   `;
 }
 
-function renderConjugateSections(entry) {
+function renderConjugationSections(entry) {
   return getWorkProfessionalRows(entry).map(row => `
-    <div class="conjugate-row">
-      ${row.map(renderConjugateColumn).join('')}
+    <div class="conjugation-row">
+      ${row.map(renderConjugationColumn).join('')}
     </div>
   `).join('');
 }
 
-export function openConjugateModal(rowIndex, updateHash = true) {
+export function openConjugationModal(rowIndex, updateHash = true) {
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec || currentCollectionId !== 'korean-terms' || !isConjugatableRecord(rec)) return;
@@ -206,22 +206,22 @@ export function openConjugateModal(rowIndex, updateHash = true) {
   closeDescriptionModal(false);
   closeProfileModal(false);
 
-  const titleElem = document.getElementById('conjugate-modal-title');
-  const bodyElem = document.getElementById('conjugate-modal-body');
-  const modal = document.getElementById('conjugate-modal');
+  const titleElem = document.getElementById('conjugation-modal-title');
+  const bodyElem = document.getElementById('conjugation-modal-body');
+  const modal = document.getElementById('conjugation-modal');
   if (titleElem) titleElem.innerText = lemma || rec.ja_term || '--';
-  if (bodyElem) bodyElem.innerHTML = renderConjugateSections(entry);
-  setConjugateActive(true);
+  if (bodyElem) bodyElem.innerHTML = renderConjugationSections(entry);
+  setConjugationActive(true);
   if (modal) modal.classList.add('open');
 
   if (updateHash) {
-    syncHash(`#/${getCollectionSlug(currentCollectionId)}/${rec.ja_term}/conjugate`);
+    syncHash(`#/${getCollectionSlug(currentCollectionId)}/${rec.ja_term}/conjugation`);
   }
 }
 
-export function closeConjugateModal(updateHash = true) {
-  setConjugateActive(false);
-  const modal = document.getElementById('conjugate-modal');
+export function closeConjugationModal(updateHash = true) {
+  setConjugationActive(false);
+  const modal = document.getElementById('conjugation-modal');
   if (modal) modal.classList.remove('open');
 
   if (updateHash) {
@@ -299,7 +299,7 @@ export function openProfileModal(curatorName, updateHash = true) {
   if (idElem) idElem.innerText = profile.id || '--';
 
   closeDescriptionModal(false);
-  closeConjugateModal(false);
+  closeConjugationModal(false);
   setCuratorActive(true);
   if (modal) modal.classList.add('open');
 
@@ -408,13 +408,13 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   }
   if (referenceSection) referenceSection.style.display = referenceHtml ? '' : 'none';
 
-  const viewConjugateBtn = document.getElementById('modal-view-conjugate');
+  const viewConjugationBtn = document.getElementById('modal-view-conjugation');
   const lemma = getConjugationLemma(rec);
   const conjugation = currentCollectionId === 'korean-terms' && isConjugatableRecord(rec)
     ? findConjugationByLemma(lemma)
     : null;
-  if (viewConjugateBtn) viewConjugateBtn.style.display = conjugation ? '' : 'none';
-  closeConjugateModal(false);
+  if (viewConjugationBtn) viewConjugationBtn.style.display = conjugation ? '' : 'none';
+  closeConjugationModal(false);
 
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
@@ -457,7 +457,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
 export function closeDetailModal(updateHash = true) {
   closeDescriptionModal(false);
-  closeConjugateModal(false);
+  closeConjugationModal(false);
   clearStdictOpenTimer();
   const modal = document.getElementById('detail-modal');
   if (modal) modal.classList.remove('open');
@@ -478,7 +478,7 @@ export function closeDetailModal(updateHash = true) {
 
 export function openDescriptionModal(rowIndex, updateHash = true) {
   closeProfileModal(false);
-  closeConjugateModal(false);
+  closeConjugationModal(false);
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec) return;
@@ -647,4 +647,4 @@ export const closeDetailModalOnBackdrop = createBackdropHandler('detail-modal', 
 export const closeDescriptionModalOnBackdrop = createBackdropHandler('description-modal', closeDescriptionModal);
 export const closeCollectionModalOnBackdrop = createBackdropHandler('collection-modal', closeCollectionModal);
 export const closeProfileModalOnBackdrop = createBackdropHandler('profile-modal', closeProfileModal);
-export const closeConjugateModalOnBackdrop = createBackdropHandler('conjugate-modal', closeConjugateModal);
+export const closeConjugationModalOnBackdrop = createBackdropHandler('conjugation-modal', closeConjugationModal);

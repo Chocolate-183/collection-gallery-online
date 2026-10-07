@@ -554,10 +554,10 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   const mockLevel = createMockElement();
   const mockReferenceSection = createMockElement({ style: { display: 'none' } });
   const mockReference = createMockElement();
-  const mockViewConjugate = createMockElement({ style: { display: 'none' } });
-  const mockConjugateModal = createMockElement();
-  const mockConjugateTitle = createMockElement();
-  const mockConjugateBody = createMockElement();
+  const mockViewConjugation = createMockElement({ style: { display: 'none' } });
+  const mockConjugationModal = createMockElement();
+  const mockConjugationTitle = createMockElement();
+  const mockConjugationBody = createMockElement();
   const card1 = createMockElement({ 'data-row-index': '1' });
   const card2 = createMockElement({ 'data-row-index': '2' });
 
@@ -575,10 +575,10 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     'modal-level': mockLevel,
     'modal-reference-section': mockReferenceSection,
     'modal-reference': mockReference,
-    'modal-view-conjugate': mockViewConjugate,
-    'conjugate-modal': mockConjugateModal,
-    'conjugate-modal-title': mockConjugateTitle,
-    'conjugate-modal-body': mockConjugateBody
+    'modal-view-conjugation': mockViewConjugation,
+    'conjugation-modal': mockConjugationModal,
+    'conjugation-modal-title': mockConjugationTitle,
+    'conjugation-modal-body': mockConjugationBody
   });
   global.document.querySelectorAll = (sel) => {
     if (sel === '.awsui-card') return [card1, card2];
@@ -587,7 +587,7 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
 
   const { store } = await import('../js/state.js');
   const { replaceConjugationsCache } = await import('../js/data.js');
-  const { openMeaningModal, closeDetailModal, openConjugateModal } = await import('../js/components/modal.js');
+  const { openMeaningModal, closeDetailModal, openConjugationModal } = await import('../js/components/modal.js');
 
   replaceConjugationsCache([{
     lemma: '하다',
@@ -610,7 +610,7 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockReadingSection.style.display, 'block');
   assert.equal(mockReferenceSection.style.display, 'none');
   assert.equal(mockLevelSection.style.display, 'none');
-  assert.equal(mockViewConjugate.style.display, 'none');
+  assert.equal(mockViewConjugation.style.display, 'none');
 
   store.set({
     currentCollectionId: 'korean-terms',
@@ -711,14 +711,14 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     }]
   });
   openMeaningModal(1, false);
-  assert.equal(mockViewConjugate.style.display, '');
-  openConjugateModal(1, false);
-  assert.equal(mockConjugateModal.classes.has('open'), true);
-  assert.equal(mockConjugateTitle.innerText, '하다');
-  assert.match(mockConjugateBody.innerHTML, />해요</);
-  assert.match(mockConjugateBody.innerHTML, />합니다</);
-  assert.equal(mockConjugateBody.innerHTML.includes('해</div>'), false);
-  assert.equal(mockViewConjugate.classList.contains('active'), true);
+  assert.equal(mockViewConjugation.style.display, '');
+  openConjugationModal(1, false);
+  assert.equal(mockConjugationModal.classes.has('open'), true);
+  assert.equal(mockConjugationTitle.innerText, '하다');
+  assert.match(mockConjugationBody.innerHTML, />해요</);
+  assert.match(mockConjugationBody.innerHTML, />합니다</);
+  assert.equal(mockConjugationBody.innerHTML.includes('해</div>'), false);
+  assert.equal(mockViewConjugation.classList.contains('active'), true);
 
   store.set({
     currentCollectionId: 'korean-terms',
@@ -730,6 +730,6 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     }]
   });
   openMeaningModal(1, false);
-  assert.equal(mockViewConjugate.style.display, 'none');
-  assert.equal(mockConjugateModal.classes.has('open'), false);
+  assert.equal(mockViewConjugation.style.display, 'none');
+  assert.equal(mockConjugationModal.classes.has('open'), false);
 });

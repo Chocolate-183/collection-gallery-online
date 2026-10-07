@@ -836,7 +836,7 @@ a:focus {
 }
 
 #pos-show-more,
-#modal-view-conjugate {
+#modal-view-conjugation {
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 400;
@@ -848,13 +848,13 @@ a:focus {
 }
 
 #pos-show-more:hover,
-#modal-view-conjugate:hover {
+#modal-view-conjugation:hover {
   color: #ECC94B;
 }
 
 #pos-show-more:active,
-#modal-view-conjugate:active,
-#modal-view-conjugate.active {
+#modal-view-conjugation:active,
+#modal-view-conjugation.active {
   background: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;
@@ -1423,7 +1423,7 @@ a:focus {
 #modal-term-title,
 #collection-modal-title,
 #profile-modal-name,
-#conjugate-modal-title {
+#conjugation-modal-title {
   font-size: 30px;
   font-weight: 700;
   color: var(--awsui-color-text-body-default, #16191f);
@@ -1510,7 +1510,7 @@ a:focus {
 
 #description-modal,
 #profile-modal,
-#conjugate-modal {
+#conjugation-modal {
   z-index: 3000;
   background: transparent;
   transition: opacity 0.2s ease, visibility 0.2s ease;
@@ -1518,7 +1518,7 @@ a:focus {
 
 #description-modal .awsui-modal,
 #profile-modal .awsui-modal,
-#conjugate-modal .awsui-modal {
+#conjugation-modal .awsui-modal {
   opacity: 0;
   transform: scale(0.95);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1526,7 +1526,7 @@ a:focus {
 
 #description-modal.open .awsui-modal,
 #profile-modal.open .awsui-modal,
-#conjugate-modal.open .awsui-modal {
+#conjugation-modal.open .awsui-modal {
   opacity: 1;
   transform: scale(1);
 }
@@ -1665,27 +1665,27 @@ a:focus {
   min-width: 0;
 }
 
-#modal-view-conjugate {
+#modal-view-conjugation {
   flex-shrink: 0;
   line-height: 1.2;
   text-align: left;
   text-transform: none;
 }
 
-.conjugate-modal-scroll {
+.conjugation-modal-scroll {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
   margin-top: 8px;
 }
 
-#conjugate-modal .awsui-modal-body {
+#conjugation-modal .awsui-modal-body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-.conjugate-row {
+.conjugation-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
@@ -1693,16 +1693,16 @@ a:focus {
   min-width: 0;
 }
 
-.conjugate-row:first-child {
+.conjugation-row:first-child {
   margin-top: 0;
 }
 
-.conjugate-section {
+.conjugation-section {
   margin-top: 0;
   min-width: 0;
 }
 
-.conjugate-forms {
+.conjugation-forms {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1710,7 +1710,7 @@ a:focus {
   min-height: calc(3 * (18px * 1.4) + 2 * 8px);
 }
 
-.conjugate-form-value {
+.conjugation-form-value {
   font-family: 'Noto Sans KR', 'Noto Sans TC', sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -2393,8 +2393,8 @@ a:focus {
 [data-theme="dark"] #collection-header-title:active,
 [data-theme="dark"] #collection-modal-curator.active,
 [data-theme="dark"] #collection-modal-curator:active,
-[data-theme="dark"] #modal-view-conjugate.active,
-[data-theme="dark"] #modal-view-conjugate:active,
+[data-theme="dark"] #modal-view-conjugation.active,
+[data-theme="dark"] #modal-view-conjugation:active,
 [data-theme="dark"] #btn-open-filter-modal.active,
 [data-theme="dark"] #btn-open-filter-modal:active,
 [data-theme="dark"] #btn-refresh-data.active,
@@ -2518,12 +2518,12 @@ a:focus {
 }
 
 [data-theme="dark"] #pos-show-more,
-[data-theme="dark"] #modal-view-conjugate {
+[data-theme="dark"] #modal-view-conjugation {
   color: var(--awsui-color-text-body-secondary);
 }
 
 [data-theme="dark"] #pos-show-more:hover,
-[data-theme="dark"] #modal-view-conjugate:hover {
+[data-theme="dark"] #modal-view-conjugation:hover {
   color: #ECC94B;
 }
 
@@ -2738,10 +2738,10 @@ a:focus {
     scrollbar-gutter: stable;
   }
 
-  /* Description / Profile / Conjugate Modal Desktop Position: Right Side & Overlapping */
+  /* Description / Profile / Conjugation Modal Desktop Position: Right Side & Overlapping */
   #description-modal,
   #profile-modal,
-  #conjugate-modal {
+  #conjugation-modal {
     justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
@@ -2749,7 +2749,7 @@ a:focus {
 
   #description-modal .awsui-modal,
   #profile-modal .awsui-modal,
-  #conjugate-modal .awsui-modal {
+  #conjugation-modal .awsui-modal {
     margin-left: 50vw;
     max-width: min(640px, calc(50vw - 32px));
   }
@@ -2886,7 +2886,7 @@ a:focus {
   #display-modal,
   #description-modal,
   #profile-modal,
-  #conjugate-modal,
+  #conjugation-modal,
   #notice-modal,
   #detail-modal,
   #collection-modal {
@@ -2908,7 +2908,7 @@ a:focus {
   #notice-modal .awsui-notice-modal,
   #description-modal .awsui-modal,
   #profile-modal .awsui-modal,
-  #conjugate-modal .awsui-modal {
+  #conjugation-modal .awsui-modal {
     width: min(88dvw, 387px);
     max-width: min(88dvw, 387px);
     height: min(62dvh, 593px, calc(100dvh - 2 * var(--cgo-modal-pad-y) - 24px));
@@ -2924,7 +2924,7 @@ a:focus {
 
   #description-modal .awsui-modal,
   #profile-modal .awsui-modal,
-  #conjugate-modal .awsui-modal,
+  #conjugation-modal .awsui-modal,
   #filter-modal .awsui-filter-modal,
   #display-modal .awsui-display-modal {
     margin-left: 0 !important;
@@ -3009,7 +3009,7 @@ a:focus {
   #modal-term-title,
   #collection-modal-title,
   #profile-modal-name,
-  #conjugate-modal-title {
+  #conjugation-modal-title {
     font-size: 20px !important;
     line-height: 1.3 !important;
   }
@@ -3048,20 +3048,20 @@ a:focus {
     gap: 12px;
   }
 
-  .conjugate-row {
+  .conjugation-row {
     margin-top: 24px !important;
     gap: 12px;
   }
 
-  .conjugate-row:first-child {
+  .conjugation-row:first-child {
     margin-top: 0 !important;
   }
 
-  .conjugate-form-value {
+  .conjugation-form-value {
     font-size: 14px !important;
   }
 
-  .conjugate-forms {
+  .conjugation-forms {
     min-height: calc(3 * (14px * 1.4) + 2 * 8px);
   }
 
