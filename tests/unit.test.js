@@ -9,7 +9,8 @@ import {
   extractGvizTable,
   parseProfilesCSVData,
   parseProfilesGvizResponse,
-  formatProfileId
+  formatProfileId,
+  parseConjugationCSVData
 } from '../js/parser.js';
 import {
   matchesKanaGroup,
@@ -57,7 +58,8 @@ import {
   applyCollectionHeaderTitle,
   getExhibitCategoryLabel
 } from '../js/utils.js';
-import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, collectionsConfig } from '../js/config.js';
+import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, getConjugationUrls, collectionsConfig } from '../js/config.js';
+import { getWorkProfessionalSections, isConjugatableRecord } from '../js/conjugations.js';
 
 test('CSV and GViz parsers handle quotes, newlines, and table extraction', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期,推薦條目
@@ -211,6 +213,9 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   assert(metaUrls.csvUrl.includes('gid=1574352890'));
   const profileUrls = getProfileUrls();
   assert.equal(profileUrls.localFallback, 'profiles.json');
+  const conjugationUrls = getConjugationUrls();
+  assert.equal(conjugationUrls.localFallback, 'korean-conjugations.json');
+  assert(conjugationUrls.csvUrl.includes('gid=467198079'));
 
   const krCol = collectionsConfig['korean-terms'];
   const krUrls = getCollectionDataUrls(krCol);
@@ -432,4 +437,55 @@ test('Catalog quick filters map Latest / Random / 基礎100 / Level', async () =
   assert.equal(store.get().levelTab, LEVEL_TABS.ALL);
   assert.equal(store.get().pageSize, 100);
   assert.deepEqual(activeQuickTabs(), []);
+});
+
+test('C103 conjugations parse and Work/Professional keep 해요/합니다', () => {
+  const csv = `기본형,현재형,과거형,미래형,현재 의문형,과거 의문형,명령형,청유형,연결형 / 기타
+하다,"해
+해요
+한다
+합니다","했어
+했어요
+했다
+했습니다","할 거야
+할 거예요
+할 거다
+할 겁니다
+하겠어
+하겠어요
+하겠다
+하겠습니다","해?
+해요?
+하니?
+합니까?","했어?
+했어요?
+했니?
+했습니까?","해
+하세요
+해라
+하십시오","해
+해요
+하자
+합시다","하면
+하고
+했
+할
+함"`;
+  const parsed = parseConjugationCSVData(csv);
+  assert.equal(parsed.length, 1);
+  assert.deepEqual(parsed[0].present, ['해', '해요', '한다', '합니다']);
+  const work = getWorkProfessionalSections(parsed[0]);
+  const byId = Object.fromEntries(work.map(s => [s.id, s.forms.map(f => f.value)]));
+  assert.deepEqual(byId.present, ['해요', '합니다']);
+  assert.deepEqual(byId.past, ['했어요', '했습니다']);
+  assert.deepEqual(byId.future, ['할 거예요', '할 겁니다', '하겠어요', '하겠습니다']);
+  assert.deepEqual(byId['present-question'], ['해요?', '합니까?']);
+  assert.deepEqual(byId['past-question'], ['했어요?', '했습니까?']);
+  assert.deepEqual(byId.command, ['하세요', '하십시오']);
+  assert.deepEqual(byId.suggestion, ['해요', '합시다']);
+  assert.deepEqual(byId.connective, ['하면', '하고']);
+  assert.deepEqual(byId.other, ['했', '할', '함']);
+  assert.equal(isConjugatableRecord({ pos: '動詞' }), true);
+  assert.equal(isConjugatableRecord({ pos: '形容詞' }), true);
+  assert.equal(isConjugatableRecord({ pos: '名詞' }), false);
 });

@@ -186,6 +186,47 @@ function gvizCellText(cell) {
   return (cell.v || cell.f || '').toString();
 }
 
+function splitConjugationLines(cell) {
+  return String(cell || '')
+    .split(/\r?\n/)
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+/**
+ * Parses C103 動詞形容詞變化 rows (header + one lemma per row).
+ * Columns: 기본형, 현재형, 과거형, 미래형, 현재 의문형, 과거 의문형, 명령형, 청유형, 연결형 / 기타.
+ */
+export function parseConjugationRows(rows) {
+  if (!rows || rows.length <= 1) return [];
+  const out = [];
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i] || [];
+    const lemma = String(row[0] || '').trim();
+    if (!lemma || lemma === '기본형') continue;
+    out.push({
+      lemma,
+      present: splitConjugationLines(row[1]),
+      past: splitConjugationLines(row[2]),
+      future: splitConjugationLines(row[3]),
+      presentQuestion: splitConjugationLines(row[4]),
+      pastQuestion: splitConjugationLines(row[5]),
+      command: splitConjugationLines(row[6]),
+      suggestion: splitConjugationLines(row[7]),
+      other: splitConjugationLines(row[8])
+    });
+  }
+  return out;
+}
+
+export function parseConjugationCSVData(csvText) {
+  return parseConjugationRows(parseCSVRows(csvText));
+}
+
+export function parseConjugationGvizResponse(gvizText) {
+  return parseConjugationRows(gvizTableToRows(extractGvizTable(gvizText)));
+}
+
 /** Flattens a GViz table into string rows (optional header + cell values). */
 export function gvizTableToRows(table) {
   if (!table) return [];

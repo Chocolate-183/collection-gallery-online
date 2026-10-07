@@ -3,8 +3,9 @@
  */
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
-import { collectionsCache, collectionsMetaCache, findProfileByName } from '../data.js';
+import { collectionsCache, collectionsMetaCache, findProfileByName, findConjugationByLemma } from '../data.js';
 import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml, getExhibitCategoryLabel } from '../utils.js';
+import { getConjugationLemma, getWorkProfessionalSections, isConjugatableRecord } from '../conjugations.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -153,6 +154,83 @@ export function handleCuratorClick() {
   openProfileModal(name);
 }
 
+function setConjugateActive(isActive) {
+  if (typeof document === 'undefined') return;
+  const conjugateElem = document.getElementById('modal-conjugate');
+  if (conjugateElem && conjugateElem.classList) {
+    conjugateElem.classList.toggle('active', !!isActive);
+  }
+}
+
+export function handleConjugateClick() {
+  const meaningElem = getMeaningElement();
+  const rowIndexStr = meaningElem && typeof meaningElem.getAttribute === 'function'
+    ? meaningElem.getAttribute('data-row-index')
+    : null;
+  const rowIndex = rowIndexStr !== null && rowIndexStr !== undefined ? parseInt(rowIndexStr, 10) : null;
+  if (rowIndex === null || Number.isNaN(rowIndex)) return;
+  openConjugateModal(rowIndex);
+}
+
+function renderConjugateSections(entry) {
+  const sections = getWorkProfessionalSections(entry);
+  return sections.map(section => {
+    const forms = section.forms.map(form => `
+      <div class="conjugate-form">
+        <div class="conjugate-form-value">${escapeHtml(form.value)}</div>
+        <div class="conjugate-form-label">${escapeHtml(form.label)}</div>
+      </div>
+    `).join('');
+    return `
+      <div class="awsui-modal-section conjugate-section conjugate-section-${escapeHtml(section.id)}">
+        <div class="awsui-modal-section-title"><span>${escapeHtml(section.title)}</span></div>
+        <div class="conjugate-forms conjugate-forms-${escapeHtml(section.id)}">${forms}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+export function openConjugateModal(rowIndex, updateHash = true) {
+  const { allRecords, currentCollectionId } = store.get();
+  const rec = allRecords.find(r => r.row_index === rowIndex);
+  if (!rec || currentCollectionId !== 'korean-terms' || !isConjugatableRecord(rec)) return;
+
+  const lemma = getConjugationLemma(rec);
+  const entry = findConjugationByLemma(lemma);
+  if (!entry) return;
+
+  closeDescriptionModal(false);
+  closeProfileModal(false);
+
+  const titleElem = document.getElementById('conjugate-modal-title');
+  const bodyElem = document.getElementById('conjugate-modal-body');
+  const modal = document.getElementById('conjugate-modal');
+  if (titleElem) titleElem.innerText = lemma || rec.ja_term || '--';
+  if (bodyElem) bodyElem.innerHTML = renderConjugateSections(entry);
+  setConjugateActive(true);
+  if (modal) modal.classList.add('open');
+
+  if (updateHash) {
+    syncHash(`#/${getCollectionSlug(currentCollectionId)}/${rec.ja_term}/conjugate`);
+  }
+}
+
+export function closeConjugateModal(updateHash = true) {
+  setConjugateActive(false);
+  const modal = document.getElementById('conjugate-modal');
+  if (modal) modal.classList.remove('open');
+
+  if (updateHash) {
+    const { currentCollectionId, allRecords } = store.get();
+    const colSlug = getCollectionSlug(currentCollectionId);
+    const meaningElem = getMeaningElement();
+    const rowIndexStr = meaningElem ? meaningElem.getAttribute('data-row-index') : null;
+    const rowIndex = rowIndexStr !== null ? parseInt(rowIndexStr, 10) : null;
+    const rec = (rowIndex !== null && !Number.isNaN(rowIndex)) ? allRecords.find(r => r.row_index === rowIndex) : null;
+    syncHash(rec ? `#/${colSlug}/${rec.ja_term}` : `#/${colSlug}`);
+  }
+}
+
 function setCuratorActive(isActive) {
   if (typeof document === 'undefined') return;
   const curatorElem = document.getElementById('collection-modal-curator');
@@ -217,6 +295,7 @@ export function openProfileModal(curatorName, updateHash = true) {
   if (idElem) idElem.innerText = profile.id || '--';
 
   closeDescriptionModal(false);
+  closeConjugateModal(false);
   setCuratorActive(true);
   if (modal) modal.classList.add('open');
 
@@ -325,6 +404,16 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   }
   if (referenceSection) referenceSection.style.display = referenceHtml ? '' : 'none';
 
+  const conjugateSection = document.getElementById('modal-conjugate-section');
+  const conjugateElem = document.getElementById('modal-conjugate');
+  const lemma = getConjugationLemma(rec);
+  const conjugation = currentCollectionId === 'korean-terms' && isConjugatableRecord(rec)
+    ? findConjugationByLemma(lemma)
+    : null;
+  if (conjugateElem) conjugateElem.innerText = conjugation ? 'Conjugate' : '--';
+  if (conjugateSection) conjugateSection.style.display = conjugation ? '' : 'none';
+  closeConjugateModal(false);
+
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
 
@@ -366,6 +455,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
 export function closeDetailModal(updateHash = true) {
   closeDescriptionModal(false);
+  closeConjugateModal(false);
   clearStdictOpenTimer();
   const modal = document.getElementById('detail-modal');
   if (modal) modal.classList.remove('open');
@@ -386,6 +476,7 @@ export function closeDetailModal(updateHash = true) {
 
 export function openDescriptionModal(rowIndex, updateHash = true) {
   closeProfileModal(false);
+  closeConjugateModal(false);
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec) return;
@@ -554,3 +645,4 @@ export const closeDetailModalOnBackdrop = createBackdropHandler('detail-modal', 
 export const closeDescriptionModalOnBackdrop = createBackdropHandler('description-modal', closeDescriptionModal);
 export const closeCollectionModalOnBackdrop = createBackdropHandler('collection-modal', closeCollectionModal);
 export const closeProfileModalOnBackdrop = createBackdropHandler('profile-modal', closeProfileModal);
+export const closeConjugateModalOnBackdrop = createBackdropHandler('conjugate-modal', closeConjugateModal);

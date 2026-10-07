@@ -1418,7 +1418,8 @@ a:focus {
 
 #modal-term-title,
 #collection-modal-title,
-#profile-modal-name {
+#profile-modal-name,
+#conjugate-modal-title {
   font-size: 30px;
   font-weight: 700;
   color: var(--awsui-color-text-body-default, #16191f);
@@ -1504,21 +1505,24 @@ a:focus {
 }
 
 #description-modal,
-#profile-modal {
+#profile-modal,
+#conjugate-modal {
   z-index: 3000;
   background: transparent;
   transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 #description-modal .awsui-modal,
-#profile-modal .awsui-modal {
+#profile-modal .awsui-modal,
+#conjugate-modal .awsui-modal {
   opacity: 0;
   transform: scale(0.95);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #description-modal.open .awsui-modal,
-#profile-modal.open .awsui-modal {
+#profile-modal.open .awsui-modal,
+#conjugate-modal.open .awsui-modal {
   opacity: 1;
   transform: scale(1);
 }
@@ -1630,7 +1634,8 @@ a:focus {
   min-width: 0;
 }
 
-#collection-modal-curator {
+#collection-modal-curator,
+#modal-conjugate {
   cursor: pointer;
   display: inline-block;
   padding: 2px 10px;
@@ -1639,15 +1644,74 @@ a:focus {
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
-#collection-modal-curator:hover {
+#collection-modal-curator:hover,
+#modal-conjugate:hover {
   color: #ECC94B !important;
 }
 
 #collection-modal-curator.active,
-#collection-modal-curator:active {
+#collection-modal-curator:active,
+#modal-conjugate.active,
+#modal-conjugate:active {
   background: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;
+}
+
+#modal-conjugate {
+  font-size: 18px;
+  color: var(--awsui-color-text-body-default);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.conjugate-modal-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+
+#conjugate-modal .awsui-modal-body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.conjugate-section {
+  margin-top: 16px;
+}
+
+.conjugate-section:first-child {
+  margin-top: 0;
+}
+
+.conjugate-forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  margin-top: 6px;
+}
+
+.conjugate-forms-future,
+.conjugate-forms-other {
+  grid-template-columns: 1fr 1fr;
+}
+
+.conjugate-form-value {
+  font-family: 'Noto Sans KR', 'Noto Sans TC', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--awsui-color-text-body-default, #16191f);
+  line-height: 1.4;
+}
+
+.conjugate-form-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--awsui-color-text-body-secondary, #687078);
+  line-height: 1.3;
+  margin-top: 2px;
 }
 
 .modal-reference-link {
@@ -2325,6 +2389,8 @@ a:focus {
 [data-theme="dark"] #collection-header-title:active,
 [data-theme="dark"] #collection-modal-curator.active,
 [data-theme="dark"] #collection-modal-curator:active,
+[data-theme="dark"] #modal-conjugate.active,
+[data-theme="dark"] #modal-conjugate:active,
 [data-theme="dark"] #btn-open-filter-modal.active,
 [data-theme="dark"] #btn-open-filter-modal:active,
 [data-theme="dark"] #btn-refresh-data.active,
@@ -2666,16 +2732,18 @@ a:focus {
     scrollbar-gutter: stable;
   }
 
-  /* Description / Profile Modal Desktop Position: Right Side & Overlapping */
+  /* Description / Profile / Conjugate Modal Desktop Position: Right Side & Overlapping */
   #description-modal,
-  #profile-modal {
+  #profile-modal,
+  #conjugate-modal {
     justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
   }
 
   #description-modal .awsui-modal,
-  #profile-modal .awsui-modal {
+  #profile-modal .awsui-modal,
+  #conjugate-modal .awsui-modal {
     margin-left: 50vw;
     max-width: min(640px, calc(50vw - 32px));
   }
@@ -2812,6 +2880,7 @@ a:focus {
   #display-modal,
   #description-modal,
   #profile-modal,
+  #conjugate-modal,
   #notice-modal,
   #detail-modal,
   #collection-modal {
@@ -2832,7 +2901,8 @@ a:focus {
   #display-modal .awsui-display-modal,
   #notice-modal .awsui-notice-modal,
   #description-modal .awsui-modal,
-  #profile-modal .awsui-modal {
+  #profile-modal .awsui-modal,
+  #conjugate-modal .awsui-modal {
     width: min(88dvw, 387px);
     max-width: min(88dvw, 387px);
     height: min(62dvh, 593px, calc(100dvh - 2 * var(--cgo-modal-pad-y) - 24px));
@@ -2848,6 +2918,7 @@ a:focus {
 
   #description-modal .awsui-modal,
   #profile-modal .awsui-modal,
+  #conjugate-modal .awsui-modal,
   #filter-modal .awsui-filter-modal,
   #display-modal .awsui-display-modal {
     margin-left: 0 !important;
@@ -2931,7 +3002,8 @@ a:focus {
 
   #modal-term-title,
   #collection-modal-title,
-  #profile-modal-name {
+  #profile-modal-name,
+  #conjugate-modal-title {
     font-size: 20px !important;
     line-height: 1.3 !important;
   }
@@ -2942,6 +3014,7 @@ a:focus {
   #modal-level,
   #modal-reference,
   #modal-reference > a,
+  #modal-conjugate,
   #collection-modal-entitle,
   #collection-modal-curator,
   #profile-modal-en,
@@ -2956,6 +3029,7 @@ a:focus {
   #modal-reading-section,
   #modal-etymology-pos-row,
   #modal-reference-section,
+  #modal-conjugate-section,
   #collection-modal-entitle-section,
   #collection-modal-curator-section,
   #profile-modal-en-section,
@@ -2968,6 +3042,14 @@ a:focus {
   .modal-etymology-pos-row {
     margin-top: 10px !important;
     gap: 12px;
+  }
+
+  .conjugate-form-value {
+    font-size: 14px !important;
+  }
+
+  .conjugate-form-label {
+    font-size: 11px !important;
   }
 
   .awsui-modal-section-title,

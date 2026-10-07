@@ -5,7 +5,7 @@ import { VIEWS } from './constants.js';
 import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { switchCollection, closeSidebarOnMobile } from './components/sidebar.js';
-import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal, openCollectionDescriptionModal, openProfileModal, closeProfileModal } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal, openCollectionDescriptionModal, openProfileModal, closeProfileModal, openConjugateModal, closeConjugateModal } from './components/modal.js';
 import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
 import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
@@ -220,10 +220,16 @@ export function handleHashRoute() {
           closeCollectionModal(false);
           openMeaningModal(rec.row_index, false);
           if (subAction === 'description') {
+            closeConjugateModal(false);
             openDescriptionModal(rec.row_index, false);
+          } else if (subAction === 'conjugate') {
+            closeDescriptionModal(false);
+            closeProfileModal(false);
+            openConjugateModal(rec.row_index, false);
           } else {
             closeDescriptionModal(false);
             closeProfileModal(false);
+            closeConjugateModal(false);
           }
         } else {
           closeDetailModal(false);
@@ -248,10 +254,16 @@ export function handleHashRoute() {
       store.set({ invalidTerm: null });
       openMeaningModal(rec.row_index, false);
       if (termName === 'description') {
+        closeConjugateModal(false);
         openDescriptionModal(rec.row_index, false);
+      } else if (termName === 'conjugate') {
+        closeDescriptionModal(false);
+        closeProfileModal(false);
+        openConjugateModal(rec.row_index, false);
       } else {
         closeDescriptionModal(false);
         closeProfileModal(false);
+        closeConjugateModal(false);
       }
     } else {
       closeDetailModal(false);

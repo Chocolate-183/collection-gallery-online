@@ -8,7 +8,7 @@ import { preloadAllCollections, refreshGalleryData, updateStatsView } from './da
 import { onSearchInput, onFilterChange, selectQuickFilter, selectLengthTab, selectInitialTab, selectKindTab, selectEtymologyTab, selectPosTab, selectLevelTab, showMorePosTabs, selectSortField, selectSortOrder, resetFineFilters, resetDisplaySettings, resetFilterAndDisplay, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, openDisplayModal, closeDisplayModal, closeDisplayModalOnBackdrop, closeCatalogPanels, syncFilterUi, initCatalogPanelLayout } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
 import { goToPage, selectPageSize } from './components/pagination.js';
-import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop, handleStdictReferenceClick } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop, handleStdictReferenceClick, handleConjugateClick, openConjugateModal, closeConjugateModal, closeConjugateModalOnBackdrop } from './components/modal.js';
 import { openNoticePanel, closeNoticePanel, showNoticeUntil } from './components/notice.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
@@ -78,6 +78,10 @@ Object.assign(window, {
   closeProfileModal,
   closeProfileModalOnBackdrop,
   handleStdictReferenceClick,
+  handleConjugateClick,
+  openConjugateModal,
+  closeConjugateModal,
+  closeConjugateModalOnBackdrop,
   openNoticePanel,
   closeNoticePanel,
   showNoticeUntil,
@@ -129,12 +133,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       const descModal = document.getElementById('description-modal');
       const profileModal = document.getElementById('profile-modal');
+      const conjugateModal = document.getElementById('conjugate-modal');
       const filterModal = document.getElementById('filter-modal');
       const displayModal = document.getElementById('display-modal');
       if (descModal && descModal.classList.contains('open')) {
         closeDescriptionModal();
       } else if (profileModal && profileModal.classList.contains('open')) {
         closeProfileModal();
+      } else if (conjugateModal && conjugateModal.classList.contains('open')) {
+        closeConjugateModal();
       } else if ((filterModal && filterModal.classList.contains('open')) || (displayModal && displayModal.classList.contains('open'))) {
         closeCatalogPanels();
       } else {

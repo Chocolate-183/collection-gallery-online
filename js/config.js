@@ -59,6 +59,30 @@ export function getCollectionDataUrls(col) {
 }
 
 /**
+ * C103 verb/adjective conjugations (Dongsa Work / Professional).
+ * Same workbook as the C103 hall dump; tab 動詞形容詞變化.
+ */
+const conjugationsConfig = {
+  sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
+  gid: '467198079',
+  localFallback: 'korean-conjugations.json'
+};
+
+/**
+ * Returns CSV, GViz, and local fallback URLs for C103 conjugations.
+ */
+export function getConjugationUrls() {
+  if (!conjugationsConfig.sheetId) {
+    return { csvUrl: null, gvizUrl: null, localFallback: conjugationsConfig.localFallback };
+  }
+  return {
+    csvUrl: googleSheetsConfig.getCsvUrl(conjugationsConfig.sheetId, conjugationsConfig.gid || '0'),
+    gvizUrl: googleSheetsConfig.getGvizUrl(conjugationsConfig.sheetId, conjugationsConfig.gid || '0'),
+    localFallback: conjugationsConfig.localFallback
+  };
+}
+
+/**
  * Returns CSV and GViz URLs for the central metadata spreadsheet
  */
 export function getMetadataUrls() {
