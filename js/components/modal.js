@@ -156,7 +156,7 @@ export function handleCuratorClick() {
 
 function setConjugateActive(isActive) {
   if (typeof document === 'undefined') return;
-  const conjugateElem = document.getElementById('modal-conjugate');
+  const conjugateElem = document.getElementById('modal-view-conjugate');
   if (conjugateElem && conjugateElem.classList) {
     conjugateElem.classList.toggle('active', !!isActive);
   }
@@ -408,14 +408,12 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   }
   if (referenceSection) referenceSection.style.display = referenceHtml ? '' : 'none';
 
-  const conjugateSection = document.getElementById('modal-conjugate-section');
-  const conjugateElem = document.getElementById('modal-conjugate');
+  const viewConjugateBtn = document.getElementById('modal-view-conjugate');
   const lemma = getConjugationLemma(rec);
   const conjugation = currentCollectionId === 'korean-terms' && isConjugatableRecord(rec)
     ? findConjugationByLemma(lemma)
     : null;
-  if (conjugateElem) conjugateElem.innerText = conjugation ? 'Conjugate' : '--';
-  if (conjugateSection) conjugateSection.style.display = conjugation ? '' : 'none';
+  if (viewConjugateBtn) viewConjugateBtn.style.display = conjugation ? '' : 'none';
   closeConjugateModal(false);
 
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';

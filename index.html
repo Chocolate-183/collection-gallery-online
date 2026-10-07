@@ -524,7 +524,10 @@
             <div class="awsui-modal-section-title">
               <span>POS</span>
             </div>
-            <div id="modal-pos" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+            <div class="modal-pos-value-row">
+              <div id="modal-pos" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;">--</div>
+              <button type="button" class="awsui-pos-show-more" id="modal-view-conjugate" onclick="handleConjugateClick()" style="display: none;">View Conjugate</button>
+            </div>
           </div>
           <div id="modal-level-section" class="awsui-modal-section">
             <div class="awsui-modal-section-title">
@@ -553,14 +556,6 @@
             <span>Reference</span>
           </div>
           <div id="modal-reference" style="font-size: 18px; color: var(--awsui-color-text-body-default); font-weight: 400; line-height: 1.65;"></div>
-        </div>
-
-        <!-- C103 verb/adjective conjugations -->
-        <div id="modal-conjugate-section" class="awsui-modal-section" style="display: none; margin-top: 20px;">
-          <div class="awsui-modal-section-title">
-            <span>Conjugate</span>
-          </div>
-          <div id="modal-conjugate" onclick="handleConjugateClick()">Conjugate</div>
         </div>
 
         <div class="awsui-modal-divider"></div>
