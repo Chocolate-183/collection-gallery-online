@@ -510,6 +510,7 @@ a:focus {
   gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 2px;
+  min-width: 0;
 }
 
 .awsui-text-filter {
@@ -523,8 +524,19 @@ a:focus {
 .awsui-quick-filters {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 6px;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.awsui-quick-filters::-webkit-scrollbar {
+  display: none;
 }
 
 .awsui-quick-filters .awsui-tab {
@@ -533,6 +545,7 @@ a:focus {
   font-size: 12px;
   font-weight: 400;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .awsui-input {
@@ -822,7 +835,8 @@ a:focus {
   display: none;
 }
 
-#pos-show-more {
+#pos-show-more,
+#modal-view-conjugation {
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 400;
@@ -833,11 +847,14 @@ a:focus {
   border-radius: var(--awsui-border-radius-control, 8px);
 }
 
-#pos-show-more:hover {
+#pos-show-more:hover,
+#modal-view-conjugation:hover {
   color: #ECC94B;
 }
 
-#pos-show-more:active {
+#pos-show-more:active,
+#modal-view-conjugation:active,
+#modal-view-conjugation.active {
   background: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;
@@ -1405,7 +1422,8 @@ a:focus {
 
 #modal-term-title,
 #collection-modal-title,
-#profile-modal-name {
+#profile-modal-name,
+#conjugation-modal-title {
   font-size: 30px;
   font-weight: 700;
   color: var(--awsui-color-text-body-default, #16191f);
@@ -1491,21 +1509,24 @@ a:focus {
 }
 
 #description-modal,
-#profile-modal {
+#profile-modal,
+#conjugation-modal {
   z-index: 3000;
   background: transparent;
   transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 #description-modal .awsui-modal,
-#profile-modal .awsui-modal {
+#profile-modal .awsui-modal,
+#conjugation-modal .awsui-modal {
   opacity: 0;
   transform: scale(0.95);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #description-modal.open .awsui-modal,
-#profile-modal.open .awsui-modal {
+#profile-modal.open .awsui-modal,
+#conjugation-modal.open .awsui-modal {
   opacity: 1;
   transform: scale(1);
 }
@@ -1635,6 +1656,67 @@ a:focus {
   background: #ECC94B !important;
   color: #ffffff !important;
   border-color: #ECC94B !important;
+}
+
+.modal-pos-value-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+#modal-view-conjugation {
+  flex-shrink: 0;
+  padding: 2px 6px;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: none;
+}
+
+.conjugation-modal-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: 24px;
+}
+
+#conjugation-modal .awsui-modal-body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.conjugation-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+  min-width: 0;
+}
+
+.conjugation-row:first-child {
+  margin-top: 0;
+}
+
+.conjugation-section {
+  margin-top: 0;
+  min-width: 0;
+}
+
+.conjugation-forms {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 2px;
+  min-height: calc(3 * (18px * 1.4) + 2 * 2px);
+}
+
+.conjugation-form-value {
+  font-family: 'Noto Sans KR', 'Noto Sans TC', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--awsui-color-text-body-default, #16191f);
+  line-height: 1.4;
 }
 
 .modal-reference-link {
@@ -2312,6 +2394,8 @@ a:focus {
 [data-theme="dark"] #collection-header-title:active,
 [data-theme="dark"] #collection-modal-curator.active,
 [data-theme="dark"] #collection-modal-curator:active,
+[data-theme="dark"] #modal-view-conjugation.active,
+[data-theme="dark"] #modal-view-conjugation:active,
 [data-theme="dark"] #btn-open-filter-modal.active,
 [data-theme="dark"] #btn-open-filter-modal:active,
 [data-theme="dark"] #btn-refresh-data.active,
@@ -2434,11 +2518,13 @@ a:focus {
   border-color: #ECC94B;
 }
 
-[data-theme="dark"] #pos-show-more {
+[data-theme="dark"] #pos-show-more,
+[data-theme="dark"] #modal-view-conjugation {
   color: var(--awsui-color-text-body-secondary);
 }
 
-[data-theme="dark"] #pos-show-more:hover {
+[data-theme="dark"] #pos-show-more:hover,
+[data-theme="dark"] #modal-view-conjugation:hover {
   color: #ECC94B;
 }
 
@@ -2653,16 +2739,18 @@ a:focus {
     scrollbar-gutter: stable;
   }
 
-  /* Description / Profile Modal Desktop Position: Right Side & Overlapping */
+  /* Description / Profile / Conjugation Modal Desktop Position: Right Side & Overlapping */
   #description-modal,
-  #profile-modal {
+  #profile-modal,
+  #conjugation-modal {
     justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
   }
 
   #description-modal .awsui-modal,
-  #profile-modal .awsui-modal {
+  #profile-modal .awsui-modal,
+  #conjugation-modal .awsui-modal {
     margin-left: 50vw;
     max-width: min(640px, calc(50vw - 32px));
   }
@@ -2760,7 +2848,9 @@ a:focus {
   }
 
   .awsui-quick-filters {
-    flex: 0 0 auto;
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
   }
 
   .awsui-cards-controls .awsui-pagination-controls {
@@ -2797,6 +2887,7 @@ a:focus {
   #display-modal,
   #description-modal,
   #profile-modal,
+  #conjugation-modal,
   #notice-modal,
   #detail-modal,
   #collection-modal {
@@ -2817,7 +2908,8 @@ a:focus {
   #display-modal .awsui-display-modal,
   #notice-modal .awsui-notice-modal,
   #description-modal .awsui-modal,
-  #profile-modal .awsui-modal {
+  #profile-modal .awsui-modal,
+  #conjugation-modal .awsui-modal {
     width: min(88dvw, 387px);
     max-width: min(88dvw, 387px);
     height: min(62dvh, 593px, calc(100dvh - 2 * var(--cgo-modal-pad-y) - 24px));
@@ -2833,6 +2925,7 @@ a:focus {
 
   #description-modal .awsui-modal,
   #profile-modal .awsui-modal,
+  #conjugation-modal .awsui-modal,
   #filter-modal .awsui-filter-modal,
   #display-modal .awsui-display-modal {
     margin-left: 0 !important;
@@ -2916,7 +3009,8 @@ a:focus {
 
   #modal-term-title,
   #collection-modal-title,
-  #profile-modal-name {
+  #profile-modal-name,
+  #conjugation-modal-title {
     font-size: 20px !important;
     line-height: 1.3 !important;
   }
@@ -2953,6 +3047,23 @@ a:focus {
   .modal-etymology-pos-row {
     margin-top: 10px !important;
     gap: 12px;
+  }
+
+  .conjugation-row {
+    margin-top: 24px !important;
+    gap: 12px;
+  }
+
+  .conjugation-row:first-child {
+    margin-top: 0 !important;
+  }
+
+  .conjugation-form-value {
+    font-size: 14px !important;
+  }
+
+  .conjugation-forms {
+    min-height: calc(3 * (14px * 1.4) + 2 * 2px);
   }
 
   .awsui-modal-section-title,

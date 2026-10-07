@@ -2,9 +2,9 @@
  * Data Fetching, Caching & Parallel Sync Handler
  */
 import { DEFAULT_TIMEOUT_MS } from './constants.js';
-import { collectionsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls } from './config.js';
+import { collectionsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, getConjugationUrls } from './config.js';
 import { store } from './state.js';
-import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, gvizTableToRows, extractOpeningHoursFromMetaRows, parseProfilesCSVData, parseProfilesGvizResponse } from './parser.js';
+import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, gvizTableToRows, extractOpeningHoursFromMetaRows, parseProfilesCSVData, parseProfilesGvizResponse, parseConjugationCSVData, parseConjugationGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
@@ -16,6 +16,67 @@ import { safeFetchText, setOpeningHoursSchedule, isCollectionAdjusting, isCollec
 export const collectionsCache = {};
 export const collectionsMetaCache = {};
 export const profilesCache = [];
+export const conjugationsCache = [];
+const conjugationsByLemma = new Map();
+
+function setConjugationsCache(entries) {
+  conjugationsCache.length = 0;
+  conjugationsByLemma.clear();
+  if (!Array.isArray(entries) || entries.length === 0) return conjugationsCache;
+  conjugationsCache.push(...entries);
+  entries.forEach(entry => {
+    const lemma = String(entry?.lemma || '').trim();
+    if (lemma) conjugationsByLemma.set(lemma, entry);
+  });
+  return conjugationsCache;
+}
+
+export function findConjugationByLemma(lemma) {
+  const key = String(lemma || '').trim();
+  if (!key) return null;
+  return conjugationsByLemma.get(key) || null;
+}
+
+/**
+ * Fetches C103 conjugations.
+ * Live Sheets (CSV → GViz) only when `{ live: true }`; otherwise local JSON.
+ */
+export async function fetchConjugations({ live = false } = {}) {
+  const { csvUrl, gvizUrl, localFallback } = getConjugationUrls();
+  let entries = [];
+
+  if (live && csvUrl) {
+    const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
+    if (csvText) {
+      entries = parseConjugationCSVData(csvText);
+    }
+  }
+
+  if (live && (!entries || entries.length === 0) && gvizUrl) {
+    const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
+    if (gvizText) {
+      entries = parseConjugationGvizResponse(gvizText);
+    }
+  }
+
+  if ((!entries || entries.length === 0) && localFallback) {
+    const fallbackText = await safeFetchText(localFallback, DEFAULT_TIMEOUT_MS);
+    if (fallbackText) {
+      try {
+        const parsed = JSON.parse(fallbackText);
+        if (Array.isArray(parsed)) entries = parsed;
+      } catch (err) {
+        console.warn('Failed to parse local conjugations fallback JSON:', err);
+      }
+    }
+  }
+
+  return setConjugationsCache(entries);
+}
+
+export function replaceConjugationsCache(entries) {
+  return setConjugationsCache(entries);
+}
 
 function normalizeProfileName(name) {
   return String(name || '').trim();
@@ -140,7 +201,11 @@ export async function fetchAllMetadata({ live = false } = {}) {
  * Live Google Sheets sync happens when the user clicks the header refresh button.
  */
 export async function preloadAllCollections() {
-  await Promise.all([fetchAllMetadata({ live: false }), fetchProfiles({ live: false })]);
+  await Promise.all([
+    fetchAllMetadata({ live: false }),
+    fetchProfiles({ live: false }),
+    fetchConjugations({ live: false })
+  ]);
   const colIds = Object.keys(collectionsConfig);
   await Promise.all(colIds.map(id => fetchSingleCollection(collectionsConfig[id], { live: false })));
 }
@@ -312,7 +377,8 @@ export async function refreshGalleryData(collectionId) {
   const sync = (async () => {
     await Promise.all([
       fetchAllMetadata({ live: true }),
-      fetchProfiles({ live: true })
+      fetchProfiles({ live: true }),
+      fetchConjugations({ live: true })
     ]);
     await loadCollectionData(collectionId, true);
   })();

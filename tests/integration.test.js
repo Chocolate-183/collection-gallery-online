@@ -76,6 +76,12 @@ test('Offline dumps cover C101 C102 C103 and profiles', () => {
     assert.ok(levelValues.includes(level), `C103 dump missing Level ${level}`);
   }
 
+  const conjugationsJson = JSON.parse(readFileSync(resolve('korean-conjugations.json'), 'utf-8'));
+  assert(Array.isArray(conjugationsJson) && conjugationsJson.length > 12);
+  const hada = conjugationsJson.find(r => r.lemma === '하다');
+  assert.ok(hada);
+  assert.deepEqual(hada.present, ['해', '해요', '한다', '합니다']);
+
   const profilesJson = JSON.parse(readFileSync(resolve('profiles.json'), 'utf-8'));
   const chocolate = profilesJson.find(p => p.zhName === '巧克力');
   assert.equal(chocolate.id, '#P-0002');
@@ -118,6 +124,16 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100[\s\S]*初級[\s\S]*中級[\s\S]*高級/);
   assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
   assert.doesNotMatch(html, /src="js\/app\.js"/);
+});
+
+test('Catalog quick filters stay in a scrollable row on narrow screens', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const quickFiltersRule = css.match(/\.awsui-quick-filters \{[\s\S]*?\n\}/)[0];
+  assert.match(quickFiltersRule, /overflow-x:\s*auto/);
+  assert.match(quickFiltersRule, /min-width:\s*0/);
+  assert.match(quickFiltersRule, /flex-wrap:\s*nowrap/);
+  const mobile = css.split('@media (max-width: 768px)').pop();
+  assert.match(mobile, /\.awsui-quick-filters \{[\s\S]*?flex:\s*1 1 100%/);
 });
 
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
@@ -538,6 +554,10 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   const mockLevel = createMockElement();
   const mockReferenceSection = createMockElement({ style: { display: 'none' } });
   const mockReference = createMockElement();
+  const mockViewConjugation = createMockElement({ style: { display: 'none' } });
+  const mockConjugationModal = createMockElement();
+  const mockConjugationTitle = createMockElement();
+  const mockConjugationBody = createMockElement();
   const card1 = createMockElement({ 'data-row-index': '1' });
   const card2 = createMockElement({ 'data-row-index': '2' });
 
@@ -554,7 +574,11 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
     'modal-level-section': mockLevelSection,
     'modal-level': mockLevel,
     'modal-reference-section': mockReferenceSection,
-    'modal-reference': mockReference
+    'modal-reference': mockReference,
+    'modal-view-conjugation': mockViewConjugation,
+    'conjugation-modal': mockConjugationModal,
+    'conjugation-modal-title': mockConjugationTitle,
+    'conjugation-modal-body': mockConjugationBody
   });
   global.document.querySelectorAll = (sel) => {
     if (sel === '.awsui-card') return [card1, card2];
@@ -562,7 +586,20 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   };
 
   const { store } = await import('../js/state.js');
-  const { openMeaningModal, closeDetailModal } = await import('../js/components/modal.js');
+  const { replaceConjugationsCache } = await import('../js/data.js');
+  const { openMeaningModal, closeDetailModal, openConjugationModal } = await import('../js/components/modal.js');
+
+  replaceConjugationsCache([{
+    lemma: '하다',
+    present: ['해', '해요', '한다', '합니다'],
+    past: ['했어', '했어요', '했다', '했습니다'],
+    future: ['할 거야', '할 거예요', '할 거다', '할 겁니다', '하겠어', '하겠어요', '하겠다', '하겠습니다'],
+    presentQuestion: ['해?', '해요?', '하니?', '합니까?'],
+    pastQuestion: ['했어?', '했어요?', '했니?', '했습니까?'],
+    command: ['해', '하세요', '해라', '하십시오'],
+    suggestion: ['해', '해요', '하자', '합시다'],
+    other: ['하면', '하고', '했', '할', '함']
+  }]);
 
   store.set({
     currentCollectionId: 'japanese-terms',
@@ -573,6 +610,7 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockReadingSection.style.display, 'block');
   assert.equal(mockReferenceSection.style.display, 'none');
   assert.equal(mockLevelSection.style.display, 'none');
+  assert.equal(mockViewConjugation.style.display, 'none');
 
   store.set({
     currentCollectionId: 'korean-terms',
@@ -660,4 +698,38 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   closeDetailModal(false);
   assert.equal(card1.classList.contains('active'), false);
   assert.equal(card2.classList.contains('active'), false);
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '하다',
+      tw_translation: '做',
+      pos: '動詞',
+      etymology: '固有語',
+      level: '初級'
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockViewConjugation.style.display, '');
+  openConjugationModal(1, false);
+  assert.equal(mockConjugationModal.classes.has('open'), true);
+  assert.equal(mockConjugationTitle.innerText, '하다');
+  assert.match(mockConjugationBody.innerHTML, />해요</);
+  assert.match(mockConjugationBody.innerHTML, />합니다</);
+  assert.equal(mockConjugationBody.innerHTML.includes('해</div>'), false);
+  assert.equal(mockViewConjugation.classList.contains('active'), true);
+
+  store.set({
+    currentCollectionId: 'korean-terms',
+    allRecords: [{
+      row_index: 1,
+      ja_term: '가게',
+      tw_translation: '店',
+      pos: '名詞'
+    }]
+  });
+  openMeaningModal(1, false);
+  assert.equal(mockViewConjugation.style.display, 'none');
+  assert.equal(mockConjugationModal.classes.has('open'), false);
 });

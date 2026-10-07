@@ -3,8 +3,9 @@
  */
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
-import { collectionsCache, collectionsMetaCache, findProfileByName } from '../data.js';
+import { collectionsCache, collectionsMetaCache, findProfileByName, findConjugationByLemma } from '../data.js';
 import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml, getExhibitCategoryLabel } from '../utils.js';
+import { getConjugationLemma, getWorkProfessionalRows, isConjugatableRecord } from '../conjugations.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -153,6 +154,87 @@ export function handleCuratorClick() {
   openProfileModal(name);
 }
 
+function setConjugationActive(isActive) {
+  if (typeof document === 'undefined') return;
+  const conjugationElem = document.getElementById('modal-view-conjugation');
+  if (conjugationElem && conjugationElem.classList) {
+    conjugationElem.classList.toggle('active', !!isActive);
+  }
+}
+
+export function handleConjugationClick() {
+  const meaningElem = getMeaningElement();
+  const rowIndexStr = meaningElem && typeof meaningElem.getAttribute === 'function'
+    ? meaningElem.getAttribute('data-row-index')
+    : null;
+  const rowIndex = rowIndexStr !== null && rowIndexStr !== undefined ? parseInt(rowIndexStr, 10) : null;
+  if (rowIndex === null || Number.isNaN(rowIndex)) return;
+  openConjugationModal(rowIndex);
+}
+
+function renderConjugationColumn(section) {
+  const forms = section.forms.map(form => `
+    <div class="conjugation-form">
+      <div class="conjugation-form-value">${escapeHtml(form.value)}</div>
+    </div>
+  `).join('');
+  return `
+    <div class="awsui-modal-section conjugation-section conjugation-section-${escapeHtml(section.id)}">
+      <div class="awsui-modal-section-title"><span>${escapeHtml(section.title)}</span></div>
+      <div class="conjugation-forms conjugation-forms-${escapeHtml(section.id)}">${forms}</div>
+    </div>
+  `;
+}
+
+function renderConjugationSections(entry) {
+  return getWorkProfessionalRows(entry).map(row => `
+    <div class="conjugation-row">
+      ${row.map(renderConjugationColumn).join('')}
+    </div>
+  `).join('');
+}
+
+export function openConjugationModal(rowIndex, updateHash = true) {
+  const { allRecords, currentCollectionId } = store.get();
+  const rec = allRecords.find(r => r.row_index === rowIndex);
+  if (!rec || currentCollectionId !== 'korean-terms' || !isConjugatableRecord(rec)) return;
+
+  const lemma = getConjugationLemma(rec);
+  const entry = findConjugationByLemma(lemma);
+  if (!entry) return;
+
+  closeDescriptionModal(false);
+  closeProfileModal(false);
+
+  const titleElem = document.getElementById('conjugation-modal-title');
+  const bodyElem = document.getElementById('conjugation-modal-body');
+  const modal = document.getElementById('conjugation-modal');
+  if (titleElem) titleElem.innerText = lemma || rec.ja_term || '--';
+  if (bodyElem) bodyElem.innerHTML = renderConjugationSections(entry);
+  setConjugationActive(true);
+  if (modal) modal.classList.add('open');
+
+  if (updateHash) {
+    syncHash(`#/${getCollectionSlug(currentCollectionId)}/${rec.ja_term}/conjugation`);
+  }
+}
+
+export function closeConjugationModal(updateHash = true) {
+  setConjugationActive(false);
+  const modal = document.getElementById('conjugation-modal');
+  if (modal) modal.classList.remove('open');
+
+  if (updateHash) {
+    const { currentCollectionId, allRecords } = store.get();
+    const colSlug = getCollectionSlug(currentCollectionId);
+    const meaningElem = getMeaningElement();
+    const rowIndexStr = meaningElem ? meaningElem.getAttribute('data-row-index') : null;
+    const rowIndex = rowIndexStr !== null ? parseInt(rowIndexStr, 10) : null;
+    const rec = (rowIndex !== null && !Number.isNaN(rowIndex)) ? allRecords.find(r => r.row_index === rowIndex) : null;
+    syncHash(rec ? `#/${colSlug}/${rec.ja_term}` : `#/${colSlug}`);
+  }
+}
+
 function setCuratorActive(isActive) {
   if (typeof document === 'undefined') return;
   const curatorElem = document.getElementById('collection-modal-curator');
@@ -217,6 +299,7 @@ export function openProfileModal(curatorName, updateHash = true) {
   if (idElem) idElem.innerText = profile.id || '--';
 
   closeDescriptionModal(false);
+  closeConjugationModal(false);
   setCuratorActive(true);
   if (modal) modal.classList.add('open');
 
@@ -325,6 +408,14 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   }
   if (referenceSection) referenceSection.style.display = referenceHtml ? '' : 'none';
 
+  const viewConjugationBtn = document.getElementById('modal-view-conjugation');
+  const lemma = getConjugationLemma(rec);
+  const conjugation = currentCollectionId === 'korean-terms' && isConjugatableRecord(rec)
+    ? findConjugationByLemma(lemma)
+    : null;
+  if (viewConjugationBtn) viewConjugationBtn.style.display = conjugation ? '' : 'none';
+  closeConjugationModal(false);
+
   if (createdAtElem) createdAtElem.innerText = rec.created_at || 'N/A';
   if (idElem) idElem.innerText = rec.id || (rec.row_index ? `ROW-${rec.row_index}` : 'N/A');
 
@@ -366,6 +457,7 @@ export function openMeaningModal(rowIndex, updateHash = true) {
 
 export function closeDetailModal(updateHash = true) {
   closeDescriptionModal(false);
+  closeConjugationModal(false);
   clearStdictOpenTimer();
   const modal = document.getElementById('detail-modal');
   if (modal) modal.classList.remove('open');
@@ -386,6 +478,7 @@ export function closeDetailModal(updateHash = true) {
 
 export function openDescriptionModal(rowIndex, updateHash = true) {
   closeProfileModal(false);
+  closeConjugationModal(false);
   const { allRecords, currentCollectionId } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec) return;
@@ -554,3 +647,4 @@ export const closeDetailModalOnBackdrop = createBackdropHandler('detail-modal', 
 export const closeDescriptionModalOnBackdrop = createBackdropHandler('description-modal', closeDescriptionModal);
 export const closeCollectionModalOnBackdrop = createBackdropHandler('collection-modal', closeCollectionModal);
 export const closeProfileModalOnBackdrop = createBackdropHandler('profile-modal', closeProfileModal);
+export const closeConjugationModalOnBackdrop = createBackdropHandler('conjugation-modal', closeConjugationModal);
