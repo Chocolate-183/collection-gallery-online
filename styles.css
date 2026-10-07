@@ -1700,6 +1700,7 @@ a:focus {
   flex-direction: column;
   gap: 8px;
   margin-top: 6px;
+  min-height: calc(4 * (18px * 1.4) + 3 * 8px);
 }
 
 .conjugate-form-value {
@@ -3051,6 +3052,10 @@ a:focus {
 
   .conjugate-form-value {
     font-size: 14px !important;
+  }
+
+  .conjugate-forms {
+    min-height: calc(4 * (14px * 1.4) + 3 * 8px);
   }
 
   .awsui-modal-section-title,
