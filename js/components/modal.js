@@ -176,7 +176,6 @@ function renderConjugateColumn(section) {
   const forms = section.forms.map(form => `
     <div class="conjugate-form">
       <div class="conjugate-form-value">${escapeHtml(form.value)}</div>
-      <div class="conjugate-form-label">${escapeHtml(form.label)}</div>
     </div>
   `).join('');
   return `
