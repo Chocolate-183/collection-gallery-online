@@ -1660,15 +1660,15 @@ a:focus {
 
 .modal-pos-value-row {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
   min-width: 0;
 }
 
 #modal-view-conjugate {
   flex-shrink: 0;
-  white-space: nowrap;
+  line-height: 1.2;
+  text-align: left;
 }
 
 .conjugate-modal-scroll {
