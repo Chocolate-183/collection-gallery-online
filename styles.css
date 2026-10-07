@@ -1682,7 +1682,7 @@ a:focus {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
-  margin-top: 16px;
+  margin-top: 32px;
   min-width: 0;
 }
 
@@ -3035,9 +3035,13 @@ a:focus {
   }
 
   .profile-modal-social-row,
-  .modal-etymology-pos-row,
-  .conjugate-row {
+  .modal-etymology-pos-row {
     margin-top: 10px !important;
+    gap: 12px;
+  }
+
+  .conjugate-row {
+    margin-top: 24px !important;
     gap: 12px;
   }
 
