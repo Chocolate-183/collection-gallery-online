@@ -59,7 +59,7 @@ import {
   getExhibitCategoryLabel
 } from '../js/utils.js';
 import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, getConjugationUrls, collectionsConfig } from '../js/config.js';
-import { getWorkProfessionalSections, isConjugatableRecord } from '../js/conjugations.js';
+import { getWorkProfessionalRows, getWorkProfessionalSections, isConjugatableRecord } from '../js/conjugations.js';
 
 test('CSV and GViz parsers handle quotes, newlines, and table extraction', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期,推薦條目
@@ -485,6 +485,11 @@ test('C103 conjugations parse and Work/Professional keep 해요/합니다', () =
   assert.deepEqual(byId.suggestion, ['해요', '합시다']);
   assert.deepEqual(byId.connective, ['하면', '하고']);
   assert.deepEqual(byId.other, ['했', '할', '함']);
+  const rows = getWorkProfessionalRows(parsed[0]);
+  assert.equal(rows.length, 3);
+  assert.deepEqual(rows[0].map(s => s.title), ['Present', 'Past', 'Future']);
+  assert.deepEqual(rows[1].map(s => s.title), ['Present Question', 'Past Question', 'Commands']);
+  assert.deepEqual(rows[2].map(s => s.title), ['Suggestions', 'Connective', 'Other']);
   assert.equal(isConjugatableRecord({ pos: '動詞' }), true);
   assert.equal(isConjugatableRecord({ pos: '形容詞' }), true);
   assert.equal(isConjugatableRecord({ pos: '名詞' }), false);

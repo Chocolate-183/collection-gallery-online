@@ -5,7 +5,7 @@ import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache, findProfileByName, findConjugationByLemma } from '../data.js';
 import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml, getExhibitCategoryLabel } from '../utils.js';
-import { getConjugationLemma, getWorkProfessionalSections, isConjugatableRecord } from '../conjugations.js';
+import { getConjugationLemma, getWorkProfessionalRows, isConjugatableRecord } from '../conjugations.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -172,22 +172,27 @@ export function handleConjugateClick() {
   openConjugateModal(rowIndex);
 }
 
+function renderConjugateColumn(section) {
+  const forms = section.forms.map(form => `
+    <div class="conjugate-form">
+      <div class="conjugate-form-value">${escapeHtml(form.value)}</div>
+      <div class="conjugate-form-label">${escapeHtml(form.label)}</div>
+    </div>
+  `).join('');
+  return `
+    <div class="awsui-modal-section conjugate-section conjugate-section-${escapeHtml(section.id)}">
+      <div class="awsui-modal-section-title"><span>${escapeHtml(section.title)}</span></div>
+      <div class="conjugate-forms conjugate-forms-${escapeHtml(section.id)}">${forms}</div>
+    </div>
+  `;
+}
+
 function renderConjugateSections(entry) {
-  const sections = getWorkProfessionalSections(entry);
-  return sections.map(section => {
-    const forms = section.forms.map(form => `
-      <div class="conjugate-form">
-        <div class="conjugate-form-value">${escapeHtml(form.value)}</div>
-        <div class="conjugate-form-label">${escapeHtml(form.label)}</div>
-      </div>
-    `).join('');
-    return `
-      <div class="awsui-modal-section conjugate-section conjugate-section-${escapeHtml(section.id)}">
-        <div class="awsui-modal-section-title"><span>${escapeHtml(section.title)}</span></div>
-        <div class="conjugate-forms conjugate-forms-${escapeHtml(section.id)}">${forms}</div>
-      </div>
-    `;
-  }).join('');
+  return getWorkProfessionalRows(entry).map(row => `
+    <div class="conjugate-row">
+      ${row.map(renderConjugateColumn).join('')}
+    </div>
+  `).join('');
 }
 
 export function openConjugateModal(rowIndex, updateHash = true) {

@@ -65,3 +65,13 @@ export function getWorkProfessionalSections(entry) {
   ];
   return sections.filter(section => section.forms.length > 0);
 }
+
+/** Groups Work / Professional sections into rows of three columns. */
+export function getWorkProfessionalRows(entry, columnsPerRow = 3) {
+  const sections = getWorkProfessionalSections(entry);
+  const rows = [];
+  for (let i = 0; i < sections.length; i += columnsPerRow) {
+    rows.push(sections.slice(i, i + columnsPerRow));
+  }
+  return rows;
+}
