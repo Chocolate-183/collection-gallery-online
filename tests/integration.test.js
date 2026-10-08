@@ -126,6 +126,15 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   assert.doesNotMatch(html, /src="js\/app\.js"/);
 });
 
+test('Item modal POS value does not wrap on narrow screens', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const posRowRule = css.match(/\.modal-pos-value-row \{[\s\S]*?\n\}/)[0];
+  assert.match(posRowRule, /flex-wrap:\s*nowrap/);
+  const posValueRule = css.match(/#modal-pos \{[\s\S]*?\n\}/)[0];
+  assert.match(posValueRule, /white-space:\s*nowrap/);
+  assert.match(posValueRule, /flex-shrink:\s*0/);
+});
+
 test('Catalog quick filters stay in a scrollable row on narrow screens', () => {
   const css = readFileSync(resolve('styles.css'), 'utf-8');
   const quickFiltersRule = css.match(/\.awsui-quick-filters \{[\s\S]*?\n\}/)[0];

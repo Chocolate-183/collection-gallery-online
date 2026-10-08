@@ -1661,8 +1661,14 @@ a:focus {
 .modal-pos-value-row {
   display: flex;
   align-items: flex-start;
+  flex-wrap: nowrap;
   gap: 8px;
   min-width: 0;
+}
+
+#modal-pos {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 #modal-view-conjugation {
