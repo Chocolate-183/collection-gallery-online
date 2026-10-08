@@ -148,6 +148,13 @@ test('Mobile Item Panel hides Timestamp ID Reference Etymology', () => {
   assert.doesNotMatch(hideRule, /#profile-modal/);
 });
 
+test('C101 Item Panel keeps extra space below Pronunciation', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const rule = css.match(/#detail-modal\[data-collection="japanese-terms"\] \.awsui-modal-description-section \{[\s\S]*?\n\}/)[0];
+  assert.match(rule, /margin-top:\s*16px\s*!important/);
+  assert.doesNotMatch(rule, /margin-top:\s*4px/);
+});
+
 test('Catalog quick filters stay in a scrollable row on narrow screens', () => {
   const css = readFileSync(resolve('styles.css'), 'utf-8');
   const quickFiltersRule = css.match(/\.awsui-quick-filters \{[\s\S]*?\n\}/)[0];

@@ -1417,7 +1417,7 @@ a:focus {
 }
 
 #detail-modal[data-collection="japanese-terms"] .awsui-modal-description-section {
-  margin-top: 4px !important;
+  margin-top: 16px !important;
 }
 
 #modal-term-title,
