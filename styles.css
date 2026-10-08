@@ -3055,6 +3055,16 @@ a:focus {
     gap: 12px;
   }
 
+  .modal-etymology-pos-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #detail-modal .awsui-modal-created-time,
+  #modal-reference-section,
+  #modal-etymology-section {
+    display: none !important;
+  }
+
   .conjugation-row {
     margin-top: 24px !important;
     gap: 12px;

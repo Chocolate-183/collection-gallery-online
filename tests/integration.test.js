@@ -135,6 +135,19 @@ test('Item modal POS value does not wrap on narrow screens', () => {
   assert.match(posValueRule, /flex-shrink:\s*0/);
 });
 
+test('Mobile Item Panel hides Timestamp ID Reference Etymology', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const mobile = css.split('@media (max-width: 768px)').pop();
+  assert.match(mobile, /#detail-modal \.awsui-modal-created-time/);
+  assert.match(mobile, /#modal-reference-section/);
+  assert.match(mobile, /#modal-etymology-section/);
+  const hideRule = mobile.match(/#detail-modal \.awsui-modal-created-time,[\s\S]*?#modal-etymology-section \{[\s\S]*?\n  \}/)[0];
+  assert.match(hideRule, /display:\s*none\s*!important/);
+  assert.match(mobile, /\.modal-etymology-pos-row \{[\s\S]*?grid-template-columns:\s*1fr 1fr/);
+  assert.doesNotMatch(hideRule, /#collection-modal/);
+  assert.doesNotMatch(hideRule, /#profile-modal/);
+});
+
 test('Catalog quick filters stay in a scrollable row on narrow screens', () => {
   const css = readFileSync(resolve('styles.css'), 'utf-8');
   const quickFiltersRule = css.match(/\.awsui-quick-filters \{[\s\S]*?\n\}/)[0];
