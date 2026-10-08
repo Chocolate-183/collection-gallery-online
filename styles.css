@@ -838,11 +838,11 @@ a:focus {
 #pos-show-more,
 #modal-view-conjugation {
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--awsui-color-text-body-secondary, #687078);
+  color: #9aa3ad;
   cursor: pointer;
   border-radius: var(--awsui-border-radius-control, 8px);
 }
@@ -1417,7 +1417,7 @@ a:focus {
 }
 
 #detail-modal[data-collection="japanese-terms"] .awsui-modal-description-section {
-  margin-top: 4px !important;
+  margin-top: 16px !important;
 }
 
 #modal-term-title,
@@ -1661,8 +1661,14 @@ a:focus {
 .modal-pos-value-row {
   display: flex;
   align-items: flex-start;
+  flex-wrap: nowrap;
   gap: 8px;
   min-width: 0;
+}
+
+#modal-pos {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 #modal-view-conjugation {
@@ -2520,7 +2526,7 @@ a:focus {
 
 [data-theme="dark"] #pos-show-more,
 [data-theme="dark"] #modal-view-conjugation {
-  color: var(--awsui-color-text-body-secondary);
+  color: #6b7280;
 }
 
 [data-theme="dark"] #pos-show-more:hover,
@@ -3047,6 +3053,16 @@ a:focus {
   .modal-etymology-pos-row {
     margin-top: 10px !important;
     gap: 12px;
+  }
+
+  .modal-etymology-pos-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #detail-modal .awsui-modal-created-time,
+  #modal-reference-section,
+  #modal-etymology-section {
+    display: none !important;
   }
 
   .conjugation-row {

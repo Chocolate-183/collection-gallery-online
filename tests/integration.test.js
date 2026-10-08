@@ -126,6 +126,35 @@ test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () 
   assert.doesNotMatch(html, /src="js\/app\.js"/);
 });
 
+test('Item modal POS value does not wrap on narrow screens', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const posRowRule = css.match(/\.modal-pos-value-row \{[\s\S]*?\n\}/)[0];
+  assert.match(posRowRule, /flex-wrap:\s*nowrap/);
+  const posValueRule = css.match(/#modal-pos \{[\s\S]*?\n\}/)[0];
+  assert.match(posValueRule, /white-space:\s*nowrap/);
+  assert.match(posValueRule, /flex-shrink:\s*0/);
+});
+
+test('Mobile Item Panel hides Timestamp ID Reference Etymology', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const mobile = css.split('@media (max-width: 768px)').pop();
+  assert.match(mobile, /#detail-modal \.awsui-modal-created-time/);
+  assert.match(mobile, /#modal-reference-section/);
+  assert.match(mobile, /#modal-etymology-section/);
+  const hideRule = mobile.match(/#detail-modal \.awsui-modal-created-time,[\s\S]*?#modal-etymology-section \{[\s\S]*?\n  \}/)[0];
+  assert.match(hideRule, /display:\s*none\s*!important/);
+  assert.match(mobile, /\.modal-etymology-pos-row \{[\s\S]*?grid-template-columns:\s*1fr 1fr/);
+  assert.doesNotMatch(hideRule, /#collection-modal/);
+  assert.doesNotMatch(hideRule, /#profile-modal/);
+});
+
+test('C101 Item Panel keeps extra space below Pronunciation', () => {
+  const css = readFileSync(resolve('styles.css'), 'utf-8');
+  const rule = css.match(/#detail-modal\[data-collection="japanese-terms"\] \.awsui-modal-description-section \{[\s\S]*?\n\}/)[0];
+  assert.match(rule, /margin-top:\s*16px\s*!important/);
+  assert.doesNotMatch(rule, /margin-top:\s*4px/);
+});
+
 test('Catalog quick filters stay in a scrollable row on narrow screens', () => {
   const css = readFileSync(resolve('styles.css'), 'utf-8');
   const quickFiltersRule = css.match(/\.awsui-quick-filters \{[\s\S]*?\n\}/)[0];
