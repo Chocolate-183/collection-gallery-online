@@ -72,6 +72,9 @@
 ├── data.json         # 日本特色詞彙展區資料快照備份 (離線降級備援)
 ├── china-data.json   # 簡中語境破解攻略展區資料快照備份 (離線降級備援)
 ├── korean-data.json  # 韓文單字展區資料快照備份 (離線降級備援)
+├── korean-conjugations.json # C103 動詞／形容詞變化離線備援（Dongsa All Levels）
+├── scripts/
+│   └── scrape_dongsa_conjugations.py # 依 korean-data.json 重抓 korean-conjugations.json
 ├── tests/
 │   ├── unit.test.js        # 核心解析器、篩選邏輯與 UI 結構單元測試
 │   └── integration.test.js # 本地快照資料與參觀時間整合測試
@@ -93,11 +96,19 @@ python3 -m http.server 8899
 
 於瀏覽器開啟 `http://localhost:8899` 即可預覽。離線 JSON 快照（`data.json` 等）不打進 bundle，仍獨立 fetch。
 
+C103 動詞／形容詞變化離線檔 `korean-conjugations.json` 在 workbook 變化表分頁缺失時，依 `korean-data.json` 的 動詞／形容詞 lemma 從 [Dongsa](https://koreanverb.app/) 重抓（stdlib Python + `curl`，已完成的 lemma 會跳過）：
+
+```bash
+npm run refresh:conjugations
+# 或
+python3 scripts/scrape_dongsa_conjugations.py
+```
+
 ---
 
 ## ☁️ Cloudflare Workers 部署
 
-此專案為純靜態站（`index.html`、`styles.css`、`dist/app.js`、JSON 快照）。Workers 靜態資產目錄為 repo 根目錄，但必須用 `.assetsignore` 排除 `node_modules/`、`.git/`、`js/`、`tests/` 等。否則 `npx wrangler deploy` 會把建置依賴（含 `workerd`，約 128 MiB）當資產上傳，超過 Workers 單檔 25 MiB 上限。
+此專案為純靜態站（`index.html`、`styles.css`、`dist/app.js`、JSON 快照）。Workers 靜態資產目錄為 repo 根目錄，但必須用 `.assetsignore` 排除 `node_modules/`、`.git/`、`js/`、`tests/`、`scripts/` 等。否則 `npx wrangler deploy` 會把建置依賴（含 `workerd`，約 128 MiB）當資產上傳，超過 Workers 單檔 25 MiB 上限。
 
 倉庫已含 `wrangler.jsonc`，Cloudflare 不會再走互動式 scaffold。Dashboard 建置可維持 `npm run build`，部署指令 `npx wrangler deploy`。
 
