@@ -842,7 +842,7 @@ a:focus {
   font-weight: 400;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--awsui-color-text-body-secondary, #687078);
+  color: #9aa3ad;
   cursor: pointer;
   border-radius: var(--awsui-border-radius-control, 8px);
 }
@@ -2526,7 +2526,7 @@ a:focus {
 
 [data-theme="dark"] #pos-show-more,
 [data-theme="dark"] #modal-view-conjugation {
-  color: var(--awsui-color-text-body-secondary);
+  color: #6b7280;
 }
 
 [data-theme="dark"] #pos-show-more:hover,
