@@ -2919,6 +2919,10 @@ a:focus {
     display: none !important;
   }
 
+  #description-modal {
+    display: none !important;
+  }
+
   #filter-panel-title-filter,
   #filter-reset-actions {
     display: none !important;

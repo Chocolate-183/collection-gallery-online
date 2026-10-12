@@ -6,6 +6,7 @@ import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache, findProfileByName, findConjugationByLemma } from '../data.js';
 import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml, getExhibitCategoryLabel } from '../utils.js';
 import { getConjugationLemma, getWorkProfessionalRows, isConjugatableRecord } from '../conjugations.js';
+import { isCatalogMobile } from '../filter.js';
 
 function syncHash(newHash) {
   if (typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== newHash) {
@@ -123,6 +124,7 @@ export function checkMeaningHasScroll(meaningElem) {
  * Handles double-click event on modal meaning text to open Description modal.
  */
 export function handleMeaningTextClick() {
+  if (isCatalogMobile()) return;
   const meaningElem = getMeaningElement();
   if (!meaningElem) return;
   const rowIndexStr = typeof meaningElem.getAttribute === 'function'
@@ -138,6 +140,7 @@ export function handleMeaningTextClick() {
  * Handles double-click event on collection modal description to open Description modal.
  */
 export function handleCollectionDescriptionClick() {
+  if (isCatalogMobile()) return;
   const { currentCollectionId } = store.get();
   const descElem = document.getElementById('collection-modal-description');
   const descText = descElem ? descElem.innerText : '';
@@ -477,6 +480,7 @@ export function closeDetailModal(updateHash = true) {
 }
 
 export function openDescriptionModal(rowIndex, updateHash = true) {
+  if (isCatalogMobile()) return;
   closeProfileModal(false);
   closeConjugationModal(false);
   const { allRecords, currentCollectionId } = store.get();
@@ -502,6 +506,7 @@ export function openDescriptionModal(rowIndex, updateHash = true) {
 }
 
 export function openCollectionDescriptionModal(collectionId, customText, updateHash = true) {
+  if (isCatalogMobile()) return;
   closeProfileModal(false);
   const { currentCollectionId } = store.get();
   const targetColId = collectionId || currentCollectionId || 'china-terms';
