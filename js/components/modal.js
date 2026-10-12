@@ -213,7 +213,7 @@ function scheduleClearPagerSlow() {
   pagerSlowTimer = schedule(() => {
     pagerSlowTimer = null;
     clearPagerSlow();
-  }, 560);
+  }, 800);
 }
 
 function cancelPagerHold() {
