@@ -175,10 +175,45 @@ function getActiveItemRowIndex() {
   return rowIndex;
 }
 
+let pagerSlowTimer = null;
+
+function markPagerSlow() {
+  if (!isCatalogMobile() || typeof document === 'undefined') return;
+  const detail = document.getElementById('detail-modal');
+  const conj = document.getElementById('conjugation-modal');
+  detail?.classList?.add('pager-slow', 'pager-anim');
+  conj?.classList?.add('pager-slow', 'pager-anim');
+}
+
+function clearPagerSlow() {
+  const clearTimer = (typeof window !== 'undefined' && window.clearTimeout) || clearTimeout;
+  if (pagerSlowTimer != null) {
+    clearTimer(pagerSlowTimer);
+    pagerSlowTimer = null;
+  }
+  if (typeof document === 'undefined') return;
+  const detail = document.getElementById('detail-modal');
+  const conj = document.getElementById('conjugation-modal');
+  detail?.classList?.remove('pager-slow');
+  conj?.classList?.remove('pager-slow');
+}
+
+function scheduleClearPagerSlow() {
+  const clearTimer = (typeof window !== 'undefined' && window.clearTimeout) || clearTimeout;
+  const schedule = (typeof window !== 'undefined' && window.setTimeout) || setTimeout;
+  if (pagerSlowTimer != null) clearTimer(pagerSlowTimer);
+  pagerSlowTimer = schedule(() => {
+    pagerSlowTimer = null;
+    clearPagerSlow();
+  }, 560);
+}
+
 export function handleConjugationClick() {
   const rowIndex = getActiveItemRowIndex();
   if (rowIndex === null) return;
+  markPagerSlow();
   openConjugationModal(rowIndex);
+  scheduleClearPagerSlow();
 }
 
 function renderConjugationColumn(section) {
@@ -360,8 +395,8 @@ export function syncItemConjugationPager() {
   const pairable = isCatalogMobile() && itemOpen && (conjOpen || canSwipeToConjugation());
 
   if (!pairable) {
-    detail.classList?.remove('pager-paired', 'pager-ready', 'pager-dragging', 'pager-anim');
-    conj.classList?.remove('pager-paired', 'pager-ready', 'pager-dragging', 'pager-anim');
+    detail.classList?.remove('pager-paired', 'pager-ready', 'pager-dragging', 'pager-anim', 'pager-slow');
+    conj.classList?.remove('pager-paired', 'pager-ready', 'pager-dragging', 'pager-anim', 'pager-slow');
     clearPagerX(detail);
     clearPagerX(conj);
     return;
@@ -402,6 +437,7 @@ let pagerSwipe = null;
 
 function onItemConjugationTouchStart(e) {
   if (!isCatalogMobile()) return;
+  clearPagerSlow();
   const detail = document.getElementById('detail-modal');
   const conj = document.getElementById('conjugation-modal');
   if (!detail?.classList?.contains('open')) return;

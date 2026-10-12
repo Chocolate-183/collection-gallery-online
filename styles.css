@@ -2939,6 +2939,11 @@ a:focus {
     transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  #detail-modal.pager-paired.pager-slow.pager-anim:not(.pager-dragging) .awsui-modal,
+  #conjugation-modal.pager-paired.pager-slow.pager-anim:not(.pager-dragging) .awsui-modal {
+    transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   #detail-modal.pager-paired.open .awsui-modal,
   #conjugation-modal.pager-paired.open .awsui-modal,
   #conjugation-modal.pager-paired.pager-ready .awsui-modal {
