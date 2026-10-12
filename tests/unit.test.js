@@ -494,3 +494,39 @@ test('C103 conjugations parse and Work/Professional keep 해요/합니다', () =
   assert.equal(isConjugatableRecord({ pos: '形容詞' }), true);
   assert.equal(isConjugatableRecord({ pos: '名詞' }), false);
 });
+
+test('C103 mobile Item/Conjugation swipe opens from left page and rubber-bands at edges', async () => {
+  const { resolveItemConjugationSwipe, rubberBandOffset } = await import('../js/components/modal.js');
+  const width = 390;
+
+  const open = resolveItemConjugationSwipe(-80, 0, width, { canGoConjugation: true, onConjugation: false });
+  assert.equal(open.action, 'open-conjugation');
+  assert.equal(open.rubberBand, false);
+  assert.equal(open.itemDrag, -80);
+  assert.equal(open.conjDrag, -80);
+
+  const stay = resolveItemConjugationSwipe(-20, 0, width, { canGoConjugation: true, onConjugation: false });
+  assert.equal(stay.action, 'stay');
+
+  const edgeRight = resolveItemConjugationSwipe(80, 0, width, { canGoConjugation: true, onConjugation: false });
+  assert.equal(edgeRight.action, 'rubber');
+  assert.equal(edgeRight.rubberBand, true);
+  assert.equal(edgeRight.itemDrag, rubberBandOffset(80, width));
+  assert.ok(Math.abs(edgeRight.itemDrag) < 80);
+
+  const noun = resolveItemConjugationSwipe(-80, 0, width, { canGoConjugation: false, onConjugation: false });
+  assert.equal(noun.action, 'rubber');
+
+  const back = resolveItemConjugationSwipe(80, 0, width, { canGoConjugation: true, onConjugation: true });
+  assert.equal(back.action, 'close-conjugation');
+  assert.equal(back.itemDrag, 80);
+  assert.equal(back.conjDrag, 80);
+
+  const farRight = resolveItemConjugationSwipe(-80, 0, width, { canGoConjugation: true, onConjugation: true });
+  assert.equal(farRight.action, 'rubber');
+  assert.equal(farRight.conjDrag, rubberBandOffset(-80, width));
+  assert.ok(Math.abs(farRight.conjDrag) < 80);
+
+  const vertical = resolveItemConjugationSwipe(-80, 90, width, { canGoConjugation: true, onConjugation: false });
+  assert.equal(vertical.action, 'ignore');
+});

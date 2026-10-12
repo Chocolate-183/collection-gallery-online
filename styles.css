@@ -2923,6 +2923,60 @@ a:focus {
     display: none !important;
   }
 
+  /* C103 Item ↔ Conjugation: whole panel slides; edges rubber-band */
+  #detail-modal.pager-paired,
+  #conjugation-modal.pager-paired {
+    overflow: hidden;
+  }
+
+  #detail-modal.pager-paired .awsui-modal,
+  #conjugation-modal.pager-paired .awsui-modal {
+    transform: translate3d(var(--cgo-pager-x, 0px), 0, 0);
+  }
+
+  #detail-modal.pager-paired.pager-anim:not(.pager-dragging) .awsui-modal,
+  #conjugation-modal.pager-paired.pager-anim:not(.pager-dragging) .awsui-modal {
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #detail-modal.pager-paired.open .awsui-modal,
+  #conjugation-modal.pager-paired.open .awsui-modal,
+  #conjugation-modal.pager-paired.pager-ready .awsui-modal {
+    opacity: 1;
+    transform: translate3d(var(--cgo-pager-x, 0px), 0, 0);
+  }
+
+  #detail-modal.pager-paired.pager-dragging .awsui-modal,
+  #conjugation-modal.pager-paired.pager-dragging .awsui-modal {
+    transition: none;
+  }
+
+  #conjugation-modal.pager-paired {
+    background: transparent;
+    pointer-events: none;
+  }
+
+  #conjugation-modal.pager-paired.pager-ready {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+  }
+
+  #conjugation-modal.pager-paired.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  #detail-modal.pager-paired .awsui-modal,
+  #conjugation-modal.pager-paired.open .awsui-modal {
+    pointer-events: auto;
+  }
+
+  #conjugation-modal.pager-paired.pager-ready:not(.open) .awsui-modal {
+    pointer-events: none;
+  }
+
   #filter-panel-title-filter,
   #filter-reset-actions {
     display: none !important;

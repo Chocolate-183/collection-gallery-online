@@ -8,7 +8,7 @@ import { preloadAllCollections, refreshGalleryData, updateStatsView } from './da
 import { onSearchInput, onFilterChange, selectQuickFilter, selectLengthTab, selectInitialTab, selectKindTab, selectEtymologyTab, selectPosTab, selectLevelTab, showMorePosTabs, selectSortField, selectSortOrder, resetFineFilters, resetDisplaySettings, resetFilterAndDisplay, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, openDisplayModal, closeDisplayModal, closeDisplayModalOnBackdrop, closeCatalogPanels, syncFilterUi, initCatalogPanelLayout } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
 import { goToPage, selectPageSize } from './components/pagination.js';
-import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop, handleStdictReferenceClick, handleConjugationClick, openConjugationModal, closeConjugationModal, closeConjugationModalOnBackdrop } from './components/modal.js';
+import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop, handleStdictReferenceClick, handleConjugationClick, openConjugationModal, closeConjugationModal, closeConjugationModalOnBackdrop, initItemConjugationPager } from './components/modal.js';
 import { openNoticePanel, closeNoticePanel, showNoticeUntil } from './components/notice.js';
 import { switchView, handleHashRoute } from './router.js';
 import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initSidebarState();
   initSidebarOutsideClick();
   initCatalogPanelLayout();
+  initItemConjugationPager();
 
   Object.keys(collectionsConfig).forEach(updateSidebarBadge);
 
