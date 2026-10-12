@@ -175,7 +175,7 @@ function getActiveItemRowIndex() {
   return rowIndex;
 }
 
-export const ITEM_CONJUGATION_BUTTON_HOLD_MS = 280;
+export const ITEM_CONJUGATION_BUTTON_HOLD_MS = 420;
 
 let pagerSlowTimer = null;
 let pagerHoldTimer = null;
