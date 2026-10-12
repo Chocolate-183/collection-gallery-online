@@ -3056,8 +3056,12 @@ a:focus {
     line-height: 1.6 !important;
   }
 
-  .awsui-modal-header-title {
+  .awsui-modal-section-title.awsui-modal-header-title,
+  .awsui-modal-header-title > span {
     font-size: 22px !important;
+  }
+
+  .awsui-modal-header-title {
     margin-top: -4px !important;
     margin-bottom: 12px !important;
     padding-bottom: 8px !important;
@@ -3132,7 +3136,7 @@ a:focus {
     min-height: calc(3 * (14px * 1.4) + 2 * 2px);
   }
 
-  .awsui-modal-section-title,
+  .awsui-modal-section-title:not(.awsui-modal-header-title),
   .awsui-modal-recommendations-title {
     font-size: 13px !important;
   }
