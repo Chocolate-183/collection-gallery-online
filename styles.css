@@ -2955,6 +2955,16 @@ a:focus {
     display: flex;
   }
 
+  #filter-modal .awsui-filter-modal-tabs .awsui-tab,
+  #filter-modal #pos-show-more {
+    padding: 3px 8px;
+  }
+
+  #filter-display-actions .awsui-btn {
+    height: 32px;
+    padding: 0 12px;
+  }
+
   .awsui-modal-body {
     padding: 18px 14px;
     box-sizing: border-box;
