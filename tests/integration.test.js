@@ -209,6 +209,7 @@ test('Mobile Filter and Display merge into one panel', () => {
   assert.match(html, /id="filter-panel-title-combined">Filter & Display</);
   const mobile = css.split('@media (max-width: 768px)').pop();
   assert.match(mobile, /#display-modal \{[\s\S]*display:\s*none\s*!important/);
+  assert.match(mobile, /#description-modal \{[\s\S]*display:\s*none\s*!important/);
 });
 
 test('Notice Panel stays open until work and 5s hold finish', async () => {
@@ -413,6 +414,16 @@ test('Empty catalog, Collection modal, Description modal, and Profile panel', as
   mockDesc.innerText = '展廳詳細介紹說明內容';
   handleCollectionDescriptionClick();
   assert.equal(mockDescText.innerText, '展廳詳細介紹說明內容');
+
+  const prevWin = global.window;
+  global.window = { ...(prevWin || {}), innerWidth: 390 };
+  mockDescModal.classes.delete('open');
+  mockDescText.innerText = '';
+  openDescriptionModal(1, false);
+  handleCollectionDescriptionClick();
+  assert(!mockDescModal.classes.has('open'));
+  assert.equal(mockDescText.innerText, '');
+  global.window = prevWin;
 
   profilesCache.length = 0;
   profilesCache.push({

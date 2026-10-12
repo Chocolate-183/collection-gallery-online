@@ -10,6 +10,7 @@ node_modules/
 # App source & tests (site loads dist/app.js)
 js/
 tests/
+scripts/
 
 # Tooling files
 package.json
