@@ -175,7 +175,16 @@ function getActiveItemRowIndex() {
   return rowIndex;
 }
 
+export const ITEM_CONJUGATION_BUTTON_HOLD_MS = 280;
+
 let pagerSlowTimer = null;
+let pagerHoldTimer = null;
+
+function getTimerFns() {
+  const clearTimer = (typeof window !== 'undefined' && window.clearTimeout) || clearTimeout;
+  const schedule = (typeof window !== 'undefined' && window.setTimeout) || setTimeout;
+  return { clearTimer, schedule };
+}
 
 function markPagerSlow() {
   if (!isCatalogMobile() || typeof document === 'undefined') return;
@@ -186,7 +195,7 @@ function markPagerSlow() {
 }
 
 function clearPagerSlow() {
-  const clearTimer = (typeof window !== 'undefined' && window.clearTimeout) || clearTimeout;
+  const { clearTimer } = getTimerFns();
   if (pagerSlowTimer != null) {
     clearTimer(pagerSlowTimer);
     pagerSlowTimer = null;
@@ -199,8 +208,7 @@ function clearPagerSlow() {
 }
 
 function scheduleClearPagerSlow() {
-  const clearTimer = (typeof window !== 'undefined' && window.clearTimeout) || clearTimeout;
-  const schedule = (typeof window !== 'undefined' && window.setTimeout) || setTimeout;
+  const { clearTimer, schedule } = getTimerFns();
   if (pagerSlowTimer != null) clearTimer(pagerSlowTimer);
   pagerSlowTimer = schedule(() => {
     pagerSlowTimer = null;
@@ -208,12 +216,31 @@ function scheduleClearPagerSlow() {
   }, 560);
 }
 
+function cancelPagerHold() {
+  const { clearTimer } = getTimerFns();
+  if (pagerHoldTimer == null) return;
+  clearTimer(pagerHoldTimer);
+  pagerHoldTimer = null;
+}
+
 export function handleConjugationClick() {
   const rowIndex = getActiveItemRowIndex();
   if (rowIndex === null) return;
+  if (!isCatalogMobile()) {
+    openConjugationModal(rowIndex);
+    return;
+  }
+  const conj = document.getElementById('conjugation-modal');
+  if (conj?.classList?.contains('open') || pagerHoldTimer != null) return;
+  if (!fillConjugationPanel(rowIndex)) return;
+  setConjugationActive(true);
   markPagerSlow();
-  openConjugationModal(rowIndex);
-  scheduleClearPagerSlow();
+  const { schedule } = getTimerFns();
+  pagerHoldTimer = schedule(() => {
+    pagerHoldTimer = null;
+    openConjugationModal(rowIndex);
+    scheduleClearPagerSlow();
+  }, ITEM_CONJUGATION_BUTTON_HOLD_MS);
 }
 
 function renderConjugationColumn(section) {
@@ -273,6 +300,7 @@ export function openConjugationModal(rowIndex, updateHash = true) {
 }
 
 export function closeConjugationModal(updateHash = true) {
+  cancelPagerHold();
   setConjugationActive(false);
   const modal = document.getElementById('conjugation-modal');
   if (modal) modal.classList.remove('open');
@@ -437,6 +465,10 @@ let pagerSwipe = null;
 
 function onItemConjugationTouchStart(e) {
   if (!isCatalogMobile()) return;
+  if (pagerHoldTimer != null) {
+    cancelPagerHold();
+    setConjugationActive(false);
+  }
   clearPagerSlow();
   const detail = document.getElementById('detail-modal');
   const conj = document.getElementById('conjugation-modal');
