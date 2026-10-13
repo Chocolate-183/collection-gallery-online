@@ -39,7 +39,6 @@ function toggleViewElements(targetView) {
 function updateMaintenanceView(isColPreparing, isColAdjusting, colMeta, currentCollectionId) {
   const maintTitle = document.getElementById('maintenance-title');
   const maintDesc1 = document.getElementById('maintenance-desc-1');
-  const maintDesc2 = document.getElementById('maintenance-desc-2');
 
   let title = 'MAINTENANCE';
   let desc1 = '';
@@ -60,7 +59,6 @@ function updateMaintenanceView(isColPreparing, isColAdjusting, colMeta, currentC
 
   if (maintTitle) maintTitle.innerText = title;
   if (maintDesc1) maintDesc1.innerText = desc1;
-  if (maintDesc2) maintDesc2.style.display = 'none';
 
   if (isColAdjusting || isColPreparing) {
     const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);

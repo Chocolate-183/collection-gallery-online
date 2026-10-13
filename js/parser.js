@@ -15,16 +15,8 @@ const META_FIELD_DEFINITIONS = [
   { key: 'author', match: k => k.includes('作者') || k.includes('策劃') || k.includes('負責人') || k.includes('author') },
   { key: 'status', match: k => k.includes('狀態') || k.includes('status') },
   { key: 'id', match: k => k.toUpperCase() === 'ID' || k.includes('編號') || k.includes('序號') || k.includes('展廳id') },
-  { key: 'timestamp', match: k => !isHoursOrWeekdayMetaKey(k) && (k.includes('新增日期') || k.includes('timestamp') || k.includes('created') || k.includes('日期') || k.includes('時間')) }
+  { key: 'timestamp', match: k => k.includes('新增日期') || k.includes('timestamp') || k.includes('created') || k.includes('日期') || k.includes('時間') }
 ];
-
-function isHoursOrWeekdayMetaKey(key) {
-  const k = String(key || '').trim().toLowerCase();
-  if (!k) return false;
-  if (/^(週|星期|禮拜)[日一二三四五六]$/.test(k)) return true;
-  if (['sun', 'sunday', 'mon', 'monday', 'tue', 'tuesday', 'wed', 'wednesday', 'thu', 'thursday', 'fri', 'friday', 'sat', 'saturday'].includes(k)) return true;
-  return k.includes('開館') || k.includes('開放時間') || k.includes('參觀時間') || k.includes('opening');
-}
 
 /**
  * Helper to construct metadata object from key-value pairs
@@ -50,6 +42,7 @@ function extractMetadataFromKeyValues(pairs) {
     const key = (rawKey || '').trim().toLowerCase();
     const val = (rawVal || '').trim();
     if (!key) continue;
+    if (key.includes('開館') || key.includes('開放時間') || key.includes('參觀時間')) continue;
 
     for (const def of META_FIELD_DEFINITIONS) {
       if (def.match(key)) {
