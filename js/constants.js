@@ -199,12 +199,3 @@ export const HANGUL_SYLLABLE = {
   FINAL_COUNT: HANGUL_FINAL_COUNT
 };
 
-export const DEFAULT_OPENING_HOURS = [
-  { day: '週日', hours: '00:01 - 23:59' },
-  { day: '週一', hours: '00:01 - 23:59' },
-  { day: '週二', hours: '00:01 - 23:59' },
-  { day: '週三', hours: '00:01 - 23:59' },
-  { day: '週四', hours: '00:01 - 23:59' },
-  { day: '週五', hours: '00:01 - 23:59' },
-  { day: '週六', hours: '00:01 - 23:59' }
-];

@@ -1,6 +1,6 @@
 /**
  * C102 簡中語境破解攻略 — gallery config (dataset wiring only).
- * Live hall metadata and opening hours come from the central spreadsheet.
+ * Live hall metadata comes from the central spreadsheet.
  */
 export default {
   id: 'china-terms',

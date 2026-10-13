@@ -11,23 +11,11 @@ import { goToPage, selectPageSize } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop, handleStdictReferenceClick, handleConjugationClick, openConjugationModal, closeConjugationModal, closeConjugationModalOnBackdrop, initItemConjugationPager } from './components/modal.js';
 import { openNoticePanel, closeNoticePanel, showNoticeUntil } from './components/notice.js';
 import { switchView, handleHashRoute } from './router.js';
-import { getTodayOpeningHoursText, getNextOpeningTimeText, isGalleryOpen, loadOpeningHours, OPENING_HOURS_SCHEDULE } from './utils.js';
-
-function renderScheduleGrid() {
-  const scheduleGrid = document.getElementById('schedule-grid');
-  if (!scheduleGrid) return;
-  const displayOrder = [1, 2, 3, 4, 5, 6, 0];
-  scheduleGrid.innerHTML = displayOrder.map(idx => {
-    const item = OPENING_HOURS_SCHEDULE[idx];
-    return `<div class="awsui-schedule-row"><span>${item.day}</span><span>${item.hours}</span></div>`;
-  }).join('');
-}
 
 // Expose functions globally for backward compatibility with inline HTML events
 Object.assign(window, {
   collectionsConfig,
   currentCollectionId: store.get().currentCollectionId,
-  isGalleryOpen,
   toggleSidebar,
   closeSidebarOnMobile,
   toggleTheme,
@@ -105,18 +93,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   Object.keys(collectionsConfig).forEach(updateSidebarBadge);
 
   await preloadAllCollections();
-  await loadOpeningHours();
-  renderScheduleGrid();
-
-  const todayHoursEl = document.getElementById('today-hours-text');
-  if (todayHoursEl) {
-    todayHoursEl.textContent = getTodayOpeningHoursText();
-  }
-
-  const maintHoursEl = document.getElementById('maintenance-hours-text');
-  if (maintHoursEl) {
-    maintHoursEl.textContent = getNextOpeningTimeText();
-  }
 
   Object.keys(collectionsConfig).forEach(updateSidebarBadge);
   updateStatsView();

@@ -1,6 +1,6 @@
 /**
  * C101 Japanese Terms — gallery config (dataset wiring only).
- * Live hall metadata and opening hours come from the central spreadsheet.
+ * Live hall metadata comes from the central spreadsheet.
  */
 export default {
   id: 'japanese-terms',

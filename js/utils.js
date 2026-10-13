@@ -1,8 +1,7 @@
 /**
  * Shared Helper Utilities
  */
-import { EXHIBITION_STATUS, DEFAULT_OPENING_HOURS, DEFAULT_TIMEOUT_MS, NAME_CATEGORY_TAGS } from './constants.js';
-import { parseOpeningHoursCSV } from './parser.js';
+import { EXHIBITION_STATUS, DEFAULT_TIMEOUT_MS, NAME_CATEGORY_TAGS } from './constants.js';
 
 function matchStatus(meta, keywords) {
   if (!meta || !meta.status) return false;
@@ -214,99 +213,6 @@ export function getExhibitCategoryLabel(record) {
     if (tags.some(t => String(t).trim() === wanted)) return wanted;
   }
   return '';
-}
-
-export let OPENING_HOURS_SCHEDULE = [...DEFAULT_OPENING_HOURS];
-let openingHoursFromMetadata = false;
-
-export function setOpeningHoursSchedule(newSchedule, { fromMetadata = false } = {}) {
-  if (Array.isArray(newSchedule) && newSchedule.length === 7) {
-    OPENING_HOURS_SCHEDULE = newSchedule;
-    if (fromMetadata) openingHoursFromMetadata = true;
-  }
-}
-
-export async function loadOpeningHours(csvUrl = 'opening-hours.csv') {
-  if (openingHoursFromMetadata) return OPENING_HOURS_SCHEDULE;
-  const csvText = await safeFetchText(csvUrl);
-  if (csvText) {
-    const parsed = parseOpeningHoursCSV(csvText);
-    if (parsed) {
-      setOpeningHoursSchedule(parsed);
-      return parsed;
-    }
-  }
-  return OPENING_HOURS_SCHEDULE;
-}
-
-/**
- * Returns formatted today's opening hours text based on current day of week.
- * @param {Date} [date] - Optional date object for testing
- * @returns {string} Formatted opening hours string
- */
-function isClosedHours(hours) {
-  return !hours || hours === '休館' || hours === 'CLOSED';
-}
-
-function parseHoursRange(hours) {
-  const parts = String(hours).split('-').map(s => s.trim());
-  if (parts.length !== 2) return null;
-  const [startH, startM] = parts[0].split(':').map(Number);
-  const [endH, endM] = parts[1].split(':').map(Number);
-  if ([startH, startM, endH, endM].some(Number.isNaN)) return null;
-  return {
-    startTotal: startH * 60 + startM,
-    endTotal: endH * 60 + endM
-  };
-}
-
-export function getTodayOpeningHoursText(date = new Date()) {
-  const hours = OPENING_HOURS_SCHEDULE[date.getDay()]?.hours;
-  return `Today's Hours: ${isClosedHours(hours) ? 'CLOSED' : hours}`;
-}
-
-/**
- * Returns formatted next opening time text with date based on OPENING_HOURS_SCHEDULE.
- * @param {Date} [now] - Optional date object for testing
- * @returns {string} Formatted next opening time string
- */
-export function getNextOpeningTimeText(now = new Date()) {
-  for (let offset = 0; offset < 7; offset++) {
-    const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
-    const sched = OPENING_HOURS_SCHEDULE[targetDate.getDay()];
-    if (isClosedHours(sched?.hours)) continue;
-
-    const range = parseHoursRange(sched.hours);
-    if (!range) continue;
-
-    if (offset === 0) {
-      const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
-      if (currentTotalMinutes >= range.startTotal) continue;
-    }
-
-    const year = targetDate.getFullYear();
-    const month = String(targetDate.getMonth() + 1).padStart(2, '0');
-    const dateStr = String(targetDate.getDate()).padStart(2, '0');
-    return `Next Opening: ${year}/${month}/${dateStr} (${sched.day}) ${sched.hours}`;
-  }
-
-  return 'Next Opening: N/A';
-}
-
-/**
- * Checks whether the gallery is currently open based on OPENING_HOURS_SCHEDULE.
- * @param {Date} [date] - Optional date object for testing
- * @returns {boolean} True if within opening hours, false otherwise
- */
-export function isGalleryOpen(date = new Date()) {
-  const hours = OPENING_HOURS_SCHEDULE[date.getDay()]?.hours;
-  if (isClosedHours(hours)) return false;
-
-  const range = parseHoursRange(hours);
-  if (!range) return false;
-
-  const currentTotal = date.getHours() * 60 + date.getMinutes();
-  return currentTotal >= range.startTotal && currentTotal <= range.endTotal;
 }
 
 /**

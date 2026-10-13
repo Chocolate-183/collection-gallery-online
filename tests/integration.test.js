@@ -270,10 +270,6 @@ test('Router sends 調整中 / 籌備中 halls to maintenance and sidebar badges
     'side-nav-count-korean-terms': mockBadge
   });
 
-  const { setOpeningHoursSchedule, OPENING_HOURS_SCHEDULE } = await import('../js/utils.js');
-  const originalSchedule = [...OPENING_HOURS_SCHEDULE];
-  setOpeningHoursSchedule(Array(7).fill({ day: '全天', hours: '00:00 - 23:59' }));
-
   const { collectionsMetaCache } = await import('../js/data.js');
   const { store } = await import('../js/state.js');
   const { switchView } = await import('../js/router.js');
@@ -296,8 +292,6 @@ test('Router sends 調整中 / 籌備中 halls to maintenance and sidebar badges
   collectionsMetaCache['japanese-terms'] = { title: '日本特色詞彙', status: '調整中' };
   updateSidebarBadge('japanese-terms');
   assert.equal(mockBadge.innerText, 'ADJUSTING');
-
-  setOpeningHoursSchedule(originalSchedule);
 });
 
 test('Empty catalog, Collection modal, Description modal, and Profile panel', async () => {

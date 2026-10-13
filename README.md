@@ -1,6 +1,6 @@
 # Collection Gallery Online / 線上展覽與數位藝廊平台
 
-本專案為通用型線上展覽與主題展品檢索網頁應用程式（Collection Gallery Online 平台），提供多展廳動態切換、經營團隊服務台（Info）、開館時間與維護模式管理、獨立大廳、動態展品卡片矩陣、多維度動態篩選排序與展品導覽彈窗 (Modal)。
+本專案為通用型線上展覽與主題展品檢索網頁應用程式（Collection Gallery Online 平台），提供多展廳動態切換、經營團隊服務台（Info）、展廳維護模式管理、獨立大廳、動態展品卡片矩陣、多維度動態篩選排序與展品導覽彈窗 (Modal)。
 
 ---
 
@@ -12,10 +12,8 @@
 - **展廳狀態徽章 (Status Badge)**: 展廳維護或調整時，側欄自動呈現「調整中」專屬標籤，隱藏項目數量。
 - **頁面頂欄與展品 KPI 儀表板**: 整合頂部導覽列（品牌標籤、展廳切換、同步展品按鈕），並於卡片標題區域整合展廳編號（如 `C101`）與展品總數 KPI 數據（如 `520 件`）。
 
-### 2. 展館開放時間與維護模式管理 (Opening Hours & Maintenance Mode)
-- **開放時間排程解析**: 展廳介紹與開館時間一律從中央 Google Spreadsheet (`CGO展廳資訊`) 讀取；本地 `opening-hours.csv` 僅作離線備援。
-- **閉館與調整中視圖 (`view-maintenance`)**: 當非開放時間或特定展廳狀態為「調整中」時，自動切換至專屬維護頁面，提示開館時間與下次開館資訊。
-- **大廳與服務台時間告示**: 大廳頂欄及服務台 (Info) 頁面呈現每週參觀時間排程網格與開館狀態告示。
+### 2. 展廳維護模式管理 (Maintenance Mode)
+- **調整中與籌備中視圖 (`view-maintenance`)**: 當特定展廳狀態為「調整中」或「籌備中」時，自動切換至專屬維護頁面。
 
 ### 3. 動態數據同步與容錯備援 (Data Fetching & Timeout Failover)
 - **多管道 API 讀取**: 支援 Google Sheets GViz Query JSON API 與 CSV 格式動態匯入展品與策展詮釋資料。
@@ -49,10 +47,9 @@
 ├── styles.css        # Cloudscape Design System 樣式表 (含 Layout, Cards Grid, Modal & Dark Mode)
 ├── dist/app.js       # esbuild 打包後的瀏覽器進入點（index.html 載入此檔）
 ├── package.json      # 建置腳本（esbuild）
-├── opening-hours.csv # 展館開放時間離線備援（正式來源為中央 metadata spreadsheet）
 ├── js/
 │   ├── app.js        # 進入點、全域事件監聽與 Downward Compatibility Bridge
-│   ├── constants.js  # 集中式應用程式常數 (Views, Sort Types, Storage Keys, Default Schedules)
+│   ├── constants.js  # 集中式應用程式常數 (Views, Sort Types, Storage Keys)
 │   ├── config.js     # Multi-Collection 登錄與 Google Sheets API 網址建構器
 │   ├── galleries/    # 各展廳獨立 config（C101 / C102 / C103）
 │   ├── state.js      # 集中式 Application State (Store) & 訂閱機制
@@ -61,7 +58,7 @@
 │   ├── data.js       # Google Sheets 動態網路抓取、Meta 套用與 Fallback 快照機制
 │   ├── filter.js     # 全文搜尋、分類索引、Unicode 字數長度比對與排序引擎
 │   ├── router.js     # SPA Hash 路由解析與 View 視圖切換引擎
-│   ├── utils.js      # HTML 轉義、Unicode 字長計算、開館時間判斷與 Safe Fetch
+│   ├── utils.js      # HTML 轉義、Unicode 字長計算與 Safe Fetch
 │   └── components/
 │       ├── sidebar.js    # 展廳導覽側欄收折、徽章與展區選擇器組件
 │       ├── cards.js      # 動態展品卡片矩陣組件
@@ -77,7 +74,7 @@
 │   └── scrape_dongsa_conjugations.py # 依 korean-data.json 重抓 korean-conjugations.json
 ├── tests/
 │   ├── unit.test.js        # 核心解析器、篩選邏輯與 UI 結構單元測試
-│   └── integration.test.js # 本地快照資料與參觀時間整合測試
+│   └── integration.test.js # 本地快照資料與展廳狀態整合測試
 └── README.md         # 專案說明文件
 ```
 

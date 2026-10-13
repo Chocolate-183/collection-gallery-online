@@ -2,7 +2,7 @@
  * Multi-Collection Configuration
  *
  * Each gallery is declared in its own file under js/galleries/.
- * Hall intro metadata and opening hours live in defaultMeta until the user
+ * Hall intro metadata lives in defaultMeta until the user
  * clicks header refresh (`#btn-refresh-data`); then metadataConfig is fetched.
  */
 import japaneseTerms from './galleries/japanese-terms.js';
@@ -16,7 +16,7 @@ export const collectionsConfig = Object.fromEntries(
 );
 
 /**
- * Shared Metadata Sheet Configuration (intro + opening hours for all halls)
+ * Shared Metadata Sheet Configuration (intro for all halls)
  * https://docs.google.com/spreadsheets/d/162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs
  */
 const metadataConfig = {

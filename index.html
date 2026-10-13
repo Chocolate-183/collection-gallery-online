@@ -160,13 +160,6 @@
             <button class="awsui-btn awsui-btn-tertiary" type="button" onclick="switchView('about', event)">
               <span>Info</span>
             </button>
-            <div class="awsui-hero-hours-inline">
-              <svg class="awsui-icon" viewBox="0 0 16 16">
-                <path d="M8 3.5a.5.5 0 0 1 .5.5v4l2.5 1.5a.5.5 0 0 1-.5.866l-3-1.8A.5.5 0 0 1 7 7.5V4a.5.5 0 0 1 .5-.5z"/>
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm0-1A7 7 0 1 1 8 1a7 7 0 0 1 0 14z"/>
-              </svg>
-              <span id="today-hours-text">Today's Hours: --</span>
-            </div>
           </div>
         </section>
 
@@ -358,36 +351,6 @@
             </div>
           </section>
 
-          <!-- Opening Hours Card Panel -->
-          <section class="awsui-cards-container awsui-about-card">
-            <div class="awsui-cards-collection-header">
-              <div class="awsui-cards-header-title">
-                <span>Opening Hours</span>
-              </div>
-            </div>
-
-            <div class="awsui-author-details">
-              <p style="font-size: 13px; color: var(--awsui-color-text-body-secondary); margin: 0;">
-                Collection Gallery Online 開放時間如下（時區：UTC+8）：
-              </p>
-
-              <div class="awsui-info-list">
-                <div class="awsui-info-item awsui-info-item-schedule">
-                  <span class="awsui-info-label">參觀時間 (UTC+8)</span>
-                  <div class="awsui-info-value awsui-schedule-grid" id="schedule-grid">
-                    <div class="awsui-schedule-row"><span>週一</span><span>00:01 - 23:59</span></div>
-                    <div class="awsui-schedule-row"><span>週二</span><span>00:01 - 23:59</span></div>
-                    <div class="awsui-schedule-row"><span>週三</span><span>00:01 - 23:59</span></div>
-                    <div class="awsui-schedule-row"><span>週四</span><span>00:01 - 23:59</span></div>
-                    <div class="awsui-schedule-row"><span>週五</span><span>00:01 - 23:59</span></div>
-                    <div class="awsui-schedule-row"><span>週六</span><span>00:01 - 23:59</span></div>
-                    <div class="awsui-schedule-row"><span>週日</span><span>00:01 - 23:59</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
           <!-- Feedback & Submission Card Panel -->
           <section class="awsui-cards-container awsui-about-card">
             <div class="awsui-cards-collection-header">
@@ -475,15 +438,12 @@
       <div id="view-maintenance" class="awsui-view-content" style="display: none;">
         <section class="awsui-welcome-hero" style="text-align: center; padding: 96px 48px; min-height: 520px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
           <h1 class="awsui-hero-title" id="maintenance-title" style="font-size: 72px; font-weight: 400; line-height: 1.15; margin: 0 0 44px 0; color: var(--awsui-color-theme, #303748); letter-spacing: normal;">
-            CLOSED
+            MAINTENANCE
           </h1>
 
           <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; justify-content: center;">
-            <div class="awsui-hero-hours-inline" id="maintenance-desc-1" style="font-size: 14px;">
-              目前非展廳開放時間，歡迎於開館時間再次蒞臨參觀。
-            </div>
-            <div class="awsui-hero-hours-inline" id="maintenance-desc-2" style="font-size: 14px;">
-              <span id="maintenance-hours-text">Next Opening: --</span>
+            <div id="maintenance-desc-1" style="font-size: 14px; color: var(--awsui-color-text-body-secondary);">
+              本展廳目前暫不開放參觀，敬請期待。
             </div>
           </div>
         </section>

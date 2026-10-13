@@ -1,6 +1,6 @@
 /**
  * C103 韓語單字量最強速成攻略 — gallery config (dataset wiring only).
- * Live hall metadata and opening hours come from the central spreadsheet.
+ * Live hall metadata comes from the central spreadsheet.
  */
 export default {
   id: 'korean-terms',
