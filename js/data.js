@@ -4,13 +4,13 @@
 import { DEFAULT_TIMEOUT_MS } from './constants.js';
 import { collectionsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, getConjugationUrls } from './config.js';
 import { store } from './state.js';
-import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseCSVRows, extractGvizTable, gvizTableToRows, extractOpeningHoursFromMetaRows, parseProfilesCSVData, parseProfilesGvizResponse, parseConjugationCSVData, parseConjugationGvizResponse } from './parser.js';
+import { parseCSVData, parseGvizResponse, parseAllCollectionsMetaCSVData, parseAllCollectionsMetaGvizResponse, parseProfilesCSVData, parseProfilesGvizResponse, parseConjugationCSVData, parseConjugationGvizResponse } from './parser.js';
 import { applyFiltersAndSort } from './filter.js';
 import { handleHashRoute } from './router.js';
 import { showLoadingState } from './components/cards.js';
 import { showNoticeUntil, NOTICE_SYNC_MESSAGE, NOTICE_MIN_VISIBLE_MS } from './components/notice.js';
 import { updateSidebarBadge } from './components/sidebar.js';
-import { safeFetchText, setOpeningHoursSchedule, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, applyCollectionHeaderTitle } from './utils.js';
+import { safeFetchText, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, applyCollectionHeaderTitle } from './utils.js';
 
 // Cache for storing fetched collection records & metadata
 export const collectionsCache = {};
@@ -137,36 +137,23 @@ export async function fetchProfiles({ live = false } = {}) {
 /**
  * Fetches metadata for all exhibition halls from the central metadata spreadsheet.
  */
-function applyOpeningHoursFromMetaSource(csvText, gvizText) {
-  let schedule = csvText ? extractOpeningHoursFromMetaRows(parseCSVRows(csvText)) : null;
-  if (!schedule && gvizText) {
-    schedule = extractOpeningHoursFromMetaRows(gvizTableToRows(extractGvizTable(gvizText)));
-  }
-  if (schedule) setOpeningHoursSchedule(schedule, { fromMetadata: true });
-  return schedule;
-}
-
 export async function fetchAllMetadata({ live = false } = {}) {
   const { csvUrl, gvizUrl } = getMetadataUrls();
   let fetchedMetaMap = {};
-  let csvText = null;
-  let gvizText = null;
 
   if (live && csvUrl) {
-    csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
+    const csvText = await safeFetchText(csvUrl, DEFAULT_TIMEOUT_MS);
     if (csvText) {
       fetchedMetaMap = parseAllCollectionsMetaCSVData(csvText);
     }
   }
 
   if (live && (!fetchedMetaMap || Object.keys(fetchedMetaMap).length === 0) && gvizUrl) {
-    gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
+    const gvizText = await safeFetchText(gvizUrl, DEFAULT_TIMEOUT_MS);
     if (gvizText) {
       fetchedMetaMap = parseAllCollectionsMetaGvizResponse(gvizText);
     }
   }
-
-  if (live) applyOpeningHoursFromMetaSource(csvText, gvizText);
 
   for (const [fetchedColId, meta] of Object.entries(fetchedMetaMap)) {
     if (!collectionsConfig[fetchedColId]) {

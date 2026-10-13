@@ -8,7 +8,7 @@ import { switchCollection, closeSidebarOnMobile } from './components/sidebar.js'
 import { openMeaningModal, closeDetailModal, openCollectionModal, closeCollectionModal, openDescriptionModal, closeDescriptionModal, openCollectionDescriptionModal, openProfileModal, closeProfileModal, openConjugationModal, closeConjugationModal } from './components/modal.js';
 import { renderCollectionNotice, collectionsMetaCache, updateStatsView } from './data.js';
 import { applyFiltersAndSort } from './filter.js';
-import { isGalleryOpen, isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
+import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden } from './utils.js';
 
 function setHash(targetHash, updateHash = true) {
   if (updateHash && typeof window !== 'undefined' && decodeURIComponent(window.location.hash) !== targetHash) {
@@ -36,20 +36,15 @@ function toggleViewElements(targetView) {
   });
 }
 
-function updateMaintenanceView(isClosed, isColPreparing, isColAdjusting, colMeta, currentCollectionId) {
+function updateMaintenanceView(isColPreparing, isColAdjusting, colMeta, currentCollectionId) {
   const maintTitle = document.getElementById('maintenance-title');
   const maintDesc1 = document.getElementById('maintenance-desc-1');
   const maintDesc2 = document.getElementById('maintenance-desc-2');
 
   let title = 'MAINTENANCE';
   let desc1 = '';
-  let showDesc2 = false;
 
-  if (isClosed) {
-    title = 'CLOSED';
-    desc1 = '目前為非開放時間，歡迎於開館時間再次蒞臨參觀。';
-    showDesc2 = true;
-  } else if (isColPreparing) {
+  if (isColPreparing) {
     title = 'COMING SOON';
     const rawAnnounce = colMeta?.announcement;
     desc1 = (rawAnnounce && !['籌備中', 'IN PREPARATION', 'PREPARING', 'COMING SOON'].includes(rawAnnounce))
@@ -65,9 +60,9 @@ function updateMaintenanceView(isClosed, isColPreparing, isColAdjusting, colMeta
 
   if (maintTitle) maintTitle.innerText = title;
   if (maintDesc1) maintDesc1.innerText = desc1;
-  if (maintDesc2) maintDesc2.style.display = showDesc2 ? 'block' : 'none';
+  if (maintDesc2) maintDesc2.style.display = 'none';
 
-  if (!isClosed && (isColAdjusting || isColPreparing)) {
+  if (isColAdjusting || isColPreparing) {
     const activeColBtn = document.getElementById(`nav-col-${currentCollectionId}`);
     if (activeColBtn) activeColBtn.classList.add('active');
   }
@@ -77,18 +72,13 @@ export function switchView(viewName, event, updateHash = true) {
   closeSidebarOnMobile();
   if (event?.preventDefault) event.preventDefault();
 
-  const isClosed = !isGalleryOpen();
-  if (isClosed && viewName !== VIEWS.MAINTENANCE && viewName !== VIEWS.ABOUT && viewName !== VIEWS.STATS) {
-    viewName = VIEWS.MAINTENANCE;
-  }
-
   const { currentView, currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId];
   const colMeta = collectionsMetaCache[currentCollectionId] || col?.defaultMeta;
   const isColAdjusting = isCollectionAdjusting(colMeta);
   const isColPreparing = isCollectionPreparing(colMeta);
 
-  if (!isClosed && viewName === VIEWS.DICTIONARY && (isColAdjusting || isColPreparing)) {
+  if (viewName === VIEWS.DICTIONARY && (isColAdjusting || isColPreparing)) {
     viewName = VIEWS.MAINTENANCE;
   }
 
@@ -101,8 +91,8 @@ export function switchView(viewName, event, updateHash = true) {
   const colSlug = col ? col.name : currentCollectionId;
 
   if (viewName === VIEWS.MAINTENANCE) {
-    updateMaintenanceView(isClosed, isColPreparing, isColAdjusting, colMeta, currentCollectionId);
-    setHash(isClosed ? '#/maintenance' : `#/${colSlug}`, updateHash);
+    updateMaintenanceView(isColPreparing, isColAdjusting, colMeta, currentCollectionId);
+    setHash(`#/${colSlug}`, updateHash);
   } else if (viewName === VIEWS.WELCOME) {
     document.getElementById('nav-welcome')?.classList.add('active');
     setHash('#/welcome', updateHash);
@@ -130,21 +120,6 @@ export function handleHashRoute() {
   const decodedHash = decodeURIComponent(rawHash || '');
   const { currentCollectionId, allRecords } = store.get();
   const path = decodedHash.replace(/^#\/?/, '');
-
-  if (!isGalleryOpen()) {
-    if (path === 'about' || path === 'stats') {
-      store.set({ invalidTerm: null });
-      switchView(path === 'about' ? VIEWS.ABOUT : VIEWS.STATS, null, false);
-      closeDetailModal(false);
-      return;
-    }
-
-    store.set({ invalidTerm: null });
-    switchView(VIEWS.MAINTENANCE, null, false);
-    closeDetailModal(false);
-    setHash('#/maintenance');
-    return;
-  }
 
   if (!decodedHash || decodedHash === '#' || decodedHash === '#/' || !path || path === 'welcome' || path === 'home' || path === 'maintenance') {
     store.set({ invalidTerm: null });
