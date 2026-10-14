@@ -48,7 +48,7 @@ function mockDOM(elementsMap = {}) {
   global.document.querySelectorAll = () => [];
 }
 
-test('Offline dumps cover C101 C102 C103 and profiles', () => {
+test('Offline dumps cover C101 C102 C103 C105 and profiles', () => {
   assert(Array.isArray(dataJson) && dataJson.length > 12);
   assert('ja_term' in dataJson[0] && 'tw_translation' in dataJson[0] && 'reading' in dataJson[0]);
 
@@ -81,6 +81,11 @@ test('Offline dumps cover C101 C102 C103 and profiles', () => {
   const hada = conjugationsJson.find(r => r.lemma === '하다');
   assert.ok(hada);
   assert.deepEqual(hada.present, ['해', '해요', '한다', '합니다']);
+
+  const attackJson = JSON.parse(readFileSync(resolve('attack-data.json'), 'utf-8'));
+  assert(Array.isArray(attackJson) && attackJson.length > 12);
+  assert.equal(attackJson[0].id.startsWith('#C105-'), true);
+  assert('ja_term' in attackJson[0] && 'tw_translation' in attackJson[0]);
 
   const profilesJson = JSON.parse(readFileSync(resolve('profiles.json'), 'utf-8'));
   const chocolate = profilesJson.find(p => p.zhName === '巧克力');

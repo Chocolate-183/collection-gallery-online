@@ -1,0 +1,1362 @@
+[
+  {
+    "id": "#C105-0002",
+    "ja_term": "どけ",
+    "tw_translation": "滾開、讓開（「どく」的命令形，粗暴強硬地命令對方讓路）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "失せろ",
+      "出てけ",
+      "あっちいけ",
+      "消えろ",
+      "さがってろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1
+  },
+  {
+    "id": "#C105-0003",
+    "ja_term": "やれ",
+    "tw_translation": "去做、動手／上吧（「やる」的命令形，催促命令對方採取行動或攻擊）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "くらえっ",
+      "ぶち殺す",
+      "答えろ",
+      "よこせ",
+      "思い知れ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2
+  },
+  {
+    "id": "#C105-0004",
+    "ja_term": "出てけ",
+    "tw_translation": "滾出去、給我出去（「出て行け」的口語命令形，強硬驅逐對方離開該場合）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "帰れ",
+      "失せろ",
+      "立ち去れ",
+      "消えろ",
+      "あっちいけ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 3
+  },
+  {
+    "id": "#C105-0005",
+    "ja_term": "帰れ",
+    "tw_translation": "滾回去、給我回去（「帰る」的命令形，強烈要求對方離開現場或回原地）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "出てけ",
+      "失せろ",
+      "立ち去れ",
+      "あっちいけ",
+      "どけ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 4
+  },
+  {
+    "id": "#C105-0006",
+    "ja_term": "答えろ",
+    "tw_translation": "快回答、給我回答（「答える」的命令形，強勢質問並命令對方作答）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "謝罪しろ",
+      "あやまれ",
+      "反省しろ",
+      "いい加減にしろ",
+      "やれ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 5
+  },
+  {
+    "id": "#C105-0007",
+    "ja_term": "辞めちまえ",
+    "tw_translation": "辭職算了、乾脆別幹了（「辞めてしまえ」的口語約音命令形，輕蔑或憤怒地叫對方辭職或放棄）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "嫌なら辞めろ",
+      "お前の代わりはいくらでもいる",
+      "給料泥棒",
+      "使えねー",
+      "役立たず"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 6
+  },
+  {
+    "id": "#C105-0008",
+    "ja_term": "やめろ",
+    "tw_translation": "住手、停下來（「やめる」的命令形，強烈要求對方停止當前動作或行為）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "よせ",
+      "いい加減にしろ",
+      "触んじゃねー",
+      "じっとしろ",
+      "黙れ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 7
+  },
+  {
+    "id": "#C105-0009",
+    "ja_term": "消えろ",
+    "tw_translation": "消失吧、滾開（「消える」的命令形，極度厭惡地命令對方從眼前消失）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "失せろ",
+      "目障り",
+      "存在がうざい",
+      "出てけ",
+      "くたばれ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 8
+  },
+  {
+    "id": "#C105-0010",
+    "ja_term": "いい加減にしろ",
+    "tw_translation": "適可而止、給我收斂點（慣用語「いい加減にする」的命令形，對對方忍無可忍時的嚴厲警告）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "やめろ",
+      "なめんじゃね",
+      "身の程わきまえろ",
+      "うるせえ",
+      "反省しろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 9
+  },
+  {
+    "id": "#C105-0011",
+    "ja_term": "思い知れ",
+    "tw_translation": "嚐嚐厲害、給我記住（「思い知る」的命令形，讓對方深刻體會教訓或痛苦）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "ざまーみろ",
+      "くらえっ",
+      "ぶち殺す",
+      "反省しろ",
+      "土下座しろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 10
+  },
+  {
+    "id": "#C105-0012",
+    "ja_term": "よこせ",
+    "tw_translation": "拿過來、交出來（「よこす」的命令形，粗暴強硬地索取物品或要求交出東西）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "金出せ",
+      "やれ",
+      "答えろ",
+      "てめえ",
+      "どけ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 11
+  },
+  {
+    "id": "#C105-0013",
+    "ja_term": "反省しろ",
+    "tw_translation": "給我好好反省（「反省する」的命令形，居高臨下嚴厲責令對方反省錯誤）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "あやまれ",
+      "謝罪しろ",
+      "土下座しろ",
+      "身の程わきまえろ",
+      "いい加減にしろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 12
+  },
+  {
+    "id": "#C105-0014",
+    "ja_term": "あっちいけ",
+    "tw_translation": "走開、去那邊（「あっちへ行け」的口語省略，厭煩地驅趕對方離開）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "どけ",
+      "触んじゃねー",
+      "失せろ",
+      "出てけ",
+      "存在がうざい"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 13
+  },
+  {
+    "id": "#C105-0015",
+    "ja_term": "失せろ",
+    "tw_translation": "滾開、滾蛋（「失せる」的命令形，粗暴輕蔑地驅逐對方滾離視線）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "消えろ",
+      "どけ",
+      "出てけ",
+      "立ち去れ",
+      "くたばれ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 14
+  },
+  {
+    "id": "#C105-0016",
+    "ja_term": "さがってろ",
+    "tw_translation": "退後、待在後面（「下がっていろ」的口語約音命令形，傲慢或急躁地命令對方退後別礙事）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "どけ",
+      "足手まとい",
+      "荷物",
+      "じっとしろ",
+      "あっちいけ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 15
+  },
+  {
+    "id": "#C105-0017",
+    "ja_term": "黙れ",
+    "tw_translation": "閉嘴（「黙る」的命令形，強勢命令對方立刻閉嘴噤聲）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "うるせえ",
+      "うっせぇ",
+      "いい加減にしろ",
+      "じっとしろ",
+      "なめんじゃね"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 16
+  },
+  {
+    "id": "#C105-0018",
+    "ja_term": "謝罪しろ",
+    "tw_translation": "給我謝罪、道歉（「謝罪する」的命令形，強硬命令對方賠罪道歉）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "あやまれ",
+      "土下座しろ",
+      "反省しろ",
+      "答えろ",
+      "身の程わきまえろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 17
+  },
+  {
+    "id": "#C105-0019",
+    "ja_term": "くたばれ",
+    "tw_translation": "去死吧、下地獄吧（「くたばる」的命令形，惡毒詛咒對方死亡的粗話）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "ぶち殺す",
+      "消えろ",
+      "くそったれ",
+      "失せろ",
+      "ざまーみろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 18
+  },
+  {
+    "id": "#C105-0020",
+    "ja_term": "立ち去れ",
+    "tw_translation": "離開、速速離去（「立ち去る」的命令形，強硬嚴肅地驅離對方離開現場）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "出てけ",
+      "帰れ",
+      "失せろ",
+      "どけ",
+      "あっちいけ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 19
+  },
+  {
+    "id": "#C105-0021",
+    "ja_term": "よせ",
+    "tw_translation": "算了吧、住手（「よす」的命令形，制止對方行動或勸阻不要再做）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "やめろ",
+      "いい加減にしろ",
+      "触んじゃねー",
+      "やってらんない",
+      "じっとしろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 20
+  },
+  {
+    "id": "#C105-0022",
+    "ja_term": "あやまれ",
+    "tw_translation": "道歉、給我認錯（「謝る」的命令形，強烈命令對方認錯道歉）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "謝罪しろ",
+      "土下座しろ",
+      "反省しろ",
+      "答えろ",
+      "身の程わきまえろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 21
+  },
+  {
+    "id": "#C105-0023",
+    "ja_term": "金出せ",
+    "tw_translation": "把錢拿出來（「金を出す」的口語命令形，粗暴強硬地威脅勒索要錢）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "よこせ",
+      "やれ",
+      "ぶち殺す",
+      "てめえ",
+      "いい加減にしろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 22
+  },
+  {
+    "id": "#C105-0024",
+    "ja_term": "土下座しろ",
+    "tw_translation": "給我下跪道歉（「土下座する」的命令形，極端屈辱地命令對方下跪磕頭認錯）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "謝罪しろ",
+      "あやまれ",
+      "反省しろ",
+      "身の程わきまえろ",
+      "ざまーみろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 23
+  },
+  {
+    "id": "#C105-0025",
+    "ja_term": "じっとしろ",
+    "tw_translation": "老實點、別亂動（「じっとする」的命令形，強硬命令對方安靜或保持不動）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "さがってろ",
+      "黙れ",
+      "やめろ",
+      "触んじゃねー",
+      "いい加減にしろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 24
+  },
+  {
+    "id": "#C105-0026",
+    "ja_term": "ぶち殺す",
+    "tw_translation": "宰了你、打死你（動詞，以極度暴力的口吻威脅要殺死對方）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "くたばれ",
+      "くらえっ",
+      "ぶっ飛ぶ",
+      "てめえ",
+      "思い知れ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 25
+  },
+  {
+    "id": "#C105-0027",
+    "ja_term": "お前の代わりはいくらでもいる",
+    "tw_translation": "隨便都能找到人取代你（職場權力霸凌常用語句，全盤否定對方的存在價值）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "嫌なら辞めろ",
+      "辞めちまえ",
+      "使えねー",
+      "役立たず",
+      "給料泥棒"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 26
+  },
+  {
+    "id": "#C105-0028",
+    "ja_term": "嫌なら辞めろ",
+    "tw_translation": "不爽就滾、不喜歡就別幹（常見於黑心職場或上對下施壓的冷酷驅逐語句）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "辞めちまえ",
+      "お前の代わりはいくらでもいる",
+      "使えねー",
+      "出てけ",
+      "やってらんない"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 27
+  },
+  {
+    "id": "#C105-0029",
+    "ja_term": "お前に関係ねー",
+    "tw_translation": "關你屁事、跟你無關（「お前に関係ない」的口頭粗俗音變，粗暴拒絕他人干涉）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "俺の知ったこっちゃねー",
+      "あっちいけ",
+      "うるせえ",
+      "てめえ",
+      "触んじゃねー"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 28
+  },
+  {
+    "id": "#C105-0030",
+    "ja_term": "俺の知ったこっちゃねー",
+    "tw_translation": "干我屁事、我才不管（「俺の知ったことではない」的口頭粗俗約音，極度冷酷甩鍋、事不關己的說法）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "お前に関係ねー",
+      "やってらんない",
+      "うるせえ",
+      "あっちいけ",
+      "帰れ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 29
+  },
+  {
+    "id": "#C105-0031",
+    "ja_term": "猫かぶってんじゃねぇぇ",
+    "tw_translation": "少在那邊裝乖、別假了（「猫をかぶっているのではない」的口語粗暴禁止形，憤怒戳破對方偽裝）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "猫被ってんじゃね",
+      "なめんじゃね",
+      "泥棒猫",
+      "身の程わきまえろ",
+      "いい加減にしろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 30
+  },
+  {
+    "id": "#C105-0032",
+    "ja_term": "身の程わきまえろ",
+    "tw_translation": "認清自己的斤兩、識相點（「身の程を弁える」的命令形，居高臨下訓斥對方不知分寸）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "なめんじゃね",
+      "雑魚",
+      "反省しろ",
+      "土下座しろ",
+      "いい加減にしろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 31
+  },
+  {
+    "id": "#C105-0033",
+    "ja_term": "ざまーみろ",
+    "tw_translation": "活該、看你那狼狽樣（「ざまあ見ろ」的口語表現，嘲弄幸災樂禍對方的失敗或不幸）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "思い知れ",
+      "くたばれ",
+      "雑魚",
+      "使えねー",
+      "ばか"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 32
+  },
+  {
+    "id": "#C105-0034",
+    "ja_term": "くらえっ",
+    "tw_translation": "吃我這招、接招吧（「くらう」的命令形促音，攻擊或施加打擊時呼喝對方的語氣詞）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "やれ",
+      "ぶち殺す",
+      "ぶっ飛ぶ",
+      "思い知れ",
+      "てめえ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 33
+  },
+  {
+    "id": "#C105-0035",
+    "ja_term": "ぶっ飛ぶ",
+    "tw_translation": "滾一邊去、給我飛出場外（動詞口語，帶有打飛、震撼或強烈斥責對方的粗魯語感）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "くらえっ",
+      "ぶち殺す",
+      "どけ",
+      "出てけ",
+      "失せろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 34
+  },
+  {
+    "id": "#C105-0036",
+    "ja_term": "猫被ってんじゃね",
+    "tw_translation": "少在那邊裝模作樣（「猫を被っているのではない」的口語禁止形，指責對方偽裝善良或乖巧）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "猫かぶってんじゃねぇぇ",
+      "なめんじゃね",
+      "泥棒猫",
+      "身の程わきまえろ",
+      "いい加減にしろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 35
+  },
+  {
+    "id": "#C105-0037",
+    "ja_term": "なめんじゃね",
+    "tw_translation": "少瞧不起人、別看扁我（「舐めるのではない」的口語禁止形，警告對方不要輕視或挑釁）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "身の程わきまえろ",
+      "猫かぶってんじゃねぇぇ",
+      "思い知れ",
+      "てめえ",
+      "いい加減にしろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 36
+  },
+  {
+    "id": "#C105-0038",
+    "ja_term": "うるせえ",
+    "tw_translation": "吵死了、閉嘴（「うるさい」的口頭粗暴音變，厭煩強烈地嫌棄對方吵鬧）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "うっせぇ",
+      "黙れ",
+      "存在がうざい",
+      "いい加減にしろ",
+      "お前に関係ねー"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 37
+  },
+  {
+    "id": "#C105-0039",
+    "ja_term": "存在がうざい",
+    "tw_translation": "光是存在就很礙眼（口語句，對他人存在本身進行徹底貶低與嫌棄的霸凌用語）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "目障り",
+      "消えろ",
+      "うるせえ",
+      "あっちいけ",
+      "足手まとい"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 38
+  },
+  {
+    "id": "#C105-0040",
+    "ja_term": "うっせぇ",
+    "tw_translation": "吵死了、給我安靜（「うるさい」的口語粗暴約音促音，極端不耐煩與抗拒對方的聲音）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "うるせえ",
+      "黙れ",
+      "いい加減にしろ",
+      "じっとしろ",
+      "存在がうざい"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 39
+  },
+  {
+    "id": "#C105-0041",
+    "ja_term": "使えねー",
+    "tw_translation": "真沒用、廢物（「使えない」的口頭粗俗音變，殘酷否定對方的能力或價值）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "役立たず",
+      "足手まとい",
+      "荷物",
+      "給料泥棒",
+      "お前の代わりはいくらでもいる"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 40
+  },
+  {
+    "id": "#C105-0042",
+    "ja_term": "触んじゃねー",
+    "tw_translation": "別碰我、髒手拿開（「触るのではない」的口頭粗暴禁止形，厭惡排斥對方肢體碰觸）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "あっちいけ",
+      "どけ",
+      "やめろ",
+      "存在がうざい",
+      "てめえ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 41
+  },
+  {
+    "id": "#C105-0043",
+    "ja_term": "やってらんない",
+    "tw_translation": "誰受得了、不幹了（「やっていられない」的口語約音，表達忍無可忍、厭煩放棄的情緒）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "俺の知ったこっちゃねー",
+      "嫌なら辞めろ",
+      "辞めちまえ",
+      "いい加減にしろ",
+      "お前に関係ねー"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 42
+  },
+  {
+    "id": "#C105-0044",
+    "ja_term": "くず",
+    "tw_translation": "人渣、垃圾（名詞，侮辱他人人格毫無價值的極度貶抑詞）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "くそったれ",
+      "役立たず",
+      "社会のダニ",
+      "雑魚",
+      "くそ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 43
+  },
+  {
+    "id": "#C105-0045",
+    "ja_term": "足手まとい",
+    "tw_translation": "累贅、絆腳石（名詞，批評對方拖累大家、造成行動困擾）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "荷物",
+      "役立たず",
+      "使えねー",
+      "さがってろ",
+      "雑魚"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 44
+  },
+  {
+    "id": "#C105-0046",
+    "ja_term": "役立たず",
+    "tw_translation": "沒用的廢物、派不上用場的傢伙（名詞，諷刺或斥責對方毫無貢獻與能力）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "使えねー",
+      "足手まとい",
+      "荷物",
+      "くず",
+      "給料泥棒"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 45
+  },
+  {
+    "id": "#C105-0047",
+    "ja_term": "荷物",
+    "tw_translation": "包袱、累贅（名詞隱喻，指某人在團隊中只是多餘拖累的行李）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "足手まとい",
+      "役立たず",
+      "使えねー",
+      "さがってろ",
+      "雑魚"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 46
+  },
+  {
+    "id": "#C105-0048",
+    "ja_term": "雑魚",
+    "tw_translation": "雜魚、雜碎（名詞隱喻，蔑視對方實力微不足道、微小無力）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "身の程わきまえろ",
+      "使えねー",
+      "役立たず",
+      "くず",
+      "ざまーみろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 47
+  },
+  {
+    "id": "#C105-0049",
+    "ja_term": "社会のダニ",
+    "tw_translation": "社會寄生蟲、社會害蟲（名詞侮辱語，極度蔑視對方對社會毫無貢獻只會吸血）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "くず",
+      "給料泥棒",
+      "老害",
+      "くそったれ",
+      "役立たず"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 48
+  },
+  {
+    "id": "#C105-0050",
+    "ja_term": "老害",
+    "tw_translation": "老害、為老不尊的障礙（名詞，指固步自封、倚老賣老阻礙發展的高齡者）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "時代遅れ",
+      "じじい",
+      "ばばあ",
+      "社会のダニ",
+      "給料泥棒"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 49
+  },
+  {
+    "id": "#C105-0051",
+    "ja_term": "時代遅れ",
+    "tw_translation": "落伍、跟不上時代（名詞，諷刺對方觀念或做法陳舊落後）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "老害",
+      "じじい",
+      "使えねー",
+      "役立たず",
+      "ばばあ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 50
+  },
+  {
+    "id": "#C105-0052",
+    "ja_term": "給料泥棒",
+    "tw_translation": "薪水小偷、吃閒飯的（名詞，諷刺某人光拿薪水不幹活、毫無貢獻）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "使えねー",
+      "役立たず",
+      "社会のダニ",
+      "お前の代わりはいくらでもいる",
+      "辞めちまえ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 51
+  },
+  {
+    "id": "#C105-0053",
+    "ja_term": "ブス",
+    "tw_translation": "醜八怪、醜女（名詞蔑稱，對女性外貌進行直接羞辱的惡劣詞語）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "デブ",
+      "ブタ",
+      "目障り",
+      "泥棒猫",
+      "ばばあ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 52
+  },
+  {
+    "id": "#C105-0054",
+    "ja_term": "ブタ",
+    "tw_translation": "母豬、死肥豬（名詞蔑稱，侮辱他人身材肥胖或貪吃的侮辱語）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "デブ",
+      "ブス",
+      "目障り",
+      "くず",
+      "雑魚"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 53
+  },
+  {
+    "id": "#C105-0055",
+    "ja_term": "デブ",
+    "tw_translation": "死胖子、大肥豬（名詞蔑稱，針對他人體型偏胖進行攻擊的貶抑詞）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "ブタ",
+      "ちび",
+      "ブス",
+      "目障り",
+      "くず"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 54
+  },
+  {
+    "id": "#C105-0056",
+    "ja_term": "目障り",
+    "tw_translation": "礙眼、看著心煩（名詞/形容動詞，嫌棄對方出現在視線範圍內令人不適）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "存在がうざい",
+      "消えろ",
+      "どけ",
+      "あっちいけ",
+      "さがってろ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 55
+  },
+  {
+    "id": "#C105-0057",
+    "ja_term": "ハゲ",
+    "tw_translation": "禿頭、光頭佬（名詞蔑稱，針對男性落髮或禿頭進行外貌嘲笑與羞辱）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "じじい",
+      "目障り",
+      "ちび",
+      "デブ",
+      "老害"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 56
+  },
+  {
+    "id": "#C105-0058",
+    "ja_term": "くそ",
+    "tw_translation": "可惡、狗屎（感嘆詞/名詞，咒罵、發洩憤怒或粗俗侮辱的口頭禪）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "ちくしょう",
+      "くそったれ",
+      "てめえ",
+      "うるせえ",
+      "くず"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 57
+  },
+  {
+    "id": "#C105-0059",
+    "ja_term": "ちくしょう",
+    "tw_translation": "畜生、該死（感嘆詞/罵人語，咒罵厄運、憤慨怨恨時的粗暴發洩語）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "くそ",
+      "くそったれ",
+      "てめえ",
+      "やってらんない",
+      "くたばれ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 58
+  },
+  {
+    "id": "#C105-0060",
+    "ja_term": "てめえ",
+    "tw_translation": "你這傢伙、你這混蛋（第二人稱代名詞「手前」粗俗傲慢形，挑釁、謾罵對方的粗野稱呼）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "貴様",
+      "くそったれ",
+      "なめんじゃね",
+      "うるせえ",
+      "ぶち殺す"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 59
+  },
+  {
+    "id": "#C105-0061",
+    "ja_term": "貴様",
+    "tw_translation": "你這傢伙、雜種（第二人稱代名詞，古為敬稱後轉為極度輕蔑、挑釁敵視的蔑稱）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "てめえ",
+      "くそったれ",
+      "身の程わきまえろ",
+      "思い知れ",
+      "なめんじゃね"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 60
+  },
+  {
+    "id": "#C105-0062",
+    "ja_term": "ちび",
+    "tw_translation": "矮冬瓜、小矮子（名詞蔑稱，針對他人身材矮小進行嘲弄與貶抑）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "デブ",
+      "ブタ",
+      "ブス",
+      "雑魚",
+      "ハゲ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 61
+  },
+  {
+    "id": "#C105-0063",
+    "ja_term": "じじい",
+    "tw_translation": "老頭子、臭老頭（名詞蔑稱，對老年男性極不尊重的輕蔑稱呼）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "老害",
+      "ばばあ",
+      "時代遅れ",
+      "ハゲ",
+      "ぼけ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 62
+  },
+  {
+    "id": "#C105-0064",
+    "ja_term": "ばばあ",
+    "tw_translation": "老太婆、臭老太婆（名詞蔑稱，對老年女性極不尊重的輕蔑稱呼）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "老害",
+      "じじい",
+      "時代遅れ",
+      "ブス",
+      "ぼけ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 63
+  },
+  {
+    "id": "#C105-0065",
+    "ja_term": "あほ",
+    "tw_translation": "蠢蛋、白痴（罵人詞，指對方愚笨缺心眼）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "ばか",
+      "ぼけ",
+      "くず",
+      "役立たず",
+      "使えねー"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 64
+  },
+  {
+    "id": "#C105-0066",
+    "ja_term": "ばか",
+    "tw_translation": "笨蛋、混蛋（罵人詞，辱罵對方愚蠢、做事不知變通）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "あほ",
+      "ぼけ",
+      "くず",
+      "使えねー",
+      "役立たず"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 65
+  },
+  {
+    "id": "#C105-0067",
+    "ja_term": "ぼけ",
+    "tw_translation": "白痴、老糊塗（罵人詞，指人反應遲鈍、神智不清或愚不可及）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "あほ",
+      "ばか",
+      "じじい",
+      "老害",
+      "くず"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 66
+  },
+  {
+    "id": "#C105-0068",
+    "ja_term": "泥棒猫",
+    "tw_translation": "偷腥貓、狐狸精（名詞罵人語，比喻勾引他人伴侶或奪人所愛的女性）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "猫かぶってんじゃねぇぇ",
+      "猫被ってんじゃね",
+      "ブス",
+      "くず",
+      "てめえ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 67
+  },
+  {
+    "id": "#C105-0069",
+    "ja_term": "くそったれ",
+    "tw_translation": "混蛋、下三濫（咒罵語，極度粗俗地辱罵對方骯髒、卑鄙下流）",
+    "reading": "",
+    "created_at": "2026-10-13",
+    "recommendations": [
+      "くそ",
+      "ちくしょう",
+      "てめえ",
+      "くず",
+      "くたばれ"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 68
+  }
+]

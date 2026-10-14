@@ -1031,7 +1031,15 @@ a:focus {
 #modal-reading-row[data-collection="japanese-terms"],
 #modal-reading-row,
 [data-collection="japanese-terms"] .awsui-recommendation-chip,
-.awsui-recommendation-chip[data-collection="japanese-terms"] {
+.awsui-recommendation-chip[data-collection="japanese-terms"],
+[data-collection="japanese-attack"] .awsui-card-header-title,
+.awsui-card-header-title[data-collection="japanese-attack"],
+[data-collection="japanese-attack"] .awsui-reading-subtext,
+.awsui-reading-subtext[data-collection="japanese-attack"],
+#modal-term-title[data-collection="japanese-attack"],
+#modal-reading-row[data-collection="japanese-attack"],
+[data-collection="japanese-attack"] .awsui-recommendation-chip,
+.awsui-recommendation-chip[data-collection="japanese-attack"] {
   font-family: 'Noto Sans JP', var(--awsui-font-family);
 }
 
@@ -1058,12 +1066,14 @@ a:focus {
 }
 
 [data-collection="china-terms"] .awsui-reading-subtext,
-[data-collection="korean-terms"] .awsui-reading-subtext {
+[data-collection="korean-terms"] .awsui-reading-subtext,
+[data-collection="japanese-attack"] .awsui-reading-subtext {
   display: none;
 }
 
 [data-collection="china-terms"] .awsui-card,
-[data-collection="korean-terms"] .awsui-card {
+[data-collection="korean-terms"] .awsui-card,
+[data-collection="japanese-attack"] .awsui-card {
   height: 130px;
 }
 

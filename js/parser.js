@@ -73,7 +73,7 @@ function findDatasetColumnIndexes(headerTitles, options = {}) {
 
   let idIdx = findIdx(h => h.includes('id') || h.includes('編號') || h.includes('序號'));
   let termIdx = findIdx(h => !isRecommendHeader(h) && (h.includes('title') || h.includes('term') || h.includes('name') || h.includes('顯示') || h.includes('日語') || h.includes('大陆') || h.includes('大陸') || h.includes('詞彙') || h.includes('用語') || h.includes('標題') || h.includes('項目')));
-  let twIdx = findIdx(h => !isRecommendHeader(h) && (h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('內容')));
+  let twIdx = findIdx(h => !isRecommendHeader(h) && (h.includes('content') || h.includes('meaning') || h.includes('description') || h.includes('translation') || h.includes('台灣') || h.includes('意思') || h.includes('對應') || h.includes('翻譯') || h.includes('說明') || h.includes('解釋') || h.includes('內容')));
   let readingIdx = findIdx(h => h.includes('reading') || h.includes('subtitle') || h.includes('phonetic') || h.includes('假名') || h.includes('標音') || h.includes('讀音') || h.includes('発音') || h.includes('發音') || h.includes('読み') || h.includes('音素'));
   let dateIdx = findIdx(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
   let recommendIdx = findIdx(h => isRecommendHeader(h));
@@ -411,7 +411,7 @@ export function matchCollectionIdForMeta(meta) {
   if (!meta) return null;
 
   for (const [colId, col] of Object.entries(collectionsConfig)) {
-    // 1. Match by ID (e.g. 'C101', 'C102', 'C103')
+    // 1. Match by ID (e.g. 'C101', 'C102', 'C103', 'C105')
     if (meta.id && (meta.id === col.id || meta.id === col.defaultMeta?.id)) {
       return colId;
     }
