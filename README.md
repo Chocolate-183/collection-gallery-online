@@ -51,7 +51,7 @@
 │   ├── app.js        # 進入點、全域事件監聽與 Downward Compatibility Bridge
 │   ├── constants.js  # 集中式應用程式常數 (Views, Sort Types, Storage Keys)
 │   ├── config.js     # Multi-Collection 登錄與 Google Sheets API 網址建構器
-│   ├── galleries/    # 各展廳獨立 config（C101 / C102 / C103）
+│   ├── galleries/    # 各展廳獨立 config（C101 / C102 / C103 / C105）
 │   ├── state.js      # 集中式 Application State (Store) & 訂閱機制
 │   ├── theme.js      # 深色 / 淺色展廳燈光模式控制 logic
 │   ├── parser.js     # 狀態機 CSV、GViz API 通用數據與 Meta 詮釋資料解析器
@@ -69,6 +69,7 @@
 ├── data.json         # 日本特色詞彙展區資料快照備份 (離線降級備援)
 ├── china-data.json   # 簡中語境破解攻略展區資料快照備份 (離線降級備援)
 ├── korean-data.json  # 韓文單字展區資料快照備份 (離線降級備援)
+├── attack-data.json  # C105 日語攻擊力展區資料快照備份 (離線降級備援)
 ├── korean-conjugations.json # C103 動詞／形容詞變化離線備援（Dongsa All Levels）
 ├── scripts/
 │   └── scrape_dongsa_conjugations.py # 依 korean-data.json 重抓 korean-conjugations.json

@@ -96,12 +96,14 @@ ID,C101
   assert.equal(meta.status, '調整中');
   assert.deepEqual(meta.tags, ['日本文化', '流行新詞']);
 
-  const parsedMap = parseAllCollectionsMetaCSVData(`展廳名,日本特色詞彙,簡中語境破解攻略,韓語單字速成攻略
-展廳ID,C101,C102,C103
-展廳狀態,調整中,開放中,籌備中`);
+  const parsedMap = parseAllCollectionsMetaCSVData(`展廳名,日本特色詞彙,簡中語境破解攻略,韓語單字速成攻略,日語攻擊力
+展廳ID,C101,C102,C103,C105
+展廳狀態,調整中,開放中,籌備中,開放中`);
   assert.equal(parsedMap['japanese-terms'].status, '調整中');
   assert.equal(parsedMap['china-terms'].status, '開放中');
   assert.equal(parsedMap['korean-terms'].status, '籌備中');
+  assert.equal(parsedMap['japanese-attack'].id, 'C105');
+  assert.equal(parsedMap['japanese-attack'].status, '開放中');
 });
 
 test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
@@ -142,6 +144,10 @@ test('Gallery header title is Collection number plus Chinese hall name', () => {
   assert.deepEqual(
     getCollectionHeaderTitleParts('japanese-terms', { id: 'C101', title: '日本特色詞彙一覽' }),
     { hall: 'Collection 101', name: '日本特色詞彙一覽' }
+  );
+  assert.deepEqual(
+    getCollectionHeaderTitleParts('japanese-attack', { id: 'C105', title: '日語攻擊力' }),
+    { hall: 'Collection 105', name: '日語攻擊力' }
   );
   const el = { innerHTML: '', textContent: '' };
   applyCollectionHeaderTitle(el, 'korean-terms', { id: 'C103', title: '韓語單字量最強速成攻略' });
@@ -210,7 +216,7 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   assert.equal(jpCol.defaultMeta.status, '開放中');
 
   const metaUrls = getMetadataUrls();
-  assert(metaUrls.csvUrl.includes('gid=1574352890'));
+  assert(metaUrls.csvUrl.includes('gid=1360584899'));
   const profileUrls = getProfileUrls();
   assert.equal(profileUrls.localFallback, 'profiles.json');
   const conjugationUrls = getConjugationUrls();
@@ -227,6 +233,16 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   assert.equal(krCol.hasLevelFilter, true);
   assert.equal(krCol.hasNameCategoryFilter, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
+
+  const atkCol = collectionsConfig['japanese-attack'];
+  const atkUrls = getCollectionDataUrls(atkCol);
+  assert.equal(atkCol.defaultMeta.id, 'C105');
+  assert.equal(atkCol.name, '日語攻擊力');
+  assert.equal(atkCol.gid, '1242749289');
+  assert(atkUrls.csvUrl.includes('gid=1242749289'));
+  assert.equal(atkCol.hasReading, false);
+  assert.equal(atkCol.hasKanaTabs, false);
+  assert.equal(atkCol.hasBasic100Filter, false);
 });
 
 test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
@@ -254,6 +270,16 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
   assert.deepEqual(filterByCategory(named, CATEGORY_TABS.BASIC100).map(r => r.id), ['b']);
   assert.equal(getExhibitCategoryLabel(named[0]), '人名');
   assert.equal(getExhibitCategoryLabel(named[3]), '');
+
+  const atkCsv = `ID,詞彙,解釋,新增日期,推薦條目,標籤
+#C105-0002,どけ,滾開、讓開,2026-10-13,"失せろ
+出てけ",`;
+  const atk = parseCSVData(atkCsv, 'japanese-attack');
+  assert.equal(atk[0].id, '#C105-0002');
+  assert.equal(atk[0].ja_term, 'どけ');
+  assert.equal(atk[0].tw_translation, '滾開、讓開');
+  assert.equal(atk[0].reading, '');
+  assert.deepEqual(atk[0].recommendations, ['失せろ', '出てけ']);
 
   const jpCsv = `ID,日語用詞,台灣用詞,読み方,新增日期,推薦條目,標籤
 #C101-0002,1LDK,一房一廳一廚（格局）,ワンエルディーケー,2026-09-02,物件,基礎100`;

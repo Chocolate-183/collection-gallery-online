@@ -38,6 +38,7 @@ export function getCollectionEnTitle(colId, meta, col) {
   if (col?.enTitle) return col.enTitle;
   if (colId === 'china-terms') return 'Decoding Simplified Chinese: The Ultimate Guide';
   if (colId === 'korean-terms') return 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet';
+  if (colId === 'japanese-attack') return 'Japanese Attack Power';
   return 'Japanese Terms';
 }
 

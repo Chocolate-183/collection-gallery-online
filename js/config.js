@@ -8,8 +8,9 @@
 import japaneseTerms from './galleries/japanese-terms.js';
 import chinaTerms from './galleries/china-terms.js';
 import koreanTerms from './galleries/korean-terms.js';
+import japaneseAttack from './galleries/japanese-attack.js';
 
-const galleryConfigs = [japaneseTerms, chinaTerms, koreanTerms];
+const galleryConfigs = [japaneseTerms, chinaTerms, koreanTerms, japaneseAttack];
 
 export const collectionsConfig = Object.fromEntries(
   galleryConfigs.map(col => [col.id, col])
@@ -21,7 +22,7 @@ export const collectionsConfig = Object.fromEntries(
  */
 const metadataConfig = {
   sheetId: '162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs',
-  gid: '1574352890'
+  gid: '1360584899'
 };
 
 /**
