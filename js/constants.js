@@ -141,6 +141,14 @@ export const PAGE_SIZE_ALL = 9999;
 export const PAGE_SIZE_OPTIONS = [10, 25, 50, 100, PAGE_SIZE_ALL];
 export const DEFAULT_PAGE_SIZE = 10;
 
+/** C102 card/modal title script (Display Panel). Default 簡體. */
+export const SCRIPT_VARIANTS = {
+  SIMPLIFIED: 'simplified',
+  TRADITIONAL: 'traditional'
+};
+
+export const DEFAULT_SCRIPT_VARIANT = SCRIPT_VARIANTS.SIMPLIFIED;
+
 export function resolvePageSize(value) {
   if (value === 'all' || value === 'ALL' || value === String(PAGE_SIZE_ALL)) return PAGE_SIZE_ALL;
   const n = parseInt(value, 10);

@@ -78,6 +78,7 @@ function findDatasetColumnIndexes(headerTitles, options = {}) {
   let dateIdx = findIdx(h => h.includes('date') || h.includes('created') || h.includes('日期') || h.includes('時間'));
   let recommendIdx = findIdx(h => isRecommendHeader(h));
   const subtitleIdx = headers.findIndex(h => h.includes('副標') || h === 'subtitle' || h.includes('gloss'));
+  const traditionalIdx = findIdx(h => h.includes('繁體') || h.includes('繁体') || h.includes('traditional'));
   const tagsIdx = headers.findIndex((h, i) => !hidden.has(i) && (h.includes('標籤') || h.includes('标签') || h === 'tags' || h === 'tag'));
   const etymologyIdx = headers.findIndex((h, i) => !hidden.has(i) && (h.includes('詞源') || h.includes('etymology') || h === 'origin'));
   const posIdx = headers.findIndex((h, i) => !hidden.has(i) && (h.includes('詞性') || h === 'pos' || h.includes('part of speech') || h.includes('品詞')));
@@ -87,7 +88,7 @@ function findDatasetColumnIndexes(headerTitles, options = {}) {
   if (termIdx === -1) termIdx = firstVisible(idIdx >= 0 ? idIdx + 1 : 0);
   if (twIdx === -1) twIdx = firstVisible((termIdx >= 0 ? termIdx + 1 : 0));
 
-  return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx, tagsIdx, etymologyIdx, posIdx, levelIdx };
+  return { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx, traditionalIdx, tagsIdx, etymologyIdx, posIdx, levelIdx };
 }
 
 function getHiddenColumnIndexes(currentCollectionId) {
@@ -280,7 +281,7 @@ function readGvizCell(cell, { preferFormatted = false } = {}) {
 /**
  * Helper to construct a standard record object if valid.
  */
-function createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rawTags, etymology, pos, level, rowIndex, collectionId }) {
+function createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, traditional, rawTags, etymology, pos, level, rowIndex, collectionId }) {
   if (!ja || ja === '日語用詞' || ja === '大陆' || ja === '大陸' || ja === '顯示' || ja.toLowerCase() === 'title' || ja.toLowerCase() === 'term') {
     return null;
   }
@@ -293,6 +294,7 @@ function createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle,
     created_at: formatExhibitTimestamp(created_at) || '',
     recommendations: parseRecommendationList(rawRecommend),
     subtitle: subtitle || '',
+    traditional_term: traditional || '',
     tags: parseExhibitTagList(rawTags),
     etymology: etymology || '',
     pos: pos || '',
@@ -308,7 +310,7 @@ export function parseCSVData(csvText, currentCollectionId) {
   const rows = parseCSVRows(csvText);
   if (rows.length <= 1) return null;
 
-  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx, tagsIdx, etymologyIdx, posIdx, levelIdx } = findDatasetColumnIndexes(
+  const { idIdx, termIdx, twIdx, readingIdx, dateIdx, recommendIdx, subtitleIdx, traditionalIdx, tagsIdx, etymologyIdx, posIdx, levelIdx } = findDatasetColumnIndexes(
     rows[0],
     { hiddenColumnIndexes: getHiddenColumnIndexes(currentCollectionId) }
   );
@@ -324,12 +326,13 @@ export function parseCSVData(csvText, currentCollectionId) {
       const created_at = (dateIdx !== -1 && cols[dateIdx]) ? cols[dateIdx].trim() : '';
       const rawRecommend = (recommendIdx !== -1 && cols[recommendIdx]) ? cols[recommendIdx].trim() : '';
       const subtitle = (subtitleIdx !== -1 && cols[subtitleIdx]) ? cols[subtitleIdx].trim() : '';
+      const traditional = (traditionalIdx !== -1 && cols[traditionalIdx]) ? cols[traditionalIdx].trim() : '';
       const rawTags = (tagsIdx !== -1 && cols[tagsIdx]) ? cols[tagsIdx].trim() : '';
       const etymology = (etymologyIdx !== -1 && cols[etymologyIdx]) ? cols[etymologyIdx].trim() : '';
       const pos = (posIdx !== -1 && cols[posIdx]) ? cols[posIdx].trim() : '';
       const level = (levelIdx !== -1 && cols[levelIdx]) ? cols[levelIdx].trim() : '';
 
-      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rawTags, etymology, pos, level, rowIndex: i, collectionId: currentCollectionId });
+      const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, traditional, rawTags, etymology, pos, level, rowIndex: i, collectionId: currentCollectionId });
       if (record) results.push(record);
     }
   }
@@ -343,7 +346,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
   const table = extractGvizTable(gvizText);
   if (!table) return null;
 
-  let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1, subtitleIdx = -1, tagsIdx = -1, etymologyIdx = -1, posIdx = -1, levelIdx = -1;
+  let idIdx = 0, termIdx = 1, twIdx = 2, readingIdx = -1, dateIdx = -1, recommendIdx = -1, subtitleIdx = -1, traditionalIdx = -1, tagsIdx = -1, etymologyIdx = -1, posIdx = -1, levelIdx = -1;
   if (table.cols && table.cols.length > 0) {
     const colsHeader = table.cols.map(col => col?.label || '');
     const found = findDatasetColumnIndexes(colsHeader, {
@@ -356,6 +359,7 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     dateIdx = found.dateIdx;
     recommendIdx = found.recommendIdx;
     subtitleIdx = found.subtitleIdx;
+    traditionalIdx = found.traditionalIdx;
     tagsIdx = found.tagsIdx;
     etymologyIdx = found.etymologyIdx;
     posIdx = found.posIdx;
@@ -391,12 +395,13 @@ export function parseGvizResponse(gvizText, currentCollectionId) {
     const created_at = (dateIdx >= 0 && c[dateIdx]) ? String(readGvizCell(c[dateIdx], { preferFormatted: true }) || '').trim() : '';
     const rawRecommend = (recommendIdx >= 0 && c[recommendIdx]) ? String(readGvizCell(c[recommendIdx]) || '').trim() : '';
     const subtitle = (subtitleIdx >= 0 && c[subtitleIdx]) ? String(readGvizCell(c[subtitleIdx]) || '').trim() : '';
+    const traditional = (traditionalIdx >= 0 && c[traditionalIdx]) ? String(readGvizCell(c[traditionalIdx]) || '').trim() : '';
     const rawTags = (tagsIdx >= 0 && c[tagsIdx]) ? String(readGvizCell(c[tagsIdx]) || '').trim() : '';
     const etymology = (etymologyIdx >= 0 && c[etymologyIdx]) ? String(readGvizCell(c[etymologyIdx]) || '').trim() : '';
     const pos = (posIdx >= 0 && c[posIdx]) ? String(readGvizCell(c[posIdx]) || '').trim() : '';
     const level = (levelIdx >= 0 && c[levelIdx]) ? String(readGvizCell(c[levelIdx]) || '').trim() : '';
 
-    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, rawTags, etymology, pos, level, rowIndex, collectionId: currentCollectionId });
+    const record = createRecord({ id, ja, tw, reading, created_at, rawRecommend, subtitle, traditional, rawTags, etymology, pos, level, rowIndex, collectionId: currentCollectionId });
     if (record) results.push(record);
   });
   return results;

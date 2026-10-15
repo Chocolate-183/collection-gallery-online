@@ -5,7 +5,7 @@ import { collectionsConfig } from './config.js';
 import { store } from './state.js';
 import { initTheme, toggleTheme } from './theme.js';
 import { preloadAllCollections, refreshGalleryData, updateStatsView } from './data.js';
-import { onSearchInput, onFilterChange, selectQuickFilter, selectLengthTab, selectInitialTab, selectKindTab, selectEtymologyTab, selectPosTab, selectLevelTab, showMorePosTabs, selectSortField, selectSortOrder, resetFineFilters, resetDisplaySettings, resetFilterAndDisplay, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, openDisplayModal, closeDisplayModal, closeDisplayModalOnBackdrop, closeCatalogPanels, syncFilterUi, initCatalogPanelLayout } from './filter.js';
+import { onSearchInput, onFilterChange, selectQuickFilter, selectLengthTab, selectInitialTab, selectKindTab, selectEtymologyTab, selectPosTab, selectLevelTab, showMorePosTabs, selectSortField, selectSortOrder, selectScriptVariant, resetFineFilters, resetDisplaySettings, resetFilterAndDisplay, openFilterModal, closeFilterModal, closeFilterModalOnBackdrop, openDisplayModal, closeDisplayModal, closeDisplayModalOnBackdrop, closeCatalogPanels, syncFilterUi, initCatalogPanelLayout } from './filter.js';
 import { initSidebarState, toggleSidebar, closeSidebarOnMobile, initSidebarOutsideClick, switchCollection, updateSidebarBadge } from './components/sidebar.js';
 import { goToPage, selectPageSize } from './components/pagination.js';
 import { openMeaningModal, closeDetailModal, closeDetailModalOnBackdrop, navigateToTerm, openCollectionModal, closeCollectionModal, closeCollectionModalOnBackdrop, openDescriptionModal, closeDescriptionModal, closeDescriptionModalOnBackdrop, handleMeaningTextClick, handleCollectionDescriptionClick, handleCuratorClick, openCollectionDescriptionModal, openProfileModal, closeProfileModal, closeProfileModalOnBackdrop, handleStdictReferenceClick, handleConjugationClick, openConjugationModal, closeConjugationModal, closeConjugationModalOnBackdrop, initItemConjugationPager } from './components/modal.js';
@@ -38,6 +38,7 @@ Object.assign(window, {
   showMorePosTabs,
   selectSortField,
   selectSortOrder,
+  selectScriptVariant,
   resetFineFilters,
   resetDisplaySettings,
   resetFilterAndDisplay,

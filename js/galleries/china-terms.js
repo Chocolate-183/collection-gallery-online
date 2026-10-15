@@ -7,10 +7,11 @@ export default {
   name: '簡中語境破解攻略',
   enTitle: 'Decoding Simplified Chinese: The Ultimate Guide',
   sheetId: '16q_oTeadINeCErFrnokO4iiTS2BUwo2umT3wAHH53J8',
-  gid: '286132690',
+  gid: '1307320740',
   localFallback: 'china-data.json',
   hasReading: false,
   hasBasic100Filter: true,
+  hasScriptDisplay: true,
   searchPlaceholder: '尋找展品...',
   curator: '巧克力',
   defaultMeta: {
