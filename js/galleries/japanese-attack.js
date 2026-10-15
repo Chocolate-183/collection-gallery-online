@@ -7,7 +7,7 @@ export default {
   name: '日語攻擊力',
   enTitle: 'Japanese Attack Power',
   sheetId: '1neN9jMaYnWJgv7BBF--hfJoloHHa3RiDgjECU096eK0',
-  gid: '1242749289',
+  gid: '1800617627',
   localFallback: 'attack-data.json',
   hasReading: false,
   hasKanaTabs: false,

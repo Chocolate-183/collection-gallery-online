@@ -212,7 +212,7 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
 
   const jpCol = collectionsConfig['japanese-terms'];
   const dataUrls = getCollectionDataUrls(jpCol);
-  assert(dataUrls.csvUrl.includes('gid=332998414'));
+  assert(dataUrls.csvUrl.includes('gid=949127854'));
   assert.equal(jpCol.defaultMeta.status, '開放中');
 
   const metaUrls = getMetadataUrls();
@@ -238,8 +238,8 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   const atkUrls = getCollectionDataUrls(atkCol);
   assert.equal(atkCol.defaultMeta.id, 'C105');
   assert.equal(atkCol.name, '日語攻擊力');
-  assert.equal(atkCol.gid, '1242749289');
-  assert(atkUrls.csvUrl.includes('gid=1242749289'));
+  assert.equal(atkCol.gid, '1800617627');
+  assert(atkUrls.csvUrl.includes('gid=1800617627'));
   assert.equal(atkCol.hasReading, false);
   assert.equal(atkCol.hasKanaTabs, false);
   assert.equal(atkCol.hasBasic100Filter, false);

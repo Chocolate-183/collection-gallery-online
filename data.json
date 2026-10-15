@@ -33230,5 +33230,325 @@
     "pos": "",
     "level": "",
     "row_index": 1647
+  },
+  {
+    "id": "#C101-1649",
+    "ja_term": "手首",
+    "tw_translation": "手腕",
+    "reading": "てくび",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "手足",
+      "手元",
+      "片手",
+      "腕時計",
+      "急所"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1648
+  },
+  {
+    "id": "#C101-1650",
+    "ja_term": "埋合",
+    "tw_translation": "補償、彌補、折抵",
+    "reading": "うめあわせ",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "補完",
+      "解消",
+      "返済",
+      "損得勘定",
+      "代金"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1649
+  },
+  {
+    "id": "#C101-1651",
+    "ja_term": "弾丸遠征",
+    "tw_translation": "快閃遠征、當日往返遠征",
+    "reading": "だんがんえんせい",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "弾丸",
+      "青春18",
+      "切符",
+      "電車",
+      "始発"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1650
+  },
+  {
+    "id": "#C101-1652",
+    "ja_term": "弾丸上京遠征",
+    "tw_translation": "快閃東京遠征、當日往返東京遠征",
+    "reading": "だんがんじょうきょうえんせい",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "弾丸遠征",
+      "上京",
+      "弾丸",
+      "青春18",
+      "切符"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1651
+  },
+  {
+    "id": "#C101-1653",
+    "ja_term": "上京",
+    "tw_translation": "前往東京、進京",
+    "reading": "じょうきょう",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "弾丸上京遠征",
+      "弾丸遠征",
+      "帰省",
+      "地元",
+      "実家"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1652
+  },
+  {
+    "id": "#C101-1654",
+    "ja_term": "様々",
+    "tw_translation": "形形色色、各種各樣",
+    "reading": "さまざま",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "色々",
+      "選択肢",
+      "定番",
+      "割合",
+      "結構"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1653
+  },
+  {
+    "id": "#C101-1655",
+    "ja_term": "年配",
+    "tw_translation": "上了年紀、年長",
+    "reading": "ねんぱい",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "年配者",
+      "老若男女",
+      "老害",
+      "両親",
+      "先輩"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1654
+  },
+  {
+    "id": "#C101-1656",
+    "ja_term": "年配者",
+    "tw_translation": "年長者、長輩",
+    "reading": "ねんぱいしゃ",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "年配",
+      "老若男女",
+      "老害",
+      "両親",
+      "先輩"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1655
+  },
+  {
+    "id": "#C101-1657",
+    "ja_term": "現実味",
+    "tw_translation": "真實感、現實感、切實感",
+    "reading": "げんじつみ",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "想定外",
+      "予想外",
+      "前代未聞",
+      "現実逃避",
+      "真剣"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1656
+  },
+  {
+    "id": "#C101-1658",
+    "ja_term": "論破",
+    "tw_translation": "駁倒、辯倒",
+    "reading": "ろんぱ",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "正論",
+      "反論",
+      "理屈",
+      "口喧嘩",
+      "論外"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1657
+  },
+  {
+    "id": "#C101-1659",
+    "ja_term": "節穴",
+    "tw_translation": "有眼無珠、不識貨、沒有眼光",
+    "reading": "ふしあな",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "失策",
+      "油断",
+      "欠点",
+      "見栄",
+      "素人"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1658
+  },
+  {
+    "id": "#C101-1660",
+    "ja_term": "懇親会",
+    "tw_translation": "聯誼會、交流會、座談懇親會",
+    "reading": "こんしんかい",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "雑談",
+      "相談",
+      "私語",
+      "挨拶",
+      "同僚"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1659
+  },
+  {
+    "id": "#C101-1661",
+    "ja_term": "慰謝料",
+    "tw_translation": "精神賠償金、撫慰金",
+    "reading": "いしゃりょう",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "裁判",
+      "裁判所",
+      "弁護士",
+      "断罪",
+      "借金"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1660
+  },
+  {
+    "id": "#C101-1662",
+    "ja_term": "鉄下駄",
+    "tw_translation": "鐵木屐 / 沈重負擔、沉重包袱",
+    "reading": "てつげた",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "我慢",
+      "厄介",
+      "面倒",
+      "大変",
+      "足技"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1661
+  },
+  {
+    "id": "#C101-1663",
+    "ja_term": "退屈",
+    "tw_translation": "無聊、枯燥、沉悶",
+    "reading": "たいくつ",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "無駄",
+      "雑談",
+      "散策",
+      "昼飯",
+      "二度寝"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1662
+  },
+  {
+    "id": "#C101-1664",
+    "ja_term": "地道",
+    "tw_translation": "腳踏實地、踏實、穩健",
+    "reading": "じみち",
+    "created_at": "2026-10-15",
+    "recommendations": [
+      "地味",
+      "丹念",
+      "丁寧",
+      "本気",
+      "一生懸命"
+    ],
+    "subtitle": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1663
   }
 ]
