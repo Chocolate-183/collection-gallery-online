@@ -1,11 +1,11 @@
 /**
  * Filtering, Search, Kana Matching, and Sorting Engine
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, LEVEL_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, QUICK_LEVEL_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE } from './constants.js';
+import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, LEVEL_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, QUICK_LEVEL_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE, SCRIPT_VARIANTS, DEFAULT_SCRIPT_VARIANT } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
-import { getExhibitFilterLength, getExhibitSubtitle, isEnglishLoanword } from './utils.js';
+import { getExhibitFilterLength, getExhibitSubtitle, isEnglishLoanword, getExhibitDisplayTitle, formatExhibitTitleHtml } from './utils.js';
 
 /**
  * Checks if a string starts with a kana character in the specified kana group.
@@ -49,6 +49,7 @@ export function filterByQuery(records, query) {
   const q = query.toLowerCase();
   return records.filter(r =>
     (r.ja_term && r.ja_term.toLowerCase().includes(q)) ||
+    (r.traditional_term && r.traditional_term.toLowerCase().includes(q)) ||
     (r.reading && r.reading.toLowerCase().includes(q)) ||
     (r.tw_translation && r.tw_translation.toLowerCase().includes(q)) ||
     (r.id && r.id.toLowerCase().includes(q))
@@ -449,6 +450,25 @@ export function selectSortOrder(order, element) {
   applyFiltersAndSort();
 }
 
+export function selectScriptVariant(variant, element) {
+  const next = variant === SCRIPT_VARIANTS.TRADITIONAL
+    ? SCRIPT_VARIANTS.TRADITIONAL
+    : SCRIPT_VARIANTS.SIMPLIFIED;
+  store.set({ scriptVariant: next });
+  if (element) updateTabPills('#script-tabs', element);
+  applyFiltersAndSort();
+  if (typeof document === 'undefined') return;
+  const modal = document.getElementById('detail-modal');
+  const titleElem = document.getElementById('modal-term-title');
+  const meaningElem = document.getElementById('modal-meaning-text');
+  if (!modal?.classList?.contains('open') || !titleElem || !meaningElem) return;
+  const rowIndex = Number(meaningElem.getAttribute('data-row-index'));
+  const rec = store.get().allRecords.find(r => r.row_index === rowIndex);
+  if (!rec) return;
+  const displayTitle = getExhibitDisplayTitle(rec, next);
+  titleElem.innerHTML = formatExhibitTitleHtml(displayTitle);
+}
+
 function getDefaultSortField(col) {
   if (col?.hasHangulTabs) return SORT_FIELDS.TITLE;
   if (col?.hasKanaTabs ?? col?.hasReading) return SORT_FIELDS.STANDARD;
@@ -485,6 +505,7 @@ export function resetDisplaySettings() {
     currentSortField: getDefaultSortField(col),
     currentSortOrder: SORT_ORDERS.ASC,
     pageSize: DEFAULT_PAGE_SIZE,
+    scriptVariant: DEFAULT_SCRIPT_VARIANT,
     invalidTerm: null
   });
   applyFiltersAndSort();
@@ -504,16 +525,17 @@ export function countActiveFineFilters() {
 }
 
 export function countActiveDisplaySettings() {
-  const { currentSortField, currentSortOrder, pageSize, currentCollectionId } = store.get();
+  const { currentSortField, currentSortOrder, pageSize, scriptVariant, currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId] || {};
   let count = 0;
   if (currentSortField !== getDefaultSortField(col) || currentSortOrder !== SORT_ORDERS.ASC) count += 1;
   if (pageSize !== DEFAULT_PAGE_SIZE) count += 1;
+  if (col.hasScriptDisplay && scriptVariant && scriptVariant !== DEFAULT_SCRIPT_VARIANT) count += 1;
   return count;
 }
 
 export function getFilterSummary() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder, scriptVariant, currentCollectionId } = store.get();
   const parts = [];
 
   if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
@@ -542,6 +564,9 @@ export function getFilterSummary() {
             : '読み方';
   const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? '倒序' : '正序';
   parts.push(`${fieldLabel} ${orderLabel}`);
+  if (collectionsConfig[currentCollectionId]?.hasScriptDisplay && scriptVariant === SCRIPT_VARIANTS.TRADITIONAL) {
+    parts.push('繁體');
+  }
 
   return parts.join(' · ');
 }
@@ -549,7 +574,7 @@ export function getFilterSummary() {
 export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder, pageSize } = store.get();
+  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder, pageSize, scriptVariant } = store.get();
   activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder, categoryTab, levelTab));
   activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
   activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
@@ -562,6 +587,7 @@ export function syncFilterUi() {
   activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
   activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
   activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));
+  activateTabByValue('#script-tabs', scriptVariant || DEFAULT_SCRIPT_VARIANT);
 
   const count = countActiveFineFilters() + countActiveDisplaySettings();
 

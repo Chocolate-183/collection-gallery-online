@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { collectionsConfig } from '../config.js';
 import { collectionsCache, collectionsMetaCache, findProfileByName, findConjugationByLemma } from '../data.js';
-import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml, getExhibitCategoryLabel } from '../utils.js';
+import { escapeHtml, parseRecommendationList, formatExhibitTitleHtml, formatStdictReferenceHtml, getExhibitCategoryLabel, getExhibitDisplayTitle } from '../utils.js';
 import { getConjugationLemma, getWorkProfessionalRows, isConjugatableRecord } from '../conjugations.js';
 import { isCatalogMobile } from '../filter.js';
 
@@ -658,7 +658,7 @@ export function closeProfileModal(updateHash = true) {
 }
 
 export function openMeaningModal(rowIndex, updateHash = true) {
-  const { allRecords, currentCollectionId } = store.get();
+  const { allRecords, currentCollectionId, scriptVariant } = store.get();
   const rec = allRecords.find(r => r.row_index === rowIndex);
   if (!rec) return;
 
@@ -684,7 +684,8 @@ export function openMeaningModal(rowIndex, updateHash = true) {
   const modal = document.getElementById('detail-modal');
 
   if (titleElem) {
-    titleElem.innerHTML = formatExhibitTitleHtml(rec.ja_term);
+    const displayTitle = getExhibitDisplayTitle(rec, scriptVariant);
+    titleElem.innerHTML = formatExhibitTitleHtml(displayTitle);
     titleElem.setAttribute('data-collection', currentCollectionId || '');
   }
 

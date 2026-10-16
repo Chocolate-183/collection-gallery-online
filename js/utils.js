@@ -162,6 +162,19 @@ export function getExhibitSubtitle(record) {
 }
 
 /**
+ * C102 card/modal title: 大陆 (simplified) or 繁體中文, falling back to simplified.
+ */
+export function getExhibitDisplayTitle(record, scriptVariant) {
+  if (!record) return '';
+  if (typeof record === 'string') return record;
+  const simplified = String(record.ja_term || '').trim();
+  if (scriptVariant === 'traditional') {
+    return String(record.traditional_term || '').trim() || simplified;
+  }
+  return simplified;
+}
+
+/**
  * True when a 副標 is English (Latin letters, no CJK / Hangul / Kana).
  */
 export function isEnglishSubtitle(str) {

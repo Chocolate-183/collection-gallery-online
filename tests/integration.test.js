@@ -55,6 +55,8 @@ test('Offline dumps cover C101 C102 C103 C105 and profiles', () => {
   const chinaJson = JSON.parse(readFileSync(resolve('china-data.json'), 'utf-8'));
   assert(Array.isArray(chinaJson) && chinaJson.length > 12);
   assert('ja_term' in chinaJson[0] && 'tw_translation' in chinaJson[0]);
+  assert('traditional_term' in chinaJson[0]);
+  assert.ok(chinaJson.some(r => r.traditional_term && r.traditional_term !== r.ja_term));
 
   const koreanJson = JSON.parse(readFileSync(resolve('korean-data.json'), 'utf-8'));
   assert(Array.isArray(koreanJson) && koreanJson.length > 12);
@@ -211,6 +213,10 @@ test('Mobile Filter and Display merge into one panel', () => {
   const html = readFileSync(resolve('index.html'), 'utf-8');
   const css = readFileSync(resolve('styles.css'), 'utf-8');
   assert.match(html, /id="filter-combined-host"/);
+  assert.match(html, /id="display-script-section"/);
+  assert.match(html, /id="script-tabs"/);
+  assert.match(html, /selectScriptVariant\('simplified'/);
+  assert.match(html, /selectScriptVariant\('traditional'/);
   assert.match(html, /id="filter-panel-title-combined">Filter & Display</);
   const mobile = css.split('@media (max-width: 768px)').pop();
   assert.match(mobile, /#display-modal \{[\s\S]*display:\s*none\s*!important/);

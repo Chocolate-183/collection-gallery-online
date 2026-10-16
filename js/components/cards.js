@@ -4,7 +4,7 @@
 import { store } from '../state.js';
 import { renderPagination } from './pagination.js';
 import { updateSidebarBadge } from './sidebar.js';
-import { escapeHtml, formatExhibitTitleHtml } from '../utils.js';
+import { escapeHtml, formatExhibitTitleHtml, getExhibitDisplayTitle } from '../utils.js';
 
 export function showLoadingState() {
   const { currentCollectionId } = store.get();
@@ -34,7 +34,7 @@ export function showLoadingState() {
 }
 
 export function renderCards() {
-  const { filteredRecords, currentPage, pageSize, currentCollectionId } = store.get();
+  const { filteredRecords, currentPage, pageSize, currentCollectionId, scriptVariant } = store.get();
   const container = document.getElementById('card-grid');
   const counter = document.getElementById('cards-counter');
   if (!container) return;
@@ -74,11 +74,12 @@ export function renderCards() {
     const meaning = rec.tw_translation || '（無說明內容）';
     const isLongText = meaning.length > 20;
     const isActive = activeRowIndex !== null && activeRowIndex !== undefined && String(rec.row_index) === String(activeRowIndex);
+    const displayTitle = getExhibitDisplayTitle(rec, scriptVariant);
 
     return `
       <div class="awsui-card${isActive ? ' active' : ''}" data-row-index="${rec.row_index}" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
         <div class="awsui-card-top-content">
-          <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.ja_term)}">${formatExhibitTitleHtml(rec.ja_term)}</div>
+          <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(displayTitle)}">${formatExhibitTitleHtml(displayTitle)}</div>
           ${rec.reading ? `<span class="awsui-reading-subtext" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>` : '<span class="awsui-reading-subtext">&nbsp;</span>'}
           <div class="awsui-card-divider"></div>
           <div class="awsui-meaning-wrapper">

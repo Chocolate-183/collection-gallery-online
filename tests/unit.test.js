@@ -40,7 +40,8 @@ import {
   POS_PRIMARY_TABS,
   POS_EXTRA_TABS,
   LEVEL_TABS,
-  CATEGORY_TABS
+  CATEGORY_TABS,
+  SCRIPT_VARIANTS
 } from '../js/constants.js';
 import {
   escapeHtml,
@@ -56,7 +57,8 @@ import {
   getCollectionHeaderTitle,
   getCollectionHeaderTitleParts,
   applyCollectionHeaderTitle,
-  getExhibitCategoryLabel
+  getExhibitCategoryLabel,
+  getExhibitDisplayTitle
 } from '../js/utils.js';
 import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, getConjugationUrls, collectionsConfig } from '../js/config.js';
 import { getWorkProfessionalRows, getWorkProfessionalSections, isConjugatableRecord } from '../js/conjugations.js';
@@ -212,7 +214,7 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
 
   const jpCol = collectionsConfig['japanese-terms'];
   const dataUrls = getCollectionDataUrls(jpCol);
-  assert(dataUrls.csvUrl.includes('gid=332998414'));
+  assert(dataUrls.csvUrl.includes('gid=949127854'));
   assert.equal(jpCol.defaultMeta.status, '開放中');
 
   const metaUrls = getMetadataUrls();
@@ -234,12 +236,18 @@ test('Hall config builds Sheets URLs and C103 flags', () => {
   assert.equal(krCol.hasNameCategoryFilter, true);
   assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
 
+  const cnCol = collectionsConfig['china-terms'];
+  const cnUrls = getCollectionDataUrls(cnCol);
+  assert.equal(cnCol.gid, '1307320740');
+  assert(cnUrls.csvUrl.includes('gid=1307320740'));
+  assert.equal(cnCol.hasScriptDisplay, true);
+
   const atkCol = collectionsConfig['japanese-attack'];
   const atkUrls = getCollectionDataUrls(atkCol);
   assert.equal(atkCol.defaultMeta.id, 'C105');
   assert.equal(atkCol.name, '日語攻擊力');
-  assert.equal(atkCol.gid, '1242749289');
-  assert(atkUrls.csvUrl.includes('gid=1242749289'));
+  assert.equal(atkCol.gid, '1800617627');
+  assert(atkUrls.csvUrl.includes('gid=1800617627'));
   assert.equal(atkCol.hasReading, false);
   assert.equal(atkCol.hasKanaTabs, false);
   assert.equal(atkCol.hasBasic100Filter, false);
@@ -285,6 +293,16 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
 #C101-0002,1LDK,一房一廳一廚（格局）,ワンエルディーケー,2026-09-02,物件,基礎100`;
   const jp = parseCSVData(jpCsv, 'japanese-terms');
   assert.deepEqual(jp[0].tags, ['基礎100']);
+
+  const cnCsv = `ID,大陆,繁體中文,台灣用詞,新增日期,推薦條目,標籤
+#C102-0007,二维码,二維碼,QR Code,2026-09-04,微信,基礎100`;
+  const cn = parseCSVData(cnCsv, 'china-terms');
+  assert.equal(cn[0].ja_term, '二维码');
+  assert.equal(cn[0].traditional_term, '二維碼');
+  assert.equal(cn[0].tw_translation, 'QR Code');
+  assert.equal(getExhibitDisplayTitle(cn[0], SCRIPT_VARIANTS.SIMPLIFIED), '二维码');
+  assert.equal(getExhibitDisplayTitle(cn[0], SCRIPT_VARIANTS.TRADITIONAL), '二維碼');
+  assert.deepEqual(filterByQuery(cn, '二維碼').map(r => r.id), ['#C102-0007']);
 
   const sampleGviz = `google.visualization.Query.setResponse(${JSON.stringify({
     status: 'ok',

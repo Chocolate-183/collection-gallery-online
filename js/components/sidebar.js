@@ -1,7 +1,7 @@
 /**
  * Side Navigation & Collection Switcher Component
  */
-import { EXHIBITION_STATUS, STORAGE_KEYS, SORT_FIELDS, SORT_ORDERS } from '../constants.js';
+import { EXHIBITION_STATUS, STORAGE_KEYS, SORT_FIELDS, SORT_ORDERS, DEFAULT_SCRIPT_VARIANT } from '../constants.js';
 import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
 import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
@@ -114,7 +114,8 @@ export function switchCollection(collectionId, updateHash = true) {
       currentSortField: col.hasHangulTabs
         ? SORT_FIELDS.TITLE
         : ((col.hasKanaTabs ?? col.hasReading) ? SORT_FIELDS.STANDARD : SORT_FIELDS.TITLE),
-      currentSortOrder: SORT_ORDERS.ASC
+      currentSortOrder: SORT_ORDERS.ASC,
+      scriptVariant: DEFAULT_SCRIPT_VARIANT
     } : {})
   });
 
@@ -161,6 +162,7 @@ export function switchCollection(collectionId, updateHash = true) {
   const quickAdvanced = document.getElementById('quick-advanced');
   const readingSortTab = document.getElementById('sort-field-reading');
   const glossSortTab = document.getElementById('sort-field-subtitle');
+  const scriptSection = document.getElementById('display-script-section');
   if (hangulSection) hangulSection.style.display = col.hasHangulTabs ? '' : 'none';
   if (kanaSection) kanaSection.style.display = (col.hasKanaTabs ?? col.hasReading) ? '' : 'none';
   if (kindSection) kindSection.style.display = (col.hasBasic100Filter || col.hasNameCategoryFilter) ? '' : 'none';
@@ -179,6 +181,7 @@ export function switchCollection(collectionId, updateHash = true) {
   if (quickAdvanced) quickAdvanced.style.display = showQuickLevels ? '' : 'none';
   if (readingSortTab) readingSortTab.style.display = (col.hasKanaTabs ?? col.hasReading) && !col.hasHangulTabs ? '' : 'none';
   if (glossSortTab) glossSortTab.style.display = col.hasHangulTabs ? '' : 'none';
+  if (scriptSection) scriptSection.style.display = col.hasScriptDisplay ? '' : 'none';
   const titleSortTab = document.querySelector('#sort-field-tabs [data-tab="title"]');
   if (titleSortTab && titleSortTab.classList) {
     const defaultField = col.hasHangulTabs || !(col.hasKanaTabs ?? col.hasReading) ? 'title' : 'standard';
