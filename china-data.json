@@ -10618,5 +10618,110 @@
     "pos": "",
     "level": "",
     "row_index": 496
+  },
+  {
+    "id": "#C102-0498",
+    "ja_term": "小日子",
+    "tw_translation": "過日子 / 好日子（在大陸網路亦常作「小日子過的真不錯」，有時為對日本之蔑稱或調侃用語）",
+    "reading": "",
+    "created_at": "2026-10-19",
+    "recommendations": [
+      "岛国",
+      "精日分子",
+      "境外势力",
+      "反贼",
+      "接地气"
+    ],
+    "subtitle": "",
+    "traditional_term": "小日子",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 497
+  },
+  {
+    "id": "#C102-0499",
+    "ja_term": "录像",
+    "tw_translation": "錄影 / 錄影帶",
+    "reading": "",
+    "created_at": "2026-10-19",
+    "recommendations": [
+      "视频",
+      "短视频",
+      "摄像头",
+      "高清",
+      "音频"
+    ],
+    "subtitle": "",
+    "traditional_term": "錄像",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 498
+  },
+  {
+    "id": "#C102-0500",
+    "ja_term": "互联网",
+    "tw_translation": "網際網路",
+    "reading": "",
+    "created_at": "2026-10-19",
+    "recommendations": [
+      "网络",
+      "云计算",
+      "软件",
+      "大厂",
+      "代码"
+    ],
+    "subtitle": "",
+    "traditional_term": "互聯網",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 499
+  },
+  {
+    "id": "#C102-0501",
+    "ja_term": "吉尼斯世界纪录",
+    "tw_translation": "金氏世界紀錄",
+    "reading": "",
+    "created_at": "2026-10-19",
+    "recommendations": [
+      "热搜",
+      "爆款",
+      "视频",
+      "电子游戏",
+      "大牛"
+    ],
+    "subtitle": "",
+    "traditional_term": "吉尼斯世界紀錄",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 500
+  },
+  {
+    "id": "#C102-0502",
+    "ja_term": "珠穆朗玛峰",
+    "tw_translation": "聖母峰",
+    "reading": "",
+    "created_at": "2026-10-19",
+    "recommendations": [
+      "基建",
+      "新西兰",
+      "迪拜",
+      "大牛",
+      "高清"
+    ],
+    "subtitle": "",
+    "traditional_term": "珠穆朗瑪峰",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 501
   }
 ]
