@@ -108355,7 +108355,7 @@
   {
     "id": "#C103-5298",
     "ja_term": "짓다",
-    "tw_translation": "做、蓋（房子）、做（飯）",
+    "tw_translation": "① 做(飯）\n\n② 蓋(房子)\n\n③ 露出(表情)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -123953,5 +123953,529 @@
     "pos": "形容詞",
     "level": "高級",
     "row_index": 6051
+  },
+  {
+    "id": "#C103-6053",
+    "ja_term": "현모양처 | 賢母良妻",
+    "tw_translation": "賢妻良母",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "현모 | 賢母",
+      "학부모 | 學父母",
+      "장모 | 丈母",
+      "장모님 | 丈母님",
+      "부인 | 婦人"
+    ],
+    "subtitle": "賢母良妻",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6052
+  },
+  {
+    "id": "#C103-6054",
+    "ja_term": "현모 | 賢母",
+    "tw_translation": "賢母、賢惠的母親",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "현모양처 | 賢母良妻",
+      "학부모 | 學父母",
+      "장모 | 丈母",
+      "장모님 | 丈母님",
+      "부인 | 婦人"
+    ],
+    "subtitle": "賢母",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6053
+  },
+  {
+    "id": "#C103-6055",
+    "ja_term": "공정 | 公正",
+    "tw_translation": "公正、公平",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "공개 | 公開",
+      "공무원 | 公務員",
+      "정식 | 正式",
+      "수정 | 修正",
+      "주인공 | 主人公"
+    ],
+    "subtitle": "公正",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6054
+  },
+  {
+    "id": "#C103-6056",
+    "ja_term": "구박하다 | 驅迫하다",
+    "tw_translation": "虐待、苛待、嫌棄",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "괴롭히다",
+      "강요하다 | 强要하다",
+      "공격하다 | 攻擊하다",
+      "건드리다",
+      "방해하다 | 妨害하다"
+    ],
+    "subtitle": "驅迫하다",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "混種語",
+    "pos": "動詞",
+    "level": "高級",
+    "row_index": 6055
+  },
+  {
+    "id": "#C103-6057",
+    "ja_term": "꿈나라",
+    "tw_translation": "夢鄉",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "악몽 | 惡夢",
+      "현실 | 現實",
+      "수면 | 睡眠",
+      "잠자리",
+      "졸음"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6056
+  },
+  {
+    "id": "#C103-6058",
+    "ja_term": "주연 | 主演",
+    "tw_translation": "主演、主角",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "주인공 | 主人公",
+      "여배우 | 女俳優",
+      "연예 | 演藝",
+      "역할 | 役割",
+      "감독 | 監督"
+    ],
+    "subtitle": "主演",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6057
+  },
+  {
+    "id": "#C103-6059",
+    "ja_term": "뻥",
+    "tw_translation": "謊話、吹牛",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "개인기 | 個人技",
+      "탈락자 | 脫落者",
+      "최애 | 最愛",
+      "유재석 | 劉在錫",
+      "강호동 | 姜鎬童"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "無等級",
+    "row_index": 6058
+  },
+  {
+    "id": "#C103-6060",
+    "ja_term": "PD",
+    "tw_translation": "節目製作人、導演 (Producer-Director)",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "MC",
+      "넷플릭스 | Netflix",
+      "비주얼 | visual",
+      "걸그룹 | girl group",
+      "컨트롤 | control"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "無等級",
+    "row_index": 6059
+  },
+  {
+    "id": "#C103-6061",
+    "ja_term": "CC",
+    "tw_translation": "校園情侶 (Campus Couple )",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "MC",
+      "PD",
+      "비주얼 | visual",
+      "스타벅스 | Starbucks",
+      "스마트폰 | smartphone"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "無等級",
+    "row_index": 6060
+  },
+  {
+    "id": "#C103-6062",
+    "ja_term": "MC",
+    "tw_translation": "主持人 (Master of Ceremonies)",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "PD",
+      "걸그룹 | girl group",
+      "비주얼 | visual",
+      "넷플릭스 | Netflix",
+      "컨트롤 | control"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "無等級",
+    "row_index": 6061
+  },
+  {
+    "id": "#C103-6063",
+    "ja_term": "첫사랑",
+    "tw_translation": "初戀",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "사랑",
+      "애인 | 愛人",
+      "추억 | 追憶",
+      "마음",
+      "눈물"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6062
+  },
+  {
+    "id": "#C103-6064",
+    "ja_term": "사랑니",
+    "tw_translation": "智齒",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "이빨",
+      "치과 | 齒科",
+      "턱",
+      "입술",
+      "아픔"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6063
+  },
+  {
+    "id": "#C103-6065",
+    "ja_term": "두리안",
+    "tw_translation": "榴槤",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "구아바 | guava",
+      "말레이시아 | Malaysia",
+      "베트남 | Vietnam",
+      "인도네시아 | Indonesia",
+      "스타벅스 | Starbucks"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6064
+  },
+  {
+    "id": "#C103-6066",
+    "ja_term": "구아바 | guava",
+    "tw_translation": "芭樂、番石榴",
+    "reading": "",
+    "created_at": "2026-10-21",
+    "recommendations": [
+      "두리안",
+      "베트남 | Vietnam",
+      "말레이시아 | Malaysia",
+      "인도네시아 | Indonesia",
+      "스타벅스 | Starbucks"
+    ],
+    "subtitle": "guava",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6065
+  },
+  {
+    "id": "#C103-6067",
+    "ja_term": "전속 | 專屬",
+    "tw_translation": "專屬",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "소속 | 所屬",
+      "전문 | 專門",
+      "구속 | 拘束",
+      "금속 | 金屬",
+      "단속 | 團束"
+    ],
+    "subtitle": "專屬",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6066
+  },
+  {
+    "id": "#C103-6068",
+    "ja_term": "해명 | 解明",
+    "tw_translation": "解釋、澄清",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "설명 | 說明",
+      "성명 | 聲明",
+      "증명 | 證明",
+      "해결 | 解決",
+      "해체 | 解體"
+    ],
+    "subtitle": "解明",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6067
+  },
+  {
+    "id": "#C103-6069",
+    "ja_term": "일방적 | 一方的",
+    "tw_translation": "單方面的、片面的",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "개인적 | 個人的",
+      "상대적 | 相對的",
+      "적극적 | 積極的",
+      "객관적 | 客觀的",
+      "구체적 | 具體的"
+    ],
+    "subtitle": "一方的",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6068
+  },
+  {
+    "id": "#C103-6070",
+    "ja_term": "별빛",
+    "tw_translation": "星光",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "달빛",
+      "눈빛",
+      "불빛",
+      "햇빛",
+      "별"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6069
+  },
+  {
+    "id": "#C103-6071",
+    "ja_term": "살며시",
+    "tw_translation": "悄悄地、輕輕地",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "가만히",
+      "조용히",
+      "슬그머니",
+      "은근히",
+      "힘없이"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "副詞",
+    "level": "高級",
+    "row_index": 6070
+  },
+  {
+    "id": "#C103-6072",
+    "ja_term": "쌀쌀하다",
+    "tw_translation": "涼颼颼、微冷",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "차갑다",
+      "서늘하다",
+      "선선하다",
+      "따뜻하다"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "形容詞",
+    "level": "中級",
+    "row_index": 6071
+  },
+  {
+    "id": "#C103-6073",
+    "ja_term": "데뷔 | début",
+    "tw_translation": "出道、初次登台",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "콘서트 | concert",
+      "인터뷰 | interview",
+      "드라마 | drama",
+      "캠퍼스 | campus",
+      "오디오 | audio"
+    ],
+    "subtitle": "début",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6072
+  },
+  {
+    "id": "#C103-6074",
+    "ja_term": "커뮤니티 | community",
+    "tw_translation": "社群、社群論壇",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "네트워크 | network",
+      "사이트 | site",
+      "인터넷 | internet",
+      "온라인 | on-line",
+      "미디어 | media"
+    ],
+    "subtitle": "community",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6073
+  },
+  {
+    "id": "#C103-6075",
+    "ja_term": "심경 | 心境",
+    "tw_translation": "心境、心情",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "심정 | 心情",
+      "진심 | 眞心",
+      "심리 | 心理",
+      "광경 | 光景",
+      "배경 | 背景"
+    ],
+    "subtitle": "心境",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6074
+  },
+  {
+    "id": "#C103-6076",
+    "ja_term": "리더 | leader",
+    "tw_translation": "隊長、領袖",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "파트너 | partner",
+      "멤버 | member",
+      "매니저 | manager",
+      "모델 | model",
+      "캐릭터 | character"
+    ],
+    "subtitle": "leader",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6075
+  },
+  {
+    "id": "#C103-6077",
+    "ja_term": "말버릇",
+    "tw_translation": "口頭禪、說話習慣",
+    "reading": "",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "말투 | 말套",
+      "눈치",
+      "버릇",
+      "습관 | 習慣",
+      "눈길"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6076
   }
 ]
