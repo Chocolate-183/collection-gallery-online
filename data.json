@@ -38405,5 +38405,362 @@
     "pos": "",
     "level": "",
     "row_index": 1815
+  },
+  {
+    "id": "#C101-1817",
+    "ja_term": "大字",
+    "tw_translation": "大字（日本町村制之下的土地行政區劃單位）",
+    "reading": "おおあざ",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "町",
+      "志布志市志布志町志布志",
+      "区画整理",
+      "片田舎",
+      "田舎"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1816
+  },
+  {
+    "id": "#C101-1818",
+    "ja_term": "志布志市志布志町志布志",
+    "tw_translation": "志布志市志布志町志布志（鹿兒島縣知名繞口令地名）",
+    "reading": "しぶしししぶしちょうしぶし",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "大字",
+      "町",
+      "語呂",
+      "言葉",
+      "片田舎"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1817
+  },
+  {
+    "id": "#C101-1819",
+    "ja_term": "大喜利",
+    "tw_translation": "大喜利（傳統落語/綜藝即興幽默答題競賽）",
+    "reading": "おおぎり",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "漫才",
+      "漫才師",
+      "M-1",
+      "物真似",
+      "番組"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1818
+  },
+  {
+    "id": "#C101-1820",
+    "ja_term": "知事",
+    "tw_translation": "知事（日本一級行政區都道府縣的首長/縣長）",
+    "reading": "ちじ",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "都知事",
+      "立候補",
+      "政治不信",
+      "大統領",
+      "役目"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1819
+  },
+  {
+    "id": "#C101-1821",
+    "ja_term": "都知事",
+    "tw_translation": "都首長",
+    "reading": "とちじ",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "知事",
+      "立候補",
+      "上京",
+      "政治不信",
+      "大統領"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1820
+  },
+  {
+    "id": "#C101-1822",
+    "ja_term": "緑虫",
+    "tw_translation": "眼蟲、眼蟲藻（亦稱綠蟲藻）",
+    "reading": "みどりむし",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "光合成",
+      "酸素",
+      "遺伝子",
+      "水素",
+      "窒素"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1821
+  },
+  {
+    "id": "#C101-1823",
+    "ja_term": "問答無用",
+    "tw_translation": "不由分說、不容分辯、毫無商量餘地",
+    "reading": "もんどうむよう",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "蒟蒻問答",
+      "理不尽",
+      "強引",
+      "断固拒否",
+      "暴論"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1822
+  },
+  {
+    "id": "#C101-1824",
+    "ja_term": "憶測",
+    "tw_translation": "揣測、推測、臆測",
+    "reading": "おくそく",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "根拠",
+      "噂",
+      "詮索",
+      "誤情報",
+      "想定外"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1823
+  },
+  {
+    "id": "#C101-1825",
+    "ja_term": "光合成",
+    "tw_translation": "光合作用",
+    "reading": "こうごうせい",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "緑虫",
+      "酸素",
+      "水素",
+      "窒素",
+      "元素記号"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1824
+  },
+  {
+    "id": "#C101-1826",
+    "ja_term": "線香花火",
+    "tw_translation": "仙女棒",
+    "reading": "せんこうはなび",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "花火",
+      "風物詩",
+      "綺麗",
+      "火気",
+      "火傷"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1825
+  },
+  {
+    "id": "#C101-1827",
+    "ja_term": "十姉妹",
+    "tw_translation": "十姊妹（白腰文鳥的馴化鳥種/觀賞鳥）",
+    "reading": "じゅうしまつ",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "愛玩動物",
+      "椋鳥",
+      "浜千鳥",
+      "仲間",
+      "野良猫"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1826
+  },
+  {
+    "id": "#C101-1828",
+    "ja_term": "仲間同士",
+    "tw_translation": "同伴之間、夥伴彼此、同仁之間",
+    "reading": "なかまどうし",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "仲間",
+      "同僚",
+      "相棒",
+      "親友",
+      "結束"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1827
+  },
+  {
+    "id": "#C101-1829",
+    "ja_term": "亭主関白",
+    "tw_translation": "大男人主義",
+    "reading": "ていしゅかんぱく",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "旦那",
+      "奥様",
+      "仮面夫婦",
+      "家事分担",
+      "縦社会"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1828
+  },
+  {
+    "id": "#C101-1830",
+    "ja_term": "腰抜",
+    "tw_translation": "膽小鬼、懦夫、沒骨氣的人",
+    "reading": "こしぬけ",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "臆病者",
+      "弱虫",
+      "臆病",
+      "度胸",
+      "卑怯"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1829
+  },
+  {
+    "id": "#C101-1831",
+    "ja_term": "振舞",
+    "tw_translation": "舉止、行為態度 / 款待、招待",
+    "reading": "ふるまい",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "仕草",
+      "奇行",
+      "不行状",
+      "御馳走様",
+      "迷惑行為"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1830
+  },
+  {
+    "id": "#C101-1832",
+    "ja_term": "一押二金三姿四程五芸",
+    "tw_translation": "一押二金三姿四程五芸（日本江戶時代追求女性的五大要素）",
+    "reading": "いちおしにかねさんすがたよんほどごげい",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "容姿端麗",
+      "甲斐性",
+      "婚活",
+      "顔面偏差値",
+      "彼女"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1831
+  },
+  {
+    "id": "#C101-1833",
+    "ja_term": "満更",
+    "tw_translation": "全不、並非完全（常後接否定「滿更…ではない」）",
+    "reading": "まんざら",
+    "created_at": "2026-10-27",
+    "recommendations": [
+      "案外",
+      "結構",
+      "全然",
+      "随分",
+      "多分"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1832
   }
 ]
