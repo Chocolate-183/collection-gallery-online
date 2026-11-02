@@ -487,6 +487,7 @@ a:focus {
   gap: 12px;
   margin-bottom: 16px;
   padding-bottom: 12px;
+  min-height: 45px;
   border-bottom: 1px solid var(--awsui-color-border-divider-default);
 }
 
@@ -871,11 +872,17 @@ a:focus {
 }
 
 /* Uniform Height Cards Grid Matrix */
+.awsui-cards-grid-shell {
+  position: relative;
+  margin-bottom: 20px;
+}
+
 .awsui-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  position: relative;
 }
 
 /* Card Component with Uniform Fixed Height & Title Color #303748 */
@@ -952,20 +959,27 @@ a:focus {
   color: #ffffff !important;
 }
 
-/* Empty State Card */
+/* Empty State Card — overlay so the grid keeps page-size slots */
 .awsui-empty-card {
-  grid-column: 1 / -1;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   text-align: center;
   padding: 48px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: auto !important;
-  min-height: 180px !important;
-  background: var(--awsui-color-background-container-content);
-  border: 1px solid var(--awsui-color-border-item-default);
-  border-radius: var(--awsui-border-radius-container);
+  height: 100% !important;
+  min-height: 0 !important;
+  background: transparent;
+  border: none;
+  pointer-events: none;
+}
+
+.awsui-card-placeholder {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .awsui-empty-card .awsui-icon {
@@ -1119,6 +1133,7 @@ a:focus {
   display: flex;
   align-items: center;
   gap: 0;
+  min-height: 32px;
 }
 
 .awsui-page-btn {
@@ -2322,8 +2337,8 @@ a:focus {
 }
 
 [data-theme="dark"] .awsui-empty-card {
-  background-color: var(--awsui-color-background-container-content);
-  border-color: var(--awsui-color-border-item-default);
+  background-color: transparent;
+  border-color: transparent;
 }
 
 [data-theme="dark"] .awsui-empty-title {
