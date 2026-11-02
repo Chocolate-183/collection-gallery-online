@@ -391,6 +391,18 @@ test('Empty catalog, Collection modal, Description modal, and Profile panel', as
   });
   renderCards();
   assert(mockContainer.innerHTML.includes('尚無相符展品'));
+  assert.equal((mockContainer.innerHTML.match(/awsui-card-placeholder/g) || []).length, 10);
+
+  store.set({
+    filteredRecords: [{ id: '1', ja_term: '測試', tw_translation: '說明', row_index: 1 }],
+    pageSize: 10,
+    currentPage: 1,
+    invalidTerm: null
+  });
+  renderCards();
+  assert.equal(mockContainer.innerHTML.includes('尚無相符展品'), false);
+  assert.equal((mockContainer.innerHTML.match(/awsui-card-placeholder/g) || []).length, 9);
+  assert.match(mockContainer.innerHTML, /data-row-index="1"/);
 
   collectionsMetaCache['china-terms'] = {
     title: '簡中語境破解攻略',

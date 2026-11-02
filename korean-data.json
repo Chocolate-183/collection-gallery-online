@@ -18473,7 +18473,7 @@
   {
     "id": "#C103-0875",
     "ja_term": "가다",
-    "tw_translation": "去",
+    "tw_translation": "去\n\n㊟ 好用句子\n같이 가자 (我們一起去吧)\n꼭 갈게요 (一定會去的)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -21633,7 +21633,7 @@
   {
     "id": "#C103-1024",
     "ja_term": "듣다",
-    "tw_translation": "聽",
+    "tw_translation": "聽\n\n㊟ 好用句子\n들어봤어요 (有聽過)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -21908,7 +21908,7 @@
   {
     "id": "#C103-1037",
     "ja_term": "마음",
-    "tw_translation": "心",
+    "tw_translation": "心\n\n㊟ 常見搭配\n마음에 들다 (合心意 / 滿意)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -22059,7 +22059,7 @@
   {
     "id": "#C103-1044",
     "ja_term": "말",
-    "tw_translation": "話、語言\n\n㊟ 常見搭配\n말을 놓다 (說半語、不講敬語 )\n말 편하게 하다 (講話不用太拘謹、可以說平語或非敬語)",
+    "tw_translation": "話、語言\n\n㊟ 常見搭配\n말을 놓다 (說半語、不講敬語 )\n말 편하게 하다 (講話不用太拘謹、可以說平語或非敬語)\n\n㊟ 好用句子\n할 말이 있어요 (我有話要說)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -22122,7 +22122,7 @@
   {
     "id": "#C103-1047",
     "ja_term": "말씀",
-    "tw_translation": "話（敬語）",
+    "tw_translation": "話、語言（敬語）\n\n㊟ 好用句子\n드릴 말씀이 있습니다 (我有話要說)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -24255,7 +24255,7 @@
   {
     "id": "#C103-1147",
     "ja_term": "손",
-    "tw_translation": "手",
+    "tw_translation": "手\n\n㊟ 常見搭配\n손읗 잡다 (牽手)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -26900,7 +26900,7 @@
   {
     "id": "#C103-1271",
     "ja_term": "일",
-    "tw_translation": "事情、工作\n\n㊟ 常見搭配\n할 일 (要做的事) e.g. 오늘 할 일이 많아요 (今天要做的事很多)",
+    "tw_translation": "事情、工作\n\n㊟ 常見搭配\n할 일 (要做的事) e.g. 오늘 할 일이 많아요 (今天要做的事很多)\n\n㊟ 好用句子\n무순 일인데? (甚麼事情)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -30694,7 +30694,7 @@
   {
     "id": "#C103-1450",
     "ja_term": "쓰레기",
-    "tw_translation": "垃圾",
+    "tw_translation": "垃圾\n\n㊟ 好用句子\n쓰레기를 아무데나 버리지 마 (別亂丟垃圾)",
     "reading": "",
     "created_at": "2026-10-02",
     "recommendations": [
@@ -41457,7 +41457,7 @@
   {
     "id": "#C103-1984",
     "ja_term": "그냥",
-    "tw_translation": "就那樣、就這樣、隨便",
+    "tw_translation": "就那樣、就這樣、隨便\n\n㊟ 好用句子\n그냥 그렇다고",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -124125,7 +124125,7 @@
   {
     "id": "#C103-6061",
     "ja_term": "CC",
-    "tw_translation": "校園情侶 (Campus Couple )",
+    "tw_translation": "校園情侶 (Campus Couple)",
     "reading": "",
     "created_at": "2026-10-21",
     "recommendations": [
@@ -124208,7 +124208,7 @@
   },
   {
     "id": "#C103-6065",
-    "ja_term": "두리안",
+    "ja_term": "두리안 | durian",
     "tw_translation": "榴槤",
     "reading": "",
     "created_at": "2026-10-21",
@@ -124219,7 +124219,7 @@
       "인도네시아 | Indonesia",
       "스타벅스 | Starbucks"
     ],
-    "subtitle": "",
+    "subtitle": "durian",
     "traditional_term": "",
     "tags": [],
     "etymology": "外來語",
@@ -124443,7 +124443,6 @@
     "reading": "",
     "created_at": "2026-10-27",
     "recommendations": [
-      "파트너 | partner",
       "멤버 | member",
       "매니저 | manager",
       "모델 | model",
@@ -124477,5 +124476,89 @@
     "pos": "名詞",
     "level": "中級",
     "row_index": 6076
+  },
+  {
+    "id": "#C103-6078",
+    "ja_term": "식후 | 食後",
+    "tw_translation": "飯後、餐後",
+    "reading": "",
+    "created_at": "2026-11-02",
+    "recommendations": [
+      "이후 | 以後",
+      "간식 | 間食",
+      "식품 | 食品",
+      "식구 | 食口",
+      "식용유 | 食用油"
+    ],
+    "subtitle": "食後",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6077
+  },
+  {
+    "id": "#C103-6079",
+    "ja_term": "애니메이션 | animation",
+    "tw_translation": "動畫、卡通",
+    "reading": "",
+    "created_at": "2026-11-02",
+    "recommendations": [
+      "시리즈 | series",
+      "필름 | film",
+      "포스터 | poster",
+      "프로 | program",
+      "채널 | channel"
+    ],
+    "subtitle": "animation",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6078
+  },
+  {
+    "id": "#C103-6080",
+    "ja_term": "별자리",
+    "tw_translation": "星座",
+    "reading": "",
+    "created_at": "2026-11-02",
+    "recommendations": [
+      "별빛",
+      "달빛",
+      "햇빛",
+      "불빛",
+      "빛"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6079
+  },
+  {
+    "id": "#C103-6081",
+    "ja_term": "송편 | 松편",
+    "tw_translation": "松片、松餅（中秋節傳統糕點）",
+    "reading": "",
+    "created_at": "2026-11-02",
+    "recommendations": [
+      "떡",
+      "떡볶이",
+      "전통 | 傳統",
+      "과자 | 菓子",
+      "음식 | 飮食"
+    ],
+    "subtitle": "松편",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "混種語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6080
   }
 ]

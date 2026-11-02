@@ -1,10 +1,59 @@
 /**
  * Cards Matrix Component
  */
+import { DEFAULT_PAGE_SIZE, PAGE_SIZE_ALL } from '../constants.js';
 import { store } from '../state.js';
 import { renderPagination } from './pagination.js';
 import { updateSidebarBadge } from './sidebar.js';
 import { escapeHtml, formatExhibitTitleHtml, getExhibitDisplayTitle } from '../utils.js';
+
+function catalogSlotCount(pageSize, recordCount) {
+  const size = Number(pageSize) || 0;
+  if (!size || size >= PAGE_SIZE_ALL) return Math.max(recordCount, DEFAULT_PAGE_SIZE);
+  return size;
+}
+
+function placeholderCardHtml() {
+  return '<div class="awsui-card awsui-card-placeholder" aria-hidden="true"></div>';
+}
+
+function emptyStateHtml() {
+  return `
+      <div class="awsui-card awsui-empty-card">
+        <svg class="awsui-icon awsui-icon-lg" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+        <div class="awsui-empty-title">
+          尚無相符展品
+        </div>
+      </div>
+    `;
+}
+
+function isGridShell(node) {
+  return Boolean(node && node.classList && node.classList.contains('awsui-cards-grid-shell'));
+}
+
+function syncEmptyOverlay(container, total) {
+  const shell = container.parentElement;
+  if (isGridShell(shell)) {
+    const existing = typeof shell.querySelector === 'function'
+      ? shell.querySelector('.awsui-empty-card')
+      : null;
+    if (total === 0 && !existing) {
+      if (typeof shell.insertAdjacentHTML === 'function') {
+        shell.insertAdjacentHTML('beforeend', emptyStateHtml());
+      } else {
+        shell.innerHTML = (shell.innerHTML || '') + emptyStateHtml();
+      }
+    }
+    if (total > 0 && existing && typeof existing.remove === 'function') {
+      existing.remove();
+    }
+    return '';
+  }
+  return total === 0 ? emptyStateHtml() : '';
+}
 
 export function showLoadingState() {
   const { currentCollectionId } = store.get();
@@ -44,25 +93,11 @@ export function renderCards() {
 
   if (counter) counter.innerText = `(${filteredRecords.length})`;
 
-  if (filteredRecords.length === 0) {
-    container.innerHTML = `
-      <div class="awsui-card awsui-empty-card">
-        <svg class="awsui-icon awsui-icon-lg" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg>
-        <div class="awsui-empty-title">
-          尚無相符展品
-        </div>
-      </div>
-    `;
-    renderPagination(0);
-    return;
-  }
-
   const total = filteredRecords.length;
   const startIdx = (currentPage - 1) * pageSize;
   const endIdx = Math.min(startIdx + pageSize, total);
   const pageRecords = filteredRecords.slice(startIdx, endIdx);
+  const slotCount = catalogSlotCount(pageSize, pageRecords.length);
 
   const meaningElem = typeof document !== 'undefined' ? document.getElementById('modal-meaning-text') : null;
   const detailModal = typeof document !== 'undefined' ? document.getElementById('detail-modal') : null;
@@ -70,13 +105,19 @@ export function renderCards() {
     ? meaningElem.getAttribute('data-row-index')
     : null;
 
-  const cardsHtml = pageRecords.map(rec => {
+  const cardsHtml = [];
+  for (let i = 0; i < slotCount; i++) {
+    const rec = pageRecords[i];
+    if (!rec) {
+      cardsHtml.push(placeholderCardHtml());
+      continue;
+    }
     const meaning = rec.tw_translation || '（無說明內容）';
     const isLongText = meaning.length > 20;
     const isActive = activeRowIndex !== null && activeRowIndex !== undefined && String(rec.row_index) === String(activeRowIndex);
     const displayTitle = getExhibitDisplayTitle(rec, scriptVariant);
 
-    return `
+    cardsHtml.push(`
       <div class="awsui-card${isActive ? ' active' : ''}" data-row-index="${rec.row_index}" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
         <div class="awsui-card-top-content">
           <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(displayTitle)}">${formatExhibitTitleHtml(displayTitle)}</div>
@@ -94,9 +135,10 @@ export function renderCards() {
           </div>
         </div>
       </div>
-    `;
-  }).join('');
+    `);
+  }
 
-  container.innerHTML = cardsHtml;
+  const emptyHtml = syncEmptyOverlay(container, total);
+  container.innerHTML = emptyHtml + cardsHtml.join('');
   renderPagination(total);
 }
