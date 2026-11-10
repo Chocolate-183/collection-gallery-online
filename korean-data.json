@@ -1700,7 +1700,7 @@
   {
     "id": "#C103-0083",
     "ja_term": "기억 | 記憶",
-    "tw_translation": "記憶\n\n㊟ 常見搭配\n기억이 안 나요 (不記得)",
+    "tw_translation": "記憶\n\n㊟ 常見搭配\n기억이 안 나요 (不記得)\n\n㊟ 好用句子\n오래 돼서 기억이 안 나요 (過太久了想不起來)",
     "reading": "",
     "created_at": "2026-09-15",
     "recommendations": [
@@ -2398,7 +2398,7 @@
   {
     "id": "#C103-0116",
     "ja_term": "대학교 | 大學校",
-    "tw_translation": "大學",
+    "tw_translation": "大學\n\n㊟ 好用句子\n대학교 때 (大學的時候)",
     "reading": "",
     "created_at": "2026-09-17",
     "recommendations": [
@@ -3825,7 +3825,7 @@
   {
     "id": "#C103-0184",
     "ja_term": "방학 | 放學",
-    "tw_translation": "寒暑假",
+    "tw_translation": "寒暑假\n\n㊟ 好用句子\n방학 때 (放假的時候)",
     "reading": "",
     "created_at": "2026-09-15",
     "recommendations": [
@@ -7384,7 +7384,7 @@
   {
     "id": "#C103-0353",
     "ja_term": "여행 | 旅行",
-    "tw_translation": "旅行",
+    "tw_translation": "旅行\n\n㊟ 常見搭配\n여행을 다니다\n여행을 하다",
     "reading": "",
     "created_at": "2026-09-15",
     "recommendations": [
@@ -18366,7 +18366,7 @@
   {
     "id": "#C103-0870",
     "ja_term": "달",
-    "tw_translation": "月亮",
+    "tw_translation": "月/月亮\n\n㊟ 常見搭配\n지난달 (上個月)\n이번 달(這個月)\n다음 달 (下個月)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -19494,7 +19494,7 @@
   {
     "id": "#C103-0923",
     "ja_term": "귀",
-    "tw_translation": "耳朵",
+    "tw_translation": "耳朵\n\n㊟ 常見搭配\n귀가 얇다 (耳根子軟)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -20403,7 +20403,7 @@
   {
     "id": "#C103-0966",
     "ja_term": "날",
-    "tw_translation": "天、日子",
+    "tw_translation": "天、日子\n\n㊟ 好用句子\n맑은 날 (晴天)\n비 오는 날 (下雨天)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -21042,7 +21042,7 @@
   {
     "id": "#C103-0996",
     "ja_term": "다르다",
-    "tw_translation": "不一樣的",
+    "tw_translation": "不一樣的\n\n㊟ 好用句子\nA하고 B는 어떻게 달라요? (A和B 有甚麼不一樣?)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -21908,7 +21908,7 @@
   {
     "id": "#C103-1037",
     "ja_term": "마음",
-    "tw_translation": "心\n\n㊟ 常見搭配\n마음에 들다 (合心意 / 滿意)",
+    "tw_translation": "心\n\n㊟ 常見搭配\n마음에 들다 (合心意 / 滿意)\n마음이 따뜻하다 (指一個人善良、溫柔、富有同理心、待人真誠)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -22548,7 +22548,7 @@
   {
     "id": "#C103-1067",
     "ja_term": "몸",
-    "tw_translation": "身體",
+    "tw_translation": "身體\n\n㊟ 常見搭配\n몸에 맞다 (合身)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -22973,7 +22973,7 @@
   {
     "id": "#C103-1087",
     "ja_term": "반 | 班",
-    "tw_translation": "班級",
+    "tw_translation": "班級\n\n㊟ 常見搭配\n반 친구 (同學)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -23569,7 +23569,7 @@
   {
     "id": "#C103-1115",
     "ja_term": "비",
-    "tw_translation": "雨",
+    "tw_translation": "雨\n\n㊟ 好用句子\n비 오는 날(下雨天)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -24043,7 +24043,7 @@
   {
     "id": "#C103-1137",
     "ja_term": "생각",
-    "tw_translation": "想法",
+    "tw_translation": "想法\n\n㊟ 好用句子\n생각은 했지만 (雖然有想過，但是……)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -25472,7 +25472,7 @@
   {
     "id": "#C103-1204",
     "ja_term": "어서",
-    "tw_translation": "快、請",
+    "tw_translation": "快、請\n\n㊟ 常見搭配\n어서오세요 (歡迎光臨)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -27200,7 +27200,7 @@
   {
     "id": "#C103-1285",
     "ja_term": "자전거 | 自轉車",
-    "tw_translation": "腳踏車",
+    "tw_translation": "腳踏車\n\n㊟ 常見搭配\n자전거를 타다 (騎腳踏車)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -27626,7 +27626,7 @@
   {
     "id": "#C103-1305",
     "ja_term": "전 | 前",
-    "tw_translation": "前、前任",
+    "tw_translation": "前、前任\n\n㊟ 好用句子\n얼마 전에 (不久前)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -29792,7 +29792,7 @@
   {
     "id": "#C103-1407",
     "ja_term": "어리다",
-    "tw_translation": "年輕的\n\n㊟ 常見搭配\n어렸을 때 (小時候)",
+    "tw_translation": "年輕的\n\n㊟ 常見搭配\n어렸을 때 (小時候)\n어릴 때 (小時候)",
     "reading": "",
     "created_at": "2026-09-30",
     "recommendations": [
@@ -52418,7 +52418,7 @@
   {
     "id": "#C103-2506",
     "ja_term": "대비 | 對備",
-    "tw_translation": "對比 / 準備、防備",
+    "tw_translation": "準備、防備",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -94765,7 +94765,7 @@
   {
     "id": "#C103-4621",
     "ja_term": "이미",
-    "tw_translation": "已經",
+    "tw_translation": "已經\n\n㊟ 好用句子\n이미 봤어요 (已經看過了)\n이미 다녀왔어 (已經去過了)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -121494,7 +121494,7 @@
   {
     "id": "#C103-5935",
     "ja_term": "형제 | 兄弟",
-    "tw_translation": "兄弟",
+    "tw_translation": "兄弟\n\n㊟ 常見搭配\n남자 형제 \n여자 형제",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -124542,23 +124542,128 @@
   },
   {
     "id": "#C103-6081",
-    "ja_term": "송편 | 松편",
-    "tw_translation": "松片、松餅（中秋節傳統糕點）",
+    "ja_term": "첫눈",
+    "tw_translation": "初雪",
     "reading": "",
-    "created_at": "2026-11-02",
+    "created_at": "2026-11-09",
     "recommendations": [
-      "떡",
-      "떡볶이",
-      "전통 | 傳統",
-      "과자 | 菓子",
-      "음식 | 飮食"
+      "겨울철",
+      "추위",
+      "얼음",
+      "첫날",
+      "여름철"
     ],
-    "subtitle": "松편",
+    "subtitle": "",
     "traditional_term": "",
     "tags": [],
-    "etymology": "混種語",
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6080
+  },
+  {
+    "id": "#C103-6082",
+    "ja_term": "나란",
+    "tw_translation": "並排、並列",
+    "reading": "",
+    "created_at": "2026-11-09",
+    "recommendations": [
+      "마주",
+      "따로",
+      "가까이",
+      "똑같이",
+      "한꺼번에"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "副詞",
+    "level": "中級",
+    "row_index": 6081
+  },
+  {
+    "id": "#C103-6083",
+    "ja_term": "건포도 | 乾葡萄",
+    "tw_translation": "葡萄乾",
+    "reading": "",
+    "created_at": "2026-11-09",
+    "recommendations": [
+      "건조 | 乾燥",
+      "포장마차 | 布帳馬車",
+      "건설 | 建設",
+      "포함 | 包含",
+      "용도 | 用途"
+    ],
+    "subtitle": "乾葡萄",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6082
+  },
+  {
+    "id": "#C103-6084",
+    "ja_term": "소고기",
+    "tw_translation": "牛肉",
+    "reading": "",
+    "created_at": "2026-11-09",
+    "recommendations": [
+      "쇠고기",
+      "돼지고기",
+      "닭고기",
+      "불고기",
+      "고기"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
     "pos": "名詞",
     "level": "初級",
-    "row_index": 6080
+    "row_index": 6083
+  },
+  {
+    "id": "#C103-6085",
+    "ja_term": "생선회 | 生鮮膾",
+    "tw_translation": "生魚片",
+    "reading": "",
+    "created_at": "2026-11-09",
+    "recommendations": [
+      "생선 | 生鮮",
+      "생일 | 生日",
+      "생활 | 生活",
+      "생신 | 生辰",
+      "평생 | 平生"
+    ],
+    "subtitle": "生鮮膾",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6084
+  },
+  {
+    "id": "#C103-6086",
+    "ja_term": "소고 | SOGO",
+    "tw_translation": "太平洋崇光百貨 (SOGO)",
+    "reading": "",
+    "created_at": "2026-11-09",
+    "recommendations": [
+      "롯데 | Lotte",
+      "스타벅스 | Starbucks",
+      "맥도날드 | McDonald",
+      "이니스프리 | INNISFREE",
+      "엘지 | LG"
+    ],
+    "subtitle": "SOGO",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "無等級",
+    "row_index": 6085
   }
 ]
