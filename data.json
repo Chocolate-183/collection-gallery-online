@@ -42143,5 +42143,236 @@
     "pos": "",
     "level": "",
     "row_index": 1993
+  },
+  {
+    "id": "#C101-1995",
+    "ja_term": "界隈",
+    "tw_translation": "生活圈、街區附近 / 特定圈子、領域（原指地理周邊，現常指特定社群或同好圈）",
+    "reading": "かいわい",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "繁華街",
+      "近所",
+      "地元",
+      "縄張",
+      "花街"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1994
+  },
+  {
+    "id": "#C101-1996",
+    "ja_term": "山陰山陽地方",
+    "tw_translation": "山陰山陽地方（日本本州西部中國地方的合稱，涵蓋臨日本海的山陰與臨瀨戶內海的山陽）",
+    "reading": "さんいんさんようちほう",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "中国地方",
+      "山陰地方",
+      "山陽地方",
+      "山陰",
+      "山陽"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1995
+  },
+  {
+    "id": "#C101-1997",
+    "ja_term": "山陰",
+    "tw_translation": "山陰（日本本州西部中國地方臨日本海之區域，包含鳥取、島根等縣）",
+    "reading": "さんいん",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "山陽",
+      "山陰地方",
+      "山陰山陽地方",
+      "中国地方",
+      "山陽地方"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1996
+  },
+  {
+    "id": "#C101-1998",
+    "ja_term": "山陽",
+    "tw_translation": "山陽（日本本州西部中國地方臨瀨戶內海之區域，包含岡山、廣島、山口等縣）",
+    "reading": "さんよう",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "山陰",
+      "山陽地方",
+      "山陰山陽地方",
+      "中国地方",
+      "山陰地方"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1997
+  },
+  {
+    "id": "#C101-1999",
+    "ja_term": "葦原中国",
+    "tw_translation": "葦原中國（日本神話中位於高天原與黃泉國之間的地上人間世界，指日本本土）",
+    "reading": "あしはらのなかつくに",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "神様",
+      "御神体",
+      "磐座",
+      "磐境",
+      "昔話"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1998
+  },
+  {
+    "id": "#C101-2000",
+    "ja_term": "放送枠名",
+    "tw_translation": "節目時段名稱、播放時段名（電視或廣播中特定節目區塊或系列企劃的專屬稱呼）",
+    "reading": "ほうそうわくめい",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "帯番組",
+      "裏番組",
+      "冠番組",
+      "番組",
+      "放送"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 1999
+  },
+  {
+    "id": "#C101-2001",
+    "ja_term": "鍛冶",
+    "tw_translation": "打鐵、鍛造、鐵匠（鍛造金屬或打造器具的技藝或工匠）",
+    "reading": "かじ",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "刀鍛冶",
+      "金細工",
+      "金物屋",
+      "包丁",
+      "細工"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2000
+  },
+  {
+    "id": "#C101-2002",
+    "ja_term": "刀鍛冶",
+    "tw_translation": "鑄刀師、鍛刀匠（專門鍛造日本日本刀的傳統刀匠）",
+    "reading": "かたなかじ",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "鍛冶",
+      "剣戟",
+      "殺陣",
+      "真剣勝負",
+      "金細工"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2001
+  },
+  {
+    "id": "#C101-2003",
+    "ja_term": "友好提携",
+    "tw_translation": "友好合作、締結友好關係（地方政府、企業或機構間簽署友好交流或合作協議）",
+    "reading": "ゆうこうていけい",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "連携",
+      "共存共栄",
+      "協力者",
+      "平和",
+      "知事"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2002
+  },
+  {
+    "id": "#C101-2004",
+    "ja_term": "石垣",
+    "tw_translation": "石垣、石牆（日本古城與寺院等以石塊堆砌築成的防禦石牆基座）",
+    "reading": "いしがき",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "切込接",
+      "礎石",
+      "難攻不落",
+      "籠城戦",
+      "土台"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2003
+  },
+  {
+    "id": "#C101-2005",
+    "ja_term": "切込接",
+    "tw_translation": "切込接（日本古城石垣精密砌法之一，將石塊表面與接縫平整切割後緊密無縫堆疊）",
+    "reading": "きりこみはぎ",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "石垣",
+      "礎石",
+      "難攻不落",
+      "細工",
+      "土台"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2004
   }
 ]
