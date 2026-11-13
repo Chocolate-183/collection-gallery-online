@@ -5550,7 +5550,7 @@
   {
     "id": "#C103-0266",
     "ja_term": "소원 | 所願",
-    "tw_translation": "願望",
+    "tw_translation": "願望\n\n㊟ 常見搭配\n소원을 빌다 (許下願望)\n소원을 이루다 (實現願望)",
     "reading": "",
     "created_at": "2026-09-15",
     "recommendations": [
@@ -5781,7 +5781,7 @@
   {
     "id": "#C103-0277",
     "ja_term": "수업 | 授業",
-    "tw_translation": "課程",
+    "tw_translation": "課程\n\n㊟ 好用句子\n수업 후 (課後)",
     "reading": "",
     "created_at": "2026-09-15",
     "recommendations": [
@@ -21042,7 +21042,7 @@
   {
     "id": "#C103-0996",
     "ja_term": "다르다",
-    "tw_translation": "不一樣的\n\n㊟ 好用句子\nA하고 B는 어떻게 달라요? (A和B 有甚麼不一樣?)",
+    "tw_translation": "不一樣的\n\n㊟ 好用句子\nA하고 B는 어떻게 달라요? (A和B 有甚麼不一樣?)\n사람에 따라서 달라요  (因人而異)\n상황에 따라 달라요 (看情況)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -21358,7 +21358,7 @@
   {
     "id": "#C103-1011",
     "ja_term": "돈",
-    "tw_translation": "錢",
+    "tw_translation": "錢\n\n㊟ 常見搭配\n돈을 보내다 (匯錢)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -22122,7 +22122,7 @@
   {
     "id": "#C103-1047",
     "ja_term": "말씀",
-    "tw_translation": "話、語言（敬語）\n\n㊟ 好用句子\n드릴 말씀이 있습니다 (我有話要說)",
+    "tw_translation": "話、語言（敬語）\n\n㊟ 好用句子\n드릴 말씀이 있습니다 (我有話要說)\n다시 말씀해주시겠어요 (可以再說一次嗎)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -24043,7 +24043,7 @@
   {
     "id": "#C103-1137",
     "ja_term": "생각",
-    "tw_translation": "想法\n\n㊟ 好用句子\n생각은 했지만 (雖然有想過，但是……)",
+    "tw_translation": "想法\n\n㊟ 好用句子\n생각은 했지만 (雖然有想過，但是……)\n생각 중 (考慮中)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -26900,7 +26900,7 @@
   {
     "id": "#C103-1271",
     "ja_term": "일",
-    "tw_translation": "事情、工作\n\n㊟ 常見搭配\n할 일 (要做的事) e.g. 오늘 할 일이 많아요 (今天要做的事很多)\n\n㊟ 好用句子\n무순 일인데? (甚麼事情)",
+    "tw_translation": "事情、工作\n\n㊟ 常見搭配\n할 일 (要做的事) e.g. 오늘 할 일이 많아요 (今天要做的事很多)\n\n㊟ 好用句子\n무순 일인데? (甚麼事情)\n무슨 일 하세요? (您從事什麼工作？)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -86766,7 +86766,7 @@
   {
     "id": "#C103-4213",
     "ja_term": "엄격하다 | 嚴格하다",
-    "tw_translation": "嚴格、嚴厲",
+    "tw_translation": "嚴格、嚴厲\n\n㊟ 好用句子\n엄격하게 말해서 (嚴格來說)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -124182,7 +124182,7 @@
     "tags": [],
     "etymology": "固有語",
     "pos": "名詞",
-    "level": "初級",
+    "level": "中級",
     "row_index": 6062
   },
   {
@@ -124266,7 +124266,7 @@
     "tags": [],
     "etymology": "漢字語",
     "pos": "名詞",
-    "level": "高級",
+    "level": "中級",
     "row_index": 6066
   },
   {
@@ -124665,5 +124665,257 @@
     "pos": "名詞",
     "level": "無等級",
     "row_index": 6085
+  },
+  {
+    "id": "#C103-6087",
+    "ja_term": "혼술",
+    "tw_translation": "獨自喝酒、一人獨飲",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "술자리",
+      "술집",
+      "모임",
+      "안주 | 按酒",
+      "술병 | 술甁"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6086
+  },
+  {
+    "id": "#C103-6088",
+    "ja_term": "해피엔딩 | Happy Ending",
+    "tw_translation": "圓滿結局、快樂結局",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "애니메이션 | animation",
+      "시리즈 | series",
+      "필름 | film",
+      "프로 | program",
+      "포스터 | poster"
+    ],
+    "subtitle": "Happy Ending",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6087
+  },
+  {
+    "id": "#C103-6089",
+    "ja_term": "결말 | 結末",
+    "tw_translation": "結局、結尾",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "결과 | 結果",
+      "결국 | 結局",
+      "결정 | 決定",
+      "결심 | 決心",
+      "연말 | 年末"
+    ],
+    "subtitle": "結末",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6088
+  },
+  {
+    "id": "#C103-6090",
+    "ja_term": "액션물 | action物",
+    "tw_translation": "動作片、動作作品",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "공포물 | 恐怖物",
+      "준비물 | 準備物",
+      "사물 | 事物",
+      "식물 | 植物",
+      "사물놀이 | 四物놀이"
+    ],
+    "subtitle": "action物",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "混種語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6089
+  },
+  {
+    "id": "#C103-6091",
+    "ja_term": "공포물 | 恐怖物",
+    "tw_translation": "恐怖片、恐怖作品",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "액션물 | action物",
+      "준비물 | 準備物",
+      "사물 | 事物",
+      "식물 | 植物",
+      "동물원 | 動物園"
+    ],
+    "subtitle": "恐怖物",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6090
+  },
+  {
+    "id": "#C103-6092",
+    "ja_term": "자막 | 字幕",
+    "tw_translation": "字幕",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "글자 | 글字",
+      "숫자 | 數字",
+      "영상 | 映像",
+      "사막 | 沙漠",
+      "자판기 | 自販機"
+    ],
+    "subtitle": "字幕",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6091
+  },
+  {
+    "id": "#C103-6093",
+    "ja_term": "중한 | 中韓",
+    "tw_translation": "中韓（中國與韓國）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "대한민국 | 大韓民國",
+      "북한 | 北韓",
+      "중국집 | 中國집",
+      "한국적 | 韓國的",
+      "중심 | 中心"
+    ],
+    "subtitle": "中韓",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6092
+  },
+  {
+    "id": "#C103-6094",
+    "ja_term": "예능 | 藝能",
+    "tw_translation": "綜藝、演藝",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "연예 | 演藝",
+      "예술가 | 藝術家",
+      "능력 | 能力",
+      "가능 | 可能",
+      "가능성 | 可能性"
+    ],
+    "subtitle": "藝能",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6093
+  },
+  {
+    "id": "#C103-6095",
+    "ja_term": "주량 | 酒量",
+    "tw_translation": "酒量",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "양 | 量",
+      "안주 | 按酒",
+      "포도주 | 葡萄酒",
+      "술자리",
+      "술병 | 술甁"
+    ],
+    "subtitle": "酒量",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6094
+  },
+  {
+    "id": "#C103-6096",
+    "ja_term": "원룸 | one-room",
+    "tw_translation": "單間套房、套房",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "오피스텔 | office hotel",
+      "빌딩 | building",
+      "엘리베이터 | elevator",
+      "커튼 | curtain",
+      "오븐 | oven"
+    ],
+    "subtitle": "one-room",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6095
+  },
+  {
+    "id": "#C103-6097",
+    "ja_term": "께끗하다",
+    "tw_translation": "乾淨、整潔",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "깨끗하다",
+      "맑다",
+      "흐리다",
+      "어둡다",
+      "예쁘다"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "形容詞",
+    "level": "初級",
+    "row_index": 6096
+  },
+  {
+    "id": "#C103-6098",
+    "ja_term": "집세 | 집貰",
+    "tw_translation": "房租",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "주택 | 住宅",
+      "집안",
+      "세금 | 稅金",
+      "부잣집 | 富者집",
+      "옆집"
+    ],
+    "subtitle": "집貰",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "混種語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6097
   }
 ]
