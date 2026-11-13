@@ -10723,5 +10723,257 @@
     "pos": "",
     "level": "",
     "row_index": 501
+  },
+  {
+    "id": "#C102-0503",
+    "ja_term": "套近乎",
+    "tw_translation": "裝熟 / 攀關係 / 套交情（指故意拉攏關係以示親近）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "忽悠",
+      "社牛",
+      "老铁",
+      "熟悉",
+      "接地气"
+    ],
+    "subtitle": "",
+    "traditional_term": "套近乎",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 502
+  },
+  {
+    "id": "#C102-0504",
+    "ja_term": "红果短剧",
+    "tw_translation": "紅果短劇（抖音集團旗下推出的免費短劇串流影音平台）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "短视频",
+      "抖音",
+      "字节跳动",
+      "网文",
+      "爆款"
+    ],
+    "subtitle": "",
+    "traditional_term": "紅果短劇",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 503
+  },
+  {
+    "id": "#C102-0505",
+    "ja_term": "三折叠，怎么折都有面",
+    "tw_translation": "華為三折疊手機（Mate XT）廣告標語，指「怎麼折都有面子」，後成為熱門網路迷因",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "网络热词",
+      "装B",
+      "凡尔赛",
+      "整活",
+      "鬼畜视频"
+    ],
+    "subtitle": "",
+    "traditional_term": "三折疊，怎麼折都有面",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 504
+  },
+  {
+    "id": "#C102-0506",
+    "ja_term": "营销号",
+    "tw_translation": "內容農場 / 農場帳號（指在社群平台以獲取流量和廣告收益為目的、經常拼湊搬運內容的自媒體帳號）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "涨粉",
+      "限流",
+      "爱国自媒体",
+      "忽悠",
+      "洽饭"
+    ],
+    "subtitle": "",
+    "traditional_term": "營銷號",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 505
+  },
+  {
+    "id": "#C102-0507",
+    "ja_term": "新浪微博",
+    "tw_translation": "新浪微博（Weibo，中國大陸主流微網誌社群平台，類似X／Twitter）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "热搜",
+      "大V",
+      "社交网站",
+      "饭圈",
+      "博主"
+    ],
+    "subtitle": "",
+    "traditional_term": "新浪微博",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 506
+  },
+  {
+    "id": "#C102-0508",
+    "ja_term": "微信公众号",
+    "tw_translation": "微信公眾號（WeChat官方帳號平台，功能類似LINE官方帳號，供個人或機構發布內容與互動）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "微信",
+      "涨粉",
+      "洽饭",
+      "点赞",
+      "博主"
+    ],
+    "subtitle": "",
+    "traditional_term": "微信公眾號",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 507
+  },
+  {
+    "id": "#C102-0509",
+    "ja_term": "懂车帝",
+    "tw_translation": "懂車帝（字節跳動旗下之一站式汽車資訊、評測與選車交易服務平台）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "车企",
+      "字节跳动",
+      "比亚迪",
+      "蔚来汽车",
+      "长城汽车"
+    ],
+    "subtitle": "",
+    "traditional_term": "懂車帝",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 508
+  },
+  {
+    "id": "#C102-0510",
+    "ja_term": "唐家三少",
+    "tw_translation": "唐家三少（中國大陸知名網路作家、起點白金作家，代表作為《斗羅大陸》系列，「中原五白」之一）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "中原五白",
+      "网文",
+      "龙傲天",
+      "yy",
+      "爆款"
+    ],
+    "subtitle": "",
+    "traditional_term": "唐家三少",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 509
+  },
+  {
+    "id": "#C102-0511",
+    "ja_term": "中原五白",
+    "tw_translation": "中原五白（中國大陸網路文學界對五位早期頂級起點白金玄幻作家的合稱：唐家三少、天蠶土豆、辰東、我吃西紅柿、夢入神機）",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "唐家三少",
+      "网文",
+      "龙傲天",
+      "yy",
+      "爆款"
+    ],
+    "subtitle": "",
+    "traditional_term": "中原五白",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 510
+  },
+  {
+    "id": "#C102-0512",
+    "ja_term": "衣品",
+    "tw_translation": "穿著品味／穿搭風格",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "颜值",
+      "面料",
+      "奥莱",
+      "耐克",
+      "阿迪"
+    ],
+    "subtitle": "",
+    "traditional_term": "衣品",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 511
+  },
+  {
+    "id": "#C102-0513",
+    "ja_term": "颜值",
+    "tw_translation": "容貌／長相／外貌",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "衣品",
+      "搞对象",
+      "舔狗",
+      "饭圈",
+      "捞女"
+    ],
+    "subtitle": "",
+    "traditional_term": "顏值",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 512
+  },
+  {
+    "id": "#C102-0514",
+    "ja_term": "舔狗",
+    "tw_translation": "工具人／毫無底線迎合他人者",
+    "reading": "",
+    "created_at": "2026-11-13",
+    "recommendations": [
+      "搞对象",
+      "捞女",
+      "彩礼",
+      "红娘",
+      "颜值"
+    ],
+    "subtitle": "",
+    "traditional_term": "舔狗",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 513
   }
 ]
