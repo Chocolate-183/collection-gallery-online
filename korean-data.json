@@ -5655,7 +5655,7 @@
   {
     "id": "#C103-0271",
     "ja_term": "소화 | 消化",
-    "tw_translation": "消化",
+    "tw_translation": "消化\n\n㊟ 常見搭配\n소화가 안되다 (消化不良)",
     "reading": "",
     "created_at": "2026-09-17",
     "recommendations": [
@@ -21358,7 +21358,7 @@
   {
     "id": "#C103-1011",
     "ja_term": "돈",
-    "tw_translation": "錢\n\n㊟ 常見搭配\n돈을 보내다 (匯錢)",
+    "tw_translation": "錢\n\n㊟ 常見搭配\n돈을 보내다 (匯錢)\n돈이 아깝다 (浪費錢)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -22506,7 +22506,7 @@
   {
     "id": "#C103-1065",
     "ja_term": "목",
-    "tw_translation": "脖子、喉嚨",
+    "tw_translation": "脖子、喉嚨\n\n㊟ 常見搭配\n목이 쉬다 (喉嚨沙啞)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -27328,7 +27328,7 @@
   {
     "id": "#C103-1291",
     "ja_term": "잠",
-    "tw_translation": "睡眠",
+    "tw_translation": "睡眠\n\n㊟ 常見搭配\n잠을 잘 못 자다 (睡不好)\n잠이 부족하다 (睡眠不足)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -28839,7 +28839,7 @@
   {
     "id": "#C103-1362",
     "ja_term": "코",
-    "tw_translation": "鼻子",
+    "tw_translation": "鼻子\n\n㊟ 常見搭配\n코가 막히다 (鼻塞)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -44313,7 +44313,7 @@
   {
     "id": "#C103-2120",
     "ja_term": "기운",
-    "tw_translation": "氣力、精力、氣勢",
+    "tw_translation": "氣力、精力、氣勢\n\n㊟ 常見搭配\n기운이 없다 (沒有精神)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -44523,7 +44523,7 @@
   {
     "id": "#C103-2130",
     "ja_term": "기침",
-    "tw_translation": "咳嗽",
+    "tw_translation": "咳嗽\n\n㊟ 常見搭配\n기침이 나다 (咳嗽)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -47357,8 +47357,8 @@
   },
   {
     "id": "#C103-2265",
-    "ja_term": "낫다",
-    "tw_translation": "更好、痊癒",
+    "ja_term": "낫다 | (動詞)",
+    "tw_translation": "痊癒",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -47368,7 +47368,7 @@
       "늘다",
       "남다"
     ],
-    "subtitle": "",
+    "subtitle": "(動詞)",
     "traditional_term": "",
     "tags": [],
     "etymology": "固有語",
@@ -61692,7 +61692,7 @@
   {
     "id": "#C103-2948",
     "ja_term": "몸살",
-    "tw_translation": "過勞引起的痠痛、渾身酸痛發燒",
+    "tw_translation": "因感冒或疲勞而身體不適\n\n㊟ 常見搭配\n몸살이 나다",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -70523,7 +70523,7 @@
   {
     "id": "#C103-3378",
     "ja_term": "붉다",
-    "tw_translation": "紅、赤紅",
+    "tw_translation": "紅的",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -70564,7 +70564,7 @@
   {
     "id": "#C103-3380",
     "ja_term": "붓다",
-    "tw_translation": "倒、注 / 腫脹",
+    "tw_translation": "① 腫脹\n② 倒(水)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -75804,7 +75804,7 @@
   {
     "id": "#C103-3646",
     "ja_term": "설사 | 設使",
-    "tw_translation": "即使、就算 / 腹瀉",
+    "tw_translation": "即使、就算",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -96993,7 +96993,7 @@
   {
     "id": "#C103-4737",
     "ja_term": "입맛",
-    "tw_translation": "胃口、食慾",
+    "tw_translation": "胃口、食慾\n\n㊟ 常見搭配\n입맛이 앖다 (沒胃口)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -101740,7 +101740,7 @@
   {
     "id": "#C103-4983",
     "ja_term": "젓다",
-    "tw_translation": "攪拌 / 搖頭",
+    "tw_translation": "① 攪拌\n\n② 搖頭",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -102139,7 +102139,7 @@
   {
     "id": "#C103-5002",
     "ja_term": "정식 | 正式",
-    "tw_translation": "正式 / 定食套餐",
+    "tw_translation": "正式",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -108355,7 +108355,7 @@
   {
     "id": "#C103-5298",
     "ja_term": "짓다",
-    "tw_translation": "① 做(飯）\n\n② 蓋(房子)\n\n③ 露出(表情)",
+    "tw_translation": "① 做(飯）\n\n② 蓋(房子)\n\n③ 露出(表情)\n\n④ 取(名)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -124917,5 +124917,656 @@
     "pos": "名詞",
     "level": "中級",
     "row_index": 6097
+  },
+  {
+    "id": "#C103-6099",
+    "ja_term": "수줍다",
+    "tw_translation": "害羞、靦腆",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "부끄럽다",
+      "당당하다 | 堂堂하다",
+      "활발하다 | 活潑하다",
+      "어색하다 | 語塞하다",
+      "두렵다"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "形容詞",
+    "level": "中級",
+    "row_index": 6098
+  },
+  {
+    "id": "#C103-6100",
+    "ja_term": "울적하다 | 鬱寂하다",
+    "tw_translation": "鬱悶、憂鬱",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "우울하다 | 憂鬱하다",
+      "억울하다 | 抑鬱하다",
+      "쓸쓸하다",
+      "초조하다 | 焦燥하다",
+      "섭섭하다"
+    ],
+    "subtitle": "鬱寂하다",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "混種語",
+    "pos": "形容詞",
+    "level": "高級",
+    "row_index": 6099
+  },
+  {
+    "id": "#C103-6101",
+    "ja_term": "칵테일 | cocktail",
+    "tw_translation": "雞尾酒",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "와인 | wine",
+      "레몬 | lemon",
+      "레스토랑",
+      "소시지 | sausage",
+      "소스 | sauce"
+    ],
+    "subtitle": "cocktail",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6100
+  },
+  {
+    "id": "#C103-6102",
+    "ja_term": "설레다",
+    "tw_translation": "心動、激動",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "두근거리다",
+      "떨리다",
+      "꿈꾸다",
+      "그리워하다",
+      "기뻐하다"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "動詞",
+    "level": "中級",
+    "row_index": 6101
+  },
+  {
+    "id": "#C103-6103",
+    "ja_term": "정식 | 定食",
+    "tw_translation": "定食、套餐",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "식사 | 食事",
+      "식당 | 食堂",
+      "음식 | 飮食",
+      "간식 | 間食",
+      "한식 | 韓食"
+    ],
+    "subtitle": "定食",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6102
+  },
+  {
+    "id": "#C103-6104",
+    "ja_term": "맛집",
+    "tw_translation": "美食店、名店",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "식당 | 食堂",
+      "음식 | 飮食",
+      "맛",
+      "식사 | 食事",
+      "손님"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6103
+  },
+  {
+    "id": "#C103-6105",
+    "ja_term": "배탈 | 배頉",
+    "tw_translation": "鬧肚子、拉肚子",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "배",
+      "병 | 病",
+      "병원 | 病院",
+      "감기 | 感氣",
+      "약국 | 藥局"
+    ],
+    "subtitle": "배頉",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "混種語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6104
+  },
+  {
+    "id": "#C103-6106",
+    "ja_term": "멀미",
+    "tw_translation": "暈車、暈船",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "두통 | 頭痛",
+      "몸살",
+      "피로 | 疲勞",
+      "고통 | 苦痛",
+      "증상 | 症狀"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6105
+  },
+  {
+    "id": "#C103-6107",
+    "ja_term": "피부과 | 皮膚科",
+    "tw_translation": "皮膚科",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "피부 | 皮膚",
+      "내과 | 內科",
+      "안과 | 眼科",
+      "치과 | 齒科",
+      "학과 | 學科"
+    ],
+    "subtitle": "皮膚科",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6106
+  },
+  {
+    "id": "#C103-6108",
+    "ja_term": "정형외과 | 整形外科",
+    "tw_translation": "骨科",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "외과 | 外科",
+      "소아과 | 小兒科",
+      "성형 | 成形",
+      "형태 | 形態",
+      "정리 | 整理"
+    ],
+    "subtitle": "整形外科",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6107
+  },
+  {
+    "id": "#C103-6109",
+    "ja_term": "이비인후과 | 耳鼻咽喉科",
+    "tw_translation": "耳鼻喉科",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "외과 | 外科",
+      "소아과 | 小兒科",
+      "정형외과 | 整形外科",
+      "과목 | 科目",
+      "과학 | 科學"
+    ],
+    "subtitle": "耳鼻咽喉科",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6108
+  },
+  {
+    "id": "#C103-6110",
+    "ja_term": "감기약 | 感氣藥",
+    "tw_translation": "感冒藥",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "감기 | 感氣",
+      "두통약 | 頭痛藥",
+      "안약 | 眼藥",
+      "약국 | 藥局",
+      "약 | 藥"
+    ],
+    "subtitle": "感氣藥",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6109
+  },
+  {
+    "id": "#C103-6111",
+    "ja_term": "두통약 | 頭痛藥",
+    "tw_translation": "頭痛藥",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "감기약 | 感氣藥",
+      "안약 | 眼藥",
+      "약국 | 藥局",
+      "약 | 藥",
+      "치약 | 齒藥"
+    ],
+    "subtitle": "頭痛藥",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6110
+  },
+  {
+    "id": "#C103-6112",
+    "ja_term": "멀미약 | 멀미藥",
+    "tw_translation": "暈車藥、暈船藥",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "멀미",
+      "설사약 | 泄瀉藥",
+      "약품 | 藥品",
+      "해열제 | 解熱劑",
+      "진통제 | 鎭痛劑"
+    ],
+    "subtitle": "멀미藥",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "混種語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6111
+  },
+  {
+    "id": "#C103-6113",
+    "ja_term": "소화제 | 消化劑",
+    "tw_translation": "消化藥、消化劑",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "소화 | 消化",
+      "세제 | 洗劑",
+      "변화 | 變化",
+      "문화 | 文化",
+      "감기약 | 感氣藥"
+    ],
+    "subtitle": "消化劑",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6112
+  },
+  {
+    "id": "#C103-6114",
+    "ja_term": "해열제 | 解熱劑",
+    "tw_translation": "退燒藥、解熱劑",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "진통제 | 鎭痛劑",
+      "수면제 | 睡眠劑",
+      "해결 | 解決",
+      "열 | 熱",
+      "열기 | 熱氣"
+    ],
+    "subtitle": "解熱劑",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6113
+  },
+  {
+    "id": "#C103-6115",
+    "ja_term": "안약 | 眼藥",
+    "tw_translation": "眼藥水",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "안경 | 眼鏡",
+      "감기약 | 感氣藥",
+      "두통약 | 頭痛藥",
+      "약국 | 藥局",
+      "약 | 藥"
+    ],
+    "subtitle": "眼藥",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6114
+  },
+  {
+    "id": "#C103-6116",
+    "ja_term": "파스 | Pasta",
+    "tw_translation": "酸痛貼布、撒隆巴斯",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "알레르기 | allergy",
+      "스트레스 | stress",
+      "코로나 | COVID",
+      "다이어트 | diet",
+      "뉴스 | news"
+    ],
+    "subtitle": "Pasta",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6115
+  },
+  {
+    "id": "#C103-6117",
+    "ja_term": "연고 | 軟膏",
+    "tw_translation": "藥膏",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "연두색 | 軟豆色",
+      "약품 | 藥品",
+      "진통제 | 鎭痛劑",
+      "해열제 | 解熱劑",
+      "설사약 | 泄瀉藥"
+    ],
+    "subtitle": "軟膏",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6116
+  },
+  {
+    "id": "#C103-6118",
+    "ja_term": "낫다 | (形容詞)",
+    "tw_translation": "更好、較佳、勝過",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "좋다",
+      "나쁘다",
+      "같다",
+      "다르다",
+      "괜찮다"
+    ],
+    "subtitle": "(形容詞)",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "固有語",
+    "pos": "形容詞",
+    "level": "初級",
+    "row_index": 6117
+  },
+  {
+    "id": "#C103-6119",
+    "ja_term": "우울증 | 憂鬱症",
+    "tw_translation": "憂鬱症",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "증상 | 症狀",
+      "증세 | 症勢",
+      "통증 | 痛症",
+      "두통 | 頭痛",
+      "고통 | 苦痛"
+    ],
+    "subtitle": "憂鬱症",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6118
+  },
+  {
+    "id": "#C103-6120",
+    "ja_term": "담백하다 | 淡白하다",
+    "tw_translation": "清淡、爽口",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "고소하다",
+      "달콤하다",
+      "깔끔하다",
+      "부드럽다",
+      "단순하다 | 單純하다"
+    ],
+    "subtitle": "淡白하다",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "混種語",
+    "pos": "形容詞",
+    "level": "中級",
+    "row_index": 6119
+  },
+  {
+    "id": "#C103-6121",
+    "ja_term": "코로나 | COVID",
+    "tw_translation": "新冠肺炎、新冠病毒",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "알레르기 | allergy",
+      "스트레스 | stress",
+      "파스 | Pasta",
+      "다이어트 | diet",
+      "뉴스 | news"
+    ],
+    "subtitle": "COVID",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6120
+  },
+  {
+    "id": "#C103-6122",
+    "ja_term": "진통제 | 鎭痛劑",
+    "tw_translation": "止痛藥、鎮痛劑",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "해열제 | 解熱劑",
+      "통증 | 痛症",
+      "두통 | 頭痛",
+      "고통 | 苦痛",
+      "수면제 | 睡眠劑"
+    ],
+    "subtitle": "鎭痛劑",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6121
+  },
+  {
+    "id": "#C103-6123",
+    "ja_term": "지사제 | 止瀉劑",
+    "tw_translation": "止瀉藥、止瀉劑",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "방지 | 防止",
+      "정지 | 停止",
+      "폐지 | 廢止",
+      "치료 | 治療",
+      "부작용 | 副作用"
+    ],
+    "subtitle": "止瀉劑",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6122
+  },
+  {
+    "id": "#C103-6124",
+    "ja_term": "설사약 | 泄瀉藥",
+    "tw_translation": "止瀉藥、腹瀉藥",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "설사 | 泄瀉",
+      "멀미약 | 멀미藥",
+      "약품 | 藥品",
+      "진통제 | 鎭痛劑",
+      "해열제 | 解熱劑"
+    ],
+    "subtitle": "泄瀉藥",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6123
+  },
+  {
+    "id": "#C103-6125",
+    "ja_term": "설사 | 泄瀉",
+    "tw_translation": "腹瀉、拉肚子",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "설사약 | 泄瀉藥",
+      "통증 | 痛症",
+      "증상 | 症狀",
+      "증세 | 症勢",
+      "멀미"
+    ],
+    "subtitle": "泄瀉",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6124
+  },
+  {
+    "id": "#C103-6126",
+    "ja_term": "콧물 | 鼻水",
+    "tw_translation": "鼻涕、鼻水",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "약수 | 藥水",
+      "음료수 | 飮料水",
+      "수영 | 水泳",
+      "수영장 | 水泳場",
+      "감기 | 感氣"
+    ],
+    "subtitle": "鼻水",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6125
+  },
+  {
+    "id": "#C103-6127",
+    "ja_term": "수면제 | 睡眠劑",
+    "tw_translation": "安眠藥、睡眠劑",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "수면 | 睡眠",
+      "해열제 | 解熱劑",
+      "진통제 | 鎭痛劑",
+      "졸음",
+      "설사약 | 泄瀉藥"
+    ],
+    "subtitle": "睡眠劑",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6126
+  },
+  {
+    "id": "#C103-6128",
+    "ja_term": "불규칙 | 不規則",
+    "tw_translation": "不規則",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "규칙 | 規則",
+      "법칙 | 法則",
+      "규정 | 規定",
+      "불안 | 不安",
+      "불편 | 不便"
+    ],
+    "subtitle": "不規則",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6127
+  },
+  {
+    "id": "#C103-6129",
+    "ja_term": "모음 | 母音",
+    "tw_translation": "母音、元音",
+    "reading": "",
+    "created_at": "2026-11-16",
+    "recommendations": [
+      "발음 | 發音",
+      "음악 | 音樂",
+      "부모 | 父母",
+      "이모 | 姨母",
+      "고모 | 姑母"
+    ],
+    "subtitle": "母音",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6128
   }
 ]
