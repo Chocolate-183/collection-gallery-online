@@ -26,7 +26,6 @@ class Store {
       pageSize: DEFAULT_PAGE_SIZE,
       currentLengthTab: 'ALL',
       currentInitialTab: 'ALL',
-      loanwordOnly: false,
       etymologyTab: 'ALL',
       posTab: 'ALL',
       levelTab: 'ALL',
@@ -74,4 +73,3 @@ class Store {
 }
 
 export const store = new Store();
-export { safeLocalStorage };

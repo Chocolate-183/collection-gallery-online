@@ -10,14 +10,6 @@ export const VIEWS = {
   MAINTENANCE: 'maintenance'
 };
 
-export const SORT_TYPES = {
-  READING_ASC: 'reading-asc',
-  READING_DESC: 'reading-desc',
-  JA_ASC: 'ja-asc',
-  JA_DESC: 'ja-desc',
-  ID_ASC: 'id-asc'
-};
-
 export const SORT_FIELDS = {
   ID: 'id',
   TITLE: 'title',
@@ -33,8 +25,7 @@ export const SORT_ORDERS = {
 };
 
 export const KANA_TABS = {
-  ALL: 'ALL',
-  LOANWORD: 'LOANWORD'
+  ALL: 'ALL'
 };
 
 export const CATEGORY_TABS = {
@@ -69,15 +60,6 @@ export const POS_TABS = {
   BOUND_NOUN: '依存名詞'
 };
 
-/** Filter POS pills shown before more. */
-export const POS_PRIMARY_TABS = [
-  POS_TABS.ALL,
-  POS_TABS.NOUN,
-  POS_TABS.VERB,
-  POS_TABS.ADJECTIVE,
-  POS_TABS.ADVERB
-];
-
 /** Filter POS pills revealed by more. */
 export const POS_EXTRA_TABS = [
   POS_TABS.INTERJECTION,
@@ -96,7 +78,7 @@ export const LEVEL_TABS = {
   ADVANCED: '高級'
 };
 
-export const BASIC100_TAG = '基礎100';
+const BASIC100_TAG = '基礎100';
 
 /** C103 sheet J name-class tags (Filter Category + Item Modal). */
 export const NAME_CATEGORY_TAGS = [
@@ -104,8 +86,6 @@ export const NAME_CATEGORY_TAGS = [
   CATEGORY_TABS.GROUP,
   CATEGORY_TABS.COMPANY
 ];
-
-export const FILTER_CATEGORY_TAGS = [BASIC100_TAG, ...NAME_CATEGORY_TAGS];
 
 export function categoryTabToTag(tab) {
   if (!tab || tab === CATEGORY_TABS.ALL) return null;
@@ -138,7 +118,7 @@ export const LENGTH_TABS = {
 };
 
 export const PAGE_SIZE_ALL = 9999;
-export const PAGE_SIZE_OPTIONS = [10, 25, 50, 100, PAGE_SIZE_ALL];
+const PAGE_SIZE_OPTIONS = [10, 25, 50, 100, PAGE_SIZE_ALL];
 export const DEFAULT_PAGE_SIZE = 10;
 
 /** C102 card/modal title script (Display Panel). Default 簡體. */
@@ -168,6 +148,9 @@ export const STORAGE_KEYS = {
 
 export const DEFAULT_TIMEOUT_MS = 2500;
 
+/** Viewport width at or below which the mobile layout applies. */
+export const MOBILE_MAX_WIDTH = 768;
+
 export const EXHIBITION_STATUS = {
   ADJUSTING: 'ADJUSTING',
   OPEN: '開放中',
@@ -191,19 +174,14 @@ export const KANA_RANGES = {
 /** C103 초성 tabs (ㄱ ㄴ … ㅎ; ㄲ/ㄸ/ㅃ/ㅆ/ㅉ fold into ㄱ/ㄷ/ㅂ/ㅅ/ㅈ). */
 export const HANGUL_INITIAL_TABS = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
 
-const HANGUL_SYLLABLE_BASE = 0xAC00;
-const HANGUL_VOWEL_COUNT = 21;
-const HANGUL_FINAL_COUNT = 28;
-
 /** Unicode 초성 index 0–18 → ㄱㄴㄷ tab. */
 export const HANGUL_INITIAL_INDEX_TO_TAB = [
   'ㄱ', 'ㄱ', 'ㄴ', 'ㄷ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅂ', 'ㅅ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
 ];
 
 export const HANGUL_SYLLABLE = {
-  BASE: HANGUL_SYLLABLE_BASE,
+  BASE: 0xAC00,
   END: 0xD7A3,
-  VOWEL_COUNT: HANGUL_VOWEL_COUNT,
-  FINAL_COUNT: HANGUL_FINAL_COUNT
+  VOWEL_COUNT: 21,
+  FINAL_COUNT: 28
 };
-
