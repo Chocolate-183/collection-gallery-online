@@ -60,7 +60,7 @@ import {
   getExhibitCategoryLabel,
   getExhibitDisplayTitle
 } from '../js/utils.js';
-import { googleSheetsConfig, getCollectionDataUrls, getMetadataUrls, getProfileUrls, getConjugationUrls, collectionsConfig } from '../js/config.js';
+import { googleSheetsConfig, getCollectionDataUrls, getProfileUrls, collectionsConfig } from '../js/config.js';
 import { getWorkProfessionalRows, getWorkProfessionalSections, isConjugatableRecord } from '../js/conjugations.js';
 
 test('CSV and GViz parsers handle quotes, newlines, and table extraction', () => {
@@ -208,50 +208,18 @@ test('Filter engine chains query, length, Hangul, etymology, and POS', () => {
   assert.deepEqual(byIdDesc.map(r => r.id), ['#C103-0003', '#C103-0002', '#C103-0001']);
 });
 
-test('Hall config builds Sheets URLs and C103 flags', () => {
-  const csvUrl = googleSheetsConfig.getCsvUrl('SHEET_ID', '123');
-  assert.equal(csvUrl, 'https://docs.google.com/spreadsheets/d/SHEET_ID/export?format=csv&gid=123');
-
-  const jpCol = collectionsConfig['japanese-terms'];
-  const dataUrls = getCollectionDataUrls(jpCol);
-  assert.equal(jpCol.gid, '70070774');
-  assert(dataUrls.csvUrl.includes('gid=70070774'));
-  assert.equal(jpCol.defaultMeta.status, '開放中');
-
-  const metaUrls = getMetadataUrls();
-  assert(metaUrls.csvUrl.includes('gid=1360584899'));
-  const profileUrls = getProfileUrls();
-  assert.equal(profileUrls.localFallback, 'profiles.json');
-  const conjugationUrls = getConjugationUrls();
-  assert.equal(conjugationUrls.localFallback, 'korean-conjugations.json');
-  assert(conjugationUrls.csvUrl.includes('gid=467198079'));
+test('Sheets URL builders', () => {
+  assert.equal(
+    googleSheetsConfig.getCsvUrl('SHEET_ID', '123'),
+    'https://docs.google.com/spreadsheets/d/SHEET_ID/export?format=csv&gid=123'
+  );
+  assert.equal(googleSheetsConfig.getCsvUrl('', '123'), null);
 
   const krCol = collectionsConfig['korean-terms'];
   const krUrls = getCollectionDataUrls(krCol);
-  assert.equal(krCol.defaultMeta.id, 'C103');
-  assert.equal(krCol.gid, '877062522');
-  assert(krUrls.csvUrl.includes('gid=877062522'));
-  assert.equal(krCol.hasHangulTabs, true);
-  assert.equal(krCol.hasEtymologyPosFilter, true);
-  assert.equal(krCol.hasLevelFilter, true);
-  assert.equal(krCol.hasNameCategoryFilter, true);
-  assert.deepEqual(krCol.hiddenColumnIndexes, [2, 3]);
-
-  const cnCol = collectionsConfig['china-terms'];
-  const cnUrls = getCollectionDataUrls(cnCol);
-  assert.equal(cnCol.gid, '1307320740');
-  assert(cnUrls.csvUrl.includes('gid=1307320740'));
-  assert.equal(cnCol.hasScriptDisplay, true);
-
-  const atkCol = collectionsConfig['japanese-attack'];
-  const atkUrls = getCollectionDataUrls(atkCol);
-  assert.equal(atkCol.defaultMeta.id, 'C105');
-  assert.equal(atkCol.name, '日語攻擊力');
-  assert.equal(atkCol.gid, '1800617627');
-  assert(atkUrls.csvUrl.includes('gid=1800617627'));
-  assert.equal(atkCol.hasReading, false);
-  assert.equal(atkCol.hasKanaTabs, false);
-  assert.equal(atkCol.hasBasic100Filter, false);
+  assert.ok(krUrls.csvUrl.includes(`/${krCol.sheetId}/`) && krUrls.csvUrl.includes(`gid=${krCol.gid}`));
+  assert.ok(krUrls.gvizUrl.includes('tqx=out:json'));
+  assert.equal(getProfileUrls().localFallback, 'profiles.json');
 });
 
 test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {

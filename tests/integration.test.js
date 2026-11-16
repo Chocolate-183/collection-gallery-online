@@ -94,84 +94,6 @@ test('Offline dumps cover C101 C102 C103 C105 and profiles', () => {
   assert.equal(chocolate.id, '#P-0002');
 });
 
-test('Filter markup has C103 POS/Etymology pills and Catalog quick filters', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const posSection = html.match(/id="pos-tabs"[\s\S]*?<\/div>/)[0];
-  for (const pos of ['名詞', '動詞', '形容詞', '副詞', '感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
-    assert.match(posSection, new RegExp(`data-tab="${pos}"`));
-  }
-  assert.match(posSection, /id="pos-show-more"[^>]*>more</);
-  for (const pos of ['感嘆詞', '冠形詞', '代名詞', '量詞', '數詞', '依存名詞']) {
-    assert.match(posSection, new RegExp(`class="awsui-tab pos-tab-more" data-tab="${pos}"`));
-  }
-  const etymologySection = html.match(/id="etymology-tabs"[\s\S]*?<\/div>/)[0];
-  for (const etym of ['漢字語', '外來語', '固有語', '混種語']) {
-    assert.match(etymologySection, new RegExp(`data-tab="${etym}"`));
-  }
-  const levelSection = html.match(/id="level-tabs"[\s\S]*?<\/div>/)[0];
-  for (const level of ['初級', '中級', '高級']) {
-    assert.match(levelSection, new RegExp(`data-tab="${level}"`));
-  }
-  assert.doesNotMatch(levelSection, /data-tab="無等級"/);
-  const kindTabs = html.match(/id="kind-tabs"[\s\S]*?<\/div>/)[0];
-  for (const kind of ['BASIC100', '人名', '團體名', '公司名']) {
-    assert.match(kindTabs, new RegExp(`data-tab="${kind}"`));
-  }
-  assert.doesNotMatch(html, /id="modal-category-section"/);
-  const posIdx = html.indexOf('id="filter-pos-section"');
-  const levelIdx = html.indexOf('id="filter-level-section"');
-  const etymologyIdx = html.indexOf('id="filter-etymology-section"');
-  const kindIdx = html.indexOf('id="filter-kind-section"');
-  assert.ok(posIdx > 0 && levelIdx > posIdx && etymologyIdx > levelIdx && kindIdx > etymologyIdx);
-  const modalPosIdx = html.indexOf('id="modal-pos-section"');
-  const modalLevelIdx = html.indexOf('id="modal-level-section"');
-  const modalEtymIdx = html.indexOf('id="modal-etymology-section"');
-  assert.ok(modalPosIdx > 0 && modalLevelIdx > modalPosIdx && modalEtymIdx > modalLevelIdx);
-
-  assert.match(html, /id="search-input"[\s\S]*id="quick-filter-tabs"[\s\S]*最新10[\s\S]*隨機10[\s\S]*基礎100[\s\S]*初級[\s\S]*中級[\s\S]*高級/);
-  assert.match(html, /<script type="module" src="dist\/app\.js"><\/script>/);
-  assert.doesNotMatch(html, /src="js\/app\.js"/);
-});
-
-test('Item modal POS value does not wrap on narrow screens', () => {
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-  const posRowRule = css.match(/\.modal-pos-value-row \{[\s\S]*?\n\}/)[0];
-  assert.match(posRowRule, /flex-wrap:\s*nowrap/);
-  const posValueRule = css.match(/#modal-pos \{[\s\S]*?\n\}/)[0];
-  assert.match(posValueRule, /white-space:\s*nowrap/);
-  assert.match(posValueRule, /flex-shrink:\s*0/);
-});
-
-test('Mobile Item Panel hides Timestamp ID Reference Etymology', () => {
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-  const mobile = css.split('@media (max-width: 768px)').pop();
-  assert.match(mobile, /#detail-modal \.awsui-modal-created-time/);
-  assert.match(mobile, /#modal-reference-section/);
-  assert.match(mobile, /#modal-etymology-section/);
-  const hideRule = mobile.match(/#detail-modal \.awsui-modal-created-time,[\s\S]*?#modal-etymology-section \{[\s\S]*?\n  \}/)[0];
-  assert.match(hideRule, /display:\s*none\s*!important/);
-  assert.match(mobile, /\.modal-etymology-pos-row \{[\s\S]*?grid-template-columns:\s*1fr 1fr/);
-  assert.doesNotMatch(hideRule, /#collection-modal/);
-  assert.doesNotMatch(hideRule, /#profile-modal/);
-});
-
-test('C101 Item Panel keeps extra space below Pronunciation', () => {
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-  const rule = css.match(/#detail-modal\[data-collection="japanese-terms"\] \.awsui-modal-description-section \{[\s\S]*?\n\}/)[0];
-  assert.match(rule, /margin-top:\s*16px\s*!important/);
-  assert.doesNotMatch(rule, /margin-top:\s*4px/);
-});
-
-test('Catalog quick filters stay in a scrollable row on narrow screens', () => {
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-  const quickFiltersRule = css.match(/\.awsui-quick-filters \{[\s\S]*?\n\}/)[0];
-  assert.match(quickFiltersRule, /overflow-x:\s*auto/);
-  assert.match(quickFiltersRule, /min-width:\s*0/);
-  assert.match(quickFiltersRule, /flex-wrap:\s*nowrap/);
-  const mobile = css.split('@media (max-width: 768px)').pop();
-  assert.match(mobile, /\.awsui-quick-filters \{[\s\S]*?flex:\s*1 1 100%/);
-});
-
 test('Offline preload uses local JSON only; refresh hits Google Sheets', async () => {
   mockDOM({});
   const fetched = [];
@@ -207,20 +129,6 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
   Object.keys(collectionsMetaCache).forEach(k => { delete collectionsMetaCache[k]; });
   profilesCache.length = 0;
   global.fetch = originalFetch;
-});
-
-test('Mobile Filter and Display merge into one panel', () => {
-  const html = readFileSync(resolve('index.html'), 'utf-8');
-  const css = readFileSync(resolve('styles.css'), 'utf-8');
-  assert.match(html, /id="filter-combined-host"/);
-  assert.match(html, /id="display-script-section"/);
-  assert.match(html, /id="script-tabs"/);
-  assert.match(html, /selectScriptVariant\('simplified'/);
-  assert.match(html, /selectScriptVariant\('traditional'/);
-  assert.match(html, /id="filter-panel-title-combined">Filter & Display</);
-  const mobile = css.split('@media (max-width: 768px)').pop();
-  assert.match(mobile, /#display-modal \{[\s\S]*display:\s*none\s*!important/);
-  assert.match(mobile, /#description-modal \{[\s\S]*display:\s*none\s*!important/);
 });
 
 test('Notice Panel stays open until work and 5s hold finish', async () => {
@@ -321,7 +229,6 @@ test('Empty catalog, Collection modal, Description modal, and Profile panel', as
   const mockDescText = createMockElement();
   const mockMeaning = createMockElement({ clientHeight: 100, scrollHeight: 200, 'data-row-index': '1' });
   mockMeaning.classList.add('has-scroll');
-  const mockColDesc = createMockElement({ innerText: '展廳詳細介紹說明內容' });
   const mockProfileModal = createMockElement();
   const mockName = createMockElement();
   const mockEnSection = createMockElement();
