@@ -1,85 +1,95 @@
 /**
- * Side Navigation & Collection Switcher Component
+ * Side Navigation & Collection Switcher
  */
-import { EXHIBITION_STATUS, STORAGE_KEYS, SORT_FIELDS, SORT_ORDERS, DEFAULT_SCRIPT_VARIANT } from '../constants.js';
+import { EXHIBITION_STATUS, STORAGE_KEYS, VIEWS } from '../constants.js';
 import { collectionsConfig } from '../config.js';
 import { store } from '../state.js';
-import { loadCollectionData, collectionsMetaCache, renderCollectionNotice } from '../data.js';
-import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, applyCollectionHeaderTitle } from '../utils.js';
+import { loadCollectionData, collectionsMetaCache, getCollectionMeta, renderCollectionNotice, renderCollectionHeader } from '../data.js';
+import { getDefaultSortField, getHallDefaultState, syncFilterUi } from '../filter.js';
+import { switchView } from '../router.js';
+import { isCollectionAdjusting, isCollectionPreparing, isCollectionHidden, isMobileViewport } from '../utils.js';
 
-function isMobileView() {
-  const win = typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : null);
-  return win && typeof win.innerWidth === 'number' ? win.innerWidth <= 768 : true;
-}
-
+/**
+ * Sidebar status badge. Uses live metadata only, so every hall reads as open
+ * until the metadata cache is filled (avoids flashing ADJUSTING from defaultMeta).
+ */
 export function updateSidebarBadge(colId) {
   const badgeElem = document.getElementById(`side-nav-count-${colId}`);
   if (!badgeElem) return;
 
-  // Before live metadata arrives, treat every hall as open (no status badge).
   const meta = collectionsMetaCache[colId];
-  const isAdjusting = isCollectionAdjusting(meta);
-  const isPreparing = isCollectionPreparing(meta);
+  const status = isCollectionAdjusting(meta)
+    ? EXHIBITION_STATUS.ADJUSTING
+    : isCollectionPreparing(meta) ? EXHIBITION_STATUS.PREPARING : '';
+  badgeElem.innerText = status;
+  badgeElem.style.display = status ? 'inline-block' : 'none';
+}
 
-  if (isAdjusting || isPreparing) {
-    badgeElem.innerText = isAdjusting ? EXHIBITION_STATUS.ADJUSTING : EXHIBITION_STATUS.PREPARING;
-    badgeElem.style.display = 'inline-block';
-  } else {
-    badgeElem.innerText = '';
-    badgeElem.style.display = 'none';
-  }
+function getLayoutWrapper() {
+  return document.getElementById('app-layout-wrapper');
 }
 
 export function initSidebarState() {
-  const collapsedVal = localStorage.getItem(STORAGE_KEYS.SIDEBAR_COLLAPSED);
-  const collapsed = collapsedVal === 'true';
-  const wrapper = document.getElementById('app-layout-wrapper');
-  if (wrapper) {
-    wrapper.classList.toggle('sidebar-collapsed', collapsed);
-  }
+  const collapsed = localStorage.getItem(STORAGE_KEYS.SIDEBAR_COLLAPSED) === 'true';
+  getLayoutWrapper()?.classList.toggle('sidebar-collapsed', collapsed);
 }
 
 export function closeSidebarOnMobile() {
-  const wrapper = document.getElementById('app-layout-wrapper');
-  if (!wrapper) return;
-
-  if (isMobileView()) {
-    wrapper.classList.add('sidebar-collapsed');
-    wrapper.classList.remove('sidebar-open');
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, 'true');
-    }
-  }
+  const wrapper = getLayoutWrapper();
+  if (!wrapper || !isMobileViewport()) return;
+  wrapper.classList.add('sidebar-collapsed');
+  wrapper.classList.remove('sidebar-open');
+  if (typeof localStorage !== 'undefined') localStorage.setItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, 'true');
 }
 
+/** On mobile, tapping anywhere outside the sidebar and its toggle button closes it. */
 export function initSidebarOutsideClick() {
-  if (typeof document === 'undefined') return;
   document.addEventListener('click', (e) => {
-    const wrapper = document.getElementById('app-layout-wrapper');
-    if (!wrapper) return;
-
+    const wrapper = getLayoutWrapper();
+    if (!wrapper || !isMobileViewport()) return;
     const isSidebarOpen = wrapper.classList.contains('sidebar-open') || !wrapper.classList.contains('sidebar-collapsed');
-    if (isMobileView() && isSidebarOpen) {
-      const sidebar = (typeof document.querySelector === 'function') ? document.querySelector('.awsui-side-navigation') : document.getElementById('side-navigation');
-      const toggleBtn = document.getElementById('btn-toggle-sidebar');
+    if (!isSidebarOpen) return;
 
-      const isOutsideSidebar = sidebar?.contains ? !sidebar.contains(e.target) : (sidebar !== e.target);
-      const isOutsideToggle = toggleBtn?.contains ? !toggleBtn.contains(e.target) : (toggleBtn !== e.target);
-
-      if (isOutsideSidebar && isOutsideToggle) {
-        closeSidebarOnMobile();
-      }
-    }
+    const sidebar = document.querySelector('.awsui-side-navigation');
+    const toggleBtn = document.getElementById('btn-toggle-sidebar');
+    if (!sidebar?.contains(e.target) && !toggleBtn?.contains(e.target)) closeSidebarOnMobile();
   });
 }
 
 export function toggleSidebar() {
-  const wrapper = document.getElementById('app-layout-wrapper');
+  const wrapper = getLayoutWrapper();
   if (!wrapper) return;
-
   const isCollapsed = wrapper.classList.toggle('sidebar-collapsed');
   wrapper.classList.toggle('sidebar-open', !isCollapsed);
   localStorage.setItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, isCollapsed);
+}
+
+/** Element id → predicate deciding whether that hall-specific control is shown. */
+const HALL_SPECIFIC_CONTROLS = {
+  'filter-hangul-section': col => col.hasHangulTabs,
+  'filter-kana-section': col => col.hasKanaTabs ?? col.hasReading,
+  'filter-kind-section': col => col.hasBasic100Filter || col.hasNameCategoryFilter,
+  'filter-etymology-section': col => col.hasEtymologyPosFilter,
+  'filter-pos-section': col => col.hasEtymologyPosFilter,
+  'filter-level-section': col => col.hasLevelFilter,
+  'kind-basic100': col => col.hasBasic100Filter,
+  'kind-person': col => col.hasNameCategoryFilter,
+  'kind-group': col => col.hasNameCategoryFilter,
+  'kind-company': col => col.hasNameCategoryFilter,
+  'quick-basic100': col => col.hasBasic100Filter,
+  'quick-beginner': col => col.hasLevelFilter,
+  'quick-intermediate': col => col.hasLevelFilter,
+  'quick-advanced': col => col.hasLevelFilter,
+  'sort-field-reading': col => (col.hasKanaTabs ?? col.hasReading) && !col.hasHangulTabs,
+  'sort-field-subtitle': col => col.hasHangulTabs,
+  'display-script-section': col => col.hasScriptDisplay
+};
+
+function applyHallSpecificControls(col) {
+  Object.entries(HALL_SPECIFIC_CONTROLS).forEach(([id, isShown]) => {
+    const elem = document.getElementById(id);
+    if (elem) elem.style.display = isShown(col) ? '' : 'none';
+  });
 }
 
 export function switchCollection(collectionId, updateHash = true) {
@@ -87,12 +97,8 @@ export function switchCollection(collectionId, updateHash = true) {
   const col = collectionsConfig[collectionId];
   if (!col) return;
 
-  const meta = collectionsMetaCache[collectionId] || col.defaultMeta;
-
-  if (isCollectionHidden(meta)) {
-    if (window.switchView) {
-      window.switchView('welcome', null, updateHash);
-    }
+  if (isCollectionHidden(getCollectionMeta(collectionId))) {
+    switchView(VIEWS.WELCOME, null, updateHash);
     return;
   }
 
@@ -103,121 +109,34 @@ export function switchCollection(collectionId, updateHash = true) {
     currentCollectionId: collectionId,
     invalidTerm: null,
     searchQuery: '',
-    ...(isDifferent ? {
-      currentLengthTab: 'ALL',
-      currentInitialTab: 'ALL',
-      loanwordOnly: false,
-      etymologyTab: 'ALL',
-      posTab: 'ALL',
-      levelTab: 'ALL',
-      categoryTab: 'ALL',
-      currentSortField: col.hasHangulTabs
-        ? SORT_FIELDS.TITLE
-        : ((col.hasKanaTabs ?? col.hasReading) ? SORT_FIELDS.STANDARD : SORT_FIELDS.TITLE),
-      currentSortOrder: SORT_ORDERS.ASC,
-      scriptVariant: DEFAULT_SCRIPT_VARIANT
-    } : {})
+    ...(isDifferent ? getHallDefaultState(col) : {})
   });
 
   if (isDifferent) {
     document.getElementById('pos-tabs')?.classList.remove('pos-expanded');
+    document.querySelectorAll('#sort-field-tabs .awsui-tab').forEach(p => {
+      p.classList.toggle('active', p.getAttribute('data-tab') === getDefaultSortField(col));
+    });
   }
 
-  const cardGrid = document.getElementById('card-grid');
-  if (cardGrid) cardGrid.setAttribute('data-collection', collectionId);
+  document.getElementById('card-grid')?.setAttribute('data-collection', collectionId);
+  renderCollectionHeader(collectionId);
 
-  // Update Header Title & Subtitle & ID
-  const headerTitle = document.getElementById('collection-header-title');
-  applyCollectionHeaderTitle(headerTitle, collectionId, meta, col);
-
-  const headerCnTitle = document.getElementById('collection-header-cn-title');
-  if (headerCnTitle) headerCnTitle.innerText = meta?.title || col.name;
-
-  const headerId = document.getElementById('collection-header-id');
-  if (headerId) headerId.innerText = meta?.id || '';
-
-  const headerSubtitle = document.getElementById('collection-header-subtitle');
-  if (headerSubtitle) headerSubtitle.innerText = meta?.subtitle || '';
-
-  // Update Search Input Placeholder
   const searchInput = document.getElementById('search-input');
   if (searchInput) {
     searchInput.value = '';
     if (col.searchPlaceholder) searchInput.placeholder = col.searchPlaceholder;
   }
 
-  const hangulSection = document.getElementById('filter-hangul-section');
-  const kanaSection = document.getElementById('filter-kana-section');
-  const kindSection = document.getElementById('filter-kind-section');
-  const etymologySection = document.getElementById('filter-etymology-section');
-  const posSection = document.getElementById('filter-pos-section');
-  const levelSection = document.getElementById('filter-level-section');
-  const basic100Kind = document.getElementById('kind-basic100');
-  const personKind = document.getElementById('kind-person');
-  const groupKind = document.getElementById('kind-group');
-  const companyKind = document.getElementById('kind-company');
-  const quickBasic100 = document.getElementById('quick-basic100');
-  const quickBeginner = document.getElementById('quick-beginner');
-  const quickIntermediate = document.getElementById('quick-intermediate');
-  const quickAdvanced = document.getElementById('quick-advanced');
-  const readingSortTab = document.getElementById('sort-field-reading');
-  const glossSortTab = document.getElementById('sort-field-subtitle');
-  const scriptSection = document.getElementById('display-script-section');
-  if (hangulSection) hangulSection.style.display = col.hasHangulTabs ? '' : 'none';
-  if (kanaSection) kanaSection.style.display = (col.hasKanaTabs ?? col.hasReading) ? '' : 'none';
-  if (kindSection) kindSection.style.display = (col.hasBasic100Filter || col.hasNameCategoryFilter) ? '' : 'none';
-  if (etymologySection) etymologySection.style.display = col.hasEtymologyPosFilter ? '' : 'none';
-  if (posSection) posSection.style.display = col.hasEtymologyPosFilter ? '' : 'none';
-  if (levelSection) levelSection.style.display = col.hasLevelFilter ? '' : 'none';
-  if (basic100Kind) basic100Kind.style.display = col.hasBasic100Filter ? '' : 'none';
-  const showNameKinds = Boolean(col.hasNameCategoryFilter);
-  if (personKind) personKind.style.display = showNameKinds ? '' : 'none';
-  if (groupKind) groupKind.style.display = showNameKinds ? '' : 'none';
-  if (companyKind) companyKind.style.display = showNameKinds ? '' : 'none';
-  if (quickBasic100) quickBasic100.style.display = col.hasBasic100Filter ? '' : 'none';
-  const showQuickLevels = Boolean(col.hasLevelFilter);
-  if (quickBeginner) quickBeginner.style.display = showQuickLevels ? '' : 'none';
-  if (quickIntermediate) quickIntermediate.style.display = showQuickLevels ? '' : 'none';
-  if (quickAdvanced) quickAdvanced.style.display = showQuickLevels ? '' : 'none';
-  if (readingSortTab) readingSortTab.style.display = (col.hasKanaTabs ?? col.hasReading) && !col.hasHangulTabs ? '' : 'none';
-  if (glossSortTab) glossSortTab.style.display = col.hasHangulTabs ? '' : 'none';
-  if (scriptSection) scriptSection.style.display = col.hasScriptDisplay ? '' : 'none';
-  const titleSortTab = document.querySelector('#sort-field-tabs [data-tab="title"]');
-  if (titleSortTab && titleSortTab.classList) {
-    const defaultField = col.hasHangulTabs || !(col.hasKanaTabs ?? col.hasReading) ? 'title' : 'standard';
-    if (isDifferent) {
-      document.querySelectorAll('#sort-field-tabs .awsui-tab').forEach(p => p.classList.remove('active'));
-      document.querySelector(`#sort-field-tabs [data-tab="${defaultField}"]`)?.classList.add('active');
-    }
-  }
+  applyHallSpecificControls(col);
+  syncFilterUi();
 
-  if (typeof window.syncFilterUi === 'function') {
-    window.syncFilterUi();
-  }
-
-  // Update Select Dropdown
-  const selectElem = document.getElementById('collection-select');
-  if (selectElem) selectElem.value = collectionId;
-
-  // Update Side Navigation Active State
-  document.querySelectorAll('.awsui-nav-link').forEach(btn => btn.classList.remove('active'));
-  document.getElementById(`nav-col-${collectionId}`)?.classList.add('active');
-
-  // Ensure view is set to dictionary/collection view
-  if (window.switchView) {
-    window.switchView('dictionary', null, updateHash);
-  }
-
-  // Render Notice Footer
+  switchView(VIEWS.DICTIONARY, null, updateHash);
   renderCollectionNotice();
 
-  // Load Collection Data
-  if (isDifferent || allRecords.length === 0) {
-    loadCollectionData(collectionId);
-  }
+  if (isDifferent || allRecords.length === 0) loadCollectionData(collectionId);
 
   if (isDifferent && typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
-

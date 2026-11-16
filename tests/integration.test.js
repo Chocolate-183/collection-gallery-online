@@ -157,7 +157,7 @@ test('Notice Panel stays open until work and 5s hold finish', async () => {
   global.setInterval = () => 99;
   global.clearInterval = () => {};
 
-  const { isNoticeOpen, showNoticeUntil, NOTICE_MIN_VISIBLE_MS } = await import('../js/components/notice.js');
+  const { showNoticeUntil, NOTICE_MIN_VISIBLE_MS } = await import('../js/components/notice.js');
   assert.equal(NOTICE_MIN_VISIBLE_MS, 5000);
 
   let resolveWork;
@@ -165,7 +165,6 @@ test('Notice Panel stays open until work and 5s hold finish', async () => {
   const done = showNoticeUntil(work, { message: '展廳同步中', minVisibleMs: 80 });
 
   assert(mockModal.classes.has('open'));
-  assert.equal(isNoticeOpen(), true);
   resolveWork();
   await Promise.resolve();
   assert(mockModal.classes.has('open'), 'must stay open after fast work until hold elapses');
@@ -551,7 +550,8 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
 
   const { store } = await import('../js/state.js');
   const { replaceConjugationsCache } = await import('../js/data.js');
-  const { openMeaningModal, closeDetailModal, openConjugationModal } = await import('../js/components/modal.js');
+  const { openMeaningModal, closeDetailModal } = await import('../js/components/modal.js');
+  const { openConjugationModal } = await import('../js/components/conjugation.js');
 
   replaceConjugationsCache([{
     lemma: '하다',

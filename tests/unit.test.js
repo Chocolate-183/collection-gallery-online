@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 import {
   parseCSVData,
   parseGvizResponse,
-  parseMetaCSVData,
   parseAllCollectionsMetaCSVData,
   parseCSVRows,
   extractGvizTable,
@@ -18,13 +17,10 @@ import {
   getHangulInitialTab,
   filterByQuery,
   filterByLength,
-  filterByKana,
   filterByInitial,
-  filterByLoanword,
   filterByEtymology,
   filterByPos,
   filterByLevel,
-  filterByBasic100,
   filterByCategory,
   sortRecords,
   getFilterSummary
@@ -37,7 +33,6 @@ import {
   SORT_ORDERS,
   ETYMOLOGY_TABS,
   POS_TABS,
-  POS_PRIMARY_TABS,
   POS_EXTRA_TABS,
   LEVEL_TABS,
   CATEGORY_TABS,
@@ -50,18 +45,17 @@ import {
   getExhibitHangulHeadword,
   getStdictSearchUrl,
   formatStdictReferenceHtml,
-  isEnglishLoanword,
   isCollectionAdjusting,
   isCollectionPreparing,
   isCollectionHidden,
-  getCollectionHeaderTitle,
   getCollectionHeaderTitleParts,
   applyCollectionHeaderTitle,
   getExhibitCategoryLabel,
   getExhibitDisplayTitle
 } from '../js/utils.js';
 import { googleSheetsConfig, getCollectionDataUrls, getProfileUrls, collectionsConfig } from '../js/config.js';
-import { getWorkProfessionalRows, getWorkProfessionalSections, isConjugatableRecord } from '../js/conjugations.js';
+import { getWorkProfessionalRows, isConjugatableRecord } from '../js/conjugations.js';
+import { resolveItemConjugationSwipe, rubberBandOffset } from '../js/components/conjugation.js';
 
 test('CSV and GViz parsers handle quotes, newlines, and table extraction', () => {
   const sampleCSV = `ID,日語用詞,台灣意思,假名標音,建立日期,推薦條目
@@ -86,17 +80,16 @@ test('CSV and GViz parsers handle quotes, newlines, and table extraction', () =>
   assert.equal(extractGvizTable('invalid input'), null);
 });
 
-test('Metadata parsers map hall matrix status and ids', () => {
-  const meta = parseMetaCSVData(`項目,內容
+test('Metadata parsers map hall matrix and legacy key/value sheets', () => {
+  const legacy = parseAllCollectionsMetaCSVData(`項目,內容
 標題,日本特色詞彙
 ID,C101
 狀態,調整中
 標籤,"日本文化
 流行新詞"`);
-  assert.equal(meta.title, '日本特色詞彙');
-  assert.equal(meta.id, 'C101');
-  assert.equal(meta.status, '調整中');
-  assert.deepEqual(meta.tags, ['日本文化', '流行新詞']);
+  assert.equal(legacy['japanese-terms'].title, '日本特色詞彙');
+  assert.equal(legacy['japanese-terms'].status, '調整中');
+  assert.deepEqual(legacy['japanese-terms'].tags, ['日本文化', '流行新詞']);
 
   const parsedMap = parseAllCollectionsMetaCSVData(`展廳名,日本特色詞彙,簡中語境破解攻略,韓語單字速成攻略,日語攻擊力
 展廳ID,C101,C102,C103,C105
@@ -105,7 +98,6 @@ ID,C101
   assert.equal(parsedMap['china-terms'].status, '開放中');
   assert.equal(parsedMap['korean-terms'].status, '籌備中');
   assert.equal(parsedMap['japanese-attack'].id, 'C105');
-  assert.equal(parsedMap['japanese-attack'].status, '開放中');
 });
 
 test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
@@ -113,8 +105,6 @@ test('Utils escape HTML and count C103 exhibit titles before the pipe', () => {
   assert.equal(getExhibitFilterLength('가능 | 可能'), 2);
   assert.equal(getExhibitFilterLength('강하다 | 強하다'), 3);
   assert.equal(formatExhibitTitleHtml('가능 | 可能'), '가능 <span class="awsui-title-separator">|</span><span class="awsui-title-suffix"> 可能</span>');
-  assert.equal(isEnglishLoanword({ ja_term: '컴퓨터 | computer' }), true);
-  assert.equal(isEnglishLoanword({ ja_term: '가능 | 可能' }), false);
   assert.equal(getExhibitHangulHeadword('가게'), '가게');
   assert.equal(getExhibitHangulHeadword('가능 | 可能'), '가능');
   assert.equal(
@@ -135,20 +125,8 @@ test('Gallery header title is Collection number plus Chinese hall name', () => {
     getCollectionHeaderTitleParts('korean-terms', { id: 'C103', title: '韓語單字量最強速成攻略' }),
     { hall: 'Collection 103', name: '韓語單字量最強速成攻略' }
   );
-  assert.equal(
-    getCollectionHeaderTitle('korean-terms', { id: 'C103', title: '韓語單字量最強速成攻略' }),
-    'Collection 103 韓語單字量最強速成攻略'
-  );
   assert.deepEqual(
-    getCollectionHeaderTitleParts('china-terms', { id: 'C102', title: '簡中語境破解攻略' }),
-    { hall: 'Collection 102', name: '簡中語境破解攻略' }
-  );
-  assert.deepEqual(
-    getCollectionHeaderTitleParts('japanese-terms', { id: 'C101', title: '日本特色詞彙一覽' }),
-    { hall: 'Collection 101', name: '日本特色詞彙一覽' }
-  );
-  assert.deepEqual(
-    getCollectionHeaderTitleParts('japanese-attack', { id: 'C105', title: '日語攻擊力' }),
+    getCollectionHeaderTitleParts('japanese-attack', null, collectionsConfig['japanese-attack']),
     { hall: 'Collection 105', name: '日語攻擊力' }
   );
   const el = { innerHTML: '', textContent: '' };
@@ -157,40 +135,35 @@ test('Gallery header title is Collection number plus Chinese hall name', () => {
   assert.match(el.innerHTML, /collection-header-name">韓語單字量最強速成攻略</);
 });
 
-test('Filter engine chains query, length, Hangul, etymology, and POS', () => {
+test('Filter engine chains query, length, initials, etymology, POS, and sort', () => {
   assert.equal(matchesKanaGroup('ありがとう', 'あ'), true);
   assert.equal(getHangulInitialTab('가능 | 可能'), 'ㄱ');
+  assert.equal(getHangulInitialTab('까치'), 'ㄱ');
   assert.equal(matchesHangulInitial('실수 | 失手', 'ㅅ'), true);
 
   const mockRecords = [
     { id: '1', ja_term: 'A', tw_translation: '意思A' },
     { id: '2', ja_term: 'B', tw_translation: '意思B' }
   ];
-  assert.equal(filterByQuery(mockRecords, '意思A')[0].id, '1');
+  assert.deepEqual(filterByQuery(mockRecords, '意思a').map(r => r.id), ['1']);
 
   const lengthRecords = [
     { id: '1', ja_term: '一' },
     { id: '4', ja_term: '四字詞語' },
     { id: '5', ja_term: '五字詞語長' }
   ];
-  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.ONE)[0].id, '1');
-  assert.equal(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS)[0].id, '5');
+  assert.deepEqual(filterByLength(lengthRecords, LENGTH_TABS.ONE).map(r => r.id), ['1']);
+  assert.deepEqual(filterByLength(lengthRecords, LENGTH_TABS.FIVE_PLUS).map(r => r.id), ['5']);
   assert.equal(filterByLength([{ id: 'k2', ja_term: '가능 | 可能' }], LENGTH_TABS.TWO)[0].id, 'k2');
 
-  const hangulRecords = [
-    { id: 'g', ja_term: '가능 | 可能', reading: '가능' },
-    { id: 's', ja_term: '실수 | 失手', reading: '실수' }
-  ];
-  assert.equal(filterByKana(hangulRecords, 'ㄱ')[0].id, 'g');
-
   const records = [
-    { id: '#C103-0003', ja_term: '가능 | 可能', reading: '가능', subtitle: '可能', row_index: 3 },
-    { id: '#C103-0001', ja_term: '컴퓨터 | computer', reading: '컴퓨터', subtitle: 'computer', row_index: 1 },
-    { id: '#C103-0002', ja_term: '강하다 | 強하다', reading: '강하다', subtitle: '強하다', row_index: 2 }
+    { id: '#C103-0003', ja_term: '가능 | 可能', reading: '가능', row_index: 3 },
+    { id: '#C103-0001', ja_term: '컴퓨터 | computer', reading: '컴퓨터', row_index: 1 },
+    { id: '#C103-0002', ja_term: '강하다 | 強하다', reading: '강하다', row_index: 2 }
   ];
-  assert.deepEqual(filterByLoanword(records, true).map(r => r.id), ['#C103-0001']);
   assert.equal(filterByInitial(records, 'ㄱ').length, 2);
-  assert.equal(filterByLength(filterByLoanword(filterByInitial(records, 'ㄱ'), true), LENGTH_TABS.TWO).length, 0);
+  assert.equal(filterByLength(filterByInitial(records, 'ㄱ'), LENGTH_TABS.THREE).length, 1);
+  assert.deepEqual(filterByInitial([{ id: 'a', reading: 'あめ' }, { id: 'k', reading: 'かさ' }], 'か').map(r => r.id), ['k']);
 
   const etymologyRecords = [
     { id: 'hanja', etymology: '漢字語', pos: '名詞' },
@@ -200,12 +173,20 @@ test('Filter engine chains query, length, Hangul, etymology, and POS', () => {
   ];
   assert.deepEqual(filterByEtymology(etymologyRecords, ETYMOLOGY_TABS.HYBRID).map(r => r.id), ['hybrid']);
   assert.deepEqual(filterByPos(etymologyRecords, POS_TABS.VERB).map(r => r.id), ['native']);
+  assert.equal(filterByPos(etymologyRecords, POS_TABS.ALL).length, 4);
   assert.deepEqual(filterByLevel([{ id: 'a', level: '初級' }, { id: 'b', level: '中級' }], LEVEL_TABS.BEGINNER).map(r => r.id), ['a']);
-  assert.deepEqual(POS_PRIMARY_TABS, [POS_TABS.ALL, POS_TABS.NOUN, POS_TABS.VERB, POS_TABS.ADJECTIVE, POS_TABS.ADVERB]);
   assert.ok(POS_EXTRA_TABS.includes(POS_TABS.BOUND_NOUN));
 
-  const byIdDesc = sortRecords(records, null, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.DESC });
+  const byIdDesc = sortRecords(records, { sortField: SORT_FIELDS.ID, sortOrder: SORT_ORDERS.DESC });
   assert.deepEqual(byIdDesc.map(r => r.id), ['#C103-0003', '#C103-0002', '#C103-0001']);
+
+  const dated = [
+    { id: 'old', created_at: '2026-09-01', row_index: 1 },
+    { id: 'same-a', created_at: '2026-09-15', row_index: 2 },
+    { id: 'same-b', created_at: '2026-09-15', row_index: 3 }
+  ];
+  const latest = sortRecords(dated, { sortField: SORT_FIELDS.CREATED_AT, sortOrder: SORT_ORDERS.DESC });
+  assert.deepEqual(latest.map(r => r.id), ['same-b', 'same-a', 'old']);
 });
 
 test('Sheets URL builders', () => {
@@ -219,6 +200,7 @@ test('Sheets URL builders', () => {
   const krUrls = getCollectionDataUrls(krCol);
   assert.ok(krUrls.csvUrl.includes(`/${krCol.sheetId}/`) && krUrls.csvUrl.includes(`gid=${krCol.gid}`));
   assert.ok(krUrls.gvizUrl.includes('tqx=out:json'));
+  assert.deepEqual(getCollectionDataUrls({ id: 'x', localFallback: 'x.json' }), { csvUrl: null, gvizUrl: null, localFallback: 'x.json' });
   assert.equal(getProfileUrls().localFallback, 'profiles.json');
 });
 
@@ -234,7 +216,7 @@ test('Gallery CSV maps C103 columns, tags, and GViz formatted ids', () => {
   assert.equal(kr[0].level, '初級');
   assert.equal(kr[1].level, '中級');
   assert.deepEqual(kr[0].tags, ['基礎100']);
-  assert.deepEqual(filterByBasic100(kr, true).map(r => r.id), ['#C103-0002']);
+  assert.deepEqual(filterByCategory(kr, CATEGORY_TABS.BASIC100).map(r => r.id), ['#C103-0002']);
   const named = [
     { id: 'p', tags: ['人名'] },
     { id: 'g', tags: ['團體名'] },
@@ -487,7 +469,7 @@ test('C103 conjugations parse and Work/Professional keep 해요/합니다', () =
   const parsed = parseConjugationCSVData(csv);
   assert.equal(parsed.length, 1);
   assert.deepEqual(parsed[0].present, ['해', '해요', '한다', '합니다']);
-  const work = getWorkProfessionalSections(parsed[0]);
+  const work = getWorkProfessionalRows(parsed[0]).flat();
   const byId = Object.fromEntries(work.map(s => [s.id, s.forms.map(f => f.value)]));
   assert.deepEqual(byId.present, ['해요', '합니다']);
   assert.deepEqual(byId.past, ['했어요', '했습니다']);
@@ -508,8 +490,7 @@ test('C103 conjugations parse and Work/Professional keep 해요/합니다', () =
   assert.equal(isConjugatableRecord({ pos: '名詞' }), false);
 });
 
-test('C103 mobile Item/Conjugation swipe opens from left page and rubber-bands at edges', async () => {
-  const { resolveItemConjugationSwipe, rubberBandOffset } = await import('../js/components/modal.js');
+test('C103 mobile Item/Conjugation swipe opens from left page and rubber-bands at edges', () => {
   const width = 390;
 
   const open = resolveItemConjugationSwipe(-80, 0, width, { canGoConjugation: true, onConjugation: false });

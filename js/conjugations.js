@@ -4,7 +4,7 @@
 import { POS_TABS } from './constants.js';
 import { getExhibitHangulHeadword } from './utils.js';
 
-export const CONJUGATABLE_POS = [POS_TABS.VERB, POS_TABS.ADJECTIVE];
+const CONJUGATABLE_POS = [POS_TABS.VERB, POS_TABS.ADJECTIVE];
 
 const WORK_FOUR_INDEXES = [1, 3];
 const WORK_FUTURE_INDEXES = [1, 3, 5, 7];
@@ -29,13 +29,8 @@ function pickForms(values, indexes, labels) {
   return forms;
 }
 
-export function isConjugatablePos(pos) {
-  const value = String(pos || '').trim();
-  return CONJUGATABLE_POS.includes(value);
-}
-
 export function isConjugatableRecord(record) {
-  return Boolean(record) && isConjugatablePos(record.pos);
+  return Boolean(record) && CONJUGATABLE_POS.includes(String(record.pos || '').trim());
 }
 
 export function getConjugationLemma(recordOrTerm) {
@@ -48,7 +43,7 @@ export function getConjugationLemma(recordOrTerm) {
  * Work / Professional forms from a parsed conjugation row (하다 example).
  * Informal High + Formal High; future also keeps the 겠어 family.
  */
-export function getWorkProfessionalSections(entry) {
+function getWorkProfessionalSections(entry) {
   if (!entry) return [];
   const connectiveSource = Array.isArray(entry.other) ? entry.other.slice(0, 2) : [];
   const otherSource = Array.isArray(entry.other) ? entry.other.slice(2, 5) : [];

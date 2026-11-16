@@ -1,25 +1,24 @@
 /**
- * Filtering, Search, Kana Matching, and Sorting Engine
+ * Filtering, Search, Initial Matching, Sorting & Catalog Panels
  */
-import { KANA_RANGES, SORT_TYPES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, LEVEL_TABS, BASIC100_TAG, categoryTabToTag, QUICK_FILTERS, QUICK_LEVEL_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE, SCRIPT_VARIANTS, DEFAULT_SCRIPT_VARIANT } from './constants.js';
+import { KANA_RANGES, KANA_TABS, CATEGORY_TABS, ETYMOLOGY_TABS, POS_TABS, POS_EXTRA_TABS, LEVEL_TABS, categoryTabToTag, QUICK_FILTERS, QUICK_LEVEL_FILTERS, LENGTH_TABS, HANGUL_INITIAL_TABS, HANGUL_INITIAL_INDEX_TO_TAB, HANGUL_SYLLABLE, SORT_FIELDS, SORT_ORDERS, pageSizeTabValue, DEFAULT_PAGE_SIZE, SCRIPT_VARIANTS, DEFAULT_SCRIPT_VARIANT } from './constants.js';
 import { store } from './state.js';
 import { collectionsConfig } from './config.js';
 import { renderCards } from './components/cards.js';
-import { getExhibitFilterLength, getExhibitSubtitle, isEnglishLoanword, getExhibitDisplayTitle, formatExhibitTitleHtml } from './utils.js';
+import { getExhibitFilterLength, getExhibitSubtitle, getExhibitDisplayTitle, formatExhibitTitleHtml, hasTag, isMobileViewport, getTimers } from './utils.js';
 
-/**
- * Checks if a string starts with a kana character in the specified kana group.
- */
+/* ------------------------------------------------------------------ */
+/* Matching                                                           */
+/* ------------------------------------------------------------------ */
+
+/** True when the first character belongs to a 50-sound row (e.g. あ). */
 export function matchesKanaGroup(str, group) {
   if (!str) return false;
-  const ch = str.charAt(0);
   const regex = KANA_RANGES[group];
-  return regex ? regex.test(ch) : true;
+  return regex ? regex.test(str.charAt(0)) : true;
 }
 
-/**
- * First 초성 tab for a Hangul string (C103), e.g. ㄱ.
- */
+/** 초성 tab (e.g. ㄱ) of the first Hangul syllable in a string (C103). */
 export function getHangulInitialTab(str) {
   if (!str) return null;
   for (const ch of String(str)) {
@@ -34,62 +33,33 @@ export function getHangulInitialTab(str) {
   return null;
 }
 
-/**
- * Checks if a string's first Hangul syllable belongs to a 초성 tab (e.g. ㄱ).
- */
 export function matchesHangulInitial(str, group) {
   return getHangulInitialTab(str) === group;
 }
 
-/**
- * Filters records by search query (keyword matching across fields).
- */
+/* ------------------------------------------------------------------ */
+/* Filters                                                            */
+/* ------------------------------------------------------------------ */
+
+const SEARCH_FIELDS = ['ja_term', 'traditional_term', 'reading', 'tw_translation', 'id'];
+
 export function filterByQuery(records, query) {
   if (!query) return records;
   const q = query.toLowerCase();
-  return records.filter(r =>
-    (r.ja_term && r.ja_term.toLowerCase().includes(q)) ||
-    (r.traditional_term && r.traditional_term.toLowerCase().includes(q)) ||
-    (r.reading && r.reading.toLowerCase().includes(q)) ||
-    (r.tw_translation && r.tw_translation.toLowerCase().includes(q)) ||
-    (r.id && r.id.toLowerCase().includes(q))
-  );
+  return records.filter(r => SEARCH_FIELDS.some(field => r[field] && r[field].toLowerCase().includes(q)));
 }
 
-/**
- * Filters records by term character length tab.
- */
 export function filterByLength(records, lengthTab) {
   if (!lengthTab || lengthTab === LENGTH_TABS.ALL) return records;
-  const isFivePlus = lengthTab === LENGTH_TABS.FIVE_PLUS || lengthTab === '5+' || lengthTab === '5字+' || lengthTab === '5字＋';
-  const targetLen = parseInt(lengthTab, 10);
-
-  return records.filter(r => {
-    const len = getExhibitFilterLength(r.ja_term || '');
-    if (isFivePlus) return len >= 5;
-    return !isNaN(targetLen) ? len === targetLen : true;
-  });
-}
-
-/**
- * Filters records by Kana / Hangul initial tab or loanword kind.
- */
-export function filterByKana(records, kanaTab) {
-  if (!kanaTab || kanaTab === KANA_TABS.ALL) return records;
-
-  let result = [...records];
-
-  if (kanaTab === KANA_TABS.LOANWORD) {
-    result = result.filter(r => isEnglishLoanword(r));
-  } else if (HANGUL_INITIAL_TABS.includes(kanaTab)) {
-    result = result.filter(r => matchesHangulInitial(r.reading || r.ja_term, kanaTab));
-  } else {
-    result = result.filter(r => matchesKanaGroup(r.reading || r.ja_term, kanaTab));
+  if (lengthTab === LENGTH_TABS.FIVE_PLUS) {
+    return records.filter(r => getExhibitFilterLength(r.ja_term) >= 5);
   }
-
-  return result;
+  const targetLen = parseInt(lengthTab, 10);
+  if (Number.isNaN(targetLen)) return records;
+  return records.filter(r => getExhibitFilterLength(r.ja_term) === targetLen);
 }
 
+/** Kana row (あ…わ) or Hangul 초성 (ㄱ…ㅎ) filter on reading, falling back to the title. */
 export function filterByInitial(records, initialTab) {
   if (!initialTab || initialTab === KANA_TABS.ALL) return records;
   if (HANGUL_INITIAL_TABS.includes(initialTab)) {
@@ -101,175 +71,81 @@ export function filterByInitial(records, initialTab) {
   return records;
 }
 
-export function filterByLoanword(records, loanwordOnly) {
-  if (!loanwordOnly) return records;
-  return records.filter(r => isEnglishLoanword(r));
+/** Exact match on a trimmed record field; `ALL` (or empty) keeps every record. */
+function filterByField(records, field, value) {
+  if (!value || value === 'ALL') return records;
+  return records.filter(r => String(r?.[field] || '').trim() === value);
 }
 
-export function filterByEtymology(records, etymologyTab) {
-  if (!etymologyTab || etymologyTab === ETYMOLOGY_TABS.ALL) return records;
-  return records.filter(r => String(r?.etymology || '').trim() === etymologyTab);
-}
-
-export function filterByPos(records, posTab) {
-  if (!posTab || posTab === POS_TABS.ALL) return records;
-  return records.filter(r => String(r?.pos || '').trim() === posTab);
-}
-
-export function filterByLevel(records, levelTab) {
-  if (!levelTab || levelTab === LEVEL_TABS.ALL) return records;
-  return records.filter(r => String(r?.level || '').trim() === levelTab);
-}
-
-export function hasTag(record, tag) {
-  if (!tag) return false;
-  const tags = record?.tags;
-  if (!Array.isArray(tags)) return false;
-  return tags.some(t => String(t).trim() === tag);
-}
-
-export function hasBasic100Tag(record) {
-  return hasTag(record, BASIC100_TAG);
-}
-
-export function filterByBasic100(records, basic100Only) {
-  if (!basic100Only) return records;
-  return records.filter(r => hasBasic100Tag(r));
-}
+export const filterByEtymology = (records, tab) => filterByField(records, 'etymology', tab);
+export const filterByPos = (records, tab) => filterByField(records, 'pos', tab);
+export const filterByLevel = (records, tab) => filterByField(records, 'level', tab);
 
 export function filterByCategory(records, categoryTab) {
   const tag = categoryTabToTag(categoryTab);
-  if (!tag) return records;
-  return records.filter(r => hasTag(r, tag));
+  return tag ? records.filter(r => hasTag(r, tag)) : records;
 }
 
-export function compareCreatedAt(a, b) {
+/* ------------------------------------------------------------------ */
+/* Sorting                                                            */
+/* ------------------------------------------------------------------ */
+
+/** Oldest first; undated rows last; same-day rows by sheet order (so Latest 10 shows newest rows first). */
+function compareCreatedAt(a, b) {
   const dateA = a.created_at ? new Date(a.created_at).getTime() : NaN;
   const dateB = b.created_at ? new Date(b.created_at).getTime() : NaN;
-  if (!isNaN(dateA) && !isNaN(dateB) && dateA !== dateB) return dateA - dateB;
-  if (!isNaN(dateA) && isNaN(dateB)) return -1;
-  if (isNaN(dateA) && !isNaN(dateB)) return 1;
+  const hasA = !Number.isNaN(dateA);
+  const hasB = !Number.isNaN(dateB);
+  if (hasA && hasB && dateA !== dateB) return dateA - dateB;
+  if (hasA !== hasB) return hasA ? -1 : 1;
   return (a.row_index ?? 0) - (b.row_index ?? 0);
 }
 
-export function resolveSortType(sortField, sortOrder) {
-  const desc = sortOrder === SORT_ORDERS.DESC;
-  if (sortField === SORT_FIELDS.ID) return desc ? SORT_TYPES.JA_DESC : SORT_TYPES.ID_ASC;
-  if (sortField === SORT_FIELDS.TITLE || sortField === SORT_FIELDS.SUBTITLE) {
-    return desc ? SORT_TYPES.JA_DESC : SORT_TYPES.JA_ASC;
+const SORT_COMPARATORS = {
+  [SORT_FIELDS.ID]: (a, b) => String(a.id || '').localeCompare(String(b.id || ''), 'en', { numeric: true }),
+  [SORT_FIELDS.SUBTITLE]: (a, b) => getExhibitSubtitle(a).localeCompare(getExhibitSubtitle(b), 'en', { sensitivity: 'base' }),
+  [SORT_FIELDS.TITLE]: (a, b) => (a.ja_term || '').localeCompare(b.ja_term || ''),
+  [SORT_FIELDS.RANDOM]: (a, b) => (a._randSort ?? 0) - (b._randSort ?? 0),
+  [SORT_FIELDS.CREATED_AT]: compareCreatedAt,
+  [SORT_FIELDS.STANDARD]: (a, b) => (a.reading || a.ja_term || '').localeCompare(b.reading || b.ja_term || '', 'ja')
+};
+
+/** Sorts by field + order; ties fall back to sheet row order. */
+export function sortRecords(records, { sortField = SORT_FIELDS.STANDARD, sortOrder = SORT_ORDERS.ASC } = {}) {
+  if (sortField === SORT_FIELDS.RANDOM && records.some(r => r._randSort === undefined)) {
+    store.reshuffleRandomSort();
   }
-  return desc ? SORT_TYPES.READING_DESC : SORT_TYPES.READING_ASC;
+  const compare = SORT_COMPARATORS[sortField] || SORT_COMPARATORS[SORT_FIELDS.STANDARD];
+  const direction = sortOrder === SORT_ORDERS.DESC ? -1 : 1;
+  return [...records].sort((a, b) => (direction * compare(a, b)) || ((a.row_index ?? 0) - (b.row_index ?? 0)));
 }
 
-/**
- * Sorts records based on chosen sort option dropdown.
- */
-export function sortRecords(records, sortType, options = {}) {
-  const result = [...records];
-  const field = options.sortField;
-  const order = options.sortOrder;
-  if (field) {
-    if (field === SORT_FIELDS.RANDOM && result.some(r => r._randSort === undefined)) {
-      store.reshuffleRandomSort();
-    }
-    const direction = order === SORT_ORDERS.DESC ? -1 : 1;
-    return result.sort((a, b) => {
-      let cmp = 0;
-      if (field === SORT_FIELDS.ID) {
-        cmp = String(a.id || '').localeCompare(String(b.id || ''), 'en', { numeric: true });
-      } else if (field === SORT_FIELDS.SUBTITLE) {
-        cmp = getExhibitSubtitle(a).localeCompare(getExhibitSubtitle(b), 'en', { sensitivity: 'base' });
-      } else if (field === SORT_FIELDS.TITLE) {
-        cmp = (a.ja_term || '').localeCompare(b.ja_term || '');
-      } else if (field === SORT_FIELDS.RANDOM) {
-        cmp = (a._randSort ?? 0) - (b._randSort ?? 0);
-      } else if (field === SORT_FIELDS.CREATED_AT) {
-        cmp = compareCreatedAt(a, b);
-      } else {
-        cmp = (a.reading || a.ja_term || '').localeCompare(b.reading || b.ja_term || '', 'ja');
-      }
-      if (cmp !== 0) return direction * cmp;
-      return (a.row_index ?? 0) - (b.row_index ?? 0);
-    });
-  }
+/* ------------------------------------------------------------------ */
+/* Pipeline                                                           */
+/* ------------------------------------------------------------------ */
 
-  const compareText = (aStr, bStr) => (aStr || '').localeCompare(bStr || '', 'ja');
-
-  switch (sortType) {
-    case SORT_TYPES.READING_ASC:
-      return result.sort((a, b) => compareText(a.reading || a.ja_term, b.reading || b.ja_term));
-    case SORT_TYPES.READING_DESC:
-      return result.sort((a, b) => compareText(b.reading || b.ja_term, a.reading || a.ja_term));
-    case SORT_TYPES.JA_ASC:
-      return result.sort((a, b) => compareText(a.ja_term, b.ja_term));
-    case SORT_TYPES.JA_DESC:
-      return result.sort((a, b) => compareText(b.ja_term, a.ja_term));
-    case SORT_TYPES.ID_ASC:
-      return result.sort((a, b) => (a.row_index ?? 0) - (b.row_index ?? 0));
-    default:
-      return result;
-  }
-}
-
-/**
- * C103 外來語 tab: sort by English 副標 (A–Z), not Hangul reading.
- */
-export function sortBySubtitle(records) {
-  const result = [...records];
-  return result.sort((a, b) => {
-    const cmp = getExhibitSubtitle(a).localeCompare(getExhibitSubtitle(b), 'en', { sensitivity: 'base' });
-    if (cmp !== 0) return cmp;
-    return (a.row_index ?? 0) - (b.row_index ?? 0);
-  });
-}
-
-/**
- * Main filter pipeline entry point.
- */
 export function applyFiltersAndSort() {
   const {
-    allRecords,
-    searchQuery,
-    currentLengthTab,
-    currentInitialTab,
-    loanwordOnly,
-    etymologyTab,
-    posTab,
-    levelTab,
-    categoryTab,
-    currentSortField,
-    currentSortOrder,
-    invalidTerm
+    allRecords, searchQuery, currentLengthTab, currentInitialTab, etymologyTab, posTab,
+    levelTab, categoryTab, currentSortField, currentSortOrder, invalidTerm
   } = store.get();
 
   if (invalidTerm) {
-    store.set({
-      filteredRecords: [],
-      currentPage: 1
-    });
+    store.set({ filteredRecords: [], currentPage: 1 });
     renderCards();
     return;
   }
 
   let result = filterByQuery(allRecords, searchQuery);
   result = filterByLength(result, currentLengthTab);
-  result = filterByLoanword(result, loanwordOnly);
   result = filterByEtymology(result, etymologyTab);
   result = filterByPos(result, posTab);
   result = filterByLevel(result, levelTab);
   result = filterByCategory(result, categoryTab);
   result = filterByInitial(result, currentInitialTab);
+  result = sortRecords(result, { sortField: currentSortField, sortOrder: currentSortOrder });
 
-  result = sortRecords(result, resolveSortType(currentSortField, currentSortOrder), {
-    sortField: currentSortField,
-    sortOrder: currentSortOrder
-  });
-
-  store.set({
-    filteredRecords: result,
-    currentPage: 1
-  });
-
+  store.set({ filteredRecords: result, currentPage: 1 });
   renderCards();
   syncFilterUi();
 }
@@ -280,229 +156,160 @@ export function onSearchInput() {
   applyFiltersAndSort();
 }
 
-export function onFilterChange() {
-  applyFiltersAndSort();
-}
+/* ------------------------------------------------------------------ */
+/* Tab selection                                                      */
+/* ------------------------------------------------------------------ */
 
 function updateTabPills(containerSelector, element) {
-  const pills = document.querySelectorAll(`${containerSelector} .awsui-tab`);
-  pills.forEach(p => p.classList.remove('active'));
-  if (element) {
-    element.classList.add('active');
-  }
+  document.querySelectorAll(`${containerSelector} .awsui-tab`).forEach(p => p.classList.remove('active'));
+  element?.classList.add('active');
 }
 
 function activateTabByValue(containerSelector, value) {
-  const pills = document.querySelectorAll(`${containerSelector} .awsui-tab`);
-  pills.forEach(p => {
-    const tabValue = p.getAttribute('data-tab');
-    p.classList.toggle('active', tabValue === value);
+  document.querySelectorAll(`${containerSelector} .awsui-tab`).forEach(p => {
+    p.classList.toggle('active', p.getAttribute('data-tab') === value);
   });
 }
 
-export function selectQuickFilter(tab) {
-  const { currentSortField, currentSortOrder, currentCollectionId, categoryTab, levelTab } = store.get();
-  const col = collectionsConfig[currentCollectionId] || {};
-  const active = getActiveQuickFilter(currentSortField, currentSortOrder, categoryTab, levelTab);
-  const isLevelQuick = QUICK_LEVEL_FILTERS.includes(tab);
-
-  if (active === tab) {
-    if (tab === QUICK_FILTERS.BASIC100) {
-      store.set({
-        categoryTab: CATEGORY_TABS.ALL,
-        invalidTerm: null
-      });
-    } else if (isLevelQuick) {
-      store.set({
-        levelTab: LEVEL_TABS.ALL,
-        invalidTerm: null
-      });
-    } else {
-      store.set({
-        currentSortField: getDefaultSortField(col),
-        currentSortOrder: SORT_ORDERS.ASC,
-        invalidTerm: null
-      });
-    }
+/** Builds a pill handler that stores `tab` under `stateKey`, highlights the pill, and re-filters. */
+function createTabSelector(stateKey, containerSelector, afterSet) {
+  return (tab, element) => {
+    store.set({ [stateKey]: tab, invalidTerm: null });
+    if (element) updateTabPills(containerSelector, element);
+    afterSet?.(tab);
     applyFiltersAndSort();
-    return;
-  }
-
-  if (tab === QUICK_FILTERS.BASIC100) {
-    store.set({
-      categoryTab: CATEGORY_TABS.BASIC100,
-      levelTab: LEVEL_TABS.ALL,
-      pageSize: 100,
-      currentSortField: getDefaultSortField(col),
-      currentSortOrder: SORT_ORDERS.ASC,
-      invalidTerm: null
-    });
-  } else if (isLevelQuick) {
-    store.set({
-      levelTab: tab,
-      categoryTab: CATEGORY_TABS.ALL,
-      pageSize: 100,
-      currentSortField: getDefaultSortField(col),
-      currentSortOrder: SORT_ORDERS.ASC,
-      invalidTerm: null
-    });
-  } else if (tab === QUICK_FILTERS.RANDOM10) {
-    store.reshuffleRandomSort();
-    store.set({
-      categoryTab: CATEGORY_TABS.ALL,
-      levelTab: LEVEL_TABS.ALL,
-      currentSortField: SORT_FIELDS.RANDOM,
-      currentSortOrder: SORT_ORDERS.ASC,
-      pageSize: DEFAULT_PAGE_SIZE,
-      invalidTerm: null
-    });
-  } else if (tab === QUICK_FILTERS.LATEST10) {
-    store.set({
-      categoryTab: CATEGORY_TABS.ALL,
-      levelTab: LEVEL_TABS.ALL,
-      currentSortField: SORT_FIELDS.CREATED_AT,
-      currentSortOrder: SORT_ORDERS.DESC,
-      pageSize: DEFAULT_PAGE_SIZE,
-      invalidTerm: null
-    });
-  }
-
-  applyFiltersAndSort();
+  };
 }
 
-export function selectLengthTab(tab, element) {
-  store.set({ currentLengthTab: tab, invalidTerm: null });
-  if (element) updateTabPills('#length-tabs', element);
-  applyFiltersAndSort();
+export const selectLengthTab = createTabSelector('currentLengthTab', '#length-tabs');
+export const selectEtymologyTab = createTabSelector('etymologyTab', '#etymology-tabs');
+export const selectLevelTab = createTabSelector('levelTab', '#level-tabs');
+export const selectSortOrder = createTabSelector('currentSortOrder', '#sort-order-tabs');
+export const selectPosTab = createTabSelector('posTab', '#pos-tabs', tab => {
+  if (POS_EXTRA_TABS.includes(tab)) showMorePosTabs();
+});
+
+export function selectKindTab(tab, element) {
+  createTabSelector('categoryTab', '#kind-tabs')(tab || CATEGORY_TABS.ALL, element);
 }
 
 export function selectInitialTab(tab, element) {
-  store.set({ currentInitialTab: tab, invalidTerm: null });
-  if (element) {
-    const parent = element.closest('.awsui-tabs');
-    if (parent && parent.id) updateTabPills(`#${parent.id}`, element);
-  }
-  applyFiltersAndSort();
-}
-
-export function selectKindTab(tab, element) {
-  store.set({
-    loanwordOnly: false,
-    categoryTab: tab || CATEGORY_TABS.ALL,
-    invalidTerm: null
-  });
-  if (element) updateTabPills('#kind-tabs', element);
-  applyFiltersAndSort();
-}
-
-export function selectEtymologyTab(tab, element) {
-  store.set({ etymologyTab: tab, invalidTerm: null });
-  if (element) updateTabPills('#etymology-tabs', element);
-  applyFiltersAndSort();
-}
-
-export function selectPosTab(tab, element) {
-  store.set({ posTab: tab, invalidTerm: null });
-  if (element) updateTabPills('#pos-tabs', element);
-  if (POS_EXTRA_TABS.includes(tab)) expandPosTabs();
-  applyFiltersAndSort();
-}
-
-export function selectLevelTab(tab, element) {
-  store.set({ levelTab: tab, invalidTerm: null });
-  if (element) updateTabPills('#level-tabs', element);
-  applyFiltersAndSort();
-}
-
-function getPosTabsEl() {
-  return typeof document === 'undefined' ? null : document.getElementById('pos-tabs');
-}
-
-export function expandPosTabs() {
-  getPosTabsEl()?.classList.add('pos-expanded');
-}
-
-export function collapsePosTabs() {
-  getPosTabsEl()?.classList.remove('pos-expanded');
-}
-
-export function showMorePosTabs() {
-  expandPosTabs();
-}
-
-export function syncPosTabsExpanded() {
-  const { posTab } = store.get();
-  if (POS_EXTRA_TABS.includes(posTab)) expandPosTabs();
+  const parentId = element?.closest('.awsui-tabs')?.id;
+  createTabSelector('currentInitialTab', parentId ? `#${parentId}` : null)(tab, parentId ? element : null);
 }
 
 export function selectSortField(field, element) {
-  if (field === SORT_FIELDS.RANDOM) {
-    store.reshuffleRandomSort();
-  }
-  store.set({ currentSortField: field, invalidTerm: null });
-  if (element) updateTabPills('#sort-field-tabs', element);
-  applyFiltersAndSort();
-}
-
-export function selectSortOrder(order, element) {
-  store.set({ currentSortOrder: order, invalidTerm: null });
-  if (element) updateTabPills('#sort-order-tabs', element);
-  applyFiltersAndSort();
+  if (field === SORT_FIELDS.RANDOM) store.reshuffleRandomSort();
+  createTabSelector('currentSortField', '#sort-field-tabs')(field, element);
 }
 
 export function selectScriptVariant(variant, element) {
-  const next = variant === SCRIPT_VARIANTS.TRADITIONAL
-    ? SCRIPT_VARIANTS.TRADITIONAL
-    : SCRIPT_VARIANTS.SIMPLIFIED;
+  const next = variant === SCRIPT_VARIANTS.TRADITIONAL ? SCRIPT_VARIANTS.TRADITIONAL : SCRIPT_VARIANTS.SIMPLIFIED;
   store.set({ scriptVariant: next });
   if (element) updateTabPills('#script-tabs', element);
   applyFiltersAndSort();
-  if (typeof document === 'undefined') return;
+
+  // Re-title an open Item modal in the new script.
   const modal = document.getElementById('detail-modal');
   const titleElem = document.getElementById('modal-term-title');
   const meaningElem = document.getElementById('modal-meaning-text');
-  if (!modal?.classList?.contains('open') || !titleElem || !meaningElem) return;
+  if (!modal?.classList.contains('open') || !titleElem || !meaningElem) return;
   const rowIndex = Number(meaningElem.getAttribute('data-row-index'));
   const rec = store.get().allRecords.find(r => r.row_index === rowIndex);
-  if (!rec) return;
-  const displayTitle = getExhibitDisplayTitle(rec, next);
-  titleElem.innerHTML = formatExhibitTitleHtml(displayTitle);
+  if (rec) titleElem.innerHTML = formatExhibitTitleHtml(getExhibitDisplayTitle(rec, next));
 }
 
-function getDefaultSortField(col) {
-  if (col?.hasHangulTabs) return SORT_FIELDS.TITLE;
-  if (col?.hasKanaTabs ?? col?.hasReading) return SORT_FIELDS.STANDARD;
+function setPosTabsExpanded(expanded) {
+  if (typeof document === 'undefined') return;
+  document.getElementById('pos-tabs')?.classList.toggle('pos-expanded', expanded);
+}
+
+export function showMorePosTabs() {
+  setPosTabsExpanded(true);
+}
+
+/* ------------------------------------------------------------------ */
+/* Quick filters & defaults                                           */
+/* ------------------------------------------------------------------ */
+
+export function getDefaultSortField(col) {
+  if (!col?.hasHangulTabs && (col?.hasKanaTabs ?? col?.hasReading)) return SORT_FIELDS.STANDARD;
   return SORT_FIELDS.TITLE;
 }
 
-function getActiveQuickFilter(sortField, sortOrder, categoryTab, levelTab) {
+function currentDefaultSortField() {
+  return getDefaultSortField(collectionsConfig[store.get().currentCollectionId]);
+}
+
+function getActiveQuickFilter({ currentSortField, currentSortOrder, categoryTab, levelTab }) {
   if (categoryTab === CATEGORY_TABS.BASIC100) return QUICK_FILTERS.BASIC100;
   if (QUICK_LEVEL_FILTERS.includes(levelTab)) return levelTab;
-  if (sortField === SORT_FIELDS.RANDOM) return QUICK_FILTERS.RANDOM10;
-  if (sortField === SORT_FIELDS.CREATED_AT && sortOrder === SORT_ORDERS.DESC) return QUICK_FILTERS.LATEST10;
+  if (currentSortField === SORT_FIELDS.RANDOM) return QUICK_FILTERS.RANDOM10;
+  if (currentSortField === SORT_FIELDS.CREATED_AT && currentSortOrder === SORT_ORDERS.DESC) return QUICK_FILTERS.LATEST10;
   return QUICK_FILTERS.ALL;
 }
 
+/** State patch applied when a quick filter pill is switched on. */
+function quickFilterPatch(tab) {
+  const defaultSort = { currentSortField: currentDefaultSortField(), currentSortOrder: SORT_ORDERS.ASC };
+  if (tab === QUICK_FILTERS.BASIC100) {
+    return { categoryTab: CATEGORY_TABS.BASIC100, levelTab: LEVEL_TABS.ALL, pageSize: 100, ...defaultSort };
+  }
+  if (QUICK_LEVEL_FILTERS.includes(tab)) {
+    return { levelTab: tab, categoryTab: CATEGORY_TABS.ALL, pageSize: 100, ...defaultSort };
+  }
+  const reset = { categoryTab: CATEGORY_TABS.ALL, levelTab: LEVEL_TABS.ALL, pageSize: DEFAULT_PAGE_SIZE };
+  if (tab === QUICK_FILTERS.RANDOM10) {
+    store.reshuffleRandomSort();
+    return { ...reset, currentSortField: SORT_FIELDS.RANDOM, currentSortOrder: SORT_ORDERS.ASC };
+  }
+  if (tab === QUICK_FILTERS.LATEST10) {
+    return { ...reset, currentSortField: SORT_FIELDS.CREATED_AT, currentSortOrder: SORT_ORDERS.DESC };
+  }
+  return {};
+}
+
+/** State patch applied when the already-active quick filter pill is clicked again (toggle off). */
+function quickFilterOffPatch(tab) {
+  if (tab === QUICK_FILTERS.BASIC100) return { categoryTab: CATEGORY_TABS.ALL };
+  if (QUICK_LEVEL_FILTERS.includes(tab)) return { levelTab: LEVEL_TABS.ALL };
+  return { currentSortField: currentDefaultSortField(), currentSortOrder: SORT_ORDERS.ASC };
+}
+
+export function selectQuickFilter(tab) {
+  const isActive = getActiveQuickFilter(store.get()) === tab;
+  store.set({ ...(isActive ? quickFilterOffPatch(tab) : quickFilterPatch(tab)), invalidTerm: null });
+  applyFiltersAndSort();
+}
+
+const FINE_FILTER_DEFAULTS = {
+  currentLengthTab: LENGTH_TABS.ALL,
+  currentInitialTab: KANA_TABS.ALL,
+  etymologyTab: ETYMOLOGY_TABS.ALL,
+  posTab: POS_TABS.ALL,
+  levelTab: LEVEL_TABS.ALL,
+  categoryTab: CATEGORY_TABS.ALL
+};
+
+/** Fine filter + display state used when entering a different hall. */
+export function getHallDefaultState(col) {
+  return {
+    ...FINE_FILTER_DEFAULTS,
+    currentSortField: getDefaultSortField(col),
+    currentSortOrder: SORT_ORDERS.ASC,
+    scriptVariant: DEFAULT_SCRIPT_VARIANT
+  };
+}
+
 export function resetFineFilters() {
-  store.set({
-    currentLengthTab: LENGTH_TABS.ALL,
-    currentInitialTab: KANA_TABS.ALL,
-    loanwordOnly: false,
-    etymologyTab: ETYMOLOGY_TABS.ALL,
-    posTab: POS_TABS.ALL,
-    levelTab: LEVEL_TABS.ALL,
-    categoryTab: CATEGORY_TABS.ALL,
-    invalidTerm: null
-  });
-  collapsePosTabs();
+  store.set({ ...FINE_FILTER_DEFAULTS, invalidTerm: null });
+  setPosTabsExpanded(false);
   applyFiltersAndSort();
 }
 
 export function resetDisplaySettings() {
-  const { currentCollectionId } = store.get();
-  const col = collectionsConfig[currentCollectionId] || {};
   store.set({
-    currentSortField: getDefaultSortField(col),
+    currentSortField: currentDefaultSortField(),
     currentSortOrder: SORT_ORDERS.ASC,
     pageSize: DEFAULT_PAGE_SIZE,
     scriptVariant: DEFAULT_SCRIPT_VARIANT,
@@ -511,20 +318,19 @@ export function resetDisplaySettings() {
   applyFiltersAndSort();
 }
 
-export function countActiveFineFilters() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab } = store.get();
-  let count = 0;
-  if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) count += 1;
-  if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) count += 1;
-  if (loanwordOnly) count += 1;
-  if (etymologyTab && etymologyTab !== ETYMOLOGY_TABS.ALL) count += 1;
-  if (posTab && posTab !== POS_TABS.ALL) count += 1;
-  if (levelTab && levelTab !== LEVEL_TABS.ALL) count += 1;
-  if (categoryTab && categoryTab !== CATEGORY_TABS.ALL) count += 1;
-  return count;
+export function resetFilterAndDisplay() {
+  resetFineFilters();
+  resetDisplaySettings();
 }
 
-export function countActiveDisplaySettings() {
+export function countActiveFineFilters() {
+  const state = store.get();
+  return Object.entries(FINE_FILTER_DEFAULTS)
+    .filter(([key, def]) => state[key] && state[key] !== def)
+    .length;
+}
+
+function countActiveDisplaySettings() {
   const { currentSortField, currentSortOrder, pageSize, scriptVariant, currentCollectionId } = store.get();
   const col = collectionsConfig[currentCollectionId] || {};
   let count = 0;
@@ -534,183 +340,161 @@ export function countActiveDisplaySettings() {
   return count;
 }
 
-export function getFilterSummary() {
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder, scriptVariant, currentCollectionId } = store.get();
-  const parts = [];
+const SORT_FIELD_LABELS = {
+  [SORT_FIELDS.ID]: '編號',
+  [SORT_FIELDS.TITLE]: '標題',
+  [SORT_FIELDS.SUBTITLE]: '副標',
+  [SORT_FIELDS.RANDOM]: '隨機',
+  [SORT_FIELDS.CREATED_AT]: '新增日期',
+  [SORT_FIELDS.STANDARD]: '読み方'
+};
 
-  if (currentInitialTab && currentInitialTab !== KANA_TABS.ALL) {
-    parts.push(KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab);
-  }
-  if (currentLengthTab && currentLengthTab !== LENGTH_TABS.ALL) {
-    parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5字+' : `${currentLengthTab}字`);
-  }
-  if (loanwordOnly) parts.push('外來語');
-  if (posTab && posTab !== POS_TABS.ALL) parts.push(posTab);
-  if (etymologyTab && etymologyTab !== ETYMOLOGY_TABS.ALL) parts.push(etymologyTab);
-  if (levelTab && levelTab !== LEVEL_TABS.ALL) parts.push(levelTab);
+/** One-line summary of active filters + sort, e.g. "ㄱ · 2字 · 名詞 · 標題 正序". */
+export function getFilterSummary() {
+  const { currentLengthTab, currentInitialTab, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder, scriptVariant, currentCollectionId } = store.get();
+  const parts = [];
+  const isSet = value => value && value !== 'ALL';
+
+  if (isSet(currentInitialTab)) parts.push(KANA_RANGES[currentInitialTab] ? `${currentInitialTab}行` : currentInitialTab);
+  if (isSet(currentLengthTab)) parts.push(currentLengthTab === LENGTH_TABS.FIVE_PLUS ? '5字+' : `${currentLengthTab}字`);
+  [posTab, etymologyTab, levelTab].filter(isSet).forEach(v => parts.push(v));
   const categoryLabel = categoryTabToTag(categoryTab);
   if (categoryLabel) parts.push(categoryLabel);
 
-  const fieldLabel = currentSortField === SORT_FIELDS.ID
-    ? '編號'
-    : currentSortField === SORT_FIELDS.TITLE
-      ? '標題'
-      : currentSortField === SORT_FIELDS.SUBTITLE
-        ? '副標'
-        : currentSortField === SORT_FIELDS.RANDOM
-          ? '隨機'
-          : currentSortField === SORT_FIELDS.CREATED_AT
-            ? '新增日期'
-            : '読み方';
-  const orderLabel = currentSortOrder === SORT_ORDERS.DESC ? '倒序' : '正序';
-  parts.push(`${fieldLabel} ${orderLabel}`);
+  const fieldLabel = SORT_FIELD_LABELS[currentSortField] || SORT_FIELD_LABELS[SORT_FIELDS.STANDARD];
+  parts.push(`${fieldLabel} ${currentSortOrder === SORT_ORDERS.DESC ? '倒序' : '正序'}`);
   if (collectionsConfig[currentCollectionId]?.hasScriptDisplay && scriptVariant === SCRIPT_VARIANTS.TRADITIONAL) {
     parts.push('繁體');
   }
-
   return parts.join(' · ');
 }
 
+/** Syncs every pill, the summary text, and the Filter trigger badge with store state. */
 export function syncFilterUi() {
   if (typeof document === 'undefined') return;
 
-  const { currentLengthTab, currentInitialTab, loanwordOnly, etymologyTab, posTab, levelTab, categoryTab, currentSortField, currentSortOrder, pageSize, scriptVariant } = store.get();
-  activateTabByValue('#quick-filter-tabs', getActiveQuickFilter(currentSortField, currentSortOrder, categoryTab, levelTab));
-  activateTabByValue('#length-tabs', currentLengthTab || LENGTH_TABS.ALL);
-  activateTabByValue('#hangul-tabs', currentInitialTab || KANA_TABS.ALL);
-  activateTabByValue('#kana-initial-tabs', currentInitialTab || KANA_TABS.ALL);
-  activateTabByValue('#kind-tabs', categoryTab || CATEGORY_TABS.ALL);
-  activateTabByValue('#etymology-tabs', etymologyTab || ETYMOLOGY_TABS.ALL);
-  activateTabByValue('#pos-tabs', posTab || POS_TABS.ALL);
-  activateTabByValue('#level-tabs', levelTab || LEVEL_TABS.ALL);
-  syncPosTabsExpanded();
-  activateTabByValue('#sort-field-tabs', currentSortField || SORT_FIELDS.STANDARD);
-  activateTabByValue('#sort-order-tabs', currentSortOrder || SORT_ORDERS.ASC);
-  activateTabByValue('#page-size-tabs', pageSizeTabValue(pageSize));
-  activateTabByValue('#script-tabs', scriptVariant || DEFAULT_SCRIPT_VARIANT);
-
-  const count = countActiveFineFilters() + countActiveDisplaySettings();
+  const state = store.get();
+  const tabGroups = {
+    '#quick-filter-tabs': getActiveQuickFilter(state),
+    '#length-tabs': state.currentLengthTab || LENGTH_TABS.ALL,
+    '#hangul-tabs': state.currentInitialTab || KANA_TABS.ALL,
+    '#kana-initial-tabs': state.currentInitialTab || KANA_TABS.ALL,
+    '#kind-tabs': state.categoryTab || CATEGORY_TABS.ALL,
+    '#etymology-tabs': state.etymologyTab || ETYMOLOGY_TABS.ALL,
+    '#pos-tabs': state.posTab || POS_TABS.ALL,
+    '#level-tabs': state.levelTab || LEVEL_TABS.ALL,
+    '#sort-field-tabs': state.currentSortField || SORT_FIELDS.STANDARD,
+    '#sort-order-tabs': state.currentSortOrder || SORT_ORDERS.ASC,
+    '#page-size-tabs': pageSizeTabValue(state.pageSize),
+    '#script-tabs': state.scriptVariant || DEFAULT_SCRIPT_VARIANT
+  };
+  Object.entries(tabGroups).forEach(([selector, value]) => activateTabByValue(selector, value));
+  if (POS_EXTRA_TABS.includes(state.posTab)) setPosTabsExpanded(true);
 
   const summary = document.getElementById('filter-summary');
-  if (summary) {
-    summary.innerText = getFilterSummary();
-  }
+  if (summary) summary.innerText = getFilterSummary();
 
-  const trigger = document.getElementById('btn-open-filter-modal');
-  if (trigger) {
-    trigger.classList.toggle('has-active-filters', count > 0);
-  }
+  const activeCount = countActiveFineFilters() + countActiveDisplaySettings();
+  document.getElementById('btn-open-filter-modal')?.classList.toggle('has-active-filters', activeCount > 0);
 }
 
-function isCatalogPanelOpen(id) {
-  return document.getElementById(id)?.classList.contains('open');
+/* ------------------------------------------------------------------ */
+/* Filter / Display panels                                            */
+/* ------------------------------------------------------------------ */
+
+export const DISPLAY_FOLLOW_DELAY_MS = 160;
+let displayFollowTimer = null;
+
+function isPanelOpen(id) {
+  return Boolean(document.getElementById(id)?.classList.contains('open'));
 }
 
-export const CATALOG_MOBILE_MAX = 768;
-
-export function isCatalogMobile() {
-  const win = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : null);
-  if (win && typeof win.innerWidth === 'number') return win.innerWidth <= CATALOG_MOBILE_MAX;
-  return false;
+function setPanelOpen(id, open) {
+  document.getElementById(id)?.classList.toggle('open', open);
 }
 
-export function placeDisplayPanel() {
+/** Mobile merges Display into the Filter panel; desktop keeps it in its own panel. */
+function placeDisplayPanel() {
   if (typeof document === 'undefined') return;
   const body = document.getElementById('display-panel-body');
   const combined = document.getElementById('filter-combined-host');
   const displayHost = document.getElementById('display-panel-host');
   if (!body || !combined || !displayHost) return;
-  const target = isCatalogMobile() ? combined : displayHost;
+  const target = isMobileViewport() ? combined : displayHost;
   if (body.parentNode !== target) target.appendChild(body);
 }
 
-export function resetFilterAndDisplay() {
-  resetFineFilters();
-  resetDisplaySettings();
-}
-
-export const DISPLAY_FOLLOW_DELAY_MS = 160;
-let displayFollowTimer = null;
-
 function cancelDisplayFollow() {
   if (displayFollowTimer == null) return;
-  const clearTimer = (typeof window !== 'undefined' && window.clearTimeout) || clearTimeout;
-  clearTimer(displayFollowTimer);
+  getTimers().clear(displayFollowTimer);
   displayFollowTimer = null;
 }
 
+/** On desktop the Display panel slides in shortly after the Filter panel opens. */
 function scheduleDisplayFollow() {
   cancelDisplayFollow();
-  const schedule = (typeof window !== 'undefined' && window.setTimeout) || setTimeout;
-  displayFollowTimer = schedule(() => {
+  displayFollowTimer = getTimers().set(() => {
     displayFollowTimer = null;
-    if (!isCatalogPanelOpen('filter-modal')) return;
-    openDisplayModal();
+    if (isPanelOpen('filter-modal')) openDisplayModal();
   }, DISPLAY_FOLLOW_DELAY_MS);
 }
 
 function syncFilterTriggerActive() {
-  const trigger = document.getElementById('btn-open-filter-modal');
-  const filterOpen = isCatalogPanelOpen('filter-modal');
-  const displayOpen = isCatalogPanelOpen('display-modal');
-  if (trigger) {
-    trigger.classList.toggle('active', filterOpen || displayOpen);
-  }
+  const filterOpen = isPanelOpen('filter-modal');
+  const displayOpen = isPanelOpen('display-modal');
+  document.getElementById('btn-open-filter-modal')?.classList.toggle('active', filterOpen || displayOpen);
   document.getElementById('display-modal')?.classList.toggle('solo', displayOpen && !filterOpen);
 }
 
-export function openDisplayModal() {
-  if (isCatalogMobile()) return;
-  const modal = document.getElementById('display-modal');
-  if (!modal) return;
-  syncFilterUi();
-  modal.classList.add('open');
-  syncFilterTriggerActive();
-}
-
-export function closeDisplayModal() {
+function closeDisplayPanelForMobile() {
   cancelDisplayFollow();
-  const modal = document.getElementById('display-modal');
-  if (modal) modal.classList.remove('open');
+  setPanelOpen('display-modal', false);
   syncFilterTriggerActive();
 }
 
-export function closeDisplayModalOnBackdrop(e) {
-  if (e?.target?.id === 'display-modal') closeCatalogPanels();
+function openDisplayModal() {
+  if (isMobileViewport() || !document.getElementById('display-modal')) return;
+  syncFilterUi();
+  setPanelOpen('display-modal', true);
+  syncFilterTriggerActive();
+}
+
+function closeDisplayModal() {
+  cancelDisplayFollow();
+  setPanelOpen('display-modal', false);
+  syncFilterTriggerActive();
 }
 
 export function openFilterModal() {
-  const modal = document.getElementById('filter-modal');
-  if (!modal) return;
+  if (!document.getElementById('filter-modal')) return;
   placeDisplayPanel();
   syncFilterUi();
-  modal.classList.add('open');
+  setPanelOpen('filter-modal', true);
   syncFilterTriggerActive();
-  if (isCatalogMobile()) {
-    cancelDisplayFollow();
-    const display = document.getElementById('display-modal');
-    if (display) display.classList.remove('open');
-    syncFilterTriggerActive();
-    return;
+  if (isMobileViewport()) {
+    closeDisplayPanelForMobile();
+  } else {
+    scheduleDisplayFollow();
   }
-  scheduleDisplayFollow();
 }
 
-export function closeFilterModal() {
+function closeFilterModal() {
   cancelDisplayFollow();
-  const modal = document.getElementById('filter-modal');
-  if (modal) modal.classList.remove('open');
+  setPanelOpen('filter-modal', false);
   syncFilterTriggerActive();
+}
+
+export function closeCatalogPanels() {
+  closeFilterModal();
+  closeDisplayModal();
 }
 
 export function closeFilterModalOnBackdrop(e) {
   if (e?.target?.id === 'filter-modal') closeCatalogPanels();
 }
 
-export function closeCatalogPanels() {
-  cancelDisplayFollow();
-  closeFilterModal();
-  closeDisplayModal();
+export function closeDisplayModalOnBackdrop(e) {
+  if (e?.target?.id === 'display-modal') closeCatalogPanels();
 }
 
 export function initCatalogPanelLayout() {
@@ -718,14 +502,9 @@ export function initCatalogPanelLayout() {
   placeDisplayPanel();
   window.addEventListener('resize', () => {
     placeDisplayPanel();
-    if (isCatalogMobile()) {
-      cancelDisplayFollow();
-      const display = document.getElementById('display-modal');
-      if (display) display.classList.remove('open');
-      syncFilterTriggerActive();
-      return;
-    }
-    if (isCatalogPanelOpen('filter-modal') && !isCatalogPanelOpen('display-modal')) {
+    if (isMobileViewport()) {
+      closeDisplayPanelForMobile();
+    } else if (isPanelOpen('filter-modal') && !isPanelOpen('display-modal')) {
       scheduleDisplayFollow();
     }
   });

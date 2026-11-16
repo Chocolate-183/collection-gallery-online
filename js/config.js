@@ -3,117 +3,62 @@
  *
  * Each gallery is declared in its own file under js/galleries/.
  * Hall intro metadata lives in defaultMeta until the user
- * clicks header refresh (`#btn-refresh-data`); then metadataConfig is fetched.
+ * clicks header refresh (`#btn-refresh-data`); then the metadata sheet is fetched.
  */
 import japaneseTerms from './galleries/japanese-terms.js';
 import chinaTerms from './galleries/china-terms.js';
 import koreanTerms from './galleries/korean-terms.js';
 import japaneseAttack from './galleries/japanese-attack.js';
 
-const galleryConfigs = [japaneseTerms, chinaTerms, koreanTerms, japaneseAttack];
-
 export const collectionsConfig = Object.fromEntries(
-  galleryConfigs.map(col => [col.id, col])
+  [japaneseTerms, chinaTerms, koreanTerms, japaneseAttack].map(col => [col.id, col])
 );
 
-/**
- * Shared Metadata Sheet Configuration (intro for all halls)
- * https://docs.google.com/spreadsheets/d/162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs
- */
-const metadataConfig = {
+const SHEETS_BASE_URL = 'https://docs.google.com/spreadsheets/d';
+
+export const googleSheetsConfig = {
+  getCsvUrl: (sheetId, gid) => (sheetId && gid != null)
+    ? `${SHEETS_BASE_URL}/${sheetId}/export?format=csv&gid=${gid}`
+    : null,
+  getGvizUrl: (sheetId, gid) => (sheetId && gid != null)
+    ? `${SHEETS_BASE_URL}/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`
+    : null
+};
+
+/** CSV + GViz endpoints (and optional local JSON fallback) for a `{ sheetId, gid, localFallback }` source. */
+function buildSheetUrls({ sheetId, gid, localFallback = null }) {
+  return {
+    csvUrl: googleSheetsConfig.getCsvUrl(sheetId, gid),
+    gvizUrl: googleSheetsConfig.getGvizUrl(sheetId, gid),
+    localFallback
+  };
+}
+
+/** Central hall metadata sheet (one column per hall). */
+const metadataSource = {
   sheetId: '162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs',
   gid: '1360584899'
 };
 
-/**
- * Google Sheets Base URL Configuration & Endpoint URL Builders
- */
-export const googleSheetsConfig = {
-  baseUrl: 'https://docs.google.com/spreadsheets/d',
-
-  /**
-   * Constructs CSV export URL for a given sheet ID and gid
-   */
-  getCsvUrl: (sheetId, gid) => {
-    if (!sheetId || gid === undefined || gid === null) return null;
-    return `${googleSheetsConfig.baseUrl}/${sheetId}/export?format=csv&gid=${gid}`;
-  },
-
-  /**
-   * Constructs GViz JSON endpoint URL for a given sheet ID and gid
-   */
-  getGvizUrl: (sheetId, gid) => {
-    if (!sheetId || gid === undefined || gid === null) return null;
-    return `${googleSheetsConfig.baseUrl}/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
-  }
-};
-
-/**
- * Returns dataset CSV and GViz URLs for a collection configuration object
- */
-export function getCollectionDataUrls(col) {
-  if (!col || !col.sheetId || !col.gid) return { csvUrl: null, gvizUrl: null };
-  return {
-    csvUrl: googleSheetsConfig.getCsvUrl(col.sheetId, col.gid),
-    gvizUrl: googleSheetsConfig.getGvizUrl(col.sheetId, col.gid)
-  };
-}
-
-/**
- * C103 verb/adjective conjugations (Dongsa Work / Professional).
- * Same workbook as the C103 hall dump; tab 動詞形容詞變化.
- */
-const conjugationsConfig = {
-  sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
-  gid: '467198079',
-  localFallback: 'korean-conjugations.json'
-};
-
-/**
- * Returns CSV, GViz, and local fallback URLs for C103 conjugations.
- */
-export function getConjugationUrls() {
-  if (!conjugationsConfig.sheetId) {
-    return { csvUrl: null, gvizUrl: null, localFallback: conjugationsConfig.localFallback };
-  }
-  return {
-    csvUrl: googleSheetsConfig.getCsvUrl(conjugationsConfig.sheetId, conjugationsConfig.gid || '0'),
-    gvizUrl: googleSheetsConfig.getGvizUrl(conjugationsConfig.sheetId, conjugationsConfig.gid || '0'),
-    localFallback: conjugationsConfig.localFallback
-  };
-}
-
-/**
- * Returns CSV and GViz URLs for the central metadata spreadsheet
- */
-export function getMetadataUrls() {
-  if (!metadataConfig.sheetId) return { csvUrl: null, gvizUrl: null };
-  return {
-    csvUrl: googleSheetsConfig.getCsvUrl(metadataConfig.sheetId, metadataConfig.gid || '0'),
-    gvizUrl: googleSheetsConfig.getGvizUrl(metadataConfig.sheetId, metadataConfig.gid || '0')
-  };
-}
-
-/**
- * Curator profiles sheet (same workbook as hall metadata).
- * https://docs.google.com/spreadsheets/d/162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs?gid=1665955868
- */
-const profilesConfig = {
+/** Curator profiles sheet (same workbook as hall metadata). */
+const profilesSource = {
   sheetId: '162GJh8BkmI7T66d3zJR5FbWoiM-oni2GJzTXVg30JUs',
   gid: '1665955868',
   localFallback: 'profiles.json'
 };
 
-/**
- * Returns CSV, GViz, and local fallback URLs for curator profiles
- */
-export function getProfileUrls() {
-  if (!profilesConfig.sheetId) {
-    return { csvUrl: null, gvizUrl: null, localFallback: profilesConfig.localFallback };
-  }
-  return {
-    csvUrl: googleSheetsConfig.getCsvUrl(profilesConfig.sheetId, profilesConfig.gid || '0'),
-    gvizUrl: googleSheetsConfig.getGvizUrl(profilesConfig.sheetId, profilesConfig.gid || '0'),
-    localFallback: profilesConfig.localFallback
-  };
+/** C103 verb/adjective conjugations (same workbook as the C103 hall; tab 動詞形容詞變化). */
+const conjugationsSource = {
+  sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
+  gid: '467198079',
+  localFallback: 'korean-conjugations.json'
+};
+
+export function getCollectionDataUrls(col) {
+  if (!col?.sheetId || !col?.gid) return { csvUrl: null, gvizUrl: null, localFallback: col?.localFallback || null };
+  return buildSheetUrls(col);
 }
+
+export const getMetadataUrls = () => buildSheetUrls(metadataSource);
+export const getProfileUrls = () => buildSheetUrls(profilesSource);
+export const getConjugationUrls = () => buildSheetUrls(conjugationsSource);

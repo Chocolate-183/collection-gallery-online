@@ -5,33 +5,25 @@ import { STORAGE_KEYS } from './constants.js';
 import { store } from './state.js';
 import { showToast } from './components/toast.js';
 
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+
+  const sunIcon = document.querySelector('#btn-toggle-theme .icon-sun');
+  const moonIcon = document.querySelector('#btn-toggle-theme .icon-moon');
+  if (sunIcon) sunIcon.style.display = isDark ? 'inline-block' : 'none';
+  if (moonIcon) moonIcon.style.display = isDark ? 'none' : 'inline-block';
+  document.getElementById('btn-toggle-theme')?.setAttribute('title', isDark ? '切換至淺色模式' : '切換至深色模式');
+}
+
 export function initTheme() {
-  const { currentTheme } = store.get();
-  applyTheme(currentTheme);
+  applyTheme(store.get().currentTheme);
 }
 
 export function toggleTheme() {
-  const { currentTheme } = store.get();
-  const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  const nextTheme = store.get().currentTheme === 'dark' ? 'light' : 'dark';
   localStorage.setItem(STORAGE_KEYS.THEME, nextTheme);
   store.set({ currentTheme: nextTheme });
   applyTheme(nextTheme);
   showToast(nextTheme === 'dark' ? '已切換至深色模式' : '已切換至淺色模式');
-}
-
-export function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  const sunIcon = document.querySelector('#btn-toggle-theme .icon-sun');
-  const moonIcon = document.querySelector('#btn-toggle-theme .icon-moon');
-  const btn = document.getElementById('btn-toggle-theme');
-
-  if (theme === 'dark') {
-    if (sunIcon) sunIcon.style.display = 'inline-block';
-    if (moonIcon) moonIcon.style.display = 'none';
-    if (btn) btn.setAttribute('title', '切換至淺色模式');
-  } else {
-    if (sunIcon) sunIcon.style.display = 'none';
-    if (moonIcon) moonIcon.style.display = 'inline-block';
-    if (btn) btn.setAttribute('title', '切換至深色模式');
-  }
 }

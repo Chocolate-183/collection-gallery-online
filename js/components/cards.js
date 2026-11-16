@@ -1,5 +1,5 @@
 /**
- * Cards Matrix Component
+ * Catalog Cards Grid
  */
 import { DEFAULT_PAGE_SIZE, PAGE_SIZE_ALL } from '../constants.js';
 import { store } from '../state.js';
@@ -7,65 +7,53 @@ import { renderPagination } from './pagination.js';
 import { updateSidebarBadge } from './sidebar.js';
 import { escapeHtml, formatExhibitTitleHtml, getExhibitDisplayTitle } from '../utils.js';
 
+const NO_DESCRIPTION = '（無說明內容）';
+const LONG_TEXT_CHARS = 20;
+const PLACEHOLDER_CARD_HTML = '<div class="awsui-card awsui-card-placeholder" aria-hidden="true"></div>';
+const EMPTY_STATE_HTML = `
+  <div class="awsui-card awsui-empty-card">
+    <svg class="awsui-icon awsui-icon-lg" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+    </svg>
+    <div class="awsui-empty-title">
+      尚無相符展品
+    </div>
+  </div>
+`;
+const EXPAND_HINT_HTML = `
+  <div class="awsui-expand-hint" title="瀏覽說明">
+    <svg class="awsui-icon" style="width:12px; height:12px;" viewBox="0 0 16 16"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+  </div>
+`;
+
+/** The grid always renders a full page of slots so Catalog height stays stable while filtering. */
 function catalogSlotCount(pageSize, recordCount) {
   const size = Number(pageSize) || 0;
   if (!size || size >= PAGE_SIZE_ALL) return Math.max(recordCount, DEFAULT_PAGE_SIZE);
   return size;
 }
 
-function placeholderCardHtml() {
-  return '<div class="awsui-card awsui-card-placeholder" aria-hidden="true"></div>';
-}
-
-function emptyStateHtml() {
-  return `
-      <div class="awsui-card awsui-empty-card">
-        <svg class="awsui-icon awsui-icon-lg" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg>
-        <div class="awsui-empty-title">
-          尚無相符展品
-        </div>
-      </div>
-    `;
-}
-
-function isGridShell(node) {
-  return Boolean(node && node.classList && node.classList.contains('awsui-cards-grid-shell'));
-}
-
+/**
+ * Empty state: overlaid on the grid shell when present (keeps placeholder height),
+ * otherwise returned as HTML to prepend inside the grid.
+ */
 function syncEmptyOverlay(container, total) {
   const shell = container.parentElement;
-  if (isGridShell(shell)) {
-    const existing = typeof shell.querySelector === 'function'
-      ? shell.querySelector('.awsui-empty-card')
-      : null;
-    if (total === 0 && !existing) {
-      if (typeof shell.insertAdjacentHTML === 'function') {
-        shell.insertAdjacentHTML('beforeend', emptyStateHtml());
-      } else {
-        shell.innerHTML = (shell.innerHTML || '') + emptyStateHtml();
-      }
-    }
-    if (total > 0 && existing && typeof existing.remove === 'function') {
-      existing.remove();
-    }
-    return '';
+  if (!shell?.classList?.contains('awsui-cards-grid-shell')) {
+    return total === 0 ? EMPTY_STATE_HTML : '';
   }
-  return total === 0 ? emptyStateHtml() : '';
+  const existing = shell.querySelector('.awsui-empty-card');
+  if (total === 0 && !existing) shell.insertAdjacentHTML('beforeend', EMPTY_STATE_HTML);
+  if (total > 0 && existing) existing.remove();
+  return '';
 }
 
 export function showLoadingState() {
-  const { currentCollectionId } = store.get();
   store.set({ allRecords: [], filteredRecords: [] });
-
-  const totalElem = document.getElementById('kpi-total-count');
-  if (totalElem) totalElem.innerText = '--';
 
   const counter = document.getElementById('cards-counter');
   if (counter) counter.innerText = '(展廳載入中...)';
-
-  updateSidebarBadge(currentCollectionId);
+  updateSidebarBadge(store.get().currentCollectionId);
 
   const controls = document.getElementById('pagination-controls');
   if (controls) controls.innerHTML = '';
@@ -82,63 +70,57 @@ export function showLoadingState() {
   }
 }
 
+/** Row index of the record open in the Item modal (so its card renders active), else null. */
+function getOpenItemRowIndex() {
+  const detailModal = document.getElementById('detail-modal');
+  if (!detailModal?.classList?.contains('open')) return null;
+  return document.getElementById('modal-meaning-text')?.getAttribute('data-row-index') ?? null;
+}
+
+function cardHtml(rec, { colId, scriptVariant, activeRowIndex }) {
+  const meaning = rec.tw_translation || NO_DESCRIPTION;
+  const isActive = activeRowIndex !== null && String(rec.row_index) === String(activeRowIndex);
+  const displayTitle = getExhibitDisplayTitle(rec, scriptVariant);
+  const colAttr = escapeHtml(colId);
+  const reading = rec.reading
+    ? `<span class="awsui-reading-subtext" data-collection="${colAttr}" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>`
+    : '<span class="awsui-reading-subtext">&nbsp;</span>';
+
+  return `
+    <div class="awsui-card${isActive ? ' active' : ''}" data-row-index="${rec.row_index}" data-collection="${colAttr}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
+      <div class="awsui-card-top-content">
+        <div class="awsui-card-header-title" data-collection="${colAttr}" title="${escapeHtml(displayTitle)}">${formatExhibitTitleHtml(displayTitle)}</div>
+        ${reading}
+        <div class="awsui-card-divider"></div>
+        <div class="awsui-meaning-wrapper">
+          <div class="awsui-meaning-value" title="點擊瀏覽完整展品導覽">
+            ${escapeHtml(meaning)}
+          </div>
+          ${meaning.length > LONG_TEXT_CHARS ? EXPAND_HINT_HTML : ''}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 export function renderCards() {
   const { filteredRecords, currentPage, pageSize, currentCollectionId, scriptVariant } = store.get();
   const container = document.getElementById('card-grid');
-  const counter = document.getElementById('cards-counter');
   if (!container) return;
 
-  container.innerHTML = '';
   container.setAttribute('data-collection', currentCollectionId || '');
-
+  const counter = document.getElementById('cards-counter');
   if (counter) counter.innerText = `(${filteredRecords.length})`;
 
   const total = filteredRecords.length;
   const startIdx = (currentPage - 1) * pageSize;
-  const endIdx = Math.min(startIdx + pageSize, total);
-  const pageRecords = filteredRecords.slice(startIdx, endIdx);
-  const slotCount = catalogSlotCount(pageSize, pageRecords.length);
+  const pageRecords = filteredRecords.slice(startIdx, startIdx + pageSize);
+  const options = { colId: currentCollectionId, scriptVariant, activeRowIndex: getOpenItemRowIndex() };
 
-  const meaningElem = typeof document !== 'undefined' ? document.getElementById('modal-meaning-text') : null;
-  const detailModal = typeof document !== 'undefined' ? document.getElementById('detail-modal') : null;
-  const activeRowIndex = (detailModal && detailModal.classList && detailModal.classList.contains('open') && meaningElem)
-    ? meaningElem.getAttribute('data-row-index')
-    : null;
+  const slots = Array.from({ length: catalogSlotCount(pageSize, pageRecords.length) }, (_, i) =>
+    pageRecords[i] ? cardHtml(pageRecords[i], options) : PLACEHOLDER_CARD_HTML
+  );
 
-  const cardsHtml = [];
-  for (let i = 0; i < slotCount; i++) {
-    const rec = pageRecords[i];
-    if (!rec) {
-      cardsHtml.push(placeholderCardHtml());
-      continue;
-    }
-    const meaning = rec.tw_translation || '（無說明內容）';
-    const isLongText = meaning.length > 20;
-    const isActive = activeRowIndex !== null && activeRowIndex !== undefined && String(rec.row_index) === String(activeRowIndex);
-    const displayTitle = getExhibitDisplayTitle(rec, scriptVariant);
-
-    cardsHtml.push(`
-      <div class="awsui-card${isActive ? ' active' : ''}" data-row-index="${rec.row_index}" data-collection="${escapeHtml(currentCollectionId)}" onclick="openMeaningModal(${rec.row_index})" style="cursor: pointer;" title="點擊開啟說明">
-        <div class="awsui-card-top-content">
-          <div class="awsui-card-header-title" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(displayTitle)}">${formatExhibitTitleHtml(displayTitle)}</div>
-          ${rec.reading ? `<span class="awsui-reading-subtext" data-collection="${escapeHtml(currentCollectionId)}" title="${escapeHtml(rec.reading)}">${escapeHtml(rec.reading)}</span>` : '<span class="awsui-reading-subtext">&nbsp;</span>'}
-          <div class="awsui-card-divider"></div>
-          <div class="awsui-meaning-wrapper">
-            <div class="awsui-meaning-value" title="點擊瀏覽完整展品導覽">
-              ${escapeHtml(meaning)}
-            </div>
-            ${isLongText ? `
-              <div class="awsui-expand-hint" title="瀏覽說明">
-                <svg class="awsui-icon" style="width:12px; height:12px;" viewBox="0 0 16 16"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
-              </div>
-            ` : ''}
-          </div>
-        </div>
-      </div>
-    `);
-  }
-
-  const emptyHtml = syncEmptyOverlay(container, total);
-  container.innerHTML = emptyHtml + cardsHtml.join('');
+  container.innerHTML = syncEmptyOverlay(container, total) + slots.join('');
   renderPagination(total);
 }
