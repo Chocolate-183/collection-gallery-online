@@ -697,3 +697,37 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   assert.equal(mockViewConjugation.style.display, 'none');
   assert.equal(mockConjugationModal.classes.has('open'), false);
 });
+
+
+test('Keyboard paging moves the Catalog one page and stops at both edges', async () => {
+  const { store } = await import('../js/state.js');
+  const { goToRelativePage, getTotalPages } = await import('../js/components/pagination.js');
+
+  mockDOM({});
+  global.window = global.window || {};
+  global.window.scrollY = 0;
+  global.window.scrollTo = () => {};
+
+  const records = Array.from({ length: 25 }, (_, i) => ({
+    row_index: i + 1,
+    ja_term: `term-${i + 1}`,
+    tw_translation: 'x'
+  }));
+  store.set({ allRecords: records, filteredRecords: records, pageSize: 10, currentPage: 1 });
+
+  assert.equal(getTotalPages(), 3);
+  assert.equal(goToRelativePage(-1), false, 'first page has no previous page');
+  assert.equal(store.get().currentPage, 1);
+
+  assert.equal(goToRelativePage(1), true);
+  assert.equal(store.get().currentPage, 2);
+  assert.equal(goToRelativePage(1), true);
+  assert.equal(store.get().currentPage, 3);
+  assert.equal(goToRelativePage(1), false, 'last page has no next page');
+  assert.equal(store.get().currentPage, 3);
+
+  assert.equal(goToRelativePage(-1), true);
+  assert.equal(store.get().currentPage, 2);
+
+  store.set({ allRecords: [], filteredRecords: [], currentPage: 1 });
+});

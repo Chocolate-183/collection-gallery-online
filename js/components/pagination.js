@@ -67,6 +67,27 @@ function goToPage(p) {
   if (typeof window !== 'undefined') window.scrollTo(0, y);
 }
 
+/** Total pages for the current filtered record set. */
+export function getTotalPages() {
+  const { filteredRecords, pageSize } = store.get();
+  const size = Number(pageSize) || 0;
+  if (!size) return 1;
+  return Math.max(1, Math.ceil((filteredRecords?.length || 0) / size));
+}
+
+/**
+ * Moves the Catalog by `delta` pages (keyboard ← / →).
+ * Returns true when the page actually changed.
+ */
+export function goToRelativePage(delta) {
+  const { currentPage } = store.get();
+  const target = currentPage + delta;
+  if (target < 1 || target > getTotalPages() || target === currentPage) return false;
+  goToPage(target);
+  renderPagination(store.get().filteredRecords.length);
+  return true;
+}
+
 export function selectPageSize(tab, element) {
   if (element) {
     document.querySelectorAll('#page-size-tabs .awsui-tab').forEach(p => p.classList.remove('active'));
