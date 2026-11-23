@@ -42374,5 +42374,152 @@
     "pos": "",
     "level": "",
     "row_index": 2004
+  },
+  {
+    "id": "#C101-2006",
+    "ja_term": "紙飛行機",
+    "tw_translation": "紙飛機（用紙摺成的玩具飛機）",
+    "reading": "かみひこうき",
+    "created_at": "2026-11-23",
+    "recommendations": [
+      "飛行機",
+      "風船",
+      "紙吹雪",
+      "子供向",
+      "子供"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2005
+  },
+  {
+    "id": "#C101-2007",
+    "ja_term": "地面師",
+    "tw_translation": "地面師、土地詐欺犯（冒充地主進行不動產買賣詐騙的詐欺犯／集團）",
+    "reading": "じめんし",
+    "created_at": "2026-11-23",
+    "recommendations": [
+      "詐欺師",
+      "物件",
+      "敷地",
+      "実印",
+      "改竄"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2006
+  },
+  {
+    "id": "#C101-2008",
+    "ja_term": "蝗害",
+    "tw_translation": "蝗害、蝗災（大量蝗蟲引發的農作物嚴重災害）",
+    "reading": "こうがい",
+    "created_at": "2026-11-23",
+    "recommendations": [
+      "虫退治",
+      "大惨事",
+      "野菜",
+      "退治",
+      "台風"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2007
+  },
+  {
+    "id": "#C101-2009",
+    "ja_term": "砦",
+    "tw_translation": "堡壘、要塞（軍事防禦據點，亦常引申為最後的防線或後盾）",
+    "reading": "とりで",
+    "created_at": "2026-11-23",
+    "recommendations": [
+      "難攻不落",
+      "籠城戦",
+      "石垣",
+      "門番",
+      "土台"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2008
+  },
+  {
+    "id": "#C101-2010",
+    "ja_term": "脱税",
+    "tw_translation": "逃漏稅（以違法手段隱匿所得或規避繳稅義務）",
+    "reading": "だつぜい",
+    "created_at": "2026-11-23",
+    "recommendations": [
+      "粉飾",
+      "隠蔽",
+      "領収書",
+      "決算書",
+      "改竄"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2009
+  },
+  {
+    "id": "#C101-2011",
+    "ja_term": "大葉子",
+    "tw_translation": "車前草（常見的多年生草本植物，亦為傳統藥草）",
+    "reading": "おおばこ",
+    "created_at": "2026-11-23",
+    "recommendations": [
+      "散策",
+      "風邪",
+      "病気",
+      "応急処置",
+      "野菜"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2010
+  },
+  {
+    "id": "#C101-2012",
+    "ja_term": "下痢",
+    "tw_translation": "拉肚子、腹瀉（排便頻繁且稀薄的消化道症狀）",
+    "reading": "げり",
+    "created_at": "2026-11-23",
+    "recommendations": [
+      "御手洗",
+      "体調不良",
+      "胃袋",
+      "医者",
+      "応急処置"
+    ],
+    "subtitle": "",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "",
+    "pos": "",
+    "level": "",
+    "row_index": 2011
   }
 ]
