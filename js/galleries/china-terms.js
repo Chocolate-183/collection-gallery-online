@@ -8,7 +8,7 @@ export default {
   enTitle: 'Decoding Simplified Chinese: The Ultimate Guide',
   sheetId: '16q_oTeadINeCErFrnokO4iiTS2BUwo2umT3wAHH53J8',
   gid: '1307320740',
-  localFallback: 'china-data.json',
+  localFallback: 'C102-data.json',
   hasReading: false,
   hasBasic100Filter: true,
   hasScriptDisplay: true,

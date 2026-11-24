@@ -278,7 +278,7 @@ export async function refreshGalleryData(collectionId) {
  */
 async function fetchSingleCollection(col, { live = false } = {}) {
   const urls = getCollectionDataUrls(col);
-  const records = await fetchSheet({ ...urls, localFallback: col.localFallback || 'data.json' }, {
+  const records = await fetchSheet({ ...urls, localFallback: col.localFallback || 'C101-data.json' }, {
     parseCsv: text => parseCSVData(text, col.id),
     parseGviz: text => parseGvizResponse(text, col.id),
     // A short CSV result usually means the export was truncated; let GViz try too.

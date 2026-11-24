@@ -18,7 +18,7 @@
 ### 3. 動態數據同步與容錯備援 (Data Fetching & Timeout Failover)
 - **多管道 API 讀取**: 支援 Google Sheets GViz Query JSON API 與 CSV 格式動態匯入展品與策展詮釋資料。
 - **引號內多行 CSV 解析器**: 內建狀態機 CSV 解析器，完美保留展品詳細解說中的換行格式，避免引號內換行導致欄位錯位。
-- **離線備援優先、手動同步**: 啟動與切換展廳預設只讀本地 JSON 快照 (`data.json` / `china-data.json` / `korean-data.json` / `profiles.json`)。除非使用者主動點選頂欄「同步最新展品」按鈕 (`#btn-refresh-data`)，否則不向 Google Sheets 更新資料。手動同步逾時 (`AbortSignal.timeout(2500)`) 後仍降級回本地快照。
+- **離線備援優先、手動同步**: 啟動與切換展廳預設只讀本地 JSON 快照 (`C101-data.json` / `C102-data.json` / `C103-data.json` / `profiles.json`)。除非使用者主動點選頂欄「同步最新展品」按鈕 (`#btn-refresh-data`)，否則不向 Google Sheets 更新資料。手動同步逾時 (`AbortSignal.timeout(2500)`) 後仍降級回本地快照。
 
 ### 4. 雙色主題與沉浸式視覺體驗 (Light/Dark Mode)
 - **展廳燈光模式**: 支援 Light Mode 與 Dark Mode 一鍵切換，預設自動跟隨系統偏好 (`prefers-color-scheme`) 並儲存於 `localStorage`。
@@ -66,13 +66,13 @@
 │       ├── modal.js      # 展品詳細導覽彈窗 (Modal) 組件
 │       ├── notice.js     # Notice Panel（同步狀態強制顯示）
 │       └── toast.js      # 浮動訊息 (Toast) 提醒組件
-├── data.json         # 日本特色詞彙展區資料快照備份 (離線降級備援)
-├── china-data.json   # 簡中語境破解攻略展區資料快照備份 (離線降級備援)
-├── korean-data.json  # 韓文單字展區資料快照備份 (離線降級備援)
-├── attack-data.json  # C105 日語攻擊力展區資料快照備份 (離線降級備援)
-├── korean-conjugations.json # C103 動詞／形容詞變化離線備援（Dongsa All Levels）
+├── C101-data.json         # C101 日本特色詞彙展區資料快照備份 (離線降級備援)
+├── C102-data.json         # C102 簡中語境破解攻略展區資料快照備份 (離線降級備援)
+├── C103-data.json         # C103 韓文單字展區資料快照備份 (離線降級備援)
+├── C105-data.json         # C105 日語攻擊力展區資料快照備份 (離線降級備援)
+├── C103-conjugations.json # C103 動詞／形容詞變化離線備援（Dongsa All Levels）
 ├── scripts/
-│   └── scrape_dongsa_conjugations.py # 依 korean-data.json 重抓 korean-conjugations.json
+│   └── scrape_dongsa_conjugations.py # 依 C103-data.json 重抓 C103-conjugations.json
 ├── tests/
 │   ├── unit.test.js        # 核心解析器、篩選邏輯與 UI 結構單元測試
 │   └── integration.test.js # 本地快照資料與展廳狀態整合測試
@@ -92,9 +92,9 @@ npm run watch          # 開發時監看並重建
 python3 -m http.server 8899
 ```
 
-於瀏覽器開啟 `http://localhost:8899` 即可預覽。離線 JSON 快照（`data.json` 等）不打進 bundle，仍獨立 fetch。
+於瀏覽器開啟 `http://localhost:8899` 即可預覽。離線 JSON 快照（`C101-data.json` 等）不打進 bundle，仍獨立 fetch。
 
-C103 動詞／形容詞變化離線檔 `korean-conjugations.json` 在 workbook 變化表分頁缺失時，依 `korean-data.json` 的 動詞／形容詞 lemma 從 [Dongsa](https://koreanverb.app/) 重抓（stdlib Python + `curl`，已完成的 lemma 會跳過）：
+C103 動詞／形容詞變化離線檔 `C103-conjugations.json` 在 workbook 變化表分頁缺失時，依 `C103-data.json` 的 動詞／形容詞 lemma 從 [Dongsa](https://koreanverb.app/) 重抓（stdlib Python + `curl`，已完成的 lemma 會跳過）：
 
 ```bash
 npm run refresh:conjugations
