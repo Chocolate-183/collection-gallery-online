@@ -724,6 +724,7 @@ a:focus {
   font-weight: 400;
   line-height: 1.5;
   color: var(--awsui-color-text-body-secondary);
+  opacity: 0.55;
   background: transparent;
   border: none;
   border-radius: 0;
@@ -731,6 +732,7 @@ a:focus {
   cursor: pointer;
   white-space: nowrap;
   text-decoration: none;
+  transition: opacity 0.15s ease;
 }
 
 .awsui-filter-reset:hover,
@@ -745,7 +747,7 @@ a:focus {
 }
 
 .awsui-filter-reset:hover {
-  text-decoration: underline;
+  opacity: 0.8;
 }
 
 #filter-modal,
