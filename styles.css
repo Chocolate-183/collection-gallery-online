@@ -718,24 +718,34 @@ a:focus {
 .awsui-filter-reset {
   flex-shrink: 0;
   margin-left: 8px;
-  padding: 2px 8px;
+  padding: 0;
   font-family: var(--awsui-font-family);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
   color: var(--awsui-color-text-body-secondary);
   background: transparent;
-  border: 1px solid var(--awsui-color-border-item-default);
-  border-radius: var(--awsui-border-radius-tag, 4px);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  text-decoration: none;
 }
 
 .awsui-filter-reset:hover,
-.awsui-filter-reset:active {
-  border-color: #ECC94B;
+.awsui-filter-reset:active,
+.awsui-filter-reset:focus,
+.awsui-filter-reset:focus-visible {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
   color: var(--awsui-color-text-body-secondary);
+}
+
+.awsui-filter-reset:hover {
+  text-decoration: underline;
 }
 
 #filter-modal,
