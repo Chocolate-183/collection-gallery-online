@@ -396,6 +396,9 @@ export function syncFilterUi() {
 
   const activeCount = countActiveFineFilters() + countActiveDisplaySettings();
   document.getElementById('btn-open-filter-modal')?.classList.toggle('has-active-filters', activeCount > 0);
+
+  const resetBtn = document.getElementById('btn-reset-filters');
+  if (resetBtn) resetBtn.style.display = activeCount > 0 ? '' : 'none';
 }
 
 /* ------------------------------------------------------------------ */
