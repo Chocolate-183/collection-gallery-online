@@ -732,14 +732,10 @@ a:focus {
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.awsui-filter-reset:hover {
-  border-color: #ECC94B;
-}
-
+.awsui-filter-reset:hover,
 .awsui-filter-reset:active {
-  background-color: #ECC94B !important;
-  border-color: #ECC94B !important;
-  color: #ffffff !important;
+  border-color: #ECC94B;
+  color: var(--awsui-color-text-body-secondary);
 }
 
 #filter-modal,
