@@ -18,7 +18,7 @@
 ### 3. 動態數據同步與容錯備援 (Data Fetching & Timeout Failover)
 - **多管道 API 讀取**: 支援 Google Sheets GViz Query JSON API 與 CSV 格式動態匯入展品與策展詮釋資料。
 - **引號內多行 CSV 解析器**: 內建狀態機 CSV 解析器，完美保留展品詳細解說中的換行格式，避免引號內換行導致欄位錯位。
-- **離線備援優先、手動同步**: 啟動與切換展廳預設只讀本地 JSON 快照 (`data.json` / `china-data.json` / `korean-data.json` / `profiles.json`)。除非使用者主動點選頂欄「同步最新展品」按鈕 (`#btn-refresh-data`)，否則不向 Google Sheets 更新資料。手動同步逾時 (`AbortSignal.timeout(2500)`) 後仍降級回本地快照。
+- **離線備援優先、手動同步**: 啟動與切換展廳預設只讀本地 JSON 快照 (`C101-data.json` / `C102-data.json` / `C103-data.json` / `profiles.json`)。除非使用者主動點選頂欄「同步最新展品」按鈕 (`#btn-refresh-data`)，否則不向 Google Sheets 更新資料。手動同步逾時 (`AbortSignal.timeout(2500)`) 後仍降級回本地快照。
 
 ### 4. 雙色主題與沉浸式視覺體驗 (Light/Dark Mode)
 - **展廳燈光模式**: 支援 Light Mode 與 Dark Mode 一鍵切換，預設自動跟隨系統偏好 (`prefers-color-scheme`) 並儲存於 `localStorage`。
@@ -29,7 +29,7 @@
 ### 5. 多維度檢索與展品篩選機制 (Filter, Search & Sorting)
 - **實時關鍵字搜尋**: 支援展品名稱、標音 (Reading)、策展解說與展品編號跨欄位即時模糊搜尋。
 - **精細篩選 Modal (`Filter`)**: 展廳篩選列保留無邊框漏斗圖示與 `#filter-summary`。子音、字數、種類、排序與每頁筆數改由 `Filter` 按鈕開啟的設定 Modal 處理。區塊標題維持英文（Starts with / Length / Category / POS / Etymology / Sort by / Order / Page size）；選項改中文（不限／基礎100／名詞／動詞／形容詞／副詞／漢字語／外來語／固有語／混種語／1字–4字／5字+／編號／標題／読み方／副標／隨機／新增日期／正序／倒序），Page size 為 `10` / `25` / `50` / `100` / `All`；動作按鈕維持 `Reset`。關閉用 X / Esc / 點 backdrop。C103 顯示 Starts with / Length / POS（預設 不限／名詞／動詞／形容詞／副詞，按 more 才展開其餘詞性）/ Level / Etymology / Category（基礎100）/ 標題 / 副標；C101 顯示 Starts with（あ行…わ行）/ Length / Category（基礎100）/ 読み方。所有展廳 Sort by 皆含 `隨機` / `新增日期`。
-- **快捷篩選**: 搜尋列右側提供 `最新10` / `隨機10` / `基礎100`（`#quick-filter-tabs`，同時只能有一個 active）。C103 在 `基礎100` 右側再顯示 `初級` / `中級` / `高級`。窄螢幕（如 iPhone SE）上 `#quick-filter-tabs` 維持單列橫向捲動，不換行、不超出畫面。`最新10` 套用 Sort by `新增日期` 倒序；`隨機10` 套用 Sort by `隨機`；兩者都會把 Page size 調成 `10` 並取消 `基礎100` 與 Level。`基礎100` 在 C101/C102/C103 顯示，篩選標籤為 `基礎100` 的展品（與 Filter Category 同步，再按一次取消），把 Page size 調成 `100`，並還原展廳預設排序。`初級` / `中級` / `高級` 只在 C103 顯示，與 Filter Level 同步（再按一次取消），同樣把 Page size 調成 `100` 並還原預設排序。`#filter-summary` 顯示目前 Filter 選項（如 `新增日期 倒序` / `隨機 正序` / `基礎100` / `初級`）。五十音與韓語子音仍放在 Filter Modal。
+- **快捷篩選**: 搜尋列右側提供 `最新10` / `隨機10` / `基礎100`（`#quick-filter-tabs`，同時只能有一個 active）。C103 在 `基礎100` 右側再顯示 `初級` / `中級` / `高級`。窄螢幕（如 iPhone SE）上 `#quick-filter-tabs` 維持單列橫向捲動，不換行、不超出畫面。`最新10` 套用 Sort by `新增日期` 倒序；`隨機10` 套用 Sort by `隨機`；兩者都會把 Page size 調成 `10` 並取消 `基礎100` 與 Level。`基礎100` 在 C101/C102/C103 顯示，篩選標籤為 `基礎100` 的展品（與 Filter Category 同步，再按一次取消），把 Page size 調成 `100`，並還原展廳預設排序。`初級` / `中級` / `高級` 只在 C103 顯示，與 Filter Level 同步（再按一次取消），同樣把 Page size 調成 `100` 並還原預設排序。`#filter-summary` 顯示目前 Filter 選項（如 `新增日期 倒序` / `隨機 正序` / `基礎100` / `初級`）。五十音與韓語子音仍放在 Filter Modal。當排序或篩選非預設值時，`#filter-summary` 右側顯示 `Reset`（`#btn-reset-filters`），點擊即一次還原 Filter 與 Display 預設值；回到預設後自動隱藏。
 - **多重排序與分頁控制**: 提供標音正倒序、漢字正倒序、序號排序，以及每頁 `10` / `25` / `50` / `100` / `All` 筆數選擇（Filter modal `Page size`）。
 
 ### 6. 展品詳細導覽彈窗與 Hash 路由 (Detail Modal & Hash Routing)
@@ -66,13 +66,13 @@
 │       ├── modal.js      # 展品詳細導覽彈窗 (Modal) 組件
 │       ├── notice.js     # Notice Panel（同步狀態強制顯示）
 │       └── toast.js      # 浮動訊息 (Toast) 提醒組件
-├── data.json         # 日本特色詞彙展區資料快照備份 (離線降級備援)
-├── china-data.json   # 簡中語境破解攻略展區資料快照備份 (離線降級備援)
-├── korean-data.json  # 韓文單字展區資料快照備份 (離線降級備援)
-├── attack-data.json  # C105 日語攻擊力展區資料快照備份 (離線降級備援)
-├── korean-conjugations.json # C103 動詞／形容詞變化離線備援（Dongsa All Levels）
+├── C101-data.json         # C101 日本特色詞彙展區資料快照備份 (離線降級備援)
+├── C102-data.json         # C102 簡中語境破解攻略展區資料快照備份 (離線降級備援)
+├── C103-data.json         # C103 韓文單字展區資料快照備份 (離線降級備援)
+├── C105-data.json         # C105 日語攻擊力展區資料快照備份 (離線降級備援)
+├── C103-conjugations.json # C103 動詞／形容詞變化離線備援（Dongsa All Levels）
 ├── scripts/
-│   └── scrape_dongsa_conjugations.py # 依 korean-data.json 重抓 korean-conjugations.json
+│   └── scrape_dongsa_conjugations.py # 依 C103-data.json 重抓 C103-conjugations.json
 ├── tests/
 │   ├── unit.test.js        # 核心解析器、篩選邏輯與 UI 結構單元測試
 │   └── integration.test.js # 本地快照資料與展廳狀態整合測試
@@ -92,9 +92,9 @@ npm run watch          # 開發時監看並重建
 python3 -m http.server 8899
 ```
 
-於瀏覽器開啟 `http://localhost:8899` 即可預覽。離線 JSON 快照（`data.json` 等）不打進 bundle，仍獨立 fetch。
+於瀏覽器開啟 `http://localhost:8899` 即可預覽。離線 JSON 快照（`C101-data.json` 等）不打進 bundle，仍獨立 fetch。
 
-C103 動詞／形容詞變化離線檔 `korean-conjugations.json` 在 workbook 變化表分頁缺失時，依 `korean-data.json` 的 動詞／形容詞 lemma 從 [Dongsa](https://koreanverb.app/) 重抓（stdlib Python + `curl`，已完成的 lemma 會跳過）：
+C103 動詞／形容詞變化離線檔 `C103-conjugations.json` 在 workbook 變化表分頁缺失時，依 `C103-data.json` 的 動詞／形容詞 lemma 從 [Dongsa](https://koreanverb.app/) 重抓（stdlib Python + `curl`，已完成的 lemma 會跳過）：
 
 ```bash
 npm run refresh:conjugations

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Refresh korean-conjugations.json from Dongsa All Levels.
+"""Refresh C103-conjugations.json from Dongsa All Levels.
 
 C103 Item Conjugation is Work / Professional (line indexes 1/3, future 1/3/5/7).
 This dump still stores All Levels so the hall can map by index.
 
 Lemma set = unique Hangul headwords (ja_term before '|', NFC) of 動詞 / 形容詞
-in korean-data.json. Already-complete dump rows are kept; only missing lemmas
+in C103-data.json. Already-complete dump rows are kept; only missing lemmas
 are fetched. Uses curl because Python urllib SSL often fails on macOS.
 
 Run from anywhere:
@@ -26,8 +26,8 @@ from pathlib import Path
 from unicodedata import normalize
 
 REPO = Path(__file__).resolve().parent.parent
-OUT_JSON = REPO / "korean-conjugations.json"
-HALL_JSON = REPO / "korean-data.json"
+OUT_JSON = REPO / "C103-conjugations.json"
+HALL_JSON = REPO / "C103-data.json"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) CollectionGalleryOnline/1.0"
 
 TENSE_TO_FIELD = {

@@ -51,7 +51,7 @@ const profilesSource = {
 const conjugationsSource = {
   sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
   gid: '467198079',
-  localFallback: 'korean-conjugations.json'
+  localFallback: 'C103-conjugations.json'
 };
 
 export function getCollectionDataUrls(col) {

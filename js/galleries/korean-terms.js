@@ -8,7 +8,7 @@ export default {
   enTitle: 'Master Korean Vocabulary Fast: The Ultimate Cheat Sheet',
   sheetId: '1J3tN8QV24FYi0ti4OFhNDDHE9jWhFq2c2s8LUQwp1VM',
   gid: '381266750',
-  localFallback: 'korean-data.json',
+  localFallback: 'C103-data.json',
   hasReading: true,
   hasKanaTabs: false,
   hasHangulTabs: true,

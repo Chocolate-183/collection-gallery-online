@@ -715,6 +715,41 @@ a:focus {
   text-overflow: ellipsis;
 }
 
+.awsui-filter-reset {
+  flex-shrink: 0;
+  margin-left: 8px;
+  padding: 0;
+  font-family: var(--awsui-font-family);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--awsui-color-text-body-secondary);
+  opacity: 0.55;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.awsui-filter-reset:hover,
+.awsui-filter-reset:active,
+.awsui-filter-reset:focus,
+.awsui-filter-reset:focus-visible {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: var(--awsui-color-text-body-secondary);
+}
+
+.awsui-filter-reset:hover {
+  opacity: 0.8;
+}
+
 #filter-modal,
 #display-modal {
   z-index: 2500;

@@ -4373,7 +4373,7 @@
   {
     "id": "#C103-0210",
     "ja_term": "부탁 | 付託",
-    "tw_translation": "拜託",
+    "tw_translation": "拜託\n\n㊟ 好用句子\n부탁드려요",
     "reading": "",
     "created_at": "2026-09-15",
     "recommendations": [
@@ -16261,7 +16261,7 @@
   {
     "id": "#C103-0773",
     "ja_term": "커피 | coffee",
-    "tw_translation": "咖啡",
+    "tw_translation": "咖啡\n\n㊟ 好用句子\n일반적인 커피 (一般的咖啡)",
     "reading": "",
     "created_at": "2026-09-21",
     "recommendations": [
@@ -19958,7 +19958,7 @@
   {
     "id": "#C103-0945",
     "ja_term": "기다리다",
-    "tw_translation": "等",
+    "tw_translation": "等\n\n㊟ 好用句子\n얼마나 기다려야 하나요 (要等多久)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -21612,7 +21612,7 @@
   {
     "id": "#C103-1023",
     "ja_term": "드리다",
-    "tw_translation": "給（敬語）",
+    "tw_translation": "給（敬語）\n\n㊟ 常見搭配\n뭐 드릴까요 (您要點甚麼)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -22292,7 +22292,7 @@
   {
     "id": "#C103-1055",
     "ja_term": "먹다",
-    "tw_translation": "吃",
+    "tw_translation": "吃\n\n㊟ 常見搭配\n먹고 가다 (內用)",
     "reading": "",
     "created_at": "2026-09-29",
     "recommendations": [
@@ -31449,7 +31449,7 @@
   {
     "id": "#C103-1486",
     "ja_term": "설탕 | 雪糖",
-    "tw_translation": "白糖、砂糖",
+    "tw_translation": "白糖、砂糖\n\n㊟ 好用句子\n설탕 빼고 주세요 (我要無糖)",
     "reading": "",
     "created_at": "2026-10-05",
     "recommendations": [
@@ -37407,7 +37407,7 @@
   {
     "id": "#C103-1782",
     "ja_term": "고추장 | 고추醬",
-    "tw_translation": "辣椒醬、韓式辣醬",
+    "tw_translation": "辣椒醬、韓式辣醬\n\n㊟ 好用句子\n고추장 빼고 주세요 (不要辣)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -67277,7 +67277,7 @@
   {
     "id": "#C103-3217",
     "ja_term": "변경 | 變更",
-    "tw_translation": "變更、更改",
+    "tw_translation": "變更、更改\n\n㊟ 好用句子\n○○로 변경 가능한가요 (可以把○○換成?)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -86730,7 +86730,7 @@
   {
     "id": "#C103-4211",
     "ja_term": "얼음",
-    "tw_translation": "冰塊、冰",
+    "tw_translation": "冰塊、冰\n\n㊟ 好用句子\n얼음 빼고 주세요 (我要去冰)\n얼음은 적게 주세요 (冰塊放少一點)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -88319,7 +88319,7 @@
   {
     "id": "#C103-4292",
     "ja_term": "연하다 | 軟하다",
-    "tw_translation": "嫩、淡、軟",
+    "tw_translation": "淡、軟、嫩\n\n㊟ 好用句子\n연하게 해주세요 (幫我調淡一點)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -93453,7 +93453,7 @@
   {
     "id": "#C103-4554",
     "ja_term": "음료 | 飮料",
-    "tw_translation": "飲料",
+    "tw_translation": "飲料\n\n㊟ 常見搭配\n시그니처 음료 (招牌飲料)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -97620,7 +97620,7 @@
   {
     "id": "#C103-4769",
     "ja_term": "자리",
-    "tw_translation": "位子、座位、位置",
+    "tw_translation": "位子、座位、位置\n\n㊟ 常見搭配\n창가 자리(靠窗座位)\n통로 자리(靠走道座位)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -107872,7 +107872,7 @@
   {
     "id": "#C103-5275",
     "ja_term": "진하다 | 津하다",
-    "tw_translation": "濃郁、深濃",
+    "tw_translation": "濃郁、深濃\n\n㊟ 好用句子\n진하게 해주세요 (幫我弄深一點)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -113099,7 +113099,7 @@
   },
   {
     "id": "#C103-5526",
-    "ja_term": "카페",
+    "ja_term": "카페 | Café",
     "tw_translation": "咖啡廳",
     "reading": "",
     "created_at": "2026-10-08",
@@ -113110,10 +113110,10 @@
       "상점 | 商店",
       "여관 | 旅館"
     ],
-    "subtitle": "",
+    "subtitle": "Café",
     "traditional_term": "",
     "tags": [],
-    "etymology": "固有語",
+    "etymology": "外來語",
     "pos": "名詞",
     "level": "中級",
     "row_index": 5525
@@ -117058,7 +117058,7 @@
   {
     "id": "#C103-5718",
     "ja_term": "포장 | 包裝",
-    "tw_translation": "包裝、打包",
+    "tw_translation": "包裝、打包\n\n㊟ 好用句子\n포장해 주세요 (我要打包)",
     "reading": "",
     "created_at": "2026-10-08",
     "recommendations": [
@@ -125673,5 +125673,299 @@
     "pos": "名詞",
     "level": "中級",
     "row_index": 6133
+  },
+  {
+    "id": "#C103-6135",
+    "ja_term": "빙수 | 氷水",
+    "tw_translation": "刨冰",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "음료수 | 飮料水",
+      "수영 | 水泳",
+      "수영장 | 水泳場",
+      "콧물 | 鼻水",
+      "냉면 | 冷麵"
+    ],
+    "subtitle": "氷水",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6134
+  },
+  {
+    "id": "#C103-6136",
+    "ja_term": "웨이팅 | waiting",
+    "tw_translation": "候位、排隊等候",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "시그니처 | signature",
+      "디카페인 | decaffeine",
+      "소고 | SOGO",
+      "스마트폰 | smartphone",
+      "넷플릭스 | Netflix"
+    ],
+    "subtitle": "waiting",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "無等級",
+    "row_index": 6135
+  },
+  {
+    "id": "#C103-6137",
+    "ja_term": "카페인 | caffeine",
+    "tw_translation": "咖啡因",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "칵테일 | cocktail",
+      "알레르기 | allergy",
+      "코로나 | corona",
+      "콘센트 | concentric plug",
+      "원룸 | one-room"
+    ],
+    "subtitle": "caffeine",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6136
+  },
+  {
+    "id": "#C103-6138",
+    "ja_term": "디카페인 | decaffeine",
+    "tw_translation": "低咖啡因、無咖啡因",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "시그니처 | signature",
+      "웨이팅 | waiting",
+      "소고 | SOGO",
+      "세럼 | serum",
+      "콜라겐 | collagen"
+    ],
+    "subtitle": "decaffeine",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "無等級",
+    "row_index": 6137
+  },
+  {
+    "id": "#C103-6139",
+    "ja_term": "시그니처 | signature",
+    "tw_translation": "招牌、代表性（餐點或飲品）",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "디카페인 | decaffeine",
+      "웨이팅 | waiting",
+      "소고 | SOGO",
+      "세럼 | serum",
+      "콜라겐 | collagen"
+    ],
+    "subtitle": "signature",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "無等級",
+    "row_index": 6138
+  },
+  {
+    "id": "#C103-6140",
+    "ja_term": "실전 | 實戰",
+    "tw_translation": "實戰",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "실습 | 實習",
+      "실시 | 實施",
+      "실천 | 實踐",
+      "실험 | 實驗",
+      "실현 | 實現"
+    ],
+    "subtitle": "實戰",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "高級",
+    "row_index": 6139
+  },
+  {
+    "id": "#C103-6141",
+    "ja_term": "카페 라떼 | caffè latte",
+    "tw_translation": "拿鐵咖啡",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "치킨 | chicken",
+      "오렌지 | orange",
+      "서비스 | service",
+      "와이파이 | Wi-Fi",
+      "카드 | card"
+    ],
+    "subtitle": "caffè latte",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6140
+  },
+  {
+    "id": "#C103-6142",
+    "ja_term": "두유 | 豆乳",
+    "tw_translation": "豆漿、豆奶",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "식후 | 食後",
+      "주량 | 酒量",
+      "건배 | 乾杯",
+      "부작용 | 副作用",
+      "두뇌 | 頭腦"
+    ],
+    "subtitle": "豆乳",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6141
+  },
+  {
+    "id": "#C103-6143",
+    "ja_term": "결제 | 決濟",
+    "tw_translation": "結帳、付款、結算",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "결심 | 決心",
+      "결말 | 結末",
+      "출금 | 出金",
+      "현금인출기 | 現金引出機",
+      "계약 | 契約"
+    ],
+    "subtitle": "決濟",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6142
+  },
+  {
+    "id": "#C103-6144",
+    "ja_term": "와이파이 | Wi-Fi",
+    "tw_translation": "Wi-Fi、無線網路",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "프로그램 | program",
+      "게임 | game",
+      "서비스 | service",
+      "카페 라떼 | caffè latte",
+      "카드 | card"
+    ],
+    "subtitle": "Wi-Fi",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6143
+  },
+  {
+    "id": "#C103-6145",
+    "ja_term": "비밀번호 | 秘密番號",
+    "tw_translation": "密碼",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "비밀 | 祕密",
+      "번호 | 番號",
+      "비서 | 祕書",
+      "사무실 | 事務室",
+      "사용 | 使用"
+    ],
+    "subtitle": "秘密番號",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6144
+  },
+  {
+    "id": "#C103-6146",
+    "ja_term": "콘센트 | concentric plug",
+    "tw_translation": "插座、電源插座",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "원룸 | one-room",
+      "카페인 | caffeine",
+      "커뮤니티 | community",
+      "아이돌 | Idol",
+      "칵테일 | cocktail"
+    ],
+    "subtitle": "concentric plug",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "外來語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6145
+  },
+  {
+    "id": "#C103-6147",
+    "ja_term": "예약석 | 豫約席",
+    "tw_translation": "預約席、保留席",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "예보 | 豫報",
+      "예상 | 豫想",
+      "계약 | 契約",
+      "정거장 | 停車場",
+      "정원 | 庭園"
+    ],
+    "subtitle": "豫約席",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "中級",
+    "row_index": 6146
+  },
+  {
+    "id": "#C103-6148",
+    "ja_term": "충전기 | 充電器",
+    "tw_translation": "充電器",
+    "reading": "",
+    "created_at": "2026-11-24",
+    "recommendations": [
+      "충분 | 充分",
+      "비행기 | 飛行機",
+      "사용 | 使用",
+      "사무실 | 事務室",
+      "촬영 | 撮影"
+    ],
+    "subtitle": "充電器",
+    "traditional_term": "",
+    "tags": [],
+    "etymology": "漢字語",
+    "pos": "名詞",
+    "level": "初級",
+    "row_index": 6147
   }
 ]

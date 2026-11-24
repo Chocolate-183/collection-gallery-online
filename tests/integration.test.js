@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const dataJson = JSON.parse(readFileSync(resolve('data.json'), 'utf-8'));
+const dataJson = JSON.parse(readFileSync(resolve('C101-data.json'), 'utf-8'));
 
 function createMockElement(props = {}) {
   const classes = new Set();
@@ -52,13 +52,13 @@ test('Offline dumps cover C101 C102 C103 C105 and profiles', () => {
   assert(Array.isArray(dataJson) && dataJson.length > 12);
   assert('ja_term' in dataJson[0] && 'tw_translation' in dataJson[0] && 'reading' in dataJson[0]);
 
-  const chinaJson = JSON.parse(readFileSync(resolve('china-data.json'), 'utf-8'));
+  const chinaJson = JSON.parse(readFileSync(resolve('C102-data.json'), 'utf-8'));
   assert(Array.isArray(chinaJson) && chinaJson.length > 12);
   assert('ja_term' in chinaJson[0] && 'tw_translation' in chinaJson[0]);
   assert('traditional_term' in chinaJson[0]);
   assert.ok(chinaJson.some(r => r.traditional_term && r.traditional_term !== r.ja_term));
 
-  const koreanJson = JSON.parse(readFileSync(resolve('korean-data.json'), 'utf-8'));
+  const koreanJson = JSON.parse(readFileSync(resolve('C103-data.json'), 'utf-8'));
   assert(Array.isArray(koreanJson) && koreanJson.length > 12);
   assert.match(koreanJson[0].ja_term, /\|/);
   const posValues = [...new Set(koreanJson.map(r => String(r.pos || '').trim()).filter(Boolean))];
@@ -78,13 +78,13 @@ test('Offline dumps cover C101 C102 C103 C105 and profiles', () => {
     assert.ok(levelValues.includes(level), `C103 dump missing Level ${level}`);
   }
 
-  const conjugationsJson = JSON.parse(readFileSync(resolve('korean-conjugations.json'), 'utf-8'));
+  const conjugationsJson = JSON.parse(readFileSync(resolve('C103-conjugations.json'), 'utf-8'));
   assert(Array.isArray(conjugationsJson) && conjugationsJson.length > 12);
   const hada = conjugationsJson.find(r => r.lemma === '하다');
   assert.ok(hada);
   assert.deepEqual(hada.present, ['해', '해요', '한다', '합니다']);
 
-  const attackJson = JSON.parse(readFileSync(resolve('attack-data.json'), 'utf-8'));
+  const attackJson = JSON.parse(readFileSync(resolve('C105-data.json'), 'utf-8'));
   assert(Array.isArray(attackJson) && attackJson.length > 12);
   assert.equal(attackJson[0].id.startsWith('#C105-'), true);
   assert('ja_term' in attackJson[0] && 'tw_translation' in attackJson[0]);
@@ -115,8 +115,8 @@ test('Offline preload uses local JSON only; refresh hits Google Sheets', async (
   assert.ok(collectionsCache['china-terms']?.length > 12);
   assert.ok(collectionsCache['korean-terms']?.length > 12);
   assert.ok(fetched.every(url => !url.includes('docs.google.com')), 'boot must not hit Google Sheets');
-  assert.ok(fetched.some(url => url === 'data.json'));
-  assert.ok(fetched.some(url => url === 'korean-data.json'));
+  assert.ok(fetched.some(url => url === 'C101-data.json'));
+  assert.ok(fetched.some(url => url === 'C103-data.json'));
 
   fetched.length = 0;
   const originalSetTimeout = global.setTimeout;
@@ -696,4 +696,38 @@ test('C103 Item Modal hides Pronunciation and shows Etymology/POS; cards toggle 
   openMeaningModal(1, false);
   assert.equal(mockViewConjugation.style.display, 'none');
   assert.equal(mockConjugationModal.classes.has('open'), false);
+});
+
+
+test('Keyboard paging moves the Catalog one page and stops at both edges', async () => {
+  const { store } = await import('../js/state.js');
+  const { goToRelativePage, getTotalPages } = await import('../js/components/pagination.js');
+
+  mockDOM({});
+  global.window = global.window || {};
+  global.window.scrollY = 0;
+  global.window.scrollTo = () => {};
+
+  const records = Array.from({ length: 25 }, (_, i) => ({
+    row_index: i + 1,
+    ja_term: `term-${i + 1}`,
+    tw_translation: 'x'
+  }));
+  store.set({ allRecords: records, filteredRecords: records, pageSize: 10, currentPage: 1 });
+
+  assert.equal(getTotalPages(), 3);
+  assert.equal(goToRelativePage(-1), false, 'first page has no previous page');
+  assert.equal(store.get().currentPage, 1);
+
+  assert.equal(goToRelativePage(1), true);
+  assert.equal(store.get().currentPage, 2);
+  assert.equal(goToRelativePage(1), true);
+  assert.equal(store.get().currentPage, 3);
+  assert.equal(goToRelativePage(1), false, 'last page has no next page');
+  assert.equal(store.get().currentPage, 3);
+
+  assert.equal(goToRelativePage(-1), true);
+  assert.equal(store.get().currentPage, 2);
+
+  store.set({ allRecords: [], filteredRecords: [], currentPage: 1 });
 });

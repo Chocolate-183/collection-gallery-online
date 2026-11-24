@@ -8,7 +8,7 @@ export default {
   enTitle: 'Japanese Terms',
   sheetId: '1rFrRNHwuPwBr27EuCqOj8r1evXU-9qE_HJfDCzXyWwI',
   gid: '70070774',
-  localFallback: 'data.json',
+  localFallback: 'C101-data.json',
   hasReading: true,
   hasKanaTabs: true,
   hasBasic100Filter: true,
